@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Composition;
+using Microsoft.VisualStudio.Patterning.Runtime;
+using AbstractEndpoint;
+
+namespace NServiceBusStudio.Automation.ValueProviders
+{
+    [CLSCompliant(false)]
+    [DisplayName("CommandSenderRequiresRegistrationValueProvider")]
+    [Category("General")]
+    [Description("CommandSenderRequiresRegistrationValueProvider")]
+    public class CommandSenderRequiresRegistrationValueProvider : ComponentFromLinkBasedValueProvider
+    {
+        public override object Evaluate()
+        {
+            try
+            {
+                var endpoints = this.Service.Parent.Parent.Endpoints.As<IAbstractElement>().Extensions
+                    .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+                    .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this.Component));
+
+                return endpoints.Any(ep => ep.CommandSenderNeedsRegistration);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+}

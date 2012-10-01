@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Type="Project" Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Contracts Project</Name>
+    <Description>Description for Application.Design.ContractsProject</Description>
+    <Icon>InternalMessages.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateID>a31ec8d9600f-Application.Design.ContractsProject</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ContractsProject</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>true</Hidden>
+    <LocationField>Enabled</LocationField>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="Contract.csproj" TargetFileName="$safeprojectname$.Contract.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem TargetFileName="AssemblyInfo.cs" ReplaceParameters="true">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <!--<WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.Patterning.Library, PublicKeyToken=31bf3856ad364e35</Assembly>
+    <FullClassName>Microsoft.VisualStudio.Patterning.Library.Automation.ElementReplacementsWizard</FullClassName>
+  </WizardExtension>-->
+  <!--<WizardData>
+    <packages repository="extension" repositoryId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
+      <package id="NServiceBus" version="3.0.3" />
+    </packages>
+  </WizardData>-->
+</VSTemplate>

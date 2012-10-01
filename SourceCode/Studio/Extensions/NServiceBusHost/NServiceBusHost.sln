@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusHost", "NServiceBusHost\NServiceBusHost.csproj", "{938460D2-E239-4095-92E2-C8F0388CDC8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{705C8ED5-FA56-48F5-8007-06D9971E03F0}"
+	ProjectSection(SolutionItems) = preProject
+		NServiceBusHost.guidancestate = NServiceBusHost.guidancestate
+		NServiceBusHost.slnbldr = NServiceBusHost.slnbldr
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusHost.Automation", "NServiceBusHost.Automation\NServiceBusHost.Automation.csproj", "{92479D17-7742-4B6B-B06E-4C896A21E995}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.clariusconsulting.net/tfs/customers
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NServiceBusHost.Automation\\NServiceBusHost.Automation.csproj
+		SccProjectName1 = NServiceBusHost.Automation
+		SccLocalPath1 = NServiceBusHost.Automation
+		SccProjectUniqueName2 = NServiceBusHost\\NServiceBusHost.csproj
+		SccProjectName2 = NServiceBusHost
+		SccLocalPath2 = NServiceBusHost
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{938460D2-E239-4095-92E2-C8F0388CDC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938460D2-E239-4095-92E2-C8F0388CDC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938460D2-E239-4095-92E2-C8F0388CDC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938460D2-E239-4095-92E2-C8F0388CDC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92479D17-7742-4B6B-B06E-4C896A21E995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92479D17-7742-4B6B-B06E-4C896A21E995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92479D17-7742-4B6B-B06E-4C896A21E995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92479D17-7742-4B6B-B06E-4C896A21E995}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Features = 9f6dc301-6f66-4d21-9f9c-b37412b162f6:Creating Pattern Toolkits:1.2.19.0
+	EndGlobalSection
+EndGlobal

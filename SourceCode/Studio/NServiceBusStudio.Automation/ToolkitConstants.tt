@@ -1,0 +1,53 @@
+﻿<#@ Template Debug="False" Hostspecific="False" Language="C#" #>
+<#@ Output Extension=".cs" #>
+<#@ Include File="..\NServiceBusStudio\source.include.t4" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace <#= rootNamespace #>
+{
+	internal static class ToolkitConstants
+	{
+		/// <summary>
+		/// <#= identifier #>
+		/// </summary>
+		public const string VsixIdentifier = "<#= identifier #>";
+
+		/// <summary>
+		/// <#= toolkitName #>
+		/// </summary>
+		public const string ToolkitName = "<#= toolkitName #>";
+
+		/// <summary>
+		/// <#= author #>
+		/// </summary>
+		public const string Author = "<#= author #>";
+
+		/// <summary>
+		/// <#= version #>
+		/// </summary>
+		public const string Version = "<#= version #>";
+
+		/// <summary>
+		/// <#= description #>
+		/// </summary>
+		public const string Description = "<#= description #>";
+
+		/// <summary>
+		/// <#= productName #>
+		/// </summary>
+		public const string ProductName = "<#= productName #>";
+
+		/// <summary>
+		/// <#= rootNamespace #>
+		/// </summary>
+		public const string RootNamespace = "<#= rootNamespace #>";
+
+		/// <summary>
+		/// <#= assemblyName #>
+		/// </summary>
+		public const string AssemblyName = "<#= assemblyName #>";
+	}
+}

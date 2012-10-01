@@ -1,0 +1,998 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<patternModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/visualstudio/patterning/library/automationextensions" dslVersion="1.2.0.0" Id="04c02f2a-19a6-45b7-bc74-740c27cf3fc1" baseVersion="1.2.0.0" baseId="fda1a39f-99d2-4c3f-8f68-6af20823c15e" xmlns="http://schemas.microsoft.com/visualstudio/patterning/runtime/patternmodel">
+  <dm0:extensions>
+    <eventSettings Id="fc6a8263-0819-4bc3-a6fb-dea603990de9" commandId="6a86571c-ba53-456c-b8e4-4815e79e35a0" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c17bbb83-0030-4da5-a4dd-a0dc67403253" />
+      </extendedElement>
+    </eventSettings>
+    <eventSettings Id="7bafec46-f522-40c4-89f9-f75b811814d3" commandId="03ea6f45-f980-40da-a45d-53942408adc7" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b223a469-bb13-46ba-9f00-fd5c961f1c06" />
+      </extendedElement>
+    </eventSettings>
+    <eventSettings Id="598a27bb-a924-471b-9518-0d00a174f069" commandId="03ea6f45-f980-40da-a45d-53942408adc7" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementDeletedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="d2e21fb9-e190-4897-bd63-8b74f43706ad" />
+      </extendedElement>
+    </eventSettings>
+    <eventSettings Id="3358362a-b532-4dbf-a35a-f83a9b74e9cf" commandId="c0097d3a-79dd-4c56-a590-d3532d1d2799" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementActivatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="5af18fca-feb5-4e97-a9e8-a4c664533c6b" />
+      </extendedElement>
+    </eventSettings>
+    <commandSettings Id="9ef45da4-7ab4-4acc-a47a-c5968fbf1535" typeId="AbstractEndpoint.Automation.Commands.ShowComponentLinkPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a29b7fe7-992e-4a5f-8780-fb43e7f2f4f1" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="6a86571c-ba53-456c-b8e4-4815e79e35a0" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e3aeb26a-2451-42f0-8c7c-95f0ec778009" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="ca2f1687-10cb-42e6-890d-17d6a1782b3e" value="b517a886-17c8-4e38-86c7-aec7607fb55c;ccea3122-853f-4ad3-8da7-931f4ce29be4;e2f6edaf-a39b-408a-bf82-2d084992b8f2;6b770aba-95b8-4536-8159-9cc60db33863;5b092448-6914-4898-82de-edc5dd9d7799;ec90e995-96e1-403b-bd37-4d6514a9c590;2e03e0c5-611d-4db0-82be-72706f0152ed" name="CommandReferenceList" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="b517a886-17c8-4e38-86c7-aec7607fb55c" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.UnfoldVsTemplateCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="59f63347-fecb-48ee-a2ae-e48605d9ac4c" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="7ffbd448-45af-4591-9055-88e600a61a4b" value="False" name="SanitizeName" />
+        <propertySettings Id="b765a1e8-2920-4ed2-8a5b-3735b820b10d" value="False" name="SyncName" />
+        <propertySettings Id="492c6516-ddb1-4338-a9fd-8ff85f3a2b7d" name="Tag" />
+        <propertySettings Id="5a30c05a-5652-49ae-adc5-a76cf8ef8f0b" value="{Root.InstanceName}.{InstanceName}" name="TargetFileName" />
+        <propertySettings Id="10d8a9c1-7dca-4c68-9291-9d1c19a3adc0" name="TargetPath" />
+        <propertySettings Id="213e645e-a23c-417f-8d0f-959c4c83a879" value="template://project/CSharp/2add38de6772-AbstractEndpoint" name="TemplateUri" />
+        <propertySettings Id="9feaf1ee-d80d-4734-b331-a2955486de34" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/bf16cc4c-b1c5-474e-95f1-336d02440852" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="ccea3122-853f-4ad3-8da7-931f4ce29be4" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="fa80c12e-587d-4413-a99e-a2a67aef5ce5" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="1709b09f-79e9-4f60-99b1-9e19ef8f48b2" value="69b75c18-25e8-4c9b-a47d-10e3064011a1;00d9fad1-1508-4c15-9b96-2cbd77d763fa;8b26f35c-c612-4b4a-bd64-4f96196165c5;f74ea755-0aea-449d-8816-f5edf94c5af8" name="CommandReferenceList" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="312ee1e8-24a0-4393-8791-b25600cf93b0" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="8fa3f8d1-2411-4889-8e91-f9172ae0878d" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="b3901ddc-cbaf-4aac-a327-45c7f377f272" value="False" name="SanitizeName" />
+        <propertySettings Id="aec1d5e4-2406-4dc9-9e8b-ab6ad5be4002" value="False" name="SyncName" />
+        <propertySettings Id="f1aebb7f-037f-4dad-831c-0aac198676ea" name="Tag" />
+        <propertySettings Id="7738a9a6-da0b-4cb2-9dd5-bb6b3946c22f" value="MasterNodeConfig.config" name="TargetFileName" />
+        <propertySettings Id="906efecb-6063-48c5-b261-00765539384f" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
+        <propertySettings Id="9dd52951-137a-465a-8536-573bd7408636" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/MasterNodeConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="b90d7144-45c2-47ea-adb0-b9872d443ba9" value="Content" name="TargetBuildAction" />
+        <propertySettings Id="2117ffc5-90e7-4fd7-a35a-f1f3c4ec3636" value="PreserveNewest" name="TargetCopyToOutput" />
+        <propertySettings Id="517b8c71-b168-4466-b835-0e3bfc477535" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/5ec23739-fb70-4c16-ab6c-380c4d4d1d8f" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="00d9fad1-1508-4c15-9b96-2cbd77d763fa" typeId="NServiceBusHost.Automation.Commands.AddEndpointProjectReferences">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="353f96e6-c629-4d20-b685-1d836292dc88" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="efc8d2b1-39ca-4871-868c-3932423304b8" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e4c539e5-86ee-419f-af90-9c581dd6f14e" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="61f9558d-15cb-4d9a-8281-5afaf3b09744" value="c48f3a5d-cf3a-48ab-848c-b990a9c38761;4203db5b-b77a-4146-a8b4-76db48ee4aad" name="CommandReferenceList" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="c48f3a5d-cf3a-48ab-848c-b990a9c38761" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a5a98b23-a947-499d-b526-60e32fa1f2c8" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="6b1f7e11-8782-4e4e-bbe2-c0824f4ef467" value="False" name="SanitizeName" />
+        <propertySettings Id="4ebf0e12-c15e-4ffd-9cd7-0cf4b1c10cd7" value="False" name="SyncName" />
+        <propertySettings Id="a6673b6d-8bf6-4393-8ea8-9857720219da" name="Tag" />
+        <propertySettings Id="2b811fd3-3a1b-4b60-bbaf-2161996bdc3a" name="TargetBuildAction" />
+        <propertySettings Id="4e77a57a-2a4d-4c75-999d-f75a28210c00" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="efafec4f-7cd9-4112-b243-2f7f2235a7dd" value="{InstanceName}.endpoints" name="TargetFileName" />
+        <propertySettings Id="f24b125c-1a81-41c3-b3f0-9550d28eced0" value="~" name="TargetPath" />
+        <propertySettings Id="764dcddd-280e-4519-9cf8-22b802073676" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/EndpointDiagram.tt" name="TemplateUri" />
+        <propertySettings Id="4fd2a418-719e-439c-954d-b00281f3d007" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/72efd64f-bfa0-48f2-a266-dc1396d1a41a" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="4203db5b-b77a-4146-a8b4-76db48ee4aad" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.ActivateElementSolutionItemCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="cc46c3f2-8ad1-40db-aa04-9dba3def2170" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="2558dfd4-c3ec-4cf6-95f9-c9673fb6420b" value="True" name="Open" />
+        <propertySettings Id="2c89694a-962e-45c2-b0ec-314c1925334d" name="TargetFileName">
+          <valueProvider>
+            <valueProviderSettings Id="07287395-bb41-4597-ad98-1eacdeff539c" typeId="Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider">
+              <properties>
+                <propertySettingsMoniker Id="f50f74af-ae43-4da9-a8bb-f14447719337" />
+              </properties>
+            </valueProviderSettings>
+          </valueProvider>
+        </propertySettings>
+        <propertySettings Id="76ca7fc9-31e2-42ba-8d76-640e1508b031" value="~" name="TargetPath" />
+        <propertySettings Id="f50f74af-ae43-4da9-a8bb-f14447719337" value="{InstanceName}.endpoints" name="TargetFileName.Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider.Expression" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="8b26f35c-c612-4b4a-bd64-4f96196165c5" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="dfe0c03e-edc4-4ef1-b355-a3ceda1685bd" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="57f595e8-236a-42e7-ab6f-85c62092458e" value="False" name="SanitizeName" />
+        <propertySettings Id="238232f1-53b1-48a9-a1aa-42c48294346d" value="False" name="SyncName" />
+        <propertySettings Id="450a57ed-73c3-4008-9cc8-347918393fe5" name="Tag" />
+        <propertySettings Id="18f8c666-2e33-4d9f-9eb9-56e617f917bb" value="Compile" name="TargetBuildAction" />
+        <propertySettings Id="e2437be4-1f76-4c19-96f0-7a87b9d8d746" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="f8a1bcef-726b-4559-acb1-10d377f2ba0f" value="EndpointConfig.cs" name="TargetFileName" />
+        <propertySettings Id="ab764430-b66f-4c49-87f8-a6d3d6cb7552" value="~" name="TargetPath" />
+        <propertySettings Id="86cae74f-9db7-4bd2-afc2-dfd27de1c368" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/EndpointConfig.tt" name="TemplateUri" />
+        <propertySettings Id="cd875c9f-51b9-47ac-83ef-81fa731d2e75" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/8ecf94ae-891b-4049-a59e-d77f9f1808f1" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="f74ea755-0aea-449d-8816-f5edf94c5af8" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="935c8d37-180b-4072-adb8-356e3a847122" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="a75326ee-9ad6-4c72-b339-3c9bc9bdf60e" value="False" name="SanitizeName" />
+        <propertySettings Id="4b198979-6d47-4a13-8a4c-a04ddf3b408f" value="False" name="SyncName" />
+        <propertySettings Id="b8387963-1e96-444f-83ab-4323a5cf43da" name="Tag" />
+        <propertySettings Id="c61e4acc-ff70-4a17-b080-0edeadf173fb" name="TargetBuildAction" />
+        <propertySettings Id="96066353-833f-41c1-9cb0-4679685b5248" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="e3ad7b6b-d751-430c-939e-3e447020141d" value="App.config" name="TargetFileName" />
+        <propertySettings Id="aa972dea-a593-425a-8b9e-ca9c35573ac4" name="TargetPath" />
+        <propertySettings Id="9a0d40a8-9b96-4f9a-aaae-18ebd476c1c4" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/DefaultApp.config.tt" name="TemplateUri" />
+        <propertySettings Id="8b772a6b-c0e1-43b9-91cd-a1b4cfeeec57" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/97fe634f-2559-44b6-a762-1c3c8aa63f38" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="69b75c18-25e8-4c9b-a47d-10e3064011a1" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="35bc0508-dc93-41af-88c4-6f2298658eb8" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="ef4d170d-cb78-4c34-88cc-2f95faeb199b" value="312ee1e8-24a0-4393-8791-b25600cf93b0;c5219cc7-2bb9-43e0-b62e-8e0b0d572b22;4a4a5048-a27c-4df9-9d34-72fae6a38d5a;14f5b3ec-5250-4215-9d08-708d829c290a;8b26f35c-c612-4b4a-bd64-4f96196165c5;d213b468-dd9d-4d6f-a328-9e2350f0c52a" name="CommandReferenceList" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="c5219cc7-2bb9-43e0-b62e-8e0b0d572b22" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="f2a353bd-1646-4c5d-9b58-c2e96a3463ae" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="804b1049-5810-4196-8b1a-6399573b8927" value="False" name="SanitizeName" />
+        <propertySettings Id="5348080a-8d20-4959-9f0f-6c204f5e92c2" value="False" name="SyncName" />
+        <propertySettings Id="bf783963-7a76-4b32-80f2-5bce67306c84" name="Tag" />
+        <propertySettings Id="2dc0c7c4-2a20-4693-ba38-2cf96fb484e2" value="Content" name="TargetBuildAction" />
+        <propertySettings Id="cb3a8e9f-7c3f-485e-81ba-ca10929efbcd" value="PreserveNewest" name="TargetCopyToOutput" />
+        <propertySettings Id="09d69ab7-6ce6-4817-a6f5-8b0b55959afa" value="MessageForwardingInCaseOfFaultConfig.config" name="TargetFileName" />
+        <propertySettings Id="9c60c91b-42c9-4a3d-8fef-6d4888791e03" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
+        <propertySettings Id="644c38c3-4cca-4e80-a3b0-9ced753193a5" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/MessageForwardingInCaseOfFaultConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="be098b64-d2b8-4109-a1b1-df026171c06e" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/560b7a1a-a63f-4e76-8203-efbe95727caf" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="4a4a5048-a27c-4df9-9d34-72fae6a38d5a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="d3705cce-04ba-4d86-a3d0-0a82a38bb17c" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="5f113c7d-5511-450c-9ede-67c0fa37f811" value="False" name="SanitizeName" />
+        <propertySettings Id="2a49d79f-67df-4d6a-b94b-7062cc610f3c" value="False" name="SyncName" />
+        <propertySettings Id="0ca2e4d7-4d27-4567-8998-e0b147791cac" name="Tag" />
+        <propertySettings Id="f020b876-aee3-4995-abd6-e1ce870917be" value="Content" name="TargetBuildAction" />
+        <propertySettings Id="7f485e05-71d7-4569-bd9f-23950f1a4fe1" value="PreserveNewest" name="TargetCopyToOutput" />
+        <propertySettings Id="c22fa434-ba02-42a2-9631-ea89d9189f26" value="MsmqTransportConfig.config" name="TargetFileName" />
+        <propertySettings Id="b53ede21-2430-4a3c-a7d8-ab221e1f84a5" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
+        <propertySettings Id="aa2ce8a9-e7a4-4e44-9ef2-8b20b1a5ba9f" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/MsmqTransportConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="b389d8fb-b483-4820-8132-dd366d307824" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/f08a8245-1170-4182-9cd7-c75085634e5e" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="14f5b3ec-5250-4215-9d08-708d829c290a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="d99163fd-de7e-4a5d-b03f-faf0b952c2b5" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="2ec04024-179e-4873-84d8-af6d37a3117c" value="False" name="SanitizeName" />
+        <propertySettings Id="e2dd9e67-4175-4e22-ba5d-1183967d82cd" value="False" name="SyncName" />
+        <propertySettings Id="8d66cf2a-73d4-458b-b1e8-25f2eb4abcbd" name="Tag" />
+        <propertySettings Id="05dd8b64-0712-49ba-b4b7-70844e861cce" value="Content" name="TargetBuildAction" />
+        <propertySettings Id="c17afd2b-ddbc-4689-86bb-22e6aea6eb6c" value="PreserveNewest" name="TargetCopyToOutput" />
+        <propertySettings Id="fda06186-499f-4e4d-8df5-eff379d30d37" value="UnicastBusConfig.config" name="TargetFileName" />
+        <propertySettings Id="ba03500b-7603-4fe0-a3c1-c1b03405d70d" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
+        <propertySettings Id="8b23553d-f7a5-4834-8bcb-c9484998bf78" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/UnicastBusConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="759b217f-16f9-4d28-8159-738959f72343" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/19d331c0-a125-4e92-8d15-9e1b0b49e499" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="2e03e0c5-611d-4db0-82be-72706f0152ed" typeId="NServiceBusHost.Automation.Commands.ProcessRootAfterUnfoldedProject">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="6f22db2a-887b-4b29-a156-d0842e1148eb" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="e2f6edaf-a39b-408a-bf82-2d084992b8f2" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="75d93d83-f381-49eb-b4a7-25af50cac8f1" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="6adba998-ef25-4094-84df-c125f233d543" value="False" name="SanitizeName" />
+        <propertySettings Id="644fcebf-01e5-41d4-ac4f-498095ce331a" value="False" name="SyncName" />
+        <propertySettings Id="d9ab738d-9030-462e-935c-ee2b404a2d2f" name="Tag" />
+        <propertySettings Id="a30931f6-a66a-49e3-a153-7f69f7b96e5a" name="TargetBuildAction" />
+        <propertySettings Id="2b14d686-3ac4-40ce-9508-f51d112e1652" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="9f296abb-9457-4815-ac7b-3d805729ebc1" value="MessageConventions.cs" name="TargetFileName" />
+        <propertySettings Id="6223b2bd-2f97-408d-be04-2ba922141454" value="~/Infrastructure" name="TargetPath" />
+        <propertySettings Id="c16ad450-a4bc-45d7-9e12-dbe9bbd40292" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/MessageConventions.cs.tt" name="TemplateUri" />
+        <propertySettings Id="f1afe688-d97c-419e-8ab1-22e4738a41ab" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/88df57c4-0e11-4d4c-96f8-f3e4b4c324db" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="03ea6f45-f980-40da-a45d-53942408adc7" typeId="NServiceBusHost.Automation.Commands.ExecuteUnfoldEndpointDiagram">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="d2b8c600-d5fd-47b2-90ed-e506ab97a304" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="ec90e995-96e1-403b-bd37-4d6514a9c590" typeId="NServiceBusHost.Automation.Commands.RaiseOnInstantiated">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c483adb7-87dc-42a0-a72f-3c3eac05bd48" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="6b770aba-95b8-4536-8159-9cc60db33863" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="f4f4e561-857f-4584-9782-b8bc79e17ca5" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="9506af53-4cec-46e6-8390-6ac5ac124439" value="False" name="SanitizeName" />
+        <propertySettings Id="45bbd699-a7b1-445e-810e-dfbd62bd1287" value="False" name="SyncName" />
+        <propertySettings Id="c073939b-f34c-41ba-b2a0-983ec6e8071c" name="Tag" />
+        <propertySettings Id="3b119c7d-3cb2-44bf-9bd0-592894c35595" value="Content" name="TargetBuildAction" />
+        <propertySettings Id="257bc0f3-df09-424e-98be-d32744919cbf" value="PreserveNewest" name="TargetCopyToOutput" />
+        <propertySettings Id="e44a1313-aae2-4ef2-a764-2637eabe7a80" value="Logging.config" name="TargetFileName" />
+        <propertySettings Id="11699522-4fbc-4a10-b130-4a4a8297969f" value="~/Infrastructure" name="TargetPath" />
+        <propertySettings Id="41654fe3-c436-4bbc-b23f-485e07a2404c" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/Logging.config.tt" name="TemplateUri" />
+        <propertySettings Id="d4e3b50c-4745-40bf-95a3-49b77eb2b645" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/b1075be1-60a0-454d-91d0-f88928199af1" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="c0097d3a-79dd-4c56-a590-d3532d1d2799" typeId="NServiceBusHost.Automation.Commands.OpenComponentCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c791815f-34b8-418b-91c5-1439966811e8" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="5b092448-6914-4898-82de-edc5dd9d7799" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="9225a57d-83f6-45c9-863f-06c8cc623101" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="07d759fa-5af8-48e8-bf20-669c964f0f11" value="False" name="SanitizeName" />
+        <propertySettings Id="8b36bd29-0610-4616-bff6-b5e756480a3c" value="False" name="SyncName" />
+        <propertySettings Id="ecab0793-7770-4f9a-bc77-bc374ae4b15a" name="Tag" />
+        <propertySettings Id="10e2ade1-4607-476b-a8ab-1138bde075c9" name="TargetBuildAction" />
+        <propertySettings Id="5712580f-4cbc-4e5b-a748-5b66b24b2a85" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="2ffd67f2-7ba9-412e-bcbc-3adbcc7c8399" value="packages.config" name="TargetFileName" />
+        <propertySettings Id="eb0a0510-8402-4f6a-bdcf-d00f9faf84b4" name="TargetPath" />
+        <propertySettings Id="0fbcb70c-cc31-4a86-8fd6-b546d2b39d1e" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/packages.config.tt" name="TemplateUri" />
+        <propertySettings Id="b0c860b7-583c-47d4-b35e-24708192b8ca" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/066ed9fc-5b46-475f-87d5-40a193c0e583" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="e8bef616-fede-4674-af7b-25e9f9a574de" typeId="NServiceBusHost.Automation.Commands.AddNugetReferencesCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a1828c70-43a3-40e6-b3cf-0465d9d78224" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="d0c44ee4-b47a-498b-805f-85d893d745d7" value="False" name="IgnoreHost" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="d213b468-dd9d-4d6f-a328-9e2350f0c52a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="499a7fa2-a534-418c-a4cb-6ec78f40a29b" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="54db8a1b-89c9-4d9f-b2ac-50e52ba746a3" value="False" name="SanitizeName" />
+        <propertySettings Id="8827a62b-a61c-4234-a46a-494b5b357c01" value="False" name="SyncName" />
+        <propertySettings Id="3ba384e4-2b56-4240-9e9b-636e71c5a9d3" name="Tag" />
+        <propertySettings Id="e54a3ba3-5509-4f2b-9218-bd496039741d" value="Content" name="TargetBuildAction" />
+        <propertySettings Id="e859adfc-d857-403e-87f6-476ce23984d7" value="PreserveNewest" name="TargetCopyToOutput" />
+        <propertySettings Id="321e37a1-8eee-450a-85f2-b462b96cf9e5" value="SecondLevelRetriesConfig.config" name="TargetFileName" />
+        <propertySettings Id="55c27c5e-3fe6-409d-a43c-6965d8cac1d0" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
+        <propertySettings Id="65c676e6-5dd2-42d5-9731-3b6a1c7df127" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/SecondLevelRetriesConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="814ef04b-e4c4-4794-b452-0722faefd140" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/4276f6e9-1d4a-4a15-8949-995f55bd84b7" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <menuSettings Id="6169d91f-a58e-4129-98f7-f1bb0b2e8e63" text="Deploy Component..." commandId="9ef45da4-7ab4-4acc-a47a-c5968fbf1535" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="f172760f-89fb-4900-bbc5-df63249f573e" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="1c65a16d-3853-4a21-867a-5cf410228807" text="Show Diagram" commandId="efc8d2b1-39ca-4871-868c-3932423304b8" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="2aeee117-0928-4f19-9062-5f66a95d834a" />
+      </extendedElement>
+    </menuSettings>
+    <guidanceExtension Id="45273332-47b0-4212-834c-32520fe3f5d4">
+      <extendedElement>
+        <patternSchemaMoniker Id="e2f29141-abe9-4b63-8f08-fb633fef4ee9" />
+      </extendedElement>
+    </guidanceExtension>
+    <guidanceExtension Id="b9bb856e-16bb-49a8-902c-5ed142e0e7fa">
+      <extendedElement>
+        <collectionSchemaMoniker Id="6396bf63-1a2a-4a7b-936d-f7e2d945de44" />
+      </extendedElement>
+    </guidanceExtension>
+    <guidanceExtension Id="c669139d-e1f3-47d7-981a-67017d279e2b">
+      <extendedElement>
+        <elementSchemaMoniker Id="d3aa73c5-0acf-409e-bdd6-4527d82d739f" />
+      </extendedElement>
+    </guidanceExtension>
+    <artifactExtension Id="e4add507-b456-411a-8731-df7da1bdb7dd">
+      <extendedElement>
+        <patternSchemaMoniker Id="e2f29141-abe9-4b63-8f08-fb633fef4ee9" />
+      </extendedElement>
+    </artifactExtension>
+    <artifactExtension Id="b5afebf1-6be4-4b8c-aa47-8e1be9e8a4c9">
+      <extendedElement>
+        <collectionSchemaMoniker Id="6396bf63-1a2a-4a7b-936d-f7e2d945de44" />
+      </extendedElement>
+    </artifactExtension>
+    <artifactExtension Id="4d7b9a81-1a8e-45d4-9137-c47532cbcb22">
+      <extendedElement>
+        <elementSchemaMoniker Id="d3aa73c5-0acf-409e-bdd6-4527d82d739f" />
+      </extendedElement>
+    </artifactExtension>
+    <validationExtension Id="6565fb87-74f1-40a5-8079-089bb0d3958a">
+      <extendedElement>
+        <patternSchemaMoniker Id="e2f29141-abe9-4b63-8f08-fb633fef4ee9" />
+      </extendedElement>
+    </validationExtension>
+  </dm0:extensions>
+  <pattern Id="e2f29141-abe9-4b63-8f08-fb633fef4ee9" name="AbstractEndpoint" baseId="0624d9a1-aded-48fc-bf6e-85f3a41f8971" displayName="NService Bus Host" description="This Endpoint should be abstract, only to be tailored in other endpoints" codeIdentifier="AbstractEndpoint" isCustomizable="True" currentDiagramId="bc47dee7-2765-44b6-8cac-41e8cba8705b">
+    <customizationPolicy name="CustomizationPolicySchema1">
+      <settings>
+        <setting propertyId="DisplayName" />
+        <setting propertyId="Description" />
+        <setting propertyId="ValidationRules" />
+        <setting propertyId="Icon" />
+      </settings>
+    </customizationPolicy>
+    <properties>
+      <property Id="496ece44-0e85-4ee5-8815-0be28dd7f8aa" name="Namespace" baseId="584f2985-b255-46bc-adf3-90f5711974a3" displayName="Namespace" description="Description for AbstractEndpoint.Namespace" codeIdentifier="Namespace" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <valueProvider>{
+  "Properties": [],
+  "TypeId": "Microsoft.VisualStudio.Patterning.Library.ValueProviders.RootNamespaceValueProvider"
+}</valueProvider>
+      </property>
+      <property Id="c620e239-69c4-4d52-b998-d5ded371b8d3" name="MasterNode" displayName="Master Node" description="Description for AbstractEndpoint.MasterNode" codeIdentifier="MasterNode">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="fccf68d7-e33f-44d9-9937-d4b38bac5e0e" name="SLA" displayName="SLA" description="Description for AbstractEndpoint.SLA" codeIdentifier="SLA">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="765b786e-d030-476d-8221-ca4ba98e3b1d" name="MessageEndpointMappingsConfig" displayName="Message Endpoint Mappings Config" description="Description for AbstractEndpoint.MessageEndpointMappingsConfig" codeIdentifier="MessageEndpointMappingsConfig" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <valueProvider>{
+  "Properties": [],
+  "TypeId": "NServiceBusHost.Automation.ValueProviders.MessageEndpointMappingsConfigProvider"
+}</valueProvider>
+      </property>
+      <property Id="430855ca-f3a2-4374-92a8-6fc21e5a8413" name="CommandSenderNeedsRegistration" displayName="Command Sender Needs Registration" description="Description for AbstractEndpoint.CommandSenderNeedsRegistration" codeIdentifier="CommandSenderNeedsRegistration" type="System.Boolean" isVisible="false" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "False",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="ed50cbea-cc57-4d06-95e6-bed08a4d4b43" name="MessageConventions" displayName="Message Conventions" description="Description for AbstractEndpoint.MessageConventions" codeIdentifier="MessageConventions" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <valueProvider>{
+  "Properties": [],
+  "TypeId": "NServiceBusHost.Automation.ValueProviders.MessageConventionsProvider"
+}</valueProvider>
+      </property>
+      <property Id="ab29754e-36a7-4dbe-8fb8-07376e74d1a6" name="ComponentsOrderDefinition" displayName="Components Order Definition" description="Description for AbstractEndpoint.ComponentsOrderDefinition" codeIdentifier="ComponentsOrderDefinition" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <valueProvider>{
+  "Properties": [],
+  "TypeId": "NServiceBusHost.Automation.ValueProviders.ComponentsOrderProvider"
+}</valueProvider>
+      </property>
+      <property Id="c1887e10-3198-4bf0-b7e0-7820e30d3d3c" name="ErrorQueue" displayName="Error Queue" description="Description for AbstractEndpoint.ErrorQueue" codeIdentifier="ErrorQueue">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="15ddca88-d395-445d-9cf1-d82d9585d428" name="ForwardReceivedMessagesTo" displayName="Forward Received Messages To" description="Description for AbstractEndpoint.ForwardReceivedMessagesTo" codeIdentifier="ForwardReceivedMessagesTo">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="69b7cf13-9427-4446-98ab-693bff3cb2ae" name="NumberOfWorkerThreads" displayName="Number Of Worker Threads" description="Description for AbstractEndpoint.NumberOfWorkerThreads" codeIdentifier="NumberOfWorkerThreads" type="System.Int64">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "1",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="690e9787-9f42-423c-9708-bee5616e61e1" name="MaxRetries" displayName="Max Retries" description="Description for AbstractEndpoint.MaxRetries" codeIdentifier="MaxRetries" type="System.Int64">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "2",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="778a4ec1-03de-4cd1-b4eb-66e9bb25cf09" name="SLEnabled" displayName="Enabled" description="Description for AbstractEndpoint.SLEnabled" codeIdentifier="SLEnabled" type="System.Boolean" category="SecondLevelRetriesConfig">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "True",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="629994f6-ab80-4730-9f16-8ab411677a9a" name="SLNumberOfRetries" displayName="Number Of Retries" description="Description for AbstractEndpoint.SLNumberOfRetries" codeIdentifier="SLNumberOfRetries" type="System.Int64" category="SecondLevelRetriesConfig">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "3",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="07dc5680-e53f-47ae-921b-1f96aba6e370" name="SLTimeIncrease" displayName="Time Increase" description="Description for AbstractEndpoint.SLTimeIncrease" codeIdentifier="SLTimeIncrease" category="SecondLevelRetriesConfig">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "00:00:10",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+    </properties>
+    <automationSettings>
+      <automationSettings Id="c17bbb83-0030-4da5-a4dd-a0dc67403253" name="OnInstantiate" displayName="On Instantiate" description="" codeIdentifier="OnInstantiate" automationType="Event Launch Point" classification="LaunchPoint">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="e3aeb26a-2451-42f0-8c7c-95f0ec778009" name="OnInstantiateCommand" displayName="On Instantiate Command" description="" codeIdentifier="OnInstantiateCommand" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="59f63347-fecb-48ee-a2ae-e48605d9ac4c" name="UnfoldProject" displayName="Unfold Project" description="" codeIdentifier="UnfoldProject" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="fa80c12e-587d-4413-a99e-a2a67aef5ce5" name="UnfoldCodeCommand" displayName="Unfold Code Command" description="" codeIdentifier="UnfoldCodeCommand" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="8fa3f8d1-2411-4889-8e91-f9172ae0878d" name="GenerateMasterNodeConfig" displayName="Generate Master Node Config" description="" codeIdentifier="GenerateMasterNodeConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="353f96e6-c629-4d20-b685-1d836292dc88" name="AddProjectReferences" displayName="Add Project References" description="" codeIdentifier="AddProjectReferences" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="2aeee117-0928-4f19-9062-5f66a95d834a" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="e4c539e5-86ee-419f-af90-9c581dd6f14e" name="ShowDiagramCommand" displayName="Show Diagram Command" description="" codeIdentifier="ShowDiagramCommand" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="a5a98b23-a947-499d-b526-60e32fa1f2c8" name="UnfoldDiagramFile" displayName="Unfold Diagram File" description="" codeIdentifier="UnfoldDiagramFile" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="cc46c3f2-8ad1-40db-aa04-9dba3def2170" name="OpenDiagramFile" displayName="Open Diagram File" description="" codeIdentifier="OpenDiagramFile" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="dfe0c03e-edc4-4ef1-b355-a3ceda1685bd" name="GenerateEndpointConfig" displayName="Generate Endpoint Config" description="" codeIdentifier="GenerateEndpointConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="935c8d37-180b-4072-adb8-356e3a847122" name="GenerateDefaultAppConfig" displayName="Generate Default App Config" description="" codeIdentifier="GenerateDefaultAppConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="35bc0508-dc93-41af-88c4-6f2298658eb8" name="GenerateCodeConfigSections" displayName="Generate Code Config Sections" description="" codeIdentifier="GenerateCodeConfigSections" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="f2a353bd-1646-4c5d-9b58-c2e96a3463ae" name="GenerateMessageForwardingInCaseOfFaultConfig" displayName="Generate Message Forwarding In Case Of Fault Config" description="" codeIdentifier="GenerateMessageForwardingInCaseOfFaultConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="d3705cce-04ba-4d86-a3d0-0a82a38bb17c" name="GenerateMsmqTransportConfig" displayName="Generate Msmq Transport Config" description="" codeIdentifier="GenerateMsmqTransportConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="d99163fd-de7e-4a5d-b03f-faf0b952c2b5" name="GenerateUnicastBusConfig" displayName="Generate Unicast Bus Config" description="" codeIdentifier="GenerateUnicastBusConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="6f22db2a-887b-4b29-a156-d0842e1148eb" name="ProcessAfterUnfoldedProject" displayName="Process After Unfolded Project" description="" codeIdentifier="ProcessAfterUnfoldedProject" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="75d93d83-f381-49eb-b4a7-25af50cac8f1" name="UnfoldMessageConventions" displayName="Unfold Message Conventions" description="" codeIdentifier="UnfoldMessageConventions" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="c483adb7-87dc-42a0-a72f-3c3eac05bd48" name="RaiseOnInstantiated" displayName="Raise On Instantiated" description="" codeIdentifier="RaiseOnInstantiated" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="f4f4e561-857f-4584-9782-b8bc79e17ca5" name="UnfoldLoggingConfig" displayName="Unfold Logging Config" description="" codeIdentifier="UnfoldLoggingConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="9225a57d-83f6-45c9-863f-06c8cc623101" name="UnfoldPackagesConfig" displayName="Unfold Packages Config" description="" codeIdentifier="UnfoldPackagesConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="a1828c70-43a3-40e6-b3cf-0465d9d78224" name="GenerateCodeAddNugetReferences" displayName="Generate Code Add Nuget References" description="" codeIdentifier="GenerateCodeAddNugetReferences" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="499a7fa2-a534-418c-a4cb-6ec78f40a29b" name="GenerateSecondLevelRetriesConfig" displayName="Generate Second Level Retries Config" description="" codeIdentifier="GenerateSecondLevelRetriesConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+    </automationSettings>
+    <views>
+      <view Id="f0ff9062-0a24-431f-807a-55fd34d6a08c" name="DefaultView" baseId="63b20369-acde-4cfb-aa90-25688d79b2a2" displayName="Default View" description="Description for AbstractEndpoint.DefaultView" codeIdentifier="DefaultView" isDefault="true" diagramId="bc47dee7-2765-44b6-8cac-41e8cba8705b">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsDefault" />
+          </settings>
+        </customizationPolicy>
+        <elements>
+          <collection Id="6396bf63-1a2a-4a7b-936d-f7e2d945de44" name="Components" baseId="54acfa72-0563-418a-ba24-94c377bb1781" displayName="Components" description="Description for AbstractEndpoint.DefaultView.Components" codeIdentifier="EndpointComponents">
+            <customizationPolicy name="CustomizationPolicySchema1">
+              <settings>
+                <setting propertyId="DisplayName" />
+                <setting propertyId="Description" />
+                <setting propertyId="ValidationRules" />
+                <setting propertyId="Icon" />
+                <setting propertyId="IsVisible" />
+              </settings>
+            </customizationPolicy>
+            <automationSettings>
+              <automationSettings Id="f172760f-89fb-4900-bbc5-df63249f573e" name="ShowComponentLinkMenu" baseId="c8259b41-5449-4117-8617-3d6506645e3c" displayName="Show Component Link Menu" description="" codeIdentifier="ShowComponentLinkMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="a29b7fe7-992e-4a5f-8780-fb43e7f2f4f1" name="ShowComponentLinkDialog" baseId="1d660994-f79a-48e5-af09-06568f83a9b8" displayName="Show Component Link Dialog" description="" codeIdentifier="ShowComponentLinkDialog" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+            </automationSettings>
+            <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
+              <element Id="d3aa73c5-0acf-409e-bdd6-4527d82d739f" name="ComponentLink" baseId="015968a4-5d22-4832-a6ce-4cf132725990" displayName="Component Link" description="Description for AbstractEndpoint.DefaultView.Components.ComponentLink" codeIdentifier="ComponentLink">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="ValidationRules" />
+                    <setting propertyId="Icon" />
+                    <setting propertyId="IsVisible" />
+                  </settings>
+                </customizationPolicy>
+                <properties>
+                  <property Id="2764e17a-49fb-4ac8-aae3-0ac434fb7a09" name="ComponentId" baseId="35d62173-2cc4-4b86-9884-953f1e996646" displayName="Component Id" description="Description for AbstractEndpoint.DefaultView.Components.ComponentLink.ComponentId" codeIdentifier="ComponentId" isVisible="false">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                  </property>
+                  <property Id="e03b903f-976e-4953-b67e-9046be8e3cdc" name="ComponentName" baseId="cca27bf5-bbc4-450d-95a2-462ced528313" displayName="Component Name" description="Description for AbstractEndpoint.DefaultView.Components.ComponentLink.ComponentName" codeIdentifier="ComponentName" typeConverterTypeName="AbstractEndpoint.ComponentReferenceConverter, AbstractEndpoint.Automation" editorTypeName="AbstractEndpoint.ComponentReferenceEditor, AbstractEndpoint.Automation">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                  </property>
+                  <property Id="783253fa-17b0-41e6-9528-287add2a4d01" name="Order" baseId="4c7f72a1-b2d0-4301-aa0f-022fdeeca554" displayName="Order" description="Description for AbstractEndpoint.DefaultView.Components.ComponentLink.Order" codeIdentifier="Order" type="System.Int64">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                  </property>
+                </properties>
+                <automationSettings>
+                  <automationSettings Id="b223a469-bb13-46ba-9f00-fd5c961f1c06" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="d2b8c600-d5fd-47b2-90ed-e506ab97a304" name="UnfoldDiagramFile" displayName="Unfold Diagram File" description="" codeIdentifier="UnfoldDiagramFile" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="d2e21fb9-e190-4897-bd63-8b74f43706ad" name="OnDeleted" displayName="On Deleted" description="" codeIdentifier="OnDeleted" automationType="Event Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="5af18fca-feb5-4e97-a9e8-a4c664533c6b" name="OnActivation" displayName="On Activation" description="" codeIdentifier="OnActivation" automationType="Event Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="c791815f-34b8-418b-91c5-1439966811e8" name="OpenComponentCode" displayName="Open Component Code" description="" codeIdentifier="OpenComponentCode" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                </automationSettings>
+              </element>
+            </childElement>
+          </collection>
+        </elements>
+      </view>
+    </views>
+    <providedExtensionPoints>
+      <providedExtensionPoint Id="e887ab0d-27bd-49f8-bdeb-743a5d198dc2" extensionPointId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9.Application.Design.Endpoints.Host" />
+    </providedExtensionPoints>
+  </pattern>
+</patternModel>

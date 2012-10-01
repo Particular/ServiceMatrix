@@ -1,0 +1,2 @@
+<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\EndpointDesign\DslDefinition.dsl'" #>
+<#@ include file="DslPackage\ModelExplorerToolWindow.tt" #>

@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<productState xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.2.0.0" Id="4138cfcc-959a-47fa-bc36-3e9853de97c4" xmlns="http://schemas.microsoft.com/visualstudio/patterning/runtime/productstate">
+  <products>
+    <product Id="78546d54-2cef-4c9f-87c6-7ae686bfac5c" definitionId="c034429e-01f9-48dd-a478-0321fb708dd3" definitionName="PatternToolkit" instanceName="NServiceBusHost" extensionId="9f6dc301-6f66-4d21-9f9c-b37412b162f6" extensionName="Pattern Toolkit Builder" author="Microsoft" version="1.2.18.0">
+      <properties>
+        <property Id="b4f796bc-8c2f-49e8-ad61-5d3fadc2332c" definitionId="7ce5ad5a-88c2-4336-b038-e4998aa02b03" definitionName="TransformOnBuild" rawValue="Always" />
+        <property Id="c6894a15-849e-4bdc-97f6-0ac3938155ee" definitionId="293802b7-0b69-440e-be60-927f07f4e636" definitionName="PatternName" rawValue="Host" />
+        <property Id="09e040a4-8113-41c7-83fd-2d2907a81043" definitionId="710634cd-4863-4314-9785-dc33f6501903" definitionName="PatternDescription" rawValue="Toolkit to be used for creating NServiceBus.Host.exe" />
+        <property Id="797f8d00-f373-42c4-9745-268345fc7dd1" definitionId="00123e2b-3459-4924-9f18-628406735664" definitionName="ExistingToolkitId" rawValue="fda1a39f-99d2-4c3f-8f68-6af20823c15e" />
+        <property Id="cc61719d-7f5d-4e95-8bf6-cce5ef23d2c8" definitionId="5976c04c-d8ad-433f-9794-22e9cd55ac41" definitionName="SolutionName" rawValue="NServiceBusHost" />
+        <property Id="a37b2677-9b1b-485a-8025-da1233075d6c" definitionId="e73753b6-45e3-479f-b953-1c9ab6836362" definitionName="ProjectRootNamespace" rawValue="NServiceBusHost" />
+        <property Id="c7a31319-3f6b-4e4e-b172-8626b44d5692" definitionId="4b4b1fdf-ea6d-4ea4-b142-c2f1685c0091" definitionName="ProjectAssemblyName" rawValue="NServiceBusHost" />
+        <property Id="cae9d8b5-3942-4928-b669-cd56fb57285c" definitionId="4121d8f0-87a2-4757-a6d4-6f28d9fa8728" definitionName="ExcludeFromCodeCoverage" rawValue="True" />
+      </properties>
+      <references>
+        <reference Id="cde1b5dd-2e59-40cd-8aa0-a6ec62f83c07" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: null,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+        <reference Id="126cb553-35e4-4f91-a4a5-958eeccda7e4" value="Creating Pattern Toolkits" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.GuidanceReference" />
+      </references>
+      <views>
+        <view Id="49245912-6710-4cab-8139-fe6d5736288f" definitionId="e4f9702a-3b97-4b11-bb76-037a32de07c7" definitionName="Development">
+          <elements>
+            <element Id="2063458f-824e-42d6-a660-40bc3c7cd65e" definitionId="5da53e5a-0ba8-48f8-a922-1712244c388c" definitionName="PatternModel" instanceName="Pattern Model">
+              <properties>
+                <property Id="64436f2b-f6e2-49c7-9cd7-875dc9334166" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Always" />
+                <property Id="66df7f62-0605-4bb3-afa4-e47b029e05f1" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="D:\work\NServiceBusStudio\NServiceBus\Studio\Extensions\NServiceBusHost\NServiceBusHost\PatternModel.patterndefinition" />
+              </properties>
+              <references>
+                <reference Id="28ef2eba-845a-4714-9f92-181729fe7b7b" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/c0d16610-60ca-408b-a15b-f4553df5afd3" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;PatternModel.patterndefinition&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e52d1228-39f9-422d-b667-1e6f26249aa0&quot;&#xD;&#xA;}" />
+              </references>
+              <elements>
+                <collection Id="fd79bdb5-31dd-48a5-8b98-459d4a04d827" definitionId="739aef21-5f1e-421b-804a-47f11f93c9c3" definitionName="Views" instanceName="Views">
+                  <elements>
+                    <element Id="ce841401-c794-46eb-a57a-0b795d32de05" definitionId="6a596dea-529b-4cd5-9eea-7e856a2b332c" definitionName="View" instanceName="DefaultView">
+                      <references>
+                        <reference Id="06653b56-1345-4edf-bf0f-ffcce5d3218d" value="view://f0ff9062-0a24-431f-807a-55fd34d6a08c/" kind="Microsoft.VisualStudio.Patterning.Authoring.Automation.UriProviders.ViewArtifactLinkReference" />
+                      </references>
+                    </element>
+                  </elements>
+                </collection>
+              </elements>
+            </element>
+            <element Id="6b39dc3f-b9ab-46fd-a7ba-1865d6d941a2" definitionId="c00ddfa6-b949-4c7c-b8b9-f46b8e3ccf1e" definitionName="ToolkitInfo" instanceName="Toolkit Info">
+              <properties>
+                <property Id="7ad2d339-56c3-4725-b1e2-995e22ef4f11" definitionId="c6eb8c9f-7689-405c-9e04-05b4954e3bf6" definitionName="ToolkitName" rawValue="NServiceBusHost" />
+                <property Id="a6ee32a2-9680-43c2-8994-4437d7e3ffcc" definitionId="09a9d6ed-39e6-414d-a8db-b7b381c227ca" definitionName="Author" rawValue="NServiceBus" />
+                <property Id="d5ebbd93-7120-46ef-b733-f247d69c8ca3" definitionId="f28908ca-518f-497b-9b8c-0e3dc47f21dd" definitionName="Description" rawValue="Toolkit to be used for creating NServiceBus.Host.exe" />
+                <property Id="d6b1ddb8-8c81-4573-b043-63fa75333948" definitionId="2058a01f-6a09-4ad4-9e59-10393e0fca87" definitionName="Version" rawValue="1.0.0.0" />
+                <property Id="363c43c1-9ac8-483e-b125-e614662fc905" definitionId="766e5ae2-80de-4d94-a0be-4b953a40ac46" definitionName="Identifier" rawValue="8d8a34f8-b52e-438e-a39a-d75439744f01" />
+                <property Id="b21f2bf6-e961-44d6-83cb-59f766cf672d" definitionId="30e4ae03-67bb-4bcb-ac9d-aa71601bfe7e" definitionName="Icon" rawValue="Resources\ToolkitIcon.png" />
+                <property Id="563866e9-a7e7-4386-b5ee-1b06082159fa" definitionId="c9e003d7-cb45-4865-a511-de29c04b5b2d" definitionName="Eula" />
+              </properties>
+              <references>
+                <reference Id="91888fd9-e3e2-47b2-8582-ad56a69c3473" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/5b8512fb-e415-4694-8519-b2de5d2b551c" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;source.extension.tt&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;33b932d3-2554-4e59-ba10-64d46ee6e396&quot;&#xD;&#xA;}" />
+                <reference Id="265fd6a4-2d83-40ba-b64e-fdc1b5fa71df" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/648a5a82-24b6-49ae-b5c6-2c58610d9cb6" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;source.include.t4&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;d321df0a-d467-45d6-944f-ccd9b82225fe&quot;&#xD;&#xA;}" />
+              </references>
+            </element>
+            <collection Id="19d65976-f9d6-4664-9540-f7f3abd455c1" definitionId="58df3920-65bc-4078-b6a4-ab583f906881" definitionName="Assets" instanceName="Assets">
+              <elements>
+                <element Id="3f1ab48c-b7f1-4abd-9753-056158d00d5b" definitionId="c3d66aa5-3199-44ad-b7d7-f375a9ab16d3" definitionName="Guidance" instanceName="Guidance">
+                  <properties>
+                    <property Id="74ddb88a-a09d-417e-a7c6-b4b01263d895" definitionId="70d70df3-799d-4107-b77b-0001119484a6" definitionName="ProjectContentPath" rawValue="GeneratedCode\Guidance\Content" />
+                    <property Id="eefee577-81b1-4d3a-b4c3-2edb2027c5d3" definitionId="39537f0e-76a8-409b-adb5-e54fbdbd8b27" definitionName="DocumentFilePath" rawValue="D:\work\NServiceBusStudio\NServiceBus\Studio\Extensions\NServiceBusHost\NServiceBusHost\Assets\Guidance\ToolkitGuidance.doc" />
+                    <property Id="82e2602b-9303-4d20-afba-33e792d0aa23" definitionId="81c7a831-97e3-4067-9d15-8d7fb671a755" definitionName="DefaultInstanceName" rawValue="Working with NServiceBusHost" />
+                  </properties>
+                  <references>
+                    <reference Id="5f1bcfcb-5bc9-4f01-9692-1143e55919e5" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/af561a7c-b69c-4dc1-b343-5bd7b5a938b8" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ToolkitGuidance.doc&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;90291e86-b780-4adf-b500-5c11c868c3fd&quot;&#xD;&#xA;}" />
+                  </references>
+                </element>
+                <collection Id="ab7112bc-fa87-4ac1-a02c-7b71af131437" definitionId="f53b1915-e5c9-47f0-b33f-64487813d87c" definitionName="Templates" instanceName="Templates">
+                  <elements>
+                    <collection Id="f9194d3d-cd9e-498a-9790-0ccb8f36227b" definitionId="48591d87-4482-4dae-b5af-3ab807bcd947" definitionName="ItemTemplates" instanceName="Item Templates" />
+                    <collection Id="3875e04d-b4ed-4339-8708-1bab61b5d087" definitionId="b48e216c-da3e-46db-9fdd-51af29559489" definitionName="ProjectTemplates" instanceName="Project Templates" />
+                    <collection Id="598bf748-fa86-4adf-bcb0-ca5757f05d53" definitionId="81dde21d-392a-4c60-a048-5c5445bf6542" definitionName="TextTemplates" instanceName="Text Templates" />
+                  </elements>
+                </collection>
+                <collection Id="b0a41345-0245-4fa2-bfd6-bb8bcafeb447" definitionId="e341bc69-c2e1-44ef-811f-6d092497c277" definitionName="Wizards" instanceName="Wizards">
+                  <elements>
+                    <collection Id="c6189c72-85e0-4be7-aaef-121d941e9543" definitionId="3906075a-6263-4e5d-be94-3750e6fc1e57" definitionName="WizardPages" instanceName="Wizard Pages" />
+                  </elements>
+                </collection>
+              </elements>
+            </collection>
+            <collection Id="c55e6804-e1b4-422b-a26a-5acc957a8778" definitionId="994965b7-d2b1-4460-8947-44ca73227b5f" definitionName="Automation" instanceName="Automation">
+              <extensionProducts>
+                <product Id="8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0" definitionId="d6139b37-9971-4834-a9dc-2b3daef962cf" definitionName="AutomationLibrary" instanceName="Library" extensionId="97bd7ab2-964b-43f1-8a08-be6db68b018b">
+                  <properties>
+                    <property Id="f3d79308-4017-44ee-b9e7-05512e080a59" definitionId="96a8d40e-c7e5-47ba-b550-489745d95cd2" definitionName="TransformOnBuild" rawValue="Always" />
+                    <property Id="b6d4f365-81c6-4437-a57c-6c14742f326b" definitionId="32699d9a-aa7d-4a51-8c86-6b2a708be486" definitionName="ToolkitProjectRootNamespace" rawValue="NServiceBusHost" />
+                    <property Id="1566b36d-d405-451b-bf59-9b31915c1f66" definitionId="11ac48e6-d493-49ca-9a01-65dac40d6d42" definitionName="ProjectAssemblyName" rawValue="NServiceBusHost.Automation" />
+                    <property Id="81473a2a-9989-4cae-ba97-31cc07911fc8" definitionId="44d4abc1-7e06-4ea4-8673-d0adb12fea71" definitionName="ExcludeFromCodeCoverage" rawValue="True" />
+                  </properties>
+                  <references>
+                    <reference Id="408f7f2d-ce0b-42a0-8acb-7254793e3e00" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Parent.Parent.Parent.InstanceName}.Automation&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0d64d7af-d72f-434f-9693-1f27420bec49&quot;&#xD;&#xA;}" />
+                    <reference Id="94dfa4c7-80df-4662-b83c-8e1e3568bf0f" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/d86ac17f-5cfc-4f5a-b4c8-4777eaed1c1e" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;CollectionImplementation&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;a1e74b34-d9bf-4e25-a315-74d51294975f&quot;&#xD;&#xA;}" />
+                    <reference Id="8000bd6e-79a4-4211-9d9b-7a3cca695332" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/14a7fbdd-c5af-40ee-969b-f36e454d77cb" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;CollectionInterface&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;96e80e8c-72a5-48ef-9ddd-cfce9683f920&quot;&#xD;&#xA;}" />
+                    <reference Id="b015f8bc-cf8c-4f82-9b5a-e1b10d741174" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/045727ad-57e3-4903-92d2-795904b45d47" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ElementImplementation&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;2f1d4f4f-8f24-4913-876f-0dcc7298477d&quot;&#xD;&#xA;}" />
+                    <reference Id="d494543e-d87c-4532-abd9-d4e4fa211ce6" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/d169cd9b-428a-4481-8dbc-b311106849fc" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ElementInterface&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;73db0a50-aca1-46eb-8152-0efa5c30c224&quot;&#xD;&#xA;}" />
+                    <reference Id="7d6f5a8a-80dd-41e6-98a0-403672b21313" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/58de627e-aab1-4277-8b5e-80403128781e" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ExtensionPointImplementation&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0de28231-e6dd-4c93-807e-c881e4a3350c&quot;&#xD;&#xA;}" />
+                    <reference Id="8e701ade-33db-466b-bbf7-15610c47c72d" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/00b8f975-ba86-4598-9d88-4df71aa0aebd" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ExtensionPointInterface&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;b8abcbb4-80dc-4cc8-b4a8-28ce1ddefe72&quot;&#xD;&#xA;}" />
+                    <reference Id="4dc21741-808b-44c8-91bd-e6c5817781ea" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/11389ae8-9daa-48c2-9f00-b913b323bef0" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ProductImplementation&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;9c6234d2-57bf-48f1-ae44-ced15c11330a&quot;&#xD;&#xA;}" />
+                    <reference Id="421d674c-373c-45b0-b97a-0d920376b515" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/6bee73b1-6a0b-4b45-a2bc-d293e6d440a4" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ProductInterface&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;d3d36308-2c85-4c1f-8c3e-f471ca54fa4f&quot;&#xD;&#xA;}" />
+                    <reference Id="e1336507-46fe-44b1-8698-7427547c6c8b" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/4aff35b8-5e31-48d0-a763-8cf021841768" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ViewInterface&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;2ede7e98-3f5a-44c1-8bb6-fc6dcaed78de&quot;&#xD;&#xA;}" />
+                    <reference Id="c9a21811-2275-4012-91df-1b3788603390" value="solution://92479d17-7742-4b6b-b06e-4c896a21e995/3c70d4b2-eb6d-49f6-9071-dc905e99a096" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ViewImplementation&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;75fbc53d-9c5e-45f9-a1d6-67b3382c3f2a&quot;&#xD;&#xA;}" />
+                  </references>
+                  <views>
+                    <view Id="3eff8aec-de48-4a5d-a5a3-6a25c0bbe31b" definitionId="e0779d33-8f19-4025-9a57-e75bc53a03ff" definitionName="Development">
+                      <elements>
+                        <collection Id="2f273ef7-17eb-4f88-b7d7-062b8e4a0a6f" definitionId="184bf063-7339-4866-978c-964d9d995c32" definitionName="Commands" instanceName="Commands" />
+                        <collection Id="cb1e201f-3420-4b88-85e9-26e1f5005032" definitionId="2226c6bc-3e33-4570-8807-f68bbfbbffcd" definitionName="Conditions" instanceName="Conditions" />
+                        <collection Id="676a60d8-3c0c-44d2-aebd-974f88585740" definitionId="f0e386f0-bf6f-4560-978f-32396e30c4e5" definitionName="Events" instanceName="Events" />
+                        <collection Id="bba32af1-2bbb-46a0-a3f9-343a43764fda" definitionId="96227e6c-f4a5-421c-8f0a-e38763d86740" definitionName="TypeConverters" instanceName="Type Converters" />
+                        <collection Id="b62f4af5-6984-4585-b5d8-f8aff46bfbab" definitionId="7fe79778-3880-4daf-a4e5-c401f131c5db" definitionName="TypeEditors" instanceName="Type Editors" />
+                        <collection Id="f21e233d-6590-4329-a84f-d9731e77f0e6" definitionId="c398e040-eb92-481a-a1a4-67d1eac1edff" definitionName="ValidationRules" instanceName="Validation Rules" />
+                        <collection Id="08f03150-6b27-4416-80c2-01f526607542" definitionId="fa75b840-b733-4365-bcb0-5e513092f4dd" definitionName="ValueProviders" instanceName="Value Providers" />
+                        <collection Id="e45d08b6-d8da-4072-abab-6ff7dbd48184" definitionId="18765960-f08b-4bd2-a0e5-fb547a182517" definitionName="ValueComparers" instanceName="Value Comparers" />
+                      </elements>
+                    </view>
+                  </views>
+                </product>
+              </extensionProducts>
+            </collection>
+          </elements>
+        </view>
+        <view Id="b4d23c14-cde6-49bf-ac04-58c0805dbb69" definitionId="a5541c90-1637-4405-9fe7-4b31f28eb3cd" definitionName="Design">
+          <elements>
+            <element Id="89dd7637-dc8a-45d5-a46f-b3a507ceed61" definitionId="9291502b-fefc-4ef8-afc0-4c6914f0d2d1" definitionName="ProductionTooling" instanceName="Production Tooling">
+              <references>
+                <reference Id="274d416f-751f-487d-942e-0cfdbe3f7971" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/b0dbd3c2-9135-407f-b1f8-c995bb9da414" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;PatternTooling.toolingdesign&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+              </references>
+            </element>
+          </elements>
+        </view>
+      </views>
+    </product>
+  </products>
+</productState>

@@ -1,0 +1,28 @@
+﻿<#@ Template Debug="False" Hostspecific="False" Language="C#" #>
+<#@ Output Extension=".cs" #>
+<#@ Include File="IntegrationWorkbenchV3\DataPipelineToolkit\source.ttinclude" #>
+using System;
+using System.Reflection;
+using System.Resources;
+using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
+
+[assembly: AssemblyCompany("<#= author #>")]
+[assembly: AssemblyProduct("<#= toolkitName #>")]
+[assembly: AssemblyCopyright("Copyright © <#= author #>")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+
+[assembly: ComVisible(false)]
+[assembly: CLSCompliant(false)]
+
+[assembly: AssemblyVersion("<#= version #>")]
+[assembly: AssemblyFileVersion("<#= version #>")]
+
+[assembly: NeutralResourcesLanguage("en")]
+
+#if DEBUG
+[assembly: AssemblyConfiguration("DEBUG")]
+#else
+[assembly: AssemblyConfiguration("RELEASE")]
+#endif

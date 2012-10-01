@@ -1,0 +1,24 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var authentication = ((IProductElement)this.Element).As<IAuthentication>(); 
+#>
+using System;
+using NServiceBus;
+
+namespace <#= authentication.Namespace #>
+{
+    public partial class Authentication //: IHandleMessages<object>
+    {
+        public void Handle(object message)
+        {
+            this.HandleImplementation(message);
+        }
+
+        public IBus Bus { get; set; }
+    }
+}

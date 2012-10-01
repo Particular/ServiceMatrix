@@ -1,0 +1,18 @@
+﻿<#+
+	string identifier = "83300ea2-15b7-4013-8212-ed68d99da5b2";
+	string toolkitName = "WebEndpoint";
+	string author = "NServiceBus";
+	string version = "1.0.0.0";
+	string description = "Toolkit to be used for Web Endpoints";
+	string eula = @"";
+	string icon = @"Resources\ToolkitIcon.png";
+
+	string productName = "WebEndpoint";
+	string rootNamespace = "WebEndpoint";
+	string assemblyName = "WebEndpoint";
+
+	public bool HasValue(string value)
+	{
+		return !string.IsNullOrEmpty(value);
+	}
+#>

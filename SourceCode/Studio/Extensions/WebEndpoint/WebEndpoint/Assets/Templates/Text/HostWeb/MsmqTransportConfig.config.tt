@@ -1,0 +1,12 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Assembly Name="WebEndpoint.Automation.dll" #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="global::WebEndpoint" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var nserviceBusHost = ((IProductElement)this.Element).As<IAbstractEndpoint>(); #>
+<MsmqTransportConfig NumberOfWorkerThreads="<#= nserviceBusHost.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="5" />

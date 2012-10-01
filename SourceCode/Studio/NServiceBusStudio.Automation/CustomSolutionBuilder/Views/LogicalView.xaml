@@ -1,0 +1,275 @@
+﻿<UserControl x:Class="NServiceBusStudio.Automation.CustomSolutionBuilder.Views.LogicalView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:cv="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure"
+	        xmlns:pd="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
+	        xmlns:l="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI;assembly=Microsoft.VisualStudio.Patterning.Runtime"
+	        xmlns:k="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI.Data;assembly=Microsoft.VisualStudio.Patterning.Runtime"
+	        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
+            xmlns:p="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:local="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data"
+            xmlns:vm="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels"
+            mc:Ignorable="d" 
+	        Background="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"
+            d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ContextMenu.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/CommandBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/TreeView.xaml" />-->
+                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ContextMenu.xaml" />
+                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/CommandBar.xaml" />
+                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ComboBox.xaml" />
+                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/TreeView.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Key="Left" Modifiers="Control" Command="{Binding LeftCommand}" />
+        <KeyBinding Key="Right" Modifiers="Control" Command="{Binding RightCommand}" />
+    </UserControl.InputBindings>
+
+    <Border BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarGradientKey}}"
+                  x:Name="TitleGrid">
+                <TextBlock x:Name="TitleText" Text="{Binding Title}"  Margin="5,3,3,3"
+                       Foreground="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarTextActiveKey}}"/>
+            </Grid>
+            <Border BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.GridLineKey}}" BorderThickness="3"
+                    x:Name="ViewSelectorBorder"
+                    Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                <ComboBox x:Name="ViewSelector" Template="{StaticResource ComboBox.Template}" Height="22"
+                          ItemsSource="{Binding ViewsList}" DisplayMemberPath="Text"
+                          SelectedItem="{Binding SelectedView, Mode=TwoWay}"
+                          BorderThickness="0" BorderBrush="White" />
+            </Border>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+                <TreeView
+				Name="explorer"
+				Focusable="{Binding TrackSelectedNode}"
+				ItemsSource="{Binding LogicalViewNodes}"
+				PreviewMouseLeftButtonDown="OnPreviewMouseLeftButtonDown"
+				PreviewMouseMove="OnPreviewMouseMove"
+                SelectedItemChanged="explorer_SelectedItemChanged"
+				p:ControlBehavior.DoubleClickCommand="{Binding ActivateCommand}" >
+
+                    <TreeView.InputBindings>
+                        <KeyBinding Command="{Binding DeleteCommand}" Gesture="Delete" />
+                        <KeyBinding Command="{Binding BeginEditCommand}" Gesture="F2" />
+                        <KeyBinding Command="{Binding ActivateCommand}" Gesture="Enter" />
+                        <KeyBinding Key="Left" Modifiers="Control" Command="{Binding LeftCommand}" />
+                        <KeyBinding Key="Right" Modifiers="Control" Command="{Binding RightCommand}" />
+                    </TreeView.InputBindings>
+
+                    <TreeView.Resources>
+                        <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+                        <k:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
+                        <local:UriToCachedImageConverter x:Key="UriToCachedImageConverter" />
+                        <cv:LogicalViewModelIconConverter x:Key="ItemIconWithDefault" />
+                        <l:TreeViewItemOrderingConverter x:Key="TreeViewItemOrderingConverter" />
+
+                        <ContentControl
+					x:Key="MenuItem.Image"
+					x:Shared="false"
+					Style="{StaticResource MenuItem.Icon}"
+					Content="{Binding ImagePath,Converter={StaticResource UriToCachedImageConverter}}" />
+
+                        <RadioButton x:Key="MenuItem.ViewButton" x:Shared="false" IsChecked="{Binding IsSelected,Mode=TwoWay}" GroupName="MenuOptions" IsHitTestVisible="False" />
+
+                        <Style TargetType="TreeView" BasedOn="{StaticResource {x:Type TreeView}}">
+                            <Style.Triggers>
+                                <Trigger Property="HasItems" Value="false">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TreeView">
+                                                <Border Background="{DynamicResource VsBrush.DesignerBackground}">
+                                                    <ContentControl x:Name="text" Background="{x:Null}" Margin="10" VerticalAlignment="Center">
+                                                        <TextBlock TextWrapping="WrapWithOverflow" TextAlignment="Center" Foreground="DarkGray">
+													<Run Text="There are no elements in the current view." />
+													<LineBreak />
+                                                        </TextBlock>
+                                                    </ContentControl>
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <DataTrigger Binding="{Binding InnerViewModel.IsSolutionOpened}" Value="False">
+                                                        <Setter TargetName="text" Property="Content">
+                                                            <Setter.Value>
+                                                                <TextBlock TextWrapping="WrapWithOverflow" TextAlignment="Center" Foreground="DarkGray">
+															<Run Text="A solution must be open in order to create or view solution elements." />
+															<LineBreak />
+															<LineBreak />
+															<!--<Hyperlink Command="{Binding GuidanceCommand}" Focusable="false">Click here for getting started with Solution Builder.</Hyperlink>-->
+                                                                </TextBlock>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </DataTrigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <Style x:Key="DynamicMenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                            <Setter Property="InputGestureText" Value="{Binding InputGestureText}" />
+                            <Setter Property="Command" Value="{Binding Command}" />
+                            <Setter Property="CommandParameter" Value="{Binding Model}" />
+                            <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+                            <Setter Property="Visibility" Value="{Binding IsVisible,Converter={StaticResource VisibilityConverter}}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IconType}" Value="Image">
+                                    <Setter Property="Icon" Value="{Binding Icon, Converter={StaticResource UriToCachedImageConverter}, FallbackValue={StaticResource MenuItem.Image}}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IconType}" Value="SingleSelect">
+                                    <Setter Property="Icon" Value="{StaticResource MenuItem.ViewButton}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+
+                        <p:MenuItemSeparatorStyleSelector x:Key="SeparatorStyleSelector">
+                            <p:MenuItemSeparatorStyleSelector.EmptyTemplate>
+                                <DataTemplate />
+                            </p:MenuItemSeparatorStyleSelector.EmptyTemplate>
+                            <p:MenuItemSeparatorStyleSelector.SeparatorTemplate>
+                                <DataTemplate>
+                                    <Separator Style="{StaticResource {x:Static MenuItem.SeparatorStyleKey}}" />
+                                </DataTemplate>
+                            </p:MenuItemSeparatorStyleSelector.SeparatorTemplate>
+                        </p:MenuItemSeparatorStyleSelector>
+
+                        <Style TargetType="TreeViewItem" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+                            <Setter Property="IsExpanded" Value="{Binding IsExpanded,Mode=TwoWay}" />
+                            <Setter Property="IsSelected" Value="{Binding IsSelected,Mode=TwoWay}" />
+                            <EventSetter Event="MouseRightButtonDown" Handler="OnItemMouseRightButtonDown" />
+                            <EventSetter Event="ContextMenuOpening" Handler="OnContextMenuOpening" />
+                            <EventSetter Event="TreeViewItem.DragEnter"  Handler="OnDragEnter"/>
+                            <EventSetter Event="TreeViewItem.DragLeave"  Handler="OnDragLeave"/>
+                            <EventSetter Event="TreeViewItem.DragOver"  Handler="OnDragOver"/>
+                            <EventSetter Event="TreeViewItem.Drop" Handler="OnDragDrop"/>
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu
+								ItemsSource="{Binding MenuOptions,Converter={StaticResource MenuGroupingConverter}}"
+								ItemContainerStyle="{StaticResource DynamicMenuItem}">
+                                        <ContextMenu.ItemTemplate>
+                                            <HierarchicalDataTemplate ItemsSource="{Binding MenuOptions}">
+                                                <!--<TextBlock Text="{Binding Caption}" />-->
+                                                <ContentPresenter Content="{Binding Caption}" RecognizesAccessKey="True" />
+                                            </HierarchicalDataTemplate>
+                                        </ContextMenu.ItemTemplate>
+                                        <ContextMenu.GroupStyle>
+                                            <GroupStyle HidesIfEmpty="True" HeaderTemplateSelector="{StaticResource SeparatorStyleSelector}" />
+                                        </ContextMenu.GroupStyle>
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TreeView.Resources>
+
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding LogicalViewNodes, Converter={StaticResource TreeViewItemOrderingConverter}, ConverterParameter=InnerViewModel.Model.InstanceOrder}">
+                            <StackPanel Name="panel" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,1" DataContext="{Binding}">
+                                <!--<Image Source="{Binding IconPath}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />-->
+                                <Image Source="{Binding Converter={StaticResource ItemIconWithDefault}}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />
+
+                                <ContentControl Name="display" Margin="3,0,0,0" Padding="0" Content="{Binding InnerViewModel}" Focusable="False">
+                                    <ContentControl.Resources>
+                                        <DataTemplate DataType="{x:Type l:ProductViewModel}">
+                                            <TextBlock Name="displayText">
+										<TextBlock.Text>
+											<MultiBinding StringFormat="{}{0} [{1}]">
+												<Binding Path="Model.InstanceName" />
+												<Binding Path="CurrentView.Info.DisplayName" />
+											</MultiBinding>
+										</TextBlock.Text>
+                                        <TextBlock.ToolTip >
+                                            <ToolTip>
+                                                <TextBlock Name="descriptionText">
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} [{1}]">
+                                                            <Binding Path="Model.Info.Description" />
+                                                            <Binding Path="CurrentView.Info.Description" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </ToolTip>
+                                        </TextBlock.ToolTip>
+									</TextBlock>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding HasSingleView}" Value="True">
+                                                    <Setter TargetName="displayText" Property="Text" Value="{Binding Model.InstanceName}" />
+                                                    <Setter TargetName="descriptionText" Property="Text" Value="{Binding Model.Info.Description}" />
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+
+                                        <DataTemplate DataType="{x:Type l:ProductElementViewModel}">
+                                            <TextBlock Text="{Binding Model.InstanceName}">
+                                        <TextBlock.ToolTip >
+                                            <ToolTip>
+                                                <TextBlock Text="{Binding Model.Info.Description}"/>
+                                            </ToolTip>
+                                        </TextBlock.ToolTip>
+                                    </TextBlock>
+                                        </DataTemplate>
+
+                                        <DataTemplate DataType="{x:Type vm:LabelElementViewModel}">
+                                            <TextBlock Text="{Binding Label}"/>
+                                        </DataTemplate>
+                                    </ContentControl.Resources>
+                                </ContentControl>
+
+                                <TextBox
+							Name="edit"
+							Text="{Binding  InnerViewModel.Model.InstanceName}"
+							Margin="0,-1,-1,0"
+							Visibility="Collapsed"
+							GotFocus="OnItemEditBoxGotFocus"
+							LostFocus="OnItemEditBoxLostFocus">
+                                    <TextBox.InputBindings>
+                                        <KeyBinding Command="{Binding DataContext.EndEditCommand, ElementName=explorer}" Gesture="Enter" />
+                                        <KeyBinding Command="{Binding DataContext.CancelEditCommand, ElementName=explorer}" Gesture="Escape" />
+                                    </TextBox.InputBindings>
+                                </TextBox>
+                            </StackPanel>
+
+                            <HierarchicalDataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding InnerViewModel.IsEditing}" Value="True">
+                                    <Setter TargetName="display" Property="Visibility" Value="Collapsed" />
+                                    <Setter TargetName="edit" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="panel" Property="FocusManager.FocusedElement" Value="{Binding ElementName=edit}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding InnerViewModel.Model.Info}" Value="{x:Null}">
+                                    <Setter Property="ToolTip">
+                                        <Setter.Value>
+                                            <TextBlock>
+										<Run Text="Extension Name: " />
+										<Run Text="{Binding InnerViewModel.Model.ExtensionName}" />
+										<LineBreak />
+										<Run Text="Author: " />
+										<Run Text="{Binding InnerViewModel.Model.Author}" />
+										<LineBreak />
+										<Run Text="Version: " />
+										<Run Text="{Binding InnerViewModel.Model.Version}" />
+                                            </TextBlock>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </HierarchicalDataTemplate.Triggers>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>

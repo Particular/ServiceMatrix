@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVCEndpoint", "WebMVCEndpoint\WebMVCEndpoint.csproj", "{2D734B4B-9970-401D-BAD6-0903C240EE98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9E21860-F10E-4265-82B4-42EA3C2EF6A0}"
+	ProjectSection(SolutionItems) = preProject
+		WebMVCEndpoint.guidancestate = WebMVCEndpoint.guidancestate
+		WebMVCEndpoint.slnbldr = WebMVCEndpoint.slnbldr
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVCEndpoint.Automation", "WebMVCEndpoint.Automation\WebMVCEndpoint.Automation.csproj", "{497FC3AA-DC35-4298-BF7A-0332469CD8C2}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.clariusconsulting.net/tfs/customers
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WebMVCEndpoint.Automation\\WebMVCEndpoint.Automation.csproj
+		SccProjectName1 = WebMVCEndpoint.Automation
+		SccLocalPath1 = WebMVCEndpoint.Automation
+		SccProjectUniqueName2 = WebMVCEndpoint\\WebMVCEndpoint.csproj
+		SccProjectName2 = WebMVCEndpoint
+		SccLocalPath2 = WebMVCEndpoint
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D734B4B-9970-401D-BAD6-0903C240EE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D734B4B-9970-401D-BAD6-0903C240EE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D734B4B-9970-401D-BAD6-0903C240EE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D734B4B-9970-401D-BAD6-0903C240EE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{497FC3AA-DC35-4298-BF7A-0332469CD8C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{497FC3AA-DC35-4298-BF7A-0332469CD8C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{497FC3AA-DC35-4298-BF7A-0332469CD8C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{497FC3AA-DC35-4298-BF7A-0332469CD8C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		Features = 9f6dc301-6f66-4d21-9f9c-b37412b162f6:Creating Pattern Toolkits:1.2.19.0
+	EndGlobalSection
+EndGlobal

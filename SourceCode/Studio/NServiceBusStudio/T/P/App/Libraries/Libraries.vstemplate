@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Type="Project" Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>Libraries</Name>
+    <Description>Description for Application.Design.Libraries</Description>
+    <Icon>Libraries.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateID>485e80115c58-Application.Design.Libraries</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Libraries</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>true</Hidden>
+    <LocationField>Enabled</LocationField>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="Libraries.csproj" TargetFileName="$safeprojectname$.Libraries.csproj" ReplaceParameters="true">
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem TargetFileName="AssemblyInfo.cs" ReplaceParameters="true">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.Patterning.Library, PublicKeyToken=31bf3856ad364e35</Assembly>
+    <FullClassName>Microsoft.VisualStudio.Patterning.Library.Automation.ElementReplacementsWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

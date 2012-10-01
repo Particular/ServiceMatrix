@@ -1,0 +1,13 @@
+<#@ Dsl processor="DslDirectiveProcessor" requires="fileName='..\..\EndpointDesign\DslDefinition.dsl'" #>
+<#@ include file="DslPackage\Constants.tt" #>
+//
+// Constants not generated from values in DesignerDefinition.dsl are defined below
+//
+namespace <#= CodeGenerationUtilities.GetPackageNamespace(this.Dsl) #>
+{
+	internal static partial class Constants
+	{
+		// Menu identifier
+		public const string <#= dslName #>CommandSetId = "6442ff18-eee6-4680-ab83-4f4059bd5a2e";
+	}
+}

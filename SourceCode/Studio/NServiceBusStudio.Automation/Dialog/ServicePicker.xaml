@@ -1,0 +1,71 @@
+﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ServicePicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
+             xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.10.0" 
+             mc:Ignorable="d" 
+             SizeToContent="Height" Width="458"
+             FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" d:DesignHeight="257">
+    <src:CommonDialogWindow.Resources>
+        <ControlTemplate x:Key="ItemTemplate" TargetType="ListViewItem">
+            <Border
+		BorderThickness="{TemplateBinding Border.BorderThickness}"
+		Padding="{TemplateBinding Control.Padding}"
+		BorderBrush="{TemplateBinding Border.BorderBrush}"
+		Background="{TemplateBinding Panel.Background}"
+		SnapsToDevicePixels="True">
+                <ContentPresenter
+			Content="{TemplateBinding ContentControl.Content}"
+			ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+			HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+			VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+			SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="ListViewItem">
+            <Setter Property="Template" Value="{StaticResource ItemTemplate}" />
+        </Style>
+
+        <DataTemplate x:Key="ItemDataTemplate">
+            <CheckBox
+			x:Name="checkbox"
+			Content="{Binding}"
+			IsChecked="{Binding	RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
+        </DataTemplate>
+    </src:CommonDialogWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" x:Name="ServicesList"  
+                  ItemsSource="{Binding Path=Elements}" 
+                  SelectionMode="Multiple" 
+                  ItemTemplate="{StaticResource ItemDataTemplate}"></ListView>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,5,5,0">To subscribe a new service type the service name and press 'Add'</TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="0" x:Name="AddServiceText" Margin="5"></TextBox>
+            <Button Grid.Row="1" Grid.Column="1" Click="AddService_Click" Margin="5">Add</Button>
+        </Grid>
+        <Grid Grid.Row="2" IsSharedSizeScope="true" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
+                <ColumnDefinition Width="Auto" SharedSizeGroup="CmdBtn" />
+            </Grid.ColumnDefinitions>
+            <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
+            <vs:DialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
+        </Grid>
+    </Grid>
+</src:CommonDialogWindow>

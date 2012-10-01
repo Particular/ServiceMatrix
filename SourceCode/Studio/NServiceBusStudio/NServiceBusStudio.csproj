@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20305</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{2532FA71-D5E2-426C-AE22-D4316CEC2ABC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\Binaries\</OutputPath>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NServiceBusStudio</RootNamespace>
+    <AssemblyName>NServiceBusStudio</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PropertiesTarget>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Toolkit.properties))\Toolkit.properties</PropertiesTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <OutputPath>..\Binaries\</OutputPath>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <Import Project="$(PropertiesTarget)" Condition="Exists($(PropertiesTarget))" />
+  <ItemGroup>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\EnvDTE.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime">
+      <HintPath>C:\Users\joe\AppData\Local\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Shell">
+      <HintPath>C:\Users\joe\AppData\Local\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Settings, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
+    <Reference Include="Microsoft.VisualStudio.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 2010 SDK\VisualStudioIntegration\Common\Assemblies\v2.0\Microsoft.VisualStudio.Shell.Interop.10.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="NuGet.VisualStudio">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\Extensions\Microsoft Corporation\NuGet Package Manager\1.6.21215.9133\NuGet.VisualStudio.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Patterning.Library">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Interfaces">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Patterning.Common.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Common.Presentation.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Patterning.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Extensibility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(VS100COMNTOOLS)..\IDE\PrivateAssemblies\Microsoft.VisualStudio.ExtensibilityHosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools.Features">
+      <HintPath>$(FeatureExtensionRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(FeatureExtensionRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Run.png" />
+    <Content Include=".nuget\NuGet.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="NServiceBusVersion.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\LibraryFile.png" />
+    <Content Include="Resources\ProductPreview.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\App.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\App\App.vstemplate">
+      <ItemGuid>51449dee-c5c5-4531-a2e4-ecbac39b7cde</ItemGuid>
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
+    <ProjectTemplate Include="T\P\App\InternalMessages\InternalMessages.vstemplate">
+      <ItemGuid>e70814b1-e3a9-43b9-82b2-0d30aa558ffc</ItemGuid>
+    </ProjectTemplate>
+    <ProjectTemplate Include="T\P\App\Contract\Contract.vstemplate">
+      <ItemGuid>5aa4908c-b198-47de-bf7d-8c918075e218</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\P\App\Contract\Contract.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Contract\Contract.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Infrastructure\Infrastructure.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Infrastructure\Infrastructure.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\App\Infrastructure\Infrastructure.vstemplate">
+      <ItemGuid>2832d54f-ceb3-46fe-96dc-e585d10fce9d</ItemGuid>
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
+    <Content Include="T\P\App\InternalMessages\InternalMessages.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\InternalMessages\InternalMessages.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Compile Include="GuidList.cs" />
+    <Compile Include="PackageToolWindow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="T\P\App\InternalMessages\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Contract\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Infrastructure\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Compile Include="ToolWindowContent.cs" />
+    <Compile Include="ToolWindowContentViewer.cs" />
+    <Content Include="T\P\App\Libraries\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Compile Include="VSPackage.cs" />
+    <Content Include="$(PatternToolkitRuntime)\GeneratedCode\LibrarySchema.xsd">
+      <Visible>true</Visible>
+      <Link>Properties\Schemas\LibrarySchema.xsd</Link>
+      <FixedLink>
+      </FixedLink>
+    </Content>
+    <Content Include="$(PatternToolkitRuntime)\GeneratedCode\SchemaModelSchema.xsd">
+      <Visible>true</Visible>
+      <Link>Properties\Schemas\SchemaModelSchema.xsd</Link>
+      <FixedLink>
+      </FixedLink>
+    </Content>
+    <Content Include="$(PatternToolkitBuilder)\GeneratedCode\WorkflowDesignSchema.xsd">
+      <Visible>true</Visible>
+      <Link>Properties\Schemas\WorkflowDesignSchema.xsd</Link>
+      <FixedLink>
+      </FixedLink>
+    </Content>
+    <Content Include="BindingPath.pkgdef" />
+    <Resource Include="Resources\Gear.ico" />
+    <Resource Include="Resources\Link.png" />
+    <Resource Include="Resources\Event.png" />
+    <Resource Include="Resources\Component.png" />
+    <Content Include="Resources\Package.ico" />
+    <Content Include="Resources\Page.png" />
+    <Resource Include="Resources\SingleMessage.ico" />
+    <Content Include="Resources\ToolkitIcon.png">
+      <IncludeInVSIX>True</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\VSPackageIcons.bmp" />
+    <Content Include="T\P\App\Libraries\Libraries.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Libraries\Libraries.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\App\Libraries\Libraries.vstemplate">
+      <SubType>Designer</SubType>
+      <ItemGuid>fa3ec177-8dd1-4106-9e3b-eba7f3743860</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\T4\Config\Host\App.config.tt">
+      <LastGenOutput>App.config.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>bcbf52e1-c5aa-4cef-a496-4860d2061c0a</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Config\Host\EndpointConfig.tt">
+      <ItemGuid>7c1796fe-73a7-474f-962d-a83db6ec3c60</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\EventDefinition.tt">
+      <LastGenOutput>EventDefinition.cs</LastGenOutput>
+      <ItemGuid>cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\CommandDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
+    </Content>
+    <Content Include="..\Binaries\NServiceBusHost.vsix">
+      <Link>NServiceBusHost.vsix</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Binaries\WebEndpoint.vsix">
+      <Link>WebEndpoint.vsix</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.vsix">
+      <Link>NServiceBus.Modeling.EndpointDesign.Shell.vsix</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\Binaries\WebMVCEndpoint.vsix">
+      <Link>WebMVCEndpoint.vsix</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="..\source.version.t4">
+      <Link>source.version.t4</Link>
+    </None>
+    <Content Include=".nuget\NuGet.targets">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="598ff0ef-28a9-4ca2-b431-269f67a9694b.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <None Include="d2aa9317-385b-462a-a31b-14c1be5908ad.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <None Include="d4b6057a-fb60-4a43-b09f-b7c23e6273cd.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <Content Include="T\T4\CommandSender.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>477d1212-a504-470e-87d4-1d9f10b377e2</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomCommandSender.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>0c374c06-3ef4-4399-8fe8-408c61dbeea5</ItemGuid>
+    </Content>
+    <Content Include="T\T4\ComponentHandlers.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>009202b9-d8d1-4877-bcbf-ff75c983dcd3</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomComponentHandlers.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>f63539d8-7392-445a-b2a1-1454caecb2df</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\Authentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>3b28bc6d-ba79-4cfe-88c8-03e14fd09ef0</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\Security\CustomAuthentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>3b08d283-53e3-42d3-a7dd-7de310c4a82e</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\Security\EndpointAuthentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>58fd7d97-d739-49e5-bd14-1fd4d3fe3784</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\Security\EndpointCustomAuthentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>f3534dfa-86bd-4a10-a25f-0908f668bfca</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\CustomCommandDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>600e8610-9915-48b1-a338-2cd0a7c4931e</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomEventDefinition.tt">
+      <LastGenOutput>EventDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a2be8c5d-919e-4788-a2fa-126049ca056f</ItemGuid>
+    </Content>
+    <Content Include="T\T4\ComponentSagaHandlers.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>6c659607-78bc-4671-8c4a-32065bba3c33</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Infrastructure\packages.config.tt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>dc743cce-5b69-43c5-944e-702bee9d6384</ItemGuid>
+    </Content>
+    <None Include="e1a3e420-bdf8-4ce6-b918-0ca0a7febaf3.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <Content Include="T\T4\Library.tt">
+      <LastGenOutput>EventDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>cd272c9f-4911-480c-a762-59810b294f94</ItemGuid>
+    </Content>
+    <None Include="VSPackage.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VSPackage.resx</LastGenOutput>
+      <DependentUpon>VSPackage.cs</DependentUpon>
+    </None>
+    <None Include="Assets\Guidance\ToolkitGuidance.doc">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252fc883d430-4912-4c10-91e9-f38110aa7c7c</SourceModelReference>
+      <ItemGuid>9f48d2ea-7bf9-4a4a-8db8-56415d180740</ItemGuid>
+    </None>
+    <None Include="NServiceBus.ToolkitVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NServiceBus.ToolkitVersion.targets</LastGenOutput>
+    </None>
+    <Content Include="NServiceBus.ToolkitVersion.targets">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NServiceBus.ToolkitVersion.tt</DependentUpon>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="PatternTooling.toolingdesign">
+      <ItemGuid>b1981f48-7c32-4fdf-8f0f-727807b8aa39</ItemGuid>
+    </None>
+    <None Include="source.extension.vsixmanifest">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.tt</DependentUpon>
+      <IsToolkitManifest>True</IsToolkitManifest>
+    </None>
+    <Resource Include="Resources\PatternIcon.png" />
+    <Content Include="$(PatternToolkitBuilder)\PatternToolkitManager.vsix">
+      <Visible>false</Visible>
+      <Link>PatternToolkitManager.vsix</Link>
+      <FixedLink>
+      </FixedLink>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Templates\Projects\" />
+    <Folder Include="T\I\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="PatternModel.patterndefinition">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252ff8a514df-bea8-4098-8e0d-aa1154ec8331</SourceModelReference>
+      <ItemGuid>ec5ef507-1412-4c0e-88fa-efaad8078bac</ItemGuid>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.tt</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source.extension.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <ItemGuid>27ac5630-dc35-4694-8173-6def684bc14c</ItemGuid>
+    </None>
+    <None Include="source.include.t4">
+      <DependentUpon>source.extension.tt</DependentUpon>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/E:\projects\NServiceBus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <ItemGuid>1a7bd6d3-abb1-422c-8ba1-7279e34cdf21</ItemGuid>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EndpointDesign.Shell\EndpointDesign.Shell.csproj">
+      <Project>{7398C9BA-F668-4F83-84BA-415796193486}</Project>
+      <Name>EndpointDesign.Shell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EndpointDesign\EndpointDesign.csproj">
+      <Project>{94790A8C-85C6-40C8-AA09-0365B8B0B81D}</Project>
+      <Name>EndpointDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj">
+      <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
+      <Name>NServiceBusStudio.Automation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- Properties for Toolkit Targets -->
+  <PropertyGroup>
+    <CopyVsixDebuggingDependencies>true</CopyVsixDebuggingDependencies>
+    <CopyVsixToFolder Condition=" '$(TeamBuildConstants)' == '' ">$(SolutionDir)Binaries</CopyVsixToFolder>
+    <!-- <CopyVsixToFolder Condition=" '$(TeamBuildConstants)' != '' ">$(SolutionRoot)\TeamProjectRoot\Projects\BranchPath\Binaries</CopyVsixToFolder> -->
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
+  <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\Microsoft.VisualStudio.Patterning.Authoring.PatternToolkitVersion.targets" />
+  <!-- Properties for VSSDK/DSL Targets -->
+  <PropertyGroup>
+    <RegisterOutputPackage>true</RegisterOutputPackage>
+    <RegisterWithCodebase>true</RegisterWithCodebase>
+    <GacTargetOutput>false</GacTargetOutput>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartAction>Program</StartAction>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+  </PropertyGroup>
+  <Import Project="$(RootDir)Solution Items\Toolkit.targets" Condition="Exists('$(RootDir)Solution Items\Toolkit.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    	Other similar extension points exist, see Microsoft.Common.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

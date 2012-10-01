@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<patternModelDiagram dslVersion="1.2.0.0" Id="e1a3e420-bdf8-4ce6-b918-0ca0a7febaf3" type="Microsoft.VisualStudio.Patterning.Runtime.Schema.PatternModelSchemaDiagram" absoluteBounds="0, 0, 11, 8.5" diagramId="146a0c65-cd0d-41ec-8917-82578716cd7c" name="PatternModel">
+  <patternModelSchemaMoniker Id="1f03c958-af37-4474-9858-29fb36efd7d5" />
+  <nestedChildShapes>
+    <patternShape Id="30b19cf6-662c-469b-86f5-6c077a9a193e" absoluteBounds="0.375, 1.125, 2.375, 4.647293294270832">
+      <patternSchemaMoniker Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" />
+      <relativeChildShapes>
+        <viewShape Id="959cf146-666f-475f-9a48-33e88827eae1" absoluteBounds="0.53125, 5.647293294270832, 2, 0.25" isLayoutInitialized="false">
+          <viewSchemaMoniker Id="83d20cbd-6d38-477a-a440-ee3e4956a513" />
+        </viewShape>
+      </relativeChildShapes>
+      <nestedChildShapes>
+        <elementListCompartment Id="191d68ab-18b5-4820-98ad-3ffd5ec02721" absoluteBounds="0.39, 1.635, 2.3449999999999998, 1.0185953776041665" name="Properties" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="44d1f49b-3dd7-446c-8b7e-a4779dd15a94" absoluteBounds="0.39, 2.6635953776041665, 2.3449999999999998, 1.2108968098958333" name="LaunchPoints" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="07c272eb-dbac-4b8e-86ec-0b5c03d67d48" absoluteBounds="0.39, 3.8844921874999994, 2.3449999999999998, 1.7878011067708333" name="Automation" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </patternShape>
+  </nestedChildShapes>
+</patternModelDiagram>

@@ -1,0 +1,30 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var service = ((IProductElement)this.Element).As<IService>(); #>
+using System;
+using NServiceBus;
+ 
+namespace <#= service.Namespace #>
+{
+<#
+	if (service.Components.Component.Any(c => c.Subscribes.SubscribedEventLinks.Any()))
+	{
+#>
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+<#
+	}
+	else
+	{	
+#>
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher
+<#
+	}
+#>
+    {
+    }
+}

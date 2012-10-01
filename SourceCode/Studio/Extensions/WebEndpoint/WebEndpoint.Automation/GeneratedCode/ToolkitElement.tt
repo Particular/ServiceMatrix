@@ -1,0 +1,186 @@
+﻿<#@ PatternModel processor="PatternModelDirectiveProcessor" requires="fileName='..\..\WebEndpoint\PatternModel.patterndefinition'" #>
+<#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\..\WebEndpoint.slnbldr'" #>
+<#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Extensibility.dll" #>
+<#@ Assembly Name="Microsoft.VisualStudio.TeamArchitect.PowerTools.dll" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Library.Toolkit.dll" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation.dll" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Extensibility" #>
+<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Library" #>
+<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Authoring" #>
+<#@ output extension=".Generated.cs" #>
+<#
+// This template generates the IToolkitElement interface inheritance and implementation
+// for all elements and collections in the model.
+#>
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Microsoft.VisualStudio.Patterning.Runtime;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NServiceBusStudio;
+
+namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRootNamespace #>
+{
+	#region Interfaces
+<#
+	var product = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
+    var elements = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements
+        .OfType<IElementInfo>()
+        .ToList();
+    var collections = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements
+        .OfType<ICollectionInfo>()
+        .ToList();
+
+    GenerateInterface(product);
+
+    elements.ForEach(e => GenerateInterface(e));
+	collections.ForEach(c => GenerateInterface(c));
+#>
+
+	#endregion Interfaces
+
+	#region Implementations
+
+<#
+    GenerateImplementation(product, "AsProduct", isProduct: true);
+
+    elements.ForEach(e => GenerateImplementation(e, "AsElement"));
+    collections.ForEach(c => GenerateImplementation(c, "AsCollection"));
+
+#>
+
+	#endregion Implementations
+}
+<#+
+private void GenerateInterface(IPatternElementInfo element)
+{
+#>
+
+	partial interface I<#= element.CodeIdentifier #> : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+<#+
+foreach (var property in element.Properties)
+{
+#>
+		event EventHandler <#= property.CodeIdentifier #>Changed;
+<#+
+}	
+	
+#>
+	}
+<#+
+}
+
+private void GenerateImplementation(IPatternElementInfo element, string asRuntimeMethod, bool isProduct = false)
+{
+#>
+
+	partial class <#= element.CodeIdentifier #> : ISupportInitialize
+	{
+		static <#= element.CodeIdentifier #>()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(<#= element.CodeIdentifier #>)), typeof(<#= element.CodeIdentifier #>));
+		}
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.<#= asRuntimeMethod #>();
+				var automations = this.CompositionService
+					// .GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(I<#= element.CodeIdentifier #>).FullName)
+					.GetExports<IAutomationExtension, IFeatureComponentMetadata>()
+					.FromFeaturesCatalog()
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			Initialize();
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		#endregion
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+<#+
+foreach (var property in element.Properties)
+{
+#>
+		public event EventHandler <#= property.CodeIdentifier #>Changed = (sender, args) => { };
+<#+
+}	
+#>
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.<#= asRuntimeMethod #>().PropertyChanged += OnPropertyChanged;
+		}
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			ApplicationIsDirty.SetTrue();
+			switch (args.PropertyName)
+			{
+<#+
+foreach (var property in element.Properties)
+{
+#>
+				case "<#= property.CodeIdentifier #>":
+					<#= property.CodeIdentifier #>Changed(sender, args);
+					break;
+<#+
+}	
+#>
+				case "InstanceName":
+					InstanceNameChanged(sender, args);
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+<#+
+}
+#>
