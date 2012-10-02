@@ -13,10 +13,14 @@
     <AssemblyName>WebEndpoint</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -294,7 +298,7 @@
     </None>
     <None Include="source.include.t4">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/D:\work\NServiceBusStudio\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
       <ItemGuid>b0761bec-3ad8-453f-9260-2c9f5e12b701</ItemGuid>
     </None>
   </ItemGroup>

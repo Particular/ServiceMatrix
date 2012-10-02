@@ -12,18 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusHost.Automation", "NServiceBusHost.Automation\NServiceBusHost.Automation.csproj", "{92479D17-7742-4B6B-B06E-4C896A21E995}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.clariusconsulting.net/tfs/customers
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = NServiceBusHost.Automation\\NServiceBusHost.Automation.csproj
-		SccProjectName1 = NServiceBusHost.Automation
-		SccLocalPath1 = NServiceBusHost.Automation
-		SccProjectUniqueName2 = NServiceBusHost\\NServiceBusHost.csproj
-		SccProjectName2 = NServiceBusHost
-		SccLocalPath2 = NServiceBusHost
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

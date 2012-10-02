@@ -92,6 +92,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 				typeof(global::NServiceBus.Modeling.EndpointDesign.FixUpDiagram),
 				typeof(global::NServiceBus.Modeling.EndpointDesign.DecoratorPropertyChanged),
 				typeof(global::NServiceBus.Modeling.EndpointDesign.ConnectorRolePlayerChanged),
+                typeof(OrderShapeAddedToDiagramRule)
 			};
 		}
 		/// <summary>

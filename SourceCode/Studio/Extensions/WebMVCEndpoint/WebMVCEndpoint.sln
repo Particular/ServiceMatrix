@@ -12,18 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVCEndpoint.Automation", "WebMVCEndpoint.Automation\WebMVCEndpoint.Automation.csproj", "{497FC3AA-DC35-4298-BF7A-0332469CD8C2}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.clariusconsulting.net/tfs/customers
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = WebMVCEndpoint.Automation\\WebMVCEndpoint.Automation.csproj
-		SccProjectName1 = WebMVCEndpoint.Automation
-		SccLocalPath1 = WebMVCEndpoint.Automation
-		SccProjectUniqueName2 = WebMVCEndpoint\\WebMVCEndpoint.csproj
-		SccProjectName2 = WebMVCEndpoint
-		SccLocalPath2 = WebMVCEndpoint
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
