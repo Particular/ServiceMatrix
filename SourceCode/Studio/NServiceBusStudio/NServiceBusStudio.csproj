@@ -462,9 +462,40 @@
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
     	Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="BeforeBuild">
-	</Target>
 	<Target Name="AfterBuild">
 	</Target>
 	-->
+  <PropertyGroup>
+        <BinariesDirectory>..\Binaries</BinariesDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+        <SourceEmptyFile Include="emptyfile.txt"/>
+  </ItemGroup>
+  <ItemGroup>
+        <TargetHostVsixFile Include="..\Binaries\NServiceBusHost.vsix"/>
+  </ItemGroup>
+  <ItemGroup>
+        <TargetWebVsixFile Include="..\Binaries\WebEndpoint.vsix"/>
+  </ItemGroup>
+  <ItemGroup>
+        <TargetMVCVsixFile Include="..\Binaries\WebMVCEndpoint.vsix"/>
+  </ItemGroup>
+  <Target Name="EnsureVsixInPlace">
+	<Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
+	<Copy Condition="!Exists('..\Binaries\NServiceBusHost.vsix')"
+            SourceFiles="@(SourceEmptyFile)"
+	    DestinationFiles="@(TargetHostVsixFile)"
+		/>
+	<Copy Condition="!Exists('..\Binaries\WebEndpoint.vsix')"
+            SourceFiles="@(SourceEmptyFile)"
+	    DestinationFiles="@(TargetWebVsixFile)"
+		/>
+	<Copy Condition="!Exists('..\Binaries\WebMVCEndpoint.vsix')"
+            SourceFiles="@(SourceEmptyFile)"
+	    DestinationFiles="@(TargetMVCVsixFile)"
+		/>
+  </Target>
+	<Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace">
+	</Target>
+
 </Project>

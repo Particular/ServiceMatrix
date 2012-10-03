@@ -161,9 +161,9 @@
       <DependentUpon>CommandSet.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\Package.cs">
-      <AutoGen>True</AutoGen>
+      <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Package.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Hierarchy\DynamicHierarchyNode.cs" />
     <Compile Include="Hierarchy\HierarchyNode.cs" />
@@ -258,10 +258,6 @@
     <None Include="GeneratedCode\ModelExplorerToolWindow.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelExplorerToolWindow.cs</LastGenOutput>
-    </None>
-    <None Include="GeneratedCode\Package.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Package.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

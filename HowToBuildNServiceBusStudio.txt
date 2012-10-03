@@ -12,13 +12,7 @@ In order to build NServiceBus Studio, you will need the following dependencies i
 First-Time Build
 ================
 
-Visual Studio extensibility includes some code generation logic that is overridden by NServiceBus Studio.
-Unfortunately, the first time you try to build the solution in your environment, there are some files that are replaced and as a consequence this build will fail.
-To have a successfully build after that one, you will need to do the following:
-
-1. Change the visibility modifier for EndpointDesignPackageBase from internal to public. This class is defined in the file Package.cs part of the EndpointDesign.Shell project.
-2. Add the following line at the end of the types registration (line 95) in the file DomainModel.cs:
-                typeof(OrderShapeAddedToDiagramRule)
+We've made some changes to the solution in order to avoid first-time build issues. However, be sure source code files are not blocked on Windows, and are not read-only.
 
 Basic Troubleshooting
 =====================
@@ -37,7 +31,7 @@ For achieving this goal, the NServiceBusStudio project has links to the other VS
   2. WebEndpoint
   3. WebMVCEndpoint
 
-As the VSIX files have not been built yet when you are building NServiceBusStudio for first time, we're including empty files as placeholders that will prevent a fail because the linked files doesn't exist.
+As the VSIX files have not been built yet when you are building NServiceBusStudio for first time, we're generating empty files as placeholders that will prevent a fail because the linked files doesn't exist.
 Once you have build NServiceBus Studio, then you can build the endpoints solutions in the order mentioned above. That will overwrite the placeholders with the actual VSIX files. Now you can build NServiceBus Studio again, so it will package all the right VSIX files.
 
 VSIX generation includes physically other referenced VSIX files. This makes them redundant and big. For instance, in the current setup, NServiceBusStudio.vsix includes PatternToolkitManager.vsix, which is a reference, but also NServiceBusHost.vsix, that is also including PatternToolkitManager.vsix. It's the same with all the other endpoint vsix files, that makes the output vsix to have PatternToolkitManager contained four times.

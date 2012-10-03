@@ -111,9 +111,9 @@
       <DependentUpon>DomainClasses.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\DomainModel.cs">
-      <AutoGen>True</AutoGen>
+      <SubType>Code</SubType>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DomainModel.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="GeneratedCode\DomainRelationships.cs">
       <AutoGen>True</AutoGen>
@@ -161,10 +161,6 @@
     <None Include="GeneratedCode\Customization\SchemaImplementation.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchemaImplementation.cs</LastGenOutput>
-    </None>
-    <None Include="GeneratedCode\DomainModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DomainModel.cs</LastGenOutput>
     </None>
     <None Include="GeneratedCode\EndpointDesignerSchema.xsd">
       <AutoGen>True</AutoGen>
