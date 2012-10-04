@@ -120,10 +120,16 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                                 break;
                         }
 
-                        var nodeToSelect = LogicalViewModel.NServiceBusViewModel.FindLogicalNode(
-                            LogicalViewModel.NServiceBusViewModel.LogicalViewNodes, n => n.InnerViewModel == innerModelToSelect);
-                        nodeToSelect.IsSelected = true;
-                        NServiceBusViewModel.CollapseAllButSelected();
+                        var nodeToSelect =
+                            LogicalViewModel.NServiceBusViewModel.FindLogicalNode(
+                                LogicalViewModel.NServiceBusViewModel.LogicalViewNodes,
+                                n => n.InnerViewModel == innerModelToSelect);
+                        if (nodeToSelect != null)
+                        {
+                            nodeToSelect.IsSelected = true;
+                            NServiceBusViewModel.CollapseAllButSelected();
+                        }
+
                         NServiceBusViewModel.RaiseOnPropertyChanged("Title");
                     }));
                 this.CurrentNode.InnerViewModel.IsSelected = false;
@@ -476,7 +482,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 {
                     if (this.LogicalViewNodes != null)
                     {
-                            this.CurrentNode = this.FindLogicalNode(this.LogicalViewNodes, n => n.InnerViewModel == this.SourceViewModel.CurrentNode);
+                        this.CurrentNode = this.FindLogicalNode(this.LogicalViewNodes, n => n.InnerViewModel == this.SourceViewModel.CurrentNode);
                         this.OnCurrentNodeChanged();
                     }
                 };
@@ -607,7 +613,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 this.IsExpanded = true;
                 this.ViewModel = viewModel;
                 WireInnerViewModel(root);
-                
+
                 if (children != null)
                 {
                     Func<ProductElementViewModel, LogicalViewModelNode> LogicalViewCreator = n =>
@@ -651,10 +657,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             }
 
             // Properties
-            public ProductElementViewModel InnerViewModel 
-            { 
-                get; 
-                private set; 
+            public ProductElementViewModel InnerViewModel
+            {
+                get;
+                private set;
             }
 
             public ObservableCollection<LogicalViewModel.LogicalViewModelNode> LogicalViewNodes { get; set; }
@@ -691,7 +697,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 get
                 {
-                    return this.IsNServiceBusView? this.isSelected : this.InnerViewModel.IsSelected;
+                    return this.IsNServiceBusView ? this.isSelected : this.InnerViewModel.IsSelected;
                 }
                 set
                 {
