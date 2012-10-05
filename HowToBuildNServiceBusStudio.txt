@@ -3,11 +3,12 @@ How To Build NServiceBus Studio
 
 In order to build NServiceBus Studio, you will need the following dependencies installed:
 
-1. Visual Studio 2010 - Ultimate - Service Pack 1
-2. MS Visual Studio 2010 Architecture and Modeling Tools SDK
-3. NuGet Package Manager
-4. Feature Extensions Runtime Pro v.1.0 (Can be installed from Visual Studio Extension Manager).
-5. Microsoft Pattern Toolkit Builder v.1.2.19.0 (Can be installed from Visual Studio Extension Manager)
+1. Visual Studio 2010 - Ultimate Edition - Service Pack 1
+2. Visual studio 2010 SP1 SDK (http://www.microsoft.com/en-us/download/details.aspx?id=21835)
+3. MS Visual Studio 2010 Architecture and Modeling Tools SDK (http://www.microsoft.com/en-us/download/details.aspx?id=23025)
+4. NuGet Package Manager
+5. Feature Extensions Runtime Pro v.1.0 (Can be installed from Visual Studio Extension Manager).
+6. Microsoft Pattern Toolkit Builder v.1.2.19.0 (Can be installed from Visual Studio Extension Manager)
 
 First-Time Build
 ================
