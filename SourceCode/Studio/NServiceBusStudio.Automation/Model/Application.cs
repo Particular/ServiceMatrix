@@ -140,8 +140,13 @@ namespace NServiceBusStudio
         static string extensionPath;
         static string nserviceBusVersion;
 
+        [Import(typeof(Microsoft.VisualStudio.Shell.SVsServiceProvider))]
+        public IServiceProvider VsServiceProvider { get; set; }
+
         public void InitializeExtensionDependentData()
         {
+            //IVsExtensionManager extensionManager = (IVsExtensionManager) this.VsServiceProvider.TryGetService<SVsExtensionManager>();
+            //var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
             var resolver = this.ServiceProvider.TryGetService<IFxrUriReferenceService>();
             var extension = resolver.ResolveUri<IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;

@@ -26,6 +26,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.WireSolutionBuilderViewModel(sourceViewModel, false);
 
             //This is the Master View:
+            this.IsMasterView = true;
             // 1. The selected node should be trackable
             this.TrackSelectedNode = true;
             // 2. We need to create the views list
@@ -264,6 +265,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 this.RaiseOnPropertyChanged("SelectedView");
             }
         }
+
+        public bool IsMasterView { get; private set; }
 
         private void SelectView(string title)
         {
@@ -626,6 +629,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 {
                     this.LogicalViewNodes = new ObservableCollection<LogicalViewModel.LogicalViewModelNode>();
                 }
+
+                if (!viewModel.IsMasterView)
+                {
+                    this.RemoveDeleteMenuItem();   
+                }
             }
 
             private void WireInnerViewModel(ProductElementViewModel root)
@@ -654,6 +662,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 {
                     this.MenuOptions.Add(menuOption);
                 }
+            }
+
+            internal void RemoveDeleteMenuItem()
+            {
+                this.MenuOptions = new ObservableCollection<MenuOptionViewModel>(this.MenuOptions.Where(o => o.Caption != "Delete"));
             }
 
             // Properties
