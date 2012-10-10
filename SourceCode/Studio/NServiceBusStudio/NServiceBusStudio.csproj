@@ -439,12 +439,15 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
   <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\Microsoft.VisualStudio.Patterning.Authoring.PatternToolkitVersion.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TextTemplating\v10.0\Microsoft.TextTemplating.targets" />
   <!-- Properties for VSSDK/DSL Targets -->
   <PropertyGroup>
     <RegisterOutputPackage>true</RegisterOutputPackage>
     <RegisterWithCodebase>true</RegisterWithCodebase>
     <GacTargetOutput>false</GacTargetOutput>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+    <TransformFile>source.extension.tt</TransformFile>
   </PropertyGroup>
   <PropertyGroup>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
@@ -491,7 +494,7 @@
 	    DestinationFiles="@(TargetMVCVsixFile)"
 		/>
   </Target>
-	<Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace">
+	<Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
 	</Target>
 
 </Project>

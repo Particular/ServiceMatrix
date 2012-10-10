@@ -2,7 +2,6 @@
 	string identifier = "8d8a34f8-b52e-438e-a39a-d75439744f01";
 	string toolkitName = "NServiceBusHost";
 	string author = "NServiceBus";
-	string version = "1.0.0.0";
 	string description = "Toolkit to be used for creating NServiceBus.Host.exe";
 	string eula = @"";
 	string icon = @"Resources\ToolkitIcon.png";

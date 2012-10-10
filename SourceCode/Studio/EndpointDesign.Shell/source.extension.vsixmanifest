@@ -3,7 +3,7 @@
   <Identifier Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
     <Name>NServiceBus Modeling</Name>
     <Author>NServiceBus</Author>
-	<Version>3.2.8.4</Version>
+	<Version>3.2.8.7</Version>
     <Description>The design time experience for creating NServiceBus applications.</Description>
     <Locale>1033</Locale>
     <MoreInfoUrl></MoreInfoUrl>

@@ -3,7 +3,7 @@
   <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
 	<Name>NServiceBus Studio</Name>
 	<Author>NServiceBus</Author>
-	<Version>3.2.8.3</Version>
+	<Version>3.2.8.7</Version>
 	<Description xml:space="preserve">A set of Visual Studio integrated tools to author NServiceBus applications</Description>
     <Locale>1033</Locale>
 		<Icon>Resources\ToolkitIcon.png</Icon>

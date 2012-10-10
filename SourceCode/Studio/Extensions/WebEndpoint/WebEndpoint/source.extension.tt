@@ -1,10 +1,5 @@
-﻿<#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
-<#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\WebEndpoint.slnbldr'" #>
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ Assembly Name="System.Core.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation.dll" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Runtime" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Authoring" #>
 <#@ Import Namespace="System.Linq" #>
 <#@ output extension=".vsixmanifest" #>
 <#@ Include File="source.include.t4" #>

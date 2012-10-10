@@ -3,7 +3,7 @@
   <Identifier Id="8d8a34f8-b52e-438e-a39a-d75439744f01">
 	<Name>NServiceBusHost</Name>
 	<Author>NServiceBus</Author>
-	<Version>3.2.8.3</Version>
+	<Version>3.2.8.7</Version>
 	<Description xml:space="preserve">Toolkit to be used for creating NServiceBus.Host.exe</Description>
     <Locale>1033</Locale>
 		<Icon>Resources\ToolkitIcon.png</Icon>

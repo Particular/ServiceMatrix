@@ -2,7 +2,6 @@
 	string identifier = "e91869eb-ba2e-4420-baad-df72525d4fe5";
 	string toolkitName = "WebMVCEndpoint";
 	string author = "NServiceBus";
-	string version = "1.0.0.0";
 	string description = "Toolkit to be used for Web Endpoints using ASP NET MVC";
 	string eula = @"";
 	string icon = @"Resources\ToolkitIcon.png";
