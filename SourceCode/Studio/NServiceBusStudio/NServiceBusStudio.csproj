@@ -111,6 +111,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\LibraryFile.png" />
+    <Resource Include="Resources\Gear.png" />
     <Content Include="Resources\ProductPreview.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -197,7 +198,6 @@
       </FixedLink>
     </Content>
     <Content Include="BindingPath.pkgdef" />
-    <Resource Include="Resources\Gear.ico" />
     <Resource Include="Resources\Link.png" />
     <Resource Include="Resources\Event.png" />
     <Resource Include="Resources\Component.png" />
@@ -465,36 +465,26 @@
 	</Target>
 	-->
   <PropertyGroup>
-        <BinariesDirectory>..\Binaries</BinariesDirectory>
+    <BinariesDirectory>..\Binaries</BinariesDirectory>
   </PropertyGroup>
   <ItemGroup>
-        <SourceEmptyFile Include="emptyfile.txt"/>
+    <SourceEmptyFile Include="emptyfile.txt" />
   </ItemGroup>
   <ItemGroup>
-        <TargetHostVsixFile Include="..\Binaries\NServiceBusHost.vsix"/>
+    <TargetHostVsixFile Include="..\Binaries\NServiceBusHost.vsix" />
   </ItemGroup>
   <ItemGroup>
-        <TargetWebVsixFile Include="..\Binaries\WebEndpoint.vsix"/>
+    <TargetWebVsixFile Include="..\Binaries\WebEndpoint.vsix" />
   </ItemGroup>
   <ItemGroup>
-        <TargetMVCVsixFile Include="..\Binaries\WebMVCEndpoint.vsix"/>
+    <TargetMVCVsixFile Include="..\Binaries\WebMVCEndpoint.vsix" />
   </ItemGroup>
   <Target Name="EnsureVsixInPlace">
-	<Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
-	<Copy Condition="!Exists('..\Binaries\NServiceBusHost.vsix')"
-            SourceFiles="@(SourceEmptyFile)"
-	    DestinationFiles="@(TargetHostVsixFile)"
-		/>
-	<Copy Condition="!Exists('..\Binaries\WebEndpoint.vsix')"
-            SourceFiles="@(SourceEmptyFile)"
-	    DestinationFiles="@(TargetWebVsixFile)"
-		/>
-	<Copy Condition="!Exists('..\Binaries\WebMVCEndpoint.vsix')"
-            SourceFiles="@(SourceEmptyFile)"
-	    DestinationFiles="@(TargetMVCVsixFile)"
-		/>
+    <Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
+    <Copy Condition="!Exists('..\Binaries\NServiceBusHost.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetHostVsixFile)" />
+    <Copy Condition="!Exists('..\Binaries\WebEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetWebVsixFile)" />
+    <Copy Condition="!Exists('..\Binaries\WebMVCEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetMVCVsixFile)" />
   </Target>
-	<Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
-	</Target>
-
+  <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
+  </Target>
 </Project>

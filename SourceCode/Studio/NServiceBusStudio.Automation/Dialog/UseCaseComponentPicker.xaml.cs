@@ -18,17 +18,38 @@ using System.Windows.Markup;
 using System.Collections.ObjectModel;
 using NServiceBusStudio;
 using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace AbstractEndpoint.Automation.Dialog
 {
+
     /// <summary>
     /// Interaction logic for ComponentPicker.xaml
     /// </summary>
     public partial class UseCaseComponentPicker : CommonDialogWindow, IDialogWindow, INotifyPropertyChanged
     {
+
         public UseCaseComponentPicker()
         {
             InitializeComponent();
+            DispatcherTimer focusTimer = null;
+            focusTimer = new DispatcherTimer(
+                TimeSpan.FromMilliseconds(200),
+                DispatcherPriority.Input,
+                (s, e) => 
+                {
+                    focusTimer.Stop();
+                    focusTimer.IsEnabled = false;
+                    var textBox = (this.ServiceNameSelector.Template.FindName("PART_EditableTextBox", this.ServiceNameSelector) as TextBox);
+                        if (textBox != null)
+                        {
+                            textBox.Focus();
+                            textBox.SelectionStart = textBox.Text.Length;
+                        }
+                },
+                this.Dispatcher);
+            focusTimer.IsEnabled = true;
+            focusTimer.Start();
         }
 
         private IEnumerable<IService> Services { get; set; }

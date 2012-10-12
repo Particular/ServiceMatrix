@@ -51,8 +51,7 @@
                             x:Name="ServiceNameSelector"
                             MinWidth="120"
                             IsEditable="True"
-                            Focusable="True"
-                          />
+                            Focusable="True" TabIndex="0" IsTabStop="True" />
             <TextBox Text="{Binding ElementName=ServiceNameSelector, Path=Text}"
                              TextChanged="ServiceName_TextChanged" Visibility="Collapsed"/>
 
@@ -72,7 +71,7 @@
         <Grid Grid.Row="1" IsSharedSizeScope="true" Margin="5"
               VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">
-                <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" Click="ok_Click" />
+                <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" Click="ok_Click" IsDefault="True" />
                 <vs:DialogButton Name="cancel" Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
             </StackPanel>
         </Grid>
