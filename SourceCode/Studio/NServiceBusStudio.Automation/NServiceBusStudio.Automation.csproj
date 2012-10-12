@@ -188,6 +188,9 @@
     <Compile Include="CustomSolutionBuilder\Views\ApplicationPropertiesView.xaml.cs">
       <DependentUpon>ApplicationPropertiesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomSolutionBuilder\Views\ComponentsOrderingView.xaml.cs">
+      <DependentUpon>ComponentsOrderingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomSolutionBuilder\Views\DetailsPanel.xaml.cs">
       <DependentUpon>DetailsPanel.xaml</DependentUpon>
     </Compile>
@@ -408,6 +411,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="CustomSolutionBuilder\Views\ApplicationPropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\ComponentsOrderingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
