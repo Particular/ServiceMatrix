@@ -12,7 +12,7 @@ namespace AbstractEndpoint
     {
         IElementReference<IComponent> ComponentReference { get; }
         IEnumerable<IAbstractComponentLink> Siblings { get; }
-        Int64 Order { get; }
+        Int64 Order { get; set; }
         void SetNextOrderNumber();
     }
 }
