@@ -38,12 +38,17 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             
             var setOrder = new Action(() =>
                 {
-                    foreach (var cl in links.AsEnumerable().Reverse())
+                    var worker = new BackgroundWorker();
+                    worker.DoWork += (e, s) =>
                     {
-                        cl.Link.Order = links.IndexOf(cl) + 1;
-                    }
+                        foreach (var cl in links.AsEnumerable().Reverse())
+                        {
+                            cl.Link.Order = links.IndexOf(cl) + 1;
+                        }
+                    };
+                    worker.RunWorkerAsync();
                 });
-            foreach (var cl in componentLinks)
+            foreach (var cl in componentLinks.OrderBy(x => x.Order))
             {
                 var vm = new ComponentsOrderingViewModel { Link = cl };
                 links.Add(vm);
@@ -55,6 +60,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                         links.Insert(prevIndex - 1, vm);
                         this.ComponentList.ItemsSource = null;
                         this.ComponentList.ItemsSource = links;
+                        this.ComponentList.SelectedItem = vm;
                         setOrder();
                     }, () => links.IndexOf(vm) > 0);
                 vm.DownCommand = new RelayCommand(
@@ -65,6 +71,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                         links.Insert(prevIndex + 1, vm);
                         this.ComponentList.ItemsSource = null;
                         this.ComponentList.ItemsSource = links;
+                        this.ComponentList.SelectedItem = vm;
                         setOrder();
                     }, () => links.IndexOf(vm) < links.Count - 1);
             }
