@@ -26,22 +26,24 @@
                        Foreground="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarTextActiveKey}}"/>
                 </Grid>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <ItemsControl x:Name="ComponentList" Margin="0,3,0,0">
-                        <ItemsControl.ItemTemplate>
+                    <ListView x:Name="ComponentList" Margin="0,3,0,0"
+                              HorizontalContentAlignment="Stretch"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid Background="White" Margin="10,2,10,0">
+                                <Grid Margin="2,2,2,2">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Name}"/>
-                                    <Button Grid.Column="1"  Margin="3,2,3,0" Command="{Binding DownCommand}">▼</Button>
-                                    <Button Grid.Column="2" Margin="3,2,3,0" Command="{Binding UpCommand}">▲</Button>
+                                    <TextBlock Text="{Binding Name}" />
+                                    <Button Grid.Column="1" Margin="0, 0, 1, 0" Command="{Binding DownCommand}">▼</Button>
+                                    <Button Grid.Column="2" Command="{Binding UpCommand}">▲</Button>
                                 </Grid>
                             </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </ScrollViewer>
             </Grid>
         </Border>
