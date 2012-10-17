@@ -81,8 +81,9 @@ namespace AbstractEndpoint.Automation.Commands
                             selectedCompoenent = components.FirstOrDefault(e => String.Equals(String.Format ("{0}.{1}", e.Parent.Parent.InstanceName, e.InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                         }
 
-                        var link = CurrentElement.As<IAbstractEndpointComponents>().CreateComponentLink(selectedCompoenent.InstanceName, e => e.ComponentReference.Value = selectedCompoenent);
-                        link.ComponentReference.Value.EndpointDefined(currentEndpoint);
+                        selectedCompoenent.DeployTo(currentEndpoint);
+                        //var link = CurrentElement.As<IAbstractEndpointComponents>().CreateComponentLink(selectedCompoenent.InstanceName, e => e.ComponentReference.Value = selectedCompoenent);
+                        //link.ComponentReference.Value.EndpointDefined(currentEndpoint);
                     }
                 }
             }

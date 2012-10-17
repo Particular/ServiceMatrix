@@ -32,12 +32,14 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
+		event EventHandler DoNotAutogenerateComponentsChanged;
 	}
 
 	partial interface ICommand : IToolkitElement
 	{
 		string CodeIdentifier { get; }
 
+		event EventHandler DoNotAutogenerateComponentsChanged;
 	}
 
 	partial interface IComponent : IToolkitElement
@@ -521,6 +523,7 @@ namespace NServiceBusStudio
 		#endregion
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler DoNotAutogenerateComponentsChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -540,6 +543,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 			switch (args.PropertyName)
 			{
+				case "DoNotAutogenerateComponents":
+					DoNotAutogenerateComponentsChanged(sender, args);
+					break;
 				case "InstanceName":
 					InstanceNameChanged(sender, args);
 					break;					
@@ -609,6 +615,7 @@ namespace NServiceBusStudio
 		#endregion
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler DoNotAutogenerateComponentsChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -628,6 +635,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 			switch (args.PropertyName)
 			{
+				case "DoNotAutogenerateComponents":
+					DoNotAutogenerateComponentsChanged(sender, args);
+					break;
 				case "InstanceName":
 					InstanceNameChanged(sender, args);
 					break;					
