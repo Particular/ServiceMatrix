@@ -5,7 +5,7 @@
 	        xmlns:pd="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
 	        xmlns:l="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI;assembly=Microsoft.VisualStudio.Patterning.Runtime"
 	        xmlns:k="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI.Data;assembly=Microsoft.VisualStudio.Patterning.Runtime"
-	        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
+	        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.11.0"
             xmlns:p="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

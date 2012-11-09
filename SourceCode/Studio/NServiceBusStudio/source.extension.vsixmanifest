@@ -2,7 +2,7 @@
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
 	<Name>NServiceBus Studio</Name>
-	<Author>NServiceBus</Author>
+	<Author>NServiceBus Studio</Author>
 	<Version>3.2.8.4</Version>
 	<Description xml:space="preserve">A set of Visual Studio integrated tools to author NServiceBus applications</Description>
     <Locale>1033</Locale>
@@ -16,8 +16,13 @@
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
       </VisualStudio>
+	  <VisualStudio Version="11.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
     </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.5" />
   </Identifier>
   <References>
 		<Reference Id="e91869eb-ba2e-4420-baad-df72525d4fe5">
@@ -35,10 +40,6 @@
 		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
 		  <Name>NServiceBus Modeling</Name>
 		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>
-		</Reference>
-		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785" MinVersion="1.2.0.0">
-		<Name>Pattern Toolkit Manager</Name>
-			<VsixPath>PatternToolkitManager.vsix</VsixPath>
 		</Reference>
 	  </References>
 	<Content>

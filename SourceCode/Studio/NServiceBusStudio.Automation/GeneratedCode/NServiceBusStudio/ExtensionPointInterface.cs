@@ -23,7 +23,7 @@ namespace NServiceBusStudio
 	///	</summary>
 	[Description("Description for Application.Design.Endpoints.Host")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "40ec7f3f-e79d-4266-8e1c-565df6d4c5e4", ProxyType = typeof(Host))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.3.20.0")]
 	public partial interface IHost : IToolkitInterface
 	{ 
 		///	<summary>

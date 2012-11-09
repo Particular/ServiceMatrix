@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 11
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebEndpoint", "WebEndpoint\WebEndpoint.csproj", "{6F4E8D6D-FB20-4D3B-B947-FB6FE92DAF36}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1E36BC1-4C94-43A4-96B7-78C8E6E12F8E}"
