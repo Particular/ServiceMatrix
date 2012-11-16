@@ -31,12 +31,21 @@ namespace NServiceBusStudio.Automation.Conditions
         public override bool Evaluate()
         {
             var component = Model.Helpers.GetComponentFromLinkedElement(this.CurrentElement);
-            var service = component.Parent.Parent;
 
-            var endpoints = service.Parent.Parent.Endpoints.As<IAbstractElement>().Extensions
-                .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
-                .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
-            return (endpoints.Any());
+            if (component != null)
+            {
+                var service = component.Parent.Parent;
+
+                var endpoints = service.Parent.Parent.Endpoints.As<IAbstractElement>().Extensions
+                    .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+                    .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
+
+                return (endpoints.Any());
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

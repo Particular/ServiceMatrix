@@ -9,6 +9,7 @@ using AbstractEndpoint;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualStudio.Patterning.Extensibility.References;
 using System.IO;
+using EnvDTE;
 
 
 namespace NServiceBusStudio
@@ -20,10 +21,33 @@ namespace NServiceBusStudio
         void DeployTo(IAbstractEndpoint endpoint);
         void Publish(IEvent @event);
         void Subscribe(ICommand command);
+        void RemoveLinks(IAbstractEndpoint endpoint);
     }
 
     partial class Component : IValidatableObject
     {
+        public IProject Project
+        {
+            get { return this.AsElement().GetProject(); }
+        }
+
+        partial void Initialize()
+        {
+            this.AsElement().Deleting += (s, e) =>
+            {
+                foreach (var endpoint in this.DeployedTo)
+                {
+                    DeleteComponentLink(endpoint);   
+                }
+            };
+        }
+
+        private void DeleteComponentLink(IAbstractEndpoint endpoint)
+        {
+            var componentLink = endpoint.EndpointComponents.AbstractComponentLinks.FirstOrDefault(cl => cl.ComponentReference.Value == this);
+            componentLink.As<IProductElement>().Delete();
+        }
+
         private List<IAbstractEndpoint> deployedTo = new List<IAbstractEndpoint>();
         public IEnumerable<IAbstractEndpoint> DeployedTo
         {
@@ -41,11 +65,6 @@ namespace NServiceBusStudio
                     return null;
                 }
             }
-        }
-
-        public IProject Project
-        {
-            get { return this.AsElement().GetProject(); }
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -102,11 +121,11 @@ namespace NServiceBusStudio
                 }
 
                 // Add Links for Referenced Libraries
-                this.AddLinksForReferencedLibrariesAndComponent(endpoint);
+                this.AddLinks(endpoint);
             }
         }
 
-        private void AddLinksForReferencedLibrariesAndComponent(IAbstractEndpoint endpoint)
+        private void AddLinks(IAbstractEndpoint endpoint)
         {
             var project = endpoint.Project;
 
@@ -150,13 +169,81 @@ namespace NServiceBusStudio
             }
         }
 
+        public void RemoveLinks(IAbstractEndpoint endpoint)
+        {
+            var project = endpoint.Project;
+
+            if (project == null)
+                return;
+
+            // 1. Remove Links for Custom Code
+            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
+            RemoveLinkFromProject(project, this.InstanceName + ".cs", customCodePath);
+
+            //2. Remove Links for Infrastructure Code
+            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure");
+            RemoveLinkFromProject(project, this.InstanceName + ".cs", infraCodePath);
+
+            // 3. Remove Links for References
+            foreach (var libraryLink in this.LibraryReferences.LibraryReference)
+            {
+                IProductElement element = null;
+
+                if (libraryLink.Library != null)
+                {
+                    if (libraryLink.Library.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
+                    {
+                        element = libraryLink.Library.As<IProductElement>();
+                    }
+                }
+                else
+                {
+                    if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
+                    {
+                        element = libraryLink.ServiceLibrary.As<IProductElement>();
+                    }
+                }
+
+                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
+
+                RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
+            }
+        }
+
         private static void AddLinkToProject(IProject project, IProductElement element, string suggestedPath, Func<IEnumerable<IItem>, IItem> filter)
         {
             var sourceFile = FindSourceItemForElement(element, filter);
             var container = project.As<EnvDTE.Project>().ProjectItems;
+            container = FindProjectFolder(container, suggestedPath);
 
-            container = InnerAddLinkToFileOnEndpointProject(sourceFile, container, suggestedPath);
+            if (container != null)
+            {
+                try
+                {
+                    container.AddFromFile(sourceFile.PhysicalPath);
+                }
+                catch { } // If the link is already in place we will ignore the exception
+            }
         }
+
+        private void RemoveLinkFromProject(IProject project, string fileName, string suggestedPath)
+        {
+            var container = project.As<EnvDTE.Project>().ProjectItems;
+            container = FindProjectFolder(container, suggestedPath);
+
+            if (container != null)
+            {
+                foreach (var file in container)
+                {
+                    if (file != null && file.As<EnvDTE.ProjectItem>().Name == fileName)
+                    {
+                        file.As<ProjectItem>().Delete();
+                        break;
+                    }
+                }
+            }
+        }
+
 
         private static IItem FindSourceItemForElement(IProductElement element, Func<IEnumerable<IItem>, IItem> filter)
         {
@@ -167,7 +254,7 @@ namespace NServiceBusStudio
             return sourceFile;
         }
 
-        private static EnvDTE.ProjectItems InnerAddLinkToFileOnEndpointProject(IItem sourceFile, EnvDTE.ProjectItems container, string suggestedPath)
+        private static EnvDTE.ProjectItems FindProjectFolder(EnvDTE.ProjectItems container, string suggestedPath)
         {
             var path = suggestedPath.Split('\\').Skip(1);
 
@@ -182,14 +269,7 @@ namespace NServiceBusStudio
                     }
                 }
             }
-            if (container != null)
-            {
-                try
-                {
-                    container.AddFromFile(sourceFile.PhysicalPath);
-                }
-                catch { } // If the link is already in place we will ignore the exception
-            }
+            
             return container;
         }
 
@@ -217,7 +297,7 @@ namespace NServiceBusStudio
                 linkSource.ComponentReference.Value.EndpointDefined(endpoint);
             }
         }
-
+       
         public void Publish(IEvent @event)
         {
             if (!this.Publishes.EventLinks.Any(el => el.EventReference.Value == @event))

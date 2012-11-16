@@ -195,6 +195,12 @@ namespace AbstractEndpoint
             {
                 throw new NotImplementedException();
             }
+
+
+            public void RemoveLinks(IAbstractEndpoint endpoint)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
