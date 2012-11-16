@@ -63,7 +63,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                             var window = (NServiceBusDetailsToolWindow)this.ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
                             if (window != null)
                             {
-                                (window.Content as DetailsPanel).SetView(this.ServiceProvider, fe, SBdataContext);
+                                Dispatcher.BeginInvoke(new Action(() =>
+                                    {
+                                        (window.Content as DetailsPanel).SetView(this.ServiceProvider, fe, SBdataContext);
+                                        ((Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame).Show();
+                                    }));
                             }
                         }
                     }
@@ -91,9 +95,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     this.NServiceBusView.SetValue(Grid.RowProperty, 1);
                     if (window != null &&
                         (this.DataContext as SolutionBuilderViewModel) != null &&
-                        (this.DataContext as SolutionBuilderViewModel).CurrentNode != null)
+                        NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels.LogicalViewModel.NServiceBusViewModel.CurrentNode != null)
                     {
-                        (window.Content as DetailsPanel).SetView(this.ServiceProvider, (this.DataContext as SolutionBuilderViewModel).CurrentNode, this.DataContext);
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            (window.Content as DetailsPanel).SetView(this.ServiceProvider,
+                            NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels.LogicalViewModel.NServiceBusViewModel.CurrentNode.InnerViewModel, this.DataContext);
+                            ((Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame).Show();
+                        }));
                     }
                 }
             }

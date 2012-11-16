@@ -1616,7 +1616,7 @@
               </settings>
             </customizationPolicy>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="4aac6b0a-1178-4761-ac92-d2989a83335b" name="Service" displayName="Service" description="Description for Application.Design.Services.Service" codeIdentifier="Service" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Gear.ico">
+              <element Id="4aac6b0a-1178-4761-ac92-d2989a83335b" name="Service" displayName="Service" description="Description for Application.Design.Services.Service" codeIdentifier="Service" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Gear.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />

@@ -25,27 +25,51 @@ namespace NServiceBusStudio
 
     partial class Application
     {
-
-        [Import(typeof(CustomSolutionBuilder))]
-        public CustomSolutionBuilder CustomSolutionBuilder { get; set; }
-
-
         [Import]
         public IPatternManager PatternManager { get; set; }
 
+        [Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        private ISolution Solution { get; set; }
+
+        [Import]
+        public CustomSolutionBuilder CustomSolutionBuilder { get; set; }
+
         public IEndpoints Endpoints { get; set; }
+
         partial void Initialize()
         {
             this.InfrastructureManager = new InfrastructureManager(this, this.ServiceProvider, this.PatternManager);
+
             if (currentApplication == null)
             {
                 currentApplication = this;
                 // Force initialization of NserviceBusVersion from file
                 this.InitializeExtensionDependentData();
+
                 var events = this.ServiceProvider.TryGetService<ISolutionEvents>();
                 events.SolutionOpened += new EventHandler<SolutionEventArgs>(events_SolutionOpened);
 
                 this.CustomSolutionBuilder.Initialize(this.ServiceProvider);
+
+                this.PatternManager.ElementDeleting += (s, e) =>
+                {
+                    // Delete all related artifacts links
+                    var element = e.Value.As<IProductElement>();
+                    element.RemoveArtifactLinks(this.UriService, this.Solution);
+
+                    // If it's a Component Link, remove all links into Endpoints (they're not artifact links)
+                    var componentLink = element.As<IAbstractComponentLink>();
+
+                    if (componentLink != null && 
+                        componentLink.ComponentReference.Value != null)
+                    {
+                        var endpoint = element.Product.As<IAbstractEndpoint>();
+                        componentLink.ComponentReference.Value.RemoveLinks(endpoint);
+                    }
+                };
             }
 
             // Set/Get static values
@@ -59,11 +83,11 @@ namespace NServiceBusStudio
         private void SetPropagationHandlers()
         {
             this.OnInstantiatedEndpoint += (s, e) =>
-                {
-                    var ep = s as IAbstractEndpoint;
-                    ep.ErrorQueue = this.ErrorQueue;
-                    ep.ForwardReceivedMessagesTo = this.ForwardReceivedMessagesTo;
-                };
+            {
+                var ep = s as IAbstractEndpoint;
+                ep.ErrorQueue = this.ErrorQueue;
+                ep.ForwardReceivedMessagesTo = this.ForwardReceivedMessagesTo;
+            };
 
             this.ForwardReceivedMessagesToChanged += (s, e) =>
             {
@@ -75,6 +99,7 @@ namespace NServiceBusStudio
                     }
                 }
             };
+
             this.ErrorQueueChanged += (s, e) =>
             {
                 foreach (var ep in this.GetAbstractEndpoints())
