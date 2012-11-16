@@ -74,8 +74,9 @@ namespace AbstractEndpoint.Automation.Commands
                         if (existingEndpointNames.Contains(selectedElement))
                         {
                             selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProduct>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                            var link = selectedEndpoint.EndpointComponents.CreateComponentLink(String.Format("{0}.{1}", element.Parent.Parent.InstanceName, element.InstanceName), e => e.ComponentReference.Value = element);
-                            link.ComponentReference.Value.EndpointDefined(selectedEndpoint);
+                            element.DeployTo(selectedEndpoint);
+                            //var link = selectedEndpoint.EndpointComponents.CreateComponentLink(String.Format("{0}.{1}", element.Parent.Parent.InstanceName, element.InstanceName), e => e.ComponentReference.Value = element);
+                            //link.ComponentReference.Value.EndpointDefined(selectedEndpoint);
                         }
 
                     }

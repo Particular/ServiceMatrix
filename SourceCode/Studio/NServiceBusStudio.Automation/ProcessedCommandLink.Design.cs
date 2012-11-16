@@ -109,6 +109,9 @@ namespace NServiceBusStudio
             }
 
             public bool DoNotAutogenerateComponents { get; set; }
+
+
+            public event EventHandler DoNotAutogenerateComponentsChanged;
         }
     }
 }
