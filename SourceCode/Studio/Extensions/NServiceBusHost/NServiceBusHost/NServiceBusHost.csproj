@@ -242,7 +242,7 @@
     </None>
     <None Include="source.include.t4">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Element/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f6b39dc3f-b9ab-46fd-a7ba-1865d6d941a2</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Element/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f6b39dc3f-b9ab-46fd-a7ba-1865d6d941a2</SourceModelReference>
       <ItemGuid>648a5a82-24b6-49ae-b5c6-2c58610d9cb6</ItemGuid>
     </None>
   </ItemGroup>
@@ -277,6 +277,6 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-	<Target Name="BeforeBuild" DependsOnTargets="Transform">
-	</Target>
+  <Target Name="BeforeBuild" DependsOnTargets="Transform">
+  </Target>
 </Project>

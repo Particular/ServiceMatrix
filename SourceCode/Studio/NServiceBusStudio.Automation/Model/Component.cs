@@ -10,6 +10,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualStudio.Patterning.Extensibility.References;
 using System.IO;
 using EnvDTE;
+using System.ComponentModel.Composition;
+using NServiceBusStudio.Automation.Infrastructure;
 
 
 namespace NServiceBusStudio
@@ -24,7 +26,7 @@ namespace NServiceBusStudio
         void RemoveLinks(IAbstractEndpoint endpoint);
     }
 
-    partial class Component : IValidatableObject
+    partial class Component : IValidatableObject, IRenameRefactoring
     {
         public IProject Project
         {

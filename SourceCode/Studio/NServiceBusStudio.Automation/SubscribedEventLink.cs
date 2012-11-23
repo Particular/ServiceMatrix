@@ -35,6 +35,8 @@ namespace NServiceBusStudio
             this.EventIdChanged += (sender, args) => this.InstanceName = this.EventReference.Value == null ? AnyMessageSupport.TextForUI : this.EventReference.Value.InstanceName;
             if (this.EventReference.Value == null)
                 this.InstanceName = AnyMessageSupport.TextForUI;
+            else
+                this.EventReference.Value.InstanceNameChanged += (sender, args) => this.EventIdChanged(sender, args);
         }
     }
 }
