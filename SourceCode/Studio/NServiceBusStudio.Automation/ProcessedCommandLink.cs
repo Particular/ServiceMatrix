@@ -34,6 +34,8 @@ namespace NServiceBusStudio
             this.CommandIdChanged += (sender, args) => this.InstanceName = this.CommandReference.Value == null ? "(None)" : this.CommandReference.Value.InstanceName;
             if (this.CommandReference.Value == null)
                 this.InstanceName = "(None)";
+            else
+                this.CommandReference.Value.InstanceNameChanged += (sender, args) => this.CommandIdChanged(sender, args);
         }
     }
 }

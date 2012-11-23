@@ -3,7 +3,7 @@
   <products>
     <product Id="96f50151-98c3-45e2-87e1-33ceb060c019" definitionId="c034429e-01f9-48dd-a478-0321fb708dd3" definitionName="PatternToolkit" instanceName="WebEndpoint" extensionId="9f6dc301-6f66-4d21-9f9c-b37412b162f6" extensionName="Pattern Toolkit Builder" author="Microsoft" version="1.2.19.0">
       <properties>
-        <property Id="07b423f2-001c-4110-8d0a-c8e17090aeec" definitionId="7ce5ad5a-88c2-4336-b038-e4998aa02b03" definitionName="TransformOnBuild" rawValue="Always" />
+        <property Id="07b423f2-001c-4110-8d0a-c8e17090aeec" definitionId="7ce5ad5a-88c2-4336-b038-e4998aa02b03" definitionName="TransformOnBuild" rawValue="Never" />
         <property Id="c5a2f5b4-9ecd-4a11-9f55-e817b682787f" definitionId="293802b7-0b69-440e-be60-927f07f4e636" definitionName="PatternName" rawValue="WebEndpoint" />
         <property Id="341d6bce-4073-4c23-be19-327725f49022" definitionId="710634cd-4863-4314-9785-dc33f6501903" definitionName="PatternDescription" rawValue="This Endpoint is used for Web Endpoints" />
         <property Id="b68cfce2-cf74-4202-a14c-add9dbf499ff" definitionId="00123e2b-3459-4924-9f18-628406735664" definitionName="ExistingToolkitId" rawValue="fda1a39f-99d2-4c3f-8f68-6af20823c15e" />
@@ -21,7 +21,7 @@
           <elements>
             <element Id="6e7c1096-278d-4f3b-a6fb-30cd1532dfcd" definitionId="5da53e5a-0ba8-48f8-a922-1712244c388c" definitionName="PatternModel" instanceName="Pattern Model">
               <properties>
-                <property Id="1b0e24d9-64a0-4f47-8f27-685a08d7e845" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Always" />
+                <property Id="1b0e24d9-64a0-4f47-8f27-685a08d7e845" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Never" />
                 <property Id="77d59fc4-d358-40ad-a026-477898dc52e6" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint\PatternModel.patterndefinition" />
               </properties>
               <references>
@@ -84,7 +84,7 @@
               <extensionProducts>
                 <product Id="c133a9b6-d303-46cc-85e7-c7f43fff93d7" definitionId="d6139b37-9971-4834-a9dc-2b3daef962cf" definitionName="AutomationLibrary" instanceName="Library" extensionId="97bd7ab2-964b-43f1-8a08-be6db68b018b">
                   <properties>
-                    <property Id="9f1d8fd9-a30c-419e-81f4-3236ebba4d03" definitionId="96a8d40e-c7e5-47ba-b550-489745d95cd2" definitionName="TransformOnBuild" rawValue="Always" />
+                    <property Id="9f1d8fd9-a30c-419e-81f4-3236ebba4d03" definitionId="96a8d40e-c7e5-47ba-b550-489745d95cd2" definitionName="TransformOnBuild" rawValue="Never" />
                     <property Id="b5c9ebd8-52c3-4fe6-8a25-1e6093e09f2d" definitionId="32699d9a-aa7d-4a51-8c86-6b2a708be486" definitionName="ToolkitProjectRootNamespace" rawValue="WebEndpoint" />
                     <property Id="0462fe58-5e37-46c8-b03b-e8e554149702" definitionId="11ac48e6-d493-49ca-9a01-65dac40d6d42" definitionName="ProjectAssemblyName" rawValue="WebEndpoint.Automation" />
                     <property Id="0423eba0-6a0e-45d2-862b-bf94fc0ecd76" definitionId="44d4abc1-7e06-4ea4-8673-d0adb12fea71" definitionName="ExcludeFromCodeCoverage" rawValue="True" />

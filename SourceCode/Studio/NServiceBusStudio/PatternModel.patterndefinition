@@ -186,10 +186,6 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fbb17365-75ff-443e-8a45-4f32a06bec1a" />
       </extendedElement>
-      <properties>
-        <propertySettings Id="58b64022-0a4f-4ac1-b1f5-2084bfaf712c" value="GenerateCode" name="CommandNameStartsWidth" />
-        <propertySettings Id="1fe8c59b-4703-4809-a992-6d568c87b417" value="True" name="Recursive" />
-      </properties>
     </commandSettings>
     <commandSettings Id="3bfb4cda-686d-4820-bc68-137d4efd7b8e" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
@@ -650,24 +646,6 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="61bebdcb-109d-4288-b492-22b6c40f65e0" />
       </extendedElement>
-      <properties>
-        <propertySettings Id="a23b7996-e019-4e98-bca2-141841b23d81" value="UnfoldSagaDataCode" name="CommandName" />
-        <propertySettings Id="2d3655db-90ab-4453-963b-bd079ef91cb8" name="FileName">
-          <valueProvider>
-            <valueProviderSettings Id="c56c1f1d-4dd8-489a-a51e-f6b5910fdedb" typeId="Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider">
-              <properties>
-                <propertySettingsMoniker Id="6ceb504c-1c6b-4fb1-8f20-2c21e44ddfc8" />
-              </properties>
-            </valueProviderSettings>
-          </valueProvider>
-        </propertySettings>
-        <propertySettings Id="383b39a4-2abb-4456-8d79-7d7f808d4985" name="FilePath">
-          <valueProvider>
-            <valueProviderSettings Id="841e1295-bfd7-4708-b992-fcf67a091412" typeId="NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider" />
-          </valueProvider>
-        </propertySettings>
-        <propertySettings Id="6ceb504c-1c6b-4fb1-8f20-2c21e44ddfc8" value="{CodeIdentifier}SagaData.cs" name="FileName.Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider.Expression" />
-      </properties>
     </commandSettings>
     <commandSettings Id="b2adde29-7d8c-4c77-9640-3aaa7ba96752" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
@@ -767,18 +745,12 @@
         <automationSettingsSchemaMoniker Id="b3950744-5a9b-4849-bf81-6110cf0be547" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="9d3063ae-cb22-452e-8278-10a151a64279" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.UnfoldVsTemplateCommand">
+    <commandSettings Id="9d3063ae-cb22-452e-8278-10a151a64279" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="3ba3162b-7576-4558-9067-a30321bbbd49" />
       </extendedElement>
       <properties>
-        <propertySettings Id="859ab001-01a6-4985-8735-c1f5d25d9f09" value="False" name="SanitizeName" />
-        <propertySettings Id="5fc0ad40-fb92-40f9-a16c-cfad1e84abb5" value="False" name="SyncName" />
-        <propertySettings Id="6f06f8ef-3928-47e2-b1f3-e3031e037ad5" name="Tag" />
-        <propertySettings Id="f719e8f6-c8c5-4829-9d88-0aead163a09c" value="{Parent.Parent.InstanceName}.Code" name="TargetFileName" />
-        <propertySettings Id="26dd5c6b-91f9-4078-a7c7-d95753ccf4ec" name="TargetPath" />
-        <propertySettings Id="6187d526-d5c8-4a6d-a9e4-ad674868591e" value="template://project/CSharp/485e80115c58-Application.Design.Libraries" name="TemplateUri" />
-        <propertySettings Id="a37b46f9-ceb9-4608-9903-300eb58c702e" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/fa3ec177-8dd1-4106-9e3b-eba7f3743860" name="TemplateAuthoringUri" />
+        <propertySettings Id="e32b25b3-04b6-4d9e-8e6d-116afa6080a7" value="5e6b5fec-870f-4f44-9a76-d9ffbdf9f49d;40735865-b53c-4880-8ef2-f31dd9a9a581" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="c09b19df-0f7e-4a57-b5de-ce1a442c3619" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
@@ -927,6 +899,25 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d52a5490-d069-4225-9c41-fe0496439bbe" />
       </extendedElement>
+    </commandSettings>
+    <commandSettings Id="40735865-b53c-4880-8ef2-f31dd9a9a581" typeId="NServiceBusStudio.Automation.Commands.AddLibraryProjectReferences">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0a3cdcac-447f-45f5-b3b3-1d76e6e2a1a7" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="5e6b5fec-870f-4f44-9a76-d9ffbdf9f49d" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.UnfoldVsTemplateCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="9e4cd816-a728-4d4e-8525-1181098763aa" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="e2611075-2d2c-4c5b-bd19-7283bccfbf0b" value="False" name="SanitizeName" />
+        <propertySettings Id="68c00fcc-c30f-4ebf-a8ba-d1fe0ad949d4" value="False" name="SyncName" />
+        <propertySettings Id="48e2fe75-43db-41b9-b8a5-df651dfc57e4" name="Tag" />
+        <propertySettings Id="f532d45b-ea8f-48b5-b434-1588f9be7ade" value="{Parent.Parent.InstanceName}.Code" name="TargetFileName" />
+        <propertySettings Id="d1275c6f-0553-4ff2-aba5-e1fc08930c39" name="TargetPath" />
+        <propertySettings Id="38d25717-e343-474a-8457-e2f3c842b34e" value="template://project/CSharp/485e80115c58-Application.Design.Libraries" name="TemplateUri" />
+        <propertySettings Id="19661b3c-d01e-4bbf-a2aa-8e43c3090713" name="TemplateAuthoringUri" />
+      </properties>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
@@ -3861,6 +3852,24 @@
             </properties>
             <automationSettings>
               <automationSettings Id="3ba3162b-7576-4558-9067-a30321bbbd49" name="UnfoldLibrariesProject" displayName="Unfold Libraries Project" description="" codeIdentifier="UnfoldLibrariesProject" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="0a3cdcac-447f-45f5-b3b3-1d76e6e2a1a7" name="AddLibraryProjectReferences" displayName="Add Library Project References" description="" codeIdentifier="AddLibraryProjectReferences" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="9e4cd816-a728-4d4e-8525-1181098763aa" name="UnfordLibrariesTemplate" displayName="Unford Libraries Template" description="" codeIdentifier="UnfordLibrariesTemplate" automationType="Command">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
