@@ -25,7 +25,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.Patterning.Runtime;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NServiceBusStudio.Automation.Infrastructure;
+using NServiceBusStudio.Automation.Extensions;
 
 namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRootNamespace #>
 {
@@ -101,6 +104,12 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
 
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
 		public virtual void BeginInit()
 		{
 		}
@@ -125,6 +134,8 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -143,6 +154,8 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 <#+
@@ -183,7 +196,18 @@ foreach (var property in element.Properties)
 }	
 #>
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.<#= asRuntimeMethod #>().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;

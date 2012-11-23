@@ -3,7 +3,7 @@
   <products>
     <product Id="339014aa-07f9-4a05-a602-7b758e2d1ef3" definitionId="c034429e-01f9-48dd-a478-0321fb708dd3" definitionName="PatternToolkit" instanceName="WebMVCEndpoint" extensionId="9f6dc301-6f66-4d21-9f9c-b37412b162f6" extensionName="Pattern Toolkit Builder" author="Microsoft" version="1.2.19.0">
       <properties>
-        <property Id="ef9b7b12-9b7e-48c4-aa16-3db9b123428c" definitionId="7ce5ad5a-88c2-4336-b038-e4998aa02b03" definitionName="TransformOnBuild" rawValue="Always" />
+        <property Id="ef9b7b12-9b7e-48c4-aa16-3db9b123428c" definitionId="7ce5ad5a-88c2-4336-b038-e4998aa02b03" definitionName="TransformOnBuild" rawValue="Never" />
         <property Id="7d47844d-3639-4887-80e4-63dde38a37bb" definitionId="293802b7-0b69-440e-be60-927f07f4e636" definitionName="PatternName" rawValue="AbstractEndpoint" />
         <property Id="c1b78799-ac2c-4a5f-8e4f-6f02a2578caf" definitionId="710634cd-4863-4314-9785-dc33f6501903" definitionName="PatternDescription" rawValue="This Endpoint should be abstract, only to be tailored in other endpoints" />
         <property Id="379f6f06-8205-4ed9-9f37-c3361058318a" definitionId="00123e2b-3459-4924-9f18-628406735664" definitionName="ExistingToolkitId" rawValue="83300ea2-15b7-4013-8212-ed68d99da5b2" />
@@ -21,7 +21,7 @@
           <elements>
             <element Id="5f808288-81e8-48c9-a462-8e2972e528b7" definitionId="5da53e5a-0ba8-48f8-a922-1712244c388c" definitionName="PatternModel" instanceName="Pattern Model">
               <properties>
-                <property Id="f0e2d515-af0e-4b3e-8ad9-dcfce88f8ae8" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Always" />
+                <property Id="f0e2d515-af0e-4b3e-8ad9-dcfce88f8ae8" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Never" />
                 <property Id="82ec2e10-074b-4423-ab70-b2a1146d5a1b" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint\PatternModel.patterndefinition" />
               </properties>
               <references>
@@ -84,7 +84,7 @@
               <extensionProducts>
                 <product Id="0bf49de5-836e-43c7-a7d8-5635c7e2c2f3" definitionId="d6139b37-9971-4834-a9dc-2b3daef962cf" definitionName="AutomationLibrary" instanceName="Library" extensionId="97bd7ab2-964b-43f1-8a08-be6db68b018b">
                   <properties>
-                    <property Id="6e080698-a983-416b-833b-91d21d8c2ac4" definitionId="96a8d40e-c7e5-47ba-b550-489745d95cd2" definitionName="TransformOnBuild" rawValue="Always" />
+                    <property Id="6e080698-a983-416b-833b-91d21d8c2ac4" definitionId="96a8d40e-c7e5-47ba-b550-489745d95cd2" definitionName="TransformOnBuild" rawValue="Never" />
                     <property Id="f0bc3392-2496-41e7-b1ba-312690ec7c50" definitionId="32699d9a-aa7d-4a51-8c86-6b2a708be486" definitionName="ToolkitProjectRootNamespace" rawValue="WebMVCEndpoint" />
                     <property Id="9a62089f-3c2e-4405-8d9c-0dddc0d5fbe8" definitionId="11ac48e6-d493-49ca-9a01-65dac40d6d42" definitionName="ProjectAssemblyName" rawValue="WebMVCEndpoint.Automation" />
                     <property Id="c52ce5af-cc52-4f99-a56b-77a0dbc91f4e" definitionId="44d4abc1-7e06-4ea4-8673-d0adb12fea71" definitionName="ExcludeFromCodeCoverage" rawValue="True" />

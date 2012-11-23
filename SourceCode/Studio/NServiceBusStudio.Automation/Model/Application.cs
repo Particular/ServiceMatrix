@@ -13,6 +13,10 @@ using Microsoft.VisualStudio.ExtensionManager;
 using AbstractEndpoint;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using System.ComponentModel.Composition;
+using NServiceBusStudio.Automation.Model;
+using System.ComponentModel.DataAnnotations;
+using System.Windows;
+
 namespace NServiceBusStudio
 {
     partial interface IApplication
@@ -23,13 +27,10 @@ namespace NServiceBusStudio
         IEndpoints Endpoints { get; set; }
     }
 
-    partial class Application
+    partial class Application : IRenameRefactoringNotSupported
     {
         [Import]
         public IPatternManager PatternManager { get; set; }
-
-        [Import]
-        public IFxrUriReferenceService UriService { get; set; }
 
         [Import]
         private ISolution Solution { get; set; }

@@ -6,7 +6,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.VisualStudio.Patterning.Runtime;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NServiceBusStudio.Automation.Infrastructure;
+using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusStudio
 {
@@ -287,6 +290,12 @@ namespace NServiceBusStudio
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
 
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
 		public virtual void BeginInit()
 		{
 		}
@@ -311,6 +320,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -329,6 +340,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
@@ -367,7 +380,18 @@ namespace NServiceBusStudio
 					ExtensionPathChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsProduct().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -390,6 +414,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -415,6 +445,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -433,6 +465,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -455,7 +489,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -478,6 +523,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -503,6 +554,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -521,6 +574,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler DoNotAutogenerateComponentsChanged = (sender, args) => { };
@@ -547,7 +602,18 @@ namespace NServiceBusStudio
 					DoNotAutogenerateComponentsChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -570,6 +636,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -595,6 +667,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -613,6 +687,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler DoNotAutogenerateComponentsChanged = (sender, args) => { };
@@ -639,7 +715,18 @@ namespace NServiceBusStudio
 					DoNotAutogenerateComponentsChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -662,6 +749,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -687,6 +780,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -705,6 +800,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
@@ -751,7 +848,18 @@ namespace NServiceBusStudio
 					IsSagaChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -774,6 +882,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -799,6 +913,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -817,6 +933,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler EventIdChanged = (sender, args) => { };
@@ -855,7 +973,18 @@ namespace NServiceBusStudio
 					ComponentNameChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -878,6 +1007,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -903,6 +1038,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -921,6 +1058,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler CommandIdChanged = (sender, args) => { };
@@ -967,7 +1106,18 @@ namespace NServiceBusStudio
 					ComponentBaseTypeChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -990,6 +1140,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1015,6 +1171,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1033,6 +1191,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler EventIdChanged = (sender, args) => { };
@@ -1083,7 +1243,18 @@ namespace NServiceBusStudio
 					StartsSagaChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1106,6 +1277,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1131,6 +1308,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1149,6 +1328,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler CommandIdChanged = (sender, args) => { };
@@ -1195,7 +1376,18 @@ namespace NServiceBusStudio
 					StartsSagaChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1218,6 +1410,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1243,6 +1441,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1261,6 +1461,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler LibraryIdChanged = (sender, args) => { };
@@ -1287,7 +1489,18 @@ namespace NServiceBusStudio
 					LibraryIdChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1310,6 +1523,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1335,6 +1554,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1353,6 +1574,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler FilePathChanged = (sender, args) => { };
@@ -1379,7 +1602,18 @@ namespace NServiceBusStudio
 					FilePathChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1402,6 +1636,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1427,6 +1667,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1445,6 +1687,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -1467,7 +1711,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1490,6 +1745,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1515,6 +1776,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1533,6 +1796,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -1555,7 +1820,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1578,6 +1854,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1603,6 +1885,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1621,6 +1905,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
@@ -1659,7 +1945,18 @@ namespace NServiceBusStudio
 					LocalNamespaceChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1682,6 +1979,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1707,6 +2010,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1725,6 +2030,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -1747,7 +2054,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1770,6 +2088,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1795,6 +2119,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1813,6 +2139,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler PatternValueChanged = (sender, args) => { };
@@ -1863,7 +2191,18 @@ namespace NServiceBusStudio
 					ServiceNameValueChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1886,6 +2225,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -1911,6 +2256,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -1929,6 +2276,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler ElementTypeChanged = (sender, args) => { };
@@ -1963,7 +2312,18 @@ namespace NServiceBusStudio
 					StartsUseCaseChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -1986,6 +2346,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2011,6 +2377,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2029,6 +2397,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler FilePathChanged = (sender, args) => { };
@@ -2055,7 +2425,18 @@ namespace NServiceBusStudio
 					FilePathChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2078,6 +2459,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2103,6 +2490,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2121,6 +2510,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2143,7 +2534,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2166,6 +2568,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2191,6 +2599,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2209,6 +2619,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2231,7 +2643,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2254,6 +2677,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2279,6 +2708,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2297,6 +2728,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
@@ -2323,7 +2756,18 @@ namespace NServiceBusStudio
 					NamespaceChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2346,6 +2790,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2371,6 +2821,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2389,6 +2841,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
@@ -2415,7 +2869,18 @@ namespace NServiceBusStudio
 					NamespaceChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2438,6 +2903,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2463,6 +2934,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2481,6 +2954,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2503,7 +2978,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2526,6 +3012,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2551,6 +3043,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2569,6 +3063,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2591,7 +3087,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2614,6 +3121,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2639,6 +3152,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2657,6 +3172,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2679,7 +3196,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2702,6 +3230,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2727,6 +3261,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2745,6 +3281,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2767,7 +3305,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2790,6 +3339,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2815,6 +3370,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2833,6 +3390,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
@@ -2859,7 +3418,18 @@ namespace NServiceBusStudio
 					NamespaceChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2882,6 +3452,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2907,6 +3483,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -2925,6 +3503,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -2947,7 +3527,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -2970,6 +3561,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -2995,6 +3592,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -3013,6 +3612,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -3035,7 +3636,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -3058,6 +3670,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -3083,6 +3701,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -3101,6 +3721,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -3123,7 +3745,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -3146,6 +3779,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -3171,6 +3810,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -3189,6 +3830,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -3211,7 +3854,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -3234,6 +3888,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -3259,6 +3919,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -3277,6 +3939,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 
@@ -3299,7 +3963,18 @@ namespace NServiceBusStudio
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
@@ -3322,6 +3997,12 @@ namespace NServiceBusStudio
 		
 		[Import(AllowDefault = true)]
 		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
 
 		public virtual void BeginInit()
 		{
@@ -3347,6 +4028,8 @@ namespace NServiceBusStudio
 				}
 			}
 
+			this.OriginalInstanceName = this.InstanceName;
+
 			Initialize();
 			if (ElementInitialized != null)
 			{
@@ -3365,6 +4048,8 @@ namespace NServiceBusStudio
 		public static event EventHandler ElementInitialized;
 
 		#endregion
+
+		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
@@ -3391,7 +4076,18 @@ namespace NServiceBusStudio
 					NamespaceChanged(sender, args);
 					break;
 				case "InstanceName":
-					InstanceNameChanged(sender, args);
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
 					break;					
 				default:
 					break;
