@@ -23,6 +23,9 @@ namespace NServiceBusStudio
 		event EventHandler ErrorQueueChanged;
 		event EventHandler NServiceBusVersionChanged;
 		event EventHandler ExtensionPathChanged;
+		event EventHandler TransportChanged;
+		event EventHandler SqlServerChanged;
+		event EventHandler SqlDatabaseChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -279,7 +282,10 @@ namespace NServiceBusStudio
 		static Application()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Application)), typeof(Application));
+			Application.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -348,6 +354,9 @@ namespace NServiceBusStudio
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler NServiceBusVersionChanged = (sender, args) => { };
 		public event EventHandler ExtensionPathChanged = (sender, args) => { };
+		public event EventHandler TransportChanged = (sender, args) => { };
+		public event EventHandler SqlServerChanged = (sender, args) => { };
+		public event EventHandler SqlDatabaseChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -379,6 +388,15 @@ namespace NServiceBusStudio
 				case "ExtensionPath":
 					ExtensionPathChanged(sender, args);
 					break;
+				case "Transport":
+					TransportChanged(sender, args);
+					break;
+				case "SqlServer":
+					SqlServerChanged(sender, args);
+					break;
+				case "SqlDatabase":
+					SqlDatabaseChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -404,7 +422,10 @@ namespace NServiceBusStudio
 		static Service()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Service)), typeof(Service));
+			Service.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -513,7 +534,10 @@ namespace NServiceBusStudio
 		static Event()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Event)), typeof(Event));
+			Event.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -626,7 +650,10 @@ namespace NServiceBusStudio
 		static Command()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Command)), typeof(Command));
+			Command.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -739,7 +766,10 @@ namespace NServiceBusStudio
 		static Component()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Component)), typeof(Component));
+			Component.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -872,7 +902,10 @@ namespace NServiceBusStudio
 		static EventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(EventLink)), typeof(EventLink));
+			EventLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -997,7 +1030,10 @@ namespace NServiceBusStudio
 		static CommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(CommandLink)), typeof(CommandLink));
+			CommandLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1130,7 +1166,10 @@ namespace NServiceBusStudio
 		static SubscribedEventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(SubscribedEventLink)), typeof(SubscribedEventLink));
+			SubscribedEventLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1267,7 +1306,10 @@ namespace NServiceBusStudio
 		static ProcessedCommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLink)), typeof(ProcessedCommandLink));
+			ProcessedCommandLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1400,7 +1442,10 @@ namespace NServiceBusStudio
 		static LibraryReference()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReference)), typeof(LibraryReference));
+			LibraryReference.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1513,7 +1558,10 @@ namespace NServiceBusStudio
 		static ServiceLibrary()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibrary)), typeof(ServiceLibrary));
+			ServiceLibrary.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1626,7 +1674,10 @@ namespace NServiceBusStudio
 		static ContractsProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ContractsProject)), typeof(ContractsProject));
+			ContractsProject.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1735,7 +1786,10 @@ namespace NServiceBusStudio
 		static InternalMessagesProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(InternalMessagesProject)), typeof(InternalMessagesProject));
+			InternalMessagesProject.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1844,7 +1898,10 @@ namespace NServiceBusStudio
 		static Authentication()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Authentication)), typeof(Authentication));
+			Authentication.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1969,7 +2026,10 @@ namespace NServiceBusStudio
 		static UseCase()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCase)), typeof(UseCase));
+			UseCase.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2078,7 +2138,10 @@ namespace NServiceBusStudio
 		static UseCaseStep()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseStep)), typeof(UseCaseStep));
+			UseCaseStep.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2215,7 +2278,10 @@ namespace NServiceBusStudio
 		static UseCaseLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseLink)), typeof(UseCaseLink));
+			UseCaseLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2336,7 +2402,10 @@ namespace NServiceBusStudio
 		static Library()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Library)), typeof(Library));
+			Library.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2449,7 +2518,10 @@ namespace NServiceBusStudio
 		static Services()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Services)), typeof(Services));
+			Services.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2558,7 +2630,10 @@ namespace NServiceBusStudio
 		static Contract()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Contract)), typeof(Contract));
+			Contract.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2667,7 +2742,10 @@ namespace NServiceBusStudio
 		static Events()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Events)), typeof(Events));
+			Events.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2780,7 +2858,10 @@ namespace NServiceBusStudio
 		static Commands()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Commands)), typeof(Commands));
+			Commands.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2893,7 +2974,10 @@ namespace NServiceBusStudio
 		static Components()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Components)), typeof(Components));
+			Components.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3002,7 +3086,10 @@ namespace NServiceBusStudio
 		static Publishes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Publishes)), typeof(Publishes));
+			Publishes.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3111,7 +3198,10 @@ namespace NServiceBusStudio
 		static Subscribes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Subscribes)), typeof(Subscribes));
+			Subscribes.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3220,7 +3310,10 @@ namespace NServiceBusStudio
 		static LibraryReferences()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReferences)), typeof(LibraryReferences));
+			LibraryReferences.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3329,7 +3422,10 @@ namespace NServiceBusStudio
 		static ServiceLibraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibraries)), typeof(ServiceLibraries));
+			ServiceLibraries.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3442,7 +3538,10 @@ namespace NServiceBusStudio
 		static Endpoints()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Endpoints)), typeof(Endpoints));
+			Endpoints.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3551,7 +3650,10 @@ namespace NServiceBusStudio
 		static Infrastructure()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Infrastructure)), typeof(Infrastructure));
+			Infrastructure.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3660,7 +3762,10 @@ namespace NServiceBusStudio
 		static Security()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Security)), typeof(Security));
+			Security.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3769,7 +3874,10 @@ namespace NServiceBusStudio
 		static DummyCollection()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(DummyCollection)), typeof(DummyCollection));
+			DummyCollection.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3878,7 +3986,10 @@ namespace NServiceBusStudio
 		static UseCases()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCases)), typeof(UseCases));
+			UseCases.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3987,7 +4098,10 @@ namespace NServiceBusStudio
 		static Libraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Libraries)), typeof(Libraries));
+			Libraries.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 

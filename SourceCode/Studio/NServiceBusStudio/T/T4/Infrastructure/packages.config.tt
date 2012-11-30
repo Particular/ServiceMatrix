@@ -9,5 +9,5 @@
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <packages>
-  <package id="NServiceBus" version="<#= nservicebusversion #>" />
+  <package id="NServiceBus" version="<#= nservicebusversion + "-unstable56"  #>" />
 </packages>

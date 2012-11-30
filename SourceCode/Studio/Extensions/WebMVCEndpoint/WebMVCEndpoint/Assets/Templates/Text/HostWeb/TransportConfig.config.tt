@@ -3,10 +3,20 @@
 <#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
 <#@ Assembly Name="WebMVCEndpoint.Automation.dll" #>
+<#  #>
 <#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="global::WebMVCEndpoint" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
-<#  var nserviceBusHost = ((IProductElement)this.Element).As<IAbstractEndpoint>(); #>
-<MsmqTransportConfig NumberOfWorkerThreads="<#= nserviceBusHost.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="5" />
+<#  var endpoint = ((IProductElement)this.Element).As<IAbstractEndpoint>(); #>
+<#  var application = endpoint.AsProduct().Root.As<IApplication>(); #>
+<TransportConfig MaxDegreeOfParallelism="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
+<#
+	if (application.Transport == TransportType.SqlServer.ToString())
+	{
+#>
+<SqlServerTransportConfig ConnectionString="Data Source=<#= application.SqlServer.ToString().Trim() #>;Initial Catalog=<#= application.SqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
+<#
+	}
+#>

@@ -186,6 +186,10 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fbb17365-75ff-443e-8a45-4f32a06bec1a" />
       </extendedElement>
+      <properties>
+        <propertySettings Id="2a0f39b2-2e61-4fb0-9dbb-f3cb83c0f110" value="GenerateCode" name="CommandNameStartsWidth" />
+        <propertySettings Id="967022f5-7668-489f-a7cf-40a54d562c94" value="True" name="Recursive" />
+      </properties>
     </commandSettings>
     <commandSettings Id="3bfb4cda-686d-4820-bc68-137d4efd7b8e" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
@@ -1446,6 +1450,69 @@
             <setting propertyId="RawValueProvider" />
           </settings>
         </customizationPolicy>
+      </property>
+      <property Id="d8ea971b-49de-4972-8560-f404017d8b83" name="Transport" displayName="Transport" description="Description for Application.Transport" codeIdentifier="Transport" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.TransportTypeConverter, NServiceBusStudio.Automation">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "Msmq",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="858b1fc3-aaa1-4d2a-a304-b57185482dd6" name="SqlServer" displayName="Sql Server" description="Description for Application.SqlServer" codeIdentifier="SqlServer">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": ".\\SQLEXPRESS",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="d457793d-4cc0-4cec-b706-bfb11794ad85" name="SqlDatabase" displayName="Sql Database" description="Description for Application.SqlDatabase" codeIdentifier="SqlDatabase">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "NServiceBus",
+  "ValueProvider": null
+}</defaultValue>
       </property>
     </properties>
     <automationSettings>

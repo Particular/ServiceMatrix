@@ -11,6 +11,7 @@
 namespace NServiceBusStudio
 {
 	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
@@ -95,6 +96,43 @@ namespace NServiceBusStudio
 		{
 			get { return this.proxy.GetValue(() => this.ExtensionPath); }
 			set { this.proxy.SetValue(() => this.ExtensionPath, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Transport
+		///	</summary>
+		[Description("Description for Application.Transport")]
+		[DisplayName("Transport")]
+		[Category("General")]
+		[TypeConverter(typeof(TransportTypeConverter))]
+		public virtual String Transport 
+		{
+			get { return this.proxy.GetValue(() => this.Transport); }
+			set { this.proxy.SetValue(() => this.Transport, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.SqlServer
+		///	</summary>
+		[Description("Description for Application.SqlServer")]
+		[DisplayName("Sql Server")]
+		[Category("General")]
+		public virtual String SqlServer 
+		{
+			get { return this.proxy.GetValue(() => this.SqlServer); }
+			set { this.proxy.SetValue(() => this.SqlServer, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.SqlDatabase
+		///	</summary>
+		[Description("Description for Application.SqlDatabase")]
+		[DisplayName("Sql Database")]
+		[Category("General")]
+		public virtual String SqlDatabase 
+		{
+			get { return this.proxy.GetValue(() => this.SqlDatabase); }
+			set { this.proxy.SetValue(() => this.SqlDatabase, value); }
 		}
 		
 		///	<summary>

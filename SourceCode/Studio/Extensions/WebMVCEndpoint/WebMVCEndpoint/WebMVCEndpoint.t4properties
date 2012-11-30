@@ -2,12 +2,12 @@
 <TransformationPropertyValues xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Values>
     <TransformationPropertyValue>
-      <FileName>ToolkitConstants.tt</FileName>
+      <FileName>Assets\Templates\Text\HostWeb\UnicastBusConfig.config.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>GeneratedCode\ToolkitElement.tt</FileName>
+      <FileName>Assets\Templates\Text\HostWeb\TransportConfig.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>

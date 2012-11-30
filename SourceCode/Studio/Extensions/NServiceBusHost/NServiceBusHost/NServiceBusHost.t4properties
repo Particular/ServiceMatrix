@@ -2,22 +2,27 @@
 <TransformationPropertyValues xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Values>
     <TransformationPropertyValue>
-      <FileName>NServiceBus.ToolkitVersion.tt</FileName>
+      <FileName>Assets\Templates\Text\Host\TransportConfig.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>source.extension.tt</FileName>
+      <FileName>Assets\Templates\Text\Host\TransportConfig.config.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>VSPackage.tt</FileName>
+      <FileName>Assets\Templates\Text\Host\DefaultApp.config.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>T\T4\Infrastructure\packages.config.tt</FileName>
+      <FileName>Assets\Templates\Text\Host\packages.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>Assets\Templates\Text\Host\EndpointConfig.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>

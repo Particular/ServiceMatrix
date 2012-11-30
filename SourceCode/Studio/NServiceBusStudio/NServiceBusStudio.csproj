@@ -359,6 +359,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>cd272c9f-4911-480c-a762-59810b294f94</ItemGuid>
     </Content>
+    <None Include="T\T4\Config\Host\TransportConfig.tt">
+      <LastGenOutput>TransportConfig.cs</LastGenOutput>
+    </None>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VSPackage.resx</LastGenOutput>
@@ -424,10 +427,11 @@
       <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
       <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>27ac5630-dc35-4694-8173-6def684bc14c</ItemGuid>
+      <SubType>Designer</SubType>
     </None>
     <None Include="source.include.t4">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/E:\projects\NServiceBus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>1a7bd6d3-abb1-422c-8ba1-7279e34cdf21</ItemGuid>
       <SubType>Designer</SubType>
     </None>

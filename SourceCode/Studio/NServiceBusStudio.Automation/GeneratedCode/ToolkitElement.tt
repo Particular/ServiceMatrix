@@ -93,7 +93,10 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 		static <#= element.CodeIdentifier #>()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(<#= element.CodeIdentifier #>)), typeof(<#= element.CodeIdentifier #>));
+			<#= element.CodeIdentifier #>.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 

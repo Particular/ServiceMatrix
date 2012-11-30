@@ -2,17 +2,17 @@
 <patternModelDiagram dslVersion="1.2.0.0" Id="bc47dee7-2765-44b6-8cac-41e8cba8705b" type="Microsoft.VisualStudio.Patterning.Runtime.Schema.PatternModelSchemaDiagram" absoluteBounds="0, 0, 11, 10.125" name="bc47dee7-2765-44b6-8cac-41e8cba8705b">
   <patternModelSchemaMoniker Id="04c02f2a-19a6-45b7-bc74-740c27cf3fc1" />
   <nestedChildShapes>
-    <patternShape Id="551a0843-2d12-4aaa-9112-07136c597f2c" absoluteBounds="0.25, 0.5, 2.375, 8.4933219401041651">
+    <patternShape Id="551a0843-2d12-4aaa-9112-07136c597f2c" absoluteBounds="0.25, 0.5, 2.375, 8.6856233723958312">
       <patternSchemaMoniker Id="e2f29141-abe9-4b63-8f08-fb633fef4ee9" />
       <relativeChildShapes>
-        <viewShape Id="5360d514-5a8b-4bb0-b693-467713db81aa" absoluteBounds="0.40625, 8.8683219401041651, 2, 0.25" isLayoutInitialized="true">
+        <viewShape Id="5360d514-5a8b-4bb0-b693-467713db81aa" absoluteBounds="0.40625, 9.0606233723958312, 2, 0.25" isLayoutInitialized="true">
           <viewSchemaMoniker Id="f0ff9062-0a24-431f-807a-55fd34d6a08c" />
         </viewShape>
       </relativeChildShapes>
       <nestedChildShapes>
         <elementListCompartment Id="fe9c3905-d18a-430b-9e8c-474f7f5927b4" absoluteBounds="0.265, 1.01, 2.3449999999999998, 2.941609700520833" name="Properties" titleTextColor="Black" itemTextColor="Black" />
         <elementListCompartment Id="c0e0e95b-3f95-4567-9825-01fa69920f3f" absoluteBounds="0.265, 3.9616097005208326, 2.3449999999999998, 0.633992513020833" name="LaunchPoints" titleTextColor="Black" itemTextColor="Black" />
-        <elementListCompartment Id="482126e2-6a0c-4503-bf31-c3a263e17b59" absoluteBounds="0.265, 4.6056022135416654, 2.3449999999999998, 4.2877197265625" name="Automation" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="482126e2-6a0c-4503-bf31-c3a263e17b59" absoluteBounds="0.265, 4.6056022135416654, 2.3449999999999998, 4.4800211588541661" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </patternShape>
     <collectionShape Id="1c709475-4ace-477f-897d-a1800b115144" absoluteBounds="3.625, 4.625, 1.625, 1.7627718098958334">
@@ -31,7 +31,7 @@
         <elementListCompartment Id="07050cc6-d9c8-4d7f-b97b-e32ceb7c5257" absoluteBounds="4.515, 9.182587890625, 1.5950000000000002, 0.63399251302083326" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </elementShape>
-    <viewHasElementsConnector edgePoints="[(1.40625 : 9.11832194010417); (1.40625 : 9.24332194010417); (2.875 : 9.24332194010417); (2.875 : 5.50638590494792); (3.61000000033528 : 5.50638590494792)]" fixedFrom="Caller" fixedTo="NotFixed" TargetRelationshipDomainClassId="3bfd2e51-26d4-48dd-89a2-7e7a715b2bfd" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <viewHasElementsConnector edgePoints="[(1.40625 : 9.31062337239583); (1.40625 : 9.43562337239583); (2.875 : 9.43562337239583); (2.875 : 5.50638590494792); (3.61000000033528 : 5.50638590494792)]" fixedFrom="Caller" fixedTo="NotFixed" TargetRelationshipDomainClassId="3bfd2e51-26d4-48dd-89a2-7e7a715b2bfd" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <viewShapeMoniker Id="5360d514-5a8b-4bb0-b693-467713db81aa" />

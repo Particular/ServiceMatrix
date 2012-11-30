@@ -22,7 +22,7 @@
             <element Id="6e7c1096-278d-4f3b-a6fb-30cd1532dfcd" definitionId="5da53e5a-0ba8-48f8-a922-1712244c388c" definitionName="PatternModel" instanceName="Pattern Model">
               <properties>
                 <property Id="1b0e24d9-64a0-4f47-8f27-685a08d7e845" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Never" />
-                <property Id="77d59fc4-d358-40ad-a026-477898dc52e6" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint\PatternModel.patterndefinition" />
+                <property Id="77d59fc4-d358-40ad-a026-477898dc52e6" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint\PatternModel.patterndefinition" />
               </properties>
               <references>
                 <reference Id="8a5fa2df-650a-4791-aa5e-6f48fdb2f596" value="solution://6f4e8d6d-fb20-4d3b-b947-fb6fe92daf36/f1f80e15-21ae-481d-808a-4e4dc9e80d53" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;PatternModel.patterndefinition&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e52d1228-39f9-422d-b667-1e6f26249aa0&quot;&#xD;&#xA;}" />
@@ -59,7 +59,7 @@
                 <element Id="ca8cce46-22d2-45a9-85ce-550c7c5e2d7f" definitionId="c3d66aa5-3199-44ad-b7d7-f375a9ab16d3" definitionName="Guidance" instanceName="Guidance">
                   <properties>
                     <property Id="7958c35f-744a-4476-bfb3-b8e4d1383696" definitionId="70d70df3-799d-4107-b77b-0001119484a6" definitionName="ProjectContentPath" rawValue="GeneratedCode\Guidance\Content" />
-                    <property Id="b665fb0c-9bec-409a-b9a2-7179b5286831" definitionId="39537f0e-76a8-409b-adb5-e54fbdbd8b27" definitionName="DocumentFilePath" rawValue="D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint\Assets\Guidance\ToolkitGuidance.doc" />
+                    <property Id="b665fb0c-9bec-409a-b9a2-7179b5286831" definitionId="39537f0e-76a8-409b-adb5-e54fbdbd8b27" definitionName="DocumentFilePath" rawValue="C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint\Assets\Guidance\ToolkitGuidance.doc" />
                     <property Id="40cd32f9-534b-4905-b603-32fd865ffbf0" definitionId="81c7a831-97e3-4067-9d15-8d7fb671a755" definitionName="DefaultInstanceName" rawValue="Working with WebEndpoint" />
                   </properties>
                   <references>

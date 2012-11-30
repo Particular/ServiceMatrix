@@ -124,13 +124,32 @@ namespace NServiceBusStudio.Automation.Extensions
                     , packageSources
                     , Path.Combine(solutionPath, @"packages")),
                     CreateNoWindow = true,
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
                 };
+
                 var p = System.Diagnostics.Process.Start(pi);
+
+                // Redirecting Output to VSStatusBar and Output Window
+                p.BeginOutputReadLine();
+                p.OutputDataReceived += (sender, e) => Log("Output", e.Data);
+
+                // Redirecting Error to VSStatusBar and Output Window
+                p.BeginErrorReadLine();
+                p.ErrorDataReceived += (sender, e) => Log("Error", e.Data);
+
                 p.WaitForExit(120 * 1000);
             }
             catch { }
             return solutionPath;
+        }
+
+        private static object Log(string type, string log)
+        {
+            return "";
         }
 
     }

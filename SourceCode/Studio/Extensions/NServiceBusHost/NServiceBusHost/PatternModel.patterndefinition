@@ -157,7 +157,7 @@
         <automationSettingsSchemaMoniker Id="35bc0508-dc93-41af-88c4-6f2298658eb8" />
       </extendedElement>
       <properties>
-        <propertySettings Id="ef4d170d-cb78-4c34-88cc-2f95faeb199b" value="312ee1e8-24a0-4393-8791-b25600cf93b0;c5219cc7-2bb9-43e0-b62e-8e0b0d572b22;4a4a5048-a27c-4df9-9d34-72fae6a38d5a;14f5b3ec-5250-4215-9d08-708d829c290a;8b26f35c-c612-4b4a-bd64-4f96196165c5;d213b468-dd9d-4d6f-a328-9e2350f0c52a" name="CommandReferenceList" />
+        <propertySettings Id="ef4d170d-cb78-4c34-88cc-2f95faeb199b" value="312ee1e8-24a0-4393-8791-b25600cf93b0;c5219cc7-2bb9-43e0-b62e-8e0b0d572b22;4a4a5048-a27c-4df9-9d34-72fae6a38d5a;14f5b3ec-5250-4215-9d08-708d829c290a;8b26f35c-c612-4b4a-bd64-4f96196165c5;b2108b53-9764-48e8-8cf0-22804028e0b1;d213b468-dd9d-4d6f-a328-9e2350f0c52a" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="c5219cc7-2bb9-43e0-b62e-8e0b0d572b22" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
@@ -186,9 +186,9 @@
         <propertySettings Id="0ca2e4d7-4d27-4567-8998-e0b147791cac" name="Tag" />
         <propertySettings Id="f020b876-aee3-4995-abd6-e1ce870917be" value="Content" name="TargetBuildAction" />
         <propertySettings Id="7f485e05-71d7-4569-bd9f-23950f1a4fe1" value="PreserveNewest" name="TargetCopyToOutput" />
-        <propertySettings Id="c22fa434-ba02-42a2-9631-ea89d9189f26" value="MsmqTransportConfig.config" name="TargetFileName" />
+        <propertySettings Id="c22fa434-ba02-42a2-9631-ea89d9189f26" value="TransportConfig.config" name="TargetFileName" />
         <propertySettings Id="b53ede21-2430-4a3c-a7d8-ab221e1f84a5" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
-        <propertySettings Id="aa2ce8a9-e7a4-4e44-9ef2-8b20b1a5ba9f" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/MsmqTransportConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="aa2ce8a9-e7a4-4e44-9ef2-8b20b1a5ba9f" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/TransportConfig.config.tt" name="TemplateUri" />
         <propertySettings Id="b389d8fb-b483-4820-8132-dd366d307824" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/f08a8245-1170-4182-9cd7-c75085634e5e" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
@@ -298,6 +298,24 @@
         <propertySettings Id="55c27c5e-3fe6-409d-a43c-6965d8cac1d0" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
         <propertySettings Id="65c676e6-5dd2-42d5-9731-3b6a1c7df127" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/SecondLevelRetriesConfig.config.tt" name="TemplateUri" />
         <propertySettings Id="814ef04b-e4c4-4794-b452-0722faefd140" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/4276f6e9-1d4a-4a15-8949-995f55bd84b7" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="b2108b53-9764-48e8-8cf0-22804028e0b1" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="00a75ce6-693c-4d35-8bb8-c4772dc71428" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="f6ae82eb-63eb-4e8b-826c-514c98d4b22f" name="ModelElement" />
+        <propertySettings Id="7112fe9f-23ea-45a4-b8d2-2dd6536b4aca" name="ModelFile" />
+        <propertySettings Id="32768f04-9a88-4535-afad-cd2b618c4710" value="False" name="SanitizeName" />
+        <propertySettings Id="d85ba913-292e-4c58-814a-c999adbbcf98" value="Compile" name="TargetBuildAction" />
+        <propertySettings Id="8207c421-4bd8-445c-b41f-0ec06fd2d7cb" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="d21e3232-5fc3-4293-a5d7-ee135f1628fa" value="TransportConfig.cs" name="TargetFileName" />
+        <propertySettings Id="0bb9a51b-7b9c-4ed7-9625-d372a9898d2d" value="~" name="TargetPath" />
+        <propertySettings Id="714be9af-1567-4e5a-b783-840449d8f3a1" value="t4://extension/8d8a34f8-b52e-438e-a39a-d75439744f01/Assets/Templates/Text/Host/TransportConfig.tt" name="TemplateUri" />
+        <propertySettings Id="175cb5d3-e977-4b2d-bd1c-5d66dea5eafb" value="False" name="SyncName" />
+        <propertySettings Id="9b346a1b-d09f-47d1-aa84-4a2a6ad4330d" name="Tag" />
+        <propertySettings Id="794fa177-e3ef-491b-a66f-c2c93e9152f4" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/dade7a65-da86-4742-b443-bf7b21889d6c" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
     <menuSettings Id="6169d91f-a58e-4129-98f7-f1bb0b2e8e63" text="Deploy Component..." commandId="9ef45da4-7ab4-4acc-a47a-c5968fbf1535" wizardId="00000000-0000-0000-0000-000000000000">
@@ -754,7 +772,7 @@
           </settings>
         </customizationPolicy>
       </automationSettings>
-      <automationSettings Id="d3705cce-04ba-4d86-a3d0-0a82a38bb17c" name="GenerateMsmqTransportConfig" displayName="Generate Msmq Transport Config" description="" codeIdentifier="GenerateMsmqTransportConfig" automationType="Command">
+      <automationSettings Id="d3705cce-04ba-4d86-a3d0-0a82a38bb17c" name="GenerateTransportConfigConfig" displayName="Generate Transport Config Config" description="" codeIdentifier="GenerateTransportConfigConfig" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -827,6 +845,15 @@
         </customizationPolicy>
       </automationSettings>
       <automationSettings Id="499a7fa2-a534-418c-a4cb-6ec78f40a29b" name="GenerateSecondLevelRetriesConfig" displayName="Generate Second Level Retries Config" description="" codeIdentifier="GenerateSecondLevelRetriesConfig" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="00a75ce6-693c-4d35-8bb8-c4772dc71428" name="GenerateTransportConfigCode" displayName="Generate Transport Config Code" description="" codeIdentifier="GenerateTransportConfigCode" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />

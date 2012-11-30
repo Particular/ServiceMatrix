@@ -2,45 +2,45 @@
 <#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
 <#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
-<#@ Assembly Name="NServiceBusHost.Automation.dll" #>
-<#  #>
 <#@ Assembly Name="WebEndpoint.Automation.dll" #>
+<#  #>
 <#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
-<#@ Import Namespace="global::NServiceBusHost" #>
+<#@ Import Namespace="global::WebEndpoint" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
 <#  var endpoint = ((IProductElement)this.Element).As<IAbstractEndpoint>(); #>
+<#  var application = endpoint.AsProduct().Root.As<IApplication>(); #>
 using System;
 using NServiceBus;
+using NServiceBus.Config;
  
 namespace <#= endpoint.Namespace #>
 {
+	public class TransportConfig : INeedInitialization
+	{
+		public void Init()
+		{
 <#
-	if (endpoint.SLA != null && endpoint.SLA != string.Empty)
+	if (application.Transport == TransportType.Msmq.ToString())
 	{
 #>
-	[EndpointSLA("<#= endpoint.SLA #>")]
+			// Tranport: Msmq (Default) - No configuration needed
+<#
+	}
+	else if (application.Transport == TransportType.ActiveMQ.ToString())
+	{	
+#>
+			Configure.Instance.ActiveMQTransport();
+<#
+	}
+	else if (application.Transport == TransportType.SqlServer.ToString())
+	{
+#>
+			Configure.Instance.SqlServerTransport();	
 <#
 	}
 #>
-	public partial class EndpointConfig : IConfigureThisEndpoint<#
-    
-	if (endpoint.EndpointComponents.AbstractComponentLinks.Any(il => il.ComponentReference.Value.Publishes.EventLinks.Any()))
-	{
-		//EventsPublisher
-		#>, AsA_Publisher<#
+		}
 	}
-	else if (endpoint.EndpointComponents.AbstractComponentLinks.Any(il => il.ComponentReference.Value.Subscribes.ProcessedCommandLinks.Any() || il.ComponentReference.Value.Subscribes.SubscribedEventLinks.Any()))
-	{
-		//MessageProcessor
-		#>, AsA_Server<#	}#><#
-	if (endpoint.ComponentsOrderDefinition != string.Empty)
-	{
-	#>, ISpecifyMessageHandlerOrdering<#
-	}
-	#>
-    
-	{<#= endpoint.ComponentsOrderDefinition#>
-    }
 }
