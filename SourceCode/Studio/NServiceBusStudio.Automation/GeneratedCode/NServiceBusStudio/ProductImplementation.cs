@@ -112,27 +112,39 @@ namespace NServiceBusStudio
 		}
 
 		///	<summary>
-		///	Description for Application.SqlServer
+		///	Description for Application.TransportSqlServer
 		///	</summary>
-		[Description("Description for Application.SqlServer")]
-		[DisplayName("Sql Server")]
+		[Description("Description for Application.TransportSqlServer")]
+		[DisplayName("Transport Sql Server")]
 		[Category("General")]
-		public virtual String SqlServer 
+		public virtual String TransportSqlServer 
 		{
-			get { return this.proxy.GetValue(() => this.SqlServer); }
-			set { this.proxy.SetValue(() => this.SqlServer, value); }
+			get { return this.proxy.GetValue(() => this.TransportSqlServer); }
+			set { this.proxy.SetValue(() => this.TransportSqlServer, value); }
 		}
 
 		///	<summary>
-		///	Description for Application.SqlDatabase
+		///	Description for Application.TransportSqlDatabase
 		///	</summary>
-		[Description("Description for Application.SqlDatabase")]
-		[DisplayName("Sql Database")]
+		[Description("Description for Application.TransportSqlDatabase")]
+		[DisplayName("Transport Sql Database")]
 		[Category("General")]
-		public virtual String SqlDatabase 
+		public virtual String TransportSqlDatabase 
 		{
-			get { return this.proxy.GetValue(() => this.SqlDatabase); }
-			set { this.proxy.SetValue(() => this.SqlDatabase, value); }
+			get { return this.proxy.GetValue(() => this.TransportSqlDatabase); }
+			set { this.proxy.SetValue(() => this.TransportSqlDatabase, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.TransportBrokerUri
+		///	</summary>
+		[Description("Description for Application.TransportBrokerUri")]
+		[DisplayName("Transport Broker Uri")]
+		[Category("General")]
+		public virtual String TransportBrokerUri 
+		{
+			get { return this.proxy.GetValue(() => this.TransportBrokerUri); }
+			set { this.proxy.SetValue(() => this.TransportBrokerUri, value); }
 		}
 		
 		///	<summary>

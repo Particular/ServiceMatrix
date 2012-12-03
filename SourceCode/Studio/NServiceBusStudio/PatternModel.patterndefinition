@@ -1472,7 +1472,7 @@
   "ValueProvider": null
 }</defaultValue>
       </property>
-      <property Id="858b1fc3-aaa1-4d2a-a304-b57185482dd6" name="SqlServer" displayName="Sql Server" description="Description for Application.SqlServer" codeIdentifier="SqlServer">
+      <property Id="858b1fc3-aaa1-4d2a-a304-b57185482dd6" name="TransportSqlServer" displayName="Transport Sql Server" description="Description for Application.TransportSqlServer" codeIdentifier="TransportSqlServer">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -1493,7 +1493,7 @@
   "ValueProvider": null
 }</defaultValue>
       </property>
-      <property Id="d457793d-4cc0-4cec-b706-bfb11794ad85" name="SqlDatabase" displayName="Sql Database" description="Description for Application.SqlDatabase" codeIdentifier="SqlDatabase">
+      <property Id="d457793d-4cc0-4cec-b706-bfb11794ad85" name="TransportSqlDatabase" displayName="Transport Sql Database" description="Description for Application.TransportSqlDatabase" codeIdentifier="TransportSqlDatabase">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -1511,6 +1511,27 @@
         <defaultValue>{
   "Name": "DefaultValue",
   "Value": "NServiceBus",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="ee5a599e-7e8a-4ea0-95f5-8d6f63c0e85a" name="TransportBrokerUri" displayName="Transport Broker Uri" description="Description for Application.TransportBrokerUri" codeIdentifier="TransportBrokerUri">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "http://mybroker",
   "ValueProvider": null
 }</defaultValue>
       </property>

@@ -13,10 +13,16 @@
 <#  var application = endpoint.AsProduct().Root.As<IApplication>(); #>
 <TransportConfig MaxDegreeOfParallelism="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
 <#
-	if (application.Transport == TransportType.SqlServer.ToString())
+	if (application.Transport == TransportType.ActiveMQ.ToString())
+    {
+#>
+<ActiveMQConfig BrokerUri="<#= application.TransportBrokerUri.ToString().Trim() #>"/>
+<#
+	}
+	else if (application.Transport == TransportType.SqlServer.ToString())
 	{
 #>
-<SqlServerTransportConfig ConnectionString="Data Source=<#= application.SqlServer.ToString().Trim() #>;Initial Catalog=<#= application.SqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
+<SqlServerTransportConfig ConnectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False\"/>
 <#
 	}
 #>

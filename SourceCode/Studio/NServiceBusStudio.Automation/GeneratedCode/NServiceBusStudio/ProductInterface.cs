@@ -69,20 +69,28 @@ namespace NServiceBusStudio
 		String Transport { get; set; }
 
 		///	<summary>
-		///	Description for Application.SqlServer
+		///	Description for Application.TransportSqlServer
 		///	</summary>
-		[Description("Description for Application.SqlServer")]
-		[DisplayName("Sql Server")]
+		[Description("Description for Application.TransportSqlServer")]
+		[DisplayName("Transport Sql Server")]
 		[Category("General")]
-		String SqlServer { get; set; }
+		String TransportSqlServer { get; set; }
 
 		///	<summary>
-		///	Description for Application.SqlDatabase
+		///	Description for Application.TransportSqlDatabase
 		///	</summary>
-		[Description("Description for Application.SqlDatabase")]
-		[DisplayName("Sql Database")]
+		[Description("Description for Application.TransportSqlDatabase")]
+		[DisplayName("Transport Sql Database")]
 		[Category("General")]
-		String SqlDatabase { get; set; }
+		String TransportSqlDatabase { get; set; }
+
+		///	<summary>
+		///	Description for Application.TransportBrokerUri
+		///	</summary>
+		[Description("Description for Application.TransportBrokerUri")]
+		[DisplayName("Transport Broker Uri")]
+		[Category("General")]
+		String TransportBrokerUri { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.

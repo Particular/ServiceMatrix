@@ -37,15 +37,23 @@ namespace NServiceBusStudio.Automation.TypeDescriptors
                 var transportProperty = list.First(x => x.Name == "Transport");
                 var tranport = transportProperty.GetValue(instance).ToString();
 
-                // If Transport != SqlServer
-                if (tranport != TransportType.SqlServer.ToString())
-                {
-                    // Filter List
-                    return new PropertyDescriptorCollection(list.Where(x => x.Name != "SqlServer" && x.Name != "SqlDatabase").ToArray());
-                }
+                ShowHideProperty(ref list, "TransportBrokerUri", tranport == TransportType.ActiveMQ.ToString());
+                ShowHideProperty(ref list, "TransportSqlServer", tranport == TransportType.SqlServer.ToString());
+                ShowHideProperty(ref list, "TransportSqlDatabase", tranport == TransportType.SqlServer.ToString());
+
+                // Filter List
+                return new PropertyDescriptorCollection(list.ToArray());
             }
 
             return new PropertyDescriptorCollection(list.ToArray());
+        }
+
+        private void ShowHideProperty(ref List<PropertyDescriptor> list, string propertyName, bool isVisible)
+        {
+            if (!isVisible)
+            {
+                list = list.Where(x => x.Name != propertyName).ToList();
+            }
         }
 
         public override PropertyDescriptorCollection GetProperties(Attribute[] attributes)
