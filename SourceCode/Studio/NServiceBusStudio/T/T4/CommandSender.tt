@@ -10,7 +10,6 @@
 #>
 using System;
 using NServiceBus;
-using NServiceBus.Config;
 using <#= icommandlink.CommandReference.Value.Parent.Namespace #>;
 
 namespace <#= icommandlink.Namespace #>

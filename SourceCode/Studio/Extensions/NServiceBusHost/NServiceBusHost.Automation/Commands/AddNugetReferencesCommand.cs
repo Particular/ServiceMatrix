@@ -49,7 +49,7 @@ namespace NServiceBusHost.Automation.Commands
                 Endpoint.Project.DownloadNuGetPackages();
 
                 Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.dll",
+                    string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
@@ -57,6 +57,7 @@ namespace NServiceBusHost.Automation.Commands
                     string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.Core.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+
                 if (!this.IgnoreHost)
                 {
                     Endpoint.Project.AddReference(

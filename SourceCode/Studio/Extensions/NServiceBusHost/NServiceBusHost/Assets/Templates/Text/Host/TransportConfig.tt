@@ -13,7 +13,6 @@
 <#  var application = endpoint.AsProduct().Root.As<IApplication>(); #>
 using System;
 using NServiceBus;
-using NServiceBus.Config;
  
 namespace <#= endpoint.Namespace #>
 {

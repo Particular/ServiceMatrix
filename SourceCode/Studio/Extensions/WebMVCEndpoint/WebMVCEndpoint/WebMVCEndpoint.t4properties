@@ -7,12 +7,22 @@
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
+      <FileName>Assets\Templates\Text\HostWeb\TransportConfig.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>Assets\Templates\Text\HostWeb\packages.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
       <FileName>Assets\Templates\Text\HostWeb\TransportConfig.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>Assets\Templates\Text\HostWeb\TransportConfig.config.tt</FileName>
+      <FileName>Assets\Templates\Text\GeneratedWebInitialization.cs.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>

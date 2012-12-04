@@ -11,7 +11,6 @@ namespace $safeprojectname$.Infrastructure
         public static IBus InitializeNServiceBus()
         {
             return NServiceBus.Configure.With()
-                .Log4Net()
                 .DefaultBuilder()
                 .ForMvc()
                 .XmlSerializer()

@@ -36,11 +36,6 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("using " + ns + ";");
             }
 
-            if (this.Component.Publishes.CommandLinks.Any(cl => cl.SenderNeedsRegistration))
-            {
-                sb.AppendLine("using NServiceBus.Config;");
-            }
-
             if (this.Component.IsSaga)
             {
                 sb.AppendLine("using NServiceBus.Saga;");

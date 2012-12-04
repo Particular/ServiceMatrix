@@ -46,7 +46,7 @@ namespace WebEndpoint.Automation.Commands
             {
                 Endpoint.Project.DownloadNuGetPackages();
                 Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.dll",
+                    string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
