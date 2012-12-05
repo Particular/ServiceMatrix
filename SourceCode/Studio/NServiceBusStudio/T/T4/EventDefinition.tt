@@ -7,10 +7,11 @@
 <#@ Import Namespace="System.Linq" #>
 <#  var ievent = ((IProductElement)this.Element).As<IEvent>(); #>
 using System;
+using NServiceBus;
 
 namespace <#= ievent.Parent.Namespace #>
 {
-    public partial class <#= ievent.CodeIdentifier #>
+    public partial class <#= ievent.CodeIdentifier #> : IEvent
     {
     }
 }

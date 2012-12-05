@@ -158,7 +158,6 @@
   <ItemGroup>
     <Compile Include="AnyMessageSupport.cs" />
     <Compile Include="Application.cs" />
-    <Compile Include="Commands\AddDefaultProjectElements.cs" />
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />

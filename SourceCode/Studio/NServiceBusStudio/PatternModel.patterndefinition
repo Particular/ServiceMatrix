@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <patternModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/visualstudio/patterning/library/automationextensions" dslVersion="1.2.0.0" Id="1f03c958-af37-4474-9858-29fb36efd7d5" xmlns="http://schemas.microsoft.com/visualstudio/patterning/runtime/patternmodel">
   <dm0:extensions>
-    <templateSettings Id="9d8122b8-7745-442f-8803-23d9eb743ffd" templateUri="template://projectgroup/CSharp/3fcb08ce72e0-Application" commandId="18c27363-607d-465d-a452-46982ef9ba8e" wizardId="00000000-0000-0000-0000-000000000000" templateAuthoringUri="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/51449dee-c5c5-4531-a2e4-ecbac39b7cde">
+    <templateSettings Id="9d8122b8-7745-442f-8803-23d9eb743ffd" templateUri="template://projectgroup/CSharp/3fcb08ce72e0-Application" commandId="00000000-0000-0000-0000-000000000000" wizardId="00000000-0000-0000-0000-000000000000" templateAuthoringUri="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/51449dee-c5c5-4531-a2e4-ecbac39b7cde">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="4879ebfc-7be5-4501-bc94-325557d1617d" />
       </extendedElement>
@@ -53,12 +53,12 @@
         <automationSettingsSchemaMoniker Id="da4e6f81-43d6-42ac-9bd9-fb326472d29c" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="88fcf968-785c-4c51-af6c-eed692066c1a" commandId="81aa53e1-760a-4798-9c5c-6c96227fb32c" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+    <eventSettings Id="88fcf968-785c-4c51-af6c-eed692066c1a" commandId="40d7b7f5-8006-4e3c-9b7a-a3d9018bc90b" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fec3fd72-e1b7-4953-9fe5-58c52244be6a" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="c86e5622-d8da-4628-a215-3ba93b6290a4" commandId="ec5a8e4b-3562-4f18-b490-a2f881905d27" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+    <eventSettings Id="c86e5622-d8da-4628-a215-3ba93b6290a4" commandId="cefb347e-5c18-4d76-9278-95e428eabe05" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="6e9d8a65-b919-465a-8c82-7d994db4eb3f" />
       </extendedElement>
@@ -321,11 +321,6 @@
       <properties>
         <propertySettings Id="6cd446e8-e6ef-47b1-bb09-3c5c3d04c752" value="True" name="ValidateDescendants" />
       </properties>
-    </commandSettings>
-    <commandSettings Id="18c27363-607d-465d-a452-46982ef9ba8e" typeId="NServiceBusStudio.Automation.Commands.AddDefaultProjectElements">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="3c16519a-2f8a-4f16-9f50-7ff63d06edbf" />
-      </extendedElement>
     </commandSettings>
     <commandSettings Id="81aa53e1-760a-4798-9c5c-6c96227fb32c" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.UnfoldVsTemplateCommand">
       <extendedElement>
@@ -688,7 +683,7 @@
         <propertySettings Id="d52e2b75-1a29-4d62-9628-3020f3048398" value="DoNotCopy" name="TargetCopyToOutput" />
         <propertySettings Id="f732a516-45e1-4603-99ad-c7399e64042d" value="packages.config" name="TargetFileName" />
         <propertySettings Id="e4d5e458-d824-42d2-b18e-c01ef86a944d" name="TargetPath" />
-        <propertySettings Id="8bdffb37-6dd0-4a7f-b224-6cfe0d31e690" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Infrastructure/packages.config.tt" name="TemplateUri" />
+        <propertySettings Id="8bdffb37-6dd0-4a7f-b224-6cfe0d31e690" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/packages.config.tt" name="TemplateUri" />
         <propertySettings Id="28cae206-67d6-4595-b4fd-1d538b08b62f" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/dc743cce-5b69-43c5-944e-702bee9d6384" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
@@ -921,6 +916,64 @@
         <propertySettings Id="d1275c6f-0553-4ff2-aba5-e1fc08930c39" name="TargetPath" />
         <propertySettings Id="38d25717-e343-474a-8457-e2f3c842b34e" value="template://project/CSharp/485e80115c58-Application.Design.Libraries" name="TemplateUri" />
         <propertySettings Id="19661b3c-d01e-4bbf-a2aa-8e43c3090713" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="aafa86ef-7796-447d-a33a-6b8290bd832a" typeId="NServiceBusStudio.Automation.Commands.AddInfrastructureProjectReferences">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="5d7b96a0-c729-479b-a1b3-53c4f85d9794" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="40d7b7f5-8006-4e3c-9b7a-a3d9018bc90b" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="dd100e04-c648-4bba-a219-cc5cdb1ae30b" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="cdbc53ba-3478-4f51-9040-42a4990787a5" value="81aa53e1-760a-4798-9c5c-6c96227fb32c;50493a62-3d06-4400-a30f-a56f499d0b85" name="CommandReferenceList" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="50493a62-3d06-4400-a30f-a56f499d0b85" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="254f9e73-37f6-4f47-86f8-b22a5c46ffc9" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="a8ee4d6c-e01c-4d06-96e5-32b55f2c15a1" value="False" name="SanitizeName" />
+        <propertySettings Id="78cc6d77-08f9-433e-ad43-98b2c93a0020" value="False" name="SyncName" />
+        <propertySettings Id="930001b5-fac4-4e17-a2d8-0978fafad0f2" name="Tag" />
+        <propertySettings Id="9e7f93e9-0578-4562-bd78-097c6ac32a6c" name="TargetBuildAction" />
+        <propertySettings Id="8d68e677-61d2-43f8-ac09-a4abee29fcd2" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="9adbc171-45e6-40f5-b9d8-1bc4c8b6fe84" value="packages.config" name="TargetFileName" />
+        <propertySettings Id="57a2087e-cfd9-42cf-a9a2-b727be6bf744" name="TargetPath" />
+        <propertySettings Id="fcfc37c1-9646-4102-babd-d92a468ced1f" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/packages.config.tt" name="TemplateUri" />
+        <propertySettings Id="39428f15-038d-4dfa-9776-74e83087a0ea" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/dc743cce-5b69-43c5-944e-702bee9d6384" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="cefb347e-5c18-4d76-9278-95e428eabe05" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="1e84c0f9-7ece-43b3-b997-3bb426188ed4" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="cb28ee3b-1413-45a1-bb0b-d14c83a0fd2a" value="ec5a8e4b-3562-4f18-b490-a2f881905d27;abcfeacd-c72b-4fe3-82b8-9ed93c6cf167" name="CommandReferenceList" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="09591e8d-4531-4085-8494-c9fee80a976f" typeId="NServiceBusStudio.Automation.Commands.AddInfrastructureProjectReferences">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="8d8972e0-6cb8-4cc4-a983-4df773af3506" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="abcfeacd-c72b-4fe3-82b8-9ed93c6cf167" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e6fc00fb-64a0-4429-a10f-2a82442fa131" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="e16d2eee-fb72-48fe-9316-1f2d7cab545c" value="False" name="SanitizeName" />
+        <propertySettings Id="1b7eb9bc-8b92-4dcd-8283-eaa21c417c4d" value="False" name="SyncName" />
+        <propertySettings Id="41c3f648-ed6c-4c50-9bdb-8161cf3f5e8e" name="Tag" />
+        <propertySettings Id="1bc5d853-24b7-49f4-ba0f-7cffdf966331" name="TargetBuildAction" />
+        <propertySettings Id="a1a2c38e-b04e-45a6-8df2-303038608dd9" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="0e8fff46-b489-4d67-b015-cac70d661a21" value="packages.config" name="TargetFileName" />
+        <propertySettings Id="2f1c545d-75a1-46e4-9cef-03ad3a912f76" name="TargetPath" />
+        <propertySettings Id="5cb277ca-4098-4537-9e8e-82ef14ed17cd" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/packages.config.tt" name="TemplateUri" />
+        <propertySettings Id="cdf1da8f-a5e6-47f5-87c8-a637908c3d75" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/dc743cce-5b69-43c5-944e-702bee9d6384" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
@@ -1583,15 +1636,6 @@
         </customizationPolicy>
       </automationSettings>
       <automationSettings Id="7bb960dd-4228-4ef7-9de4-af946f0f5f9a" name="ValidateCommand" displayName="Validate Command" description="" codeIdentifier="ValidateCommand" automationType="Command">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="Settings" />
-          </settings>
-        </customizationPolicy>
-      </automationSettings>
-      <automationSettings Id="3c16519a-2f8a-4f16-9f50-7ff63d06edbf" name="InstantiateProjects" displayName="Instantiate Projects" description="" codeIdentifier="InstantiateProjects" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -3320,6 +3364,33 @@
                   </settings>
                 </customizationPolicy>
               </automationSettings>
+              <automationSettings Id="5d7b96a0-c729-479b-a1b3-53c4f85d9794" name="GenerateCodeReferences" displayName="Generate Code References" description="" codeIdentifier="GenerateCodeReferences" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="dd100e04-c648-4bba-a219-cc5cdb1ae30b" name="InstantiateCommands" displayName="Instantiate Commands" description="" codeIdentifier="InstantiateCommands" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="254f9e73-37f6-4f47-86f8-b22a5c46ffc9" name="UnfoldPackagesConfig" displayName="Unfold Packages Config" description="" codeIdentifier="UnfoldPackagesConfig" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
             </automationSettings>
           </element>
         </elements>
@@ -3345,6 +3416,33 @@
                 </customizationPolicy>
               </automationSettings>
               <automationSettings Id="6e9d8a65-b919-465a-8c82-7d994db4eb3f" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="1e84c0f9-7ece-43b3-b997-3bb426188ed4" name="InstantiateCommands" displayName="Instantiate Commands" description="" codeIdentifier="InstantiateCommands" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="8d8972e0-6cb8-4cc4-a983-4df773af3506" name="GenerateCodeReferences" displayName="Generate Code References" description="" codeIdentifier="GenerateCodeReferences" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="e6fc00fb-64a0-4429-a10f-2a82442fa131" name="UnfoldPackagesConfig" displayName="Unfold Packages Config" description="" codeIdentifier="UnfoldPackagesConfig" automationType="Command">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />

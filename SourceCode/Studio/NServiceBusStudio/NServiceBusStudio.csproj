@@ -255,6 +255,7 @@
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="..\Binaries\NServiceBusHost.vsix">
       <Link>NServiceBusHost.vsix</Link>
@@ -292,21 +293,25 @@
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>477d1212-a504-470e-87d4-1d9f10b377e2</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CustomCommandSender.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>0c374c06-3ef4-4399-8fe8-408c61dbeea5</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\ComponentHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>009202b9-d8d1-4877-bcbf-ff75c983dcd3</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CustomComponentHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>f63539d8-7392-445a-b2a1-1454caecb2df</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Security\Authentication.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
@@ -336,18 +341,21 @@
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>600e8610-9915-48b1-a338-2cd0a7c4931e</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CustomEventDefinition.tt">
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>a2be8c5d-919e-4788-a2fa-126049ca056f</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\ComponentSagaHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>6c659607-78bc-4671-8c4a-32065bba3c33</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Infrastructure\packages.config.tt">
+    <Content Include="T\T4\packages.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>dc743cce-5b69-43c5-944e-702bee9d6384</ItemGuid>
     </Content>

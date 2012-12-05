@@ -20,7 +20,7 @@ namespace $safeprojectname$.Infrastructure
                 .UnicastBus()
                     .ImpersonateSender(false)
                 .CreateBus()
-                .Start();
+                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
         }
     }
 }
