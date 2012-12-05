@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.Extensions;
 using abs = AbstractEndpoint;
 using NServiceBusStudio;
+using System.IO;
 
 namespace WebMVCEndpoint
 {
@@ -23,6 +24,8 @@ namespace WebMVCEndpoint
 
         partial void Initialize()
         {
+            CheckMVCIsInstalled();
+
             abs.AbstractEndpointExtensions.RaiseOnInitializing(this);
 
             this.ErrorQueueChanged += (s, e) =>
@@ -33,6 +36,23 @@ namespace WebMVCEndpoint
             {
                 this.SetOverridenProperties("ForwardReceivedMessagesTo", this.ForwardReceivedMessagesTo != this.AsProduct().Root.As<IApplication>().ForwardReceivedMessagesTo);
             };
+        }
+
+        private void CheckMVCIsInstalled()
+        {
+            if (!this.AsProduct().IsSerializing)
+            {
+                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 3");
+                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 3");
+                
+                if (!Directory.Exists(programFiles) &&
+                    !Directory.Exists(programFilesX86))
+                {
+                    var error = "You cannot create this endpoint because ASP.NET MVC 3 is not installed. Install ASP.NET MVC 3 and try again.";
+                    System.Windows.MessageBox.Show(error, "NService Bus ASP NET MVC Endpoint", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    throw new OperationCanceledException(error);
+                }
+            }
         }
 
         private List<string> overridenProperties = new List<string>();
