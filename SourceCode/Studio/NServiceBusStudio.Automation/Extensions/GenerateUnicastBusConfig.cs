@@ -14,7 +14,7 @@ namespace NServiceBusStudio.Automation.Extensions
             return source ?? new T[] { };
         }
 
-        public static string GetMessageEndpointMappingsConfig(this IProduct endpoint)
+        public static string GetMessageEndpointMappingsConfig(this IProductElement endpoint)
         {
             var sb = new StringBuilder();
             var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
@@ -86,7 +86,7 @@ namespace NServiceBusStudio.Automation.Extensions
             return service.Components.Component.FirstOrDefault(c => c.Subscribes.ProcessedCommandLinks.Any(i => i.CommandReference.Value == command));
         }
 
-        private static IEnumerable<IProduct> FindProcessorEndpoints(IEnumerable<IProduct> endpoints, NServiceBusStudio.IEvent eventt)
+        private static IEnumerable<IProductElement> FindProcessorEndpoints(IEnumerable<IProductElement> endpoints, NServiceBusStudio.IEvent eventt)
         {
             var service = eventt.Parent.Parent.Parent;
             var components = service.Components.Component.Where(c => c.Subscribes.SubscribedEventLinks.Any(i => i.EventReference.Value == eventt));
@@ -95,7 +95,7 @@ namespace NServiceBusStudio.Automation.Extensions
                                         .Any(l => l.ComponentReference != null && components.Contains(l.ComponentReference.Value)));
         }
 
-        private static IEnumerable<IProduct> FindComponentHostEndpoints(IEnumerable<IProduct> endpoints, NServiceBusStudio.IComponent component)
+        private static IEnumerable<IProductElement> FindComponentHostEndpoints(IEnumerable<IProductElement> endpoints, NServiceBusStudio.IComponent component)
         {
             return endpoints
                 .Where(ep =>

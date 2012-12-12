@@ -390,7 +390,13 @@
           </settings>
         </customizationPolicy>
         <valueProvider>{
-  "Properties": [],
+  "Properties": [
+    {
+      "Name": "ProjectPath",
+      "Value": null,
+      "ValueProvider": null
+    }
+  ],
   "TypeId": "Microsoft.VisualStudio.Patterning.Library.ValueProviders.RootNamespaceValueProvider"
 }</valueProvider>
       </property>

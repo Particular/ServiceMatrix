@@ -9,6 +9,8 @@ namespace AbstractEndpoint
 {
     public interface IAbstractEndpoint : IToolkitInterface, IProjectReferenced
     {
+        string Namespace { get; }
+
         IAbstractEndpointComponents EndpointComponents { get; }
         Boolean CommandSenderNeedsRegistration { get; }
         

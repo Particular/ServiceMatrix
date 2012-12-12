@@ -9,7 +9,7 @@ namespace NServiceBusStudio.Automation.Extensions
 {
     public static class GenerateComponentsHandlerOrder
     {
-        public static string GetComponentsHandlerOrder(this IProduct endpoint)
+        public static string GetComponentsHandlerOrder(this IProductElement endpoint)
         {
             var sb = new StringBuilder();
             var app = endpoint.Root.As<NServiceBusStudio.IApplication>();

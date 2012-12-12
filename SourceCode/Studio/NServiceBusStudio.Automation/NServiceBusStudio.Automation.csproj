@@ -161,6 +161,17 @@
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\AddEndpointProjectReferences.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\AddNugetReferencesCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\ExecuteUnfoldEndpointDiagram.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\ProcessRootAfterUnfoldedProject.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\RaiseOnInstantiated.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\SaveProject.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\MVCAddNugetReferencesCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBWeb\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBWeb\WebEndpointAddNugetReferences.cs" />
     <Compile Include="Commands\ShowStartedByPicker.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinkCommand.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinksCommand.cs" />
@@ -215,6 +226,15 @@
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusHost.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusHostComponents.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVC.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVCComponentLink.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVCComponents.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusWeb.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusWebComponentLink.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusWebComponents.cs" />
     <Compile Include="Model\IRenameRefactoringNotSupported.cs" />
     <Compile Include="Model\IRenameRefactoring.cs" />
     <Compile Include="IContentViewer.cs" />
@@ -337,6 +357,9 @@
     <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentHandlersCodeProvider.cs" />
     <Compile Include="ValueProviders\ComponentFuncFromEndpointValueProvider.cs" />
     <Compile Include="ValueProviders\EndpointHasPublishersValueProvider.cs" />
+    <Compile Include="ValueProviders\Endpoints\ComponentsOrderProvider.cs" />
+    <Compile Include="ValueProviders\Endpoints\MessageConventionsProvider.cs" />
+    <Compile Include="ValueProviders\Endpoints\MessageEndpointMappingsConfigProvider.cs" />
     <Compile Include="ValueProviders\NamespaceForEndpointProjectValueProvider.cs" />
     <Compile Include="ValueProviders\ParentComponentPublishesAnEventValueProvider.cs" />
     <Compile Include="ValueProviders\ProcessedEventLinkHandlerNameProvider.cs" />

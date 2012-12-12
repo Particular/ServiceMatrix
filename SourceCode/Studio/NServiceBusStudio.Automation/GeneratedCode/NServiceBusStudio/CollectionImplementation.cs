@@ -1591,11 +1591,65 @@ namespace NServiceBusStudio
 		}
 		
 		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusHost"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<INServiceBusHost> NServiceBusHosts 
+		{ 
+			get { return proxy.GetElements(() => this.NServiceBusHosts, element => new NServiceBusHost(element)); }
+		}
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusWeb"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<INServiceBusWeb> NServiceBusWebs 
+		{ 
+			get { return proxy.GetElements(() => this.NServiceBusWebs, element => new NServiceBusWeb(element)); }
+		}
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusMVC"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<INServiceBusMVC> NServiceBusMVCs 
+		{ 
+			get { return proxy.GetElements(() => this.NServiceBusMVCs, element => new NServiceBusMVC(element)); }
+		}
+		
+		/// <summary>
 		/// Gets all instances of <see cref="IHost"/> contained in this element.
 		/// </summary>
 		public virtual IEnumerable<IHost> Hosts 
 		{ 
 			get { return proxy.GetExtensions(() => this.Hosts, element => new Host(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusHost"/>  and adds it to the <see cref="NServiceBusHosts"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusHost CreateNServiceBusHost(string name, Action<INServiceBusHost> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<INServiceBusHost>(name, initializer, raiseInstantiateEvents);	
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusWeb"/>  and adds it to the <see cref="NServiceBusWebs"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusWeb CreateNServiceBusWeb(string name, Action<INServiceBusWeb> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<INServiceBusWeb>(name, initializer, raiseInstantiateEvents);	
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusMVC"/>  and adds it to the <see cref="NServiceBusMVCs"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusMVC CreateNServiceBusMVC(string name, Action<INServiceBusMVC> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<INServiceBusMVC>(name, initializer, raiseInstantiateEvents);	
 		}
 		
 		/// <summary>
@@ -1606,6 +1660,462 @@ namespace NServiceBusStudio
 		public virtual IHost CreateHost(string name, Guid productId, string toolkitId, Action<IHost> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateExtension<IHost>(name, productId, toolkitId, initializer, raiseInstantiateEvents);	
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusHost.Components
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "4640ec7c-c09c-42a6-90de-ff9cd99fd6b1", ProxyType = typeof(NServiceBusHostComponents))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusHostComponents : INServiceBusHostComponents
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusHostComponents> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusHostComponents() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusHostComponents"/> class.
+		/// </summary>
+		public NServiceBusHostComponents(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusHostComponents>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual INServiceBusHost Parent
+		{ 
+			get { return this.target.Parent.As<INServiceBusHost>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.ICollection"/> underlying element.
+		/// </summary>
+		public virtual Runtime.ICollection AsCollection()
+		{
+			return this.As<Runtime.ICollection>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusHostComponentLink"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<INServiceBusHostComponentLink> NServiceBusHostComponentLinks 
+		{ 
+			get { return proxy.GetElements(() => this.NServiceBusHostComponentLinks, element => new NServiceBusHostComponentLink(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusHostComponentLink"/>  and adds it to the <see cref="NServiceBusHostComponentLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusHostComponentLink CreateNServiceBusHostComponentLink(string name, Action<INServiceBusHostComponentLink> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<INServiceBusHostComponentLink>(name, initializer, raiseInstantiateEvents);	
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusWeb.Components
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "7fd9877f-4de1-4d74-a0a3-d3a09cc06a73", ProxyType = typeof(NServiceBusWebComponents))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusWebComponents : INServiceBusWebComponents
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusWebComponents> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusWebComponents() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusWebComponents"/> class.
+		/// </summary>
+		public NServiceBusWebComponents(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusWebComponents>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual INServiceBusWeb Parent
+		{ 
+			get { return this.target.Parent.As<INServiceBusWeb>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.ICollection"/> underlying element.
+		/// </summary>
+		public virtual Runtime.ICollection AsCollection()
+		{
+			return this.As<Runtime.ICollection>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusWebComponentLink"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<INServiceBusWebComponentLink> NServiceBusWebComponentLinks 
+		{ 
+			get { return proxy.GetElements(() => this.NServiceBusWebComponentLinks, element => new NServiceBusWebComponentLink(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusWebComponentLink"/>  and adds it to the <see cref="NServiceBusWebComponentLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusWebComponentLink CreateNServiceBusWebComponentLink(string name, Action<INServiceBusWebComponentLink> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<INServiceBusWebComponentLink>(name, initializer, raiseInstantiateEvents);	
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusMVC.Components
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2cb77a1f-f887-467c-b0e3-df2de031b87c", ProxyType = typeof(NServiceBusMVCComponents))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusMVCComponents : INServiceBusMVCComponents
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusMVCComponents> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusMVCComponents() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusMVCComponents"/> class.
+		/// </summary>
+		public NServiceBusMVCComponents(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusMVCComponents>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual INServiceBusMVC Parent
+		{ 
+			get { return this.target.Parent.As<INServiceBusMVC>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.ICollection"/> underlying element.
+		/// </summary>
+		public virtual Runtime.ICollection AsCollection()
+		{
+			return this.As<Runtime.ICollection>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusMVCComponentLink"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<INServiceBusMVCComponentLink> NServiceBusMVCComponentLinks 
+		{ 
+			get { return proxy.GetElements(() => this.NServiceBusMVCComponentLinks, element => new NServiceBusMVCComponentLink(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusMVCComponentLink"/>  and adds it to the <see cref="NServiceBusMVCComponentLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusMVCComponentLink CreateNServiceBusMVCComponentLink(string name, Action<INServiceBusMVCComponentLink> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<INServiceBusMVCComponentLink>(name, initializer, raiseInstantiateEvents);	
 		}
 
 		/// <summary>
