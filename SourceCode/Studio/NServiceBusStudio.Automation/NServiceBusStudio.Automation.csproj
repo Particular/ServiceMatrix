@@ -226,6 +226,7 @@
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
+    <Compile Include="Model\Endpoints.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHost.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponents.cs" />

@@ -128,6 +128,7 @@
     </Content>
     <Resource Include="Resources\LibraryFile.png" />
     <Resource Include="Resources\Gear.png" />
+    <Resource Include="Resources\EndpointIcon.png" />
     <Content Include="Resources\ProductPreview.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -590,6 +591,7 @@
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <ItemGuid>cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346</ItemGuid>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CommandDefinition.tt">
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
@@ -706,6 +708,7 @@
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>cd272c9f-4911-480c-a762-59810b294f94</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -18,7 +18,7 @@ namespace NServiceBusStudio.Automation.Extensions
         {
             var sb = new StringBuilder();
             var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
-            var endpoints = app.Design.Endpoints.As<IAbstractElement>().Extensions;
+            var endpoints = app.Design.Endpoints.GetAll();
 
             try
             {
@@ -44,7 +44,7 @@ namespace NServiceBusStudio.Automation.Extensions
                                 {
                                     sb.AppendLine(String.Format("<add Messages=\"{0}\" Endpoint=\"{1}\" />",
                                         command.Parent.Namespace + "." + command.CodeIdentifier + ", " + app.InternalMessagesProjectName,
-                                        (endpointHost != null) ? endpointHost.GetProject().Data.RootNamespace : ""));
+                                        (endpointHost != null) ? endpointHost.Project.Data.RootNamespace : ""));
                                 }
                             }
                         }
@@ -67,7 +67,7 @@ namespace NServiceBusStudio.Automation.Extensions
                             {
                                 sb.AppendLine(String.Format("<add Messages=\"{0}\" Endpoint=\"{1}\" />",
                                     eventt.Parent.Namespace + "." + eventt.CodeIdentifier + ", " + app.ContractsProjectName,
-                                    (endpointHost != null) ? endpointHost.GetProject().Data.RootNamespace : ""));
+                                    (endpointHost != null) ? endpointHost.Project.Data.RootNamespace : ""));
                             }
                         }
                     }
@@ -95,15 +95,14 @@ namespace NServiceBusStudio.Automation.Extensions
                                         .Any(l => l.ComponentReference != null && components.Contains(l.ComponentReference.Value)));
         }
 
-        private static IEnumerable<IProductElement> FindComponentHostEndpoints(IEnumerable<IProductElement> endpoints, NServiceBusStudio.IComponent component)
+        private static IEnumerable<IAbstractEndpoint> FindComponentHostEndpoints(IEnumerable<IAbstractEndpoint> endpoints, NServiceBusStudio.IComponent component)
         {
             return endpoints
                 .Where(ep =>
                     {
-                        var abstractEndpoint = ep.As<IToolkitInterface>() as IAbstractEndpoint;
-                        return abstractEndpoint != null
-                            && abstractEndpoint.EndpointComponents.AbstractComponentLinks
-                                                                  .Any(cl => cl.ComponentReference.Value == component);
+                        return ep != null
+                            && ep.EndpointComponents.AbstractComponentLinks
+                                 .Any(cl => cl.ComponentReference.Value == component);
                     });
         }
     }

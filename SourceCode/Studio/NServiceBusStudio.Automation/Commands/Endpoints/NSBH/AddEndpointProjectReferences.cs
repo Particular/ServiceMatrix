@@ -17,7 +17,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
     {
         [Required]
         [Import(AllowDefault = true)]
-        NServiceBusHost Endpoint { get; set; }
+        IProductElement Endpoint { get; set; }
 
         [Import]
         public IServiceProvider ServiceProvider { get; set; }
@@ -25,10 +25,11 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
         public override void Execute()
         {
             Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
+            var endpoint = this.Endpoint.As<IToolkitElement>() as IAbstractEndpoint;
 
-            foreach (var subscribedComponent in this.Endpoint.EndpointComponents.AbstractComponentLinks)
+            foreach (var subscribedComponent in endpoint.EndpointComponents.AbstractComponentLinks)
             {
-                this.Endpoint.Project.AddReference(subscribedComponent.ComponentReference.Value.Project);
+                endpoint.Project.AddReference(subscribedComponent.ComponentReference.Value.Project);
             }
         }
     }

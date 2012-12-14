@@ -11,7 +11,7 @@ using NServiceBus;
 
 namespace <#= icommand.Parent.Namespace #>
 {
-    public partial class <#= icommand.CodeIdentifier #> : ICommand
+    public partial class <#= icommand.CodeIdentifier #>
     {
     }
 }

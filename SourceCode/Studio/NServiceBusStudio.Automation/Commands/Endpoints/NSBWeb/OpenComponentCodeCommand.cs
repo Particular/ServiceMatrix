@@ -21,13 +21,13 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBWeb
 
         public override void Execute()
         {
-            //var componentLink = this.CurrentElement.As<IComponentLink>();
+            var componentLink = this.CurrentElement.As<INServiceBusWebComponentLink>();
 
-            //var automation = componentLink.ComponentReference.Value.As<IProductElement>().AutomationExtensions.FirstOrDefault(a => a.Name == "OpenCode");
-            //if (automation != null)
-            //{
-            //    automation.Execute();
-            //}
+            var automation = componentLink.ComponentReference.Value.As<IProductElement>().AutomationExtensions.FirstOrDefault(a => a.Name == "OpenCode");
+            if (automation != null)
+            {
+                automation.Execute();
+            }
 
         }
     }

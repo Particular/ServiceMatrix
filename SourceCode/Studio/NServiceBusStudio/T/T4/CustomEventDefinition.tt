@@ -11,7 +11,7 @@ using NServiceBus;
 
 namespace <#= ievent.Parent.Namespace #>
 {
-    public class <#= ievent.CodeIdentifier #> : IEvent
+    public class <#= ievent.CodeIdentifier #>
     {
     }
 }

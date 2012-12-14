@@ -36,8 +36,7 @@ namespace NServiceBusStudio.Automation.Conditions
             {
                 var service = component.Parent.Parent;
 
-                var endpoints = service.Parent.Parent.Endpoints.As<IAbstractElement>().Extensions
-                    .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+                var endpoints = service.Parent.Parent.Endpoints.GetAll()
                     .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
 
                 return (endpoints.Any());

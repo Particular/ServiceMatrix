@@ -21,13 +21,13 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 
         public override void Execute()
         {
-            //var componentLink = this.CurrentElement.As<IComponentLink>();
+            var componentLink = this.CurrentElement.As<INServiceBusMVCComponentLink>();
 
-            //var automation = componentLink.ComponentReference.Value.As<IProductElement>().AutomationExtensions.FirstOrDefault(a => a.Name == "OpenCode");
-            //if (automation != null)
-            //{
-            //    automation.Execute();
-            //}
+            var automation = componentLink.ComponentReference.Value.As<IProductElement>().AutomationExtensions.FirstOrDefault(a => a.Name == "OpenCode");
+            if (automation != null)
+            {
+                automation.Execute();
+            }
 
         }
     }
