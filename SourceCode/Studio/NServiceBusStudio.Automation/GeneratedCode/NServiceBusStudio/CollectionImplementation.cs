@@ -1615,14 +1615,6 @@ namespace NServiceBusStudio
 		}
 		
 		/// <summary>
-		/// Gets all instances of <see cref="IHost"/> contained in this element.
-		/// </summary>
-		public virtual IEnumerable<IHost> Hosts 
-		{ 
-			get { return proxy.GetExtensions(() => this.Hosts, element => new Host(element)); }
-		}
-		
-		/// <summary>
 		///	Creates a new <see cref="INServiceBusHost"/>  and adds it to the <see cref="NServiceBusHosts"/> collection,  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		///	</summary>
@@ -1650,16 +1642,6 @@ namespace NServiceBusStudio
 		public virtual INServiceBusMVC CreateNServiceBusMVC(string name, Action<INServiceBusMVC> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateElement<INServiceBusMVC>(name, initializer, raiseInstantiateEvents);	
-		}
-		
-		/// <summary>
-		///	Creates a new <see cref="IHost"/>  and adds it to the <see cref="Hosts"/> collection,  
-		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
-		///	</summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		public virtual IHost CreateHost(string name, Guid productId, string toolkitId, Action<IHost> initializer = null, bool raiseInstantiateEvents = true)
-		{
-			return proxy.CreateExtension<IHost>(name, productId, toolkitId, initializer, raiseInstantiateEvents);	
 		}
 
 		/// <summary>

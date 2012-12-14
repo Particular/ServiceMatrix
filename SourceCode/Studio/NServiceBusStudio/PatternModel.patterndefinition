@@ -246,10 +246,6 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fbb17365-75ff-443e-8a45-4f32a06bec1a" />
       </extendedElement>
-      <properties>
-        <propertySettings Id="2a0f39b2-2e61-4fb0-9dbb-f3cb83c0f110" value="GenerateCode" name="CommandNameStartsWidth" />
-        <propertySettings Id="967022f5-7668-489f-a7cf-40a54d562c94" value="True" name="Recursive" />
-      </properties>
     </commandSettings>
     <commandSettings Id="3bfb4cda-686d-4820-bc68-137d4efd7b8e" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
@@ -930,11 +926,6 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="3fcf9e0e-7d1c-46c3-aff8-15b1f06d28f3" />
       </extendedElement>
-      <properties>
-        <propertySettings Id="6598ca1c-f35a-4e4c-85cb-ec5beffab56a" value="CreateCommandComponents" name="CommandName" />
-        <propertySettings Id="451314aa-c446-4b81-bcd8-45b359d3b58c" value="False" name="ExpectedValue" />
-        <propertySettings Id="c3bb9aaa-7ce2-4ae3-98ea-faa2ff939523" value="DoNotAutogenerateComponents" name="PropertyName" />
-      </properties>
     </commandSettings>
     <commandSettings Id="72a376e2-aab4-498b-9448-3544ffc8790a" typeId="NServiceBusStudio.Automation.Commands.ShowCommandTypePicker">
       <extendedElement>
@@ -2018,11 +2009,6 @@
         <elementSchemaMoniker Id="999b0f01-0b06-4b91-87aa-c8b7fb276c46" />
       </extendedElement>
     </guidanceExtension>
-    <guidanceExtension Id="4f6e20b1-ed33-4e62-add9-49f05fc1a3ad">
-      <extendedElement>
-        <extensionPointSchemaMoniker Id="40ec7f3f-e79d-4266-8e1c-565df6d4c5e4" />
-      </extendedElement>
-    </guidanceExtension>
     <guidanceExtension Id="22b9f8cc-516d-4544-96ed-3bd71c744bf1">
       <extendedElement>
         <collectionSchemaMoniker Id="ffcf83ed-8aca-42ea-bebd-af35d17f23be" />
@@ -2231,11 +2217,6 @@
     <artifactExtension Id="fb5398ea-a2a6-40a3-aa53-ae50775bdf00">
       <extendedElement>
         <elementSchemaMoniker Id="999b0f01-0b06-4b91-87aa-c8b7fb276c46" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="b4ad3cb3-7691-4ee0-ba16-bbf8cc8bf1d0">
-      <extendedElement>
-        <extensionPointSchemaMoniker Id="40ec7f3f-e79d-4266-8e1c-565df6d4c5e4" />
       </extendedElement>
     </artifactExtension>
     <artifactExtension Id="55390a10-4d23-4b1d-8543-05e81a2713c0">
@@ -6070,19 +6051,6 @@
                 </childElement>
               </element>
             </childElement>
-            <childExtensionPoint Id="4b0a19b4-3b39-421b-908a-f6b81039c7f3" cardinality="ZeroToMany">
-              <extensionPoint Id="40ec7f3f-e79d-4266-8e1c-565df6d4c5e4" name="Host" displayName="Host" description="Description for Application.Design.Endpoints.Host" codeIdentifier="Host">
-                <customizationPolicy name="CustomizationPolicySchema1">
-                  <settings>
-                    <setting propertyId="DisplayName" />
-                    <setting propertyId="Description" />
-                    <setting propertyId="ValidationRules" />
-                    <setting propertyId="Icon" />
-                    <setting propertyId="Conditions" />
-                  </settings>
-                </customizationPolicy>
-              </extensionPoint>
-            </childExtensionPoint>
           </collection>
         </elements>
         <elements autoCreate="false">
