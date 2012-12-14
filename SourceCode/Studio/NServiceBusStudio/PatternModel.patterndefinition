@@ -246,6 +246,10 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fbb17365-75ff-443e-8a45-4f32a06bec1a" />
       </extendedElement>
+      <properties>
+        <propertySettings Id="2a0f39b2-2e61-4fb0-9dbb-f3cb83c0f110" value="GenerateCode" name="CommandNameStartsWidth" />
+        <propertySettings Id="967022f5-7668-489f-a7cf-40a54d562c94" value="True" name="Recursive" />
+      </properties>
     </commandSettings>
     <commandSettings Id="3bfb4cda-686d-4820-bc68-137d4efd7b8e" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
@@ -926,6 +930,11 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="3fcf9e0e-7d1c-46c3-aff8-15b1f06d28f3" />
       </extendedElement>
+      <properties>
+        <propertySettings Id="6598ca1c-f35a-4e4c-85cb-ec5beffab56a" value="CreateCommandComponents" name="CommandName" />
+        <propertySettings Id="451314aa-c446-4b81-bcd8-45b359d3b58c" value="False" name="ExpectedValue" />
+        <propertySettings Id="c3bb9aaa-7ce2-4ae3-98ea-faa2ff939523" value="DoNotAutogenerateComponents" name="PropertyName" />
+      </properties>
     </commandSettings>
     <commandSettings Id="72a376e2-aab4-498b-9448-3544ffc8790a" typeId="NServiceBusStudio.Automation.Commands.ShowCommandTypePicker">
       <extendedElement>
