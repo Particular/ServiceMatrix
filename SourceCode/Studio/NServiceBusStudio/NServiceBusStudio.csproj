@@ -599,20 +599,8 @@
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\Binaries\NServiceBusHost.vsix">
-      <Link>NServiceBusHost.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Binaries\WebEndpoint.vsix">
-      <Link>WebEndpoint.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.vsix">
       <Link>NServiceBus.Modeling.EndpointDesign.Shell.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Binaries\WebMVCEndpoint.vsix">
-      <Link>WebMVCEndpoint.vsix</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
@@ -996,6 +984,7 @@
     <None Include="NServiceBus.ToolkitVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NServiceBus.ToolkitVersion.targets</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="NServiceBus.ToolkitVersion.targets">
       <AutoGen>True</AutoGen>
@@ -1113,20 +1102,8 @@
   <ItemGroup>
     <SourceEmptyFile Include="emptyfile.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <TargetHostVsixFile Include="..\Binaries\NServiceBusHost.vsix" />
-  </ItemGroup>
-  <ItemGroup>
-    <TargetWebVsixFile Include="..\Binaries\WebEndpoint.vsix" />
-  </ItemGroup>
-  <ItemGroup>
-    <TargetMVCVsixFile Include="..\Binaries\WebMVCEndpoint.vsix" />
-  </ItemGroup>
   <Target Name="EnsureVsixInPlace">
     <Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
-    <Copy Condition="!Exists('..\Binaries\NServiceBusHost.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetHostVsixFile)" />
-    <Copy Condition="!Exists('..\Binaries\WebEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetWebVsixFile)" />
-    <Copy Condition="!Exists('..\Binaries\WebMVCEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetMVCVsixFile)" />
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>
