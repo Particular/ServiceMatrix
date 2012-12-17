@@ -23,8 +23,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
         {
             try
             {
-                var endpoints = this.Service.Parent.Parent.Endpoints.As<IAbstractElement>().Extensions
-                    .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+                var endpoints = this.Service.Parent.Parent.Endpoints.GetAll()
                     .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this.Component));
 
                 return endpoints.Select(endpoint =>

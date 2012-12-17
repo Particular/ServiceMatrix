@@ -22,7 +22,7 @@
             <element Id="f8a514df-bea8-4098-8e0d-aa1154ec8331" definitionId="5da53e5a-0ba8-48f8-a922-1712244c388c" definitionName="PatternModel" instanceName="Pattern Model">
               <properties>
                 <property Id="d9cea046-e0d3-47b1-ada0-55aa659fc511" definitionId="53ef780a-fc40-40dd-8c5c-34c70f7b9c90" definitionName="ValidateOnBuild" rawValue="Always" />
-                <property Id="40a4fe58-5a93-46b8-a8b8-46b0c57c8679" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="D:\work\NServiceBusStudio\NServiceBus\Studio\NServiceBusStudio\PatternModel.patterndefinition" />
+                <property Id="40a4fe58-5a93-46b8-a8b8-46b0c57c8679" definitionId="a3436f96-4d42-4ad4-92c4-07a16502b397" definitionName="ToolkitDefinitionFile" rawValue="C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\NServiceBusStudio\PatternModel.patterndefinition" />
               </properties>
               <references>
                 <reference Id="9d227202-c438-4706-8f02-e17b86daf71a" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/ec5ef507-1412-4c0e-88fa-efaad8078bac" kind="Microsoft.VisualStudio.Patterning.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;PatternModel.patterndefinition&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e52d1228-39f9-422d-b667-1e6f26249aa0&quot;&#xD;&#xA;}" />
@@ -44,7 +44,7 @@
                 <property Id="aac019c2-738b-4c97-95cd-dcbbd060fcbc" definitionId="c6eb8c9f-7689-405c-9e04-05b4954e3bf6" definitionName="ToolkitName" rawValue="NServiceBus Studio" />
                 <property Id="fc9e998a-8968-401b-9a8b-621cecefe66f" definitionId="09a9d6ed-39e6-414d-a8db-b7b381c227ca" definitionName="Author" rawValue="NServiceBus" />
                 <property Id="86efbe52-d99b-4d26-a145-6bf76596beb8" definitionId="f28908ca-518f-497b-9b8c-0e3dc47f21dd" definitionName="Description" rawValue="A set of Visual Studio integrated tools to author NServiceBus applications" />
-                <property Id="8df5988e-c59e-4a04-b63a-4e3650690a0d" definitionId="2058a01f-6a09-4ad4-9e59-10393e0fca87" definitionName="Version" rawValue="1.0" />
+                <property Id="8df5988e-c59e-4a04-b63a-4e3650690a0d" definitionId="2058a01f-6a09-4ad4-9e59-10393e0fca87" definitionName="Version" rawValue="3.4.0" />
                 <property Id="009d56d7-f231-461e-8cde-82531cc3d615" definitionId="766e5ae2-80de-4d94-a0be-4b953a40ac46" definitionName="Identifier" rawValue="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" />
                 <property Id="0d57232c-7c42-4d17-9aca-63afbcfe190e" definitionId="30e4ae03-67bb-4bcb-ac9d-aa71601bfe7e" definitionName="Icon" rawValue="Resources\ToolkitIcon.png" />
                 <property Id="e9420040-f385-4537-a939-96210e6d4eba" definitionId="c9e003d7-cb45-4865-a511-de29c04b5b2d" definitionName="Eula" />
@@ -59,7 +59,7 @@
                 <element Id="c883d430-4912-4c10-91e9-f38110aa7c7c" definitionId="c3d66aa5-3199-44ad-b7d7-f375a9ab16d3" definitionName="Guidance" instanceName="Guidance">
                   <properties>
                     <property Id="253600b8-0724-4c73-94a5-eaf8e237737f" definitionId="70d70df3-799d-4107-b77b-0001119484a6" definitionName="ProjectContentPath" rawValue="GeneratedCode\Guidance\Content" />
-                    <property Id="e5bd68a8-ff7e-4304-8821-e6537d6a193a" definitionId="39537f0e-76a8-409b-adb5-e54fbdbd8b27" definitionName="DocumentFilePath" rawValue="D:\work\NServiceBusStudio\NServiceBus\Studio\NServiceBusStudio\Assets\Guidance\ToolkitGuidance.doc" />
+                    <property Id="e5bd68a8-ff7e-4304-8821-e6537d6a193a" definitionId="39537f0e-76a8-409b-adb5-e54fbdbd8b27" definitionName="DocumentFilePath" rawValue="C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\NServiceBusStudio\Assets\Guidance\ToolkitGuidance.doc" />
                     <property Id="4d9c96b1-c857-4e70-a660-e134e6c647be" definitionId="81c7a831-97e3-4067-9d15-8d7fb671a755" definitionName="DefaultInstanceName" rawValue="Working with NServiceBus Studio" />
                   </properties>
                   <references>

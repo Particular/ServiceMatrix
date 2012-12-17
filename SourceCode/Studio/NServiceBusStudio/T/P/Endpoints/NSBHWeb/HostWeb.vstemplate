@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Type="Project" Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>NService Bus Web</Name>
+    <Description>Description for Application.Design.Endpoints.NServiceBusWeb</Description>
+    <Icon>HostWeb.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType>Web</ProjectSubType>
+    <TemplateID>4d7de2cfe295-Application.Design.Endpoints.NServiceBusWeb</TemplateID>
+    <SortOrder>15</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>NServiceBusWeb</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>true</Hidden>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <LocationField>Enabled</LocationField>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <Project File="HostWeb.csproj" TargetFileName="HostWeb.csproj" ReplaceParameters="true">
+      <Folder Name="App_Data" TargetFolderName="App_Data" />
+      <ProjectItem TargetFileName="Default.aspx" ReplaceParameters="true" OpenInEditor="false">Default.aspx</ProjectItem>
+      <ProjectItem TargetFileName="Default.aspx.cs" ReplaceParameters="true">Default.aspx.cs</ProjectItem>
+      <ProjectItem TargetFileName="Default.aspx.designer.cs" ReplaceParameters="true">Default.aspx.designer.cs</ProjectItem>
+      <ProjectItem TargetFileName="Site.Master" ReplaceParameters="true">Site.Master</ProjectItem>
+      <ProjectItem TargetFileName="Site.Master.cs" ReplaceParameters="true">Site.Master.cs</ProjectItem>
+      <ProjectItem TargetFileName="Site.Master.designer.cs" ReplaceParameters="true">Site.Master.designer.cs</ProjectItem>
+      <ProjectItem TargetFileName="Global.asax" ReplaceParameters="true">Global.asax</ProjectItem>
+      <ProjectItem TargetFileName="Global.asax.cs" ReplaceParameters="true">Global.asax.cs</ProjectItem>
+      <Folder Name="Styles" TargetFolderName="Styles">
+        <ProjectItem TargetFileName="Site.css" ReplaceParameters="false">Site.css</ProjectItem>
+      </Folder>
+      <Folder Name="Infrastructure" TargetFolderName="Infrastructure">
+        <ProjectItem TargetFileName="WebGlobalInitialization.cs" ReplaceParameters="true">WebGlobalInitialization.cs</ProjectItem>
+        <ProjectItem TargetFileName="INServiceBusComponent.cs" ReplaceParameters="true">INServiceBusComponent.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Properties" TargetFolderName="Properties">
+        <ProjectItem TargetFileName="AssemblyInfo.cs" ReplaceParameters="true">AssemblyInfo.cs</ProjectItem>
+      </Folder>
+      <Folder Name="Scripts" TargetFolderName="Scripts">
+        <ProjectItem TargetFileName="jquery-1.4.1.js" ReplaceParameters="false">jquery-1.4.1.js</ProjectItem>
+        <ProjectItem TargetFileName="jquery-1.4.1.min.js" ReplaceParameters="false">jquery-1.4.1.min.js</ProjectItem>
+        <ProjectItem TargetFileName="jquery-1.4.1-vsdoc.js" ReplaceParameters="false">jquery-1.4.1-vsdoc.js</ProjectItem>
+      </Folder>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Microsoft.VisualStudio.Patterning.Library, PublicKeyToken=31bf3856ad364e35</Assembly>
+    <FullClassName>Microsoft.VisualStudio.Patterning.Library.Automation.ElementReplacementsWizard</FullClassName>
+  </WizardExtension>
+</VSTemplate>

@@ -181,6 +181,9 @@
     <Folder Include="ValidationRules\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Commands\PatternTooling.toolingdesign">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GeneratedCode\ToolkitElement.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>

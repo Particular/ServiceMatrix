@@ -102,8 +102,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
         {
             if (app.HasAuthentication)
             {
-                foreach (var endpoint in app.Design.Endpoints.As<IAbstractElement>().Extensions
-                    .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint)))
+                foreach (var endpoint in app.Design.Endpoints.GetAll())
                 {
                     var prefix = "AuthenticationEndpointCode" + endpoint.As<IProductElement>().InstanceName;
                     if (!app.Design.Infrastructure.Security.Authentication.AsElement().AutomationExtensions.Any(a => a.Name.StartsWith(prefix)))

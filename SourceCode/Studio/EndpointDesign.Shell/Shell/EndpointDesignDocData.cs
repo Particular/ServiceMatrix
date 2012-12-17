@@ -28,7 +28,7 @@ namespace NServiceBus.Modeling.EndpointDesign
             if (app == null)
                 throw new Exception("Cannot get access to the VSPAT Model");
 
-            var endpoint = app.Design.Endpoints.As<IAbstractElement>().Extensions.FirstOrDefault (e => e.InstanceName == Path.GetFileNameWithoutExtension(fileName));
+            var endpoint = app.Design.Endpoints.GetAll().FirstOrDefault (e => e.InstanceName == Path.GetFileNameWithoutExtension(fileName));
 
             if (endpoint == null)
                 throw new Exception("Endpoint not found");
@@ -38,7 +38,7 @@ namespace NServiceBus.Modeling.EndpointDesign
                 e.Name = endpoint.InstanceName;
             }) as SendReceiveEndpoint;
 
-            foreach (var endpointComponent in endpoint.GetChildren())
+            foreach (var endpointComponent in endpoint.As<IProductElement>().GetChildren())
 	        {
                 var components = endpointComponent.As<IToolkitInterface>() as IAbstractEndpointComponents;
 

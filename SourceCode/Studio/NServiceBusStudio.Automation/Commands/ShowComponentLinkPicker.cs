@@ -68,7 +68,7 @@ namespace AbstractEndpoint.Automation.Commands
 
             picker.Title = "Deploy components...";
 
-            var currentEndpoint = this.CurrentElement.Parent.Parent.As<IAbstractEndpoint>();
+            var currentEndpoint = this.CurrentElement.Parent.As<IAbstractEndpoint>();
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().Value)

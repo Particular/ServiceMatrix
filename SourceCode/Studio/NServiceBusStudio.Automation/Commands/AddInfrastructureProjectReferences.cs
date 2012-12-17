@@ -42,7 +42,7 @@ namespace NServiceBusStudio.Automation.Commands
                     infraproject.DownloadNuGetPackages();
 
                     infraproject.AddReference(
-                        string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.dll",
+                        string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
                         solutionPath,
                         this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                 }

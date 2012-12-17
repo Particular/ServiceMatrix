@@ -45,7 +45,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 .SelectMany(s => s.Components.Component.Where(c => c.Publishes.EventLinks.Any(el => el.EventReference.Value == iEvent)));
             var componentsSubscribing = application.Design.Services.Service
                 .SelectMany(s => s.Components.Component.Where(c => c.Subscribes.SubscribedEventLinks.Any(el => el.EventReference.Value == iEvent)));
-            var endpoints = application.Design.Endpoints.As<IAbstractElement>().Extensions.Select(h => h.As<IToolkitInterface>() as IAbstractEndpoint)
+            var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => componentsPublishing.Contains(cl.ComponentReference.Value) || componentsSubscribing.Contains(cl.ComponentReference.Value)));
 
             this.CleanDetails();
@@ -68,7 +68,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 .SelectMany(s => s.Components.Component.Where(c => c.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == command)));
             var componentsReceiving = application.Design.Services.Service
                 .SelectMany(s => s.Components.Component.Where(c => c.Subscribes.ProcessedCommandLinks.Any(cl => cl.CommandReference.Value == command)));
-            var endpoints = application.Design.Endpoints.As<IAbstractElement>().Extensions.Select(h => h.As<IToolkitInterface>() as IAbstractEndpoint)
+            var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => componentsSending.Contains(cl.ComponentReference.Value) || componentsReceiving.Contains(cl.ComponentReference.Value)));
 
             this.CleanDetails();
@@ -88,7 +88,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             var application = component.As<IProductElement>().Root.As<IApplication>();
             var components = new List<IComponent> { component };
-            var endpoints = application.Design.Endpoints.As<IAbstractElement>().Extensions.Select(h => h.As<IToolkitInterface>() as IAbstractEndpoint)
+            var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
 
             this.CleanDetails();

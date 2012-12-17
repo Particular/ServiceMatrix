@@ -23,6 +23,10 @@ namespace NServiceBusStudio
 		event EventHandler ErrorQueueChanged;
 		event EventHandler NServiceBusVersionChanged;
 		event EventHandler ExtensionPathChanged;
+		event EventHandler TransportChanged;
+		event EventHandler TransportSqlServerChanged;
+		event EventHandler TransportSqlDatabaseChanged;
+		event EventHandler TransportBrokerUriChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -116,6 +120,86 @@ namespace NServiceBusStudio
 		string CodeIdentifier { get; }
 
 		event EventHandler FilePathChanged;
+	}
+
+	partial interface INServiceBusHost : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler CommandSenderNeedsRegistrationChanged;
+		event EventHandler ComponentsOrderDefinitionChanged;
+		event EventHandler ErrorQueueChanged;
+		event EventHandler ForwardReceivedMessagesToChanged;
+		event EventHandler MasterNodeChanged;
+		event EventHandler MaxRetriesChanged;
+		event EventHandler MessageConventionsChanged;
+		event EventHandler MessageEndpointMappingsConfigChanged;
+		event EventHandler NamespaceChanged;
+		event EventHandler NumberOfWorkerThreadsChanged;
+		event EventHandler SLAChanged;
+		event EventHandler SLEnabledChanged;
+		event EventHandler SLNumberOfRetriesChanged;
+		event EventHandler SLTimeIncreaseChanged;
+	}
+
+	partial interface INServiceBusHostComponentLink : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler ComponentIdChanged;
+		event EventHandler ComponentNameChanged;
+		event EventHandler OrderChanged;
+	}
+
+	partial interface INServiceBusWeb : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler CommandSenderNeedsRegistrationChanged;
+		event EventHandler ErrorQueueChanged;
+		event EventHandler ForwardReceivedMessagesToChanged;
+		event EventHandler HasComponentsThatPublishEventChanged;
+		event EventHandler MaxRetriesChanged;
+		event EventHandler MessageConventionsChanged;
+		event EventHandler MessageEndpointMappingsConfigChanged;
+		event EventHandler NamespaceChanged;
+		event EventHandler NumberOfWorkerThreadsChanged;
+		event EventHandler SenderBaseTypeChanged;
+		event EventHandler SLAChanged;
+	}
+
+	partial interface INServiceBusWebComponentLink : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler ComponentIdChanged;
+		event EventHandler ComponentNameChanged;
+		event EventHandler OrderChanged;
+	}
+
+	partial interface INServiceBusMVC : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler CommandSenderNeedsRegistrationChanged;
+		event EventHandler ErrorQueueChanged;
+		event EventHandler ForwardReceivedMessagesToChanged;
+		event EventHandler HasComponentsThatPublishEventChanged;
+		event EventHandler MaxRetriesChanged;
+		event EventHandler MessageConventionsChanged;
+		event EventHandler MessageEndpointMappingsConfigChanged;
+		event EventHandler NamespaceChanged;
+		event EventHandler NumberOfWorkerThreadsChanged;
+		event EventHandler SLAChanged;
+	}
+
+	partial interface INServiceBusMVCComponentLink : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler ComponentIdChanged;
+		event EventHandler ComponentNameChanged;
+		event EventHandler OrderChanged;
 	}
 
 	partial interface IContractsProject : IToolkitElement
@@ -238,6 +322,24 @@ namespace NServiceBusStudio
 
 	}
 
+	partial interface INServiceBusHostComponents : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+	}
+
+	partial interface INServiceBusWebComponents : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+	}
+
+	partial interface INServiceBusMVCComponents : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+	}
+
 	partial interface IInfrastructure : IToolkitElement
 	{
 		string CodeIdentifier { get; }
@@ -279,7 +381,10 @@ namespace NServiceBusStudio
 		static Application()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Application)), typeof(Application));
+			Application.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -348,6 +453,10 @@ namespace NServiceBusStudio
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler NServiceBusVersionChanged = (sender, args) => { };
 		public event EventHandler ExtensionPathChanged = (sender, args) => { };
+		public event EventHandler TransportChanged = (sender, args) => { };
+		public event EventHandler TransportSqlServerChanged = (sender, args) => { };
+		public event EventHandler TransportSqlDatabaseChanged = (sender, args) => { };
+		public event EventHandler TransportBrokerUriChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -379,6 +488,18 @@ namespace NServiceBusStudio
 				case "ExtensionPath":
 					ExtensionPathChanged(sender, args);
 					break;
+				case "Transport":
+					TransportChanged(sender, args);
+					break;
+				case "TransportSqlServer":
+					TransportSqlServerChanged(sender, args);
+					break;
+				case "TransportSqlDatabase":
+					TransportSqlDatabaseChanged(sender, args);
+					break;
+				case "TransportBrokerUri":
+					TransportBrokerUriChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -404,7 +525,10 @@ namespace NServiceBusStudio
 		static Service()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Service)), typeof(Service));
+			Service.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -513,7 +637,10 @@ namespace NServiceBusStudio
 		static Event()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Event)), typeof(Event));
+			Event.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -626,7 +753,10 @@ namespace NServiceBusStudio
 		static Command()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Command)), typeof(Command));
+			Command.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -739,7 +869,10 @@ namespace NServiceBusStudio
 		static Component()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Component)), typeof(Component));
+			Component.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -872,7 +1005,10 @@ namespace NServiceBusStudio
 		static EventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(EventLink)), typeof(EventLink));
+			EventLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -997,7 +1133,10 @@ namespace NServiceBusStudio
 		static CommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(CommandLink)), typeof(CommandLink));
+			CommandLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1130,7 +1269,10 @@ namespace NServiceBusStudio
 		static SubscribedEventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(SubscribedEventLink)), typeof(SubscribedEventLink));
+			SubscribedEventLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1267,7 +1409,10 @@ namespace NServiceBusStudio
 		static ProcessedCommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLink)), typeof(ProcessedCommandLink));
+			ProcessedCommandLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1400,7 +1545,10 @@ namespace NServiceBusStudio
 		static LibraryReference()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReference)), typeof(LibraryReference));
+			LibraryReference.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1513,7 +1661,10 @@ namespace NServiceBusStudio
 		static ServiceLibrary()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibrary)), typeof(ServiceLibrary));
+			ServiceLibrary.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1621,12 +1772,863 @@ namespace NServiceBusStudio
 		}
 	}
 
+	partial class NServiceBusHost : ISupportInitialize
+	{
+		static NServiceBusHost()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHost)), typeof(NServiceBusHost));
+			NServiceBusHost.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHost).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHost).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
+		public event EventHandler ComponentsOrderDefinitionChanged = (sender, args) => { };
+		public event EventHandler ErrorQueueChanged = (sender, args) => { };
+		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
+		public event EventHandler MasterNodeChanged = (sender, args) => { };
+		public event EventHandler MaxRetriesChanged = (sender, args) => { };
+		public event EventHandler MessageConventionsChanged = (sender, args) => { };
+		public event EventHandler MessageEndpointMappingsConfigChanged = (sender, args) => { };
+		public event EventHandler NamespaceChanged = (sender, args) => { };
+		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
+		public event EventHandler SLAChanged = (sender, args) => { };
+		public event EventHandler SLEnabledChanged = (sender, args) => { };
+		public event EventHandler SLNumberOfRetriesChanged = (sender, args) => { };
+		public event EventHandler SLTimeIncreaseChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "CommandSenderNeedsRegistration":
+					CommandSenderNeedsRegistrationChanged(sender, args);
+					break;
+				case "ComponentsOrderDefinition":
+					ComponentsOrderDefinitionChanged(sender, args);
+					break;
+				case "ErrorQueue":
+					ErrorQueueChanged(sender, args);
+					break;
+				case "ForwardReceivedMessagesTo":
+					ForwardReceivedMessagesToChanged(sender, args);
+					break;
+				case "MasterNode":
+					MasterNodeChanged(sender, args);
+					break;
+				case "MaxRetries":
+					MaxRetriesChanged(sender, args);
+					break;
+				case "MessageConventions":
+					MessageConventionsChanged(sender, args);
+					break;
+				case "MessageEndpointMappingsConfig":
+					MessageEndpointMappingsConfigChanged(sender, args);
+					break;
+				case "Namespace":
+					NamespaceChanged(sender, args);
+					break;
+				case "NumberOfWorkerThreads":
+					NumberOfWorkerThreadsChanged(sender, args);
+					break;
+				case "SLA":
+					SLAChanged(sender, args);
+					break;
+				case "SLEnabled":
+					SLEnabledChanged(sender, args);
+					break;
+				case "SLNumberOfRetries":
+					SLNumberOfRetriesChanged(sender, args);
+					break;
+				case "SLTimeIncrease":
+					SLTimeIncreaseChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusHostComponentLink : ISupportInitialize
+	{
+		static NServiceBusHostComponentLink()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponentLink)), typeof(NServiceBusHostComponentLink));
+			NServiceBusHostComponentLink.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponentLink).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHostComponentLink).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler ComponentIdChanged = (sender, args) => { };
+		public event EventHandler ComponentNameChanged = (sender, args) => { };
+		public event EventHandler OrderChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "ComponentId":
+					ComponentIdChanged(sender, args);
+					break;
+				case "ComponentName":
+					ComponentNameChanged(sender, args);
+					break;
+				case "Order":
+					OrderChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusWeb : ISupportInitialize
+	{
+		static NServiceBusWeb()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWeb)), typeof(NServiceBusWeb));
+			NServiceBusWeb.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWeb).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWeb).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
+		public event EventHandler ErrorQueueChanged = (sender, args) => { };
+		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
+		public event EventHandler HasComponentsThatPublishEventChanged = (sender, args) => { };
+		public event EventHandler MaxRetriesChanged = (sender, args) => { };
+		public event EventHandler MessageConventionsChanged = (sender, args) => { };
+		public event EventHandler MessageEndpointMappingsConfigChanged = (sender, args) => { };
+		public event EventHandler NamespaceChanged = (sender, args) => { };
+		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
+		public event EventHandler SenderBaseTypeChanged = (sender, args) => { };
+		public event EventHandler SLAChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "CommandSenderNeedsRegistration":
+					CommandSenderNeedsRegistrationChanged(sender, args);
+					break;
+				case "ErrorQueue":
+					ErrorQueueChanged(sender, args);
+					break;
+				case "ForwardReceivedMessagesTo":
+					ForwardReceivedMessagesToChanged(sender, args);
+					break;
+				case "HasComponentsThatPublishEvent":
+					HasComponentsThatPublishEventChanged(sender, args);
+					break;
+				case "MaxRetries":
+					MaxRetriesChanged(sender, args);
+					break;
+				case "MessageConventions":
+					MessageConventionsChanged(sender, args);
+					break;
+				case "MessageEndpointMappingsConfig":
+					MessageEndpointMappingsConfigChanged(sender, args);
+					break;
+				case "Namespace":
+					NamespaceChanged(sender, args);
+					break;
+				case "NumberOfWorkerThreads":
+					NumberOfWorkerThreadsChanged(sender, args);
+					break;
+				case "SenderBaseType":
+					SenderBaseTypeChanged(sender, args);
+					break;
+				case "SLA":
+					SLAChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusWebComponentLink : ISupportInitialize
+	{
+		static NServiceBusWebComponentLink()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponentLink)), typeof(NServiceBusWebComponentLink));
+			NServiceBusWebComponentLink.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponentLink).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWebComponentLink).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler ComponentIdChanged = (sender, args) => { };
+		public event EventHandler ComponentNameChanged = (sender, args) => { };
+		public event EventHandler OrderChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "ComponentId":
+					ComponentIdChanged(sender, args);
+					break;
+				case "ComponentName":
+					ComponentNameChanged(sender, args);
+					break;
+				case "Order":
+					OrderChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusMVC : ISupportInitialize
+	{
+		static NServiceBusMVC()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVC)), typeof(NServiceBusMVC));
+			NServiceBusMVC.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVC).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVC).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
+		public event EventHandler ErrorQueueChanged = (sender, args) => { };
+		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
+		public event EventHandler HasComponentsThatPublishEventChanged = (sender, args) => { };
+		public event EventHandler MaxRetriesChanged = (sender, args) => { };
+		public event EventHandler MessageConventionsChanged = (sender, args) => { };
+		public event EventHandler MessageEndpointMappingsConfigChanged = (sender, args) => { };
+		public event EventHandler NamespaceChanged = (sender, args) => { };
+		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
+		public event EventHandler SLAChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "CommandSenderNeedsRegistration":
+					CommandSenderNeedsRegistrationChanged(sender, args);
+					break;
+				case "ErrorQueue":
+					ErrorQueueChanged(sender, args);
+					break;
+				case "ForwardReceivedMessagesTo":
+					ForwardReceivedMessagesToChanged(sender, args);
+					break;
+				case "HasComponentsThatPublishEvent":
+					HasComponentsThatPublishEventChanged(sender, args);
+					break;
+				case "MaxRetries":
+					MaxRetriesChanged(sender, args);
+					break;
+				case "MessageConventions":
+					MessageConventionsChanged(sender, args);
+					break;
+				case "MessageEndpointMappingsConfig":
+					MessageEndpointMappingsConfigChanged(sender, args);
+					break;
+				case "Namespace":
+					NamespaceChanged(sender, args);
+					break;
+				case "NumberOfWorkerThreads":
+					NumberOfWorkerThreadsChanged(sender, args);
+					break;
+				case "SLA":
+					SLAChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusMVCComponentLink : ISupportInitialize
+	{
+		static NServiceBusMVCComponentLink()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponentLink)), typeof(NServiceBusMVCComponentLink));
+			NServiceBusMVCComponentLink.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponentLink).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVCComponentLink).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler ComponentIdChanged = (sender, args) => { };
+		public event EventHandler ComponentNameChanged = (sender, args) => { };
+		public event EventHandler OrderChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "ComponentId":
+					ComponentIdChanged(sender, args);
+					break;
+				case "ComponentName":
+					ComponentNameChanged(sender, args);
+					break;
+				case "Order":
+					OrderChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
 	partial class ContractsProject : ISupportInitialize
 	{
 		static ContractsProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ContractsProject)), typeof(ContractsProject));
+			ContractsProject.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1735,7 +2737,10 @@ namespace NServiceBusStudio
 		static InternalMessagesProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(InternalMessagesProject)), typeof(InternalMessagesProject));
+			InternalMessagesProject.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1844,7 +2849,10 @@ namespace NServiceBusStudio
 		static Authentication()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Authentication)), typeof(Authentication));
+			Authentication.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -1969,7 +2977,10 @@ namespace NServiceBusStudio
 		static UseCase()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCase)), typeof(UseCase));
+			UseCase.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2078,7 +3089,10 @@ namespace NServiceBusStudio
 		static UseCaseStep()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseStep)), typeof(UseCaseStep));
+			UseCaseStep.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2215,7 +3229,10 @@ namespace NServiceBusStudio
 		static UseCaseLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseLink)), typeof(UseCaseLink));
+			UseCaseLink.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2336,7 +3353,10 @@ namespace NServiceBusStudio
 		static Library()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Library)), typeof(Library));
+			Library.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2449,7 +3469,10 @@ namespace NServiceBusStudio
 		static Services()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Services)), typeof(Services));
+			Services.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2558,7 +3581,10 @@ namespace NServiceBusStudio
 		static Contract()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Contract)), typeof(Contract));
+			Contract.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2667,7 +3693,10 @@ namespace NServiceBusStudio
 		static Events()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Events)), typeof(Events));
+			Events.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2780,7 +3809,10 @@ namespace NServiceBusStudio
 		static Commands()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Commands)), typeof(Commands));
+			Commands.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -2893,7 +3925,10 @@ namespace NServiceBusStudio
 		static Components()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Components)), typeof(Components));
+			Components.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3002,7 +4037,10 @@ namespace NServiceBusStudio
 		static Publishes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Publishes)), typeof(Publishes));
+			Publishes.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3111,7 +4149,10 @@ namespace NServiceBusStudio
 		static Subscribes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Subscribes)), typeof(Subscribes));
+			Subscribes.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3220,7 +4261,10 @@ namespace NServiceBusStudio
 		static LibraryReferences()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReferences)), typeof(LibraryReferences));
+			LibraryReferences.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3329,7 +4373,10 @@ namespace NServiceBusStudio
 		static ServiceLibraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibraries)), typeof(ServiceLibraries));
+			ServiceLibraries.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3442,7 +4489,10 @@ namespace NServiceBusStudio
 		static Endpoints()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Endpoints)), typeof(Endpoints));
+			Endpoints.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3546,12 +4596,351 @@ namespace NServiceBusStudio
 		}
 	}
 
+	partial class NServiceBusHostComponents : ISupportInitialize
+	{
+		static NServiceBusHostComponents()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponents)), typeof(NServiceBusHostComponents));
+			NServiceBusHostComponents.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsCollection();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponents).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHostComponents).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsCollection().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusWebComponents : ISupportInitialize
+	{
+		static NServiceBusWebComponents()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponents)), typeof(NServiceBusWebComponents));
+			NServiceBusWebComponents.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsCollection();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponents).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWebComponents).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsCollection().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class NServiceBusMVCComponents : ISupportInitialize
+	{
+		static NServiceBusMVCComponents()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponents)), typeof(NServiceBusMVCComponents));
+			NServiceBusMVCComponents.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public IFeatureCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsCollection();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponents).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVCComponents).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsCollection().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+			switch (args.PropertyName)
+			{
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
 	partial class Infrastructure : ISupportInitialize
 	{
 		static Infrastructure()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Infrastructure)), typeof(Infrastructure));
+			Infrastructure.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3660,7 +5049,10 @@ namespace NServiceBusStudio
 		static Security()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Security)), typeof(Security));
+			Security.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3769,7 +5161,10 @@ namespace NServiceBusStudio
 		static DummyCollection()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(DummyCollection)), typeof(DummyCollection));
+			DummyCollection.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3878,7 +5273,10 @@ namespace NServiceBusStudio
 		static UseCases()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCases)), typeof(UseCases));
+			UseCases.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 
@@ -3987,7 +5385,10 @@ namespace NServiceBusStudio
 		static Libraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Libraries)), typeof(Libraries));
+			Libraries.StaticInitialization();
 		}
+
+		static partial void StaticInitialization();
 
 		#region Initialization
 

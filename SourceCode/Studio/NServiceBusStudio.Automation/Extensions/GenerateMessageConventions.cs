@@ -9,7 +9,7 @@ namespace NServiceBusStudio.Automation.Extensions
 {
     public static class GenerateMessageConventions
     {
-        public static string GetMessageConventions(this IProduct endpoint)
+        public static string GetMessageConventions(this IProductElement endpoint)
         {
             var sb = new StringBuilder();
             try

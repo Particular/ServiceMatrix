@@ -29,8 +29,10 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public void RenameClass(string classNamespace, string classCurrentName, string classNewName)
         {
             SaveSolution();
+
+            var currentDirectory = System.IO.Path.GetDirectoryName(this.GetType().Assembly.Location);
+            var ps = System.IO.Path.Combine (currentDirectory, @"Libs\NRefactory.RenameClass.exe");
             
-            var ps = @".\Libs\NRefactory.RenameClass.exe";
             var args = String.Format("\"{0}\" {1} {2} {3}", this.Solution.PhysicalPath, classNamespace, classCurrentName, classNewName);
 
             var start = new ProcessStartInfo(ps, args)

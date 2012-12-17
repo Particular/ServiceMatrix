@@ -133,7 +133,6 @@
   </WizardExtension>
   <WizardData>
     <packages repository="extension" repositoryId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
-      <package id="log4net" version="1.2.10" />
       <package id="NServiceBus" version="3.0.3" />
     </packages>
   </WizardData>-->

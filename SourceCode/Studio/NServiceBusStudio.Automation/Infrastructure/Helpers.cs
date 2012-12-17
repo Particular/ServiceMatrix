@@ -50,8 +50,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         // Add a reference to the infrastructure project on each endpoint project
         public static void AddInfrastructureReferences(IApplication app, ISolution solution)
         {
-            foreach (var endpoint in app.Design.Endpoints.As<IAbstractElement>().Extensions
-                .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint)))
+            foreach (var endpoint in app.Design.Endpoints.GetAll())
             {
                 endpoint.Project.AddReference(app.Design.Infrastructure.As<IProductElement>().GetProject());
             }
@@ -79,12 +78,12 @@ namespace NServiceBusStudio.Automation.Infrastructure
             , Func<IAbstractEndpoint, IApplication, bool> visibilityEvaluator
             )
         {
-            var endpoints = app.Design.Endpoints.As<IAbstractElement>().Extensions;
+            var endpoints = app.Design.Endpoints.GetAll();
             try
             {
-                foreach (var ep in endpoints)
+                foreach (var endpoint in endpoints)
                 {
-                    var endpoint = ep.As<IToolkitInterface>() as IAbstractEndpoint;
+                    var ep = endpoint.As<IProductElement>();
                     var menuItem = ep.AutomationExtensions.OfType<MenuCommand>().FirstOrDefault(a => a.Text == caption);
                     if (menuItem == null)
                     {
