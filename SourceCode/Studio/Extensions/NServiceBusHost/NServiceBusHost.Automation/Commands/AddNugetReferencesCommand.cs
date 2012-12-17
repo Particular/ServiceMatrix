@@ -43,14 +43,13 @@ namespace NServiceBusHost.Automation.Commands
             //<Reference Include="NServiceBus" />
             //<Reference Include="NServiceBus.Core" />
             //<Reference Include="NServiceBus.Host" />
-            //<Reference Include="log4net" />
 
             if (!Endpoint.Project.HasReference("NServiceBus"))
             {
                 Endpoint.Project.DownloadNuGetPackages();
 
                 Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.dll",
+                    string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
@@ -58,6 +57,7 @@ namespace NServiceBusHost.Automation.Commands
                     string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.Core.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+
                 if (!this.IgnoreHost)
                 {
                     Endpoint.Project.AddReference(
@@ -65,9 +65,6 @@ namespace NServiceBusHost.Automation.Commands
                         System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                         this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                 }
-                Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\log4net.1.2.10\lib\2.0\log4net.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))));
             }
         }
     }

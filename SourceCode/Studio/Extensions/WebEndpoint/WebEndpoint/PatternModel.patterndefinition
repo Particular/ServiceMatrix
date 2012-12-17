@@ -187,9 +187,9 @@
         <propertySettings Id="2dc38d0a-82f9-45d4-8884-e78dd8821de4" name="Tag" />
         <propertySettings Id="2f798c86-e62f-42e8-a4df-2cd47699461b" value="Content" name="TargetBuildAction" />
         <propertySettings Id="2c498a5e-3cab-41a7-af4c-f9dc748556da" value="PreserveNewest" name="TargetCopyToOutput" />
-        <propertySettings Id="3c31c6af-b7e9-4e65-aa26-c9f67b9a816c" value="MsmqTransportConfig.config" name="TargetFileName" />
+        <propertySettings Id="3c31c6af-b7e9-4e65-aa26-c9f67b9a816c" value="TransportConfig.config" name="TargetFileName" />
         <propertySettings Id="21c1b13b-a66a-498f-9b33-6beb61b8fe09" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
-        <propertySettings Id="4afb33d9-9e1b-4e2d-bf38-e599c348e1f0" value="t4://extension/83300ea2-15b7-4013-8212-ed68d99da5b2/Assets/Templates/Text/HostWeb/MsmqTransportConfig.config.tt" name="TemplateUri" />
+        <propertySettings Id="4afb33d9-9e1b-4e2d-bf38-e599c348e1f0" value="t4://extension/83300ea2-15b7-4013-8212-ed68d99da5b2/Assets/Templates/Text/HostWeb/TransportConfig.config.tt" name="TemplateUri" />
         <propertySettings Id="4be3f9ef-1b9f-4723-8c2d-7850ba06b126" value="solution://6f4e8d6d-fb20-4d3b-b947-fb6fe92daf36/e7ef8946-0713-48bc-866f-182f9779cf6c" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
@@ -214,7 +214,7 @@
         <automationSettingsSchemaMoniker Id="7ce3c219-516c-4f35-99b7-7b98e62d0358" />
       </extendedElement>
       <properties>
-        <propertySettings Id="7517729e-fee4-4897-8b2f-6fd0cfdbd58c" value="4d6340ed-052d-4015-b403-cf11479e3543;6d534dcd-c371-4087-820f-1c87286134a7;04670dd3-baf5-46a1-ad7f-84aee31c1ee7;fa7f08ee-7fc7-49cb-9765-3e70e95837ac" name="CommandReferenceList" />
+        <propertySettings Id="7517729e-fee4-4897-8b2f-6fd0cfdbd58c" value="4d6340ed-052d-4015-b403-cf11479e3543;6d534dcd-c371-4087-820f-1c87286134a7;04670dd3-baf5-46a1-ad7f-84aee31c1ee7;fa7f08ee-7fc7-49cb-9765-3e70e95837ac;bd09e1b4-059a-46f8-a452-4e349eab547b" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="a603c8f1-aec1-475b-be8f-4e50e2a5fa4c" typeId="NServiceBusHost.Automation.Commands.ProcessRootAfterUnfoldedProject">
@@ -304,6 +304,22 @@
         <propertySettings Id="4c924c82-aec3-4ff5-b6a3-fe66670f4915" value="~/Infrastructure/GeneratedCode" name="TargetPath" />
         <propertySettings Id="881f105d-62d1-4f98-9be1-f90855bd557d" value="t4://extension/83300ea2-15b7-4013-8212-ed68d99da5b2/Assets/Templates/Text/GeneratedWebInitialization.cs.tt" name="TemplateUri" />
         <propertySettings Id="609e76e6-4645-4a7e-8c57-c3aaddac3ffd" value="solution://6f4e8d6d-fb20-4d3b-b947-fb6fe92daf36/a58a46b8-7259-4278-8318-6665713b62bb" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="bd09e1b4-059a-46f8-a452-4e349eab547b" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0fdb1df3-c81b-4f2d-8583-5425c1876166" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="3ce95daf-f66e-4b14-bbc9-99145d19fbbc" value="False" name="SanitizeName" />
+        <propertySettings Id="dad3bacf-5b80-4609-a0b0-edbf736eb506" value="False" name="SyncName" />
+        <propertySettings Id="ce701b13-896c-469d-a88d-ba4cbebc2f78" name="Tag" />
+        <propertySettings Id="ecff40ec-bbc6-479c-b055-c8a0c06610ae" value="Compile" name="TargetBuildAction" />
+        <propertySettings Id="8d78e1b0-89ba-4d33-a531-09af52ade450" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="ce3a9b0d-b517-4cc4-8ca1-f35cb96e217d" value="TransportConfig.cs" name="TargetFileName" />
+        <propertySettings Id="5d08353a-9162-40cd-83b0-033b56a10d91" value="~/Infrastructure/GeneratedCode" name="TargetPath" />
+        <propertySettings Id="6d3325bc-3b9f-486f-b0b2-70de65ca58fb" value="t4://extension/83300ea2-15b7-4013-8212-ed68d99da5b2/Assets/Templates/Text/HostWeb/TransportConfig.tt" name="TemplateUri" />
+        <propertySettings Id="0361c6de-81e9-451b-b287-1140500dbad7" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
     <menuSettings Id="fe150381-090b-49be-8eb9-c8a6aa40c8eb" text="Deploy Component..." commandId="f3fcb1c2-417c-4780-a853-bfdd57dc7ef5" wizardId="00000000-0000-0000-0000-000000000000">
@@ -548,6 +564,27 @@
   "TypeId": "NServiceBusStudio.Automation.ValueProviders.EndpointHasPublishersValueProvider"
 }</valueProvider>
       </property>
+      <property Id="aaf0d3ac-d233-49cc-a6e7-504c1cc5e9b0" name="MaxRetries" displayName="Max Retries" description="Description for AbstractEndpoint.MaxRetries" codeIdentifier="MaxRetries" type="System.Int64">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "2",
+  "ValueProvider": null
+}</defaultValue>
+      </property>
     </properties>
     <automationSettings>
       <automationSettings Id="b71938a7-2e7b-44c5-ba39-c9ed79360a72" name="UnfoldProject" displayName="Unfold Project" description="" codeIdentifier="UnfoldProject" automationType="Command">
@@ -658,7 +695,7 @@
           </settings>
         </customizationPolicy>
       </automationSettings>
-      <automationSettings Id="d81706f2-5d09-40e8-9b09-ae5ecec04a6c" name="GenerateMsmqTransportConfig" displayName="Generate Msmq Transport Config" description="" codeIdentifier="GenerateMsmqTransportConfig" automationType="Command">
+      <automationSettings Id="d81706f2-5d09-40e8-9b09-ae5ecec04a6c" name="GenerateTransportConfigConfig" displayName="Generate Transport Config Config" description="" codeIdentifier="GenerateTransportConfigConfig" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -676,7 +713,7 @@
           </settings>
         </customizationPolicy>
       </automationSettings>
-      <automationSettings Id="7ce3c219-516c-4f35-99b7-7b98e62d0358" name="GenerateCodeOnBuild" displayName="Generate Code On Build" description="" codeIdentifier="GenerateCodeOnBuild" automationType="Command">
+      <automationSettings Id="7ce3c219-516c-4f35-99b7-7b98e62d0358" name="GenerateCodeConfigSection" displayName="Generate Code Config Section" description="" codeIdentifier="GenerateCodeConfigSection" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -749,6 +786,15 @@
         </customizationPolicy>
       </automationSettings>
       <automationSettings Id="a5344e66-b8f6-4c76-b672-cfbc5a85b67d" name="GenerateWebInitialization" displayName="Generate Web Initialization" description="" codeIdentifier="GenerateWebInitialization" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="0fdb1df3-c81b-4f2d-8583-5425c1876166" name="GenerateTransportConfigCode" displayName="Generate Transport Config Code" description="" codeIdentifier="GenerateTransportConfigCode" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />

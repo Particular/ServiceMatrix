@@ -156,6 +156,18 @@ namespace WebMVCEndpoint
 			get { return this.proxy.GetValue(() => this.HasComponentsThatPublishEvent); }
 			set { this.proxy.SetValue(() => this.HasComponentsThatPublishEvent, value); }
 		}
+
+		///	<summary>
+		///	Description for AbstractEndpoint.MaxRetries
+		///	</summary>
+		[Description("Description for AbstractEndpoint.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		public virtual Int64 MaxRetries 
+		{
+			get { return this.proxy.GetValue(() => this.MaxRetries); }
+			set { this.proxy.SetValue(() => this.MaxRetries, value); }
+		}
 		
 		///	<summary>
 		///	The ToolkitInfo.

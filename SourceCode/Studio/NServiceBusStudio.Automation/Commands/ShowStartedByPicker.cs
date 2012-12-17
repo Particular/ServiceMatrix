@@ -54,13 +54,13 @@ namespace AbstractEndpoint.Automation.Commands
 
             var element = CurrentElement.As<NServiceBusStudio.IUseCase>();
             var endpoints = CurrentElement.Root.As<NServiceBusStudio.IApplication>()
-                .Design.Endpoints.As<IAbstractElement>().Extensions
+                .Design.Endpoints.GetAll()
                 .Where(e => !element.EndpointsStartingUseCases.Contains(e.As<IToolkitInterface>() as IAbstractEndpoint));
 
             var picker = WindowFactory.CreateDialog<EndpointPicker>() as IServicePicker;
             picker.Title = element.InstanceName + " Started by...";
 
-            picker.Elements = new ObservableCollection<string>(endpoints.Select(e => e.InstanceName));
+            picker.Elements = new ObservableCollection<string>(endpoints.Select(e => e.As<IProductElement>().InstanceName));
 
             using (new MouseCursor(Cursors.Arrow))
             {
@@ -68,7 +68,7 @@ namespace AbstractEndpoint.Automation.Commands
                 {
                     foreach (var selectedElement in picker.SelectedItems)
                     {
-                        var selectedEndpoint = endpoints.FirstOrDefault(e => e.InstanceName == selectedElement);
+                        var selectedEndpoint = endpoints.FirstOrDefault(e => e.As<IProductElement>().InstanceName == selectedElement);
                         if (selectedElement != null)
                         {
                             element.AddEndpointStartingUseCase(selectedEndpoint.As<IToolkitInterface>() as IAbstractEndpoint);

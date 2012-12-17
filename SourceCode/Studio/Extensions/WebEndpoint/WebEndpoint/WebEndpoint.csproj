@@ -203,16 +203,19 @@
       <LastGenOutput>Web.config.cs</LastGenOutput>
       <ItemGuid>dd555b2e-e91d-44b3-8ea0-ebb12074f537</ItemGuid>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\Web.Debug.config.tt">
       <LastGenOutput>Web.Debug.config.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>8e17960b-8284-4597-a509-a6875534552e</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\Web.Release.config.tt">
       <LastGenOutput>Web.Release.config.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>c131fb61-550c-451c-a119-8f7239930dd8</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\EndpointDiagram.tt">
       <LastGenOutput>Web.config.cs</LastGenOutput>
@@ -222,14 +225,12 @@
     <Content Include="Assets\Templates\Text\HostWeb\MessageForwardingInCaseOfFaultConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>59a1ad64-449d-40db-9054-7e4127877d4e</ItemGuid>
-    </Content>
-    <Content Include="Assets\Templates\Text\HostWeb\MsmqTransportConfig.config.tt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>e7ef8946-0713-48bc-866f-182f9779cf6c</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\UnicastBusConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>fef2ebfa-1e03-4475-8bce-4fa55e5adbf1</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\MessageConventions.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -238,14 +239,27 @@
     <Content Include="Assets\Templates\Text\HostWeb\Logging.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>fb62a7e6-5c08-40a2-9bdf-26b6e9966779</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\packages.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>b586e403-6390-4d69-845f-9f674c92d023</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\GeneratedWebInitialization.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>a58a46b8-7259-4278-8318-6665713b62bb</ItemGuid>
+    </Content>
+    <Content Include="Assets\Templates\Text\HostWeb\TransportConfig.config.tt">
+      <LastGenOutput>TransportConfig.config.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Assets\Templates\Text\HostWeb\TransportConfig.tt">
+      <LastGenOutput>TransportConfig.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="bc47dee7-2765-44b6-8cac-41e8cba8705b.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
@@ -333,6 +347,6 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-	<Target Name="BeforeBuild" DependsOnTargets="Transform">
-	</Target>
+  <Target Name="BeforeBuild" DependsOnTargets="Transform">
+  </Target>
 </Project>

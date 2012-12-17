@@ -1870,6 +1870,1392 @@ namespace NServiceBusStudio
 	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
 
 	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusHost
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusHost")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "d9665948-7e01-4896-9843-c03ca1eedba7", ProxyType = typeof(NServiceBusHost))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusHost : INServiceBusHost
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusHost> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusHost() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusHost"/> class.
+		/// </summary>
+		public NServiceBusHost(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusHost>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual IEndpoints Parent
+		{ 
+			get { return this.target.Parent.As<IEndpoints>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		public virtual Runtime.IElement AsElement()
+		{
+			return this.As<Runtime.IElement>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean CommandSenderNeedsRegistration 
+		{
+			get { return this.proxy.GetValue(() => this.CommandSenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.CommandSenderNeedsRegistration, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.ComponentsOrderDefinition
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ComponentsOrderDefinition")]
+		[DisplayName("Components Order Definition")]
+		[Category("General")]
+		public virtual String ComponentsOrderDefinition 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentsOrderDefinition); }
+			set { this.proxy.SetValue(() => this.ComponentsOrderDefinition, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.ErrorQueue
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ErrorQueue")]
+		[DisplayName("Error Queue")]
+		[Category("General")]
+		public virtual String ErrorQueue 
+		{
+			get { return this.proxy.GetValue(() => this.ErrorQueue); }
+			set { this.proxy.SetValue(() => this.ErrorQueue, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.ForwardReceivedMessagesTo
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ForwardReceivedMessagesTo")]
+		[DisplayName("Forward Received Messages To")]
+		[Category("General")]
+		public virtual String ForwardReceivedMessagesTo 
+		{
+			get { return this.proxy.GetValue(() => this.ForwardReceivedMessagesTo); }
+			set { this.proxy.SetValue(() => this.ForwardReceivedMessagesTo, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MasterNode
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MasterNode")]
+		[DisplayName("Master Node")]
+		[Category("General")]
+		public virtual String MasterNode 
+		{
+			get { return this.proxy.GetValue(() => this.MasterNode); }
+			set { this.proxy.SetValue(() => this.MasterNode, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MaxRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		public virtual Int64 MaxRetries 
+		{
+			get { return this.proxy.GetValue(() => this.MaxRetries); }
+			set { this.proxy.SetValue(() => this.MaxRetries, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MessageConventions
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MessageConventions")]
+		[DisplayName("Message Conventions")]
+		[Category("General")]
+		public virtual String MessageConventions 
+		{
+			get { return this.proxy.GetValue(() => this.MessageConventions); }
+			set { this.proxy.SetValue(() => this.MessageConventions, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MessageEndpointMappingsConfig
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MessageEndpointMappingsConfig")]
+		[DisplayName("Message Endpoint Mappings Config")]
+		[Category("General")]
+		public virtual String MessageEndpointMappingsConfig 
+		{
+			get { return this.proxy.GetValue(() => this.MessageEndpointMappingsConfig); }
+			set { this.proxy.SetValue(() => this.MessageEndpointMappingsConfig, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Namespace
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		public virtual String Namespace 
+		{
+			get { return this.proxy.GetValue(() => this.Namespace); }
+			set { this.proxy.SetValue(() => this.Namespace, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.NumberOfWorkerThreads
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.NumberOfWorkerThreads")]
+		[DisplayName("Number Of Worker Threads")]
+		[Category("General")]
+		public virtual Int64 NumberOfWorkerThreads 
+		{
+			get { return this.proxy.GetValue(() => this.NumberOfWorkerThreads); }
+			set { this.proxy.SetValue(() => this.NumberOfWorkerThreads, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLA
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLA")]
+		[DisplayName("SLA")]
+		[Category("General")]
+		public virtual String SLA 
+		{
+			get { return this.proxy.GetValue(() => this.SLA); }
+			set { this.proxy.SetValue(() => this.SLA, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLEnabled
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLEnabled")]
+		[DisplayName("Enabled")]
+		[Category("SecondLevelRetriesConfig")]
+		public virtual Boolean SLEnabled 
+		{
+			get { return this.proxy.GetValue(() => this.SLEnabled); }
+			set { this.proxy.SetValue(() => this.SLEnabled, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLNumberOfRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLNumberOfRetries")]
+		[DisplayName("Number Of Retries")]
+		[Category("SecondLevelRetriesConfig")]
+		public virtual Int64 SLNumberOfRetries 
+		{
+			get { return this.proxy.GetValue(() => this.SLNumberOfRetries); }
+			set { this.proxy.SetValue(() => this.SLNumberOfRetries, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease")]
+		[DisplayName("Time Increase")]
+		[Category("SecondLevelRetriesConfig")]
+		public virtual String SLTimeIncrease 
+		{
+			get { return this.proxy.GetValue(() => this.SLTimeIncrease); }
+			set { this.proxy.SetValue(() => this.SLTimeIncrease, value); }
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+		
+		/// <summary>
+		/// Gets the <see cref="INServiceBusHostComponents"/> contained in this element.
+		/// </summary>
+		public virtual INServiceBusHostComponents NServiceBusHostComponents 
+		{ 
+			get { return proxy.GetElement(() => this.NServiceBusHostComponents, element => new NServiceBusHostComponents(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusHostComponents"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusHostComponents CreateNServiceBusHostComponents(string name, Action<INServiceBusHostComponents> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateCollection<INServiceBusHostComponents>(name, initializer, raiseInstantiateEvents);
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "58bd0df2-5250-472d-a169-4d72726325ae", ProxyType = typeof(NServiceBusHostComponentLink))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusHostComponentLink : INServiceBusHostComponentLink
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusHostComponentLink> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusHostComponentLink() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusHostComponentLink"/> class.
+		/// </summary>
+		public NServiceBusHostComponentLink(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusHostComponentLink>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual INServiceBusHostComponents Parent
+		{ 
+			get { return this.target.Parent.As<INServiceBusHostComponents>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		public virtual Runtime.IElement AsElement()
+		{
+			return this.As<Runtime.IElement>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentId
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentId")]
+		[DisplayName("Component Id")]
+		[Category("General")]
+		public virtual String ComponentId 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentId); }
+			set { this.proxy.SetValue(() => this.ComponentId, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentName
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentName")]
+		[DisplayName("Component Name")]
+		[Category("General")]
+		public virtual String ComponentName 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentName); }
+			set { this.proxy.SetValue(() => this.ComponentName, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.Order
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.Order")]
+		[DisplayName("Order")]
+		[Category("General")]
+		public virtual Int64 Order 
+		{
+			get { return this.proxy.GetValue(() => this.Order); }
+			set { this.proxy.SetValue(() => this.Order, value); }
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusWeb
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusWeb")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "19234c17-dbbc-4997-a6f5-5705d013ac01", ProxyType = typeof(NServiceBusWeb))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusWeb : INServiceBusWeb
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusWeb> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusWeb() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusWeb"/> class.
+		/// </summary>
+		public NServiceBusWeb(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusWeb>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual IEndpoints Parent
+		{ 
+			get { return this.target.Parent.As<IEndpoints>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		public virtual Runtime.IElement AsElement()
+		{
+			return this.As<Runtime.IElement>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean CommandSenderNeedsRegistration 
+		{
+			get { return this.proxy.GetValue(() => this.CommandSenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.CommandSenderNeedsRegistration, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.ErrorQueue
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.ErrorQueue")]
+		[DisplayName("Error Queue")]
+		[Category("General")]
+		public virtual String ErrorQueue 
+		{
+			get { return this.proxy.GetValue(() => this.ErrorQueue); }
+			set { this.proxy.SetValue(() => this.ErrorQueue, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.ForwardReceivedMessagesTo
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.ForwardReceivedMessagesTo")]
+		[DisplayName("Forward Received Messages To")]
+		[Category("General")]
+		public virtual String ForwardReceivedMessagesTo 
+		{
+			get { return this.proxy.GetValue(() => this.ForwardReceivedMessagesTo); }
+			set { this.proxy.SetValue(() => this.ForwardReceivedMessagesTo, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.HasComponentsThatPublishEvent
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.HasComponentsThatPublishEvent")]
+		[DisplayName("Has Components That Publish Event")]
+		[Category("General")]
+		public virtual Boolean HasComponentsThatPublishEvent 
+		{
+			get { return this.proxy.GetValue(() => this.HasComponentsThatPublishEvent); }
+			set { this.proxy.SetValue(() => this.HasComponentsThatPublishEvent, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.MaxRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		public virtual Int64 MaxRetries 
+		{
+			get { return this.proxy.GetValue(() => this.MaxRetries); }
+			set { this.proxy.SetValue(() => this.MaxRetries, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.MessageConventions
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.MessageConventions")]
+		[DisplayName("Message Conventions")]
+		[Category("General")]
+		public virtual String MessageConventions 
+		{
+			get { return this.proxy.GetValue(() => this.MessageConventions); }
+			set { this.proxy.SetValue(() => this.MessageConventions, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.MessageEndpointMappingsConfig
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.MessageEndpointMappingsConfig")]
+		[DisplayName("Message Endpoint Mappings Config")]
+		[Category("General")]
+		public virtual String MessageEndpointMappingsConfig 
+		{
+			get { return this.proxy.GetValue(() => this.MessageEndpointMappingsConfig); }
+			set { this.proxy.SetValue(() => this.MessageEndpointMappingsConfig, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Namespace
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		public virtual String Namespace 
+		{
+			get { return this.proxy.GetValue(() => this.Namespace); }
+			set { this.proxy.SetValue(() => this.Namespace, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.NumberOfWorkerThreads
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.NumberOfWorkerThreads")]
+		[DisplayName("Number Of Worker Threads")]
+		[Category("General")]
+		public virtual Int64 NumberOfWorkerThreads 
+		{
+			get { return this.proxy.GetValue(() => this.NumberOfWorkerThreads); }
+			set { this.proxy.SetValue(() => this.NumberOfWorkerThreads, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.SenderBaseType
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SenderBaseType")]
+		[DisplayName("Sender Base Type")]
+		[Category("General")]
+		public virtual String SenderBaseType 
+		{
+			get { return this.proxy.GetValue(() => this.SenderBaseType); }
+			set { this.proxy.SetValue(() => this.SenderBaseType, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.SLA
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SLA")]
+		[DisplayName("SLA")]
+		[Category("General")]
+		public virtual String SLA 
+		{
+			get { return this.proxy.GetValue(() => this.SLA); }
+			set { this.proxy.SetValue(() => this.SLA, value); }
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+		
+		/// <summary>
+		/// Gets the <see cref="INServiceBusWebComponents"/> contained in this element.
+		/// </summary>
+		public virtual INServiceBusWebComponents NServiceBusWebComponents 
+		{ 
+			get { return proxy.GetElement(() => this.NServiceBusWebComponents, element => new NServiceBusWebComponents(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusWebComponents"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusWebComponents CreateNServiceBusWebComponents(string name, Action<INServiceBusWebComponents> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateCollection<INServiceBusWebComponents>(name, initializer, raiseInstantiateEvents);
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6", ProxyType = typeof(NServiceBusWebComponentLink))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusWebComponentLink : INServiceBusWebComponentLink
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusWebComponentLink> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusWebComponentLink() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusWebComponentLink"/> class.
+		/// </summary>
+		public NServiceBusWebComponentLink(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusWebComponentLink>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual INServiceBusWebComponents Parent
+		{ 
+			get { return this.target.Parent.As<INServiceBusWebComponents>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		public virtual Runtime.IElement AsElement()
+		{
+			return this.As<Runtime.IElement>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentId
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentId")]
+		[DisplayName("Component Id")]
+		[Category("General")]
+		public virtual String ComponentId 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentId); }
+			set { this.proxy.SetValue(() => this.ComponentId, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentName
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentName")]
+		[DisplayName("Component Name")]
+		[Category("General")]
+		public virtual String ComponentName 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentName); }
+			set { this.proxy.SetValue(() => this.ComponentName, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.Order
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.Order")]
+		[DisplayName("Order")]
+		[Category("General")]
+		public virtual Int64 Order 
+		{
+			get { return this.proxy.GetValue(() => this.Order); }
+			set { this.proxy.SetValue(() => this.Order, value); }
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusMVC
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusMVC")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "55173bde-0618-431e-8b1a-5bb2c312c713", ProxyType = typeof(NServiceBusMVC))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusMVC : INServiceBusMVC
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusMVC> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusMVC() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusMVC"/> class.
+		/// </summary>
+		public NServiceBusMVC(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusMVC>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual IEndpoints Parent
+		{ 
+			get { return this.target.Parent.As<IEndpoints>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		public virtual Runtime.IElement AsElement()
+		{
+			return this.As<Runtime.IElement>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean CommandSenderNeedsRegistration 
+		{
+			get { return this.proxy.GetValue(() => this.CommandSenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.CommandSenderNeedsRegistration, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.ErrorQueue
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.ErrorQueue")]
+		[DisplayName("Error Queue")]
+		[Category("General")]
+		public virtual String ErrorQueue 
+		{
+			get { return this.proxy.GetValue(() => this.ErrorQueue); }
+			set { this.proxy.SetValue(() => this.ErrorQueue, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.ForwardReceivedMessagesTo
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.ForwardReceivedMessagesTo")]
+		[DisplayName("Forward Received Messages To")]
+		[Category("General")]
+		public virtual String ForwardReceivedMessagesTo 
+		{
+			get { return this.proxy.GetValue(() => this.ForwardReceivedMessagesTo); }
+			set { this.proxy.SetValue(() => this.ForwardReceivedMessagesTo, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.HasComponentsThatPublishEvent
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.HasComponentsThatPublishEvent")]
+		[DisplayName("Has Components That Publish Event")]
+		[Category("General")]
+		public virtual Boolean HasComponentsThatPublishEvent 
+		{
+			get { return this.proxy.GetValue(() => this.HasComponentsThatPublishEvent); }
+			set { this.proxy.SetValue(() => this.HasComponentsThatPublishEvent, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.MaxRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		public virtual Int64 MaxRetries 
+		{
+			get { return this.proxy.GetValue(() => this.MaxRetries); }
+			set { this.proxy.SetValue(() => this.MaxRetries, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.MessageConventions
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.MessageConventions")]
+		[DisplayName("Message Conventions")]
+		[Category("General")]
+		public virtual String MessageConventions 
+		{
+			get { return this.proxy.GetValue(() => this.MessageConventions); }
+			set { this.proxy.SetValue(() => this.MessageConventions, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.MessageEndpointMappingsConfig
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.MessageEndpointMappingsConfig")]
+		[DisplayName("Message Endpoint Mappings Config")]
+		[Category("General")]
+		public virtual String MessageEndpointMappingsConfig 
+		{
+			get { return this.proxy.GetValue(() => this.MessageEndpointMappingsConfig); }
+			set { this.proxy.SetValue(() => this.MessageEndpointMappingsConfig, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Namespace
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		public virtual String Namespace 
+		{
+			get { return this.proxy.GetValue(() => this.Namespace); }
+			set { this.proxy.SetValue(() => this.Namespace, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.NumberOfWorkerThreads
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.NumberOfWorkerThreads")]
+		[DisplayName("Number Of Worker Threads")]
+		[Category("General")]
+		public virtual Int64 NumberOfWorkerThreads 
+		{
+			get { return this.proxy.GetValue(() => this.NumberOfWorkerThreads); }
+			set { this.proxy.SetValue(() => this.NumberOfWorkerThreads, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.SLA
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SLA")]
+		[DisplayName("SLA")]
+		[Category("General")]
+		public virtual String SLA 
+		{
+			get { return this.proxy.GetValue(() => this.SLA); }
+			set { this.proxy.SetValue(() => this.SLA, value); }
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+		
+		/// <summary>
+		/// Gets the <see cref="INServiceBusMVCComponents"/> contained in this element.
+		/// </summary>
+		public virtual INServiceBusMVCComponents NServiceBusMVCComponents 
+		{ 
+			get { return proxy.GetElement(() => this.NServiceBusMVCComponents, element => new NServiceBusMVCComponents(element)); }
+		}
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusMVCComponents"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual INServiceBusMVCComponents CreateNServiceBusMVCComponents(string name, Action<INServiceBusMVCComponents> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateCollection<INServiceBusMVCComponents>(name, initializer, raiseInstantiateEvents);
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink")]
+	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "18db2bf8-3414-4c90-9e46-39e0475a018b", ProxyType = typeof(NServiceBusMVCComponentLink))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class NServiceBusMVCComponentLink : INServiceBusMVCComponentLink
+	{
+		private Runtime.IAbstractElement target;
+		private Runtime.IAbstractElementProxy<INServiceBusMVCComponentLink> proxy;
+
+		/// <summary>
+		/// For MEF.
+		/// </summary>
+		[ImportingConstructor]
+		private NServiceBusMVCComponentLink() { }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NServiceBusMVCComponentLink"/> class.
+		/// </summary>
+		public NServiceBusMVCComponentLink(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<INServiceBusMVCComponentLink>();
+			OnCreated();
+		}	
+
+		partial void OnCreated();
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual INServiceBusMVCComponents Parent
+		{ 
+			get { return this.target.Parent.As<INServiceBusMVCComponents>(); }
+		}
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		public virtual Runtime.IElement AsElement()
+		{
+			return this.As<Runtime.IElement>();
+		}
+
+		/// <summary>
+		/// Gets the generic underlying element as the given type if possible.
+		/// </summary>
+		public virtual TRuntimeInterface As<TRuntimeInterface>()
+			where TRuntimeInterface : class
+		{
+			return this.target as TRuntimeInterface;
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentId
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentId")]
+		[DisplayName("Component Id")]
+		[Category("General")]
+		public virtual String ComponentId 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentId); }
+			set { this.proxy.SetValue(() => this.ComponentId, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentName
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentName")]
+		[DisplayName("Component Name")]
+		[Category("General")]
+		public virtual String ComponentName 
+		{
+			get { return this.proxy.GetValue(() => this.ComponentName); }
+			set { this.proxy.SetValue(() => this.ComponentName, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.Order
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.Order")]
+		[DisplayName("Order")]
+		[Category("General")]
+		public virtual Int64 Order 
+		{
+			get { return this.proxy.GetValue(() => this.Order); }
+			set { this.proxy.SetValue(() => this.Order, value); }
+		}
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes 
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		public virtual Boolean InTransaction 
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		public virtual Boolean IsSerializing 
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		public virtual String InstanceName 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		public virtual Double InstanceOrder 
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References 
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+
+		/// <summary>
+		/// Deletes this instance.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
 	///	Description for Application.Design.ContractsProject
 	///	</summary>
 	[Description("Description for Application.Design.ContractsProject")]

@@ -118,43 +118,43 @@
       <DependentUpon>ToolkitElement.tt</DependentUpon>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\CollectionImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>9f457b6c-327d-47b9-90d5-fae2f4efe894</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\CollectionInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>b8bfc717-3202-4b51-81ed-48160cc5f99d</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ElementImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>01885d69-604d-4843-b3f9-5e099cdfcc5b</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ElementInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>0ce48a7f-ef6b-40c1-bc63-1edd93c3bb8a</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ExtensionPointImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>6e5a2a9e-6730-408b-870a-6b8f7ade8bbf</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ExtensionPointInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>0068db70-f49c-41ae-8026-9e581b25d364</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ProductImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>ec687e5b-145e-4d03-bee9-cb2323a993c7</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ProductInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>112cfd1b-9f60-419e-bcc1-4e0de2d2a1f7</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ViewImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>d2322700-5bc3-4ab1-b243-2944adb51af4</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\WebMVCEndpoint\ViewInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
       <ItemGuid>bc54effd-0d39-4a64-9c69-842a11416c1a</ItemGuid>
     </Compile>
     <Compile Include="IAbstractEndpoint.cs" />

@@ -1,20 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Windows;
 using EnvDTE;
+using Microsoft.VisualStudio.Patterning.Extensibility.References;
 using Microsoft.VisualStudio.Patterning.Runtime;
+using Microsoft.VisualStudio.Patterning.Runtime.Schema;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.Patterning.Extensibility.References;
-using System.IO;
 using NServiceBusStudio.Automation.Infrastructure;
-using System.Windows;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
     public static class ProductElementExtensions
     {
+        public static void ShowHideProperty(this IProductElement element, string propertyName, bool isVisible)
+        {
+            var property = element.Properties.FirstOrDefault(x => x.DefinitionName == propertyName);
+            if (property == null)
+                return;
+            
+            var propertyInfo = property.Info as PropertySchema;
+            if (propertyInfo == null)
+                return;
+            
+            propertyInfo.IsVisible = isVisible;
+        }
+
         public static IProject GetProject(this IProductElement element)
         {
             if (element == null)

@@ -3,6 +3,7 @@
 <#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
 <#@ Assembly Name="NServiceBusHost.Automation.dll" #>
+<#  #>
 <#@ Assembly Name="WebEndpoint.Automation.dll" #>
 <#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>

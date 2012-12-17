@@ -11,6 +11,7 @@
 namespace NServiceBusStudio
 {
 	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
@@ -95,6 +96,55 @@ namespace NServiceBusStudio
 		{
 			get { return this.proxy.GetValue(() => this.ExtensionPath); }
 			set { this.proxy.SetValue(() => this.ExtensionPath, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.Transport
+		///	</summary>
+		[Description("Description for Application.Transport")]
+		[DisplayName("Transport")]
+		[Category("General")]
+		[TypeConverter(typeof(TransportTypeConverter))]
+		public virtual String Transport 
+		{
+			get { return this.proxy.GetValue(() => this.Transport); }
+			set { this.proxy.SetValue(() => this.Transport, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.TransportSqlServer
+		///	</summary>
+		[Description("Description for Application.TransportSqlServer")]
+		[DisplayName("Transport Sql Server")]
+		[Category("General")]
+		public virtual String TransportSqlServer 
+		{
+			get { return this.proxy.GetValue(() => this.TransportSqlServer); }
+			set { this.proxy.SetValue(() => this.TransportSqlServer, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.TransportSqlDatabase
+		///	</summary>
+		[Description("Description for Application.TransportSqlDatabase")]
+		[DisplayName("Transport Sql Database")]
+		[Category("General")]
+		public virtual String TransportSqlDatabase 
+		{
+			get { return this.proxy.GetValue(() => this.TransportSqlDatabase); }
+			set { this.proxy.SetValue(() => this.TransportSqlDatabase, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.TransportBrokerUri
+		///	</summary>
+		[Description("Description for Application.TransportBrokerUri")]
+		[DisplayName("Transport Broker Uri")]
+		[Category("General")]
+		public virtual String TransportBrokerUri 
+		{
+			get { return this.proxy.GetValue(() => this.TransportBrokerUri); }
+			set { this.proxy.SetValue(() => this.TransportBrokerUri, value); }
 		}
 		
 		///	<summary>

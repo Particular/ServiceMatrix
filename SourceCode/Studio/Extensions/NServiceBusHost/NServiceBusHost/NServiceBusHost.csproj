@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NServiceBusStudio.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Binaries\NServiceBusStudio.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -144,8 +148,9 @@
       <ItemGuid>72efd64f-bfa0-48f2-a266-dc1396d1a41a</ItemGuid>
     </Content>
     <Content Include="Assets\Templates\Text\Host\EndpointConfig.tt">
-      <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>8ecf94ae-891b-4049-a59e-d77f9f1808f1</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Assets\Templates\Projects\NSBH\App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -160,10 +165,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>19d331c0-a125-4e92-8d15-9e1b0b49e499</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Text\Host\MsmqTransportConfig.config.tt">
+    <Content Include="Assets\Templates\Text\Host\TransportConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>f08a8245-1170-4182-9cd7-c75085634e5e</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="Assets\Templates\Text\Host\MasterNodeConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -190,6 +195,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>4276f6e9-1d4a-4a15-8949-995f55bd84b7</ItemGuid>
+    </Content>
+    <Content Include="Assets\Templates\Text\Host\TransportConfig.tt">
+      <LastGenOutput>TransportConfig.cs</LastGenOutput>
+      <ItemGuid>dade7a65-da86-4742-b443-bf7b21889d6c</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="bc47dee7-2765-44b6-8cac-41e8cba8705b.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>

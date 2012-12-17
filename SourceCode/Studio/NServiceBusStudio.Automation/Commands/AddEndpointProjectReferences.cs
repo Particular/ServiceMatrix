@@ -34,8 +34,7 @@ namespace NServiceBusStudio.Automation.Commands
             var component = Model.Helpers.GetComponentFromLinkedElement(this.CurrentElement);
             var service = component.Parent.Parent;
 
-            foreach (var endpoint in service.Parent.Parent.Endpoints.As<IAbstractElement>().Extensions
-                .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+            foreach (var endpoint in service.Parent.Parent.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component)))
             {
                 if (component.Publishes.EventLinks.Any() || component.Subscribes.SubscribedEventLinks.Any())

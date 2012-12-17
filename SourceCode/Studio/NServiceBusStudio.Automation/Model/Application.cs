@@ -16,6 +16,9 @@ using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Model;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
+using System.ComponentModel;
+using NServiceBusStudio.Automation.TypeDescriptors;
+using Microsoft.VisualStudio.Patterning.Runtime.Store;
 
 namespace NServiceBusStudio
 {
@@ -29,6 +32,11 @@ namespace NServiceBusStudio
 
     partial class Application : IRenameRefactoringNotSupported
     {
+        static partial void StaticInitialization()
+        {
+            TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
+        }
+
         [Import]
         public IPatternManager PatternManager { get; set; }
 
@@ -183,5 +191,12 @@ namespace NServiceBusStudio
         {
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
+    }
+
+    public enum TransportType
+    {
+        Msmq,
+        ActiveMQ,
+        SqlServer
     }
 }
