@@ -39,18 +39,6 @@
     <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
   </Identifier>
   <References>
-		<Reference Id="e91869eb-ba2e-4420-baad-df72525d4fe5">
-		  <Name>WebMVCEndpoint</Name>
-		  <VsixPath>WebMVCEndpoint.vsix</VsixPath>
-		</Reference>
-		<Reference Id="83300ea2-15b7-4013-8212-ed68d99da5b2">
-		  <Name>WebEndpoint</Name>
-		  <VsixPath>WebEndpoint.vsix</VsixPath>
-		</Reference>
-		<Reference Id="8d8a34f8-b52e-438e-a39a-d75439744f01">
-		  <Name>NServiceBusHost</Name>
-		  <VsixPath>NServiceBusHost.vsix</VsixPath>
-		</Reference>
 		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
 		  <Name>NServiceBus Modeling</Name>
 		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>

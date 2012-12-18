@@ -11,15 +11,9 @@
 <TransportConfig MaxDegreeOfParallelism="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
 <#
 	if (application.Transport == TransportType.ActiveMQ.ToString())
-    {
+{
 #>
 <ActiveMQConfig BrokerUri="<#= application.TransportBrokerUri.ToString().Trim() #>"/>
 <#
-	}
-	else if (application.Transport == TransportType.SqlServer.ToString())
-	{
-#>
-<SqlServerTransportConfig ConnectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False\"/>
-<#
-	}
+	  }
 #>
