@@ -32,12 +32,7 @@
   <Logging configSource="Infrastructure\Logging.config"/>
   <!-- END -->
 
-  
-  <connectionStrings>
-    <add name="ApplicationServices"
-         connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true"
-         providerName="System.Data.SqlClient" />
-  </connectionStrings>
+  <connectionStrings configSource="Infrastructure\GeneratedCode\Config\TransportConnectionString.config" />
 
   <system.web>
     <compilation debug="true" targetFramework="4.0" />
