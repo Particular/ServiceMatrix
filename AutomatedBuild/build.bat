@@ -8,23 +8,12 @@ md SourceCode\Studio\Binaries
 move /Y *.vsix SourceCode\Studio\Binaries
 cd SourceCode\Studio
 msbuild Studio.sln /p:configuration=Debug
-cd "Extensions\NServiceBusHost"
-msbuild NServiceBusHost.sln /p:configuration=Debug
-cd "..\WebEndpoint"
-msbuild WebEndpoint.sln /p:configuration=Debug
-cd "..\WebMVCEndpoint"
-msbuild WebMVCEndpoint.sln /p:configuration=Debug
-cd "..\.."
-msbuild Studio.sln /p:configuration=Debug
 cd binaries
 %zipcl% x -otmpvsix nservicebusstudio.vsix *.vsix
 rename nservicebusstudio.vsix nservicebusstudio.vsix.zip
 %zipcl% d nservicebusstudio.vsix.zip *.vsix
 cd tmpvsix
 ren *.vsix *.zip
-%zipcl% d NServiceBusHost.zip PatternToolkitManager.vsix
-%zipcl% d WebEndpoint.zip PatternToolkitManager.vsix
-%zipcl% d WebMVCEndpoint.zip PatternToolkitManager.vsix
 %zipcl% d PatternToolkitManager.zip "GeneratedCode\Guidance\Content\*.*"
 ren *.zip *.vsix
 %zipcl% a "..\nservicebusstudio.vsix.zip" "*.vsix"

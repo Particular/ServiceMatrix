@@ -2,18 +2,23 @@
 <#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
 <#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#  #>
 <#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
-<#  var endpoint = ((IProductElement)this.Element).As<INServiceBusHost>(); #>
+<#  var endpoint = ((IProductElement)this.Element).As<INServiceBusWeb>(); #>
 <#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
-<TransportConfig MaxDegreeOfParallelism="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
+<connectionStrings>
+    <add name="ApplicationServices"
+       connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true"
+       providerName="System.Data.SqlClient" />
 <#
-	if (application.Transport == TransportType.ActiveMQ.ToString())
-    {
+	if (application.Transport == TransportType.SqlServer.ToString())
+	{
 #>
-<ActiveMQConfig BrokerUri="<#= application.TransportBrokerUri.ToString().Trim() #>"/>
+    <add name="NServiceBus/Persistence" connectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
 <#
-	  }
+	}
 #>
+</connectionStrings>

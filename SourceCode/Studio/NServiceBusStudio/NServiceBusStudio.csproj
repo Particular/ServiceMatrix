@@ -599,20 +599,8 @@
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\Binaries\NServiceBusHost.vsix">
-      <Link>NServiceBusHost.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Binaries\WebEndpoint.vsix">
-      <Link>WebEndpoint.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.vsix">
       <Link>NServiceBus.Modeling.EndpointDesign.Shell.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Binaries\WebMVCEndpoint.vsix">
-      <Link>WebMVCEndpoint.vsix</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
@@ -984,6 +972,24 @@
       <ItemGuid>b132847c-7244-4a53-8070-ce47aad324f7</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>695e0ead-1d04-49a4-bce4-2eb707a06bcc</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>eb58c194-dddf-4e22-8e2b-a1b76ddb1990</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VSPackage.resx</LastGenOutput>
@@ -996,6 +1002,7 @@
     <None Include="NServiceBus.ToolkitVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NServiceBus.ToolkitVersion.targets</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="NServiceBus.ToolkitVersion.targets">
       <AutoGen>True</AutoGen>
@@ -1113,20 +1120,8 @@
   <ItemGroup>
     <SourceEmptyFile Include="emptyfile.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <TargetHostVsixFile Include="..\Binaries\NServiceBusHost.vsix" />
-  </ItemGroup>
-  <ItemGroup>
-    <TargetWebVsixFile Include="..\Binaries\WebEndpoint.vsix" />
-  </ItemGroup>
-  <ItemGroup>
-    <TargetMVCVsixFile Include="..\Binaries\WebMVCEndpoint.vsix" />
-  </ItemGroup>
   <Target Name="EnsureVsixInPlace">
     <Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
-    <Copy Condition="!Exists('..\Binaries\NServiceBusHost.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetHostVsixFile)" />
-    <Copy Condition="!Exists('..\Binaries\WebEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetWebVsixFile)" />
-    <Copy Condition="!Exists('..\Binaries\WebMVCEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetMVCVsixFile)" />
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>

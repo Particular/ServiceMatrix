@@ -29,9 +29,11 @@
   <SecondLevelRetriesConfig configSource="Infrastructure\GeneratedCode\Config\SecondLevelRetriesConfig.config"/>
   <Logging configSource="Infrastructure\Logging.config"/>
   <!-- END -->
-
+  
+  <connectionStrings configSource="Infrastructure\GeneratedCode\Config\TransportConnectionString.config" />
+  
   <appSettings>
-	<add key="EndpointConfigurationType" value="<#= endpoint.Namespace #>.EndpointConfig, <#= endpoint.Namespace #>" />
+	  <add key="EndpointConfigurationType" value="<#= endpoint.Namespace #>.EndpointConfig, <#= endpoint.Namespace #>" />
   </appSettings>
 
 </configuration>
