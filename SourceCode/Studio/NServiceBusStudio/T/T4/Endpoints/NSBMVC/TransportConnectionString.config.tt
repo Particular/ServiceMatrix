@@ -10,9 +10,7 @@
 <#  var endpoint = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
 <#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
 <connectionStrings>
-    <add name="ApplicationServices"
-       connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true"
-       providerName="System.Data.SqlClient" />
+    <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-<#= endpoint.Namespace #>;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-<#= endpoint.Namespace #>" providerName="System.Data.SqlClient" />
 <#
 	if (application.Transport == TransportType.SqlServer.ToString())
 	{
