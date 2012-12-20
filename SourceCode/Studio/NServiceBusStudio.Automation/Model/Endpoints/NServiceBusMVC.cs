@@ -48,13 +48,13 @@ namespace NServiceBusStudio
         {
             if (!this.AsElement().IsSerializing)
             {
-                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 3");
-                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 3");
+                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 4");
+                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 4");
 
                 if (!Directory.Exists(programFiles) &&
                     !Directory.Exists(programFilesX86))
                 {
-                    var error = "You cannot create this endpoint because ASP.NET MVC 3 is not installed. Install ASP.NET MVC 3 and try again.";
+                    var error = "You cannot create this endpoint because ASP.NET MVC 4 is not installed. Install ASP.NET MVC 4 and try again.";
                     System.Windows.MessageBox.Show(error, "NService Bus ASP NET MVC Endpoint", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                     throw new OperationCanceledException(error);
                 }
