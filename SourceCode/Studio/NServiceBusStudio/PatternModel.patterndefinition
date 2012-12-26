@@ -637,18 +637,12 @@
         <propertySettings Id="903583a6-5f56-4959-adba-72f1c7be15ae" value="{CustomCodePath}" name="TargetPath" />
       </properties>
     </commandSettings>
-    <commandSettings Id="db0a6380-180b-410f-982b-f3d1589111f3" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.ActivateElementSolutionItemCommand">
+    <commandSettings Id="db0a6380-180b-410f-982b-f3d1589111f3" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.ActivateArtifactCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0c9d0614-8db1-4a59-ad8c-df29e7e5744e" />
       </extendedElement>
       <properties>
         <propertySettings Id="11c9694c-9823-4774-85db-7063d23b8f9e" value="True" name="Open" />
-        <propertySettings Id="6cdb19d2-9d1f-42bc-bf4c-f18558e4939f" value="{CodeIdentifier}.cs" name="TargetFileName" />
-        <propertySettings Id="ac4aa180-1926-4c5f-9072-8de4429dc062" name="TargetPath">
-          <valueProvider>
-            <valueProviderSettings Id="68189818-2701-4cf2-8525-11d0a14a0e50" typeId="NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider" />
-          </valueProvider>
-        </propertySettings>
       </properties>
     </commandSettings>
     <commandSettings Id="bedce582-4714-46bd-9def-d09e712ddab3" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
