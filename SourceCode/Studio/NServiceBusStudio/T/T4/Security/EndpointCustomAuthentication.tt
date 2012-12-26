@@ -19,7 +19,7 @@ namespace <#= authentication.LocalNamespace #>
             // Overrides the common authentication
             // Implementing a custom one for this endpoint.
             // Implement your custom logic as needed
-            if (message.GetHeader("User") == null)
+            if (this.Bus.GetMessageHeader(message, "User") == null)
             {
                 this.Bus.DoNotContinueDispatchingCurrentMessageToHandlers();
             }

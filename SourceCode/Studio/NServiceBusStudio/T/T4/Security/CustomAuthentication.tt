@@ -20,7 +20,7 @@ namespace <#= authentication.Namespace #>
             // This logic will be applied to all the endpoints
             // that doesn't customize authentication
 			// overriding it.
-            if (message.GetHeader("User") == null)
+            if (this.Bus.GetMessageHeader(message, "User") == null)
             {
                 this.Bus.DoNotContinueDispatchingCurrentMessageToHandlers();
             }
