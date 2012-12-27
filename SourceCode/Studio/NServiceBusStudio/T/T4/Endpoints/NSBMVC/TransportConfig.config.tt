@@ -8,7 +8,7 @@
 <#@ Import Namespace="System.Linq" #>
 <#  var endpoint = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
 <#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
-<TransportConfig MaxDegreeOfParallelism="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
+<TransportConfig MaximumConcurrencyLevel="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
 <#
 	if (application.Transport == TransportType.ActiveMQ.ToString())
 {
