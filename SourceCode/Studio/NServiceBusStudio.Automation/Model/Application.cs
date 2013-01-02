@@ -75,7 +75,7 @@ namespace NServiceBusStudio
                     if (componentLink != null && 
                         componentLink.ComponentReference.Value != null)
                     {
-                        var endpoint = element.Product.As<IAbstractEndpoint>();
+                        var endpoint = element.Parent.Parent.As<IAbstractEndpoint>();
                         componentLink.ComponentReference.Value.RemoveLinks(endpoint);
                     }
                 };
