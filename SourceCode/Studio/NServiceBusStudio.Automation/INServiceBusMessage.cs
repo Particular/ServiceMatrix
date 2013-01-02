@@ -46,7 +46,7 @@ namespace NServiceBusStudio
             else if (messagelink is ISubscribedEventLink)
             {
                 var el = messagelink as ISubscribedEventLink;
-                return el == null ? "object" : el.EventReference.Value.CodeIdentifier;
+                return (el == null || el.EventReference == null || el.EventReference.Value == null) ? "object" : el.EventReference.Value.CodeIdentifier;
             }
             else return null;
         }
