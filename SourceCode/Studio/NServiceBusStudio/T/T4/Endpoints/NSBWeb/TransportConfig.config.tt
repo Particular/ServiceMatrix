@@ -9,11 +9,3 @@
 <#  var endpoint = ((IProductElement)this.Element).As<INServiceBusWeb>(); #>
 <#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
 <TransportConfig MaximumConcurrencyLevel="<#= endpoint.NumberOfWorkerThreads.ToString().Trim() #>" MaxRetries="<#= endpoint.MaxRetries.ToString().Trim() #>" />
-<#
-	if (application.Transport == TransportType.ActiveMQ.ToString())
-{
-#>
-<ActiveMQConfig BrokerUri="<#= application.TransportBrokerUri.ToString().Trim() #>"/>
-<#
-	  }
-#>
