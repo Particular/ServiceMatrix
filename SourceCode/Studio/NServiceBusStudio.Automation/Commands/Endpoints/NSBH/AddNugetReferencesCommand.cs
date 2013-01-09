@@ -44,10 +44,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Core" />
             //<Reference Include="NServiceBus.Host" />
 
+            Endpoint.Project.DownloadNuGetPackages();
+
             if (!Endpoint.Project.HasReference("NServiceBus"))
             {
-                Endpoint.Project.DownloadNuGetPackages();
-
                 Endpoint.Project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
@@ -65,6 +65,34 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                         System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                         this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                 }
+            }
+
+            var app = Endpoint.As<IProductElement>().Root.As<IApplication>();
+
+            //<Reference Include="NServiceBus.ActiveMQ" />
+            if (app.Transport == TransportType.ActiveMQ.ToString()) 
+            {
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.ActiveMQ.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+            }
+            else 
+            {
+                Endpoint.Project.RemoveReference ("NServiceBus.ActiveMQ");
+            }
+
+            //<Reference Include="NServiceBus.SqlServer" />
+            if (app.Transport == TransportType.SqlServer.ToString())
+            {
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\NServiceBus.SqlServer.{1}\lib\net40\NServiceBus.SqlServer.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+            }
+            else
+            {
+                Endpoint.Project.RemoveReference("NServiceBus.SqlServer");
             }
         }
     }

@@ -47,6 +47,15 @@ namespace NServiceBusStudio.Automation.Extensions
         /// </summary>
         public static void RemoveReference(this IProject project, IProject referenceToRemove)
         {
+            Guard.NotNull(() => referenceToRemove, referenceToRemove);
+            RemoveReference(project, referenceToRemove.Name);
+        }
+
+        /// <summary>
+        /// Removes the given <paramref name="referenceToRemove"/> referent from <paramref name="project"/>.
+        /// </summary>
+        public static void RemoveReference(this IProject project, string referenceToRemove)
+        {
             Guard.NotNull(() => project, project);
             Guard.NotNull(() => referenceToRemove, referenceToRemove);
 
@@ -59,7 +68,7 @@ namespace NServiceBusStudio.Automation.Extensions
 
             if (vsProject != null)
             {
-                var reference = vsProject.References.Find(referenceToRemove.Name);
+                var reference = vsProject.References.Find(referenceToRemove);
                 if (reference != null)
                     reference.Remove();
             }

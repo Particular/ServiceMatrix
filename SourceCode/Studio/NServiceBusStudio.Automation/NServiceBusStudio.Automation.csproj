@@ -168,10 +168,8 @@
     <Compile Include="Commands\Endpoints\NSBH\ProcessRootAfterUnfoldedProject.cs" />
     <Compile Include="Commands\Endpoints\NSBH\RaiseOnInstantiated.cs" />
     <Compile Include="Commands\Endpoints\NSBH\SaveProject.cs" />
-    <Compile Include="Commands\Endpoints\NSBMVC\MVCAddNugetReferencesCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\OpenComponentCodeCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBWeb\OpenComponentCodeCommand.cs" />
-    <Compile Include="Commands\Endpoints\NSBWeb\WebEndpointAddNugetReferences.cs" />
     <Compile Include="Commands\ShowStartedByPicker.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinkCommand.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinksCommand.cs" />
