@@ -18,11 +18,17 @@
     <add name="NServiceBus/Transport" connectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
 <#
 	}
-  else if (application.Transport == TransportType.ActiveMQ.ToString())
-  {
-  #>
+	else if (application.Transport == TransportType.ActiveMQ.ToString())
+	{
+#>
     <add name="NServiceBus/Transport" connectionString="activemq:<#= application.TransportBrokerUri.ToString().Trim() #>" />
-  <#
-	  }
+<#
+    }
+    else if (application.Transport == TransportType.RabbitMQ.ToString())
+    {
+#>
+    <add name="NServiceBus/Transport" connectionString="host=localhost" />
+<#    
+    }
 #>
 </connectionStrings>

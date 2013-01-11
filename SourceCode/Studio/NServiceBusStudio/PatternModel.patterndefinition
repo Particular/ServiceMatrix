@@ -1136,7 +1136,7 @@
         <automationSettingsSchemaMoniker Id="9340fce0-aee3-484c-9dfe-17b6e3afa5c9" />
       </extendedElement>
       <properties>
-        <propertySettings Id="aa21071f-085c-4079-a56f-c3ad0d1ba6cd" value="0c7a14be-6b82-476d-ac17-a46f8871d884;a99928a4-309c-4c2f-ab3f-0459aed6a3c6;24589f3f-059f-4d5a-9b9b-a3897fff2449;e4f4bcc6-41e9-4237-be6f-7fd91e691ced;163abd93-cedc-4e41-8a7d-67eedfac41aa;4dfafba4-8e2b-4437-8c84-495041cb219f;99be7198-69a8-4174-bb1e-35190f5b6496;61a98a15-e465-4876-96f9-e3079b9d03f8" name="CommandReferenceList" />
+        <propertySettings Id="aa21071f-085c-4079-a56f-c3ad0d1ba6cd" value="0c7a14be-6b82-476d-ac17-a46f8871d884;a99928a4-309c-4c2f-ab3f-0459aed6a3c6;24589f3f-059f-4d5a-9b9b-a3897fff2449;e4f4bcc6-41e9-4237-be6f-7fd91e691ced;163abd93-cedc-4e41-8a7d-67eedfac41aa;4dfafba4-8e2b-4437-8c84-495041cb219f;99be7198-69a8-4174-bb1e-35190f5b6496;61a98a15-e465-4876-96f9-e3079b9d03f8;bf64d66f-34c0-425b-ac64-41db5dee3c2b" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="45fca2b9-4ca6-47d5-a720-54ca0239e02a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
@@ -1330,17 +1330,20 @@
         <automationSettingsSchemaMoniker Id="d5ca2e37-bf89-4275-a1db-9bd62eccde76" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="373f5296-2275-4818-895e-c3ac9fd06ad2" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBWeb.WebEndpointAddNugetReferences">
+    <commandSettings Id="373f5296-2275-4818-895e-c3ac9fd06ad2" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.AddNugetReferencesCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="53557dc0-6a66-49c6-8261-dedb32b18b9a" />
       </extendedElement>
+      <properties>
+        <propertySettings Id="fb69d3c5-1a4b-4e50-b719-137353b58d75" value="True" name="IgnoreHost" />
+      </properties>
     </commandSettings>
     <commandSettings Id="dc48cc98-0f74-4482-b275-833b8247f8d6" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="94e46ece-4545-47a3-9aef-751f002e5b00" />
       </extendedElement>
       <properties>
-        <propertySettings Id="5c64015b-59ee-4073-a0a5-5001c4dc0428" value="07f9c0cf-994d-4978-a9b9-5e70e8c03dce;8ead16bf-7a2b-42d6-a414-2182f54b4763;d23181a1-6b27-4314-b3a5-33021fc0eb57;5733ebbc-2a45-4add-bf19-4744bc480fcc;83de9acc-c878-4659-bbca-eda21bcd6a6f;f86ce38e-ee17-41f0-8945-346e957940f9" name="CommandReferenceList" />
+        <propertySettings Id="5c64015b-59ee-4073-a0a5-5001c4dc0428" value="07f9c0cf-994d-4978-a9b9-5e70e8c03dce;8ead16bf-7a2b-42d6-a414-2182f54b4763;d23181a1-6b27-4314-b3a5-33021fc0eb57;5733ebbc-2a45-4add-bf19-4744bc480fcc;83de9acc-c878-4659-bbca-eda21bcd6a6f;f86ce38e-ee17-41f0-8945-346e957940f9;cc7f9160-fc82-4e32-888b-a78e4e092022" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="34e99412-ec8f-4940-ba3e-21b43b846ffa" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
@@ -1613,17 +1616,20 @@
         <automationSettingsSchemaMoniker Id="ca48f586-9700-45bd-a072-af32a852a711" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="028b4628-fc8e-409c-a743-7be007bcd645" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.MVCAddNugetReferencesCommand">
+    <commandSettings Id="028b4628-fc8e-409c-a743-7be007bcd645" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.AddNugetReferencesCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="7cdcbb24-09e6-4cef-abc0-91c62aa6ec15" />
       </extendedElement>
+      <properties>
+        <propertySettings Id="2313eaf4-c44f-43a6-8535-8db863a2410e" value="True" name="IgnoreHost" />
+      </properties>
     </commandSettings>
     <commandSettings Id="f258cc61-aa0a-4fe8-82df-75bdabb3d96c" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="15306f90-e10e-475c-9ae1-b5451177cb12" />
       </extendedElement>
       <properties>
-        <propertySettings Id="4e4794e2-eb40-4f12-821b-dd897b0ab05a" value="338298e4-094c-4fa3-bb2e-1eb7d8e1097e;71d2d518-0a28-43c8-97bc-b3a1daa1d044;f1d05d84-fb55-49f4-8bac-0b7b21615f9e;55056fbd-f4ca-46fb-8c77-0f54707eaf66;ceb76ec1-66d0-43d7-883c-524960335c61;bb9daf67-ea65-4b21-a8d9-bc4a84536d2e" name="CommandReferenceList" />
+        <propertySettings Id="4e4794e2-eb40-4f12-821b-dd897b0ab05a" value="338298e4-094c-4fa3-bb2e-1eb7d8e1097e;71d2d518-0a28-43c8-97bc-b3a1daa1d044;f1d05d84-fb55-49f4-8bac-0b7b21615f9e;55056fbd-f4ca-46fb-8c77-0f54707eaf66;ceb76ec1-66d0-43d7-883c-524960335c61;bb9daf67-ea65-4b21-a8d9-bc4a84536d2e;afb2611a-a77c-4024-8e30-cfe442f1f610" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="338298e4-094c-4fa3-bb2e-1eb7d8e1097e" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
@@ -4716,7 +4722,7 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="e5e20260-bfa9-4647-aad1-640f0e018b13" name="GenerateCodeAddNugetReferences" displayName="Generate Code Add Nuget References" description="" codeIdentifier="GenerateCodeAddNugetReferences" automationType="Command">
+                  <automationSettings Id="e5e20260-bfa9-4647-aad1-640f0e018b13" name="GenerateCodeNugetReferences" displayName="Generate Code Nuget References" description="" codeIdentifier="GenerateCodeNugetReferences" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -5245,7 +5251,7 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="53557dc0-6a66-49c6-8261-dedb32b18b9a" name="GenerateCodeAddNugetReferences" displayName="Generate Code Add Nuget References" description="" codeIdentifier="GenerateCodeAddNugetReferences" automationType="Command">
+                  <automationSettings Id="53557dc0-6a66-49c6-8261-dedb32b18b9a" name="GenerateCodeNugetReferences" displayName="Generate Code Nuget References" description="" codeIdentifier="GenerateCodeNugetReferences" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -5803,7 +5809,7 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="7cdcbb24-09e6-4cef-abc0-91c62aa6ec15" name="GenerateCodeAddNugetReferences" displayName="Generate Code Add Nuget References" description="" codeIdentifier="GenerateCodeAddNugetReferences" automationType="Command">
+                  <automationSettings Id="7cdcbb24-09e6-4cef-abc0-91c62aa6ec15" name="GenerateCodeNugetReferences" displayName="Generate Code Nuget References" description="" codeIdentifier="GenerateCodeNugetReferences" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
