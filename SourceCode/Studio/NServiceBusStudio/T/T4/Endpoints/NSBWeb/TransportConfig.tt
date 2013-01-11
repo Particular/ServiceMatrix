@@ -30,6 +30,12 @@ namespace <#= endpoint.Namespace #>
 			Configure.Instance.ActiveMQTransport();
 <#
 	}
+	else if (application.Transport == TransportType.RabbitMQ.ToString())
+	{	
+#>
+			Configure.Instance.RabbitMQTransport();
+<#
+	}
 	else if (application.Transport == TransportType.SqlServer.ToString())
 	{
 #>

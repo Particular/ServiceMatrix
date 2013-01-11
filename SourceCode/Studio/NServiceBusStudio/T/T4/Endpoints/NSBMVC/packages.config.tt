@@ -43,10 +43,17 @@
   <package id="NServiceBus" version="<#= nservicebusversion #>" />
   <package id="NServiceBus.Interfaces" version="<#= nservicebusversion #>" />
 <#
-  if (application.Transport == TransportType.ActiveMQ.ToString())
+if (application.Transport == TransportType.ActiveMQ.ToString())
 {
 #>
   <package id="NServiceBus.ActiveMQ" version="<#= nservicebusversion #>" />
+<#
+}
+else if (application.Transport == TransportType.RabbitMQ.ToString())
+{
+#>
+  <package id="RabbitMQ.Client" version="3.0.0" />
+  <package id="NServiceBus.RabbitMQ" version="<#= nservicebusversion #>" />
 <#
 }
 else if (application.Transport == TransportType.SqlServer.ToString())

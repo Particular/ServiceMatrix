@@ -197,6 +197,7 @@ namespace NServiceBusStudio
     {
         Msmq,
         ActiveMQ,
+        RabbitMQ,
         SqlServer
     }
 }
