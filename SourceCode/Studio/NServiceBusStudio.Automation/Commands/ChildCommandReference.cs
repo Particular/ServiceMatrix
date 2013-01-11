@@ -76,7 +76,7 @@ namespace NServiceBusStudio.Automation.Commands
                 }
 
                 var commands = children.SelectMany(c =>
-                    c.AutomationExtensions.Where(a => a.Name.StartsWith(this.CommandNameStartsWidth)));
+                    c.AutomationExtensions.Where(a => a.Name.StartsWith(this.CommandNameStartsWidth)).OrderBy (a => a.Name));
 
                 foreach (var command in commands)
                 {
