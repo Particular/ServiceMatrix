@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.Patterning.Runtime;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
-using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
@@ -29,7 +28,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public IFxrUriReferenceService UriService { get; set; }
 
         [ImportingConstructor]
-        public RefactoringManager([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider, [Import] ISolution solution)
+        public RefactoringManager([Import] ISolution solution, [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
             this.Solution = solution;
             StartListening(serviceProvider);
@@ -38,6 +37,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         private void StartListening(IServiceProvider serviceProvider)
         {
             var events = serviceProvider.TryGetService<ISolutionEvents>();
+
             events.SolutionOpened += (s, e) => {
                 InitializeWatcher();
             };
@@ -82,29 +82,13 @@ namespace NServiceBusStudio.Automation.Infrastructure
             var allElements = rootElements.Traverse<IProductElement>((e) => e.GetChildren()); 
 
             // Get related elements to the Renamed File
-            var relatedElements = allElements.Where(e => e.References.Any (r => r.Value == referenceUri.ToString()))
-                                                .ToList();
+            var relatedElements = allElements.Where(e => e.References.Any(r => r.Value == referenceUri.ToString()) &&
+                                                         e.InstanceName == Path.GetFileNameWithoutExtension(renamedFile.OldName))
+                                             .ToList();
             
             // Rename related elements with new name
             relatedElements.ForEach(x => x.InstanceName = Path.GetFileNameWithoutExtension(renamedFile.Name));
-            
         }
-
-        private IItemContainer GetItemContainer(string renamedFile)
-        {
-            var item = this.Solution as IItemContainer;
-            foreach (var pathComponent in renamedFile.Split('\\'))
-            {
-                if (item != null)
-                {
-                    item = item.Find(pathComponent).FirstOrDefault();
-                }
-            }
-
-            return item;
-        }
-
-        
 
         public void RenameClass(string classNamespace, string classCurrentName, string classNewName)
         {
