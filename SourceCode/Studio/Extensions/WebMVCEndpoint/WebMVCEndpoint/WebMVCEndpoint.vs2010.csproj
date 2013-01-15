@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\DSLTools\Microsoft.DslTools.settings.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -12,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebMVCEndpoint</RootNamespace>
     <AssemblyName>WebMVCEndpoint</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -22,7 +21,6 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -312,29 +310,22 @@
     </Content>
     <Content Include="Assets\Templates\Text\EndpointDiagram.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\Logging.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\MessageForwardingInCaseOfFaultConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>51ee95e8-33d2-4f6e-a0ac-8f8a4a1e8597</ItemGuid>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Templates\Text\HostWeb\TransportConfig.config.tt">
+    <Content Include="Assets\Templates\Text\HostWeb\MsmqTransportConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ItemGuid>353dcbd0-5816-476c-8313-70daf985facb</ItemGuid>
     </Content>
     <Content Include="Assets\Templates\Text\HostWeb\UnicastBusConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\MessageConventions.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Projects\ASPNETMVCHost\Infrastructure\Logging.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -387,18 +378,10 @@
     <Content Include="Assets\Templates\Text\HostWeb\packages.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>326d4656-26a7-4c3d-bf0a-3bfd37e42b96</ItemGuid>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Templates\Text\GeneratedWebInitialization.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>9a7fc2a9-11bd-492f-ab67-bba5eb686318</ItemGuid>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Templates\Text\HostWeb\TransportConfig.tt">
-      <LastGenOutput>TransportConfig.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>2284bd32-3806-4bc5-a203-52baed0c954b</ItemGuid>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="bc47dee7-2765-44b6-8cac-41e8cba8705b.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
@@ -462,7 +445,7 @@
     <!-- <CopyVsixToFolder Condition=" '$(TeamBuildConstants)' != '' ">$(SolutionRoot)\TeamProjectRoot\Projects\BranchPath\Binaries</CopyVsixToFolder> -->
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\VSSDK\Microsoft.VsSDK.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
   <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\Microsoft.VisualStudio.Patterning.Authoring.PatternToolkitVersion.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TextTemplating\v10.0\Microsoft.TextTemplating.targets" />
   <!-- Properties for VSSDK/DSL Targets -->
@@ -486,7 +469,6 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-  <Target Name="BeforeBuild" DependsOnTargets="Transform">
-  </Target>
-  <Import Project="$(DslTargetsPath)\Microsoft.DSLTools.targets" />
+	<Target Name="BeforeBuild" DependsOnTargets="Transform">
+	</Target>
 </Project>

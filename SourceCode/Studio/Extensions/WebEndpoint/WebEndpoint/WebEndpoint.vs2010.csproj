@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\DSLTools\Microsoft.DslTools.settings.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20305</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{938460D2-E239-4095-92E2-C8F0388CDC8A}</ProjectGuid>
+    <ProjectGuid>{6F4E8D6D-FB20-4D3B-B947-FB6FE92DAF36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NServiceBusHost</RootNamespace>
-    <AssemblyName>NServiceBusHost</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>WebEndpoint</RootNamespace>
+    <AssemblyName>WebEndpoint</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -22,7 +21,6 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,9 +40,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NServiceBusHost.Automation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Binaries\NServiceBusHost.Automation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="NServiceBusStudio.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Binaries\NServiceBusStudio.Automation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -92,11 +96,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Templates\Projects\NSBH\Properties\AssemblyInfo.cs">
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="Assets\Templates\Projects\NSBH\Infrastructure\INServiceBusComponent.cs">
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Site.Master.designer.cs">
+      <DependentUpon>Site.Master.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Infrastructure\WebGlobalInitialization.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Infrastructure\INServiceBusComponent.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,98 +150,108 @@
       <FixedLink>
       </FixedLink>
     </Content>
-    <Content Include="Assets\Templates\Projects\NSBH\Host.csproj">
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Default.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Global.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\HostWeb.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Assets\Templates\Projects\NSBH\Host.ico">
+    <Content Include="Assets\Templates\Projects\NSBHWeb\HostWeb.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <ProjectTemplate Include="Assets\Templates\Projects\NSBH\Host.vstemplate">
-      <ItemGuid>bf16cc4c-b1c5-474e-95f1-336d02440852</ItemGuid>
+    <ProjectTemplate Include="Assets\Templates\Projects\NSBHWeb\HostWeb.vstemplate">
+      <ItemGuid>c60ea8f6-ae8b-4999-b4b0-2e01c82c2cdd</ItemGuid>
       <SubType>Designer</SubType>
     </ProjectTemplate>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Scripts\jquery-1.4.1-vsdoc.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Scripts\jquery-1.4.1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Scripts\jquery-1.4.1.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Styles\Site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\Link.png" />
     <Content Include="Resources\ToolkitIcon.png">
       <IncludeInVSIX>True</IncludeInVSIX>
     </Content>
     <None Include="Assets\Guidance\ToolkitGuidance.doc">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Element/E:\projects\NServiceBus\Studio\Extensions\NServiceBusHost\NServiceBusHost.patternstate%252f3f1ab48c-b7f1-4abd-9753-056158d00d5b</SourceModelReference>
-      <ItemGuid>af561a7c-b69c-4dc1-b343-5bd7b5a938b8</ItemGuid>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252fca8cce46-22d2-45a9-85ce-550c7c5e2d7f</SourceModelReference>
+      <ItemGuid>6b0c3485-96ce-4ae1-9f1e-25df65d65007</ItemGuid>
     </None>
-    <Content Include="Assets\Templates\Text\Host\MessageForwardingInCaseOfFaultConfig.config.tt">
+    <Content Include="Assets\Templates\Projects\NSBHWeb\Site.Master">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\Templates\Text\HostWeb\Web.config.tt">
+      <LastGenOutput>Web.config.cs</LastGenOutput>
+      <ItemGuid>dd555b2e-e91d-44b3-8ea0-ebb12074f537</ItemGuid>
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>560b7a1a-a63f-4e76-8203-efbe95727caf</ItemGuid>
+    </Content>
+    <Content Include="Assets\Templates\Text\HostWeb\Web.Debug.config.tt">
+      <LastGenOutput>Web.Debug.config.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>8e17960b-8284-4597-a509-a6875534552e</ItemGuid>
+    </Content>
+    <Content Include="Assets\Templates\Text\HostWeb\Web.Release.config.tt">
+      <LastGenOutput>Web.Release.config.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>c131fb61-550c-451c-a119-8f7239930dd8</ItemGuid>
     </Content>
     <Content Include="Assets\Templates\Text\EndpointDiagram.tt">
-      <LastGenOutput>EndpointDiagram.endpoints</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LastGenOutput>Web.config.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>72efd64f-bfa0-48f2-a266-dc1396d1a41a</ItemGuid>
+      <ItemGuid>a97db0df-6432-4626-aa66-241449057fc0</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Text\Host\EndpointConfig.tt">
-      <ItemGuid>8ecf94ae-891b-4049-a59e-d77f9f1808f1</ItemGuid>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assets\Templates\Text\HostWeb\MessageForwardingInCaseOfFaultConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>59a1ad64-449d-40db-9054-7e4127877d4e</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Projects\NSBH\App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Templates\Text\Host\DefaultApp.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assets\Templates\Text\HostWeb\MsmqTransportConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>97fe634f-2559-44b6-a762-1c3c8aa63f38</ItemGuid>
+      <ItemGuid>e7ef8946-0713-48bc-866f-182f9779cf6c</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Text\Host\UnicastBusConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assets\Templates\Text\HostWeb\UnicastBusConfig.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>19d331c0-a125-4e92-8d15-9e1b0b49e499</ItemGuid>
-    </Content>
-    <Content Include="Assets\Templates\Text\Host\TransportConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ItemGuid>f08a8245-1170-4182-9cd7-c75085634e5e</ItemGuid>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Assets\Templates\Text\Host\MasterNodeConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>5ec23739-fb70-4c16-ab6c-380c4d4d1d8f</ItemGuid>
+      <ItemGuid>fef2ebfa-1e03-4475-8bce-4fa55e5adbf1</ItemGuid>
     </Content>
     <Content Include="Assets\Templates\Text\MessageConventions.cs.tt">
-      <LastGenOutput>EndpointDiagram.endpoints</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>88df57c4-0e11-4d4c-96f8-f3e4b4c324db</ItemGuid>
+      <ItemGuid>fea84168-311a-404b-afc9-8e81b83343e3</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Text\Host\Logging.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assets\Templates\Text\HostWeb\Logging.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>b1075be1-60a0-454d-91d0-f88928199af1</ItemGuid>
+      <ItemGuid>fb62a7e6-5c08-40a2-9bdf-26b6e9966779</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Text\Host\packages.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assets\Templates\Text\HostWeb\packages.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>066ed9fc-5b46-475f-87d5-40a193c0e583</ItemGuid>
+      <ItemGuid>b586e403-6390-4d69-845f-9f674c92d023</ItemGuid>
     </Content>
-    <Content Include="Assets\Templates\Text\Host\SecondLevelRetriesConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assets\Templates\Text\GeneratedWebInitialization.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>4276f6e9-1d4a-4a15-8949-995f55bd84b7</ItemGuid>
-    </Content>
-    <Content Include="Assets\Templates\Text\Host\TransportConfig.tt">
-      <LastGenOutput>TransportConfig.cs</LastGenOutput>
-      <ItemGuid>dade7a65-da86-4742-b443-bf7b21889d6c</ItemGuid>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a58a46b8-7259-4278-8318-6665713b62bb</ItemGuid>
     </Content>
     <None Include="bc47dee7-2765-44b6-8cac-41e8cba8705b.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
     </None>
     <None Include="PatternTooling.toolingdesign">
-      <ItemGuid>b0dbd3c2-9135-407f-b1f8-c995bb9da414</ItemGuid>
-      <SubType>Designer</SubType>
+      <ItemGuid>114a5ed5-c13c-4dce-bbab-ff03afb3facd</ItemGuid>
     </None>
     <None Include="source.extension.vsixmanifest">
       <AutoGen>True</AutoGen>
@@ -227,8 +269,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NServiceBusHost.Automation\NServiceBusHost.Automation.csproj">
-      <Name>NServiceBusHost.Automation</Name>
+    <ProjectReference Include="..\WebEndpoint.Automation\WebEndpoint.Automation.csproj">
+      <Name>WebEndpoint.Automation</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
     </ProjectReference>
   </ItemGroup>
@@ -237,12 +279,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Templates\Items\" />
+    <Folder Include="Assets\Templates\Projects\NSBHWeb\Infrastructure\GeneratedCode\" />
     <Folder Include="Assets\Wizards\Pages\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PatternModel.patterndefinition">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Element/E:\projects\NServiceBus\Studio\Extensions\NServiceBusHost\NServiceBusHost.patternstate%252f2063458f-824e-42d6-a660-40bc3c7cd65e</SourceModelReference>
-      <ItemGuid>c0d16610-60ca-408b-a15b-f4553df5afd3</ItemGuid>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252f6e7c1096-278d-4f3b-a6fb-30cd1532dfcd</SourceModelReference>
+      <ItemGuid>f1f80e15-21ae-481d-808a-4e4dc9e80d53</ItemGuid>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
@@ -250,13 +293,13 @@
     <None Include="source.extension.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Element/E:\projects\NServiceBus\Studio\Extensions\NServiceBusHost\NServiceBusHost.patternstate%252f6b39dc3f-b9ab-46fd-a7ba-1865d6d941a2</SourceModelReference>
-      <ItemGuid>5b8512fb-e415-4694-8519-b2de5d2b551c</ItemGuid>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
+      <ItemGuid>642cbf51-9643-4534-bbe3-a966774fd08e</ItemGuid>
     </None>
     <None Include="source.include.t4">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Element/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f6b39dc3f-b9ab-46fd-a7ba-1865d6d941a2</SourceModelReference>
-      <ItemGuid>648a5a82-24b6-49ae-b5c6-2c58610d9cb6</ItemGuid>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
+      <ItemGuid>b0761bec-3ad8-453f-9260-2c9f5e12b701</ItemGuid>
     </None>
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
@@ -266,7 +309,7 @@
     <!-- <CopyVsixToFolder Condition=" '$(TeamBuildConstants)' != '' ">$(SolutionRoot)\TeamProjectRoot\Projects\BranchPath\Binaries</CopyVsixToFolder> -->
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\VSSDK\Microsoft.VsSDK.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
   <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\Microsoft.VisualStudio.Patterning.Authoring.PatternToolkitVersion.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TextTemplating\v10.0\Microsoft.TextTemplating.targets" />
   <!-- Properties for VSSDK/DSL Targets -->
@@ -290,7 +333,6 @@
 	<Target Name="AfterBuild">
 	</Target>
 	-->
-  <Target Name="BeforeBuild" DependsOnTargets="Transform">
-  </Target>
-  <Import Project="$(DslTargetsPath)\Microsoft.DSLTools.targets" />
+	<Target Name="BeforeBuild" DependsOnTargets="Transform">
+	</Target>
 </Project>

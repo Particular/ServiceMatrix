@@ -415,7 +415,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 			references.Add(this.GetType().Assembly.Location);
 			references.Add(typeof(global::Microsoft.VisualStudio.Modeling.Diagrams.Diagram).Assembly.Location);
 			references.Add(typeof(DslModeling::Store).Assembly.Location);
-			references.Add("Microsoft.VisualStudio.TextTemplating.Modeling.10.0.dll");
+			references.Add("Microsoft.VisualStudio.TextTemplating.Modeling.11.0.dll");
 			return references.ToArray();
 		}
 	}

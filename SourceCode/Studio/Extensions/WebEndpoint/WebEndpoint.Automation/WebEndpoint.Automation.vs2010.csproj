@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v11.0\DSLTools\Microsoft.DslTools.settings.targets" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20305</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{497FC3AA-DC35-4298-BF7A-0332469CD8C2}</ProjectGuid>
+    <ProjectGuid>{EBE9331E-D1EC-417B-A56A-8C487633DC90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebMVCEndpoint.Automation</RootNamespace>
-    <AssemblyName>WebMVCEndpoint.Automation</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>WebEndpoint.Automation</RootNamespace>
+    <AssemblyName>WebEndpoint.Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <SccProjectName>
@@ -22,7 +21,6 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +40,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="NServiceBusHost.Automation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Binaries\NServiceBusHost.Automation.dll</HintPath>
@@ -70,6 +69,10 @@
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Patterning.Library">
       <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation">
+      <HintPath>$(PatternToolkitBuilder)\Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Interfaces">
@@ -105,13 +108,12 @@
       <HintPath>$(FeatureExtensionRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk$(DslToolsVersionSuffix)" />
-    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams$(DslToolsVersionSuffix)" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractEndpoint.cs" />
-    <Compile Include="Commands\MVCAddNugetReferencesCommand.cs" />
     <Compile Include="Commands\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\WebEndpointAddNugetReferences.cs" />
     <Compile Include="ComponentLink.cs" />
     <Compile Include="EndpointComponents.cs" />
     <Compile Include="GeneratedCode\ToolkitElement.Generated.cs">
@@ -119,45 +121,45 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolkitElement.tt</DependentUpon>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\CollectionImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>9f457b6c-327d-47b9-90d5-fae2f4efe894</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\CollectionImplementation.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>69d772d4-5259-494c-b8af-6b300030c867</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\CollectionInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>b8bfc717-3202-4b51-81ed-48160cc5f99d</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\CollectionInterface.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>3261a44b-2014-49f2-bec7-7c942a417bd7</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ElementImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>01885d69-604d-4843-b3f9-5e099cdfcc5b</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ElementImplementation.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>9fa2f8fa-036d-4ac5-a006-495e1ae88c74</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ElementInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>0ce48a7f-ef6b-40c1-bc63-1edd93c3bb8a</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ElementInterface.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>b745353c-dd21-417d-8674-8f571826250e</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ExtensionPointImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>6e5a2a9e-6730-408b-870a-6b8f7ade8bbf</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ExtensionPointImplementation.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>40130d0e-8240-4d38-91e1-fd4986305125</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ExtensionPointInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>0068db70-f49c-41ae-8026-9e581b25d364</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ExtensionPointInterface.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>7d06bbe1-e57f-4b26-befe-e1350d14210b</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ProductImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>ec687e5b-145e-4d03-bee9-cb2323a993c7</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ProductImplementation.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>5fa3d2cf-85f3-4626-aeec-1d167a75efdf</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ProductInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>112cfd1b-9f60-419e-bcc1-4e0de2d2a1f7</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ProductInterface.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>ed4757c3-5bb9-4677-91a5-17e7fcb7e725</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ViewImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>d2322700-5bc3-4ab1-b243-2944adb51af4</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ViewImplementation.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>fc63f654-8291-4cf6-a76d-3c883566ed53</ItemGuid>
     </Compile>
-    <Compile Include="GeneratedCode\WebMVCEndpoint\ViewInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebMVCEndpoint/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\WebMVCEndpoint\WebMVCEndpoint.slnbldr%252f0bf49de5-836e-43c7-a7d8-5635c7e2c2f3</SourceModelReference>
-      <ItemGuid>bc54effd-0d39-4a64-9c69-842a11416c1a</ItemGuid>
+    <Compile Include="GeneratedCode\WebEndpoint\ViewInterface.cs">
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252fc133a9b6-d303-46cc-85e7-c7f43fff93d7</SourceModelReference>
+      <ItemGuid>2872123d-52c4-40db-a56a-af69b4867d73</ItemGuid>
     </Compile>
     <Compile Include="IAbstractEndpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,10 +170,10 @@
   <ItemGroup>
     <Folder Include="Conditions\" />
     <Folder Include="Events\" />
+    <Folder Include="Extensions\" />
     <Folder Include="TypeConverters\" />
     <Folder Include="TypeEditors\" />
     <Folder Include="ValidationRules\" />
-    <Folder Include="ValueComparers\" />
     <Folder Include="ValueProviders\" />
   </ItemGroup>
   <ItemGroup>
@@ -199,18 +201,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="$(DslTargetsPath)\Microsoft.DSLTools.targets" />
-  <!-- ******************************* -->
-  <!-- T4 MsBuild utilities -->
-  <PropertyGroup>
-    <!-- Whether T4 templates should be transformed as part of the build -->
-    <TransformOnBuild>false</TransformOnBuild>
-
-    <!-- Specifies how read-only files should be dealt with. False -> build error, true -> warning -->
-    <OverwriteReadOnlyOutputFiles>false</OverwriteReadOnlyOutputFiles>
-  </PropertyGroup>
-
-  <!-- End of T4 MsBuild settings -->
-  <!-- *******************************   -->
-
 </Project>

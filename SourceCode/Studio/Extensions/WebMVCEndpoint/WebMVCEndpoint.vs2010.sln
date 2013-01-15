@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 11
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVCEndpoint", "WebMVCEndpoint\WebMVCEndpoint.csproj", "{2D734B4B-9970-401D-BAD6-0903C240EE98}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A9E21860-F10E-4265-82B4-42EA3C2EF6A0}"

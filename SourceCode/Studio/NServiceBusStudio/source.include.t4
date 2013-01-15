@@ -1,7 +1,7 @@
 ﻿<#+
 	string identifier = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9";
 	string toolkitName = "NServiceBus Studio";
-	string author = "NServiceBus";
+	string author = "NServiceBus Studio";
 	string description = "A set of Visual Studio integrated tools to author NServiceBus applications";
 	string eula = @"";
 	string icon = @"Resources\ToolkitIcon.png";

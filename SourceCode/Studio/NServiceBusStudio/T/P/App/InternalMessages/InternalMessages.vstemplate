@@ -26,7 +26,7 @@
     <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.Patterning.Library, PublicKeyToken=31bf3856ad364e35</Assembly>
+    <Assembly>Microsoft.VisualStudio.Patterning.Library, Version=1.3.20.0, Culture=neutral, PublicKeyToken=ecdd31353928a4a5</Assembly>
     <FullClassName>Microsoft.VisualStudio.Patterning.Library.Automation.ElementReplacementsWizard</FullClassName>
   </WizardExtension>-->
   <!--<WizardData>
