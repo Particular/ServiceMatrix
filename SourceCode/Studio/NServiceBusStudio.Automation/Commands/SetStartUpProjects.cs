@@ -45,14 +45,14 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 var app = this.ProductManager.Products.First().As<NServiceBusStudio.IApplication>();
                 app.CheckForFirstBuild();
-                var endpoints = app.Design.Endpoints.As<IAbstractElement>().Extensions;
+                var endpoints = app.Design.Endpoints.GetAll();
                 var arrayStartUpProjects = System.Array.CreateInstance(typeof(Object), endpoints.Count());
 
                 var solutionFolder = new Uri(this.Solution.PhysicalPath);
 
                 for (int i = 0; i < endpoints.Count(); i++)
                 {
-                    var abstractEndpoint = endpoints.ElementAt(i).As<IToolkitInterface>() as IAbstractEndpoint;
+                    var abstractEndpoint = endpoints.ElementAt(i);
                     if (abstractEndpoint.Project != null)
                     {
                         Uri projectUri = new Uri(abstractEndpoint.Project.PhysicalPath);

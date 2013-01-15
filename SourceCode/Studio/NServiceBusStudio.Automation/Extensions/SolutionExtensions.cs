@@ -47,6 +47,15 @@ namespace NServiceBusStudio.Automation.Extensions
         /// </summary>
         public static void RemoveReference(this IProject project, IProject referenceToRemove)
         {
+            Guard.NotNull(() => referenceToRemove, referenceToRemove);
+            RemoveReference(project, referenceToRemove.Name);
+        }
+
+        /// <summary>
+        /// Removes the given <paramref name="referenceToRemove"/> referent from <paramref name="project"/>.
+        /// </summary>
+        public static void RemoveReference(this IProject project, string referenceToRemove)
+        {
             Guard.NotNull(() => project, project);
             Guard.NotNull(() => referenceToRemove, referenceToRemove);
 
@@ -59,7 +68,7 @@ namespace NServiceBusStudio.Automation.Extensions
 
             if (vsProject != null)
             {
-                var reference = vsProject.References.Find(referenceToRemove.Name);
+                var reference = vsProject.References.Find(referenceToRemove);
                 if (reference != null)
                     reference.Remove();
             }
@@ -124,13 +133,32 @@ namespace NServiceBusStudio.Automation.Extensions
                     , packageSources
                     , Path.Combine(solutionPath, @"packages")),
                     CreateNoWindow = true,
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
                 };
+
                 var p = System.Diagnostics.Process.Start(pi);
+
+                // Redirecting Output to VSStatusBar and Output Window
+                p.BeginOutputReadLine();
+                p.OutputDataReceived += (sender, e) => Log("Output", e.Data);
+
+                // Redirecting Error to VSStatusBar and Output Window
+                p.BeginErrorReadLine();
+                p.ErrorDataReceived += (sender, e) => Log("Error", e.Data);
+
                 p.WaitForExit(120 * 1000);
             }
             catch { }
             return solutionPath;
+        }
+
+        private static object Log(string type, string log)
+        {
+            return "";
         }
 
     }

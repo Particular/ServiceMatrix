@@ -122,43 +122,43 @@
     <Compile Include="ComponentLink.cs" />
     <Compile Include="EndpointComponents.cs" />
     <Compile Include="GeneratedCode\NServiceBusHost\CollectionImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>d86ac17f-5cfc-4f5a-b4c8-4777eaed1c1e</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\CollectionInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>14a7fbdd-c5af-40ee-969b-f36e454d77cb</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ElementImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>045727ad-57e3-4903-92d2-795904b45d47</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ElementInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>d169cd9b-428a-4481-8dbc-b311106849fc</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ExtensionPointImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>58de627e-aab1-4277-8b5e-80403128781e</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ExtensionPointInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>00b8f975-ba86-4598-9d88-4df71aa0aebd</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ProductImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>11389ae8-9daa-48c2-9f00-b913b323bef0</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ProductInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>6bee73b1-6a0b-4b45-a2bc-d293e6d440a4</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ViewImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>3c70d4b2-eb6d-49f6-9071-dc905e99a096</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusHost\ViewInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/NServiceBusHost/Product/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Extensions\NServiceBusHost\NServiceBusHost.slnbldr%252f8cf02829-32bd-4bf4-ad3a-e3b4c3fd80a0</SourceModelReference>
       <ItemGuid>4aff35b8-5e31-48d0-a763-8cf021841768</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ToolkitElement.Generated.cs">
@@ -183,6 +183,9 @@
     <Folder Include="ValidationRules\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Commands\PatternTooling.toolingdesign">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GeneratedCode\ToolkitElement.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>

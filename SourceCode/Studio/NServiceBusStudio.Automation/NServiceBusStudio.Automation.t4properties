@@ -2,12 +2,12 @@
 <TransformationPropertyValues xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Values>
     <TransformationPropertyValue>
-      <FileName>GeneratedCode\ToolkitElement.tt</FileName>
+      <FileName>ToolkitConstants.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>ToolkitConstants.tt</FileName>
+      <FileName>GeneratedCode\ToolkitElement.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>

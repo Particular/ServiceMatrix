@@ -1,0 +1,49 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#  #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var endpoint = ((IProductElement)this.Element).As<INServiceBusHost>(); #>
+<#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
+using System;
+using NServiceBus;
+ 
+namespace <#= endpoint.Namespace #>
+{
+	public class TransportConfig : INeedInitialization
+	{
+		public void Init()
+		{
+<#
+	if (application.Transport == TransportType.Msmq.ToString())
+	{
+#>
+			// Tranport: Msmq (Default) - No configuration needed
+<#
+	}
+	else if (application.Transport == TransportType.ActiveMQ.ToString())
+	{	
+#>
+			Configure.Instance.ActiveMQTransport();
+<#
+	}
+	else if (application.Transport == TransportType.RabbitMQ.ToString())
+	{	
+#>
+			Configure.Instance.RabbitMQTransport();
+<#
+	}
+	else if (application.Transport == TransportType.SqlServer.ToString())
+	{
+#>
+			Configure.Instance.SqlServerTransport();	
+<#
+	}
+#>
+		}
+	}
+}

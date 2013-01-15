@@ -1,0 +1,37 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  
+    var application = ((IProductElement)this.Element).Root.As<NServiceBusStudio.IApplication>();
+    var nservicebusversion = application.NServiceBusVersion; 
+#>
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="NServiceBus" version="<#= nservicebusversion #>" />
+  <package id="NServiceBus.Interfaces" version="<#= nservicebusversion #>" />
+<#
+if (application.Transport == TransportType.ActiveMQ.ToString())
+{
+#>
+  <package id="NServiceBus.ActiveMQ" version="<#= nservicebusversion #>" />
+<#
+}
+else if (application.Transport == TransportType.RabbitMQ.ToString())
+{
+#>
+  <package id="RabbitMQ.Client" version="3.0.0" />
+  <package id="NServiceBus.RabbitMQ" version="<#= nservicebusversion #>" />
+<#
+}
+else if (application.Transport == TransportType.SqlServer.ToString())
+{
+#>
+  <package id="NServiceBus.SqlServer" version="<#= nservicebusversion #>" />
+<#
+}
+#>
+</packages>

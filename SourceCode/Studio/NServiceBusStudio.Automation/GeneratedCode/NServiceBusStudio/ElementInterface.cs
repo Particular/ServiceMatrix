@@ -1081,6 +1081,826 @@ namespace NServiceBusStudio
 	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
 
 	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusHost
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusHost")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "d9665948-7e01-4896-9843-c03ca1eedba7", ProxyType = typeof(NServiceBusHost))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusHost : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		Boolean CommandSenderNeedsRegistration { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.ComponentsOrderDefinition
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ComponentsOrderDefinition")]
+		[DisplayName("Components Order Definition")]
+		[Category("General")]
+		String ComponentsOrderDefinition { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.ErrorQueue
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ErrorQueue")]
+		[DisplayName("Error Queue")]
+		[Category("General")]
+		String ErrorQueue { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.ForwardReceivedMessagesTo
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ForwardReceivedMessagesTo")]
+		[DisplayName("Forward Received Messages To")]
+		[Category("General")]
+		String ForwardReceivedMessagesTo { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MasterNode
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MasterNode")]
+		[DisplayName("Master Node")]
+		[Category("General")]
+		String MasterNode { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MaxRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		Int64 MaxRetries { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MessageConventions
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MessageConventions")]
+		[DisplayName("Message Conventions")]
+		[Category("General")]
+		String MessageConventions { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.MessageEndpointMappingsConfig
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.MessageEndpointMappingsConfig")]
+		[DisplayName("Message Endpoint Mappings Config")]
+		[Category("General")]
+		String MessageEndpointMappingsConfig { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Namespace
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		String Namespace { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.NumberOfWorkerThreads
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.NumberOfWorkerThreads")]
+		[DisplayName("Number Of Worker Threads")]
+		[Category("General")]
+		Int64 NumberOfWorkerThreads { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLA
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLA")]
+		[DisplayName("SLA")]
+		[Category("General")]
+		String SLA { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLEnabled
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLEnabled")]
+		[DisplayName("Enabled")]
+		[Category("SecondLevelRetriesConfig")]
+		Boolean SLEnabled { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLNumberOfRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLNumberOfRetries")]
+		[DisplayName("Number Of Retries")]
+		[Category("SecondLevelRetriesConfig")]
+		Int64 SLNumberOfRetries { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease")]
+		[DisplayName("Time Increase")]
+		[Category("SecondLevelRetriesConfig")]
+		String SLTimeIncrease { get; set; }
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		IEndpoints Parent { get; }
+		
+		/// <summary>
+		/// Gets the <see cref="INServiceBusHostComponents"/> contained in this element.
+		/// </summary>
+		INServiceBusHostComponents NServiceBusHostComponents { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusHostComponents"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusHostComponents CreateNServiceBusHostComponents(string name, Action<INServiceBusHostComponents> initializer = null, bool raiseInstantiateEvents = true);
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "58bd0df2-5250-472d-a169-4d72726325ae", ProxyType = typeof(NServiceBusHostComponentLink))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusHostComponentLink : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentId
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentId")]
+		[DisplayName("Component Id")]
+		[Category("General")]
+		String ComponentId { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentName
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.ComponentName")]
+		[DisplayName("Component Name")]
+		[Category("General")]
+		String ComponentName { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.Order
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink.Order")]
+		[DisplayName("Order")]
+		[Category("General")]
+		Int64 Order { get; set; }
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		INServiceBusHostComponents Parent { get; }
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusWeb
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusWeb")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "19234c17-dbbc-4997-a6f5-5705d013ac01", ProxyType = typeof(NServiceBusWeb))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusWeb : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		Boolean CommandSenderNeedsRegistration { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.ErrorQueue
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.ErrorQueue")]
+		[DisplayName("Error Queue")]
+		[Category("General")]
+		String ErrorQueue { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.ForwardReceivedMessagesTo
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.ForwardReceivedMessagesTo")]
+		[DisplayName("Forward Received Messages To")]
+		[Category("General")]
+		String ForwardReceivedMessagesTo { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.HasComponentsThatPublishEvent
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.HasComponentsThatPublishEvent")]
+		[DisplayName("Has Components That Publish Event")]
+		[Category("General")]
+		Boolean HasComponentsThatPublishEvent { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.MaxRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		Int64 MaxRetries { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.MessageConventions
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.MessageConventions")]
+		[DisplayName("Message Conventions")]
+		[Category("General")]
+		String MessageConventions { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.MessageEndpointMappingsConfig
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.MessageEndpointMappingsConfig")]
+		[DisplayName("Message Endpoint Mappings Config")]
+		[Category("General")]
+		String MessageEndpointMappingsConfig { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Namespace
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		String Namespace { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.NumberOfWorkerThreads
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.NumberOfWorkerThreads")]
+		[DisplayName("Number Of Worker Threads")]
+		[Category("General")]
+		Int64 NumberOfWorkerThreads { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.SenderBaseType
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SenderBaseType")]
+		[DisplayName("Sender Base Type")]
+		[Category("General")]
+		String SenderBaseType { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.SLA
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SLA")]
+		[DisplayName("SLA")]
+		[Category("General")]
+		String SLA { get; set; }
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		IEndpoints Parent { get; }
+		
+		/// <summary>
+		/// Gets the <see cref="INServiceBusWebComponents"/> contained in this element.
+		/// </summary>
+		INServiceBusWebComponents NServiceBusWebComponents { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusWebComponents"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusWebComponents CreateNServiceBusWebComponents(string name, Action<INServiceBusWebComponents> initializer = null, bool raiseInstantiateEvents = true);
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6", ProxyType = typeof(NServiceBusWebComponentLink))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusWebComponentLink : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentId
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentId")]
+		[DisplayName("Component Id")]
+		[Category("General")]
+		String ComponentId { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentName
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.ComponentName")]
+		[DisplayName("Component Name")]
+		[Category("General")]
+		String ComponentName { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.Order
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink.Order")]
+		[DisplayName("Order")]
+		[Category("General")]
+		Int64 Order { get; set; }
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		INServiceBusWebComponents Parent { get; }
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusMVC
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusMVC")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "55173bde-0618-431e-8b1a-5bb2c312c713", ProxyType = typeof(NServiceBusMVC))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusMVC : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		Boolean CommandSenderNeedsRegistration { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.ErrorQueue
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.ErrorQueue")]
+		[DisplayName("Error Queue")]
+		[Category("General")]
+		String ErrorQueue { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.ForwardReceivedMessagesTo
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.ForwardReceivedMessagesTo")]
+		[DisplayName("Forward Received Messages To")]
+		[Category("General")]
+		String ForwardReceivedMessagesTo { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.HasComponentsThatPublishEvent
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.HasComponentsThatPublishEvent")]
+		[DisplayName("Has Components That Publish Event")]
+		[Category("General")]
+		Boolean HasComponentsThatPublishEvent { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.MaxRetries
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		Int64 MaxRetries { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.MessageConventions
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.MessageConventions")]
+		[DisplayName("Message Conventions")]
+		[Category("General")]
+		String MessageConventions { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.MessageEndpointMappingsConfig
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.MessageEndpointMappingsConfig")]
+		[DisplayName("Message Endpoint Mappings Config")]
+		[Category("General")]
+		String MessageEndpointMappingsConfig { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Namespace
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		String Namespace { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.NumberOfWorkerThreads
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.NumberOfWorkerThreads")]
+		[DisplayName("Number Of Worker Threads")]
+		[Category("General")]
+		Int64 NumberOfWorkerThreads { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.SLA
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SLA")]
+		[DisplayName("SLA")]
+		[Category("General")]
+		String SLA { get; set; }
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		IEndpoints Parent { get; }
+		
+		/// <summary>
+		/// Gets the <see cref="INServiceBusMVCComponents"/> contained in this element.
+		/// </summary>
+		INServiceBusMVCComponents NServiceBusMVCComponents { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusMVCComponents"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusMVCComponents CreateNServiceBusMVCComponents(string name, Action<INServiceBusMVCComponents> initializer = null, bool raiseInstantiateEvents = true);
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "18db2bf8-3414-4c90-9e46-39e0475a018b", ProxyType = typeof(NServiceBusMVCComponentLink))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusMVCComponentLink : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentId
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentId")]
+		[DisplayName("Component Id")]
+		[Category("General")]
+		String ComponentId { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentName
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.ComponentName")]
+		[DisplayName("Component Name")]
+		[Category("General")]
+		String ComponentName { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.Order
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink.Order")]
+		[DisplayName("Order")]
+		[Category("General")]
+		Int64 Order { get; set; }
+		
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		INServiceBusMVCComponents Parent { get; }
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.IElement"/> underlying element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
 	///	Description for Application.Design.ContractsProject
 	///	</summary>
 	[Description("Description for Application.Design.ContractsProject")]

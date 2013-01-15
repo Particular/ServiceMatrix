@@ -26,7 +26,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.CleanDetails();
 
             // Components
-            this.CreateComponentsPanel(solutionBuilderModel, components, 0);
+            this.CreateComponentsPanelForEndpoint(solutionBuilderModel, components, endpoint.EndpointComponents.AbstractComponentLinks, 0);
 
             // Commands
             this.CreateCommandsPanel(solutionBuilderModel, components, 1);
@@ -45,7 +45,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 .SelectMany(s => s.Components.Component.Where(c => c.Publishes.EventLinks.Any(el => el.EventReference.Value == iEvent)));
             var componentsSubscribing = application.Design.Services.Service
                 .SelectMany(s => s.Components.Component.Where(c => c.Subscribes.SubscribedEventLinks.Any(el => el.EventReference.Value == iEvent)));
-            var endpoints = application.Design.Endpoints.As<IAbstractElement>().Extensions.Select(h => h.As<IToolkitInterface>() as IAbstractEndpoint)
+            var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => componentsPublishing.Contains(cl.ComponentReference.Value) || componentsSubscribing.Contains(cl.ComponentReference.Value)));
 
             this.CleanDetails();
@@ -68,7 +68,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 .SelectMany(s => s.Components.Component.Where(c => c.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == command)));
             var componentsReceiving = application.Design.Services.Service
                 .SelectMany(s => s.Components.Component.Where(c => c.Subscribes.ProcessedCommandLinks.Any(cl => cl.CommandReference.Value == command)));
-            var endpoints = application.Design.Endpoints.As<IAbstractElement>().Extensions.Select(h => h.As<IToolkitInterface>() as IAbstractEndpoint)
+            var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => componentsSending.Contains(cl.ComponentReference.Value) || componentsReceiving.Contains(cl.ComponentReference.Value)));
 
             this.CleanDetails();
@@ -88,7 +88,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             var application = component.As<IProductElement>().Root.As<IApplication>();
             var components = new List<IComponent> { component };
-            var endpoints = application.Design.Endpoints.As<IAbstractElement>().Extensions.Select(h => h.As<IToolkitInterface>() as IAbstractEndpoint)
+            var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
 
             this.CleanDetails();
@@ -208,6 +208,29 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
         }
 
+        private void CreateComponentsPanelForEndpoint(SolutionBuilderViewModel solutionBuilderModel, 
+            IEnumerable<IComponent> components,
+            IEnumerable<IAbstractComponentLink> componentLinks, 
+            int position, 
+            string Preffix = "")
+        {
+            var componentsVM = new InnerPanelViewModel();
+            componentsVM.Title = Preffix + "Components";
+            foreach (var service in components.Select(c => c.Parent.Parent).Distinct())
+            {
+                componentsVM.Items.Add(new InnerPanelTitle { Product = service.As<IProductElement>(), Text = service.InstanceName });
+                foreach (var component in components.Where(c => c.Parent.Parent == service))
+                {
+                    componentsVM.Items.Add(new InnerPanelItem { Product = component.As<IProductElement>(), Text = component.InstanceName });
+                }
+            }
+
+            var view = new ComponentsOrderingView();
+            view.SetComponentsView(new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
+            view.SetComponentLinks(componentLinks);
+            this.SetPanel(position, view);
+        }
+
         private void CreateComponentsPanel(SolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position, string Preffix = "")
         {
             var componentsVM = new InnerPanelViewModel();
@@ -245,6 +268,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                     componentsVM.Items.Add(new InnerPanelItem { Product = component.As<IProductElement>(), Text = component.InstanceName });
                 }
             }
+
             this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
         }
 

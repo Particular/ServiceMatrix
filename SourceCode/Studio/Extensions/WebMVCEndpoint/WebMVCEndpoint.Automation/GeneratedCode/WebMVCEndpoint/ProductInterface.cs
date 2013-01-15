@@ -97,6 +97,14 @@ namespace WebMVCEndpoint
 		[DisplayName("Has Components That Publish Event")]
 		[Category("General")]
 		Boolean HasComponentsThatPublishEvent { get; set; }
+
+		///	<summary>
+		///	Description for AbstractEndpoint.MaxRetries
+		///	</summary>
+		[Description("Description for AbstractEndpoint.MaxRetries")]
+		[DisplayName("Max Retries")]
+		[Category("General")]
+		Int64 MaxRetries { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.

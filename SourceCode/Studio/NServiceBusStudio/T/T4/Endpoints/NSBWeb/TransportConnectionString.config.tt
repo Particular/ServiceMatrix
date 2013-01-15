@@ -1,0 +1,36 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#  #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var endpoint = ((IProductElement)this.Element).As<INServiceBusWeb>(); #>
+<#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
+<connectionStrings>
+    <add name="ApplicationServices"
+       connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true"
+       providerName="System.Data.SqlClient" />
+<#
+	if (application.Transport == TransportType.SqlServer.ToString())
+	{
+#>
+    <add name="NServiceBus/Transport" connectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
+<#
+	}
+	else if (application.Transport == TransportType.ActiveMQ.ToString())
+	{
+#>
+    <add name="NServiceBus/Transport" connectionString="activemq:<#= application.TransportBrokerUri.ToString().Trim() #>" />
+<#
+    }
+    else if (application.Transport == TransportType.RabbitMQ.ToString())
+    {
+#>
+    <add name="NServiceBus/Transport" connectionString="host=localhost" />
+<#    
+    }
+#>
+</connectionStrings>

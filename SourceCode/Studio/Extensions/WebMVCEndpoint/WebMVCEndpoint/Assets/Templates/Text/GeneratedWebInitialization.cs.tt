@@ -9,8 +9,8 @@
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
 <#  var nserviceBusHost = ((IProductElement)this.Element).As<IAbstractEndpoint>(); #>
+using System;
 using NServiceBus;
-using NServiceBus.Config;
 
 namespace <#= nserviceBusHost.Namespace #>
 {

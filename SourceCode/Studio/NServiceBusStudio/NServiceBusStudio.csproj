@@ -112,11 +112,28 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Libs\ICSharpCode.NRefactory.CSharp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\ICSharpCode.NRefactory.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\Mono.Cecil.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\NRefactory.RenameClass.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="NServiceBusVersion.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\LibraryFile.png" />
     <Resource Include="Resources\Gear.png" />
+    <Resource Include="Resources\EndpointIcon.png" />
     <Content Include="Resources\ProductPreview.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -183,6 +200,442 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\Site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_222222_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_2e83ff_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_454545_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_888888_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_cd0a0a_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery-ui.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.accordion.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.all.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.autocomplete.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.base.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.button.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.core.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.datepicker.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.dialog.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.progressbar.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.resizable.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.selectable.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.slider.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.tabs.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.theme.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_222222_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_454545_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_888888_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery-ui.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.accordion.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.autocomplete.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.button.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.core.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.datepicker.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.dialog.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.progressbar.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.resizable.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.selectable.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.slider.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.tabs.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.theme.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Global.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\HostWebMvc.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\accent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\bullet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\heroAccent.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList9.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <ProjectTemplate Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.vstemplate">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>fc54c8b3-2bb8-4b67-b512-303294cd2082</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.intellisense.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-ui-1.8.20.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-ui-1.8.20.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.unobtrusive-ajax.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.unobtrusive-ajax.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate-vsdoc.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.unobtrusive.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.unobtrusive.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\knockout-2.1.0.debug.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\knockout-2.1.0.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\modernizr-2.5.3.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\_references.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Global.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\HostWeb.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\HostWeb.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\Endpoints\NSBHWeb\HostWeb.vstemplate">
+      <ItemGuid>ebbe43bd-bb7e-4d6c-a74e-7ebcbf768bbe</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1-vsdoc.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Styles\Site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\WebGlobalInitialization.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Site.Master.designer.cs">
+      <DependentUpon>Site.Master.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Controllers\AccountController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Controllers\HomeController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\ConfigureMvcDependencyInjection.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusControllerActivator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusDependencyResolverAdapter.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\WebGlobalInitialization.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Models\AccountModels.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\AuthConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\BundleConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\FilterConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\RouteConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\WebApiConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Filters\InitializeSimpleMembershipAttribute.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="VSPackage.cs" />
     <Content Include="$(PatternToolkitRuntime)\GeneratedCode\LibrarySchema.xsd">
       <Visible>true</Visible>
@@ -226,6 +679,17 @@
       <SubType>Designer</SubType>
       <ItemGuid>fa3ec177-8dd1-4106-9e3b-eba7f3743860</ItemGuid>
     </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBH\Host.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Host.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\Endpoints\NSBH\Host.vstemplate">
+      <ItemGuid>a969556e-c993-49ae-a3e2-59b6266a5dec</ItemGuid>
+    </ProjectTemplate>
     <Content Include="T\T4\Config\Host\App.config.tt">
       <LastGenOutput>App.config.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -239,26 +703,16 @@
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <ItemGuid>cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346</ItemGuid>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CommandDefinition.tt">
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
-    </Content>
-    <Content Include="..\Binaries\NServiceBusHost.vsix">
-      <Link>NServiceBusHost.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Binaries\WebEndpoint.vsix">
-      <Link>WebEndpoint.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.vsix">
       <Link>NServiceBus.Modeling.EndpointDesign.Shell.vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="..\Binaries\WebMVCEndpoint.vsix">
-      <Link>WebMVCEndpoint.vsix</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
@@ -281,21 +735,25 @@
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>477d1212-a504-470e-87d4-1d9f10b377e2</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CustomCommandSender.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>0c374c06-3ef4-4399-8fe8-408c61dbeea5</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\ComponentHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>009202b9-d8d1-4877-bcbf-ff75c983dcd3</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CustomComponentHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>f63539d8-7392-445a-b2a1-1454caecb2df</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Security\Authentication.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
@@ -325,18 +783,21 @@
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>600e8610-9915-48b1-a338-2cd0a7c4931e</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\CustomEventDefinition.tt">
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>a2be8c5d-919e-4788-a2fa-126049ca056f</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\ComponentSagaHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>6c659607-78bc-4671-8c4a-32065bba3c33</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Infrastructure\packages.config.tt">
+    <Content Include="T\T4\packages.config.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>dc743cce-5b69-43c5-944e-702bee9d6384</ItemGuid>
     </Content>
@@ -347,6 +808,314 @@
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>cd272c9f-4911-480c-a762-59810b294f94</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Site.Master">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\Logging.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Register.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\About.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\Index.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\Error.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_Layout.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\_ViewStart.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Web.Debug.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Web.Release.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\ExternalLoginConfirmation.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\ExternalLoginFailure.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Login.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Manage.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_ChangePasswordPartial.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_ExternalLoginsListPartial.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_RemoveExternalLoginsPartial.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_SetPasswordPartial.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\Contact.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_LoginPartial.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="T\T4\Config\Host\TransportConfig.tt">
+      <LastGenOutput>TransportConfig.cs</LastGenOutput>
+    </None>
+    <Content Include="T\T4\Endpoints\NSBH\DefaultApp.config.tt">
+      <LastGenOutput>DefaultApp.config.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>895bc0b9-2336-4ac7-baae-cb2f2e5b1346</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>51c08094-9e68-4abe-a168-4e1962888e9b</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\Logging.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>432735b4-8fd4-4736-807c-ca517cd047d3</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MasterNodeConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>5a29e248-5612-4ff6-821b-cc77b955c498</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MessageForwardingInCaseOfFaultConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>e8d4c471-2fd7-4520-aa61-7e504df71414</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\packages.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>75b0905c-a561-4e6f-a2b2-b6300c4dc944</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\SecondLevelRetriesConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>569640cf-1926-4a30-8987-c2a7e202eeca</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>eb0d81fd-c72f-4f5b-b41e-8e43ce182e60</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>49afd489-a5ff-4743-bfd0-2c4d33e0d6de</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\UnicastBusConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>dc84c026-5203-4165-9f99-d6e9042ef012</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointDiagram.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>7bc9d684-b67e-4d26-a55d-ad64c57f6fc1</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.cs.tt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>d07e0f86-d73b-4dea-a249-17c701cbb03c</ItemGuid>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\EndpointDiagram.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>39328419-7fe9-4bd1-9755-1bb3129036f2</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\GeneratedWebInitialization.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>22880e7e-edce-4a2f-ae1f-40eeb52cd83a</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Logging.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>af40d2eb-0aa2-44f6-bba5-7f5878253d89</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\MessageConventions.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>310e4bcc-ee54-469a-8fff-baa627551632</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\MessageForwardingInCaseOfFaultConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>2cb98bc0-0a56-45dc-94c1-681f343fc9a4</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\packages.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b85efc92-f991-4a30-a177-cb8ed3bcc890</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>8f7bac69-c9e9-47ba-b44e-15ceb283e250</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>850114f6-382e-4477-aa77-edfd35447c20</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\UnicastBusConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>27f96a66-2fe6-43ea-888e-5c0388cdbf3c</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Web.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b32ab3ba-7497-4525-b5f4-c7ec037c8b6b</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Web.Debug.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>7647802b-b2e7-4777-a4d4-fd4e950abbda</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Web.Release.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>82c48685-b62c-4e0a-acde-308747faf663</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\EndpointDiagram.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>063e34ac-21e5-44df-a41a-0f2bbf6c23a7</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>fc90b58e-fc11-4d3a-a94e-c4142a74e46f</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\Logging.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>41fbe97e-b6ed-4f2d-b28c-bd10a3d84269</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>102d67f5-2fc5-4b31-b42e-0f74f60abf25</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageForwardingInCaseOfFaultConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>9985b0ec-a356-44dc-922d-22d9840df107</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\packages.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>8facc8e9-2b33-4985-bc19-09e16e19e420</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>068ce3e7-5e66-4996-9477-523e4167bc2c</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>186f6ae9-49fd-4f9f-969d-034848f06541</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\UnicastBusConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b132847c-7244-4a53-8070-ce47aad324f7</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>695e0ead-1d04-49a4-bce4-2eb707a06bcc</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>eb58c194-dddf-4e22-8e2b-a1b76ddb1990</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -360,6 +1129,7 @@
     <None Include="NServiceBus.ToolkitVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NServiceBus.ToolkitVersion.targets</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="NServiceBus.ToolkitVersion.targets">
       <AutoGen>True</AutoGen>
@@ -392,6 +1162,7 @@
   <ItemGroup>
     <Folder Include="Assets\Templates\Projects\" />
     <Folder Include="T\I\" />
+    <Folder Include="T\P\Endpoints\NSBHWeb\Infrastructure\GeneratedCode\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PatternModel.patterndefinition">
@@ -414,10 +1185,12 @@
       <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
       <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>27ac5630-dc35-4694-8173-6def684bc14c</ItemGuid>
+      <SubType>Designer</SubType>
     </None>
     <None Include="source.include.t4">
       <DependentUpon>source.extension.tt</DependentUpon>
       <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Element/C:\Users\v-ezeqs\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>1a7bd6d3-abb1-422c-8ba1-7279e34cdf21</ItemGuid>
       <SubType>Designer</SubType>
     </None>
@@ -491,9 +1264,6 @@
   </ItemGroup>
   <Target Name="EnsureVsixInPlace">
     <Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
-    <Copy Condition="!Exists('..\Binaries\NServiceBusHost.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetHostVsixFile)" />
-    <Copy Condition="!Exists('..\Binaries\WebEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetWebVsixFile)" />
-    <Copy Condition="!Exists('..\Binaries\WebMVCEndpoint.vsix')" SourceFiles="@(SourceEmptyFile)" DestinationFiles="@(TargetMVCVsixFile)" />
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>

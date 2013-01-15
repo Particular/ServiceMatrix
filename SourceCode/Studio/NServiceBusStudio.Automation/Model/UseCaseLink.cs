@@ -20,7 +20,5 @@ namespace NServiceBusStudio
         public IEnumerable<IComponent> Components { get; set; }
         public IEnumerable<ICommand> Commands { get; set; }
         public IEnumerable<IEvent> Events { get; set; }
-
-
     }
 }

@@ -338,18 +338,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
             foreach (var service in observables[0].LogicalViewNodes)
             {
-                // Add menu option "Add -> Component, Command and Event" from first child
+                // Add menu option "Add -> Component" from first child
                 service.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
-
-                var addcomponentMenuOption = service.InnerViewModel.Nodes.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First();
                 service.MenuOptions.Add(new MenuOptionViewModel("Add",
                     new List<MenuOptionViewModel>{ 
-                        addcomponentMenuOption,
-                        new MenuOptionViewModel("Message",
-                                new List<MenuOptionViewModel>{ 
-                                    service.InnerViewModel.Nodes.Named("Contract").Nodes.Named("Commands").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First(),
-                                    service.InnerViewModel.Nodes.Named("Contract").Nodes.Named("Events").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First(),
-                                })
+                        service.InnerViewModel.Nodes.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
                     }));
                 foreach (var component in service.InnerViewModel.Nodes.Named("Components").Nodes)
                 {
@@ -654,11 +647,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
             public void FilterMenuItems(params string[] captions)
             {
-                if (this.overridableMenuOptions == null)
+                var sourceMenuOptions = this.InnerViewModel.MenuOptions;
+                if (this.overridableMenuOptions != null)
                 {
-                    this.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
+                    sourceMenuOptions = this.MenuOptions;
                 }
-                foreach (var menuOption in this.InnerViewModel.MenuOptions.Where(o => captions.Contains(o.Caption)))
+                this.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
+                foreach (var menuOption in sourceMenuOptions.Where(o => captions.Contains(o.Caption)))
                 {
                     this.MenuOptions.Add(menuOption);
                 }

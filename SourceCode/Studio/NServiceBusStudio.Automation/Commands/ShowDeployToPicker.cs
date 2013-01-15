@@ -53,11 +53,13 @@ namespace AbstractEndpoint.Automation.Commands
             this.ValidateObject();
 
             var element = CurrentElement.As<NServiceBusStudio.IComponent>();
-            var endpoints = CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Endpoints.As<IAbstractElement>().Extensions
-                .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
-                .Where(ep => !ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == element));
+            var endpoints = this.CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll();
+            
+            // Filter those endpoints that already have the component deploed
+            endpoints = endpoints.Where(e => !e.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == element));
 
-            var existingEndpointNames = endpoints.Select(e => String.Format("{0}", (e as IToolkitInterface).As<IProduct>().InstanceName));
+            // Get endpoint names
+            var existingEndpointNames = endpoints.Select(e => String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName));
             var picker = WindowFactory.CreateDialog<EndpointPicker>() as IServicePicker;
             picker.Title = "Deploy to...";
 
@@ -73,10 +75,8 @@ namespace AbstractEndpoint.Automation.Commands
                         var selectedEndpoint = default(IAbstractEndpoint);
                         if (existingEndpointNames.Contains(selectedElement))
                         {
-                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProduct>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             element.DeployTo(selectedEndpoint);
-                            //var link = selectedEndpoint.EndpointComponents.CreateComponentLink(String.Format("{0}.{1}", element.Parent.Parent.InstanceName, element.InstanceName), e => e.ComponentReference.Value = element);
-                            //link.ComponentReference.Value.EndpointDefined(selectedEndpoint);
                         }
 
                     }

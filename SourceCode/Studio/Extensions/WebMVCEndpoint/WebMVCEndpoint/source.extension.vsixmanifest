@@ -3,7 +3,7 @@
   <Identifier Id="e91869eb-ba2e-4420-baad-df72525d4fe5">
 	<Name>WebMVCEndpoint</Name>
 	<Author>NServiceBus</Author>
-	<Version>3.2.8.7</Version>
+	<Version>3.4.0</Version>
 	<Description xml:space="preserve">Toolkit to be used for Web Endpoints using ASP NET MVC</Description>
 	<Locale>1033</Locale>
 		<Icon>Resources\ToolkitIcon.png</Icon>

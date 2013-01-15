@@ -10,6 +10,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualStudio.Patterning.Extensibility.References;
 using System.IO;
 using EnvDTE;
+using System.ComponentModel.Composition;
+using NServiceBusStudio.Automation.Infrastructure;
 
 
 namespace NServiceBusStudio
@@ -24,7 +26,7 @@ namespace NServiceBusStudio
         void RemoveLinks(IAbstractEndpoint endpoint);
     }
 
-    partial class Component : IValidatableObject
+    partial class Component : IValidatableObject, IRenameRefactoring
     {
         public IProject Project
         {
@@ -56,8 +58,7 @@ namespace NServiceBusStudio
                 try
                 {
                     return deployedTo ??
-                        this.As<IProductElement>().Root.As<IApplication>().Design.Endpoints.As<IAbstractElement>().Extensions
-                        .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+                        this.As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll()
                         .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this));
                 }
                 catch
@@ -71,8 +72,7 @@ namespace NServiceBusStudio
         {
             var result = new List<ValidationResult>();
             var root = this.As<IProductElement>().Root;
-            if (!(root.As<NServiceBusStudio.IApplication>().Design.Endpoints.As<IAbstractElement>().Extensions
-                .Select(e => (e.As<IToolkitInterface>() as IAbstractEndpoint))
+            if (!(root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll()
                 .Any(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this))))
             {
                 result.Add(new ValidationResult(string.Format("{0}.{1} should be allocated to an endpoint.", this.Parent.Parent.InstanceName, this.InstanceName)));

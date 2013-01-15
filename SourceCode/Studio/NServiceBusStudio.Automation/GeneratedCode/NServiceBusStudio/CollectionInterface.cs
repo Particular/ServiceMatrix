@@ -885,16 +885,292 @@ namespace NServiceBusStudio
 		IDesign Parent { get; }
 		
 		/// <summary>
-		/// Gets all instances of <see cref="IHost"/> contained in this element.
+		/// Gets all instances of <see cref="INServiceBusHost"/> contained in this element.
 		/// </summary>
-		IEnumerable<IHost> Hosts { get; }
+		IEnumerable<INServiceBusHost> NServiceBusHosts { get; }
 		
 		/// <summary>
-		///	Creates a new <see cref="IHost"/>  and adds it to the <see cref="Hosts"/> collection,  
+		/// Gets all instances of <see cref="INServiceBusWeb"/> contained in this element.
+		/// </summary>
+		IEnumerable<INServiceBusWeb> NServiceBusWebs { get; }
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusMVC"/> contained in this element.
+		/// </summary>
+		IEnumerable<INServiceBusMVC> NServiceBusMVCs { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusHost"/>  and adds it to the <see cref="NServiceBusHosts"/> collection,  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		///	</summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		IHost CreateHost(string name, Guid productId, string toolkitId, Action<IHost> initializer = null, bool raiseInstantiateEvents = true);
+		INServiceBusHost CreateNServiceBusHost(string name, Action<INServiceBusHost> initializer = null, bool raiseInstantiateEvents = true);
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusWeb"/>  and adds it to the <see cref="NServiceBusWebs"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusWeb CreateNServiceBusWeb(string name, Action<INServiceBusWeb> initializer = null, bool raiseInstantiateEvents = true);
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusMVC"/>  and adds it to the <see cref="NServiceBusMVCs"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusMVC CreateNServiceBusMVC(string name, Action<INServiceBusMVC> initializer = null, bool raiseInstantiateEvents = true);
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.ICollection"/> underlying element.
+		/// </summary>
+		Runtime.ICollection AsCollection();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusHost.Components
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "4640ec7c-c09c-42a6-90de-ff9cd99fd6b1", ProxyType = typeof(NServiceBusHostComponents))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusHostComponents : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		INServiceBusHost Parent { get; }
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusHostComponentLink"/> contained in this element.
+		/// </summary>
+		IEnumerable<INServiceBusHostComponentLink> NServiceBusHostComponentLinks { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusHostComponentLink"/>  and adds it to the <see cref="NServiceBusHostComponentLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusHostComponentLink CreateNServiceBusHostComponentLink(string name, Action<INServiceBusHostComponentLink> initializer = null, bool raiseInstantiateEvents = true);
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.ICollection"/> underlying element.
+		/// </summary>
+		Runtime.ICollection AsCollection();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusWeb.Components
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "7fd9877f-4de1-4d74-a0a3-d3a09cc06a73", ProxyType = typeof(NServiceBusWebComponents))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusWebComponents : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		INServiceBusWeb Parent { get; }
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusWebComponentLink"/> contained in this element.
+		/// </summary>
+		IEnumerable<INServiceBusWebComponentLink> NServiceBusWebComponentLinks { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusWebComponentLink"/>  and adds it to the <see cref="NServiceBusWebComponentLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusWebComponentLink CreateNServiceBusWebComponentLink(string name, Action<INServiceBusWebComponentLink> initializer = null, bool raiseInstantiateEvents = true);
+		
+		///	<summary>
+		///	Deletes this element from the store.
+		///	</summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generic <see cref="Runtime.ICollection"/> underlying element.
+		/// </summary>
+		Runtime.ICollection AsCollection();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+
+	///	<summary>
+	///	Description for Application.Design.Endpoints.NServiceBusMVC.Components
+	///	</summary>
+	[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components")]
+	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2cb77a1f-f887-467c-b0e3-df2de031b87c", ProxyType = typeof(NServiceBusMVCComponents))]
+	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	public partial interface INServiceBusMVCComponents : IToolkitInterface
+	{ 
+		///	<summary>
+		///	Notes for this element.
+		///	</summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+		
+		///	<summary>
+		///	The InTransaction.
+		///	</summary>
+		Boolean InTransaction { get;  }
+		
+		///	<summary>
+		///	The IsSerializing.
+		///	</summary>
+		Boolean IsSerializing { get;  }
+		
+		///	<summary>
+		///	The name of this element instance.
+		///	</summary>
+		[ParenthesizePropertyName(true)]
+		[Description("The name of this element instance.")]
+		String InstanceName { get; set; }
+		
+		///	<summary>
+		///	The order of this element relative to its siblings.
+		///	</summary>
+		[ReadOnly(true)]
+		[Description("The order of this element relative to its siblings.")]
+		Double InstanceOrder { get; set; }
+		
+		///	<summary>
+		///	The references of this element.
+		///	</summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get;  }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		INServiceBusMVC Parent { get; }
+		
+		/// <summary>
+		/// Gets all instances of <see cref="INServiceBusMVCComponentLink"/> contained in this element.
+		/// </summary>
+		IEnumerable<INServiceBusMVCComponentLink> NServiceBusMVCComponentLinks { get; }
+		
+		/// <summary>
+		///	Creates a new <see cref="INServiceBusMVCComponentLink"/>  and adds it to the <see cref="NServiceBusMVCComponentLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		///	</summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		INServiceBusMVCComponentLink CreateNServiceBusMVCComponentLink(string name, Action<INServiceBusMVCComponentLink> initializer = null, bool raiseInstantiateEvents = true);
 		
 		///	<summary>
 		///	Deletes this element from the store.

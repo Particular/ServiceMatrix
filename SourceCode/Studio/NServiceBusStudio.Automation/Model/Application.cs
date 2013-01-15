@@ -13,6 +13,13 @@ using Microsoft.VisualStudio.ExtensionManager;
 using AbstractEndpoint;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using System.ComponentModel.Composition;
+using NServiceBusStudio.Automation.Model;
+using System.ComponentModel.DataAnnotations;
+using System.Windows;
+using System.ComponentModel;
+using NServiceBusStudio.Automation.TypeDescriptors;
+using Microsoft.VisualStudio.Patterning.Runtime.Store;
+
 namespace NServiceBusStudio
 {
     partial interface IApplication
@@ -23,13 +30,15 @@ namespace NServiceBusStudio
         IEndpoints Endpoints { get; set; }
     }
 
-    partial class Application
+    partial class Application : IRenameRefactoringNotSupported
     {
-        [Import]
-        public IPatternManager PatternManager { get; set; }
+        static partial void StaticInitialization()
+        {
+            TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
+        }
 
         [Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IPatternManager PatternManager { get; set; }
 
         [Import]
         private ISolution Solution { get; set; }
@@ -66,7 +75,7 @@ namespace NServiceBusStudio
                     if (componentLink != null && 
                         componentLink.ComponentReference.Value != null)
                     {
-                        var endpoint = element.Product.As<IAbstractEndpoint>();
+                        var endpoint = element.Parent.Parent.As<IAbstractEndpoint>();
                         componentLink.ComponentReference.Value.RemoveLinks(endpoint);
                     }
                 };
@@ -182,5 +191,13 @@ namespace NServiceBusStudio
         {
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
+    }
+
+    public enum TransportType
+    {
+        Msmq,
+        ActiveMQ,
+        RabbitMQ,
+        SqlServer
     }
 }

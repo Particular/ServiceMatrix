@@ -56,10 +56,8 @@ namespace NServiceBusStudio
                     this.relatedEndpoints = new List<IAbstractEndpoint>();
 
                     this.relatedEndpoints.AddRange(
-                        this.TheApplication.Design.Endpoints.As<IAbstractElement>()
-                        .Extensions
-                        .Where(a => a.InstanceName == this.SourceEndpointName || a.InstanceName == this.TargetEndpointName)
-                        .Select(e => e.As<IToolkitInterface>() as IAbstractEndpoint));
+                        this.TheApplication.Design.Endpoints.GetAll()
+                        .Where(a => a.InstanceName == this.SourceEndpointName || a.InstanceName == this.TargetEndpointName));
                 }
                 return this.relatedEndpoints;
             }

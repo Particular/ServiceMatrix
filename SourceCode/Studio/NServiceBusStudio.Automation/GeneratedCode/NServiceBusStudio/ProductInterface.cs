@@ -11,6 +11,7 @@
 namespace NServiceBusStudio
 {
 	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
@@ -57,6 +58,39 @@ namespace NServiceBusStudio
 		[DisplayName("Extension Path")]
 		[Category("General")]
 		String ExtensionPath { get; set; }
+
+		///	<summary>
+		///	Description for Application.Transport
+		///	</summary>
+		[Description("Description for Application.Transport")]
+		[DisplayName("Transport")]
+		[Category("General")]
+		[TypeConverter(typeof(TransportTypeConverter))]
+		String Transport { get; set; }
+
+		///	<summary>
+		///	Description for Application.TransportSqlServer
+		///	</summary>
+		[Description("Description for Application.TransportSqlServer")]
+		[DisplayName("Transport Sql Server")]
+		[Category("General")]
+		String TransportSqlServer { get; set; }
+
+		///	<summary>
+		///	Description for Application.TransportSqlDatabase
+		///	</summary>
+		[Description("Description for Application.TransportSqlDatabase")]
+		[DisplayName("Transport Sql Database")]
+		[Category("General")]
+		String TransportSqlDatabase { get; set; }
+
+		///	<summary>
+		///	Description for Application.TransportBrokerUri
+		///	</summary>
+		[Description("Description for Application.TransportBrokerUri")]
+		[DisplayName("Transport Broker Uri")]
+		[Category("General")]
+		String TransportBrokerUri { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.
