@@ -71,9 +71,11 @@ namespace NServiceBusStudio.Automation.Extensions
                 }
                 catch { }
 
-                if (item != null && item.Kind == ItemKind.Item)
+                if (item != null && 
+                    item.Kind == ItemKind.Item &&
+                    Path.GetFileNameWithoutExtension(item.Name) != newName)
                 {
-                    item.As<ProjectItem>().Name = item.Name.Replace (currentName, newName);
+                    item.As<ProjectItem>().Name = item.Name.Replace(currentName, newName);
                 }
             }
         }
