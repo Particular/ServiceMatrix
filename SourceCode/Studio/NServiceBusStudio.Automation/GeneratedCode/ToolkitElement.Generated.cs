@@ -24,9 +24,7 @@ namespace NServiceBusStudio
 		event EventHandler NServiceBusVersionChanged;
 		event EventHandler ExtensionPathChanged;
 		event EventHandler TransportChanged;
-		event EventHandler TransportSqlServerChanged;
-		event EventHandler TransportSqlDatabaseChanged;
-		event EventHandler TransportBrokerUriChanged;
+		event EventHandler TransportConnectionStringChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -454,9 +452,7 @@ namespace NServiceBusStudio
 		public event EventHandler NServiceBusVersionChanged = (sender, args) => { };
 		public event EventHandler ExtensionPathChanged = (sender, args) => { };
 		public event EventHandler TransportChanged = (sender, args) => { };
-		public event EventHandler TransportSqlServerChanged = (sender, args) => { };
-		public event EventHandler TransportSqlDatabaseChanged = (sender, args) => { };
-		public event EventHandler TransportBrokerUriChanged = (sender, args) => { };
+		public event EventHandler TransportConnectionStringChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -491,14 +487,8 @@ namespace NServiceBusStudio
 				case "Transport":
 					TransportChanged(sender, args);
 					break;
-				case "TransportSqlServer":
-					TransportSqlServerChanged(sender, args);
-					break;
-				case "TransportSqlDatabase":
-					TransportSqlDatabaseChanged(sender, args);
-					break;
-				case "TransportBrokerUri":
-					TransportBrokerUriChanged(sender, args);
+				case "TransportConnectionString":
+					TransportConnectionStringChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {

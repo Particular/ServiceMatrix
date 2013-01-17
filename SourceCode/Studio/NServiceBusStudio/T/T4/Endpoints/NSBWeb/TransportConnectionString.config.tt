@@ -13,24 +13,5 @@
     <add name="ApplicationServices"
        connectionString="data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true"
        providerName="System.Data.SqlClient" />
-<#
-	if (application.Transport == TransportType.SqlServer.ToString())
-	{
-#>
-    <add name="NServiceBus/Transport" connectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
-<#
-	}
-	else if (application.Transport == TransportType.ActiveMQ.ToString())
-	{
-#>
-    <add name="NServiceBus/Transport" connectionString="activemq:<#= application.TransportBrokerUri.ToString().Trim() #>" />
-<#
-    }
-    else if (application.Transport == TransportType.RabbitMQ.ToString())
-    {
-#>
-    <add name="NServiceBus/Transport" connectionString="host=localhost" />
-<#    
-    }
-#>
+    <add name="NServiceBus/Transport" connectionString="<#= application.TransportConnectionString.ToString().Trim() #>" />
 </connectionStrings>

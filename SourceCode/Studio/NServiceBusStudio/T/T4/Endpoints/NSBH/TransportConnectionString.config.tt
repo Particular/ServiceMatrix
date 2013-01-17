@@ -10,24 +10,5 @@
 <#  var endpoint = ((IProductElement)this.Element).As<INServiceBusHost>(); #>
 <#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
 <connectionStrings>
-<#
-	if (application.Transport == TransportType.SqlServer.ToString())
-	{
-#>
-    <add name="NServiceBus/Transport" connectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
-<#
-    }
-    else if (application.Transport == TransportType.ActiveMQ.ToString())
-    {
-#>
-    <add name="NServiceBus/Transport" connectionString="activemq:<#= application.TransportBrokerUri.ToString().Trim() #>" />
-<#
-    }
-    else if (application.Transport == TransportType.RabbitMQ.ToString())
-    {
-#>
-    <add name="NServiceBus/Transport" connectionString="host=localhost" />
-<#    
-    }
-#>
+    <add name="NServiceBus/Transport" connectionString="<#= application.TransportConnectionString.ToString().Trim() #>" />
 </connectionStrings>

@@ -11,24 +11,5 @@
 <#  var application = endpoint.AsElement().Root.As<IApplication>(); #>
 <connectionStrings>
   <add name="DefaultConnection" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=aspnet-<#= endpoint.Namespace #>;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnet-<#= endpoint.Namespace #>" providerName="System.Data.SqlClient" />
-<#
-	if (application.Transport == TransportType.SqlServer.ToString())
-	{
-#>
-    <add name="NServiceBus/Transport" connectionString="Data Source=<#= application.TransportSqlServer.ToString().Trim() #>;Initial Catalog=<#= application.TransportSqlDatabase.ToString().Trim() #>;Integrated Security=True;Pooling=False" />
-<#
-	}
-	else if (application.Transport == TransportType.ActiveMQ.ToString())
-	{
-#>
-    <add name="NServiceBus/Transport" connectionString="activemq:<#= application.TransportBrokerUri.ToString().Trim() #>" />
-<#
-    }
-    else if (application.Transport == TransportType.RabbitMQ.ToString())
-    {
-#>
-    <add name="NServiceBus/Transport" connectionString="host=localhost" />
-<#    
-    }
-#>
+  <add name="NServiceBus/Transport" connectionString="<#= application.TransportConnectionString.ToString().Trim() #>" />
 </connectionStrings>

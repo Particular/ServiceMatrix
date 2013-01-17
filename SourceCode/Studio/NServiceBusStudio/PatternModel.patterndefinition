@@ -2548,7 +2548,7 @@
   "ValueProvider": null
 }</defaultValue>
       </property>
-      <property Id="858b1fc3-aaa1-4d2a-a304-b57185482dd6" name="TransportSqlServer" displayName="Transport Sql Server" description="Description for Application.TransportSqlServer" codeIdentifier="TransportSqlServer">
+      <property Id="854c4ee6-e91f-4e5a-b3b1-a305eee860cb" name="TransportConnectionString" displayName="Transport Connection String" description="Description for Application.TransportConnectionString" codeIdentifier="TransportConnectionString">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -2563,53 +2563,6 @@
             <setting propertyId="RawValueProvider" />
           </settings>
         </customizationPolicy>
-        <defaultValue>{
-  "Name": "DefaultValue",
-  "Value": ".\\SQLEXPRESS",
-  "ValueProvider": null
-}</defaultValue>
-      </property>
-      <property Id="d457793d-4cc0-4cec-b706-bfb11794ad85" name="TransportSqlDatabase" displayName="Transport Sql Database" description="Description for Application.TransportSqlDatabase" codeIdentifier="TransportSqlDatabase">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-        <defaultValue>{
-  "Name": "DefaultValue",
-  "Value": "NServiceBus",
-  "ValueProvider": null
-}</defaultValue>
-      </property>
-      <property Id="ee5a599e-7e8a-4ea0-95f5-8d6f63c0e85a" name="TransportBrokerUri" displayName="Transport Broker Uri" description="Description for Application.TransportBrokerUri" codeIdentifier="TransportBrokerUri">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-        <defaultValue>{
-  "Name": "DefaultValue",
-  "Value": "http://mybroker",
-  "ValueProvider": null
-}</defaultValue>
       </property>
     </properties>
     <automationSettings>

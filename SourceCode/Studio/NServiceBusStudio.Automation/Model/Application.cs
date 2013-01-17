@@ -17,7 +17,7 @@ using NServiceBusStudio.Automation.Model;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.ComponentModel;
-using NServiceBusStudio.Automation.TypeDescriptors;
+//using NServiceBusStudio.Automation.TypeDescriptors;
 using Microsoft.VisualStudio.Patterning.Runtime.Store;
 
 namespace NServiceBusStudio
@@ -34,7 +34,7 @@ namespace NServiceBusStudio
     {
         static partial void StaticInitialization()
         {
-            TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
+            //TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
         }
 
         [Import]
@@ -117,6 +117,26 @@ namespace NServiceBusStudio
                     {
                         ep.ErrorQueue = this.ErrorQueue;
                     }
+                }
+            };
+
+            this.TransportChanged += (s, e) =>
+            {
+                if (this.Transport == TransportType.Msmq.ToString())
+                {
+                    this.TransportConnectionString = @"";
+                }
+                else if (this.Transport == TransportType.ActiveMQ.ToString())
+                {
+                    this.TransportConnectionString = @"activemq:http://mybroker";
+                }
+                else if (this.Transport == TransportType.RabbitMQ.ToString())
+                {
+                    this.TransportConnectionString = @"host=localhost";
+                }
+                else if (this.Transport == TransportType.SqlServer.ToString())
+                {
+                    this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=NServiceBus;Integrated Security=True;Pooling=False";
                 }
             };
         }
