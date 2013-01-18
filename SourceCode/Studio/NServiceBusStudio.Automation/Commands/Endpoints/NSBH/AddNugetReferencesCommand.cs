@@ -72,6 +72,18 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.ActiveMQ" />
             if (app.Transport == TransportType.ActiveMQ.ToString()) 
             {
+                  
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\Apache.NMS.1.5.1\lib\net40\Apache.NMS.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+               
+
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\Apache.NMS.ActiveMQ.1.5.6\lib\net40\Apache.NMS.ActiveMQ.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                
                 Endpoint.Project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.ActiveMQ.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
@@ -79,6 +91,8 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             }
             else 
             {
+                Endpoint.Project.RemoveReference ("Apache.NMS");
+                Endpoint.Project.RemoveReference ("Apache.NMS.ActiveMQ");
                 Endpoint.Project.RemoveReference ("NServiceBus.ActiveMQ");
             }
 

@@ -16,8 +16,10 @@
   <package id="NServiceBus.Host" version="<#= nservicebusversion #>" />
 <#
 if (application.Transport == TransportType.ActiveMQ.ToString())
-{
+  {
 #>
+  <package id="Apache.NMS" version="1.5.1" />
+  <package id="Apache.NMS.ActiveMQ" version="1.5.6" />
   <package id="NServiceBus.ActiveMQ" version="<#= nservicebusversion #>" />
 <#
 }
