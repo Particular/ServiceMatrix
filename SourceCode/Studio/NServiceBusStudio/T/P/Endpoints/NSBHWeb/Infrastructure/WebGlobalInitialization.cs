@@ -13,7 +13,6 @@ namespace $safeprojectname$
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
                 .XmlSerializer()
-                .MsmqTransport()
                     .IsTransactional(false)
                     .PurgeOnStartup(false)
                 .UnicastBus()

@@ -14,7 +14,6 @@ namespace $safeprojectname$.Infrastructure
                 .DefaultBuilder()
                 .ForMvc()
                 .XmlSerializer()
-                .MsmqTransport()
                     .IsTransactional(false)
                     .PurgeOnStartup(false)
                 .UnicastBus()
