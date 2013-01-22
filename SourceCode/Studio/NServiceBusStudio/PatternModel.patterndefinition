@@ -1343,7 +1343,7 @@
         <automationSettingsSchemaMoniker Id="94e46ece-4545-47a3-9aef-751f002e5b00" />
       </extendedElement>
       <properties>
-        <propertySettings Id="5c64015b-59ee-4073-a0a5-5001c4dc0428" value="07f9c0cf-994d-4978-a9b9-5e70e8c03dce;8ead16bf-7a2b-42d6-a414-2182f54b4763;d23181a1-6b27-4314-b3a5-33021fc0eb57;5733ebbc-2a45-4add-bf19-4744bc480fcc;83de9acc-c878-4659-bbca-eda21bcd6a6f;f86ce38e-ee17-41f0-8945-346e957940f9;cc7f9160-fc82-4e32-888b-a78e4e092022" name="CommandReferenceList" />
+        <propertySettings Id="5c64015b-59ee-4073-a0a5-5001c4dc0428" value="07f9c0cf-994d-4978-a9b9-5e70e8c03dce;8ead16bf-7a2b-42d6-a414-2182f54b4763;d23181a1-6b27-4314-b3a5-33021fc0eb57;5733ebbc-2a45-4add-bf19-4744bc480fcc;16906dd4-d11d-4d5f-ad82-ae41994017d8;83de9acc-c878-4659-bbca-eda21bcd6a6f;f86ce38e-ee17-41f0-8945-346e957940f9;cc7f9160-fc82-4e32-888b-a78e4e092022" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="34e99412-ec8f-4940-ba3e-21b43b846ffa" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
@@ -1629,7 +1629,7 @@
         <automationSettingsSchemaMoniker Id="15306f90-e10e-475c-9ae1-b5451177cb12" />
       </extendedElement>
       <properties>
-        <propertySettings Id="4e4794e2-eb40-4f12-821b-dd897b0ab05a" value="338298e4-094c-4fa3-bb2e-1eb7d8e1097e;71d2d518-0a28-43c8-97bc-b3a1daa1d044;f1d05d84-fb55-49f4-8bac-0b7b21615f9e;55056fbd-f4ca-46fb-8c77-0f54707eaf66;ceb76ec1-66d0-43d7-883c-524960335c61;bb9daf67-ea65-4b21-a8d9-bc4a84536d2e;afb2611a-a77c-4024-8e30-cfe442f1f610" name="CommandReferenceList" />
+        <propertySettings Id="4e4794e2-eb40-4f12-821b-dd897b0ab05a" value="338298e4-094c-4fa3-bb2e-1eb7d8e1097e;71d2d518-0a28-43c8-97bc-b3a1daa1d044;f1d05d84-fb55-49f4-8bac-0b7b21615f9e;55056fbd-f4ca-46fb-8c77-0f54707eaf66;87d1c6b4-d238-4a4a-9436-e8dabc2846f3;ceb76ec1-66d0-43d7-883c-524960335c61;bb9daf67-ea65-4b21-a8d9-bc4a84536d2e;afb2611a-a77c-4024-8e30-cfe442f1f610" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="338298e4-094c-4fa3-bb2e-1eb7d8e1097e" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
@@ -1887,6 +1887,38 @@
         <propertySettings Id="31a96e41-2d80-4019-ab74-1d9fe5d68d02" value="~/Infrastructure/GeneratedCode/Config" name="TargetPath" />
         <propertySettings Id="79b4b1c9-0d19-4f2f-b395-ae30cbc2a5d1" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TransportConnectionString.config.tt" name="TemplateUri" />
         <propertySettings Id="57382518-96b8-48da-8103-1fadb6685eb4" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/42e76b2c-8e17-415b-9d80-4efffc8f887c" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="87d1c6b4-d238-4a4a-9436-e8dabc2846f3" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="8490b9ea-0163-48c8-96ea-8db22c1d6701" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="438f86eb-af62-475f-bf10-285723081c58" value="False" name="SanitizeName" />
+        <propertySettings Id="61e48b1a-8c41-48c1-aa93-e850662e903e" value="False" name="SyncName" />
+        <propertySettings Id="d4b52ef5-0a9a-4c12-9ce7-3256fdf03c5c" name="Tag" />
+        <propertySettings Id="81367135-2645-478e-85ce-3aaf0b79dd87" value="Compile" name="TargetBuildAction" />
+        <propertySettings Id="98748e61-253f-4fd5-9d45-c95b7953f4db" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="6b92ae78-b301-4821-a50a-1ca024fb7cf0" value="WebGlobalInitialization.cs" name="TargetFileName" />
+        <propertySettings Id="219267ca-6b88-4334-9112-49c051208cf7" value="~/Infrastructure/" name="TargetPath" />
+        <propertySettings Id="1a2ab81d-4726-400d-8893-8642224a6815" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.cs.tt" name="TemplateUri" />
+        <propertySettings Id="700bf4f9-4544-44e7-beb0-f08b26155c47" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/5290a37d-dd77-46b3-91a7-6ef79b3cd82a" name="TemplateAuthoringUri" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="16906dd4-d11d-4d5f-ad82-ae41994017d8" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="5bbd759b-29ba-452a-8d15-6b11b517d61a" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="b6247274-a320-4b7a-ba40-82767987fd75" value="False" name="SanitizeName" />
+        <propertySettings Id="419f263d-ab6e-48f7-a68a-b7905cef3d20" value="False" name="SyncName" />
+        <propertySettings Id="39d42f91-7fae-44ae-9555-259d378ad09c" name="Tag" />
+        <propertySettings Id="e21bd7e1-222c-44d3-aed8-aa2487d73aad" value="Compile" name="TargetBuildAction" />
+        <propertySettings Id="8188b6e8-bf7e-43f8-b6e7-dac5550675e3" value="DoNotCopy" name="TargetCopyToOutput" />
+        <propertySettings Id="0bb1212d-c5fe-4904-a8b9-9e2497b5a91b" value="WebGlobalInitialization.cs" name="TargetFileName" />
+        <propertySettings Id="ace45fa9-96e7-4f94-a2f2-0fc458a6be0a" value="~/Infrastructure/" name="TargetPath" />
+        <propertySettings Id="21dcb54b-1736-4a10-8678-c6ab408939e4" value="t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/WebGlobalInitialization.cs.tt" name="TemplateUri" />
+        <propertySettings Id="2f948d1e-ad0b-4da6-a571-b5cf686e8895" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/50af6eba-4205-4aed-ad99-910a10d2be0a" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
@@ -5175,6 +5207,27 @@
                       </settings>
                     </customizationPolicy>
                   </property>
+                  <property Id="c0c54c7a-67e7-4ee4-b483-6ebf635cc344" name="SendOnly" displayName="Send Only" description="Description for Application.Design.Endpoints.NServiceBusWeb.SendOnly" codeIdentifier="SendOnly" type="System.Boolean">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                    <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "False",
+  "ValueProvider": null
+}</defaultValue>
+                  </property>
                 </properties>
                 <automationSettings>
                   <automationSettings Id="8efb5b9a-e650-4280-a338-9658171ba9cf" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
@@ -5394,6 +5447,15 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="8d2f8353-0e53-403f-a86f-274929f63558" name="GenerateTransportConnectionStringConfig" displayName="Generate Transport Connection String Config" description="" codeIdentifier="GenerateTransportConnectionStringConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="5bbd759b-29ba-452a-8d15-6b11b517d61a" name="GenerateWebGlobalInitialization" displayName="Generate Web Global Initialization" description="" codeIdentifier="GenerateWebGlobalInitialization" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -5751,6 +5813,27 @@
                       </settings>
                     </customizationPolicy>
                   </property>
+                  <property Id="1665fe04-7998-4b5d-8b72-dcbe86fed155" name="SendOnly" displayName="Send Only" description="Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly" codeIdentifier="SendOnly" type="System.Boolean">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                    <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "False",
+  "ValueProvider": null
+}</defaultValue>
+                  </property>
                 </properties>
                 <automationSettings>
                   <automationSettings Id="ca48f586-9700-45bd-a072-af32a852a711" name="AddProjectReferences" displayName="Add Project References" description="" codeIdentifier="AddProjectReferences" automationType="Command">
@@ -5934,6 +6017,15 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="72350bea-c0eb-4b0a-beb1-e8d50770b4f1" name="GenerateTransportConnectionStringConfig" displayName="Generate Transport Connection String Config" description="" codeIdentifier="GenerateTransportConnectionStringConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="8490b9ea-0163-48c8-96ea-8db22c1d6701" name="GenerateWebGlobalInitialization" displayName="Generate Web Global Initialization" description="" codeIdentifier="GenerateWebGlobalInitialization" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

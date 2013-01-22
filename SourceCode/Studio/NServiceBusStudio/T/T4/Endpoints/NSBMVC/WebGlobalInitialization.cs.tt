@@ -1,0 +1,52 @@
+﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var nserviceBusHost = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NServiceBus;
+
+namespace <#= nserviceBusHost.Namespace #>.Infrastructure
+{
+    public static class WebGlobalInitialization
+    {
+        public static IBus InitializeNServiceBus()
+        {
+<#
+if (!nserviceBusHost.SendOnly)
+{
+#>
+            return NServiceBus.Configure.With()
+                .DefaultBuilder()
+                .ForMvc()
+                .XmlSerializer()
+                    .IsTransactional(false)
+                    .PurgeOnStartup(false)
+                .UnicastBus()
+                    .ImpersonateSender(false)
+                .CreateBus()
+                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+<#
+} 
+else 
+{
+#> 
+            return NServiceBus.Configure.With()
+                .DefaultBuilder()
+                .ForMvc()
+                .XmlSerializer()
+                .UnicastBus()
+                .SendOnly();
+<#
+}
+#>
+        }
+    }
+}

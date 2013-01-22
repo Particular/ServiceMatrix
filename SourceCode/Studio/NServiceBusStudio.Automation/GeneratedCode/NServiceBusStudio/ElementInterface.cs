@@ -1467,6 +1467,14 @@ namespace NServiceBusStudio
 		[DisplayName("SLA")]
 		[Category("General")]
 		String SLA { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusWeb.SendOnly
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SendOnly")]
+		[DisplayName("Send Only")]
+		[Category("General")]
+		Boolean SendOnly { get; set; }
 		
 		///	<summary>
 		///	Notes for this element.
@@ -1727,6 +1735,14 @@ namespace NServiceBusStudio
 		[DisplayName("SLA")]
 		[Category("General")]
 		String SLA { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly
+		///	</summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly")]
+		[DisplayName("Send Only")]
+		[Category("General")]
+		Boolean SendOnly { get; set; }
 		
 		///	<summary>
 		///	Notes for this element.

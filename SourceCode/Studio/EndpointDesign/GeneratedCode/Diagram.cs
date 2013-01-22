@@ -203,15 +203,15 @@ namespace NServiceBus.Modeling.EndpointDesign
 				if(newShape != null) newShape.Size = newShape.DefaultSize; // set default shape size
 				return newShape;
 			}
-			if(element is global::NServiceBus.Modeling.EndpointDesign.Command)
-			{
-				global::NServiceBus.Modeling.EndpointDesign.CommandShape newShape = new global::NServiceBus.Modeling.EndpointDesign.CommandShape(this.Partition);
-				if(newShape != null) newShape.Size = newShape.DefaultSize; // set default shape size
-				return newShape;
-			}
 			if(element is global::NServiceBus.Modeling.EndpointDesign.Event)
 			{
 				global::NServiceBus.Modeling.EndpointDesign.EventShape newShape = new global::NServiceBus.Modeling.EndpointDesign.EventShape(this.Partition);
+				if(newShape != null) newShape.Size = newShape.DefaultSize; // set default shape size
+				return newShape;
+			}
+			if(element is global::NServiceBus.Modeling.EndpointDesign.Command)
+			{
+				global::NServiceBus.Modeling.EndpointDesign.CommandShape newShape = new global::NServiceBus.Modeling.EndpointDesign.CommandShape(this.Partition);
 				if(newShape != null) newShape.Size = newShape.DefaultSize; // set default shape size
 				return newShape;
 			}
@@ -495,15 +495,15 @@ namespace NServiceBus.Modeling.EndpointDesign
 		/// <summary>
 		/// Rule that initiates view fixup when an element that has an associated shape is added to the model. 
 		/// </summary>
-		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddShapeParentExistRulePriority, InitiallyDisabled=true)]
 		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendEndpoint), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddShapeParentExistRulePriority, InitiallyDisabled=true)]
+		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddShapeParentExistRulePriority, InitiallyDisabled=true)]
 		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.Command), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddShapeParentExistRulePriority, InitiallyDisabled=true)]
 		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.Event), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddShapeParentExistRulePriority, InitiallyDisabled=true)]
-		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.EventsAreProcessedBySendReceiveEndpoints), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
-		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.CommandIsProcessedBySendReceiveEndpoint), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
-		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendEndpointEmitsCommands), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
 		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointEmitsEvents), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
 		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointEmitCommands), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
+		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendEndpointEmitsCommands), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
+		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.EventsAreProcessedBySendReceiveEndpoints), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
+		[DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.CommandIsProcessedBySendReceiveEndpoint), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AddConnectionRulePriority, InitiallyDisabled=true)]
 		internal sealed partial class FixUpDiagram : FixUpDiagramBase
 		{
 			[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
@@ -519,13 +519,13 @@ namespace NServiceBus.Modeling.EndpointDesign
 				{
 					parentElement = GetParentForRelationship((DslModeling::ElementLink)childElement);
 				} else
-				if(childElement is global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint)
-				{
-					parentElement = GetParentForSendReceiveEndpoint((global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint)childElement);
-				} else
 				if(childElement is global::NServiceBus.Modeling.EndpointDesign.SendEndpoint)
 				{
 					parentElement = GetParentForSendEndpoint((global::NServiceBus.Modeling.EndpointDesign.SendEndpoint)childElement);
+				} else
+				if(childElement is global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint)
+				{
+					parentElement = GetParentForSendReceiveEndpoint((global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint)childElement);
 				} else
 				if(childElement is global::NServiceBus.Modeling.EndpointDesign.Command)
 				{

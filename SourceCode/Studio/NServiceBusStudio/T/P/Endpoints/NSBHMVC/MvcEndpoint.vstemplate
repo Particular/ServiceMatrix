@@ -122,7 +122,6 @@
         <ProjectItem TargetFileName="Logging.config" ReplaceParameters="true">Logging.config</ProjectItem>
         <ProjectItem TargetFileName="NServiceBusControllerActivator.cs" ReplaceParameters="true">NServiceBusControllerActivator.cs</ProjectItem>
         <ProjectItem TargetFileName="NServiceBusDependencyResolverAdapter.cs" ReplaceParameters="true">NServiceBusDependencyResolverAdapter.cs</ProjectItem>
-        <ProjectItem TargetFileName="WebGlobalInitialization.cs" ReplaceParameters="true">WebGlobalInitialization.cs</ProjectItem>
       </Folder>
       <Folder Name="Models" TargetFolderName="Models">
         <ProjectItem ReplaceParameters="true" TargetFileName="AccountModels.cs">AccountModels.cs</ProjectItem>

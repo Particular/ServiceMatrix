@@ -116,7 +116,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 			{
 				DslModeling::DomainClassInfo rootElementDomainInfo = this.Partition.DomainDataDirectory.GetDomainClass(rootElement.DomainClassId);
 				
-				if (rootElementDomainInfo.IsDerivedFrom(global::NServiceBus.Modeling.EndpointDesign.Event.DomainClassId)) 
+				if (rootElementDomainInfo.IsDerivedFrom(global::NServiceBus.Modeling.EndpointDesign.Command.DomainClassId)) 
 				{
 					return true;
 				}
@@ -126,7 +126,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 					return true;
 				}
 				
-				if (rootElementDomainInfo.IsDerivedFrom(global::NServiceBus.Modeling.EndpointDesign.Command.DomainClassId)) 
+				if (rootElementDomainInfo.IsDerivedFrom(global::NServiceBus.Modeling.EndpointDesign.Event.DomainClassId)) 
 				{
 					return true;
 				}
@@ -155,11 +155,11 @@ namespace NServiceBus.Modeling.EndpointDesign
 			if ( sourceElement == null ) throw new global::System.ArgumentNullException("sourceElement");
 		
 				
-			global::NServiceBus.Modeling.EndpointDesign.Event sourceEvent1 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Event;
-			if (sourceEvent1 != null)
+			global::NServiceBus.Modeling.EndpointDesign.Command sourceCommand1 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Command;
+			if (sourceCommand1 != null)
 			{
-				// Create link for path EndpointModelHasEvents.Events
-				this.Events.Add(sourceEvent1);
+				// Create link for path EndpointModelHasCommands.Commands
+				this.Commands.Add(sourceCommand1);
 
 				return;
 			}
@@ -173,11 +173,11 @@ namespace NServiceBus.Modeling.EndpointDesign
 				return;
 			}
 				
-			global::NServiceBus.Modeling.EndpointDesign.Command sourceCommand3 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Command;
-			if (sourceCommand3 != null)
+			global::NServiceBus.Modeling.EndpointDesign.Event sourceEvent3 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Event;
+			if (sourceEvent3 != null)
 			{
-				// Create link for path EndpointModelHasCommands.Commands
-				this.Commands.Add(sourceCommand3);
+				// Create link for path EndpointModelHasEvents.Events
+				this.Events.Add(sourceEvent3);
 
 				return;
 			}
@@ -204,15 +204,15 @@ namespace NServiceBus.Modeling.EndpointDesign
 		{
 			if (sourceElement == null) throw new global::System.ArgumentNullException("sourceElement");
 				
-			global::NServiceBus.Modeling.EndpointDesign.Event sourceEvent1 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Event;
-			if (sourceEvent1 != null)
+			global::NServiceBus.Modeling.EndpointDesign.Command sourceCommand1 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Command;
+			if (sourceCommand1 != null)
 			{
-				// Delete link for path EndpointModelHasEvents.Events
+				// Delete link for path EndpointModelHasCommands.Commands
 				
-				foreach (DslModeling::ElementLink link in global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasEvents.GetLinks((global::NServiceBus.Modeling.EndpointDesign.EndpointModel)this, sourceEvent1))
+				foreach (DslModeling::ElementLink link in global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasCommands.GetLinks((global::NServiceBus.Modeling.EndpointDesign.EndpointModel)this, sourceCommand1))
 				{
 					// Delete the link, but without possible delete propagation to the element since it's moving to a new location.
-					link.Delete(global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasEvents.EndpointModelDomainRoleId, global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasEvents.EventDomainRoleId);
+					link.Delete(global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasCommands.EndpointModelDomainRoleId, global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasCommands.CommandDomainRoleId);
 				}
 
 				return;
@@ -232,15 +232,15 @@ namespace NServiceBus.Modeling.EndpointDesign
 				return;
 			}
 				
-			global::NServiceBus.Modeling.EndpointDesign.Command sourceCommand3 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Command;
-			if (sourceCommand3 != null)
+			global::NServiceBus.Modeling.EndpointDesign.Event sourceEvent3 = sourceElement as global::NServiceBus.Modeling.EndpointDesign.Event;
+			if (sourceEvent3 != null)
 			{
-				// Delete link for path EndpointModelHasCommands.Commands
+				// Delete link for path EndpointModelHasEvents.Events
 				
-				foreach (DslModeling::ElementLink link in global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasCommands.GetLinks((global::NServiceBus.Modeling.EndpointDesign.EndpointModel)this, sourceCommand3))
+				foreach (DslModeling::ElementLink link in global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasEvents.GetLinks((global::NServiceBus.Modeling.EndpointDesign.EndpointModel)this, sourceEvent3))
 				{
 					// Delete the link, but without possible delete propagation to the element since it's moving to a new location.
-					link.Delete(global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasCommands.EndpointModelDomainRoleId, global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasCommands.CommandDomainRoleId);
+					link.Delete(global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasEvents.EndpointModelDomainRoleId, global::NServiceBus.Modeling.EndpointDesign.EndpointModelHasEvents.EventDomainRoleId);
 				}
 
 				return;

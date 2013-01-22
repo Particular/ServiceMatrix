@@ -510,6 +510,7 @@
     </Content>
     <ProjectTemplate Include="T\P\Endpoints\NSBHWeb\HostWeb.vstemplate">
       <ItemGuid>ebbe43bd-bb7e-4d6c-a74e-7ebcbf768bbe</ItemGuid>
+      <SubType>Designer</SubType>
     </ProjectTemplate>
     <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1-vsdoc.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -554,10 +555,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\WebGlobalInitialization.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
@@ -598,10 +595,6 @@
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusDependencyResolverAdapter.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\WebGlobalInitialization.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -1111,6 +1104,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>5290a37d-dd77-46b3-91a7-6ef79b3cd82a</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\WebGlobalInitialization.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>50af6eba-4205-4aed-ad99-910a10d2be0a</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
