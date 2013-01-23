@@ -1496,8 +1496,17 @@
       </extendedElement>
       <properties>
         <propertySettings Id="41d32f21-4105-4e7a-aa52-8e32f0eccd01" value="True" name="Open" />
-        <propertySettings Id="1cdc018f-2589-428e-b4fa-0eca87ae084e" name="TargetFileName" />
+        <propertySettings Id="1cdc018f-2589-428e-b4fa-0eca87ae084e" name="TargetFileName">
+          <valueProvider>
+            <valueProviderSettings Id="640aaec6-5985-4b91-8fdb-badd90ad5ae9" typeId="Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider">
+              <properties>
+                <propertySettingsMoniker Id="29c8ae01-80d4-4c04-b38a-4f0b804b2f6d" />
+              </properties>
+            </valueProviderSettings>
+          </valueProvider>
+        </propertySettings>
         <propertySettings Id="81b77cbb-108f-445d-b153-0701c311452a" value="~" name="TargetPath" />
+        <propertySettings Id="29c8ae01-80d4-4c04-b38a-4f0b804b2f6d" value="{InstanceName}.endpoints" name="TargetFileName.Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider.Expression" />
       </properties>
     </commandSettings>
     <commandSettings Id="dc6634a9-a147-4285-ac38-d053a40ba00f" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.ProcessRootAfterUnfoldedProject">
@@ -1524,7 +1533,7 @@
       </extendedElement>
       <properties>
         <propertySettings Id="86cb7730-104c-4eaf-bbbf-6ccbb9dc199a" value="False" name="SanitizeName" />
-        <propertySettings Id="596d20d5-cb77-488a-b8fd-4bb38fc6507f" value="True" name="SyncName" />
+        <propertySettings Id="596d20d5-cb77-488a-b8fd-4bb38fc6507f" value="False" name="SyncName" />
         <propertySettings Id="9aa5e678-1d3a-47c8-bf85-49bde98a1df5" name="Tag" />
         <propertySettings Id="a42e3016-15b8-4dc4-9b59-2277e9044b3e" value="None" name="TargetBuildAction" />
         <propertySettings Id="7398be3e-2902-4e56-90ce-677b936df5f5" value="DoNotCopy" name="TargetCopyToOutput" />
@@ -1726,8 +1735,17 @@
       </extendedElement>
       <properties>
         <propertySettings Id="41f8c0f6-259e-40f3-b1b1-1fa2dcc56e1a" value="True" name="Open" />
-        <propertySettings Id="3f24abea-6732-4f71-bc40-95822ea50f50" name="TargetFileName" />
+        <propertySettings Id="3f24abea-6732-4f71-bc40-95822ea50f50" name="TargetFileName">
+          <valueProvider>
+            <valueProviderSettings Id="053ae54e-2278-4748-b327-54076c20259a" typeId="Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider">
+              <properties>
+                <propertySettingsMoniker Id="2a4c7dbd-68f2-443d-919d-d3af9372321b" />
+              </properties>
+            </valueProviderSettings>
+          </valueProvider>
+        </propertySettings>
         <propertySettings Id="18663615-558b-43ff-9ae8-07efe8017d3b" value="~" name="TargetPath" />
+        <propertySettings Id="2a4c7dbd-68f2-443d-919d-d3af9372321b" value="{InstanceName}.endpoints" name="TargetFileName.Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider.Expression" />
       </properties>
     </commandSettings>
     <commandSettings Id="80776373-8131-4f13-bf2f-43fce486c245" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.ProcessRootAfterUnfoldedProject">
@@ -1754,7 +1772,7 @@
       </extendedElement>
       <properties>
         <propertySettings Id="df8e0504-a09e-4219-ab17-347128e91e9e" value="False" name="SanitizeName" />
-        <propertySettings Id="02c50dbd-1c5b-44ed-bfc8-6138ccb203a8" value="True" name="SyncName" />
+        <propertySettings Id="02c50dbd-1c5b-44ed-bfc8-6138ccb203a8" value="False" name="SyncName" />
         <propertySettings Id="984e5c7e-2831-4d0e-9aa2-47ccd06ac0cb" name="Tag" />
         <propertySettings Id="415479a3-c76c-42b5-9d21-0a95e4a3964c" value="None" name="TargetBuildAction" />
         <propertySettings Id="7bd750b6-7169-4816-b1c0-ca0f9ef91c0b" value="DoNotCopy" name="TargetCopyToOutput" />
