@@ -102,7 +102,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                     {
                         switch (this.currentNode.InnerViewModel.Model.DefinitionName)
                         {
-                            case "AbstractEndpoint":
+                            case "NServiceBusHost":
+                            case "NServiceBusMVC":
+                            case "NServiceBusWeb":
                                 NServiceBusViewModel.GenerateEndpointsView();
                                 break;
                             case "Component":

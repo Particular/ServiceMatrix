@@ -51,7 +51,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                 case "Application":
                     this.ViewModel.BuildDetailsForApplication(model.As<IApplication>(), logicalViewDataContext as SolutionBuilderViewModel);
                     break;
-                case "AbstractEndpoint":
+                case "NServiceBusHost":
+                case "NServiceBusMVC":
+                case "NServiceBusWeb":
                     this.ViewModel.BuildDetailsForEndpoint(model.As<IToolkitInterface>() as IAbstractEndpoint, logicalViewDataContext as SolutionBuilderViewModel);
                     break;
                 case "Component":
