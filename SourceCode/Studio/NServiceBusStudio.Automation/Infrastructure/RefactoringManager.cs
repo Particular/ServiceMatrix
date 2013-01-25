@@ -17,6 +17,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
         private FileSystemWatcher Watcher;
 
         public ISolution Solution { get; set; }
+
+        public System.Windows.Threading.Dispatcher Dispatcher { get; set; }
         
         [Import]
         public IStatusBar StatusBar { get; set; }
@@ -31,6 +33,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public RefactoringManager([Import] ISolution solution, [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
             this.Solution = solution;
+            this.Dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
             StartListening(serviceProvider);
         }
 
@@ -86,8 +89,10 @@ namespace NServiceBusStudio.Automation.Infrastructure
                                                          e.InstanceName == Path.GetFileNameWithoutExtension(renamedFile.OldName))
                                              .ToList();
             
-            // Rename related elements with new name
-            relatedElements.ForEach(x => x.InstanceName = Path.GetFileNameWithoutExtension(renamedFile.Name));
+            this.Dispatcher.BeginInvoke(new Action(() =>
+                // Rename related elements with new name
+                relatedElements.ForEach(x => x.InstanceName = Path.GetFileNameWithoutExtension(renamedFile.Name))
+            ));
         }
 
         public void RenameClass(string classNamespace, string classCurrentName, string classNewName)
@@ -155,6 +160,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
             this.StatusBar.DisplayMessage(logTypeDesc + data);
         }
 
+
+        
     }
 
     public enum LogType
