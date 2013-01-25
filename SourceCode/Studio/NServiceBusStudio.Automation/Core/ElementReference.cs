@@ -96,7 +96,11 @@ namespace NServiceBusStudio.Core
 				{
 					var element = value.As<IProductElement>();
 					this.idProperty.Value = element.Id.ToString();
-					this.nameProperty.Value = element.InstanceName;
+					this.nameProperty.Value = value.InstanceName;
+                    value.InstanceNameChanged += (s, e) =>
+                    {
+                        this.Refresh();
+                    };
 				}
 			}
 		}
