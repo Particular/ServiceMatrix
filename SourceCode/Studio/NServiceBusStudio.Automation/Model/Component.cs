@@ -42,6 +42,15 @@ namespace NServiceBusStudio
                     DeleteComponentLink(endpoint);   
                 }
             };
+
+            this.InstanceNameChanged += (s, e) =>
+            {
+                foreach (var endpoint in this.DeployedTo)
+                {
+                    this.RemoveLinks(endpoint);
+                    this.AddLinks(endpoint);
+                }
+            };
         }
 
         private void DeleteComponentLink(IAbstractEndpoint endpoint)
@@ -178,11 +187,11 @@ namespace NServiceBusStudio
 
             // 1. Remove Links for Custom Code
             var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
-            RemoveLinkFromProject(project, this.InstanceName + ".cs", customCodePath);
+            RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", customCodePath);
 
             //2. Remove Links for Infrastructure Code
             var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure");
-            RemoveLinkFromProject(project, this.InstanceName + ".cs", infraCodePath);
+            RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", infraCodePath);
 
             // 3. Remove Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
@@ -205,7 +214,6 @@ namespace NServiceBusStudio
                 }
 
                 var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
-
                 RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
             }
         }

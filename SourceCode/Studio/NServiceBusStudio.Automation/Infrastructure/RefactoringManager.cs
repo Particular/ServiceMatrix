@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using System.Diagnostics;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using Microsoft.VisualStudio.Patterning.Runtime;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
@@ -15,15 +14,85 @@ namespace NServiceBusStudio.Automation.Infrastructure
     public class RefactoringManager
     {
         private static readonly ITraceSource tracer = Tracer.GetSourceFor<RefactoringManager>();
+        private FileSystemWatcher Watcher;
 
         public ISolution Solution { get; set; }
+
+        public System.Windows.Threading.Dispatcher Dispatcher { get; set; }
+        
+        [Import]
         public IStatusBar StatusBar { get; set; }
 
+        [Import]
+        public IPatternManager PatternManager { get; set; }
+
+        [Import]
+        public IFxrUriReferenceService UriService { get; set; }
+
         [ImportingConstructor]
-        public RefactoringManager(ISolution solution, IStatusBar statusBar)
+        public RefactoringManager([Import] ISolution solution, [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
             this.Solution = solution;
-            this.StatusBar = statusBar;
+            this.Dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
+            StartListening(serviceProvider);
+        }
+
+        private void StartListening(IServiceProvider serviceProvider)
+        {
+            var events = serviceProvider.TryGetService<ISolutionEvents>();
+
+            events.SolutionOpened += (s, e) => {
+                InitializeWatcher();
+            };
+            
+            events.SolutionClosed += (s, e) => {
+                if (this.Watcher != null)
+                {
+                    this.Watcher.EnableRaisingEvents = false;
+                    this.Watcher = null;
+                }
+            };
+
+            if (this.Solution.IsOpen)
+            {
+                InitializeWatcher();
+            }
+        }
+
+        private void InitializeWatcher()
+        {
+            this.Watcher = new FileSystemWatcher(Path.GetDirectoryName(this.Solution.PhysicalPath), "*.cs");
+            this.Watcher.IncludeSubdirectories = true;
+
+            this.Watcher.Renamed += new RenamedEventHandler(Watcher_Renamed);
+            this.Watcher.EnableRaisingEvents = true;
+        }
+
+        private void Watcher_Renamed(object sender, RenamedEventArgs renamedFile)
+        {
+            // Get Reference Uri for renamed File
+            var item = this.Solution.Find(renamedFile.Name).FirstOrDefault();
+            if (item == null)
+            {
+                return;
+            }
+
+            var referenceUri = this.UriService.CreateUri(item);
+
+            // Get Root Pattern Elements 
+            var rootElements = this.PatternManager.Products.SelectMany(x => x.Views.SelectMany(v => v.AllElements));
+            // Get all Pattern Elements 
+            var allElements = rootElements.Traverse<IProductElement>((e) => e.GetChildren()); 
+
+            // Get related elements to the Renamed File
+            var relatedElements = allElements.Where(e => e.References.Any(r => r.Value == referenceUri.ToString()) &&
+                                                         e.InstanceName == Path.GetFileNameWithoutExtension(renamedFile.OldName))
+                                             .ToList();
+            
+            this.Dispatcher.BeginInvoke(new Action(() =>
+                // Rename related elements with new name
+                relatedElements.ForEach(x => x.InstanceName = Path.GetFileNameWithoutExtension(renamedFile.Name))
+            ));
         }
 
         public void RenameClass(string classNamespace, string classCurrentName, string classNewName)
@@ -91,6 +160,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
             this.StatusBar.DisplayMessage(logTypeDesc + data);
         }
 
+
+        
     }
 
     public enum LogType
