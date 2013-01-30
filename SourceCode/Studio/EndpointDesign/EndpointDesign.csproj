@@ -261,7 +261,7 @@
   </ItemGroup>
   <!-- Project specific properties to control T4/DSL targets -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\DSLTools\v$(VisualStudioVersion)\Microsoft.DSLTools.targets" />
+  <Import Project="$(DSLToolsPath)\Microsoft.DSLTools.targets" />
   <PropertyGroup>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
     <StartAction>Program</StartAction>

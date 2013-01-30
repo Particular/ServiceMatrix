@@ -273,7 +273,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\DSLTools\v$(VisualStudioVersion)\Microsoft.DSLTools.targets" />
+  <Import Project="$(DSLToolsPath)\Microsoft.DSLTools.targets" />
   <Import Project="..\BuildConfiguration.targets" />
   <Import Project="EndpointDesign.targets" />
   <PropertyGroup>

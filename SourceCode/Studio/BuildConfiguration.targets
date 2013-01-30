@@ -7,7 +7,7 @@
     <PatternToolkitVersionTargetsPath>$(localappdata)\Microsoft\MSBuild\NuPattern\$(PatternToolkitBuilderVsixName)</PatternToolkitVersionTargetsPath>
   </PropertyGroup>
   
-	<Import Project="$(PatternToolkitVersionTargetsPath)\NuPattern.Authoring.PatternToolkitVersion.targets" />
+  <Import Project="$(PatternToolkitVersionTargetsPath)\NuPattern.Authoring.PatternToolkitVersion.targets" />
 
   <!-- Verifies that the correct solution configuration is selected -->
   <Target Name="VerifyTargetBuildConfiguration" BeforeTargets="BeforeBuild">
