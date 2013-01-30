@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug-VS2010</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20305</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -23,20 +30,7 @@
     <SccProvider>
     </SccProvider>
   </PropertyGroup>
-  <PropertyGroup>
-	<MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-	<VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-	<VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PropertiesTarget>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Toolkit.properties))\Toolkit.properties</PropertiesTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <OutputPath>..\Binaries\</OutputPath>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-  </PropertyGroup>
-  <Import Project="$(PropertiesTarget)" Condition="Exists($(PropertiesTarget))" />
+  <Import Project="..\BuildConfiguration.props" />
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -704,8 +698,8 @@
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.vsix">
-      <Link>NServiceBus.Modeling.EndpointDesign.Shell.vsix</Link>
+    <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix">
+      <Link>NServiceBus.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
@@ -1210,8 +1204,8 @@
     <ProjectReference Include="..\NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj">
       <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
       <Name>NServiceBusStudio.Automation</Name>
-	  <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
-	  <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup</IncludeOutputGroupsInVSIXLocalOnly>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
@@ -1222,8 +1216,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" />
-  <Import Project="$(localappdata)\Microsoft\MSBuild\NuPattern\NuPattern Toolkit Builder VS2010\NuPattern.Authoring.PatternToolkitVersion.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TextTemplating\v10.0\Microsoft.TextTemplating.targets" />
+  <Import Project="..\BuildConfiguration.targets" />
   <!-- Properties for VSSDK/DSL Targets -->
   <PropertyGroup>
     <RegisterOutputPackage>true</RegisterOutputPackage>
@@ -1238,16 +1231,7 @@
     <StartAction>Program</StartAction>
     <StartArguments>/rootsuffix Exp</StartArguments>
   </PropertyGroup>
-  <Import Project="$(RootDir)Solution Items\Toolkit.targets" Condition="Exists('$(RootDir)Solution Items\Toolkit.targets')" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-    	Other similar extension points exist, see Microsoft.Common.targets.
-	<Target Name="AfterBuild">
-	</Target>
-	-->
+  <!-- Target for Binaries & VSIXs -->
   <PropertyGroup>
     <BinariesDirectory>..\Binaries</BinariesDirectory>
   </PropertyGroup>

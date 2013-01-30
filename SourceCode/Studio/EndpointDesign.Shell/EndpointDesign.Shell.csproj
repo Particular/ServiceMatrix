@@ -27,45 +27,9 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
+	<UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\Binaries\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <!-- Properties for VSSDK/DSL Targets: Must be defined before importing the targets -->
-  <PropertyGroup>
-    <RegisterOutputPackage>true</RegisterOutputPackage>
-    <UseCodebase>true</UseCodebase>
-    <GacTargetOutput>false</GacTargetOutput>
-    <TransformOnBuild>True</TransformOnBuild>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PropertiesTarget>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Toolkit.properties))\Toolkit.properties</PropertiesTarget>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\DSLTools\v10.0\Microsoft.DSLTools.targets" />
-  <Import Project="EndpointDesign.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="..\BuildConfiguration.props" />
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -307,16 +271,24 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ModelExplorerToolWindowBitmaps.bmp" />
+  </ItemGroup>
+  <!-- Properties for VSSDK/DSL Targets: Must be defined before importing the targets -->
+  <PropertyGroup>
+    <RegisterOutputPackage>true</RegisterOutputPackage>
+    <UseCodebase>true</UseCodebase>
+    <GacTargetOutput>false</GacTargetOutput>
+    <TransformOnBuild>True</TransformOnBuild>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(localappdata)\Microsoft\MSBuild\NuPattern\NuPattern Toolkit Builder VS2010\NuPattern.Authoring.PatternToolkitVersion.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\DSLTools\v$(VisualStudioVersion)\Microsoft.DSLTools.targets" />
+  <Import Project="..\BuildConfiguration.targets" />
+  <Import Project="EndpointDesign.targets" />
   <PropertyGroup>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
     <StartAction>Program</StartAction>
     <StartArguments>/rootsuffix Exp "..\..\..\Debugging\Debugging.sln"</StartArguments>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Include="Resources\ModelExplorerToolWindowBitmaps.bmp" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(RootDir)Solution Items\Toolkit.targets" Condition="Exists('$(RootDir)Solution Items\Toolkit.targets')" />
 </Project>

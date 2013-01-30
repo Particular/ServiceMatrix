@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "MSBuild", "..\..\..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe", "{3BD758C1-9603-463C-833A-235678B7B900}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe
+		RemoteMachine = EZE-W8
+		StartingDirectory = C:\Windows\Microsoft.NET\Framework\v4.0.30319
+		Environment = Default
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C9593D6A-0BCA-4704-8CC3-26F30E59BCE2}"
+	ProjectSection(SolutionItems) = preProject
+		..\BuildConfiguration.props = ..\BuildConfiguration.props
+		..\BuildConfiguration.targets = ..\BuildConfiguration.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BD758C1-9603-463C-833A-235678B7B900}.Debug|x86.ActiveCfg = Debug|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
