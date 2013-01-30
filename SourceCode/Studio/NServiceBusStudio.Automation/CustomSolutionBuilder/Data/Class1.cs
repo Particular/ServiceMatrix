@@ -5,7 +5,7 @@ using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using System.IO;
 
-namespace Microsoft.VisualStudio.Patterning.Common.Presentation.Data
+namespace NuPattern.Common.Presentation.Data
 {
     /// <summary>
     /// Converts a <see cref="string"/> or <see cref="Uri"/> to a cached <see cref="BitmapImage"/>.

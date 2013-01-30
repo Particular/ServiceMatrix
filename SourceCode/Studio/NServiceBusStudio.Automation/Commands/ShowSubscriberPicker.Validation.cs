@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using Microsoft.VisualStudio.Modeling;
-using Microsoft.VisualStudio.Patterning.Extensibility;
-using Microsoft.VisualStudio.Patterning.Library;
-using Microsoft.VisualStudio.Patterning.Library.Automation;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Extensibility;
+using NuPattern.Library;
+using NuPattern.Library.Automation;
+using NuPattern.Library.Commands;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands

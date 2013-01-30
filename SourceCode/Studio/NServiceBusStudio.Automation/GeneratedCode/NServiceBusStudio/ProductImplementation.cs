@@ -10,7 +10,7 @@
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::System;
 	using global::System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace NServiceBusStudio
 	using global::System.ComponentModel.Composition;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	An NServiceBus-powered application

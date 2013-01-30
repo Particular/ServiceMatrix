@@ -1,8 +1,8 @@
-﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
-<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Runtime.Interfaces.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
-<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="global::AbstractEndpoint" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>

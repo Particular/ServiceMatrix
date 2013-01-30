@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<patternModelDiagram dslVersion="1.2.0.0" Id="d4b6057a-fb60-4a43-b09f-b7c23e6273cd" type="Microsoft.VisualStudio.Patterning.Runtime.Schema.PatternModelSchemaDiagram" absoluteBounds="0, 0, 18, 129.25" name="d4b6057a-fb60-4a43-b09f-b7c23e6273cd">
+<patternModelDiagram dslVersion="1.2.0.0" Id="d4b6057a-fb60-4a43-b09f-b7c23e6273cd" type="NuPattern.Runtime.Schema.PatternModelSchemaDiagram" absoluteBounds="0, 0, 18, 129.25" name="d4b6057a-fb60-4a43-b09f-b7c23e6273cd">
   <patternModelSchemaMoniker Id="1f03c958-af37-4474-9858-29fb36efd7d5" />
   <nestedChildShapes>
     <patternShape Id="ba7468ad-77ed-4a17-9a1d-86531529e5d8" absoluteBounds="0.25, 0.5, 2.375, 5.2241975911458329">

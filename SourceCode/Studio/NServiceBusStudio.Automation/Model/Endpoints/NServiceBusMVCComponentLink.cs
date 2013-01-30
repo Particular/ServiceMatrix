@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using AbstractEndpoint;
 using NServiceBusStudio.Core;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio
 {

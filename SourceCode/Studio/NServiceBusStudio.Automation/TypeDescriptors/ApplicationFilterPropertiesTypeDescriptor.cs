@@ -3,8 +3,8 @@
 //using System.Linq;
 //using System.Text;
 //using System.ComponentModel;
-//using Microsoft.VisualStudio.Patterning.Runtime;
-//using Microsoft.VisualStudio.Patterning.Extensibility;
+//using NuPattern.Runtime;
+//using NuPattern.Extensibility;
 //
 //namespace NServiceBusStudio.Automation.TypeDescriptors
 //{

@@ -65,20 +65,20 @@
     <Reference Include="Microsoft.VisualStudio.Shell, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.VisualStudio.Patterning.Library">
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Library.dll</HintPath>
+    <Reference Include="NuPattern.Library">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Interfaces">
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Interfaces">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Interfaces.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Common.Presentation">
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Common.Presentation.dll</HintPath>
+    <Reference Include="NuPattern.Common.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.Presentation.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Extensibility">
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.Patterning.Extensibility.dll</HintPath>
+    <Reference Include="NuPattern.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Extensibility.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -192,7 +192,7 @@
       <IncludeInVSIX>True</IncludeInVSIX>
     </Content>
     <None Include="Assets\Guidance\ToolkitGuidance.doc">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252fca8cce46-22d2-45a9-85ce-550c7c5e2d7f</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252fca8cce46-22d2-45a9-85ce-550c7c5e2d7f</SourceModelReference>
       <ItemGuid>6b0c3485-96ce-4ae1-9f1e-25df65d65007</ItemGuid>
     </None>
     <Content Include="Assets\Templates\Projects\NSBHWeb\Site.Master">
@@ -298,7 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="PatternModel.patterndefinition">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252f6e7c1096-278d-4f3b-a6fb-30cd1532dfcd</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252f6e7c1096-278d-4f3b-a6fb-30cd1532dfcd</SourceModelReference>
       <ItemGuid>f1f80e15-21ae-481d-808a-4e4dc9e80d53</ItemGuid>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -307,12 +307,12 @@
     <None Include="source.extension.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/WebEndpoint/Element/E:\projects\NServiceBus\Studio\Extensions\WebEndpoint\WebEndpoint.patternstate%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
       <ItemGuid>642cbf51-9643-4534-bbe3-a966774fd08e</ItemGuid>
     </None>
     <None Include="source.include.t4">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/WebEndpoint/Element/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/WebEndpoint/Element/D:\work\GitHub\Studio\SourceCode\Studio\Extensions\WebEndpoint\WebEndpoint.slnbldr%252f12c3961d-31b9-431f-b60e-a24f5ba5c470</SourceModelReference>
       <ItemGuid>b0761bec-3ad8-453f-9260-2c9f5e12b701</ItemGuid>
     </None>
   </ItemGroup>
@@ -324,7 +324,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\VSSDK\Microsoft.VsSDK.targets" />
-  <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\Microsoft.VisualStudio.Patterning.Authoring.PatternToolkitVersion.targets" />
+  <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\NuPattern.Authoring.PatternToolkitVersion.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TextTemplating\v10.0\Microsoft.TextTemplating.targets" />
   <!-- Properties for VSSDK/DSL Targets -->
   <PropertyGroup>

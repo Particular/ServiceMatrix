@@ -2,14 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:cv="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure"
-	        xmlns:pd="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
-	        xmlns:l="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI;assembly=Microsoft.VisualStudio.Patterning.Runtime"
-	        xmlns:k="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI.Data;assembly=Microsoft.VisualStudio.Patterning.Runtime"
+	        xmlns:pd="clr-namespace:NuPattern.Common.Presentation.Data;assembly=NuPattern.Common.Presentation"
+	        xmlns:l="clr-namespace:NuPattern.Runtime.UI;assembly=NuPattern.Runtime"
+	        xmlns:k="clr-namespace:NuPattern.Runtime.UI.Data;assembly=NuPattern.Runtime"
 	        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
-            xmlns:p="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
+            xmlns:p="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:local="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data"
+            xmlns:local="clr-namespace:NuPattern.Common.Presentation.Data"
             xmlns:vm="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels"
             mc:Ignorable="d" 
 	        Background="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"
@@ -17,13 +17,13 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ContextMenu.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/CommandBar.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/TreeView.xaml" />-->
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ContextMenu.xaml" />
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/CommandBar.xaml" />
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ComboBox.xaml" />
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/TreeView.xaml" />
+                <!--<ResourceDictionary Source="pack://application:,,,/NuPattern.Common.Presentation;component/Resources/ContextMenu.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/NuPattern.Common.Presentation;component/Resources/CommandBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/NuPattern.Common.Presentation;component/Resources/TreeView.xaml" />-->
+                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/ContextMenu.xaml" />
+                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/CommandBar.xaml" />
+                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/ComboBox.xaml" />
+                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/TreeView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

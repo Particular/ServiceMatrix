@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <productState xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.2.0.0" Id="a6928d0b-6a9e-4627-9b6e-8f866aaf4458" xmlns="http://schemas.microsoft.com/visualstudio/patterning/runtime/productstate">
   <products>
-    <product Id="a113fd76-36d0-4d40-8088-1466af36f997" definitionId="c034429e-01f9-48dd-a478-0321fb708dd3" definitionName="PatternToolkit" instanceName="NServiceBusStudio" extensionId="9f6dc301-6f66-4d21-9f9c-b37412b162f6" extensionName="Pattern Toolkit Builder" author="Microsoft" version="1.2.18.0">
+    <product Id="a113fd76-36d0-4d40-8088-1466af36f997" definitionId="c034429e-01f9-48dd-a478-0321fb708dd3" definitionName="PatternToolkit" instanceName="NServiceBusStudio" extensionId="9f6dc301-6f66-4d21-9f9c-b37412b162f6" extensionName="NuPattern Toolkit Builder" author="NuPattern" version="1.3.20.0">
       <properties>
         <property Id="18879873-a385-48f9-9bbd-091009431d3f" definitionId="7ce5ad5a-88c2-4336-b038-e4998aa02b03" definitionName="TransformOnBuild" rawValue="Never" />
         <property Id="a8faad37-e203-4fa7-b644-661cc79c3e78" definitionId="293802b7-0b69-440e-be60-927f07f4e636" definitionName="PatternName" rawValue="Application" />
@@ -82,7 +82,7 @@
             </collection>
             <collection Id="5c2d874d-6391-4e59-9ba6-9308adb65d59" definitionId="994965b7-d2b1-4460-8947-44ca73227b5f" definitionName="Automation" instanceName="Automation">
               <extensionProducts>
-                <product Id="50814d10-91be-4eb3-af8b-b69c87ef60ef" definitionId="d6139b37-9971-4834-a9dc-2b3daef962cf" definitionName="AutomationLibrary" instanceName="Library" extensionId="97bd7ab2-964b-43f1-8a08-be6db68b018b">
+                <product Id="50814d10-91be-4eb3-af8b-b69c87ef60ef" definitionId="d6139b37-9971-4834-a9dc-2b3daef962cf" definitionName="PatternToolkitLibrary" instanceName="Library" extensionId="97bd7ab2-964b-43f1-8a08-be6db68b018b">
                   <properties>
                     <property Id="599f9ff1-bc27-4700-8fe8-e33c9be618cd" definitionId="96a8d40e-c7e5-47ba-b550-489745d95cd2" definitionName="TransformOnBuild" rawValue="Never" />
                     <property Id="7112db9d-9549-4e43-ab5f-c24157444e8b" definitionId="32699d9a-aa7d-4a51-8c86-6b2a708be486" definitionName="ToolkitProjectRootNamespace" rawValue="NServiceBusStudio" />

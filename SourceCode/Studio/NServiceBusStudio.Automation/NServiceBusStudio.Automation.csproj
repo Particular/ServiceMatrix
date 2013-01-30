@@ -42,7 +42,7 @@
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Binaries\Microsoft.VisualStudio.ExtensionManager.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\Microsoft.VisualStudio.ExtensionManager.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -50,14 +50,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 2010 SDK\VisualStudioIntegration\Common\Assemblies\v2.0\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.dll</HintPath>
+    <Reference Include="NuPattern.Runtime">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Store">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.Store.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Store">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Store.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Shell">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.Shell.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Shell">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -108,49 +108,49 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.Patterning.Library">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Library.dll</HintPath>
+    <Reference Include="NuPattern.Library">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Schema">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.Schema.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Schema">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Runtime.Interfaces">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Interfaces">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Interfaces.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Common.Presentation">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Common.Presentation.dll</HintPath>
+    <Reference Include="NuPattern.Common.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.Presentation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Extensibility">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.VisualStudio.Patterning.Extensibility.dll</HintPath>
+    <Reference Include="NuPattern.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Extensibility.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation">
-      <HintPath>$(PatternToolkitBuilder)\Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation.dll</HintPath>
+    <Reference Include="NuPattern.Authoring.PatternToolkit.Automation">
+      <HintPath>$(PatternToolkitBuilder)\NuPattern.Authoring.PatternToolkit.Automation.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Pattern Toolkit Manager\1.2.19.0\Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime.dll</HintPath>
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(VS100COMNTOOLS)..\IDE\PrivateAssemblies\Microsoft.VisualStudio.ExtensibilityHosting.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStu+dio.TeamArchitect.PowerTools.Features">
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Feature Extension Runtime\1.0\Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.dll</HintPath>
+    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools.Features">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(LocalAppData)\Microsoft\VisualStudio\10.0\Extensions\Microsoft\Feature Extension Runtime\1.0\Microsoft.VisualStudio.TeamArchitect.PowerTools.dll</HintPath>
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -364,43 +364,43 @@
     <Compile Include="ValueProviders\ProcessedEventLinkHandlerNameProvider.cs" />
     <Compile Include="VersionHelper.cs" />
     <Compile Include="GeneratedCode\NServiceBusStudio\CollectionImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>5aadc4e7-1ac5-420e-ab3d-21a6584e3d89</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\CollectionInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>7e26cfea-8908-45d7-be31-c3683e27407c</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ElementImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>e7506f7d-3226-4ea2-9f29-9e722731eed2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ElementInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>b9213604-e0de-42ec-b4a7-f135976ff072</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ExtensionPointImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>73c36e63-ee7a-4413-80df-6b1574f10e7f</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ExtensionPointInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>1d96ad4a-4ce5-4032-94e4-e96766c094d2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ProductImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>d519e1d0-d519-45dc-811e-b130499b42b2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ProductInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>1664b587-b114-45c4-984f-9f693654aa87</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ViewImplementation.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>7b629b7f-f695-41f8-89c9-71db1a0a14d9</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\NServiceBusStudio\ViewInterface.cs">
-      <SourceModelReference>modelbus://Microsoft.VisualStudio.Patterning.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\clarius\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>9a04038f-53ef-422c-9979-9fdd13acf327</ItemGuid>
     </Compile>
     <Compile Include="Core\IElementReference.cs" />
@@ -524,7 +524,7 @@
     <CopyVsixDebuggingDependencies>false</CopyVsixDebuggingDependencies>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(LocalAppData)\Microsoft\MSBuild\Microsoft\Pattern Toolkit Builder\Microsoft.VisualStudio.Patterning.Authoring.PatternToolkitVersion.targets" />
+  <Import Project="$(localappdata)\Microsoft\MSBuild\NuPattern\NuPattern Toolkit Builder VS2010\NuPattern.Authoring.PatternToolkitVersion.targets" />
   <!-- Properties for VSSDK/DSL Targets -->
   <PropertyGroup>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>

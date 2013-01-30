@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using AbstractEndpoint;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 

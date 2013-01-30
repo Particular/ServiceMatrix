@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using System.ComponentModel.Composition;
 
 namespace NServiceBusStudio

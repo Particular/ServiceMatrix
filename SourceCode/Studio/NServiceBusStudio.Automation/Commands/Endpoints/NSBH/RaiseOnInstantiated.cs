@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using abs = AbstractEndpoint;

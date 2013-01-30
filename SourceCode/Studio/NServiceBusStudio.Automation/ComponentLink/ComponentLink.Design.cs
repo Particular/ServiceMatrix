@@ -7,7 +7,7 @@ using NServiceBusStudio.Core;
 using NServiceBusStudio.Core.Design;
 using NServiceBusStudio;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 
 namespace AbstractEndpoint
@@ -65,7 +65,7 @@ namespace AbstractEndpoint
 
             public string InstanceName { get; set; }
 
-            public IEnumerable<Microsoft.VisualStudio.Patterning.Runtime.IReference> References { get; private set; }
+            public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
 
             public string Notes { get; set; }
 
@@ -79,7 +79,7 @@ namespace AbstractEndpoint
             {
             }
 
-            public Microsoft.VisualStudio.Patterning.Runtime.IElement AsElement()
+            public NuPattern.Runtime.IElement AsElement()
             {
                 return null;
             }

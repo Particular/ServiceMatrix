@@ -1,7 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ Assembly Name="System.Core.dll" #>
-<#@ Import Namespace="System.Linq" #>
-<#@ output extension=".vsixmanifest" #>
+﻿<#@ output extension=".vsixmanifest" #>
 <#@ Include File="source.include.t4" #>
 <#@ Include File="..\source.version.t4" #>
 <?xml version="1.0" encoding="utf-8"?>
@@ -30,22 +27,22 @@
     <GettingStartedGuide></GettingStartedGuide>
 	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
-      <VisualStudio Version="10.0">
+      <VisualStudio Version="<#=supportedVsVersion#>">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
       </VisualStudio>
     </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+    <SupportedFrameworkRuntimeEdition MinVersion="<#=supportedFrxMinVersion#>" MaxVersion="<#=supportedFrxMaxVersion#>" />
   </Identifier>
   <References>
 		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
 		  <Name>NServiceBus Modeling</Name>
 		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>
 		</Reference>
-		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785" MinVersion="1.2.0.0">
-		<Name>Pattern Toolkit Manager</Name>
-			<VsixPath>PatternToolkitManager.vsix</VsixPath>
+		<Reference Id="<#=managerVsixIdentifier#>"  MinVersion="<#=managerVsixVersion#>">
+		<Name><#=managerVsixName#></Name>
+			<VsixPath><#=managerVsixFileName#></VsixPath>
 		</Reference>
 	  </References>
 	<Content>
