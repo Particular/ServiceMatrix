@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:nsb="clr-namespace:NServiceBusStudio.Automation.Dialog"
              xmlns:src="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
-             xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.10.0" 
-             xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
+             xmlns:vsfx="clr-namespace:NuPattern.Common.Presentation.Vs;assembly=NuPattern.Common.Presentation"
              mc:Ignorable="d"
              SizeToContent="Height" Width="350" d:DesignHeight="300"
              MinWidth="350" MaxWidth="350"
@@ -66,13 +65,13 @@
                              TextChanged="ComponentName_TextChanged" Visibility="Collapsed"/>
         </Grid>
         <Rectangle 
-            Grid.Row="1" Fill="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowFloatingFrameKey}}"
+            Grid.Row="1" Fill="{DynamicResource VsVersion.ToolWindowFloatingFrameKey}"
                    />
         <Grid Grid.Row="1" IsSharedSizeScope="true" Margin="5"
               VerticalAlignment="Bottom" HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">
-                <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" Click="ok_Click" IsDefault="True" />
-                <vs:DialogButton Name="cancel" Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
+                <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" Click="ok_Click" IsDefault="True" />
+                <vsfx:VsDialogButton Name="cancel" Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
             </StackPanel>
         </Grid>
     </Grid>

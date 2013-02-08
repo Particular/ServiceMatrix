@@ -5,25 +5,22 @@
 	        xmlns:pd="clr-namespace:NuPattern.Common.Presentation.Data;assembly=NuPattern.Common.Presentation"
 	        xmlns:l="clr-namespace:NuPattern.Runtime.UI;assembly=NuPattern.Runtime"
 	        xmlns:k="clr-namespace:NuPattern.Runtime.UI.Data;assembly=NuPattern.Runtime"
-	        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
             xmlns:p="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:local="clr-namespace:NuPattern.Common.Presentation.Data"
             xmlns:vm="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels"
             mc:Ignorable="d" 
-	        Background="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"
+	        Background="{DynamicResource VsVersion.ToolWindowBackgroundKey}"
             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="pack://application:,,,/NuPattern.Common.Presentation;component/Resources/ContextMenu.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/NuPattern.Common.Presentation;component/Resources/CommandBar.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/NuPattern.Common.Presentation;component/Resources/TreeView.xaml" />-->
                 <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/ContextMenu.xaml" />
                 <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/CommandBar.xaml" />
                 <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/ComboBox.xaml" />
                 <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/TreeView.xaml" />
+                <ResourceDictionary Source="VsVersionStyles.gen.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -32,19 +29,19 @@
         <KeyBinding Key="Right" Modifiers="Control" Command="{Binding RightCommand}" />
     </UserControl.InputBindings>
 
-    <Border BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}" BorderThickness="1">
+    <Border BorderBrush="{DynamicResource VsVersion.GridLineKey}" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarGradientKey}}"
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource VsVersion.CommandBarGradientKey}"
                   x:Name="TitleGrid">
                 <TextBlock x:Name="TitleText" Text="{Binding Title}"  Margin="5,3,3,3"
-                       Foreground="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarTextActiveKey}}"/>
+                       Foreground="{DynamicResource VsVersion.CommandBarTextActiveKey}"/>
             </Grid>
-            <Border BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.GridLineKey}}" BorderThickness="3"
+            <Border BorderBrush="{DynamicResource VsVersion.GridLineKey}" BorderThickness="3"
                     x:Name="ViewSelectorBorder"
                     Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                 <ComboBox x:Name="ViewSelector" Template="{StaticResource ComboBox.Template}" Height="22"

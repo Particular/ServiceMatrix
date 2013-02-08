@@ -8,23 +8,23 @@
 	<Author><#= author #></Author>
 	<Version><#= globalversion #></Version>
 	<Description xml:space="preserve"><#= description #></Description>
-    <Locale>1033</Locale>
+  <Locale>1033</Locale>
 <#if(HasValue(eula))
 {
 #>
-		<License><#= eula #></License>
+  <License><#= eula #></License>
 <#
 }
 #>
 <#if(HasValue(icon))
 {
 #>
-		<Icon><#= icon #></Icon>
+  <Icon><#= icon #></Icon>
 <#
 }
 #>
 	<MoreInfoUrl></MoreInfoUrl>
-    <GettingStartedGuide></GettingStartedGuide>
+  <GettingStartedGuide></GettingStartedGuide>
 	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
       <VisualStudio Version="<#=supportedVsVersion#>">
@@ -38,10 +38,10 @@
   <References>
 		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
 		  <Name>NServiceBus Modeling</Name>
-		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>
+		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.<#=supportedVsVersion#>.vsix</VsixPath>
 		</Reference>
 		<Reference Id="<#=managerVsixIdentifier#>"  MinVersion="<#=managerVsixVersion#>">
-		<Name><#=managerVsixName#></Name>
+		  <Name><#=managerVsixName#></Name>
 			<VsixPath><#=managerVsixFileName#></VsixPath>
 		</Reference>
 	  </References>

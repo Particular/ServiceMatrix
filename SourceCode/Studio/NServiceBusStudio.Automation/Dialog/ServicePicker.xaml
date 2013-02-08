@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:src="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
-             xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.10.0" 
+             xmlns:vsfx="clr-namespace:NuPattern.Common.Presentation.Vs;assembly=NuPattern.Common.Presentation"
              mc:Ignorable="d" 
              SizeToContent="Height" Width="458"
              FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" d:DesignHeight="257">
@@ -64,8 +64,8 @@
                 <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="CmdBtn" />
             </Grid.ColumnDefinitions>
-            <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
-            <vs:DialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
+            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
+            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </src:CommonDialogWindow>

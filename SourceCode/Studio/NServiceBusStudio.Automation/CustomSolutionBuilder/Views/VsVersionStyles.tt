@@ -1,0 +1,15 @@
+﻿<#@ output extension=".gen.xaml" #>
+
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+		<!-- TextBox -->
+    <SolidColorBrush x:Key="VsVersion.ToolWindowBorderKey" Color="{DynamicResource VsColor.ToolWindowBorder}"/>
+    <SolidColorBrush x:Key="VsVersion.ToolWindowBackgroundKey" Color="{DynamicResource VsColor.ToolWindowBackground}"/>
+    <SolidColorBrush x:Key="VsVersion.ToolWindowFloatingFrameKey" Color="{DynamicResource VsColor.ToolWindowFloatingFrame}"/>
+    <SolidColorBrush x:Key="VsVersion.CommandBarGradientKey" Color="{DynamicResource VsColor.CommandBarGradient}" />
+    <SolidColorBrush x:Key="VsVersion.CommandBarTextActiveKey" Color="{DynamicResource VsColor.CommandBarTextActive}" />
+    <SolidColorBrush x:Key="VsVersion.GridLineKey" Color="{DynamicResource VsColor.GridLine}" />
+
+</ResourceDictionary>

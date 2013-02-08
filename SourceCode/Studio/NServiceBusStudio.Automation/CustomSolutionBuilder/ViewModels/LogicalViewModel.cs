@@ -573,6 +573,23 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         public class LogicalViewModelNode : INotifyPropertyChanged
         {
             public string CustomIconPath { get; set; }
+            //string _customIconPath;
+            //public string CustomIconPath
+            //{
+            //    get
+            //    {
+            //        if (this._customIconPath == null)
+            //        {
+            //            return this.InnerViewModel.IconPath;
+            //        }
+            //        else
+            //            return this._customIconPath;
+            //    }
+            //    set
+            //    {
+            //        _customIconPath = value;
+            //    }
+            //}
             //public string IconPath
             //{
             //    get

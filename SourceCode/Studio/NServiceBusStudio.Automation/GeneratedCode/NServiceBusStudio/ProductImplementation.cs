@@ -10,8 +10,8 @@
 
 namespace NServiceBusStudio
 {
-	using global::NuPattern.Runtime;
 	using global::NServiceBusStudio.Automation.TypeConverters;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
@@ -25,7 +25,7 @@ namespace NServiceBusStudio
 	///	</summary>
 	[Description("An NServiceBus-powered application")]
 	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2c52bbfe-442d-4f40-8f6f-7df75dd99cac", ProxyType = typeof(Application))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 	internal partial class Application : IApplication
 	{

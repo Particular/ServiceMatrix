@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:src="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
-             xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.10.0" 
+             xmlns:vsfx="clr-namespace:NuPattern.Common.Presentation.Vs;assembly=NuPattern.Common.Presentation" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" 
              Height="100" Width="278"
@@ -24,8 +24,8 @@
                 <ColumnDefinition Width="3" />
                 <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
             </Grid.ColumnDefinitions>
-            <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" />
-            <vs:DialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
+            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" />
+            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
         </Grid>
     </Grid>
 </src:CommonDialogWindow>

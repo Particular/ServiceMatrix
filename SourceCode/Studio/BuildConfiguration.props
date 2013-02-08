@@ -13,8 +13,8 @@
     <OldToolsVersion Condition="'$(VisualStudioVersion)' == '11.0'">4.0</OldToolsVersion>
     <MinimumVisualStudioVersion>$(VisualStudioVersion)</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-	<DSLToolsPath Condition="'$(DSLToolsPath)' == '' and '$(VisualStudioVersion)' == '10.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\DSLTools\v10.0</DSLToolsPath>
-	<DSLToolsPath Condition="'$(DSLToolsPath)' == '' and '$(VisualStudioVersion)' == '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v11.0\DSLTools\</DSLToolsPath>
+	<DSLToolsPath Condition="'$(VisualStudioVersion)' == '10.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\DSLTools\v10.0</DSLToolsPath>
+	<DSLToolsPath Condition="'$(VisualStudioVersion)' == '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v11.0\DSLTools\</DSLToolsPath>
   </PropertyGroup>
 
   <!-- Targets for References -->

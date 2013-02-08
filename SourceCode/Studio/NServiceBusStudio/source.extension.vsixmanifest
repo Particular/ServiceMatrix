@@ -3,30 +3,30 @@
   <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
 	<Name>NServiceBus Studio</Name>
 	<Author>NServiceBus</Author>
-	<Version>3.4.0</Version>
+	<Version>4.0.0</Version>
 	<Description xml:space="preserve">A set of Visual Studio integrated tools to author NServiceBus applications</Description>
-    <Locale>1033</Locale>
-		<Icon>Resources\ToolkitIcon.png</Icon>
+  <Locale>1033</Locale>
+  <Icon>Resources\ToolkitIcon.png</Icon>
 	<MoreInfoUrl></MoreInfoUrl>
-    <GettingStartedGuide></GettingStartedGuide>
+  <GettingStartedGuide></GettingStartedGuide>
 	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
-      <VisualStudio Version="10.0">
+      <VisualStudio Version="11.0">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
       </VisualStudio>
     </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.5" />
   </Identifier>
   <References>
 		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
 		  <Name>NServiceBus Modeling</Name>
-		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>
+		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.11.0.vsix</VsixPath>
 		</Reference>
 		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.3.20.0">
-		<Name>NuPattern Toolkit Manager</Name>
-			<VsixPath>NuPatternToolkitManager.10.0.vsix</VsixPath>
+		  <Name>NuPattern Toolkit Manager</Name>
+			<VsixPath>NuPatternToolkitManager.11.0.vsix</VsixPath>
 		</Reference>
 	  </References>
 	<Content>
