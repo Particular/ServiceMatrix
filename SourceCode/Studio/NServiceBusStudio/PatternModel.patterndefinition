@@ -221,6 +221,17 @@
         <automationSettingsSchemaMoniker Id="379a528c-91cc-4653-a57c-11cd2be2ef10" />
       </extendedElement>
     </eventSettings>
+    <eventSettings Id="ba346ff7-bb06-44c7-99a6-10f89e141d6c" commandId="c9122330-58f6-49c9-bcdf-a26c1cc94d41" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" filterForCurrentElement="true" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b8e8d648-9e81-48f3-9a01-703637974995" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NuPattern.Library.Conditions.EventSenderMatchesElementCondition",
+    "Properties": []
+  }
+]</conditions>
+    </eventSettings>
     <commandSettings Id="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" />
@@ -1939,6 +1950,22 @@
         <propertySettings Id="2f948d1e-ad0b-4da6-a571-b5cf686e8895" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/50af6eba-4205-4aed-ad99-910a10d2be0a" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
+    <commandSettings Id="c9122330-58f6-49c9-bcdf-a26c1cc94d41" typeId="NuPattern.Library.Commands.InstantiateFeatureCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c0bd6da8-6c4e-4f0e-ae62-f67dd98cb84d" />
+      </extendedElement>
+      <properties>
+        <propertySettings Id="74a40050-0265-4713-9112-6a37f7a8f8e3" value="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" name="FeatureId" />
+        <propertySettings Id="9702228f-dcef-4d37-946a-7e438be8e6ee" value="NServiceBus Studio Guidance" name="DefaultInstanceName" />
+        <propertySettings Id="7c6f3ca7-f926-4b46-b736-820e449551f4" value="True" name="SharedInstance" />
+        <propertySettings Id="acd71921-37ed-49cd-bc97-342d1d09624a" value="True" name="ActivateOnInstantiation" />
+      </properties>
+    </commandSettings>
+    <commandSettings Id="39affcab-a0b8-4be3-9b51-3c54698f9583" typeId="NuPattern.Library.Commands.ActivateFeatureCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="37ce4dcc-2968-4b4e-aa37-6d4489bda567" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -2061,7 +2088,24 @@
         <automationSettingsSchemaMoniker Id="85d7eb16-2144-4b34-839b-13047047f825" />
       </extendedElement>
     </menuSettings>
-    <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283">
+    <menuSettings Id="c3f00730-c24d-4ff6-86eb-1285a90d6922" text="Show Guidance" commandId="39affcab-a0b8-4be3-9b51-3c54698f9583" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="10000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="87031a0d-a630-4804-bc4c-1b43870002c8" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NuPattern.Library.Conditions.ElementReferenceExistsCondition",
+    "Properties": [
+      {
+        "Name": "Kind",
+        "Value": "NuPattern.Extensibility.References.GuidanceReference",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </menuSettings>
+    <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="NServiceBus Studio Guidance" guidanceFeatureId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
       <extendedElement>
         <patternSchemaMoniker Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" />
       </extendedElement>
@@ -2734,6 +2778,42 @@
         </customizationPolicy>
       </automationSettings>
       <automationSettings Id="e05b42a0-b09c-4154-848a-88bd0d581669" name="OnBuildFinishedCommand" displayName="On Build Finished Command" description="" codeIdentifier="OnBuildFinishedCommand" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="c0bd6da8-6c4e-4f0e-ae62-f67dd98cb84d" name="InstantiateGuidanceCommand" displayName="Instantiate Guidance Command" description="" isSystem="true" codeIdentifier="InstantiateGuidanceCommand" isCustomizable="False" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="b8e8d648-9e81-48f3-9a01-703637974995" name="InstantiateGuidanceEvent" displayName="Instantiate Guidance Event" description="" isSystem="true" codeIdentifier="InstantiateGuidanceEvent" isCustomizable="False" automationType="Event Launch Point" classification="LaunchPoint">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="37ce4dcc-2968-4b4e-aa37-6d4489bda567" name="ActivateGuidanceCommand" displayName="Activate Guidance Command" description="" isSystem="true" codeIdentifier="ActivateGuidanceCommand" isCustomizable="False" automationType="Command">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="87031a0d-a630-4804-bc4c-1b43870002c8" name="ActivateGuidanceContextMenu" displayName="Activate Guidance Context Menu" description="" isSystem="true" codeIdentifier="ActivateGuidanceContextMenu" isCustomizable="False" automationType="ContextMenu Launch Point" classification="LaunchPoint">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />

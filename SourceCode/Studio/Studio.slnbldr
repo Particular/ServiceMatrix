@@ -64,6 +64,7 @@
                   </properties>
                   <references>
                     <reference Id="742f3ec9-2e8b-4797-94e5-7dec89444e79" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9f48d2ea-7bf9-4a4a-8db8-56415d180740" kind="NuPattern.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;ToolkitGuidance.doc&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;90291e86-b780-4adf-b500-5c11c868c3fd&quot;&#xD;&#xA;}" />
+                    <reference Id="e0cb008a-1ff3-4620-821b-6cb4388782e1" value="solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/60f176d8-4e9b-4313-8e18-5d61da1edf57" kind="NuPattern.Extensibility.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;GuidanceWorkflow&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;50c8adef-76cc-44a0-80c3-ac8aef6c4513&quot;&#xD;&#xA;}" />
                   </references>
                 </element>
                 <collection Id="44ee8df1-8b75-4c9e-9428-69e1aec7a741" definitionId="f53b1915-e5c9-47f0-b33f-64487813d87c" definitionName="Templates" instanceName="Templates">
