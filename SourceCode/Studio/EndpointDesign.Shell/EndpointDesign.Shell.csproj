@@ -141,6 +141,9 @@
       <Link>source.version.t4</Link>
     </None>
     <None Include="NServiceBus.Tools.snk" />
+    <VSCTCompile Include="Commands.vsct">
+      <ResourceName>1000.ctmenu</ResourceName>
+    </VSCTCompile>
     <Content Include="Resources\ProductPreview.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -238,6 +241,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <MergeWithCTO>true</MergeWithCTO>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\ShellResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
