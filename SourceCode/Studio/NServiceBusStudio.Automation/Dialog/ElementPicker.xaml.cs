@@ -12,8 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Markup;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Patterning.Common.Presentation;
+using NuPattern.Runtime;
+using NuPattern.Common.Presentation;
 using System.ComponentModel;
 
 namespace NServiceBusStudio.Automation.Dialog

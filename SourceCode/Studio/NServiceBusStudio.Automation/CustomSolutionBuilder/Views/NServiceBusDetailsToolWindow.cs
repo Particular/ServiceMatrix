@@ -2,9 +2,9 @@
 using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Patterning.Extensibility;
-using Microsoft.VisualStudio.Patterning.Runtime.Shell.Properties;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Extensibility;
+using NuPattern.Runtime.Shell.Properties;
+using NuPattern.Runtime.UI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;

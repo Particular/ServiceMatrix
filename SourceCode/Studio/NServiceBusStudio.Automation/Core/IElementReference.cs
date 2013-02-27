@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Core
 {

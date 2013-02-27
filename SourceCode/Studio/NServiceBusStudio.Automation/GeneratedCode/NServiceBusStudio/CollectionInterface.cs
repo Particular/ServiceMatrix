@@ -10,20 +10,20 @@
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services
 	///	</summary>
 	[Description("Description for Application.Design.Services")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "25802dff-4552-4b8a-9fec-4943a9f20c26", ProxyType = typeof(Services))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IServices : IToolkitInterface
 	{ 
 		///	<summary>
@@ -94,20 +94,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Contract
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Contract")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "14dd0a39-32b5-4814-9ed5-4279aba392af", ProxyType = typeof(Contract))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IContract : IToolkitInterface
 	{ 
 		///	<summary>
@@ -190,20 +190,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Contract.Events
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Contract.Events")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "6b6c2df4-f261-4d62-819f-70e170c196ca", ProxyType = typeof(Events))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IEvents : IToolkitInterface
 	{ 
 		///	<summary>
@@ -282,20 +282,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Contract.Commands
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Contract.Commands")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "fa52a7b2-5908-451e-a185-4eb52d4e6343", ProxyType = typeof(Commands))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface ICommands : IToolkitInterface
 	{ 
 		///	<summary>
@@ -374,20 +374,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Components
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Components")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "54f49375-e376-4668-94e0-df31f6184f56", ProxyType = typeof(Components))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IComponents : IToolkitInterface
 	{ 
 		///	<summary>
@@ -458,20 +458,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Components.Component.Publishes
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Components.Component.Publishes")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "318cc384-e8ba-465f-8469-1235fce91ef0", ProxyType = typeof(Publishes))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IPublishes : IToolkitInterface
 	{ 
 		///	<summary>
@@ -554,20 +554,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Components.Component.Subscribes
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "ffcf83ed-8aca-42ea-bebd-af35d17f23be", ProxyType = typeof(Subscribes))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface ISubscribes : IToolkitInterface
 	{ 
 		///	<summary>
@@ -650,20 +650,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.Components.Component.LibraryReferences
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.Components.Component.LibraryReferences")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "7a291463-b68c-45ac-8ad3-28eb5982aa3c", ProxyType = typeof(LibraryReferences))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface ILibraryReferences : IToolkitInterface
 	{ 
 		///	<summary>
@@ -734,20 +734,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Services.Service.ServiceLibraries
 	///	</summary>
 	[Description("Description for Application.Design.Services.Service.ServiceLibraries")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "70a9d0ed-a581-4b84-8ac7-ad3d5b4a43d6", ProxyType = typeof(ServiceLibraries))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IServiceLibraries : IToolkitInterface
 	{ 
 		///	<summary>
@@ -826,20 +826,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Endpoints
 	///	</summary>
 	[Description("Description for Application.Design.Endpoints")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "ad8ac730-01f5-47d8-bd53-5a1bc52ccb3b", ProxyType = typeof(Endpoints))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IEndpoints : IToolkitInterface
 	{ 
 		///	<summary>
@@ -934,20 +934,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Endpoints.NServiceBusHost.Components
 	///	</summary>
 	[Description("Description for Application.Design.Endpoints.NServiceBusHost.Components")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "4640ec7c-c09c-42a6-90de-ff9cd99fd6b1", ProxyType = typeof(NServiceBusHostComponents))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface INServiceBusHostComponents : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1018,20 +1018,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Endpoints.NServiceBusWeb.Components
 	///	</summary>
 	[Description("Description for Application.Design.Endpoints.NServiceBusWeb.Components")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "7fd9877f-4de1-4d74-a0a3-d3a09cc06a73", ProxyType = typeof(NServiceBusWebComponents))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface INServiceBusWebComponents : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1102,20 +1102,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Endpoints.NServiceBusMVC.Components
 	///	</summary>
 	[Description("Description for Application.Design.Endpoints.NServiceBusMVC.Components")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2cb77a1f-f887-467c-b0e3-df2de031b87c", ProxyType = typeof(NServiceBusMVCComponents))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface INServiceBusMVCComponents : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1186,20 +1186,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Infrastructure
 	///	</summary>
 	[Description("Description for Application.Design.Infrastructure")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "f847dee0-d0b7-4270-932f-8b18ceb74f21", ProxyType = typeof(Infrastructure))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IInfrastructure : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1270,20 +1270,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Infrastructure.Security
 	///	</summary>
 	[Description("Description for Application.Design.Infrastructure.Security")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "56d7865c-0be2-4f31-8b0d-0b0e12156582", ProxyType = typeof(Security))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface ISecurity : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1354,20 +1354,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.DummyCollection
 	///	</summary>
 	[Description("Description for Application.Design.DummyCollection")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2f26d53d-1e7f-41ef-860b-f8c03f01624a", ProxyType = typeof(DummyCollection))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IDummyCollection : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1426,20 +1426,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.UseCases
 	///	</summary>
 	[Description("Description for Application.Design.UseCases")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2", ProxyType = typeof(UseCases))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IUseCases : IToolkitInterface
 	{ 
 		///	<summary>
@@ -1510,20 +1510,20 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Description for Application.Design.Libraries
 	///	</summary>
 	[Description("Description for Application.Design.Libraries")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "287ddef4-f681-4c17-8aa1-6e3768412fd9", ProxyType = typeof(Libraries))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface ILibraries : IToolkitInterface
 	{ 
 		///	<summary>

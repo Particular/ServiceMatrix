@@ -11,10 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Runtime.UI;
 using AbstractEndpoint;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views

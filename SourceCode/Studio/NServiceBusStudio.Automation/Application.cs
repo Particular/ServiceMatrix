@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell.Interop;
 using NServiceBusStudio.Core;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;

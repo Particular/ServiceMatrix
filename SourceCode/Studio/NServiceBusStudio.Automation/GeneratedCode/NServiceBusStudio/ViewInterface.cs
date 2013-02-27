@@ -10,20 +10,20 @@
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	Design view of your application, where you create your services and messages.
 	///	</summary>
 	[Description("Design view of your application, where you create your services and messages.")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "6bc9143a-3e32-4dee-b950-2aa11e4c5f5d", ProxyType = typeof(Design))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IDesign : IToolkitInterface
 	{ 
 		/// <summary>

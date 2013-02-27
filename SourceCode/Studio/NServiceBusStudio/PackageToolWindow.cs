@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Patterning.Runtime.Shell.Properties;
-using Microsoft.VisualStudio.Patterning.Runtime.Shell;
+using NuPattern.Runtime.Shell.Properties;
+using NuPattern.Runtime.Shell;
 
 namespace NServiceBusStudio
 {

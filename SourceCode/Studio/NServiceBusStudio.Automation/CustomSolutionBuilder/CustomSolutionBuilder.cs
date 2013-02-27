@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Patterning.Runtime.Shell;
+using NuPattern.Runtime.Shell;
 using System.Windows.Controls;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
@@ -87,11 +87,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                     }
                 }
 
-                this.SolutionBuilderViewModel = scrollviewer.DataContext as Microsoft.VisualStudio.Patterning.Runtime.UI.SolutionBuilderViewModel;
+                this.SolutionBuilderViewModel = scrollviewer.DataContext as NuPattern.Runtime.UI.SolutionBuilderViewModel;
             }
         }
 
-        private Microsoft.VisualStudio.Patterning.Runtime.UI.SolutionBuilderViewModel SolutionBuilderViewModel;
+        private NuPattern.Runtime.UI.SolutionBuilderViewModel SolutionBuilderViewModel;
         private ToolbarExtension ToolBarExtension;
 
 

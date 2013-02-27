@@ -5,11 +5,11 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning.Extensibility;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Extensibility;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.Patterning.Extensibility.References;
+using NuPattern.Extensibility.References;
 using System.Diagnostics;
 
 namespace NServiceBusStudio.Automation.ValidationRules

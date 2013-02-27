@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.Modeling;
 using System.IO;
 using Microsoft.VisualStudio.Modeling.Diagrams;
@@ -28,24 +28,49 @@ namespace NServiceBus.Modeling.EndpointDesign
             if (app == null)
                 throw new Exception("Cannot get access to the VSPAT Model");
 
-            var endpoint = app.Design.Endpoints.GetAll().FirstOrDefault (e => e.InstanceName == Path.GetFileNameWithoutExtension(fileName));
+            var endpointName = Path.GetFileNameWithoutExtension(fileName);
+            var endpoints = app.Design.Endpoints.GetAll();
 
-            if (endpoint == null)
-                throw new Exception("Endpoint not found");
+            if (endpointName != "Endpoints")
+            {
+                var endpoint = endpoints.FirstOrDefault(e => e.InstanceName == endpointName);
 
+                if (endpoint == null) 
+                {
+                    throw new Exception("Endpoint not found");
+                }
+
+                endpoints = new [] { endpoint };
+            }
+
+            GenerateDiagram(endpointModelDSL, endpoints);
+        }
+
+        private void GenerateDiagram(EndpointModel endpointModelDSL, IEnumerable<IAbstractEndpoint> endpoints)
+        {
+            OrderShapeAddedToDiagramRule.SendReceiveEndpointCounter = 0;
+
+            foreach (var endpoint in endpoints)
+            {
+                GenerateEndpointDiagram(endpointModelDSL, endpoint);
+            }
+        }
+
+        private void GenerateEndpointDiagram(EndpointModel endpointModelDSL, IAbstractEndpoint endpoint)
+        {
             var endpointModel = endpointModelDSL.CreateSendReceiveEndpoint((e) =>
             {
                 e.Name = endpoint.InstanceName;
             }) as SendReceiveEndpoint;
 
             foreach (var endpointComponent in endpoint.As<IProductElement>().GetChildren())
-	        {
+            {
                 var components = endpointComponent.As<IToolkitInterface>() as IAbstractEndpointComponents;
 
                 if (components != null)
                 {
                     foreach (var componentLink in components.AbstractComponentLinks)
-	                {
+                    {
                         var component = componentLink.ComponentReference.Value;
 
                         foreach (var @event in component.Subscribes.SubscribedEventLinks.Select(e => e.EventReference.Value).Where(v => v != null))
@@ -71,9 +96,9 @@ namespace NServiceBus.Modeling.EndpointDesign
                             var commandModel = AddOrGetCommand(endpointModelDSL, command.InstanceName);
                             endpointModel.EmittedCommands.Add(commandModel);
                         }
-	                }
+                    }
                 }
-	        }
+            }
         }
 
         private static Command AddOrGetCommand(EndpointModel endpointModelDSL, string commandInstanceName)

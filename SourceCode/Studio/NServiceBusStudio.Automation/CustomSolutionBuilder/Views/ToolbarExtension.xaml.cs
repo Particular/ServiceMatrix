@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Runtime.UI;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views

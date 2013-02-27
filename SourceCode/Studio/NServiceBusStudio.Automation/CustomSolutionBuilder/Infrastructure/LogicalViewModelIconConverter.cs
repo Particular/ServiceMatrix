@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime.UI;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure

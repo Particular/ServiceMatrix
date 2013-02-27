@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
