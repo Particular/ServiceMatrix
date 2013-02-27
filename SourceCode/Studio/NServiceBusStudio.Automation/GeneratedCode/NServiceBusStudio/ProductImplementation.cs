@@ -18,6 +18,7 @@ namespace NServiceBusStudio
 	using global::System.ComponentModel.Composition;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
+	using global::System.Windows.Forms.Design;
 	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
@@ -121,6 +122,19 @@ namespace NServiceBusStudio
 		{
 			get { return this.proxy.GetValue(() => this.TransportConnectionString); }
 			set { this.proxy.SetValue(() => this.TransportConnectionString, value); }
+		}
+
+		///	<summary>
+		///	Description for Application.CompanyLogo
+		///	</summary>
+		[Description("Description for Application.CompanyLogo")]
+		[DisplayName("Company Logo")]
+		[Category("General")]
+		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
+		public virtual String CompanyLogo 
+		{
+			get { return this.proxy.GetValue(() => this.CompanyLogo); }
+			set { this.proxy.SetValue(() => this.CompanyLogo, value); }
 		}
 		
 		///	<summary>

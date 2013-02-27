@@ -17,6 +17,7 @@ namespace NServiceBusStudio
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
+	using global::System.Windows.Forms.Design;
 	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
@@ -75,6 +76,15 @@ namespace NServiceBusStudio
 		[DisplayName("Transport Connection String")]
 		[Category("General")]
 		String TransportConnectionString { get; set; }
+
+		///	<summary>
+		///	Description for Application.CompanyLogo
+		///	</summary>
+		[Description("Description for Application.CompanyLogo")]
+		[DisplayName("Company Logo")]
+		[Category("General")]
+		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
+		String CompanyLogo { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.
