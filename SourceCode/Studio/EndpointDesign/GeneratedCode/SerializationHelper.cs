@@ -575,7 +575,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
 		/// <returns>In-memory stream containing the serialized EndpointModel instance.</returns>
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
-		private global::System.IO.MemoryStream InternalSaveModel(DslModeling::SerializationResult serializationResult, EndpointModel modelRoot, string fileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal global::System.IO.MemoryStream InternalSaveModel(DslModeling::SerializationResult serializationResult, EndpointModel modelRoot, string fileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			global::System.Diagnostics.Debug.Assert(serializationResult != null);
@@ -614,7 +614,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 		/// <param name="writeOptionalPropertiesWithDefaultValue">Whether optional properties with default value will be saved.</param>
 		/// <returns>In-memory stream containing the serialized EndpointDesignDiagram instance.</returns>
 		[global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
-		private global::System.IO.MemoryStream InternalSaveDiagram(DslModeling::SerializationResult serializationResult, EndpointDesignDiagram diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
+		internal global::System.IO.MemoryStream InternalSaveDiagram(DslModeling::SerializationResult serializationResult, EndpointDesignDiagram diagram, string diagramFileName, global::System.Text.Encoding encoding, bool writeOptionalPropertiesWithDefaultValue)
 		{
 			#region Check Parameters
 			global::System.Diagnostics.Debug.Assert(serializationResult != null);
