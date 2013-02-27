@@ -103,6 +103,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shell\SaveAsImageCommandSet.cs" />
     <Compile Include="Extensibility\GestureExtensionAttribute.cs" />
     <Compile Include="Extensibility\CommandExtensionAttribute.cs" />
     <Compile Include="Extensibility\Commands\DesignCommandExtensionRegistrar.cs" />
