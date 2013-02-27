@@ -6,12 +6,12 @@ using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
+using NuPattern.Library.Commands;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.Patterning.Library.Automation;
+using NuPattern.Library.Automation;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
@@ -160,7 +160,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             var command = new GenerateProductCodeCommand
             {
                 TargetBuildAction = buildAction,
-                TargetCopyToOutput = Microsoft.VisualStudio.Patterning.Extensibility.CopyToOutput.DoNotCopy,
+                TargetCopyToOutput = NuPattern.Extensibility.CopyToOutput.DoNotCopy,
                 Settings = new EmptySettings { Name = String.Format("{0}{1}", namePrefix, guid.ToString()), Id = guid },
                 PatternManager = patternManager,
                 UriService = uriService,

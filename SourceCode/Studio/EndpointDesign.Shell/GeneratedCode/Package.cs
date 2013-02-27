@@ -168,7 +168,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 	/// <summary>
 	/// Double-derived class to allow easier code customization.
 	/// </summary>
-	[VSShell::ProvideMenuResource("1000.ctmenu", 1)]
+	[VSShell::ProvideMenuResource("1000.ctmenu", 2)]
 	[VSShell::ProvideToolboxItems(1)]
 	[VSTextTemplatingHost::ProvideDirectiveProcessor(typeof(global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDirectiveProcessor), global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDirectiveProcessor.EndpointDesignDirectiveProcessorName, "A directive processor that provides access to EndpointDesign files")]
 	[global::System.Runtime.InteropServices.Guid(Constants.EndpointDesignPackageId)]

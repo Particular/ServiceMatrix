@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using AbstractEndpoint;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusHost.Automation.Commands
 {

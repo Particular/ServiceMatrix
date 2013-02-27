@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime.UI;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
 {

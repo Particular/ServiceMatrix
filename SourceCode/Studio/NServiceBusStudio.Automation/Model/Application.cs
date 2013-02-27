@@ -1,24 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Timers;
-using NServiceBusStudio.Automation.Commands;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using AbstractEndpoint;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using System.IO;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.ExtensionManager;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Model;
-using System.ComponentModel.DataAnnotations;
-using System.Windows;
-using System.ComponentModel;
 //using NServiceBusStudio.Automation.TypeDescriptors;
-using Microsoft.VisualStudio.Patterning.Runtime.Store;
 
 namespace NServiceBusStudio
 {
@@ -202,7 +193,7 @@ namespace NServiceBusStudio
             //IVsExtensionManager extensionManager = (IVsExtensionManager) this.VsServiceProvider.TryGetService<SVsExtensionManager>();
             //var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
             var resolver = this.ServiceProvider.TryGetService<IFxrUriReferenceService>();
-            var extension = resolver.ResolveUri<IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
+            var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;
             nserviceBusVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "NServiceBusVersion.txt"));
         }

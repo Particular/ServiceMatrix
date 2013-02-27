@@ -6,7 +6,7 @@ using AbstractEndpoint;
 using NServiceBusStudio;
 using NServiceBusStudio.Core;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusHost
 {

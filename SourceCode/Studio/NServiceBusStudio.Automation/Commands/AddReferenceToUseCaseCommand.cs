@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
 using Microsoft.VisualStudio;

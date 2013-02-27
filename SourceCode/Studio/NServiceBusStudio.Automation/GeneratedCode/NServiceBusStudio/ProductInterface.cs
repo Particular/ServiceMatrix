@@ -10,21 +10,22 @@
 
 namespace NServiceBusStudio
 {
-	using global::Microsoft.VisualStudio.Patterning.Runtime;
 	using global::NServiceBusStudio.Automation.TypeConverters;
+	using global::NuPattern.Runtime;
 	using global::System;
 	using global::System.Collections.Generic;
 	using global::System.ComponentModel;
 	using global::System.ComponentModel.Design;
 	using global::System.Drawing.Design;
-	using Runtime = global::Microsoft.VisualStudio.Patterning.Runtime;
+	using global::System.Windows.Forms.Design;
+	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
 	///	An NServiceBus-powered application
 	///	</summary>
 	[Description("An NServiceBus-powered application")]
 	[ToolkitInterface(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2c52bbfe-442d-4f40-8f6f-7df75dd99cac", ProxyType = typeof(Application))]
-	[System.CodeDom.Compiler.GeneratedCode("Pattern Toolkit Automation Library", "1.2.19.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	public partial interface IApplication : IToolkitInterface
 	{ 
 		///	<summary>
@@ -75,6 +76,15 @@ namespace NServiceBusStudio
 		[DisplayName("Transport Connection String")]
 		[Category("General")]
 		String TransportConnectionString { get; set; }
+
+		///	<summary>
+		///	Description for Application.CompanyLogo
+		///	</summary>
+		[Description("Description for Application.CompanyLogo")]
+		[DisplayName("Company Logo")]
+		[Category("General")]
+		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
+		String CompanyLogo { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.

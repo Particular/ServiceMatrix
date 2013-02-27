@@ -6,11 +6,11 @@ using System.ComponentModel;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using NServiceBusStudio.Automation.Properties;
 using System.Globalization;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
+using NuPattern.Library.Commands;
 
 namespace NServiceBusStudio.Automation.Commands
 {

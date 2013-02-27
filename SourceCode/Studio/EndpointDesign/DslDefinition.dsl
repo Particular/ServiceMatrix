@@ -222,22 +222,22 @@
   <Shapes>
     <ImageShape Id="42a64d6e-69f8-48ee-bf10-457c0ff5879d" Description="Description for NServiceBus.Modeling.EndpointDesign.CommandShape" Name="CommandShape" DisplayName="Command Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Command Shape" InitialHeight="1" Image="Resources\CommandShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
-        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" />
+        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
       </ShapeHasDecorators>
     </ImageShape>
     <ImageShape Id="8325751f-1cdc-439b-8813-65d33b935a5f" Description="Description for NServiceBus.Modeling.EndpointDesign.EventShape" Name="EventShape" DisplayName="Event Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Event Shape" InitialHeight="1" Image="Resources\EventShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
-        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" />
+        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
       </ShapeHasDecorators>
     </ImageShape>
     <ImageShape Id="ce7c36db-c0a9-4558-bcf2-c4ee59ecb785" Description="Description for NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointShape" Name="SendReceiveEndpointShape" DisplayName="Send Receive Endpoint Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Send Receive Endpoint Shape" InitialHeight="1" Image="Resources\SendReceiveShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
-        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" />
+        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
       </ShapeHasDecorators>
     </ImageShape>
     <ImageShape Id="03f5db15-96f0-4025-9479-61cfb3f8dbb9" Description="Description for NServiceBus.Modeling.EndpointDesign.SendEndpointShape" Name="SendEndpointShape" DisplayName="Send Endpoint Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Send Endpoint Shape" InitialHeight="1" Image="Resources\SendShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
-        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" />
+        <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
       </ShapeHasDecorators>
     </ImageShape>
   </Shapes>

@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
              mc:Ignorable="d"
-             Background="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"
+             Background="{DynamicResource VsVersion.ToolWindowBackgroundKey}"
              d:DesignHeight="300" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="VsVersionStyles.gen.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid x:Name="PanelsGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -16,37 +22,37 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" x:Name="Border1" Visibility="Hidden"
-            BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}" BorderThickness="3">
+            BorderBrush="{DynamicResource VsVersion.ToolWindowBorderKey}" BorderThickness="3">
             <Grid x:Name="Panel1" 
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Border>
         <Border Grid.Column="1" x:Name="Border2" Visibility="Hidden"
-            BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"
+            BorderBrush="{DynamicResource VsVersion.ToolWindowBorderKey}"
                 Margin="-3,0,0,0" BorderThickness="3">
             <Grid x:Name="Panel2" 
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Border>
         <Border Grid.Column="2" x:Name="Border3" Visibility="Hidden"
-            BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"
+            BorderBrush="{DynamicResource VsVersion.ToolWindowBorderKey}"
                 Margin="-3,0,0,0" BorderThickness="3">
             <Grid x:Name="Panel3"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Border>
         <Border Grid.Column="3" x:Name="Border4" Visibility="Hidden"
-            BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"
+            BorderBrush="{DynamicResource VsVersion.ToolWindowBorderKey}"
                 Margin="-3,0,0,0" BorderThickness="3">
             <Grid x:Name="Panel4"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Border>
         <Border Grid.Column="4" x:Name="Border5" Visibility="Hidden"
-            BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"
+            BorderBrush="{DynamicResource VsVersion.ToolWindowBorderKey}"
                 Margin="-3,0,0,0" BorderThickness="3">
             <Grid x:Name="Panel5"
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
         </Border>
-        <GridSplitter x:Name="Splitter1" Opacity="0.1" Grid.Column="0" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
-        <GridSplitter x:Name="Splitter2" Opacity="0.1" Grid.Column="1" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
-        <GridSplitter x:Name="Splitter3" Opacity="0.1" Grid.Column="2" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
-        <GridSplitter x:Name="Splitter4" Opacity="0.1" Grid.Column="3" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}"/>
+        <GridSplitter x:Name="Splitter1" Opacity="0.1" Grid.Column="0" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource VsVersion.ToolWindowBorderKey}"/>
+        <GridSplitter x:Name="Splitter2" Opacity="0.1" Grid.Column="1" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource VsVersion.ToolWindowBorderKey}"/>
+        <GridSplitter x:Name="Splitter3" Opacity="0.1" Grid.Column="2" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource VsVersion.ToolWindowBorderKey}"/>
+        <GridSplitter x:Name="Splitter4" Opacity="0.1" Grid.Column="3" VerticalAlignment="Stretch" Margin="-3,0,0,0" Width="3" Foreground="{DynamicResource VsVersion.ToolWindowBorderKey}"/>
     </Grid>
 </UserControl>

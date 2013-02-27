@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <PatternToolkitBuilderVsixName Condition="'$(TargetVsVersion)' == '10.0'">NuPattern Toolkit Builder VS2010</PatternToolkitBuilderVsixName>
+    <PatternToolkitBuilderVsixName Condition="'$(TargetVsVersion)' == '11.0'">NuPattern Toolkit Builder VS2012</PatternToolkitBuilderVsixName>
+    <PatternToolkitVersionTargetsPath>$(localappdata)\Microsoft\MSBuild\NuPattern\$(PatternToolkitBuilderVsixName)</PatternToolkitVersionTargetsPath>
+  </PropertyGroup>
+  
+  <Import Project="$(PatternToolkitVersionTargetsPath)\NuPattern.Authoring.PatternToolkitVersion.targets" />
+
+  <!-- Verifies that the correct solution configuration is selected -->
+  <Target Name="VerifyTargetBuildConfiguration" BeforeTargets="BeforeBuild">
+    <Message
+      Importance="normal"
+      Text="Verifying solution build configuration..."/>
+    <Error Condition="(('$(Configuration)' == 'Debug-VS2010' or '$(Configuration)' == 'Release-VS2010') and '$(VisualStudioVersion)' != '10.0')"
+           Text="The current solution build configuration '$(Configuration)' is not valid for Visual Studio 2010. You must change the solution build configuration to match Visual Studio."/>
+    <Error Condition="(('$(Configuration)' == 'Debug-VS2012' or '$(Configuration)' == 'Release-VS2012') and '$(VisualStudioVersion)' != '11.0')"
+           Text="The current solution build configuration '$(Configuration)' is not valid for Visual Studio 2012. You must change the solution build configuration to match Visual Studio."/>
+  </Target>
+
+  <!-- Include T4 MSBUILD support for all T4 files -->
+  <PropertyGroup>
+    <TransformOnBuild>false</TransformOnBuild>
+    <!-- Use default T4 MSBUILD settings -->
+    <IncludeDslT4Settings>true</IncludeDslT4Settings>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Paths for DirectiveProcessor dependency assemblies -->
+    <T4ReferencePath Include="$(PatternToolkitRuntime)\" />
+    <T4ReferencePath Include="$(PatternToolkitBuilder)\" />
+    <!-- Parameters for MSBUILD transforms -->
+    <T4ParameterValues Include="VsVer">
+      <Value>$(TargetVsVersion)</Value>
+    </T4ParameterValues>
+    <!-- Directive Processors for MSBUILD Transforms -->
+    <DirectiveProcessor Include="ProductStateStoreDirectiveProcessor" >
+      <Class>NuPattern.Runtime.Store.ProductStateStoreDirectiveProcessor</Class>
+      <CodeBase>$(PatternToolkitRuntime)\NuPattern.Runtime.Store.dll</CodeBase>
+    </DirectiveProcessor>
+    <DirectiveProcessor Include="PatternModelDirectiveProcessor" >
+      <Class>NuPattern.Runtime.Schema.PatternModelDirectiveProcessor</Class>
+      <CodeBase>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</CodeBase>
+    </DirectiveProcessor>
+  </ItemGroup>
+  <Import Project="$(T4TargetsPath)\Microsoft.TextTemplating.targets" />
+
+  <!-- Remove T4 Tracking files so that we force a full transform on Rebuild -->
+  <PropertyGroup>
+    <RebuildDependsOn>CleanT4TrackingFiles;$(RebuildDependsOn)</RebuildDependsOn>
+  </PropertyGroup>
+  <ItemGroup>
+    <T4TrackingFilesToDelete Condition="'$(PlatformName)' == '' or '$(PlatformName)' == 'AnyCPU'" Include="$(ProjectDir)obj\$(ConfigurationName)\**\T4Transform*.tlog"/>
+    <T4TrackingFilesToDelete Condition="'$(PlatformName)' != '' and '$(PlatformName)' != 'AnyCPU'" Include="$(ProjectDir)obj\$(PlatformName)\$(ConfigurationName)\**\T4Transform*.tlog"/>
+  </ItemGroup>
+  <Target Name="CleanT4TrackingFiles">
+    <Message Importance="High" Text="Removing T4 tracking data to force a full transform"/>
+    <Delete Files="@(T4TrackingFilesToDelete)" ContinueOnError="true"/>
+  </Target>
+</Project>

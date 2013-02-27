@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Runtime.UI;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {

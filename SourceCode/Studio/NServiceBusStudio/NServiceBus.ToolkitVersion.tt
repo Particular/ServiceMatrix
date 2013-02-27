@@ -5,7 +5,7 @@
   <!-- Version Properties -->
   <PropertyGroup>
     <!-- Current version of toolkit -->
-    <NServiceBusStudioVersion>3.4.0</NServiceBusStudioVersion>
+    <NServiceBusStudioVersion>4.0.0</NServiceBusStudioVersion>
 
     <!-- This can be overwridden in unfolded project file -->
     <ExtensionsHive Condition="'$(ExtensionsHive)' == ''">10.0</ExtensionsHive>

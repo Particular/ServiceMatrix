@@ -17,6 +17,7 @@ namespace NServiceBus.Modeling.EndpointDesign
     [DslModeling::RuleOn(typeof(global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint), FireTime = DslModeling::TimeToFire.TopLevelCommit, Priority = DslDiagrams::DiagramFixupConstants.AutoLayoutShapesRulePriority + 1)]
     public class OrderShapeAddedToDiagramRule : AddRule
     {
+        public static int SendReceiveEndpointCounter = 0;
         private const double margin = 0.25;
 
         public override void ElementAdded(ElementAddedEventArgs e)
@@ -32,12 +33,14 @@ namespace NServiceBus.Modeling.EndpointDesign
             var maxHeight = maxElements * 2;
 
             OrderShapes(margin, maxHeight, leftElements);
-
+            
             var shape = PresentationViewsSubject.GetPresentation(model).First() as SendReceiveEndpointShape;
             shape.IsExpanded = true;
-            shape.Location = new PointD(2.5 + margin, (maxHeight / 2) - (shape.Size.Height / 2) + margin);
-
+            shape.Location = new PointD(2.5 + margin, (maxHeight / 2) - (shape.Size.Height / 2) + margin + SendReceiveEndpointCounter * 2);
+            
             OrderShapes(5 + margin, maxHeight, rightElements);
+
+            SendReceiveEndpointCounter++;
         }
 
         private void OrderShapes(double offsetX, double maxHeight, IList<ModelElement> modelElements)
@@ -47,7 +50,7 @@ namespace NServiceBus.Modeling.EndpointDesign
             {
                 var shape = PresentationViewsSubject.GetPresentation(modelElements[i]).First() as ImageShape;
                 shape.IsExpanded = true;
-                shape.Location = new PointD(offsetX, (offset * (i + 1) - (shape.Size.Height / 2) + margin));
+                shape.Location = new PointD(offsetX, (offset * (i + 1) - (shape.Size.Height / 2) + margin + SendReceiveEndpointCounter * 2));
             }
 
             //y += shape.Size.Height + shape.Diagram.DefaultContainerMargin.Height;

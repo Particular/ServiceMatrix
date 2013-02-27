@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Runtime.UI;
 using System.ComponentModel;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.Collections.Specialized;
 using System.Windows.Threading;
@@ -573,6 +573,23 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         public class LogicalViewModelNode : INotifyPropertyChanged
         {
             public string CustomIconPath { get; set; }
+            //string _customIconPath;
+            //public string CustomIconPath
+            //{
+            //    get
+            //    {
+            //        if (this._customIconPath == null)
+            //        {
+            //            return this.InnerViewModel.IconPath;
+            //        }
+            //        else
+            //            return this._customIconPath;
+            //    }
+            //    set
+            //    {
+            //        _customIconPath = value;
+            //    }
+            //}
             //public string IconPath
             //{
             //    get

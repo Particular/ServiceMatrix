@@ -1,14 +1,24 @@
 How To Build NServiceBus Studio
 ===============================
 
-In order to build NServiceBus Studio, you will need the following dependencies installed:
+In order to build NServiceBus Studio, you will need the following dependencies installed based on the Visual Studio version that you want to create:
+
+For Visual Studio 2010:
 
 1. Visual Studio 2010 - Ultimate Edition - Service Pack 1
 2. Visual studio 2010 SP1 SDK (http://www.microsoft.com/en-us/download/details.aspx?id=21835)
 3. MS Visual Studio 2010 Architecture and Modeling Tools SDK (http://www.microsoft.com/en-us/download/details.aspx?id=23025)
 4. NuGet Package Manager
-5. Feature Extensions Runtime Pro v.1.0 (Can be installed from Visual Studio Extension Manager).
-6. Microsoft Pattern Toolkit Builder v.1.2.19.0 (Can be installed from Visual Studio Extension Manager)
+5. NuPattern Toolkit Builder v.1.3.14.0 for VS2010 (Internal drop - Ask Ezequiel for it)
+
+For Visual Studio 2012:
+
+1. Visual Studio 2012 - Ultimate Edition
+2. Visual studio 2012 SDK (http://www.microsoft.com/en-us/download/details.aspx?id=30668)
+3. MS Visual Studio 2012 Visualization and Modeling Tools SDK (http://www.microsoft.com/en-us/download/details.aspx?id=30680)
+4. NuPattern Toolkit Builder v.1.3.14.0 for VS2012 (Internal drop - Ask Ezequiel for it)
+
+After installing prerequisites, you can run AutomatedBuild\build.bat. That will build and generate NServiceBus Studio toolkit for both Visual Studio versions (VS2010 & VS2012).
 
 First-Time Build
 ================
@@ -21,22 +31,4 @@ Basic Troubleshooting
 If you get an error saying the assembly NServiceBusStudio.Automation doesn't have a strong name, then you will need to manually add the snk file. Please go to the project properties for NServiceBusStudio.Automation, in the Signing tab you will need to check "Sign the assembly" and browse for NServiceBus.Tools.snk which is either in the same project folder or in the Studio/Solution Items folder. After that you should be able to build the solution successfully.
 
 There might be some issues if there are read-only files that need to be generated during the build. To avoid those error be sure that the files are not read-only.
-
-
-About single-VSIX generation
-============================
-
-NServiceBus Studio is composed by several extensibility blocks, but the main VSIX installer contains all of them.
-For achieving this goal, the NServiceBusStudio project has links to the other VSIX files which will be generated later when the endpoint solutions (located under the Extensions folder) are built:
-  1. NServiceBusHost
-  2. WebEndpoint
-  3. WebMVCEndpoint
-
-As the VSIX files have not been built yet when you are building NServiceBusStudio for first time, we're generating empty files as placeholders that will prevent a fail because the linked files doesn't exist.
-Once you have build NServiceBus Studio, then you can build the endpoints solutions in the order mentioned above. That will overwrite the placeholders with the actual VSIX files. Now you can build NServiceBus Studio again, so it will package all the right VSIX files.
-
-VSIX generation includes physically other referenced VSIX files. This makes them redundant and big. For instance, in the current setup, NServiceBusStudio.vsix includes PatternToolkitManager.vsix, which is a reference, but also NServiceBusHost.vsix, that is also including PatternToolkitManager.vsix. It's the same with all the other endpoint vsix files, that makes the output vsix to have PatternToolkitManager contained four times.
-This is currently manually removed by opening the vsix file with a compatible zip file manager like 7zip, and removing the duplicated vsix files.
-
-In order to avoid excesive and unnecessary traffic/storage, you should never commit a vsix file.
 
