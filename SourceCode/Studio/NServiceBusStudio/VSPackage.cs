@@ -17,6 +17,9 @@ using NuPattern.Runtime.Shell;
 using Microsoft.VisualStudio.Shell.Settings;
 using Microsoft.VisualStudio.Settings;
 using System.ComponentModel.Design;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using System.Diagnostics;
+using System.IO;
 
 namespace NServiceBusStudio
 {
@@ -30,11 +33,31 @@ namespace NServiceBusStudio
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager
     {
+        [Import]
+        public IShellEvents ShellEvents { get; set; }
+
         protected override void Initialize()
         {
             base.Initialize();
             this.AddServices();
             this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            this.EnsureCreateTraceOutput();
+        }
+
+        private void EnsureCreateTraceOutput()
+        {
+            // Creating Trace Output Window
+            var componentModel = this.GetService<SComponentModel, IComponentModel>();
+            componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
+
+            var traceOutput = new TraceOutputWindowManager(this, this.ShellEvents, new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", "NServiceBusStudio");
+            
+            Trace.AutoFlush = true;
+            
+            // Configuring Tracing Write File for Solution is closed
+            var events = this.TryGetService<ISolutionEvents>();
+            events.SolutionOpened += (s, e) => Tracer.AddListener("NServiceBusStudio", new TextWriterTraceListener(Path.ChangeExtension(e.Solution.PhysicalPath, "logging"), "SolutionTextWriterTraceListener"));
+            events.SolutionClosed += (s, e) => Tracer.RemoveListener("NServiceBusStudio", "SolutionTextWriterTraceListener");
         }
 
         private void AddServices()

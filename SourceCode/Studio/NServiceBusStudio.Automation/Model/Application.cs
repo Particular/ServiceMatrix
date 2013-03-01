@@ -9,6 +9,8 @@ using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
 using NuPattern.Runtime;
 using Microsoft.VisualStudio.ExtensionManager;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using System.Diagnostics;
 //using NServiceBusStudio.Automation.TypeDescriptors;
 
 namespace NServiceBusStudio
@@ -28,6 +30,7 @@ namespace NServiceBusStudio
             //TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
         }
 
+        
         [Import]
         public IPatternManager PatternManager { get; set; }
 
@@ -78,6 +81,16 @@ namespace NServiceBusStudio
             this.ExtensionPath = extensionPath;
 
             SetPropagationHandlers();
+            SetDomainSpecifiLogging();
+        }
+
+        private void SetDomainSpecifiLogging()
+        {
+            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("[{0}] {1} created with name: {2}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
+            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("[{0}] {1} deleted with name: {2}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
+            
+            // TODO: This should be moved to VSPAckage once SolutionOpened event is rised when existing solution is open
+            Tracer.AddListener("NServiceBusStudio", new TextWriterTraceListener(Path.ChangeExtension(this.Solution.PhysicalPath, "logging"), "SolutionTextWriterTraceListener"));
         }
 
         private void SetPropagationHandlers()

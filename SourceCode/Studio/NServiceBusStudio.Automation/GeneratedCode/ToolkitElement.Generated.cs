@@ -8,6 +8,7 @@ using System.Linq;
 using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
@@ -25,6 +26,7 @@ namespace NServiceBusStudio
 		event EventHandler ExtensionPathChanged;
 		event EventHandler TransportChanged;
 		event EventHandler TransportConnectionStringChanged;
+		event EventHandler CompanyLogoChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -164,6 +166,7 @@ namespace NServiceBusStudio
 		event EventHandler NumberOfWorkerThreadsChanged;
 		event EventHandler SenderBaseTypeChanged;
 		event EventHandler SLAChanged;
+		event EventHandler SendOnlyChanged;
 	}
 
 	partial interface INServiceBusWebComponentLink : IToolkitElement
@@ -189,6 +192,7 @@ namespace NServiceBusStudio
 		event EventHandler NamespaceChanged;
 		event EventHandler NumberOfWorkerThreadsChanged;
 		event EventHandler SLAChanged;
+		event EventHandler SendOnlyChanged;
 	}
 
 	partial interface INServiceBusMVCComponentLink : IToolkitElement
@@ -376,6 +380,8 @@ namespace NServiceBusStudio
 
 	partial class Application : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Application>();
+
 		static Application()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Application)), typeof(Application));
@@ -453,6 +459,7 @@ namespace NServiceBusStudio
 		public event EventHandler ExtensionPathChanged = (sender, args) => { };
 		public event EventHandler TransportChanged = (sender, args) => { };
 		public event EventHandler TransportConnectionStringChanged = (sender, args) => { };
+		public event EventHandler CompanyLogoChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -470,6 +477,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsProduct().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Application", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ForwardReceivedMessagesTo":
@@ -489,6 +503,9 @@ namespace NServiceBusStudio
 					break;
 				case "TransportConnectionString":
 					TransportConnectionStringChanged(sender, args);
+					break;
+				case "CompanyLogo":
+					CompanyLogoChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -512,6 +529,8 @@ namespace NServiceBusStudio
 
 	partial class Service : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Service>();
+
 		static Service()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Service)), typeof(Service));
@@ -600,6 +619,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Service", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -624,6 +650,8 @@ namespace NServiceBusStudio
 
 	partial class Event : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Event>();
+
 		static Event()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Event)), typeof(Event));
@@ -713,6 +741,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Event", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "DoNotAutogenerateComponents":
@@ -740,6 +775,8 @@ namespace NServiceBusStudio
 
 	partial class Command : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Command>();
+
 		static Command()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Command)), typeof(Command));
@@ -829,6 +866,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Command", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "DoNotAutogenerateComponents":
@@ -856,6 +900,8 @@ namespace NServiceBusStudio
 
 	partial class Component : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Component>();
+
 		static Component()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Component)), typeof(Component));
@@ -950,6 +996,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Component", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -992,6 +1045,8 @@ namespace NServiceBusStudio
 
 	partial class EventLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<EventLink>();
+
 		static EventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(EventLink)), typeof(EventLink));
@@ -1084,6 +1139,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "EventLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "EventId":
@@ -1120,6 +1182,8 @@ namespace NServiceBusStudio
 
 	partial class CommandLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<CommandLink>();
+
 		static CommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(CommandLink)), typeof(CommandLink));
@@ -1214,6 +1278,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "CommandLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandId":
@@ -1256,6 +1327,8 @@ namespace NServiceBusStudio
 
 	partial class SubscribedEventLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<SubscribedEventLink>();
+
 		static SubscribedEventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(SubscribedEventLink)), typeof(SubscribedEventLink));
@@ -1351,6 +1424,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "SubscribedEventLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "EventId":
@@ -1396,6 +1476,8 @@ namespace NServiceBusStudio
 
 	partial class ProcessedCommandLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ProcessedCommandLink>();
+
 		static ProcessedCommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLink)), typeof(ProcessedCommandLink));
@@ -1490,6 +1572,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ProcessedCommandLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandId":
@@ -1532,6 +1621,8 @@ namespace NServiceBusStudio
 
 	partial class LibraryReference : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<LibraryReference>();
+
 		static LibraryReference()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReference)), typeof(LibraryReference));
@@ -1621,6 +1712,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "LibraryReference", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "LibraryId":
@@ -1648,6 +1746,8 @@ namespace NServiceBusStudio
 
 	partial class ServiceLibrary : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ServiceLibrary>();
+
 		static ServiceLibrary()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibrary)), typeof(ServiceLibrary));
@@ -1737,6 +1837,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ServiceLibrary", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "FilePath":
@@ -1764,6 +1871,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHost : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusHost>();
+
 		static NServiceBusHost()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHost)), typeof(NServiceBusHost));
@@ -1866,6 +1975,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandSenderNeedsRegistration":
@@ -1932,6 +2048,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHostComponentLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusHostComponentLink>();
+
 		static NServiceBusHostComponentLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponentLink)), typeof(NServiceBusHostComponentLink));
@@ -2023,6 +2141,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusHostComponentLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ComponentId":
@@ -2056,6 +2181,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWeb : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusWeb>();
+
 		static NServiceBusWeb()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWeb)), typeof(NServiceBusWeb));
@@ -2138,6 +2265,7 @@ namespace NServiceBusStudio
 		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
 		public event EventHandler SenderBaseTypeChanged = (sender, args) => { };
 		public event EventHandler SLAChanged = (sender, args) => { };
+		public event EventHandler SendOnlyChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2155,6 +2283,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusWeb", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandSenderNeedsRegistration":
@@ -2190,6 +2325,9 @@ namespace NServiceBusStudio
 				case "SLA":
 					SLAChanged(sender, args);
 					break;
+				case "SendOnly":
+					SendOnlyChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -2212,6 +2350,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWebComponentLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusWebComponentLink>();
+
 		static NServiceBusWebComponentLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponentLink)), typeof(NServiceBusWebComponentLink));
@@ -2303,6 +2443,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusWebComponentLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ComponentId":
@@ -2336,6 +2483,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVC : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusMVC>();
+
 		static NServiceBusMVC()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVC)), typeof(NServiceBusMVC));
@@ -2417,6 +2566,7 @@ namespace NServiceBusStudio
 		public event EventHandler NamespaceChanged = (sender, args) => { };
 		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
 		public event EventHandler SLAChanged = (sender, args) => { };
+		public event EventHandler SendOnlyChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2434,6 +2584,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusMVC", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandSenderNeedsRegistration":
@@ -2466,6 +2623,9 @@ namespace NServiceBusStudio
 				case "SLA":
 					SLAChanged(sender, args);
 					break;
+				case "SendOnly":
+					SendOnlyChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -2488,6 +2648,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVCComponentLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusMVCComponentLink>();
+
 		static NServiceBusMVCComponentLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponentLink)), typeof(NServiceBusMVCComponentLink));
@@ -2579,6 +2741,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusMVCComponentLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ComponentId":
@@ -2612,6 +2781,8 @@ namespace NServiceBusStudio
 
 	partial class ContractsProject : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ContractsProject>();
+
 		static ContractsProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ContractsProject)), typeof(ContractsProject));
@@ -2700,6 +2871,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ContractsProject", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -2724,6 +2902,8 @@ namespace NServiceBusStudio
 
 	partial class InternalMessagesProject : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<InternalMessagesProject>();
+
 		static InternalMessagesProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(InternalMessagesProject)), typeof(InternalMessagesProject));
@@ -2812,6 +2992,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "InternalMessagesProject", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -2836,6 +3023,8 @@ namespace NServiceBusStudio
 
 	partial class Authentication : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Authentication>();
+
 		static Authentication()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Authentication)), typeof(Authentication));
@@ -2928,6 +3117,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Authentication", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -2964,6 +3160,8 @@ namespace NServiceBusStudio
 
 	partial class UseCase : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCase>();
+
 		static UseCase()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCase)), typeof(UseCase));
@@ -3052,6 +3250,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCase", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -3076,6 +3281,8 @@ namespace NServiceBusStudio
 
 	partial class UseCaseStep : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCaseStep>();
+
 		static UseCaseStep()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseStep)), typeof(UseCaseStep));
@@ -3171,6 +3378,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCaseStep", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "PatternValue":
@@ -3216,6 +3430,8 @@ namespace NServiceBusStudio
 
 	partial class UseCaseLink : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCaseLink>();
+
 		static UseCaseLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseLink)), typeof(UseCaseLink));
@@ -3307,6 +3523,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCaseLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ElementType":
@@ -3340,6 +3563,8 @@ namespace NServiceBusStudio
 
 	partial class Library : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Library>();
+
 		static Library()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Library)), typeof(Library));
@@ -3429,6 +3654,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Library", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "FilePath":
@@ -3456,6 +3688,8 @@ namespace NServiceBusStudio
 
 	partial class Services : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Services>();
+
 		static Services()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Services)), typeof(Services));
@@ -3544,6 +3778,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Services", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -3568,6 +3809,8 @@ namespace NServiceBusStudio
 
 	partial class Contract : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Contract>();
+
 		static Contract()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Contract)), typeof(Contract));
@@ -3656,6 +3899,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Contract", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -3680,6 +3930,8 @@ namespace NServiceBusStudio
 
 	partial class Events : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Events>();
+
 		static Events()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Events)), typeof(Events));
@@ -3769,6 +4021,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Events", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -3796,6 +4055,8 @@ namespace NServiceBusStudio
 
 	partial class Commands : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Commands>();
+
 		static Commands()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Commands)), typeof(Commands));
@@ -3885,6 +4146,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Commands", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -3912,6 +4180,8 @@ namespace NServiceBusStudio
 
 	partial class Components : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Components>();
+
 		static Components()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Components)), typeof(Components));
@@ -4000,6 +4270,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Components", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4024,6 +4301,8 @@ namespace NServiceBusStudio
 
 	partial class Publishes : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Publishes>();
+
 		static Publishes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Publishes)), typeof(Publishes));
@@ -4112,6 +4391,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Publishes", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4136,6 +4422,8 @@ namespace NServiceBusStudio
 
 	partial class Subscribes : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Subscribes>();
+
 		static Subscribes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Subscribes)), typeof(Subscribes));
@@ -4224,6 +4512,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Subscribes", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4248,6 +4543,8 @@ namespace NServiceBusStudio
 
 	partial class LibraryReferences : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<LibraryReferences>();
+
 		static LibraryReferences()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReferences)), typeof(LibraryReferences));
@@ -4336,6 +4633,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "LibraryReferences", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4360,6 +4664,8 @@ namespace NServiceBusStudio
 
 	partial class ServiceLibraries : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ServiceLibraries>();
+
 		static ServiceLibraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibraries)), typeof(ServiceLibraries));
@@ -4449,6 +4755,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ServiceLibraries", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -4476,6 +4789,8 @@ namespace NServiceBusStudio
 
 	partial class Endpoints : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Endpoints>();
+
 		static Endpoints()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Endpoints)), typeof(Endpoints));
@@ -4564,6 +4879,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Endpoints", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4588,6 +4910,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHostComponents : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusHostComponents>();
+
 		static NServiceBusHostComponents()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponents)), typeof(NServiceBusHostComponents));
@@ -4676,6 +5000,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusHostComponents", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4700,6 +5031,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWebComponents : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusWebComponents>();
+
 		static NServiceBusWebComponents()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponents)), typeof(NServiceBusWebComponents));
@@ -4788,6 +5121,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusWebComponents", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4812,6 +5152,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVCComponents : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusMVCComponents>();
+
 		static NServiceBusMVCComponents()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponents)), typeof(NServiceBusMVCComponents));
@@ -4900,6 +5242,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusMVCComponents", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4924,6 +5273,8 @@ namespace NServiceBusStudio
 
 	partial class Infrastructure : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Infrastructure>();
+
 		static Infrastructure()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Infrastructure)), typeof(Infrastructure));
@@ -5012,6 +5363,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Infrastructure", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5036,6 +5394,8 @@ namespace NServiceBusStudio
 
 	partial class Security : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Security>();
+
 		static Security()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Security)), typeof(Security));
@@ -5124,6 +5484,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Security", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5148,6 +5515,8 @@ namespace NServiceBusStudio
 
 	partial class DummyCollection : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<DummyCollection>();
+
 		static DummyCollection()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(DummyCollection)), typeof(DummyCollection));
@@ -5236,6 +5605,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "DummyCollection", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5260,6 +5636,8 @@ namespace NServiceBusStudio
 
 	partial class UseCases : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCases>();
+
 		static UseCases()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCases)), typeof(UseCases));
@@ -5348,6 +5726,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCases", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5372,6 +5757,8 @@ namespace NServiceBusStudio
 
 	partial class Libraries : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Libraries>();
+
 		static Libraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Libraries)), typeof(Libraries));
@@ -5461,6 +5848,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Libraries", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":

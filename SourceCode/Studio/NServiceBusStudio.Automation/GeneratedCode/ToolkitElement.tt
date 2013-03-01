@@ -5,13 +5,12 @@
 <#@ Assembly Name="NuPattern.Runtime.Interfaces.dll" #>
 <#@ Assembly Name="NuPattern.Extensibility.dll" #>
 <#@ Assembly Name="Microsoft.VisualStudio.TeamArchitect.PowerTools.dll" #>
-<#@ Assembly Name="NuPattern.Authoring.Library.Toolkit.dll" #>
-<#@ Assembly Name="NuPattern.Authoring.Toolkit.Automation.dll" #>
+<#@ Assembly Name="NuPattern.Authoring.PatternToolkit.Automation.dll" #>
 <#@ Import Namespace="System.Linq" #>
 <#@ Import Namespace="NuPattern.Runtime" #>
 <#@ Import Namespace="NuPattern.Extensibility" #>
-<#@ Import Namespace="NuPattern.Authoring.Library" #>
-<#@ Import Namespace="NuPattern.Authoring.Authoring" #>
+<#@ Import Namespace="NuPattern.Authoring" #>
+<#@ Import Namespace="NuPattern.Authoring.PatternToolkit" #>
 <#@ output extension=".Generated.cs" #>
 <#
 // This template generates the IToolkitElement interface inheritance and implementation
@@ -27,6 +26,7 @@ using System.Linq;
 using NuPattern.Runtime;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
@@ -90,6 +90,8 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 
 	partial class <#= element.CodeIdentifier #> : ISupportInitialize
 	{
+		private static readonly ITraceSource tracer = Tracer.GetSourceFor<<#= element.CodeIdentifier #>>();
+
 		static <#= element.CodeIdentifier #>()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(<#= element.CodeIdentifier #>)), typeof(<#= element.CodeIdentifier #>));
@@ -186,6 +188,13 @@ foreach (var property in element.Properties)
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.<#= asRuntimeMethod #>().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null)
+			{
+				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "<#= element.CodeIdentifier #>", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 <#+
