@@ -481,7 +481,7 @@ namespace NServiceBusStudio
 			var property = this.AsProduct().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
 			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Application", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Application", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -621,9 +621,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Service", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Service", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -743,9 +743,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Event", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Event", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -868,9 +868,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Command", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Command", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -998,9 +998,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Component", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Component", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1141,9 +1141,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "EventLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "EventLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1280,9 +1280,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "CommandLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "CommandLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1426,9 +1426,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "SubscribedEventLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "SubscribedEventLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1574,9 +1574,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ProcessedCommandLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ProcessedCommandLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1714,9 +1714,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "LibraryReference", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "LibraryReference", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1839,9 +1839,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ServiceLibrary", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ServiceLibrary", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -1977,9 +1977,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2143,9 +2143,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusHostComponentLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHostComponentLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2285,9 +2285,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusWeb", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusWeb", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2445,9 +2445,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusWebComponentLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusWebComponentLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2586,9 +2586,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusMVC", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVC", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2743,9 +2743,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusMVCComponentLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVCComponentLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2873,9 +2873,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ContractsProject", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ContractsProject", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2994,9 +2994,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "InternalMessagesProject", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "InternalMessagesProject", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3119,9 +3119,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Authentication", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Authentication", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3252,9 +3252,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCase", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCase", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3380,9 +3380,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCaseStep", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCaseStep", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3525,9 +3525,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCaseLink", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCaseLink", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3656,9 +3656,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Library", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Library", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3780,9 +3780,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Services", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Services", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -3901,9 +3901,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Contract", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Contract", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4023,9 +4023,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Events", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Events", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4148,9 +4148,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Commands", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Commands", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4272,9 +4272,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Components", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Components", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4393,9 +4393,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Publishes", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Publishes", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4514,9 +4514,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Subscribes", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Subscribes", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4635,9 +4635,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "LibraryReferences", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "LibraryReferences", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4757,9 +4757,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "ServiceLibraries", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ServiceLibraries", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -4881,9 +4881,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Endpoints", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Endpoints", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5002,9 +5002,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusHostComponents", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHostComponents", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5123,9 +5123,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusWebComponents", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusWebComponents", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5244,9 +5244,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "NServiceBusMVCComponents", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVCComponents", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5365,9 +5365,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Infrastructure", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Infrastructure", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5486,9 +5486,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Security", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Security", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5607,9 +5607,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "DummyCollection", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "DummyCollection", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5728,9 +5728,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "UseCases", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCases", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -5850,9 +5850,9 @@ namespace NServiceBusStudio
 			Application.ResetIsDirtyFlag();
 
 			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "Libraries", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Libraries", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)

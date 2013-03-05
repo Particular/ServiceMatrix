@@ -11,6 +11,7 @@ using NuPattern.Runtime;
 using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.Diagnostics;
+using Microsoft.VisualStudio.Shell.Interop;
 //using NServiceBusStudio.Automation.TypeDescriptors;
 
 namespace NServiceBusStudio
@@ -86,8 +87,18 @@ namespace NServiceBusStudio
 
         private void SetDomainSpecifiLogging()
         {
-            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("[{0}] {1} created with name: {2}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
-            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("[{0}] {1} deleted with name: {2}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
+            this.PatternManager.ElementCreated += (s, e) => {
+                if (e.Value.As<IApplication>() != null)
+                {
+                    tracer.TraceStatistics("Windows Version: {0}", StatisticsInformation.GetWindowsVersion());
+                    tracer.TraceStatistics("Visual Studio Version: {0}", StatisticsInformation.GetVisualStudioVersion(this.ServiceProvider.GetService<EnvDTE.DTE, EnvDTE.DTE>()));
+                }
+                if (!(e.Value is ICollection)) 
+                { 
+                    tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); 
+                }
+            };
+            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("{0} deleted with name: {1}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
             
             // TODO: This should be moved to VSPAckage once SolutionOpened event is rised when existing solution is open
             Tracer.AddListener("NServiceBusStudio", new TextWriterTraceListener(Path.ChangeExtension(this.Solution.PhysicalPath, "logging"), "SolutionTextWriterTraceListener"));
@@ -145,7 +156,7 @@ namespace NServiceBusStudio
             };
         }
 
-        static void events_SolutionOpened(object sender, SolutionEventArgs e)
+        void events_SolutionOpened(object sender, SolutionEventArgs e)
         {
             System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);

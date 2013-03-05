@@ -190,9 +190,9 @@ foreach (var property in element.Properties)
 			Application.ResetIsDirtyFlag();
 
 			var property = this.<#= asRuntimeMethod #>().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
-			if (property != null)
+			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceInformation("[{0}] Property {1} on {2} ({3}) was changed to: {4}", DateTime.Now.ToString(), args.PropertyName, this.InstanceName, "<#= element.CodeIdentifier #>", property.Value.ToString());
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "<#= element.CodeIdentifier #>", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)

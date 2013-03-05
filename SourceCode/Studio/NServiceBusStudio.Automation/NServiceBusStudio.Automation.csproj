@@ -130,6 +130,7 @@
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
+    <Compile Include="Commands\PackageConfigFilesCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBH\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\Endpoints\NSBH\AddNugetReferencesCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBH\ExecuteUnfoldEndpointDiagram.cs" />
@@ -193,6 +194,7 @@
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
+    <Compile Include="Extensions\StatisticsInformation.cs" />
     <Compile Include="Model\Endpoints.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHost.cs" />
