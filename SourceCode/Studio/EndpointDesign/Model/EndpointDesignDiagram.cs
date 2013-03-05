@@ -40,7 +40,7 @@ namespace NServiceBus.Modeling.EndpointDesign
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
             g.DrawString("Powered by Particular NSB", new Font("Tahoma", 10, FontStyle.Bold), Brushes.Black, 7f, 0.1f);
-            g.DrawString("Unlicense copy", new Font("Tahoma", 9, FontStyle.Bold), Brushes.Red, 7f, 0.25f);
+            g.DrawString("Unlicensed copy", new Font("Tahoma", 9, FontStyle.Bold), Brushes.Red, 7f, 0.25f);
 
             var app = GetNServiceBusStudioApplication();
             if (app != null)
