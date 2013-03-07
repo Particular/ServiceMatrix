@@ -1,18 +1,15 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using AbstractEndpoint;
+﻿using AbstractEndpoint;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.ExtensionManager;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using System;
+using System.ComponentModel.Composition;
 using System.Diagnostics;
-using Microsoft.VisualStudio.Shell.Interop;
-//using NServiceBusStudio.Automation.TypeDescriptors;
+using System.IO;
+using System.Linq;
 
 namespace NServiceBusStudio
 {
@@ -25,13 +22,7 @@ namespace NServiceBusStudio
     }
 
     partial class Application : IRenameRefactoringNotSupported
-    {
-        static partial void StaticInitialization()
-        {
-            //TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
-        }
-
-        
+    {        
         [Import]
         public IPatternManager PatternManager { get; set; }
 
@@ -40,6 +31,9 @@ namespace NServiceBusStudio
 
         [Import]
         public CustomSolutionBuilder CustomSolutionBuilder { get; set; }
+
+        [Import]
+        public StatisticsManager StatisticsManager { get; set; }
 
         public IEndpoints Endpoints { get; set; }
 
@@ -87,7 +81,8 @@ namespace NServiceBusStudio
 
         private void SetDomainSpecifiLogging()
         {
-            this.PatternManager.ElementCreated += (s, e) => {
+            this.PatternManager.ElementCreated += (s, e) =>
+            {
                 if (e.Value.As<IApplication>() != null)
                 {
                     tracer.TraceStatistics("Windows Version: {0}", StatisticsInformation.GetWindowsVersion());
@@ -100,8 +95,8 @@ namespace NServiceBusStudio
             };
             this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("{0} deleted with name: {1}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
             
-            // TODO: This should be moved to VSPAckage once SolutionOpened event is rised when existing solution is open
-            Tracer.AddListener("NServiceBusStudio", new TextWriterTraceListener(Path.ChangeExtension(this.Solution.PhysicalPath, "logging"), "SolutionTextWriterTraceListener"));
+            // TODO: This should be moved to StatisticsManager once SolutionOpened event is rised when existing solution is open
+            Tracer.AddListener(StatisticsManager.StatisticsListenerNamespace, new TextWriterTraceListener(Path.ChangeExtension(this.Solution.PhysicalPath, StatisticsManager.StatisticsFileExtension), StatisticsManager.TextWriterListenerName));
         }
 
         private void SetPropagationHandlers()

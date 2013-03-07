@@ -20,6 +20,7 @@ using System.ComponentModel.Design;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.Diagnostics;
 using System.IO;
+using NServiceBusStudio.Automation.Infrastructure;
 
 namespace NServiceBusStudio
 {
@@ -50,14 +51,8 @@ namespace NServiceBusStudio
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
-            var traceOutput = new TraceOutputWindowManager(this, this.ShellEvents, new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", "NServiceBusStudio");
-            
+            new TraceOutputWindowManager(this, this.ShellEvents, new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", StatisticsManager.StatisticsListenerNamespace);
             Trace.AutoFlush = true;
-            
-            // Configuring Tracing Write File for Solution is closed
-            var events = this.TryGetService<ISolutionEvents>();
-            events.SolutionOpened += (s, e) => Tracer.AddListener("NServiceBusStudio", new TextWriterTraceListener(Path.ChangeExtension(e.Solution.PhysicalPath, "logging"), "SolutionTextWriterTraceListener"));
-            events.SolutionClosed += (s, e) => Tracer.RemoveListener("NServiceBusStudio", "SolutionTextWriterTraceListener");
         }
 
         private void AddServices()
