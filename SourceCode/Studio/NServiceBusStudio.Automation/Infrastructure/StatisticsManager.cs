@@ -140,7 +140,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public void StartCollectingStatistics()
         {
-            if (this.TextWriterListener == null)
+            if (this.TextWriterListener == null && this.SolutionLoggingFile != null)
             {
                 this.TextWriterListener = new StatisticsTextWriterTraceListener(this.SolutionLoggingFile, StatisticsManager.TextWriterListenerName);
                 Tracer.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
