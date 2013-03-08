@@ -279,7 +279,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             this.ViewsList = new List<NServiceBusView> {
                 new NServiceBusView { Text = "Endpoints View", Action = () => this.GenerateEndpointsView(false)},
-                new NServiceBusView { Text = "Use Cases View", Action = () => this.GenerateUseCasesView(false) },
+                //new NServiceBusView { Text = "Use Cases View", Action = () => this.GenerateUseCasesView(false) },
                 new NServiceBusView { Text = "Components View", Action = () => this.GenerateComponentsView(false) },
                 new NServiceBusView { Text = "Messages View", Action = () => this.GenerateMessagesView(false) },
                 new NServiceBusView { Text = "Libraries View", Action = () => this.GenerateLibrariesView(false) },

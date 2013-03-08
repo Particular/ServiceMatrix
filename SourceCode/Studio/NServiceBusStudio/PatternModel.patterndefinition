@@ -6748,7 +6748,7 @@
           </collection>
         </elements>
         <elements>
-          <collection Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" name="UseCases" displayName="Use Cases" description="Description for Application.Design.UseCases" codeIdentifier="UseCases">
+          <collection Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" name="UseCases" displayName="Use Cases" description="Description for Application.Design.UseCases" codeIdentifier="UseCases" isVisible="false">
             <customizationPolicy name="CustomizationPolicySchema1">
               <settings>
                 <setting propertyId="DisplayName" />
