@@ -503,6 +503,9 @@
   <ItemGroup>
     <Resource Include="Resources\Hierarchy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Help.png" />
+  </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>
     <CopyVsixDebuggingDependencies>false</CopyVsixDebuggingDependencies>

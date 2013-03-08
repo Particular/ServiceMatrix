@@ -11,8 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NuPattern.Runtime;
 using NuPattern.Runtime.UI;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -154,6 +156,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             // Refresh Solution Builder View Model
             var SBdataContext = this.DataContext;
             LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as SolutionBuilderViewModel);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            const string url = @"http://www.nservicebus.com/targetframe.aspx?https://nservicebus.desk.com/customer/widget/emails/new";
+            var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
+            var frame = default(IVsWindowFrame);
+            vsWebBroserService.Navigate(url, 1, out frame);
         }
     }
 }

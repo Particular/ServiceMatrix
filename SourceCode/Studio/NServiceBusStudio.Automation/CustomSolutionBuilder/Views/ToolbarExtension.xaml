@@ -13,5 +13,8 @@
         <Button Click="Button_Click_1" ToolTip="Solution Builder Default View" Focusable="False">
             <BitmapImage UriSource="../../Resources/Hierarchy.png" />
         </Button>
+        <Button Click="Button_Click_2" ToolTip="Get Help from NServiceBus Support Call" Focusable="False">
+            <BitmapImage UriSource="../../Resources/Help.png" />
+        </Button>
     </StackPanel>
 </UserControl>
