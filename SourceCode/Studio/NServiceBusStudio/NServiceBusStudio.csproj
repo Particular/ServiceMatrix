@@ -30,6 +30,9 @@
     <SccProvider>
     </SccProvider>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-VS2012|AnyCPU'">
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <Choose>
     <When Condition="'$(VsxVersion)'=='11.0'">

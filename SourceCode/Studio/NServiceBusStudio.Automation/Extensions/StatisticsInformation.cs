@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Shell.Interop;
+﻿using Microsoft.VisualStudio.ExtensionManager;
+using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System;
 using System.Collections.Generic;
@@ -10,46 +11,30 @@ namespace NServiceBusStudio.Automation.Extensions
 {
     public static class StatisticsInformation
     {
-        public static void TraceStatistics(this ITraceSource traceSource, string format, params object[] args)
+        public static void TraceStatisticsHeader(this ITraceSource traceSource, EnvDTE.DTE dte, IVsExtensionManager extensionManager)
         {
-            traceSource.TraceInformation(String.Format ("{0}|{1}",
-                                         DateTime.Now.ToString(),
-                                         String.Format (format, args)));
+            traceSource.TraceStatistics("========================= NServiceBusStudio General Information =========================");
+            traceSource.TraceStatistics("Operating System: {0}", StatisticsInformation.GetOperatingSystemVersion());
+            traceSource.TraceStatistics("Machine Name: {0}", Environment.MachineName);
+            traceSource.TraceStatistics("UserName: {0}", Environment.UserName);
+            traceSource.TraceStatistics("VisualStudio Version: {0}", StatisticsInformation.GetVisualStudioVersion(dte));
+            traceSource.TraceStatistics("NuPattern Version: {0}", typeof(NuPattern.Guard).AssemblyQualifiedName);
+            traceSource.TraceStatistics("NServiceBusStudio Version: {0}", typeof(StatisticsInformation).Assembly.FullName);
+            traceSource.TraceStatistics("Installation Directory: {0}", typeof(StatisticsInformation).Assembly.Location);
+            traceSource.TraceStatistics("Other Extensions: {0}", String.Join (";", extensionManager.GetEnabledExtensions().Select (x => String.Format ("{0} ({1})", x.Header.Name, x.Header.Version.ToString()))));
+            traceSource.TraceStatistics("=========================================================================================");
         }
 
-        public static string GetWindowsVersion()
+        public static void TraceStatistics(this ITraceSource traceSource, string format, params object[] args)
+        {
+            traceSource.TraceInformation(String.Format (format, args));
+        }
+
+        private static string GetOperatingSystemVersion()
         {
             return String.Format("{0} - {1}",
                                   getOSInfo(),
                                   (Environment.Is64BitOperatingSystem) ? "64 bits" : "32 bits");
-        }
-
-        public static string GetVisualStudioVersion(EnvDTE.DTE dte)
-        {
-            var version = new Version(dte.Version);
-            var vsVersion = "";
-            switch (version.Major)
-            {
-                case 8:
-                    vsVersion = "2005";
-                    break;
-                case 9:
-                    vsVersion = "2008";
-                    break;
-                case 10:
-                    vsVersion = "20010";
-                    break;
-                case 11:
-                    vsVersion = "2012";
-                    break;
-                default:
-                    break;
-            }
-
-            return String.Format("{0} {1} {2}", 
-                                 dte.Name, 
-                                 vsVersion, 
-                                 dte.Edition);
         }
 
         private static string getOSInfo()
@@ -131,20 +116,34 @@ namespace NServiceBusStudio.Automation.Extensions
             return operatingSystem;
         }
 
-        private enum SKUEdition
+        private static string GetVisualStudioVersion(EnvDTE.DTE dte)
         {
-            None = 0,
-            Express = 500,
-            Standard = 0x3e8,
-            Professional = 0x7d0,
-            AcademicProfessional = 0x834,
-            AcademicStudent = 0x834,
-            AcademicStudentMSDNAA = 0x898,
-            AcademicEnterprise = 0x8fc,
-            Book = 0x960,
-            DownloadTrial = 0x9c4,
-            Enterprise = 0xbb8,
-            VSTO = 0x5dc
+            var version = new Version(dte.Version);
+            var vsVersion = "";
+            switch (version.Major)
+            {
+                case 8:
+                    vsVersion = "2005";
+                    break;
+                case 9:
+                    vsVersion = "2008";
+                    break;
+                case 10:
+                    vsVersion = "20010";
+                    break;
+                case 11:
+                    vsVersion = "2012";
+                    break;
+                default:
+                    break;
+            }
+
+            return String.Format("{0} {1} {2}",
+                                 dte.Name,
+                                 vsVersion,
+                                 dte.Edition);
         }
+
+        
     }
 }

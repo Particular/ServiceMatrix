@@ -90,17 +90,17 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
             events.SolutionOpened += (s, e) =>
             {
-                InitializeStatisticsCollection();
+                StartCollectingStatistics();
             };
 
             events.SolutionClosed += (s, e) =>
             {
-                StopStatisticsCollection();
+                StopCollectingStatistics();
             };
 
             if (this.Solution.IsOpen)
             {
-                InitializeStatisticsCollection();
+                StartCollectingStatistics();
             }
 
             this.ConfigureStatisticsUpload();
@@ -138,13 +138,16 @@ namespace NServiceBusStudio.Automation.Infrastructure
             TimerUploadStatistics.Elapsed += (s, e) => this.UploadStatistics();
         }
 
-        private void InitializeStatisticsCollection()
+        public void StartCollectingStatistics()
         {
-            this.TextWriterListener = new TextWriterTraceListener(this.SolutionLoggingFile, StatisticsManager.TextWriterListenerName);
-            Tracer.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
+            if (this.TextWriterListener == null)
+            {
+                this.TextWriterListener = new StatisticsTextWriterTraceListener(this.SolutionLoggingFile, StatisticsManager.TextWriterListenerName);
+                Tracer.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
+            }
         }
 
-        private void StopStatisticsCollection()
+        public void StopCollectingStatistics()
         {
             this.TextWriterListener.Flush();
             this.TextWriterListener.Dispose();
@@ -159,7 +162,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 return;
             }
 
-            this.StopStatisticsCollection();
+            this.StopCollectingStatistics();
 
             try
             {
@@ -177,10 +180,27 @@ namespace NServiceBusStudio.Automation.Infrastructure
             }
             finally
             {
-                this.InitializeStatisticsCollection();
+                this.StartCollectingStatistics();
             }
         }
+    }
 
-        
+    public class StatisticsTextWriterTraceListener : TextWriterTraceListener
+    {
+        public StatisticsTextWriterTraceListener(string file, string listenerName) : base (file, listenerName)
+        {
+        }
+
+        public override void Write(string message)
+        {
+            base.Write(DateTime.Now.ToString("s") + "|");
+            base.Write(message.Replace("NServiceBusStudio Information", "NServiceBusStudio Info")
+                              .Replace(": ", "|"));
+        }
+
+        public override void WriteLine(string message)
+        {
+            base.WriteLine(message);
+        }
     }
 }
