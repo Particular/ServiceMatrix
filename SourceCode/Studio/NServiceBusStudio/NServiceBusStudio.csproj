@@ -887,57 +887,6 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_LoginPartial.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Concept1.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Concept2.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Concept3.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Concepts.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Feedback.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\HowthisDocumentWorks.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\HowToCreatingaNewPatternName.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\HowToGuides.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\KeyDocumentStylesdeletethiswholesection.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Reference.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\TheHowProcessofWorkingwiththeToolkit.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Topic1.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Topic2.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Topic3.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\Understanding.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\WalkthroughBuildingYourFirst.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="GeneratedCode\Guidance\Content\WhatWhyWhenTopics.mht">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <None Include="T\T4\Config\Host\TransportConfig.tt">
       <LastGenOutput>TransportConfig.cs</LastGenOutput>
     </None>
@@ -1214,6 +1163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Templates\Projects\" />
+    <Folder Include="GeneratedCode\Guidance\Content\" />
     <Folder Include="T\I\" />
     <Folder Include="T\P\Endpoints\NSBHWeb\Infrastructure\GeneratedCode\" />
   </ItemGroup>
