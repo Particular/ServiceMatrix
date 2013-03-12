@@ -132,7 +132,7 @@ namespace NServiceBusStudio
                 }
                 else if (this.Transport == TransportType.ActiveMQ.ToString())
                 {
-                    this.TransportConnectionString = @"activemq:http://mybroker";
+                    this.TransportConnectionString = @"ServerUrl=activemq:tcp://mybroker";
                 }
                 else if (this.Transport == TransportType.RabbitMQ.ToString())
                 {
@@ -140,7 +140,7 @@ namespace NServiceBusStudio
                 }
                 else if (this.Transport == TransportType.SqlServer.ToString())
                 {
-                    this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=NServiceBus;Integrated Security=True;Pooling=False";
+                    this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
                 }
             };
         }

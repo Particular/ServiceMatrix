@@ -23,13 +23,14 @@ namespace <#= nserviceBusHost.Namespace #>
 if (!nserviceBusHost.SendOnly)
 {
 #>
+			Configure.Transactions.Disable();
+
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
                 .XmlSerializer()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(false)
+                .PurgeOnStartup(false)
                 .UnicastBus()
-                    .ImpersonateSender(false)
+                .ImpersonateSender(false)
                 .CreateBus()
                 .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
 <#

@@ -85,7 +85,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                 
                 Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.ActiveMQ.dll",
+                    string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.Transports.ActiveMQ.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
             }
@@ -93,10 +93,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 Endpoint.Project.RemoveReference ("Apache.NMS");
                 Endpoint.Project.RemoveReference ("Apache.NMS.ActiveMQ");
-                Endpoint.Project.RemoveReference ("NServiceBus.ActiveMQ");
+                Endpoint.Project.RemoveReference ("NServiceBus.Transports.ActiveMQ");
             }
 
-            //<Reference Include="NServiceBus.RabbitMQ" />
+            //<Reference Include="NServiceBus.Transports.RabbitMQ" />
             if (app.Transport == TransportType.RabbitMQ.ToString())
             {
                 Endpoint.Project.AddReference(
@@ -105,27 +105,27 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
                 Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.RabbitMQ.{1}\lib\net40\NServiceBus.RabbitMQ.dll",
+                    string.Format(@"{0}\packages\NServiceBus.RabbitMQ.{1}\lib\net40\NServiceBus.Transports.RabbitMQ.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
             }
             else
             {
                 Endpoint.Project.RemoveReference("RabbitMQ.Client");
-                Endpoint.Project.RemoveReference("NServiceBus.RabbitMQ");
+                Endpoint.Project.RemoveReference("NServiceBus.Transports.RabbitMQ");
             }
 
-            //<Reference Include="NServiceBus.SqlServer" />
+            //<Reference Include="NServiceBus.Transports.SqlServer" />
             if (app.Transport == TransportType.SqlServer.ToString())
             {
                 Endpoint.Project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.SqlServer.{1}\lib\net40\NServiceBus.SqlServer.dll",
+                    string.Format(@"{0}\packages\NServiceBus.SqlServer.{1}\lib\net40\NServiceBus.Transports.SqlServer.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
             }
             else
             {
-                Endpoint.Project.RemoveReference("NServiceBus.SqlServer");
+                Endpoint.Project.RemoveReference("NServiceBus.Transports.SqlServer");
             }
         }
     }

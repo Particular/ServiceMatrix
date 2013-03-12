@@ -25,19 +25,19 @@ namespace <#= service.Namespace #>
 	else if (application.Transport == TransportType.ActiveMQ.ToString())
 	{	
 #>
-			Configure.Instance.ActiveMQTransport();
+			Configure.Instance.UseTransport<ActiveMQ>();
 <#
 	}
 	else if (application.Transport == TransportType.RabbitMQ.ToString())
 	{	
 #>
-			Configure.Instance.RabbitMQTransport();
+			Configure.Instance.UseTransport<NServiceBus.RabbitMQ>();
 <#
 	}
 	else if (application.Transport == TransportType.SqlServer.ToString())
 	{
 #>
-			Configure.Instance.SqlServerTransport();	
+			Configure.Instance.UseTransport<SqlServer>();	
 <#
 	}
 #>
