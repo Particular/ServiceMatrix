@@ -176,6 +176,7 @@
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252fc883d430-4912-4c10-91e9-f38110aa7c7c</SourceModelReference>
       <ItemGuid>60f176d8-4e9b-4313-8e18-5d61da1edf57</ItemGuid>
     </Compile>
+    <Compile Include="GeneratedCode\Guidance\GuidanceWorkflowScrapping.cs" />
     <Compile Include="GuidList.cs" />
     <Compile Include="PackageToolWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
