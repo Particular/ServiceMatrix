@@ -108,34 +108,41 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void ConfigureStatisticsUpload()
         {
-            // Configure Statistics send
-            if (!this.ShouldUpload)
+            try
             {
-                return;
-            }
+                // Configure Statistics send
+                if (!this.ShouldUpload || this.Solution == null)
+                {
+                    return;
+                }
 
-            TimeSpan nextUpload = default(TimeSpan);
-            if (!this.LastUpload.HasValue) 
-            {
-                // New Solution - Upload in UploadStatisticsInterval
-                this.LastUpload = DateTime.Now;
-                nextUpload = StatisticsManager.UploadStatisticsInterval; 
-            }
-            else if (this.LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) < DateTime.Now)
-            {
-                // Upload in 10 minutes - To avoid do it now!
-                nextUpload = new TimeSpan(0, 10, 0);
-            }
-            else
-            {
-                // Upload when LastUpload + UploadStatisticsInterval is achieved
-                nextUpload = LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) - DateTime.Now;
-            }
+                TimeSpan nextUpload = default(TimeSpan);
+                if (!this.LastUpload.HasValue)
+                {
+                    // New Solution - Upload in UploadStatisticsInterval
+                    this.LastUpload = DateTime.Now;
+                    nextUpload = StatisticsManager.UploadStatisticsInterval;
+                }
+                else if (this.LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) < DateTime.Now)
+                {
+                    // Upload in 10 minutes - To avoid do it now!
+                    nextUpload = new TimeSpan(0, 10, 0);
+                }
+                else
+                {
+                    // Upload when LastUpload + UploadStatisticsInterval is achieved
+                    nextUpload = LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) - DateTime.Now;
+                }
 
-            TimerUploadStatistics = new Timer();
-            TimerUploadStatistics.Interval = nextUpload.TotalMilliseconds;
-            TimerUploadStatistics.Start();
-            TimerUploadStatistics.Elapsed += (s, e) => this.UploadStatistics();
+                TimerUploadStatistics = new Timer();
+                TimerUploadStatistics.Interval = nextUpload.TotalMilliseconds;
+                TimerUploadStatistics.Start();
+                TimerUploadStatistics.Elapsed += (s, e) => this.UploadStatistics();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public void StartCollectingStatistics()

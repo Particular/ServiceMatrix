@@ -160,7 +160,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            const string url = @"http://www.nservicebus.com/targetframe.aspx?https://nservicebus.desk.com/customer/widget/emails/new";
+            const string url = @"https://nservicebus.desk.com/customer/widget/emails/new";
             var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
             var frame = default(IVsWindowFrame);
             vsWebBroserService.Navigate(url, 1, out frame);
