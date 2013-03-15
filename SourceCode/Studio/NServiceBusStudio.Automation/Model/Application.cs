@@ -82,15 +82,8 @@ namespace NServiceBusStudio
 
         private void SetDomainSpecifiLogging()
         {
-            this.PatternManager.ElementCreated += (s, e) =>
-            {
-                if (e.Value.As<IApplication>() != null) tracer.TraceStatisticsHeader(this.ServiceProvider.GetService<EnvDTE.DTE, EnvDTE.DTE>(), this.VsServiceProvider.GetService<SVsExtensionManager, IVsExtensionManager>());
-                if (!(e.Value is ICollection)) tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName);
-            };
+            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
             this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("{0} deleted with name: {1}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
-            
-            // TODO: This should be moved to StatisticsManager once SolutionOpened event is rised when existing solution is open
-            this.StatisticsManager.StartCollectingStatistics();
         }
 
         private void SetPropagationHandlers()
