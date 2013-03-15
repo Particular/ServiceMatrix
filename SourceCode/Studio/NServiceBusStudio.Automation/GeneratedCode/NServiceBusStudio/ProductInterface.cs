@@ -85,6 +85,14 @@ namespace NServiceBusStudio
 		[Category("General")]
 		[Editor(typeof(FileNameEditor), typeof(UITypeEditor))]
 		String CompanyLogo { get; set; }
+
+		///	<summary>
+		///	Description for Application.Title
+		///	</summary>
+		[Description("Description for Application.Title")]
+		[DisplayName("Title")]
+		[Category("General")]
+		String Title { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.

@@ -45,7 +45,7 @@ namespace NServiceBus.Modeling.EndpointDesign
             var app = GetNServiceBusStudioApplication();
             if (app != null)
             {
-                g.DrawString(app.InstanceName, new Font("Tahoma", 10, FontStyle.Bold), Brushes.Gray, 0.1f, 0.1f);
+                g.DrawString(app.Title ?? app.InstanceName, new Font("Tahoma", 10, FontStyle.Bold), Brushes.Gray, 0.1f, 0.1f);
                 
                 if (!String.IsNullOrEmpty(app.CompanyLogo) && System.IO.File.Exists(app.CompanyLogo))
                 {

@@ -136,6 +136,18 @@ namespace NServiceBusStudio
 			get { return this.proxy.GetValue(() => this.CompanyLogo); }
 			set { this.proxy.SetValue(() => this.CompanyLogo, value); }
 		}
+
+		///	<summary>
+		///	Description for Application.Title
+		///	</summary>
+		[Description("Description for Application.Title")]
+		[DisplayName("Title")]
+		[Category("General")]
+		public virtual String Title 
+		{
+			get { return this.proxy.GetValue(() => this.Title); }
+			set { this.proxy.SetValue(() => this.Title, value); }
+		}
 		
 		///	<summary>
 		///	The ToolkitInfo.
