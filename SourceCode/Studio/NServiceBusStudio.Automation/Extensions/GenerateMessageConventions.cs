@@ -44,9 +44,9 @@ namespace NServiceBusStudio.Automation.Extensions
             Configure.Instance");
                 sb.AppendLine();
                 sb.AppendLine("            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.Design.InternalMessagesProject.As<IProductElement>().GetProject().Data.RootNamespace + "\"))");
+                    app.CodeIdentifier + ".InternalMessages\"))");
                 sb.AppendLine("            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.Design.ContractsProject.As<IProductElement>().GetProject().Data.RootNamespace + "\"));");
+                    app.CodeIdentifier + ".Contract\"));");
                 sb.Append(@"        }
     }
 }
