@@ -34,9 +34,9 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public void UpdateElementsForUseCase(IApplication app, ISolution solution, IServiceProvider sp)
         {
-            app.SetEndpointsMenuItems("Start Use Case"
-                , (e, a) => StartUseCase(e, a, sp)
-                , (e, a) => true);
+            //app.SetEndpointsMenuItems("Start Use Case"
+            //    , (e, a) => StartUseCase(e, a, sp)
+            //    , (e, a) => true);
         }
 
         private void StartUseCase(IAbstractEndpoint e, IApplication a, IServiceProvider sp)

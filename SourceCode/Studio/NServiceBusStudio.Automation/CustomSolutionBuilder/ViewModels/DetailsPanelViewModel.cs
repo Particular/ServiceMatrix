@@ -35,7 +35,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.CreateEventsPanel(solutionBuilderModel, components, 2);
 
             // UseCases
-            this.CreateUseCasesPanel(solutionBuilderModel, endpoint.As<IProductElement>(), application, 3);
+            //this.CreateUseCasesPanel(solutionBuilderModel, endpoint.As<IProductElement>(), application, 3);
         }
 
         public void BuildDetailsForEvent(IEvent iEvent, SolutionBuilderViewModel solutionBuilderModel)
@@ -58,7 +58,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.CreateComponentsPanel(solutionBuilderModel, componentsSubscribing, 2, "Subscribed by ");
 
             // UseCases
-            this.CreateUseCasesPanel(solutionBuilderModel, iEvent.As<IProductElement>(), application, 3);
+            //this.CreateUseCasesPanel(solutionBuilderModel, iEvent.As<IProductElement>(), application, 3);
         }
 
         public void BuildDetailsForCommand(ICommand command, SolutionBuilderViewModel solutionBuilderModel)
@@ -81,7 +81,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.CreateComponentsPanel(solutionBuilderModel, componentsReceiving, 2, "Received by ");
 
             // UseCases
-            this.CreateUseCasesPanel(solutionBuilderModel, command.As<IProductElement>(), application, 3);
+            //this.CreateUseCasesPanel(solutionBuilderModel, command.As<IProductElement>(), application, 3);
         }
 
         public void BuildDetailsForComponent(IComponent component, SolutionBuilderViewModel solutionBuilderModel)
@@ -105,7 +105,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 , component.Publishes.As<IProductElement>(), component.Subscribes.As<IProductElement>());
 
             // UseCases
-            this.CreateUseCasesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 3);
+            //this.CreateUseCasesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 3);
 
             // Libraries
             this.CreateLibrariesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 4);
