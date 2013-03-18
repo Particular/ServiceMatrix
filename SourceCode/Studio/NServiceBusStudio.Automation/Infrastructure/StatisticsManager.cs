@@ -35,7 +35,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public const string UsageDataCollectionApprovedValueName = @"UsageDataCollectionApproved";
         public const string LastUploadValueName = @"LastUpload";
         public const string UploadEndpointURLValueName = @"UploadEndpointURL";
-        public static TimeSpan UploadStatisticsInterval = new TimeSpan(7, 0, 0, 0);
+        public static TimeSpan UploadStatisticsInterval = new TimeSpan(7, 0, 0, 0); // 1 week
+        public static TimeSpan CleanStatisticsInterval = new TimeSpan(120, 0, 0, 0); // 4 months
 
         public TextWriterTraceListener TextWriterListener { get; set; }
         public Timer TimerUploadStatistics { get; set; }
@@ -103,6 +104,17 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 this.LastUpload = DateTime.Now;
                 nextUpload = StatisticsManager.UploadStatisticsInterval;
             }
+            else if (this.LastUpload.Value.Add(StatisticsManager.CleanStatisticsInterval) < DateTime.Now)
+            {
+                // Clean statistics
+                this.StopCollectingStatistics();
+                File.Delete(this.LoggingFile);
+                this.StartCollectingStatistics();
+
+                // Upload in UploadStatisticsInterval
+                this.LastUpload = DateTime.Now;
+                nextUpload = StatisticsManager.UploadStatisticsInterval;
+            }
             else if (this.LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) < DateTime.Now)
             {
                 // Upload in 10 minutes - To avoid do it now!
@@ -122,7 +134,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public void StartCollectingStatistics()
         {
-            if (this.TextWriterListener == null)
+            if (this.TextWriterListener == null && this.ShouldUpload)
             {
                 var shouldInitializeFile = !File.Exists(this.LoggingFile);
 
@@ -138,10 +150,13 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public void StopCollectingStatistics()
         {
-            this.TextWriterListener.Flush();
-            this.TextWriterListener.Dispose();
-            this.TextWriterListener = null;
-            Tracer.RemoveListener(StatisticsManager.StatisticsListenerNamespace, StatisticsManager.TextWriterListenerName);
+            if (this.TextWriterListener != null && this.ShouldUpload)
+            {
+                this.TextWriterListener.Flush();
+                this.TextWriterListener.Dispose();
+                this.TextWriterListener = null;
+                Tracer.RemoveListener(StatisticsManager.StatisticsListenerNamespace, StatisticsManager.TextWriterListenerName);
+            }
         }
 
         private void UploadStatistics()
