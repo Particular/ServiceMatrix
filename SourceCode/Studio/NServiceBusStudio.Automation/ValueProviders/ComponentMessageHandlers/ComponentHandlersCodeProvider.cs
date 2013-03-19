@@ -178,16 +178,26 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("            // Implement your handler logic here.");
                 sb.AppendLine("            Console.WriteLine(\"" + this.Component.Parent.Parent.InstanceName + " received \" + message.GetType().Name);");
 
-                foreach (var publishedEvent in this.Component.Publishes.EventLinks)
+                sb.AppendLine("        }");
+            }
+
+            foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
+            {
+                sb.AppendLine();
+                if (publishedCommand.CommandReference.Value != null)
                 {
-                    sb.AppendLine();
-                    if (publishedEvent.EventReference.Value != null)
-                    {
-                        sb.AppendLine("            Bus.Publish<" + publishedEvent.GetMessageTypeFullName() + ">(m => { /* set properties on m in here */ });");
-                    }
+                    sb.AppendLine("            // call Send(new " + publishedCommand.GetMessageTypeFullName() + "()); to send a message");
                 }
 
-                sb.AppendLine("        }");
+            }
+
+            foreach (var publishedEvent in this.Component.Publishes.EventLinks)
+            {
+                sb.AppendLine();
+                if (publishedEvent.EventReference.Value != null)
+                {
+                    sb.AppendLine("            // call Bus.Publish<" + publishedEvent.GetMessageTypeFullName() + ">(m => { /* set properties on m in here */ });");
+                }
             }
 
             return sb.ToString();
