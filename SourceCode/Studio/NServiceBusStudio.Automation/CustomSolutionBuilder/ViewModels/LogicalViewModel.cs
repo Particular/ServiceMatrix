@@ -231,7 +231,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             observables[0].LogicalViewNodes.Add(endpointsItem);
 
             // Add Endpoints Node with just the Add->Nodes option
-            observables[0].LogicalViewNodes[0].FilterMenuItems("Add");
+            observables[0].LogicalViewNodes[0].FilterMenuItems("Show Diagram", "Add");
 
             // Add Endpoint -> Add -> Component menu item
             foreach (var endpoint in endpointsItem.LogicalViewNodes)
