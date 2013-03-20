@@ -648,12 +648,14 @@
         <propertySettings Id="903583a6-5f56-4959-adba-72f1c7be15ae" value="{CustomCodePath}" name="TargetPath" />
       </properties>
     </commandSettings>
-    <commandSettings Id="db0a6380-180b-410f-982b-f3d1589111f3" typeId="NuPattern.Library.Commands.ActivateArtifactCommand">
+    <commandSettings Id="db0a6380-180b-410f-982b-f3d1589111f3" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0c9d0614-8db1-4a59-ad8c-df29e7e5744e" />
       </extendedElement>
       <properties>
         <propertySettings Id="11c9694c-9823-4774-85db-7063d23b8f9e" value="True" name="Open" />
+        <propertySettings Id="8cbc9104-7c0d-4aaa-868a-5570765cd144" value="{CodeIdentifier}.cs" name="TargetFileName" />
+        <propertySettings Id="bb21301f-0f8d-4c3e-b332-2cda6c767cf1" value="\{Parent.Parent.Parent.Parent.Parent.InstanceName}.Code\{Parent.Parent.CodeIdentifier}" name="TargetPath" />
       </properties>
     </commandSettings>
     <commandSettings Id="bedce582-4714-46bd-9def-d09e712ddab3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
