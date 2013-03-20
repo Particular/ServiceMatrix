@@ -44,14 +44,38 @@ namespace AbstractEndpoint.Automation.Dialog
         public ICollection<string> SelectedItems
         {
             get;
-            set;
+            private set;
         }
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedItems = new List<string> { this.EndpointSelector.SelectedValue.ToString() }; //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            if (!string.IsNullOrEmpty(this.AddEndpointText.Text))
+            {
+                AddEndpointItem();
+            }
+            this.SelectedItems = this.EndpointsList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
             this.DialogResult = true;
             this.Close();
+        }
+
+        private void AddEndpoint_Click(object sender, RoutedEventArgs e)
+        {
+            this.AddEndpointText.Text = this.AddEndpointText.Text.Trim();
+            if (this.AddEndpointText.Text.Length > 0)
+            {
+                AddEndpointItem();
+            }
+        }
+
+        private void AddEndpointItem()
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                var endpoint = String.Format ("{0} [{1}]", this.AddEndpointText.Text, this.AddEndpointType.Text);
+                Elements.Add(endpoint);
+                this.EndpointsList.SelectedItems.Add(endpoint);
+                this.AddEndpointText.Text = string.Empty;
+            }));
         }
     }
 

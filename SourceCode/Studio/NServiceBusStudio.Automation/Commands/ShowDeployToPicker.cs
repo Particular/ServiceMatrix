@@ -78,7 +78,34 @@ namespace AbstractEndpoint.Automation.Commands
                             selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             element.DeployTo(selectedEndpoint);
                         }
+                        else
+                        {
+                            var regexMatch = System.Text.RegularExpressions.Regex.Match(selectedElement, "(?'name'[^\\[]*?)\\[(?'type'[^\\]]*?)\\]");
+                            var selectedName = regexMatch.Groups["name"].Value.Trim();
+                            var selectedType = regexMatch.Groups["type"].Value.Trim();
 
+                            var app = CurrentElement.Root.As<IApplication>();
+                            var handler = default(System.EventHandler);
+                            handler = new System.EventHandler((s, e) =>
+                            {
+                                element.DeployTo((IAbstractEndpoint)s);
+                                app.OnInstantiatedEndpoint -= handler;
+                            });
+                            app.OnInstantiatedEndpoint += handler;
+
+                            if (selectedType == "NService Bus MVC")
+                            {
+                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
+                            }
+                            else if (selectedType == "NService Bus Web")
+                            {
+                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusWeb(selectedName);
+                            }
+                            else
+                            {
+                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusHost(selectedName);
+                            }
+                        }
                     }
                 }
             }
