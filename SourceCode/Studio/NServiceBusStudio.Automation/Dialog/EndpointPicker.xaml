@@ -42,11 +42,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" x:Name="EndpointsList"  
+        <ListView Grid.Row="0" x:Name="EndpointsList" Margin="5,10"
                   ItemsSource="{Binding Path=Elements}" 
-                  SelectionMode="Multiple" 
+                  SelectionMode="Multiple" MinHeight="20"
                   ItemTemplate="{StaticResource ItemDataTemplate}"></ListView>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="5,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -56,7 +56,7 @@
                 <ColumnDefinition Width="135"/>
                 <ColumnDefinition Width="60"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,5,5,0">To create a new endpoint, type the name, select the type and press 'Add'</TextBlock>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,0,5,0">To create a new endpoint, type the name, select the type and press 'Add'</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" x:Name="AddEndpointText" Margin="5"></TextBox>
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="AddEndpointType" Margin="5">
                 <ComboBoxItem IsSelected="true">NService Bus Host</ComboBoxItem>
