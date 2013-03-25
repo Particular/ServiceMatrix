@@ -105,6 +105,7 @@ namespace NServiceBus.Modeling.EndpointDesign
 			return new DomainMemberInfo[]
 			{
 				new DomainMemberInfo(typeof(NamedElement), "Name", NamedElement.NameDomainPropertyId, typeof(NamedElement.NamePropertyHandler)),
+                new DomainMemberInfo(typeof(NamedElement), "Description", NamedElement.DescriptionDomainPropertyId, typeof(NamedElement.DescriptionPropertyHandler)),
 				new DomainMemberInfo(typeof(Endpoint), "Type", Endpoint.TypeDomainPropertyId, typeof(Endpoint.TypePropertyHandler)),
 			};
 		}

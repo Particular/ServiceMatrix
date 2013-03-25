@@ -167,11 +167,15 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SchemaImplementation.cs</LastGenOutput>
     </None>
+    <None Include="GeneratedCode\EndpointDesignerSchema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EndpointDesignerSchema.xsd</LastGenOutput>
+    </None>
     <None Include="GeneratedCode\EndpointDesignerSchema.xsd">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EndpointDesignerSchema.tt</DependentUpon>
       <SubType>Designer</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </None>
     <None Include="GeneratedCode\SerializationHelper.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -255,10 +259,6 @@
     <None Include="GeneratedCode\PropertiesGrid.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PropertiesGrid.cs</LastGenOutput>
-    </None>
-    <None Include="GeneratedCode\EndpointDesignerSchema.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EndpointDesignerSchema.xsd</LastGenOutput>
     </None>
     <None Include="GeneratedCode\Serializer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

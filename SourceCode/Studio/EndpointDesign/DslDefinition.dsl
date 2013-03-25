@@ -41,6 +41,11 @@
             <ExternalTypeMoniker Name="/System/String" />
           </Type>
         </DomainProperty>
+        <DomainProperty Id="7f078efd-3f61-4449-a2a5-65fbd0cec4c8" Description="Description for NServiceBus.Modeling.EndpointDesign.NamedElement.Description" Name="Description" DisplayName="Description">
+          <Type>
+            <ExternalTypeMoniker Name="/System/String" />
+          </Type>
+        </DomainProperty>
       </Properties>
     </DomainClass>
     <DomainClass Id="f2b8d64e-2f61-4da1-ab47-65803bb9a09a" Description="Description for NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint" Name="SendReceiveEndpoint" DisplayName="Send Receive Endpoint" Namespace="NServiceBus.Modeling.EndpointDesign">
@@ -224,20 +229,32 @@
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
         <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
       </ShapeHasDecorators>
+      <ShapeHasDecorators Position="OuterBottomCenter" HorizontalOffset="0" VerticalOffset="0">
+        <TextDecorator Name="DescriptionDecorator" DisplayName="Description Decorator" DefaultText="DescriptionDecorator" />
+      </ShapeHasDecorators>
     </ImageShape>
     <ImageShape Id="8325751f-1cdc-439b-8813-65d33b935a5f" Description="Description for NServiceBus.Modeling.EndpointDesign.EventShape" Name="EventShape" DisplayName="Event Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Event Shape" InitialHeight="1" Image="Resources\EventShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
         <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
+      </ShapeHasDecorators>
+      <ShapeHasDecorators Position="OuterBottomCenter" HorizontalOffset="0" VerticalOffset="0">
+        <TextDecorator Name="DescriptionDecorator" DisplayName="Description Decorator" DefaultText="DescriptionDecorator" />
       </ShapeHasDecorators>
     </ImageShape>
     <ImageShape Id="ce7c36db-c0a9-4558-bcf2-c4ee59ecb785" Description="Description for NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointShape" Name="SendReceiveEndpointShape" DisplayName="Send Receive Endpoint Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Send Receive Endpoint Shape" InitialHeight="1" Image="Resources\SendReceiveShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
         <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
       </ShapeHasDecorators>
+      <ShapeHasDecorators Position="OuterBottomCenter" HorizontalOffset="0" VerticalOffset="0">
+        <TextDecorator Name="DescriptionDecorator" DisplayName="Description Decorator" DefaultText="DescriptionDecorator" />
+      </ShapeHasDecorators>
     </ImageShape>
     <ImageShape Id="03f5db15-96f0-4025-9479-61cfb3f8dbb9" Description="Description for NServiceBus.Modeling.EndpointDesign.SendEndpointShape" Name="SendEndpointShape" DisplayName="Send Endpoint Shape" Namespace="NServiceBus.Modeling.EndpointDesign" FixedTooltipText="Send Endpoint Shape" InitialHeight="1" Image="Resources\SendShape.bmp">
       <ShapeHasDecorators Position="OuterTopCenter" HorizontalOffset="0" VerticalOffset="0">
         <TextDecorator Name="NameDecorator" DisplayName="Name Decorator" DefaultText="NameDecorator" FontSize="12" />
+      </ShapeHasDecorators>
+      <ShapeHasDecorators Position="OuterBottomCenter" HorizontalOffset="0" VerticalOffset="0">
+        <TextDecorator Name="DescriptionDecorator" DisplayName="Description Decorator" DefaultText="DescriptionDecorator" />
       </ShapeHasDecorators>
     </ImageShape>
   </Shapes>
@@ -277,6 +294,9 @@
         <ElementData>
           <XmlPropertyData XmlName="name" IsMonikerKey="true">
             <DomainPropertyMoniker Name="NamedElement/Name" />
+          </XmlPropertyData>
+          <XmlPropertyData XmlName="description">
+            <DomainPropertyMoniker Name="NamedElement/Description" />
           </XmlPropertyData>
         </ElementData>
       </XmlClassData>
@@ -469,6 +489,14 @@
             </PropertyPath>
           </PropertyDisplayed>
         </DecoratorMap>
+        <DecoratorMap>
+          <TextDecoratorMoniker Name="CommandShape/DescriptionDecorator" />
+          <PropertyDisplayed>
+            <PropertyPath>
+              <DomainPropertyMoniker Name="NamedElement/Description" />
+            </PropertyPath>
+          </PropertyDisplayed>
+        </DecoratorMap>
         <ImageShapeMoniker Name="CommandShape" />
       </ShapeMap>
       <ShapeMap>
@@ -481,6 +509,22 @@
           <PropertyDisplayed>
             <PropertyPath>
               <DomainPropertyMoniker Name="NamedElement/Name" />
+            </PropertyPath>
+          </PropertyDisplayed>
+        </DecoratorMap>
+        <DecoratorMap>
+          <TextDecoratorMoniker Name="CommandShape/NameDecorator" />
+          <PropertyDisplayed>
+            <PropertyPath>
+              <DomainPropertyMoniker Name="NamedElement/Name" />
+            </PropertyPath>
+          </PropertyDisplayed>
+        </DecoratorMap>
+        <DecoratorMap>
+          <TextDecoratorMoniker Name="EventShape/DescriptionDecorator" />
+          <PropertyDisplayed>
+            <PropertyPath>
+              <DomainPropertyMoniker Name="NamedElement/Description" />
             </PropertyPath>
           </PropertyDisplayed>
         </DecoratorMap>
@@ -499,6 +543,14 @@
             </PropertyPath>
           </PropertyDisplayed>
         </DecoratorMap>
+        <DecoratorMap>
+          <TextDecoratorMoniker Name="SendReceiveEndpointShape/DescriptionDecorator" />
+          <PropertyDisplayed>
+            <PropertyPath>
+              <DomainPropertyMoniker Name="NamedElement/Description" />
+            </PropertyPath>
+          </PropertyDisplayed>
+        </DecoratorMap>
         <ImageShapeMoniker Name="SendReceiveEndpointShape" />
       </ShapeMap>
       <ShapeMap>
@@ -511,6 +563,14 @@
           <PropertyDisplayed>
             <PropertyPath>
               <DomainPropertyMoniker Name="NamedElement/Name" />
+            </PropertyPath>
+          </PropertyDisplayed>
+        </DecoratorMap>
+        <DecoratorMap>
+          <TextDecoratorMoniker Name="SendEndpointShape/DescriptionDecorator" />
+          <PropertyDisplayed>
+            <PropertyPath>
+              <DomainPropertyMoniker Name="NamedElement/Description" />
             </PropertyPath>
           </PropertyDisplayed>
         </DecoratorMap>

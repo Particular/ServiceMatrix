@@ -427,6 +427,93 @@ namespace NServiceBus.Modeling.EndpointDesign
 		}
 		
 		#endregion
+		#region Description domain property code
+		
+		/// <summary>
+		/// Description domain property Id.
+		/// </summary>
+		public static readonly global::System.Guid DescriptionDomainPropertyId = new global::System.Guid(0x7f078efd, 0x3f61, 0x4449, 0xa2, 0xa5, 0x65, 0xfb, 0xd0, 0xce, 0xc4, 0xc8);
+		
+		/// <summary>
+		/// Storage for Description
+		/// </summary>
+		private global::System.String descriptionPropertyStorage = string.Empty;
+		
+		/// <summary>
+		/// Gets or sets the value of Description domain property.
+		/// Description for NServiceBus.Modeling.EndpointDesign.NamedElement.Description
+		/// </summary>
+		[DslDesign::DisplayNameResource("NServiceBus.Modeling.EndpointDesign.NamedElement/Description.DisplayName", typeof(global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDomainModel), "NServiceBus.Modeling.EndpointDesign.GeneratedCode.DomainModelResx")]
+		[DslDesign::DescriptionResource("NServiceBus.Modeling.EndpointDesign.NamedElement/Description.Description", typeof(global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDomainModel), "NServiceBus.Modeling.EndpointDesign.GeneratedCode.DomainModelResx")]
+		[DslModeling::DomainObjectId("7f078efd-3f61-4449-a2a5-65fbd0cec4c8")]
+		public global::System.String Description
+		{
+			[global::System.Diagnostics.DebuggerStepThrough]
+			get
+			{
+				return descriptionPropertyStorage;
+			}
+			[global::System.Diagnostics.DebuggerStepThrough]
+			set
+			{
+				DescriptionPropertyHandler.Instance.SetValue(this, value);
+			}
+		}
+		/// <summary>
+		/// Value handler for the NamedElement.Description domain property.
+		/// </summary>
+		internal sealed partial class DescriptionPropertyHandler : DslModeling::DomainPropertyValueHandler<NamedElement, global::System.String>
+		{
+			private DescriptionPropertyHandler() { }
+		
+			/// <summary>
+			/// Gets the singleton instance of the NamedElement.Description domain property value handler.
+			/// </summary>
+			public static readonly DescriptionPropertyHandler Instance = new DescriptionPropertyHandler();
+		
+			/// <summary>
+			/// Gets the Id of the NamedElement.Description domain property.
+			/// </summary>
+			public sealed override global::System.Guid DomainPropertyId
+			{
+				[global::System.Diagnostics.DebuggerStepThrough]
+				get
+				{
+					return DescriptionDomainPropertyId;
+				}
+			}
+			
+			/// <summary>
+			/// Gets a strongly-typed value of the property on specified element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <returns>Property value.</returns>
+			public override sealed global::System.String GetValue(NamedElement element)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+				return element.descriptionPropertyStorage;
+			}
+		
+			/// <summary>
+			/// Sets property value on an element.
+			/// </summary>
+			/// <param name="element">Element which owns the property.</param>
+			/// <param name="newValue">New property value.</param>
+			public override sealed void SetValue(NamedElement element, global::System.String newValue)
+			{
+				if (element == null) throw new global::System.ArgumentNullException("element");
+		
+				global::System.String oldValue = GetValue(element);
+				if (newValue != oldValue)
+				{
+					ValueChanging(element, oldValue, newValue);
+					element.descriptionPropertyStorage = newValue;
+					ValueChanged(element, oldValue, newValue);
+				}
+			}
+		}
+		
+		#endregion
 	}
 }
 namespace NServiceBus.Modeling.EndpointDesign

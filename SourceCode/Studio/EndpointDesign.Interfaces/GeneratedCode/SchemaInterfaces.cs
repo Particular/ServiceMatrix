@@ -114,6 +114,12 @@ namespace NServiceBus.Modeling.EndpointDesign.Interfaces
 		/// </summary>
 		[Description("Description for NServiceBus.Modeling.EndpointDesign.NamedElement.Name")]
 		global::System.String Name { get; set; }
+		
+		/// <summary>
+		/// Description for NServiceBus.Modeling.EndpointDesign.NamedElement.Description
+		/// </summary>
+		[Description("Description for NServiceBus.Modeling.EndpointDesign.NamedElement.Description")]
+		global::System.String Description { get; set; }
 	}
 }
 

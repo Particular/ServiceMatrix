@@ -163,6 +163,16 @@ namespace NServiceBus.Modeling.EndpointDesign
 			DslDiagrams::Decorator decorator1 = new DslDiagrams::ShapeDecorator(field1, DslDiagrams::ShapeDecoratorPosition.OuterTopCenter, DslDiagrams::PointD.Empty);
 			decorators.Add(decorator1);
 				
+			DslDiagrams::TextField field2 = new DslDiagrams::TextField("DescriptionDecorator");
+			field2.DefaultText = global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDomainModel.SingletonResourceManager.GetString("CommandShapeDescriptionDecoratorDefaultText");
+			field2.DefaultFocusable = true;
+			field2.DefaultAutoSize = true;
+			field2.AnchoringBehavior.MinimumHeightInLines = 1;
+			field2.AnchoringBehavior.MinimumWidthInCharacters = 1;
+			field2.DefaultAccessibleState = global::System.Windows.Forms.AccessibleStates.Invisible;
+			DslDiagrams::Decorator decorator2 = new DslDiagrams::ShapeDecorator(field2, DslDiagrams::ShapeDecoratorPosition.OuterBottomCenter, DslDiagrams::PointD.Empty);
+			decorators.Add(decorator2);
+				
 		}
 		
 		/// <summary>
@@ -375,6 +385,16 @@ namespace NServiceBus.Modeling.EndpointDesign
 			field1.DefaultFontId = new DslDiagrams::StyleSetResourceId(string.Empty, "ShapeTextRegular12");			
 			DslDiagrams::Decorator decorator1 = new DslDiagrams::ShapeDecorator(field1, DslDiagrams::ShapeDecoratorPosition.OuterTopCenter, DslDiagrams::PointD.Empty);
 			decorators.Add(decorator1);
+				
+			DslDiagrams::TextField field2 = new DslDiagrams::TextField("DescriptionDecorator");
+			field2.DefaultText = global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDomainModel.SingletonResourceManager.GetString("EventShapeDescriptionDecoratorDefaultText");
+			field2.DefaultFocusable = true;
+			field2.DefaultAutoSize = true;
+			field2.AnchoringBehavior.MinimumHeightInLines = 1;
+			field2.AnchoringBehavior.MinimumWidthInCharacters = 1;
+			field2.DefaultAccessibleState = global::System.Windows.Forms.AccessibleStates.Invisible;
+			DslDiagrams::Decorator decorator2 = new DslDiagrams::ShapeDecorator(field2, DslDiagrams::ShapeDecoratorPosition.OuterBottomCenter, DslDiagrams::PointD.Empty);
+			decorators.Add(decorator2);
 				
 		}
 		
@@ -589,6 +609,16 @@ namespace NServiceBus.Modeling.EndpointDesign
 			DslDiagrams::Decorator decorator1 = new DslDiagrams::ShapeDecorator(field1, DslDiagrams::ShapeDecoratorPosition.OuterTopCenter, DslDiagrams::PointD.Empty);
 			decorators.Add(decorator1);
 				
+			DslDiagrams::TextField field2 = new DslDiagrams::TextField("DescriptionDecorator");
+			field2.DefaultText = global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDomainModel.SingletonResourceManager.GetString("SendReceiveEndpointShapeDescriptionDecoratorDefaultText");
+			field2.DefaultFocusable = true;
+			field2.DefaultAutoSize = true;
+			field2.AnchoringBehavior.MinimumHeightInLines = 1;
+			field2.AnchoringBehavior.MinimumWidthInCharacters = 1;
+			field2.DefaultAccessibleState = global::System.Windows.Forms.AccessibleStates.Invisible;
+			DslDiagrams::Decorator decorator2 = new DslDiagrams::ShapeDecorator(field2, DslDiagrams::ShapeDecoratorPosition.OuterBottomCenter, DslDiagrams::PointD.Empty);
+			decorators.Add(decorator2);
+				
 		}
 		
 		/// <summary>
@@ -801,6 +831,16 @@ namespace NServiceBus.Modeling.EndpointDesign
 			field1.DefaultFontId = new DslDiagrams::StyleSetResourceId(string.Empty, "ShapeTextRegular12");			
 			DslDiagrams::Decorator decorator1 = new DslDiagrams::ShapeDecorator(field1, DslDiagrams::ShapeDecoratorPosition.OuterTopCenter, DslDiagrams::PointD.Empty);
 			decorators.Add(decorator1);
+				
+			DslDiagrams::TextField field2 = new DslDiagrams::TextField("DescriptionDecorator");
+			field2.DefaultText = global::NServiceBus.Modeling.EndpointDesign.EndpointDesignDomainModel.SingletonResourceManager.GetString("SendEndpointShapeDescriptionDecoratorDefaultText");
+			field2.DefaultFocusable = true;
+			field2.DefaultAutoSize = true;
+			field2.AnchoringBehavior.MinimumHeightInLines = 1;
+			field2.AnchoringBehavior.MinimumWidthInCharacters = 1;
+			field2.DefaultAccessibleState = global::System.Windows.Forms.AccessibleStates.Invisible;
+			DslDiagrams::Decorator decorator2 = new DslDiagrams::ShapeDecorator(field2, DslDiagrams::ShapeDecoratorPosition.OuterBottomCenter, DslDiagrams::PointD.Empty);
+			decorators.Add(decorator2);
 				
 		}
 		

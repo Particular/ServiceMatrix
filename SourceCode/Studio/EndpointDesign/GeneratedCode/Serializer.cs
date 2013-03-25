@@ -1778,6 +1778,23 @@ namespace NServiceBus.Modeling.EndpointDesign
 					}
 				}
 			}
+			// Description
+			if (!serializationContext.Result.Failed)
+			{
+				string attribDescription = EndpointDesignSerializationHelper.Instance.ReadAttribute(serializationContext, element, reader, "description");
+				if (attribDescription != null)
+				{
+					global::System.String valueOfDescription;
+					if (DslModeling::SerializationUtilities.TryGetValue<global::System.String>(serializationContext, attribDescription, out valueOfDescription))
+					{
+						instanceOfNamedElement.Description = valueOfDescription;
+					}
+					else
+					{	// Invalid property value, ignored.
+						EndpointDesignSerializationBehaviorSerializationMessages.IgnoredPropertyValue(serializationContext, reader, "description", typeof(global::System.String), attribDescription);
+					}
+				}
+			}
 		}
 	
 		#region TryCreateInstance
@@ -2071,6 +2088,17 @@ namespace NServiceBus.Modeling.EndpointDesign
 				if (!serializationContext.Result.Failed)
 				{
 					EndpointDesignSerializationHelper.Instance.WriteAttributeString(serializationContext, element, writer, "name", propValue);
+				}
+			}
+			// Description
+			if (!serializationContext.Result.Failed)
+			{
+				global::System.String propValue = instanceOfNamedElement.Description;
+				if (!serializationContext.Result.Failed)
+				{
+					if (!string.IsNullOrEmpty(propValue))
+						EndpointDesignSerializationHelper.Instance.WriteAttributeString(serializationContext, element, writer, "description", propValue);
+	
 				}
 			}
 		}

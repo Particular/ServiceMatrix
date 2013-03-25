@@ -161,6 +161,14 @@
     <value>General</value>
     <comment>Category for DomainProperty &apos;Name&apos; on DomainClass &apos;NamedElement&apos;</comment>
   </data>
+  <data name="NServiceBus.Modeling.EndpointDesign.NamedElement/Description.Description" xml:space="preserve">
+    <value>Description for NServiceBus.Modeling.EndpointDesign.NamedElement.Description</value>
+    <comment>Description for DomainProperty &apos;Description&apos; on DomainClass &apos;NamedElement&apos;</comment>
+  </data>
+  <data name="NServiceBus.Modeling.EndpointDesign.NamedElement/Description.DisplayName" xml:space="preserve">
+    <value>Description</value>
+    <comment>DisplayName for DomainProperty &apos;Description&apos; on DomainClass &apos;NamedElement&apos;</comment>
+  </data>
   <data name="NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint.Description" xml:space="preserve">
     <value>Description for NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint</value>
     <comment>Description for DomainClass &apos;SendReceiveEndpoint&apos;</comment>
@@ -469,6 +477,10 @@
     <value>NameDecorator</value>
     <comment>Text decorator default text</comment>
   </data>
+  <data name="CommandShapeDescriptionDecoratorDefaultText" xml:space="preserve">
+    <value>DescriptionDecorator</value>
+    <comment>Text decorator default text</comment>
+  </data>
   <data name="NServiceBus.Modeling.EndpointDesign.EventShape.Description" xml:space="preserve">
     <value>Description for NServiceBus.Modeling.EndpointDesign.EventShape</value>
     <comment>Description for DomainClass &apos;EventShape&apos;</comment>
@@ -479,6 +491,10 @@
   </data>
   <data name="EventShapeNameDecoratorDefaultText" xml:space="preserve">
     <value>NameDecorator</value>
+    <comment>Text decorator default text</comment>
+  </data>
+  <data name="EventShapeDescriptionDecoratorDefaultText" xml:space="preserve">
+    <value>DescriptionDecorator</value>
     <comment>Text decorator default text</comment>
   </data>
   <data name="NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointShape.Description" xml:space="preserve">
@@ -493,6 +509,10 @@
     <value>NameDecorator</value>
     <comment>Text decorator default text</comment>
   </data>
+  <data name="SendReceiveEndpointShapeDescriptionDecoratorDefaultText" xml:space="preserve">
+    <value>DescriptionDecorator</value>
+    <comment>Text decorator default text</comment>
+  </data>
   <data name="NServiceBus.Modeling.EndpointDesign.SendEndpointShape.Description" xml:space="preserve">
     <value>Description for NServiceBus.Modeling.EndpointDesign.SendEndpointShape</value>
     <comment>Description for DomainClass &apos;SendEndpointShape&apos;</comment>
@@ -503,6 +523,10 @@
   </data>
   <data name="SendEndpointShapeNameDecoratorDefaultText" xml:space="preserve">
     <value>NameDecorator</value>
+    <comment>Text decorator default text</comment>
+  </data>
+  <data name="SendEndpointShapeDescriptionDecoratorDefaultText" xml:space="preserve">
+    <value>DescriptionDecorator</value>
     <comment>Text decorator default text</comment>
   </data>
   <data name="NServiceBus.Modeling.EndpointDesign.EmitConnector.Description" xml:space="preserve">

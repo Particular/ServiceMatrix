@@ -149,6 +149,8 @@
         </xsd:attribute>
         <!-- Property: Name -->
         <xsd:attribute name="name" type="xsd:string" use="required" />
+        <!-- Property: Description -->
+        <xsd:attribute name="description" type="xsd:string" />
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

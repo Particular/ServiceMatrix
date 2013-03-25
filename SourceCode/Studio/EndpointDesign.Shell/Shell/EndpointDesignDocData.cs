@@ -61,6 +61,8 @@ namespace NServiceBus.Modeling.EndpointDesign
             var endpointModel = endpointModelDSL.CreateSendReceiveEndpoint((e) =>
             {
                 e.Name = endpoint.InstanceName;
+                e.Description = endpoint.As<IProductElement>().Notes;
+
             }) as SendReceiveEndpoint;
 
             foreach (var endpointComponent in endpoint.As<IProductElement>().GetChildren())
@@ -75,25 +77,25 @@ namespace NServiceBus.Modeling.EndpointDesign
 
                         foreach (var @event in component.Subscribes.SubscribedEventLinks.Select(e => e.EventReference.Value).Where(v => v != null))
                         {
-                            var eventModel = AddOrGetEvent(endpointModelDSL, @event.InstanceName);
+                            var eventModel = AddOrGetEvent(endpointModelDSL, @event.InstanceName, @event.Notes);
                             endpointModel.ProcessEvents.Add(eventModel);
                         }
 
                         foreach (var command in component.Subscribes.ProcessedCommandLinks.Select(c => c.CommandReference.Value))
                         {
-                            var commandModel = AddOrGetCommand(endpointModelDSL, command.InstanceName);
+                            var commandModel = AddOrGetCommand(endpointModelDSL, command.InstanceName, command.Notes);
                             endpointModel.ProcessCommands.Add(commandModel);
                         }
 
                         foreach (var @event in component.Publishes.EventLinks.Select(e => e.EventReference.Value))
                         {
-                            var eventModel = AddOrGetEvent(endpointModelDSL, @event.InstanceName);
+                            var eventModel = AddOrGetEvent(endpointModelDSL, @event.InstanceName, @event.Notes);
                             endpointModel.EmittedEvents.Add(eventModel);
                         }
 
                         foreach (var command in component.Publishes.CommandLinks.Select(c => c.CommandReference.Value))
                         {
-                            var commandModel = AddOrGetCommand(endpointModelDSL, command.InstanceName);
+                            var commandModel = AddOrGetCommand(endpointModelDSL, command.InstanceName, command.Notes);
                             endpointModel.EmittedCommands.Add(commandModel);
                         }
                     }
@@ -101,7 +103,7 @@ namespace NServiceBus.Modeling.EndpointDesign
             }
         }
 
-        private static Command AddOrGetCommand(EndpointModel endpointModelDSL, string commandInstanceName)
+        private static Command AddOrGetCommand(EndpointModel endpointModelDSL, string commandInstanceName, string commandDescription)
         {
             var command = endpointModelDSL.Commands.FirstOrDefault(x => x.Name == commandInstanceName);
 
@@ -110,13 +112,14 @@ namespace NServiceBus.Modeling.EndpointDesign
                 command = endpointModelDSL.CreateCommand((c) =>
                 {
                     c.Name = commandInstanceName;
+                    c.Description = commandDescription;
                 }) as Command;
             }
 
             return command;
         }
 
-        private static Event AddOrGetEvent(EndpointModel endpointModelDSL, string eventInstanceName)
+        private static Event AddOrGetEvent(EndpointModel endpointModelDSL, string eventInstanceName, string eventDescription)
         {
             var @event = endpointModelDSL.Events.FirstOrDefault(x => x.Name == eventInstanceName);
 
@@ -125,6 +128,7 @@ namespace NServiceBus.Modeling.EndpointDesign
                 @event = endpointModelDSL.CreateEvent((e) =>
                 {
                     e.Name = eventInstanceName;
+                    e.Description = eventDescription;
                 }) as Event;
             }
 

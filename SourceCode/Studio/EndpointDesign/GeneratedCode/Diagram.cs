@@ -272,6 +272,9 @@ namespace NServiceBus.Modeling.EndpointDesign
 				
 				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.NameDomainPropertyId);
 				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "NameDecorator").AssociateValueWith(shape.Store, propertyInfo);
+				
+				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.DescriptionDomainPropertyId);
+				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "DescriptionDecorator").AssociateValueWith(shape.Store, propertyInfo);
 			}
 		}
 		
@@ -290,6 +293,12 @@ namespace NServiceBus.Modeling.EndpointDesign
 				
 				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.NameDomainPropertyId);
 				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "NameDecorator").AssociateValueWith(shape.Store, propertyInfo);
+				
+				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.NameDomainPropertyId);
+				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "NameDecorator").AssociateValueWith(shape.Store, propertyInfo);
+				
+				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.DescriptionDomainPropertyId);
+				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "DescriptionDecorator").AssociateValueWith(shape.Store, propertyInfo);
 			}
 		}
 		
@@ -308,6 +317,9 @@ namespace NServiceBus.Modeling.EndpointDesign
 				
 				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.NameDomainPropertyId);
 				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "NameDecorator").AssociateValueWith(shape.Store, propertyInfo);
+				
+				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.DescriptionDomainPropertyId);
+				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "DescriptionDecorator").AssociateValueWith(shape.Store, propertyInfo);
 			}
 		}
 		
@@ -326,6 +338,9 @@ namespace NServiceBus.Modeling.EndpointDesign
 				
 				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.NameDomainPropertyId);
 				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "NameDecorator").AssociateValueWith(shape.Store, propertyInfo);
+				
+				propertyInfo = new DslDiagrams::AssociatedPropertyInfo(global::NServiceBus.Modeling.EndpointDesign.NamedElement.DescriptionDomainPropertyId);
+				DslDiagrams::ShapeElement.FindDecorator(shape.Decorators, "DescriptionDecorator").AssociateValueWith(shape.Store, propertyInfo);
 			}
 		}
 		
@@ -682,12 +697,40 @@ namespace NServiceBus.Modeling.EndpointDesign
 					{
 						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.Event.DomainClassId);
 					}
+					decorator = global::NServiceBus.Modeling.EndpointDesign.EventShape.FindEventShapeDecorator("NameDecorator");
+					if(decorator != null)
+					{
+						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.Event.DomainClassId);
+					}
 					decorator = global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointShape.FindSendReceiveEndpointShapeDecorator("NameDecorator");
 					if(decorator != null)
 					{
 						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint.DomainClassId);
 					}
 					decorator = global::NServiceBus.Modeling.EndpointDesign.SendEndpointShape.FindSendEndpointShapeDecorator("NameDecorator");
+					if(decorator != null)
+					{
+						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.SendEndpoint.DomainClassId);
+					}
+				}
+				else if (e.DomainProperty.Id == global::NServiceBus.Modeling.EndpointDesign.NamedElement.DescriptionDomainPropertyId)
+				{
+					DslDiagrams::Decorator decorator = global::NServiceBus.Modeling.EndpointDesign.CommandShape.FindCommandShapeDecorator("DescriptionDecorator");
+					if(decorator != null)
+					{
+						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.Command.DomainClassId);
+					}
+					decorator = global::NServiceBus.Modeling.EndpointDesign.EventShape.FindEventShapeDecorator("DescriptionDecorator");
+					if(decorator != null)
+					{
+						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.Event.DomainClassId);
+					}
+					decorator = global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpointShape.FindSendReceiveEndpointShapeDecorator("DescriptionDecorator");
+					if(decorator != null)
+					{
+						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.SendReceiveEndpoint.DomainClassId);
+					}
+					decorator = global::NServiceBus.Modeling.EndpointDesign.SendEndpointShape.FindSendEndpointShapeDecorator("DescriptionDecorator");
 					if(decorator != null)
 					{
 						decorator.UpdateDecoratorHostShapes(e.ModelElement, global::NServiceBus.Modeling.EndpointDesign.SendEndpoint.DomainClassId);
