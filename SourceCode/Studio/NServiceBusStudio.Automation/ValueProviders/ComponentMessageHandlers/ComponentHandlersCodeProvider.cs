@@ -116,6 +116,19 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("		public void Handle(" + typename + " message)");
                 sb.AppendLine("		{");
                 sb.AppendLine("			this.HandleImplementation(message);");
+
+                if (this.Component.AutoPublishEvents && this.Component.Publishes.EventLinks.Any())
+                {
+                    sb.AppendLine();
+                    foreach (var publishedEvent in this.Component.Publishes.EventLinks)
+                    {
+                        if (publishedEvent.EventReference.Value != null)
+                        {
+                            sb.AppendLine("			this.Bus.Publish<" + publishedEvent.GetMessageTypeFullName() + ">(e => { /* set properties on e in here */ });");
+                        }
+                    }
+                }
+
                 sb.AppendLine("		}");
                 sb.AppendLine();
             }

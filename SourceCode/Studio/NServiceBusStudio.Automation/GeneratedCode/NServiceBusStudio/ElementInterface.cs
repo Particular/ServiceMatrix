@@ -341,6 +341,14 @@ namespace NServiceBusStudio
 		[DisplayName("Is Saga")]
 		[Category("General")]
 		Boolean IsSaga { get; set; }
+
+		///	<summary>
+		///	Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents
+		///	</summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents")]
+		[DisplayName("Auto Publish Events")]
+		[Category("General")]
+		Boolean AutoPublishEvents { get; set; }
 		
 		///	<summary>
 		///	Notes for this element.

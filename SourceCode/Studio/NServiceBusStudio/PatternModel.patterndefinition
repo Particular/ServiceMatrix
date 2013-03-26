@@ -712,6 +712,11 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="61bebdcb-109d-4288-b492-22b6c40f65e0" />
       </extendedElement>
+      <properties>
+        <propertySettings Id="6580534a-b21d-404a-989c-a381b31eb14d" name="CommandName" />
+        <propertySettings Id="5f02ba44-08c6-4607-8e6b-f6eaa08fedc4" name="FileName" />
+        <propertySettings Id="b4c5b2a6-869d-4a63-96f0-ade85bd94774" name="FilePath" />
+      </properties>
     </commandSettings>
     <commandSettings Id="b2adde29-7d8c-4c77-9640-3aaa7ba96752" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
@@ -3391,6 +3396,27 @@
                                 <setting propertyId="RawValueProvider" />
                               </settings>
                             </customizationPolicy>
+                          </property>
+                          <property Id="5a315359-d13e-4eed-902a-6abf54b02014" name="AutoPublishEvents" displayName="Auto Publish Events" description="Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents" codeIdentifier="AutoPublishEvents" type="System.Boolean">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="RawDefaultValue" />
+                                <setting propertyId="IsVisible" />
+                                <setting propertyId="IsReadOnly" />
+                                <setting propertyId="Category" />
+                                <setting propertyId="TypeConverterTypeName" />
+                                <setting propertyId="EditorTypeName" />
+                                <setting propertyId="RawValidationRules" />
+                                <setting propertyId="RawValueProvider" />
+                              </settings>
+                            </customizationPolicy>
+                            <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "True",
+  "ValueProvider": null
+}</defaultValue>
                           </property>
                         </properties>
                         <automationSettings>

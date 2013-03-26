@@ -625,6 +625,18 @@ namespace NServiceBusStudio
 			get { return this.proxy.GetValue(() => this.IsSaga); }
 			set { this.proxy.SetValue(() => this.IsSaga, value); }
 		}
+
+		///	<summary>
+		///	Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents
+		///	</summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents")]
+		[DisplayName("Auto Publish Events")]
+		[Category("General")]
+		public virtual Boolean AutoPublishEvents 
+		{
+			get { return this.proxy.GetValue(() => this.AutoPublishEvents); }
+			set { this.proxy.SetValue(() => this.AutoPublishEvents, value); }
+		}
 		
 		///	<summary>
 		///	Notes for this element.
