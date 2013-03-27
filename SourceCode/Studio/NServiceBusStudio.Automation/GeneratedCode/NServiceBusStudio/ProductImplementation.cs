@@ -22,9 +22,9 @@ namespace NServiceBusStudio
 	using Runtime = global::NuPattern.Runtime;
 
 	///	<summary>
-	///	An NServiceBus-powered application
+	///	The root of your design.
 	///	</summary>
-	[Description("An NServiceBus-powered application")]
+	[Description("The root of your design.")]
 	[ToolkitInterfaceProxy(ExtensionId ="a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2c52bbfe-442d-4f40-8f6f-7df75dd99cac", ProxyType = typeof(Application))]
 	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.20.0")]
 	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]

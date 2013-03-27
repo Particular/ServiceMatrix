@@ -2577,7 +2577,7 @@
       </extendedElement>
     </validationExtension>
   </dm0:extensions>
-  <pattern Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" name="Application" displayName="Application" description="An NServiceBus-powered application" codeIdentifier="Application" isCustomizable="True" icon="pack://application:,,,/NServiceBusStudio;component/Resources/PatternIcon.png" currentDiagramId="d4b6057a-fb60-4a43-b09f-b7c23e6273cd" patternLink="patternmanager://a113fd76-36d0-4d40-8088-1466af36f997">
+  <pattern Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" name="Application" displayName="Application" description="The root of your design." codeIdentifier="Application" isCustomizable="True" icon="pack://application:,,,/NServiceBusStudio;component/Resources/PatternIcon.png" currentDiagramId="d4b6057a-fb60-4a43-b09f-b7c23e6273cd" patternLink="patternmanager://a113fd76-36d0-4d40-8088-1466af36f997">
     <customizationPolicy name="CustomizationPolicySchema1">
       <settings>
         <setting propertyId="DisplayName" />
@@ -2926,7 +2926,7 @@
           </settings>
         </customizationPolicy>
         <elements orderGroup="3">
-          <collection Id="25802dff-4552-4b8a-9fec-4943a9f20c26" name="Services" displayName="Services" description="Description for Application.Design.Services" codeIdentifier="Services">
+          <collection Id="25802dff-4552-4b8a-9fec-4943a9f20c26" name="Services" displayName="Services" description="A service is a collection of code that addresses a cohesive fragment of the overall business problem. Components from multiple services are deployed together in an endpoint." codeIdentifier="Services">
             <customizationPolicy name="CustomizationPolicySchema1">
               <settings>
                 <setting propertyId="DisplayName" />
@@ -2937,7 +2937,7 @@
               </settings>
             </customizationPolicy>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="4aac6b0a-1178-4761-ac92-d2989a83335b" name="Service" displayName="Service" description="Description for Application.Design.Services.Service" codeIdentifier="Service" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Gear.png">
+              <element Id="4aac6b0a-1178-4761-ac92-d2989a83335b" name="Service" displayName="Service" description="A service." codeIdentifier="Service" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Gear.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -2948,7 +2948,7 @@
                   </settings>
                 </customizationPolicy>
                 <childElement>
-                  <collection Id="14dd0a39-32b5-4814-9ed5-4279aba392af" name="Contract" displayName="Contract" description="Description for Application.Design.Services.Service.Contract" codeIdentifier="Contract">
+                  <collection Id="14dd0a39-32b5-4814-9ed5-4279aba392af" name="Contract" displayName="Contract" description="The set of message types that are owned by a service." codeIdentifier="Contract">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -2959,7 +2959,7 @@
                       </settings>
                     </customizationPolicy>
                     <childElement>
-                      <collection Id="6b6c2df4-f261-4d62-819f-70e170c196ca" name="Events" displayName="Events" description="Description for Application.Design.Services.Service.Contract.Events" codeIdentifier="Events">
+                      <collection Id="6b6c2df4-f261-4d62-819f-70e170c196ca" name="Events" displayName="Events" description="Message types that indicate that an activity has been completed." codeIdentifier="Events">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -2998,7 +2998,7 @@
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">
-                          <element Id="f06eaa91-971c-42ee-a7cb-eaa77a97dbdd" name="Event" displayName="Event" description="Description for Application.Design.Services.Service.Contract.Event" codeIdentifier="Event" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Event.png">
+                          <element Id="f06eaa91-971c-42ee-a7cb-eaa77a97dbdd" name="Event" displayName="Event" description="An event." codeIdentifier="Event" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Event.png">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -3114,7 +3114,7 @@
                       </collection>
                     </childElement>
                     <childElement>
-                      <collection Id="fa52a7b2-5908-451e-a185-4eb52d4e6343" name="Commands" displayName="Commands" description="Description for Application.Design.Services.Service.Contract.Commands" codeIdentifier="Commands">
+                      <collection Id="fa52a7b2-5908-451e-a185-4eb52d4e6343" name="Commands" displayName="Commands" description="Message types that request that a certain activity be performed." codeIdentifier="Commands">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -3153,7 +3153,7 @@
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">
-                          <element Id="c2f83a83-1117-43d5-b427-3ede53888fa4" name="Command" displayName="Command" description="Description for Application.Design.Services.Service.Contract.Command" codeIdentifier="Command" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Run.png">
+                          <element Id="c2f83a83-1117-43d5-b427-3ede53888fa4" name="Command" displayName="Command" description="A command." codeIdentifier="Command" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Run.png">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -3271,7 +3271,7 @@
                   </collection>
                 </childElement>
                 <childElement>
-                  <collection Id="54f49375-e376-4668-94e0-df31f6184f56" name="Components" displayName="Components" description="Description for Application.Design.Services.Service.Components" codeIdentifier="Components">
+                  <collection Id="54f49375-e376-4668-94e0-df31f6184f56" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="Components">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -3282,7 +3282,7 @@
                       </settings>
                     </customizationPolicy>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" name="Component" displayName="Component" description="Description for Application.Design.Services.Service.Components.Component" codeIdentifier="Component" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Component.png">
+                      <element Id="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" name="Component" displayName="Component" description="A component." codeIdentifier="Component" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Component.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -3584,7 +3584,7 @@
                           </automationSettings>
                         </automationSettings>
                         <childElement>
-                          <collection Id="318cc384-e8ba-465f-8469-1235fce91ef0" name="Publishes" displayName="Publishes / Sends" description="Description for Application.Design.Services.Service.Components.Component.Publishes" codeIdentifier="Publishes">
+                          <collection Id="318cc384-e8ba-465f-8469-1235fce91ef0" name="Publishes" displayName="Publishes / Sends" description="Publishes / Sends" codeIdentifier="Publishes">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -3633,7 +3633,7 @@
                               </automationSettings>
                             </automationSettings>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="999b0f01-0b06-4b91-87aa-c8b7fb276c46" name="EventLink" displayName="Event Link" description="Description for Application.Design.Services.Service.Components.Component.Publishes.EventLink" codeIdentifier="EventLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="999b0f01-0b06-4b91-87aa-c8b7fb276c46" name="EventLink" displayName="Event Link" description="A published event." codeIdentifier="EventLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -3755,7 +3755,7 @@
                               </element>
                             </childElement>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="0d8a0645-22b8-48e8-be8c-774c7fc5442d" name="CommandLink" displayName="Command Link" description="Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink" codeIdentifier="CommandLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="0d8a0645-22b8-48e8-be8c-774c7fc5442d" name="CommandLink" displayName="Command Link" description="A send command." codeIdentifier="CommandLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -3943,7 +3943,7 @@
                           </collection>
                         </childElement>
                         <childElement>
-                          <collection Id="ffcf83ed-8aca-42ea-bebd-af35d17f23be" name="Subscribes" displayName="Subscribes / Processes" description="Description for Application.Design.Services.Service.Components.Component.Subscribes" codeIdentifier="Subscribes">
+                          <collection Id="ffcf83ed-8aca-42ea-bebd-af35d17f23be" name="Subscribes" displayName="Subscribes / Processes" description="Subscribes / Processes" codeIdentifier="Subscribes">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -3974,7 +3974,7 @@
                               </automationSettings>
                             </automationSettings>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="75f698c0-fb68-4f37-b015-82cd5a1e367c" name="SubscribedEventLink" displayName="Subscribed Event Link" description="Description for Application.Design.Services.Service.Components.Component.Subscribes.SubscribedEventLink" codeIdentifier="SubscribedEventLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="75f698c0-fb68-4f37-b015-82cd5a1e367c" name="SubscribedEventLink" displayName="Subscribed Event Link" description="A subscribed event." codeIdentifier="SubscribedEventLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -4146,7 +4146,7 @@
                               </element>
                             </childElement>
                             <childElement cardinality="ZeroToMany" autoCreate="false">
-                              <element Id="1362e8eb-d279-4f17-82a0-97504b493ab3" name="ProcessedCommandLink" displayName="Processed Command Link" description="Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink" codeIdentifier="ProcessedCommandLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="1362e8eb-d279-4f17-82a0-97504b493ab3" name="ProcessedCommandLink" displayName="Processed Command Link" description="A processed command." codeIdentifier="ProcessedCommandLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -4300,7 +4300,7 @@
                           </collection>
                         </childElement>
                         <childElement>
-                          <collection Id="7a291463-b68c-45ac-8ad3-28eb5982aa3c" name="LibraryReferences" displayName="Library References" description="Description for Application.Design.Services.Service.Components.Component.LibraryReferences" codeIdentifier="LibraryReferences">
+                          <collection Id="7a291463-b68c-45ac-8ad3-28eb5982aa3c" name="LibraryReferences" displayName="Library References" description="Service-specific libraries include things like reusable business-specific calculation and validation logic." codeIdentifier="LibraryReferences">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -4331,7 +4331,7 @@
                               </automationSettings>
                             </automationSettings>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="c475a3be-99b0-4170-b4d6-2c142440fa9e" name="LibraryReference" displayName="Library Reference" description="Description for Application.Design.Services.Service.Components.Component.LibraryReferences.LibraryReference" codeIdentifier="LibraryReference">
+                              <element Id="c475a3be-99b0-4170-b4d6-2c142440fa9e" name="LibraryReference" displayName="Library Reference" description="A service-specific library." codeIdentifier="LibraryReference">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -4406,7 +4406,7 @@
                   </collection>
                 </childElement>
                 <childElement>
-                  <collection Id="70a9d0ed-a581-4b84-8ac7-ad3d5b4a43d6" name="ServiceLibraries" displayName="Libraries" description="Description for Application.Design.Services.Service.ServiceLibraries" codeIdentifier="ServiceLibraries">
+                  <collection Id="70a9d0ed-a581-4b84-8ac7-ad3d5b4a43d6" name="ServiceLibraries" displayName="Libraries" description="Service-specific libraries include things like reusable business-specific calculation and validation logic." codeIdentifier="ServiceLibraries">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -4435,7 +4435,7 @@
                       </property>
                     </properties>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" name="ServiceLibrary" displayName="Service Library" description="Description for Application.Design.Services.Service.ServiceLibraries.ServiceLibrary" codeIdentifier="ServiceLibrary" icon="pack://application:,,,/NServiceBusStudio;component/Resources/LibraryFile.png">
+                      <element Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" name="ServiceLibrary" displayName="Service Library" description="A service library." codeIdentifier="ServiceLibrary" icon="pack://application:,,,/NServiceBusStudio;component/Resources/LibraryFile.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -4528,7 +4528,7 @@
           </collection>
         </elements>
         <elements orderGroup="2">
-          <collection Id="ad8ac730-01f5-47d8-bd53-5a1bc52ccb3b" name="Endpoints" displayName="Endpoints" description="Description for Application.Design.Endpoints" codeIdentifier="Endpoints">
+          <collection Id="ad8ac730-01f5-47d8-bd53-5a1bc52ccb3b" name="Endpoints" displayName="Endpoints" description="Endpoints are the units of deployment of your system. These are the executable processes." codeIdentifier="Endpoints">
             <customizationPolicy name="CustomizationPolicySchema1">
               <settings>
                 <setting propertyId="DisplayName" />
@@ -4577,7 +4577,7 @@
               </automationSettings>
             </automationSettings>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NService Bus Host" description="Description for Application.Design.Endpoints.NServiceBusHost" codeIdentifier="NServiceBusHost" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
+              <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NService Bus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -5093,7 +5093,7 @@
                   </automationSettings>
                 </automationSettings>
                 <childElement>
-                  <collection Id="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" name="Components" displayName="Components" description="Description for Application.Design.Endpoints.NServiceBusHost.Components" codeIdentifier="NServiceBusHostComponents">
+                  <collection Id="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusHostComponents">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -5124,7 +5124,7 @@
                       </automationSettings>
                     </automationSettings>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="58bd0df2-5250-472d-a169-4d72726325ae" name="ComponentLink" displayName="Component Link" description="Description for Application.Design.Endpoints.NServiceBusHost.Components.ComponentLink" codeIdentifier="NServiceBusHostComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                      <element Id="58bd0df2-5250-472d-a169-4d72726325ae" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusHostComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -5238,7 +5238,7 @@
               </element>
             </childElement>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NService Bus Web" description="Description for Application.Design.Endpoints.NServiceBusWeb" codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
+              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NService Bus Web" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -5715,7 +5715,7 @@
                   </automationSettings>
                 </automationSettings>
                 <childElement>
-                  <collection Id="7fd9877f-4de1-4d74-a0a3-d3a09cc06a73" name="Components" displayName="Components" description="Description for Application.Design.Endpoints.NServiceBusWeb.Components" codeIdentifier="NServiceBusWebComponents">
+                  <collection Id="7fd9877f-4de1-4d74-a0a3-d3a09cc06a73" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusWebComponents">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -5746,7 +5746,7 @@
                       </automationSettings>
                     </automationSettings>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6" name="ComponentLink" displayName="Component Link" description="Description for Application.Design.Endpoints.NServiceBusWeb.Components.ComponentLink" codeIdentifier="NServiceBusWebComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                      <element Id="813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusWebComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -5860,7 +5860,7 @@
               </element>
             </childElement>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="55173bde-0618-431e-8b1a-5bb2c312c713" name="NServiceBusMVC" displayName="NService Bus MVC" description="Description for Application.Design.Endpoints.NServiceBusMVC" codeIdentifier="NServiceBusMVC" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
+              <element Id="55173bde-0618-431e-8b1a-5bb2c312c713" name="NServiceBusMVC" displayName="NService Bus MVC" description="A web project that makes use of ASP MVC." codeIdentifier="NServiceBusMVC" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -6285,7 +6285,7 @@
                   </automationSettings>
                 </automationSettings>
                 <childElement>
-                  <collection Id="2cb77a1f-f887-467c-b0e3-df2de031b87c" name="Components" displayName="Components" description="Description for Application.Design.Endpoints.NServiceBusMVC.Components" codeIdentifier="NServiceBusMVCComponents">
+                  <collection Id="2cb77a1f-f887-467c-b0e3-df2de031b87c" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusMVCComponents">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -6316,7 +6316,7 @@
                       </automationSettings>
                     </automationSettings>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="18db2bf8-3414-4c90-9e46-39e0475a018b" name="ComponentLink" displayName="Component Link" description="Description for Application.Design.Endpoints.NServiceBusMVC.Components.ComponentLink" codeIdentifier="NServiceBusMVCComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                      <element Id="18db2bf8-3414-4c90-9e46-39e0475a018b" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusMVCComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -6552,7 +6552,7 @@
           </element>
         </elements>
         <elements>
-          <collection Id="f847dee0-d0b7-4270-932f-8b18ceb74f21" name="Infrastructure" displayName="Infrastructure" description="Description for Application.Design.Infrastructure" codeIdentifier="Infrastructure">
+          <collection Id="f847dee0-d0b7-4270-932f-8b18ceb74f21" name="Infrastructure" displayName="Infrastructure" description="The place where cross-cutting concerns are handled." codeIdentifier="Infrastructure">
             <customizationPolicy name="CustomizationPolicySchema1">
               <settings>
                 <setting propertyId="DisplayName" />
@@ -6610,7 +6610,7 @@
               </automationSettings>
             </automationSettings>
             <childElement cardinality="ZeroToOne" autoCreate="false" allowAddNew="false">
-              <collection Id="56d7865c-0be2-4f31-8b0d-0b0e12156582" name="Security" displayName="Security" description="Description for Application.Design.Infrastructure.Security" codeIdentifier="Security">
+              <collection Id="56d7865c-0be2-4f31-8b0d-0b0e12156582" name="Security" displayName="Security" description="The place where security concerns are handled." codeIdentifier="Security">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -6621,7 +6621,7 @@
                   </settings>
                 </customizationPolicy>
                 <childElement cardinality="ZeroToOne" autoCreate="false" allowAddNew="false">
-                  <element Id="85310159-9a70-43c5-8dd8-962edb561550" name="Authentication" displayName="Authentication" description="Description for Application.Design.Infrastructure.Security.Authentication" codeIdentifier="Authentication">
+                  <element Id="85310159-9a70-43c5-8dd8-962edb561550" name="Authentication" displayName="Authentication" description="System-wide authentication behavior for identifying users." codeIdentifier="Authentication">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -6806,7 +6806,7 @@
           </collection>
         </elements>
         <elements>
-          <collection Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" name="UseCases" displayName="Use Cases" description="Description for Application.Design.UseCases" codeIdentifier="UseCases" isVisible="false">
+          <collection Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" name="UseCases" displayName="Use Cases" description="Use cases are the features of your system, often triggered by a user action or on a schedule." codeIdentifier="UseCases" isVisible="false">
             <customizationPolicy name="CustomizationPolicySchema1">
               <settings>
                 <setting propertyId="DisplayName" />
@@ -6817,7 +6817,7 @@
               </settings>
             </customizationPolicy>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="bbd42ef5-b751-4193-af5c-42920170710b" name="UseCase" displayName="Use Case" description="Description for Application.Design.UseCases.UseCase" codeIdentifier="UseCase">
+              <element Id="bbd42ef5-b751-4193-af5c-42920170710b" name="UseCase" displayName="Use Case" description="A use case." codeIdentifier="UseCase">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -6911,7 +6911,7 @@
                   </automationSettings>
                 </automationSettings>
                 <childElement cardinality="ZeroToMany" autoCreate="false">
-                  <element Id="fb0456a6-d44e-4db1-ae24-7d1ad24f7017" name="UseCaseStep" displayName="Use Case Step" description="Description for Application.Design.UseCases.UseCase.UseCaseStep" codeIdentifier="UseCaseStep" isVisible="false">
+                  <element Id="fb0456a6-d44e-4db1-ae24-7d1ad24f7017" name="UseCaseStep" displayName="Use Case Step" description="A use case step." codeIdentifier="UseCaseStep" isVisible="false">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -7038,7 +7038,7 @@
                   </element>
                 </childElement>
                 <childElement cardinality="ZeroToMany" autoCreate="false">
-                  <element Id="0cf8d37f-d40a-4816-9ec2-ca8009473abe" name="UseCaseLink" displayName="Use Case Link" description="Description for Application.Design.UseCases.UseCase.UseCaseLink" codeIdentifier="UseCaseLink" isVisible="false">
+                  <element Id="0cf8d37f-d40a-4816-9ec2-ca8009473abe" name="UseCaseLink" displayName="Use Case Link" description="A use case link." codeIdentifier="UseCaseLink" isVisible="false">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -7105,7 +7105,7 @@
           </collection>
         </elements>
         <elements>
-          <collection Id="287ddef4-f681-4c17-8aa1-6e3768412fd9" name="Libraries" displayName="Libraries" description="Description for Application.Design.Libraries" codeIdentifier="Libraries">
+          <collection Id="287ddef4-f681-4c17-8aa1-6e3768412fd9" name="Libraries" displayName="Libraries" description="Libraries are units of code that can be reused. These infrastructure libraries include things like logging and data access." codeIdentifier="Libraries">
             <customizationPolicy name="CustomizationPolicySchema1">
               <settings>
                 <setting propertyId="DisplayName" />
@@ -7163,7 +7163,7 @@
               </automationSettings>
             </automationSettings>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="026d2305-4579-472f-a028-27e89b9abc5e" name="Library" displayName="Library" description="Description for Application.Design.Libraries.Library" codeIdentifier="Library" icon="pack://application:,,,/NServiceBusStudio;component/Resources/LibraryFile.png">
+              <element Id="026d2305-4579-472f-a028-27e89b9abc5e" name="Library" displayName="Library" description="A library." codeIdentifier="Library" icon="pack://application:,,,/NServiceBusStudio;component/Resources/LibraryFile.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
