@@ -93,6 +93,14 @@ namespace NServiceBusStudio
 		[DisplayName("Title")]
 		[Category("General")]
 		String Title { get; set; }
+
+		///	<summary>
+		///	Description for Application.ToolkitVersion
+		///	</summary>
+		[Description("Description for Application.ToolkitVersion")]
+		[DisplayName("Toolkit Version")]
+		[Category("General")]
+		String ToolkitVersion { get; set; }
 		
 		///	<summary>
 		///	The ToolkitInfo.

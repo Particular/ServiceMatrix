@@ -26,7 +26,7 @@ namespace NServiceBus.Modeling.EndpointDesign
             var app = this.ProductManager.Products.First().As<NServiceBusStudio.IApplication>();
             
             if (app == null)
-                throw new Exception("Cannot get access to the VSPAT Model");
+                throw new Exception("Cannot get access to the NuPattern Model");
 
             var endpointName = Path.GetFileNameWithoutExtension(fileName);
             var endpoints = app.Design.Endpoints.GetAll();

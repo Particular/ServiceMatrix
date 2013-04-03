@@ -2750,6 +2750,30 @@
   }
 }</defaultValue>
       </property>
+      <property Id="7096419d-5f7a-4901-9ec5-c4b5de4ff570" name="ToolkitVersion" displayName="Toolkit Version" description="Description for Application.ToolkitVersion" codeIdentifier="ToolkitVersion" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.ToolkitVersionValueProvider",
+    "Properties": []
+  }
+}</defaultValue>
+      </property>
     </properties>
     <automationSettings>
       <automationSettings Id="e3ea3a92-6c74-4192-b127-db1db151eea3" name="GenerateCode" displayName="Set Startup Projects" description="" codeIdentifier="GenerateCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">

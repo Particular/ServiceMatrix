@@ -148,6 +148,18 @@ namespace NServiceBusStudio
 			get { return this.proxy.GetValue(() => this.Title); }
 			set { this.proxy.SetValue(() => this.Title, value); }
 		}
+
+		///	<summary>
+		///	Description for Application.ToolkitVersion
+		///	</summary>
+		[Description("Description for Application.ToolkitVersion")]
+		[DisplayName("Toolkit Version")]
+		[Category("General")]
+		public virtual String ToolkitVersion 
+		{
+			get { return this.proxy.GetValue(() => this.ToolkitVersion); }
+			set { this.proxy.SetValue(() => this.ToolkitVersion, value); }
+		}
 		
 		///	<summary>
 		///	The ToolkitInfo.

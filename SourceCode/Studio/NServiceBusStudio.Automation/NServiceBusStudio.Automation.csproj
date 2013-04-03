@@ -335,6 +335,7 @@
     <Compile Include="ValueProviders\NamespaceForEndpointProjectValueProvider.cs" />
     <Compile Include="ValueProviders\ParentComponentPublishesAnEventValueProvider.cs" />
     <Compile Include="ValueProviders\ProcessedEventLinkHandlerNameProvider.cs" />
+    <Compile Include="ValueProviders\ToolkitVersionValueProvider.cs" />
     <Compile Include="VersionHelper.cs" />
     <Compile Include="GeneratedCode\NServiceBusStudio\CollectionImplementation.cs">
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
