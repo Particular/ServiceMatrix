@@ -131,6 +131,8 @@
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
+    <Compile Include="Commands\ShowEventComponentPicker.cs" />
+    <Compile Include="Commands\ShowCommandComponentPicker.cs" />
     <Compile Include="Commands\PackageConfigFilesCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBH\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\Endpoints\NSBH\AddNugetReferencesCommand.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Commands\Endpoints\NSBH\SaveProject.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\OpenComponentCodeCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBWeb\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\RaisesOnInstantiatedComponent.cs" />
     <Compile Include="Commands\ShowStartedByPicker.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinkCommand.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinksCommand.cs" />
@@ -191,6 +194,10 @@
     <Compile Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml.cs">
       <DependentUpon>ToolbarExtension.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
+      <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\IElementHierarchyPicker.cs" />
     <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
@@ -456,6 +463,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialog\ComponentPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\ElementHierarchyPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

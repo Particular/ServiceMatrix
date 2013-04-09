@@ -958,7 +958,7 @@
         <automationSettingsSchemaMoniker Id="8259c25e-8821-4e9f-9a1e-23761a1e01f1" />
       </extendedElement>
       <properties>
-        <propertySettings Id="7a48fa02-080e-4b01-88f2-a2c12f169ada" value="280dba83-d002-44b2-ad3d-ef392191f153;36939d09-f7c3-45f5-881c-3908f1476ab4;0fa0f1e3-2a8d-4e12-b629-9012e20354ad;f903ffd1-bb97-436f-89d8-3db8f71d3e8a" name="CommandReferenceList" />
+        <propertySettings Id="7a48fa02-080e-4b01-88f2-a2c12f169ada" value="280dba83-d002-44b2-ad3d-ef392191f153;36939d09-f7c3-45f5-881c-3908f1476ab4;0fa0f1e3-2a8d-4e12-b629-9012e20354ad;f903ffd1-bb97-436f-89d8-3db8f71d3e8a;47f2a720-e7a1-4568-addc-9cae1c53a38b" name="CommandReferenceList" />
       </properties>
     </commandSettings>
     <commandSettings Id="280dba83-d002-44b2-ad3d-ef392191f153" typeId="NServiceBusStudio.Automation.Commands.LibraryAddedCommand">
@@ -2007,6 +2007,41 @@
         <propertySettings Id="610c6ae0-faac-4367-bfb0-4d449ebe7b08" value="True" name="Open" />
       </properties>
     </commandSettings>
+    <commandSettings Id="cffe2ae5-e4d9-4411-82fa-1d3d2fc9c4ba" typeId="NServiceBusStudio.Automation.Commands.ShowCommandComponentPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="437f7ffc-525b-49bb-bc76-b960279f36ac" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="47f2a720-e7a1-4568-addc-9cae1c53a38b" typeId="NServiceBusStudio.Automation.Commands.RaisesOnInstantiatedComponent">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="148a4209-5996-4f57-a9a1-1bcf9a3fb301" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="20a6e3e7-d8f7-4fdf-8087-e6aeff8decbe" typeId="NServiceBusStudio.Automation.Commands.ShowEventComponentPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="bfae2a57-f592-4e37-9aba-58b65194d9c8" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="dd6f1bee-4a1b-410d-951c-929648b6b2b5" typeId="NServiceBusStudio.Automation.Commands.ShowCommandComponentPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="98dc4754-ace0-48c0-a140-597a4cd9252b" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="8e1a6a25-7063-4543-973f-26203721274b" typeId="NServiceBusStudio.Automation.Commands.ShowEventComponentPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="18620949-ad26-4e5f-bc9d-df25c1ce6d6e" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="2adc6882-c200-405d-8bdf-5f3c29b4a072" typeId="NServiceBusStudio.Automation.Commands.ShowEventComponentPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="ced94f2e-0e04-4ead-a67a-1a9a239fde62" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="5382586e-5e44-45c2-96e0-e6f5952fba72" typeId="NServiceBusStudio.Automation.Commands.ShowCommandComponentPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b207d2ad-649c-4bfe-a860-72144f74b0f8" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -2149,6 +2184,36 @@
     <menuSettings Id="bd1964b9-920e-4249-836d-f2685ded9888" text="Show Diagram" commandId="f57855eb-9e8e-4f31-b4f0-eaa817eec410" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0f46780c-aad6-4002-bd3b-a8f4044e0692" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="bc2ed4d7-7b81-43c8-ac96-f8ce76c7e122" text="Send Command..." commandId="cffe2ae5-e4d9-4411-82fa-1d3d2fc9c4ba" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c033a5be-b050-4176-a9bc-62b2c8ed4bb4" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="a1a90ceb-98f8-43bd-adbb-a1c7c3f9289c" text="Publish Event..." commandId="20a6e3e7-d8f7-4fdf-8087-e6aeff8decbe" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b602c0c8-8d04-46eb-93fa-68620e18e574" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="1ad340c0-e194-498b-be5a-2e52d70d531c" text="Publish Event..." commandId="8e1a6a25-7063-4543-973f-26203721274b" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="35b9983c-a755-4006-9b8b-c8e5975b42de" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="caaa48c6-eed9-471f-909f-2a711a55fc38" text="Send Command..." commandId="dd6f1bee-4a1b-410d-951c-929648b6b2b5" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="636692ae-7db3-42ce-be88-290d47dd421c" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="259910c9-62fe-45cf-864d-0f0c9512639e" text="Publish Event..." commandId="2adc6882-c200-405d-8bdf-5f3c29b4a072" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="42b98ea8-8584-4345-9063-94103a01a95f" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="076a511a-3190-47a6-a290-23ecbe708304" text="Send Command..." commandId="5382586e-5e44-45c2-96e0-e6f5952fba72" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="7614f045-29d6-41be-818c-ebdf6f720e4f" />
       </extendedElement>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="NServiceBus Studio Guidance" guidanceFeatureId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
@@ -3598,6 +3663,15 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="6bcae1ba-a55b-460b-934b-299b17407f67" name="CheckForCodeProject" displayName="Check For Code Project" description="" codeIdentifier="CheckForCodeProject" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="148a4209-5996-4f57-a9a1-1bcf9a3fb301" name="RaiseOnInstantiated" displayName="Raise On Instantiated" description="" codeIdentifier="RaiseOnInstantiated" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -5115,6 +5189,42 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
+                  <automationSettings Id="c033a5be-b050-4176-a9bc-62b2c8ed4bb4" name="SendCommand" displayName="Send Command" description="" codeIdentifier="SendCommand" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="437f7ffc-525b-49bb-bc76-b960279f36ac" name="SendCommandCommand" displayName="Send Command Command" description="" codeIdentifier="SendCommandCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="bfae2a57-f592-4e37-9aba-58b65194d9c8" name="PublishEventCommand" displayName="Publish Event Command" description="" codeIdentifier="PublishEventCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="b602c0c8-8d04-46eb-93fa-68620e18e574" name="PublishEvent" displayName="Publish Event" description="" codeIdentifier="PublishEvent" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
                 </automationSettings>
                 <childElement>
                   <collection Id="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusHostComponents">
@@ -5737,6 +5847,42 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
+                  <automationSettings Id="42b98ea8-8584-4345-9063-94103a01a95f" name="PublishEvent" displayName="Publish Event" description="" codeIdentifier="PublishEvent" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="7614f045-29d6-41be-818c-ebdf6f720e4f" name="SendCommand" displayName="Send Command" description="" codeIdentifier="SendCommand" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="ced94f2e-0e04-4ead-a67a-1a9a239fde62" name="PublishEventCommand" displayName="Publish Event Command" description="" codeIdentifier="PublishEventCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="b207d2ad-649c-4bfe-a860-72144f74b0f8" name="SendCommandCommand" displayName="Send Command Command" description="" codeIdentifier="SendCommandCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
                 </automationSettings>
                 <childElement>
                   <collection Id="7fd9877f-4de1-4d74-a0a3-d3a09cc06a73" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusWebComponents">
@@ -6299,6 +6445,42 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="8490b9ea-0163-48c8-96ea-8db22c1d6701" name="GenerateWebGlobalInitialization" displayName="Generate Web Global Initialization" description="" codeIdentifier="GenerateWebGlobalInitialization" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="35b9983c-a755-4006-9b8b-c8e5975b42de" name="PublishEvent" displayName="Publish Event" description="" codeIdentifier="PublishEvent" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="636692ae-7db3-42ce-be88-290d47dd421c" name="SendCommand" displayName="Send Command" description="" codeIdentifier="SendCommand" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="98dc4754-ace0-48c0-a140-597a4cd9252b" name="SendCommandCommand" displayName="Send Command Command" description="" codeIdentifier="SendCommandCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="18620949-ad26-4e5f-bc9d-df25c1ce6d6e" name="PublishEventCommand" displayName="Publish Event Command" description="" codeIdentifier="PublishEventCommand" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

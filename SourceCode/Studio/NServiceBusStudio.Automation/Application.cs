@@ -73,6 +73,10 @@ namespace NServiceBusStudio
         // on deserialization
         public event EventHandler OnInstantiatedEndpoint;
 
+        // This event is raised just when it was explicitly instantiated and not
+        // on deserialization
+        public event EventHandler OnInstantiatedComponent;
+
         public void RaiseOnInitializingEndpoint(IAbstractEndpoint endpoint)
         {
             if (OnInitializingEndpoint != null)
@@ -86,6 +90,14 @@ namespace NServiceBusStudio
             if (OnInstantiatedEndpoint != null)
             {
                 OnInstantiatedEndpoint(endpoint, EventArgs.Empty);
+            }
+        }
+
+        public void RaiseOnInstantiatedComponent(IComponent component)
+        {
+            if (OnInstantiatedComponent != null)
+            {
+                OnInstantiatedComponent(component, EventArgs.Empty);
             }
         }
 
@@ -121,9 +133,14 @@ namespace NServiceBusStudio
         // This event is raised just when it was explicitly instantiated and not
         // on deserialization
         event EventHandler OnInstantiatedEndpoint;
+        
+        // This event is raised just when it was explicitly instantiated and not
+        // on deserialization
+        event EventHandler OnInstantiatedComponent;
 
         void RaiseOnInitializingEndpoint(IAbstractEndpoint endpoint);
         void RaiseOnInstantiatedEndpoint(IAbstractEndpoint endpoint);
+        void RaiseOnInstantiatedComponent(IComponent component);
         void CheckForFirstBuild();
     }
 }
