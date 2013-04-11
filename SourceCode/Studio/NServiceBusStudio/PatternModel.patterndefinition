@@ -232,6 +232,11 @@
   }
 ]</conditions>
     </eventSettings>
+    <eventSettings Id="2e20f568-0971-4c09-ac84-81484ae5ae50" commandId="15a636ca-6bc9-4a89-8364-bc65a05596a2" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="f0e87da6-c244-4600-bc44-0d603e7caf70" />
+      </extendedElement>
+    </eventSettings>
     <commandSettings Id="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" />
@@ -2995,6 +3000,15 @@
         </customizationPolicy>
       </automationSettings>
       <automationSettings Id="87031a0d-a630-4804-bc4c-1b43870002c8" name="ActivateGuidanceContextMenu" displayName="Activate Guidance Context Menu" description="" isSystem="true" codeIdentifier="ActivateGuidanceContextMenu" isCustomizable="False" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="f0e87da6-c244-4600-bc44-0d603e7caf70" name="ApplicationInstantiated" displayName="Application Instantiated" description="" codeIdentifier="ApplicationInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
