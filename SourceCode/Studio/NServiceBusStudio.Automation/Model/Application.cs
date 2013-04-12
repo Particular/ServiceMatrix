@@ -36,10 +36,15 @@ namespace NServiceBusStudio
         [Import]
         public StatisticsManager StatisticsManager { get; set; }
 
+        [Import]
+        public LicensingManager LicensingManager { get; set; }
+
         public IEndpoints Endpoints { get; set; }
 
         partial void Initialize()
         {
+            this.LicensingManager.CheckLicense(!this.AsProduct().IsSerializing);
+
             this.InfrastructureManager = new InfrastructureManager(this, this.ServiceProvider, this.PatternManager);
 
             if (currentApplication == null)
@@ -208,6 +213,8 @@ namespace NServiceBusStudio
         {
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
+
+        
     }
 
     public enum TransportType

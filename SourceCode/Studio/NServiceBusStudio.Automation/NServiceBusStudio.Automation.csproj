@@ -203,6 +203,10 @@
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
+    <Compile Include="Infrastructure\LicensingManager.cs" />
+    <Compile Include="Infrastructure\Licensing\LicensingDialog.xaml.cs">
+      <DependentUpon>LicensingDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Infrastructure\StatisticsManager.cs" />
     <Compile Include="Model\Endpoints.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
@@ -489,6 +493,10 @@
     <Page Include="Dialog\ServicePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Infrastructure\Licensing\LicensingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
