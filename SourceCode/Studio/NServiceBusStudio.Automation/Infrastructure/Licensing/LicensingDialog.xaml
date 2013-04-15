@@ -17,7 +17,7 @@
                 <TextBlock FontWeight="Bold" x:Name="TrialVersionDaysLeft">X</TextBlock>
                 <TextBlock Margin="5,0,0,0">days left until trial expiration. Click</TextBlock>
                 <TextBlock Margin="5,0,0,0">
-                    <Hyperlink NavigateUri="http://www.nservicebus.com">here</Hyperlink>
+                    <Hyperlink NavigateUri="http://www.nservicebus.com" RequestNavigate="HandleRequestNavigate">here</Hyperlink>
                 </TextBlock>
                 <TextBlock Margin="5,0,0,0">to purchase license.</TextBlock>
             </StackPanel>
@@ -29,7 +29,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock>Click</TextBlock>
                 <TextBlock Margin="5,0,0,0">
-                    <Hyperlink NavigateUri="http://www.nservicebus.com">here</Hyperlink>
+                    <Hyperlink NavigateUri="http://www.nservicebus.com" RequestNavigate="HandleRequestNavigate">here</Hyperlink>
                 </TextBlock>
                 <TextBlock Margin="5,0,0,0">to purchase license.</TextBlock>
             </StackPanel>

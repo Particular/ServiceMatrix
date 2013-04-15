@@ -16,6 +16,7 @@ using NuPattern.Runtime;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Markup;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Licensing
 {
@@ -50,6 +51,13 @@ namespace NServiceBusStudio.Automation.Infrastructure.Licensing
         {
             this.DialogResult = true;
             this.Close();
+        }
+
+        private void HandleRequestNavigate(object sender, RoutedEventArgs e)
+        {
+            string navigateUri = ((Hyperlink)sender).NavigateUri.ToString();
+            Process.Start(new ProcessStartInfo(navigateUri));
+            e.Handled = true;
         }
     }
 

@@ -53,7 +53,7 @@ namespace NServiceBusStudio.Automation.Extensions
                 }
 
                 var renameRefactoringNotSupported = toolkitElement as IRenameRefactoringNotSupported;
-                if (renameRefactoringNotSupported != null)
+                if (renameRefactoringNotSupported != null && toolkitElement.InstanceName != "")
                 {
                     var result = MessageBox.Show("This element doesn't support code refactoring, you will need to update your code manually. Do you want to do the renaming anyway?", "Rename element", MessageBoxButton.YesNo);
                     return result == MessageBoxResult.Yes;
