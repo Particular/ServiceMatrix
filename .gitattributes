@@ -23,6 +23,7 @@
 *.xap	-text -diff
 *.bmp   -text -diff
 *.ico   -text -diff
+*.resx   -text -diff
 
 *.cs text diff=csharp
 *.config text diff=csharp
