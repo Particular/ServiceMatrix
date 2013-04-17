@@ -21,6 +21,8 @@
 *.pdb 	-text -diff
 *.pptx	-text -diff
 *.xap	-text -diff
+*.bmp   -text -diff
+*.ico   -text -diff
 
 *.cs text diff=csharp
 *.config text diff=csharp
