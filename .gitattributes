@@ -23,7 +23,6 @@
 *.xap	-text -diff
 *.bmp   -text -diff
 *.ico   -text -diff
-*.resx   -text -diff
 
 *.cs text diff=csharp
 *.config text diff=csharp
@@ -60,6 +59,7 @@
 *.ps1 text
 *.txt text eol=crlf
 *.bat text eol=crlf
+*.resx text eol=crlf
 
 # Custom for Visual Studio
 *.csproj merge=union
