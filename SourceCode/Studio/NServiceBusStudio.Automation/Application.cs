@@ -24,6 +24,12 @@ namespace NServiceBusStudio
         /// </summary>
         public bool IsDirty { get; set; }
 
+        /// <summary>
+        /// Sets or Gets if the license is Valid
+        /// or the trial has not expired yet
+        /// </summary>
+        public bool IsValidLicensed { get; set; }
+
 		[Import(typeof(SVsServiceProvider))]
 		public virtual IServiceProvider ServiceProvider
 		{
@@ -64,6 +70,9 @@ namespace NServiceBusStudio
 
             // IsDirty should be initialized to true
             this.IsDirty = true;
+
+            // IsValidLicensed should be initialized to true
+            this.IsValidLicensed = true;
         }
 
         // This event is raised even initializing after deserializing the endpoint
@@ -126,6 +135,7 @@ namespace NServiceBusStudio
         event EventHandler OnApplicationLoaded;
         void RaiseOnApplicationLoaded();
         bool IsDirty { get; set; }
+        bool IsValidLicensed { get; set; }
 
         // This event is raised even initializing after deserializing the endpoint
         event EventHandler OnInitializingEndpoint;

@@ -1,0 +1,64 @@
+﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Licensing.TrialExpired"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
+             xmlns:vsfx="clr-namespace:NuPattern.Common.Presentation.Vs;assembly=NuPattern.Common.Presentation"
+             mc:Ignorable="d"
+             Title=""
+             Icon="/NServiceBusStudio.Automation;component/Resources/NServiceBusView.png"
+             ResizeMode="NoResize"
+             WindowStyle="ToolWindow"
+             WindowStartupLocation="CenterScreen"
+             SizeToContent="Height" Width="480">
+    <src:CommonDialogWindow.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+        </Style>
+    </src:CommonDialogWindow.Resources>
+    <StackPanel Background="#808080">
+        <Image Source="/NServiceBusStudio.Automation;component/Resources/NServiceBusStudioBanner.png"></Image>
+        <StackPanel x:Name="TrialVersionPane" Visibility="Visible">
+            <TextBlock Margin="15, 0, 15, 0" FontWeight="Bold">
+                This is a trial version of Particular Software NServiceBus Studio.
+            </TextBlock>
+            <StackPanel Margin="15, 0, 15, 0" Orientation="Horizontal">
+                <TextBlock FontWeight="Bold" x:Name="TrialVersionDaysLeft">X</TextBlock>
+                <TextBlock FontWeight="Bold" Margin="5,0,0,0">days left until trial expiration.</TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="ExpiredTrialVersionPane">
+            <TextBlock Margin="15, 0, 15, 0"  FontWeight="Bold">
+                Trial period of Particular Software NServiceBus Studio has expired. A license is required in order to continue. Click <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"  NavigateUri="http://www.particularsoftware.com/">here</Hyperlink> to purchase license.
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="PurchaseALicense" Click="PurchaseALicense_Click" BorderThickness="2">Purchase a License</Button>
+            <Button x:Name="ContinueOnTrial" Click="ContinueOnTrial_Click">Continue on Trial</Button>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock>Once you have received your license, enter it here:</TextBlock>
+                <Button x:Name="Browse" Click="Browse_Click">Browse...</Button>
+            </StackPanel>
+            <StackPanel x:Name="errorPanel" Visibility="Collapsed">
+                <TextBlock x:Name="errorMessageLabel" Foreground="Red"></TextBlock>
+                <TextBlock x:Name="selectedFileExpirationDateLabel"></TextBlock>
+            </StackPanel>
+            <StackPanel x:Name="completePanel" Visibility="Collapsed">
+                <Label x:Name="completeMessageLabel" Foreground="Green">Your license is valid. Configuring NServiceBus Studio using the new license...</Label>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</src:CommonDialogWindow>

@@ -19,8 +19,12 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
     {
         [Import]
         public ISolutionEvents SolutionEvents { get; set; }
-
+        
         public static bool HasBeenAlreadyInitialized = false;
+        
+        private NuPattern.Runtime.UI.SolutionBuilderViewModel SolutionBuilderViewModel;
+        private ToolbarExtension ToolBarExtension;
+        private ScrollViewer Scrollviewer;
 
         public void Initialize(IServiceProvider serviceProvider)
         {
@@ -53,13 +57,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
                 var contentGrid = content.Content as Grid;
 
-                ScrollViewer scrollviewer = null;
-
                 foreach (var theitem in contentGrid.Children)
                 {
                     if (theitem is ScrollViewer)
                     {
-                        scrollviewer = (theitem as ScrollViewer);
+                        Scrollviewer = (theitem as ScrollViewer);
                     }
                 }
 
@@ -76,7 +78,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
                                 this.ToolBarExtension = new ToolbarExtension
                                 {
-                                    ContentScrollViewer = scrollviewer,
+                                    ContentScrollViewer = Scrollviewer,
                                     ServiceProvider = serviceProvider
                                 }; 
 
@@ -87,23 +89,38 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                     }
                 }
 
-                this.SolutionBuilderViewModel = scrollviewer.DataContext as NuPattern.Runtime.UI.SolutionBuilderViewModel;
+                this.SolutionBuilderViewModel = Scrollviewer.DataContext as NuPattern.Runtime.UI.SolutionBuilderViewModel;
             }
         }
 
-        private NuPattern.Runtime.UI.SolutionBuilderViewModel SolutionBuilderViewModel;
-        private ToolbarExtension ToolBarExtension;
+        public void EnableSolutionBuilder()
+        {
+            this.Scrollviewer.IsEnabled = true;
+            this.DetailsWindowManager.Enable();
+            this.ToolBarExtension.Enable();
+        }
 
+        public void DisableSolutionBuilder()
+        {
+            this.Scrollviewer.IsEnabled = false;
+            this.DetailsWindowManager.Disable();
+            this.ToolBarExtension.Disable();
+        }
+
+        public void ShowNoSolutionState()
+        {
+            if (this.ToolBarExtension != null)
+            {
+                this.ToolBarExtension.ShowNoSolutionState();
+                //NServiceBusStudio.Automation.Tasks.NServiceBusTaskProgressToolWindow.ShowNoSolutionState();
+            }
+        }
 
         private void WireSolutionEvents()
         {
             this.SolutionEvents.SolutionClosed += (s, e) => 
             {
-                if (this.ToolBarExtension != null)
-                {
-                    this.ToolBarExtension.ShowNoSolutionState();
-                    //NServiceBusStudio.Automation.Tasks.NServiceBusTaskProgressToolWindow.ShowNoSolutionState();
-                }
+                this.ShowNoSolutionState();
             };
             this.SolutionEvents.SolutionOpened += (s, e) => 
             {

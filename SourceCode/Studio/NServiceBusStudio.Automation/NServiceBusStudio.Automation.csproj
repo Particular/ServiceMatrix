@@ -55,11 +55,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Design" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -167,7 +170,7 @@
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="CustomSolutionBuilder\CustomSolutionBuilder.cs" />
-    <Compile Include="CustomSolutionBuilder\Data\Class1.cs" />
+    <Compile Include="CustomSolutionBuilder\Data\UriToCachedImageConverter.cs" />
     <Compile Include="CustomSolutionBuilder\IDetailsWindowsManager.cs" />
     <Compile Include="CustomSolutionBuilder\Infrastructure\LogicalViewModelIconConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Infrastructure\SolutionBuilderViewModelExtensions.cs" />
@@ -203,10 +206,25 @@
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
-    <Compile Include="Infrastructure\LicensingManager.cs" />
-    <Compile Include="Infrastructure\Licensing\LicensingDialog.xaml.cs">
-      <DependentUpon>LicensingDialog.xaml</DependentUpon>
+    <Compile Include="Licensing\TrialExpired.xaml.cs">
+      <DependentUpon>TrialExpired.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Licensing\License.cs" />
+    <Compile Include="Licensing\LicenseDescriptor.cs" />
+    <Compile Include="Licensing\LicenseManager.cs" />
+    <Compile Include="Licensing\LicenseType.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\AbstractLicenseValidator.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\ILicensingService.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\InvalidationType.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\ISubscriptionLicensingService.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseExpiredException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseFileNotFoundException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseNotFoundException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseType.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseValidator.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\RhinoLicensingException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\StringLicenseValidator.cs" />
+    <Compile Include="Licensing\StringLicenseValidator.cs" />
     <Compile Include="Infrastructure\StatisticsManager.cs" />
     <Compile Include="Model\Endpoints.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
@@ -494,7 +512,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Infrastructure\Licensing\LicensingDialog.xaml">
+    <Page Include="Licensing\TrialExpired.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -525,6 +543,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NServiceBusStudioBanner.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

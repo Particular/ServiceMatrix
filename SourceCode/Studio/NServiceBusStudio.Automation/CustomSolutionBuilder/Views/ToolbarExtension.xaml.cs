@@ -32,8 +32,31 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public ScrollViewer ContentScrollViewer { get; set; }
 
+        public IServiceProvider ServiceProvider { get; set; }
+
         private object DefaultSolutionBuilderView = null;
         private LogicalView NServiceBusView = null;
+        private bool IsEnabledNServiceBusView;
+
+        public void Enable()
+        {
+            EnableDisableNServiceBusView(true);
+        }
+
+        public void Disable()
+        {
+            EnableDisableNServiceBusView(false);
+        }
+
+        private void EnableDisableNServiceBusView(bool enable)
+        {
+            if (this.NServiceBusView != null)
+            {
+                this.NServiceBusView.IsEnabled = enable;
+            }
+            this.IsEnabledNServiceBusView = enable;
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -53,6 +76,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     };
 
                 NServiceBusView.InitializeViewSelector();
+
+                EnableDisableNServiceBusView(this.IsEnabledNServiceBusView);
 
                 NServiceBusView.SelectedItemChanged += (s, f) =>
                 {
@@ -135,8 +160,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                 this.ShowNServiceBusStudioView(false);
             }
         }
-
-        public IServiceProvider ServiceProvider { get; set; }
 
         internal void ShowNoSolutionState()
         {

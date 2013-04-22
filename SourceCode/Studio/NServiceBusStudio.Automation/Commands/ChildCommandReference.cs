@@ -61,7 +61,8 @@ namespace NServiceBusStudio.Automation.Commands
 		{
 			Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
 
-            if (this.CurrentElement.As<IApplication>().IsDirty)
+            if (this.CurrentElement.As<IApplication>().IsDirty &&
+                this.CurrentElement.As<IApplication>().IsValidLicensed)
             {
                 var children = default(IEnumerable<IProductElement>);
 

@@ -71,6 +71,26 @@ namespace NServiceBusStudio
             }
         }
 
+        void IDetailsWindowsManager.Enable()
+        {
+            EnableDisableDetailsPanel(true);
+        }
+
+        void IDetailsWindowsManager.Disable()
+        {
+            EnableDisableDetailsPanel(false);
+        }
+
+        private void EnableDisableDetailsPanel(bool enable)
+        {
+            var window = this.FindToolWindow(typeof(NServiceBusDetailsToolWindow), 0, false);
+            if (window != null)
+            {
+                var content = (DetailsPanel)window.Content;
+                content.IsEnabled = enable;
+            }
+        }
+
         void EnsureCreateToolWindow<T>() 
             where T: class
         {

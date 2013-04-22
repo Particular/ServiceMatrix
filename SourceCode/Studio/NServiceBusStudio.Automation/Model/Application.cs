@@ -1,14 +1,12 @@
 ﻿using AbstractEndpoint;
-using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
+using NServiceBusStudio.Automation.Licensing;
 using NuPattern.Runtime;
 using System;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -36,15 +34,10 @@ namespace NServiceBusStudio
         [Import]
         public StatisticsManager StatisticsManager { get; set; }
 
-        [Import]
-        public LicensingManager LicensingManager { get; set; }
-
         public IEndpoints Endpoints { get; set; }
 
         partial void Initialize()
         {
-            this.LicensingManager.CheckLicense(!this.AsProduct().IsSerializing);
-
             this.InfrastructureManager = new InfrastructureManager(this, this.ServiceProvider, this.PatternManager);
 
             if (currentApplication == null)
@@ -83,6 +76,38 @@ namespace NServiceBusStudio
 
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
+            CheckLicense();
+        }
+
+        private void CheckLicense()
+        {
+            try
+            {
+                LicenseManager.PromptUserForLicense();
+                this.EnableSolutionBuilder();
+            }
+            catch (Rhino.Licensing.LicenseExpiredException)
+            {
+                this.DisableSolutionBuilder();
+
+                if (!this.AsProduct().IsSerializing) // is creating
+                {
+                    this.CustomSolutionBuilder.ShowNoSolutionState();
+                    throw new Exception("You cannot create new NServiceBus solutions using an expired trial version. Please purchase a license.");
+                }
+            }
+        }
+
+        private void EnableSolutionBuilder()
+        {
+            this.IsValidLicensed = true;
+            this.CustomSolutionBuilder.EnableSolutionBuilder();
+        }
+
+        private void DisableSolutionBuilder()
+        {
+            this.IsValidLicensed = false;
+            this.CustomSolutionBuilder.DisableSolutionBuilder();
         }
 
         private void SetDomainSpecifiLogging()
