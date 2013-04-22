@@ -60,6 +60,7 @@
 *.txt text eol=crlf
 *.bat text eol=crlf
 *.resx text eol=crlf
+*.tt text eol=crlf
 
 # Custom for Visual Studio
 *.csproj merge=union
