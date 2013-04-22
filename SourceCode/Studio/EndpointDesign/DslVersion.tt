@@ -1,4 +1,4 @@
-<#+
+﻿<#+
 	public Version DslVersion
 	{
 		get { return new Version(this.Dsl.MajorVersion, this.Dsl.MinorVersion, this.Dsl.Build, this.Dsl.Revision); }

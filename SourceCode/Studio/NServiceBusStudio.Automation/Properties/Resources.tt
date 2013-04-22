@@ -1,4 +1,4 @@
-<#@ Template Debug="False" Hostspecific="True" Language="C#" #>
+﻿<#@ Template Debug="False" Hostspecific="True" Language="C#" #>
 <#@ Output Extension="Strings.cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="System.Xml" #>

@@ -1,4 +1,4 @@
-<#
+﻿<#
 	string directiveName = this.Dsl.Name;
 #>
 <#@ include file="Dsl\ModelDirectiveProcessor.tt" #>
