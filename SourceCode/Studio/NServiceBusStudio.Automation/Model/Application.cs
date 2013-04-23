@@ -93,7 +93,7 @@ namespace NServiceBusStudio
                 if (!this.AsProduct().IsSerializing) // is creating
                 {
                     this.CustomSolutionBuilder.ShowNoSolutionState();
-                    throw new Exception("You cannot create new NServiceBus solutions using an expired trial version. Please purchase a license.");
+                    throw new Exception("Trial period for NServiceBus Studio has Expired. A new NServiceBus solution cannot be created.");
                 }
             }
         }
