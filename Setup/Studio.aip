@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DOCUMENT Type="Advanced Installer" CreateVersion="9.9" version="10.0" Modules="enterprise" RootPath="." Language="en" Id="{8F3C6593-A5DC-4149-97A2-01DF551AA69A}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiValidationComponent">
-    <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="32767" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="2" ColumnIndex="7" ColumnSize="2" MsiKey="File#Sequence"/>
-    <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="32767" Description="File sequence number for the last file for this media." Options="0" ColumnType="2" ColumnIndex="1" ColumnSize="2" MsiKey="Media#LastSequence"/>
+    <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="2147483647" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="3" ColumnIndex="7" ColumnSize="4" MsiKey="File#Sequence"/>
+    <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="2147483647" Description="File sequence number for the last file for this media." Options="0" ColumnType="3" ColumnIndex="1" ColumnSize="4" MsiKey="Media#LastSequence"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_EXTERNALUIUNINSTALLERNAME" MultiBuildValue="DefaultBuild:aiui"/>
@@ -21,7 +21,7 @@
     <ROW Property="ProductCode" Value="1033:{C24E09CF-0927-4547-A22E-6892C80F8829} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Particular Software NServiceBus Studio 4.0.0"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="4.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="UpgradeCode" Value="{6CCE4E4A-DABC-4A26-9928-1767F8CB0FBE}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -55,7 +55,7 @@
     <ROW Property="INSTALL_VS_2012" Registry="INSTALL_VS2012" HklmSearch="INSTALL_VS2012" HkcuSearch="INSTALL_VS2012_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
-    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="..\AppData\Local\Temp" PackageFileName="studio" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="res\Particular_Studio_all.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" MsiCmdLine="/L*V [TempFolder]Studio.LOG" ExtUI="true" UseLargeSchema="true" ExeName="Studio.1.0.0"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="Output Package" PackageFileName="studio" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="res\Particular_Studio_all.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" MsiCmdLine="/L*V [TempFolder]Studio.LOG" ExtUI="true" UseLargeSchema="true" ExeName="Studio"/>
     <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
