@@ -40,5 +40,5 @@ using Microsoft.VisualStudio.ExtensibilityHosting;
 
 [assembly: NeutralResourcesLanguage("en")]
 
-[assembly: VsCatalogName(Microsoft.VisualStudio.TeamArchitect.PowerTools.Constants.CatalogName)]
+[assembly: VsCatalogName(NuPattern.ComponentModel.Composition.Catalog.DefaultCatalogName)]
 [assembly: VsCatalogName("Microsoft.VisualStudio.Default")]

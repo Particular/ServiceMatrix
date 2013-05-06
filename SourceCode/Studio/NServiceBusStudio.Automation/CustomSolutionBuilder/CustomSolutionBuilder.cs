@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime.Shell;
-using System.Windows.Controls;
+﻿using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
+using NuPattern;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.Shell.Interop;
+using NuPattern.Runtime.Shell.ToolWindows;
+using NuPattern.Runtime.UI.ViewModels;
+using NuPattern.VisualStudio.Solution;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+using System.Linq;
 using System.Threading;
+using System.Windows.Controls;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 {
@@ -21,8 +21,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
         public ISolutionEvents SolutionEvents { get; set; }
         
         public static bool HasBeenAlreadyInitialized = false;
-        
-        private NuPattern.Runtime.UI.SolutionBuilderViewModel SolutionBuilderViewModel;
+
+        private ISolutionBuilderViewModel SolutionBuilderViewModel;
         private ToolbarExtension ToolBarExtension;
         private ScrollViewer Scrollviewer;
 
@@ -49,7 +49,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
             var ptw = serviceProvider.GetService(typeof(IPackageToolWindow)) as IPackageToolWindow;
 
-            tw = ptw.ShowWindow<SolutionBuilderToolWindow>();
+            tw = ptw.ShowWindow<SolutionBuilderToolWindow>(true);
 
             if (tw != null)
             {
@@ -89,7 +89,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                     }
                 }
 
-                this.SolutionBuilderViewModel = Scrollviewer.DataContext as NuPattern.Runtime.UI.SolutionBuilderViewModel;
+                this.SolutionBuilderViewModel = Scrollviewer.DataContext as ISolutionBuilderViewModel;
             }
         }
 
@@ -159,18 +159,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
 
         #region Pattern Management Methods
-
-        /// <summary>
-        /// This function gets the MenuOptionViewModel instances from SolutionBuilder
-        /// that can create new Endpoints
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IInstalledToolkitInfo> GetEndpointExtensionsInfo()
-        {
-            var r = this.SolutionBuilderViewModel.Nodes.First().Context.PatternManager.GetCandidateExtensionPoints("a5e9f15b-ad7f-4201-851e-186dd8db3bc9.Application.Design.Endpoints.Host");
-
-            return r;
-        }
 
         public void WaitForComponentsCreated(Action OnceCreatedAction, IService service, params string [] componentNames)
         {

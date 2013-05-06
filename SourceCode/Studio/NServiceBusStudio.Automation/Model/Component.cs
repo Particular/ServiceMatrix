@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NuPattern.Runtime;
 using AbstractEndpoint;
 using System.ComponentModel.DataAnnotations;
-using NuPattern.Extensibility.References;
 using System.IO;
 using EnvDTE;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
+using NuPattern.VisualStudio.Solution;
+using NuPattern.Runtime.References;
+using NuPattern;
 
 
 namespace NServiceBusStudio
@@ -255,8 +256,8 @@ namespace NServiceBusStudio
 
         private static IItem FindSourceItemForElement(IProductElement element, Func<IEnumerable<IItem>, IItem> filter)
         {
-            var references = Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.ServiceProviderExtensions
-                .GetService<IFxrUriReferenceService>(element.Product.ProductState);
+            var references = ServiceProviderExtensions
+                .GetService<IUriReferenceService>(element.Product.ProductState);
 
             var sourceFile = filter(SolutionArtifactLinkReference.GetResolvedReferences(element, references).OfType<IItem>());
             return sourceFile;

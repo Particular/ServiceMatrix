@@ -6,7 +6,6 @@ using System.Windows;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 
 namespace NServiceBusStudio
 {

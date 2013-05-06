@@ -2,9 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <PatternToolkitBuilderVsixName Condition="'$(TargetVsVersion)' == '10.0'">NuPattern Toolkit Builder VS2010</PatternToolkitBuilderVsixName>
-    <PatternToolkitBuilderVsixName Condition="'$(TargetVsVersion)' == '11.0'">NuPattern Toolkit Builder VS2012</PatternToolkitBuilderVsixName>
-    <PatternToolkitVersionTargetsPath>$(localappdata)\Microsoft\MSBuild\NuPattern\$(PatternToolkitBuilderVsixName)</PatternToolkitVersionTargetsPath>
+    <PatternToolkitVersionTargetsPath>$(localappdata)\Microsoft\MSBuild\NuPattern\NuPattern Toolkit Builder</PatternToolkitVersionTargetsPath>
   </PropertyGroup>
   
   <Import Project="$(PatternToolkitVersionTargetsPath)\NuPattern.Authoring.PatternToolkitVersion.targets" />

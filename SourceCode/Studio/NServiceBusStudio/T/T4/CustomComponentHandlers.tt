@@ -1,7 +1,9 @@
 ﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
 <#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
-<#@ Assembly Name="NuPattern.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
 <#@ Import Namespace="global::NuPattern.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="System.Linq" #>
@@ -12,8 +14,8 @@ using NServiceBus;
 
 namespace <#= icomponent.Namespace #>
 {
-	public partial class <#= icomponent.CodeIdentifier #>
-	{
+    public partial class <#= icomponent.CodeIdentifier #>
+    {
 		<#= icomponent.CustomClassBody #>
-	}
+    }
 }

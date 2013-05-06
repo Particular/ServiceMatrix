@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
@@ -11,6 +10,7 @@ using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
 using AbstractEndpoint.Automation.Dialog;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -18,7 +18,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Show the UseCase Component Picker dialog.")]
     [CLSCompliant(false)]
-    public class ShowUseCaseComponentPickerCommand : FeatureCommand
+    public class ShowUseCaseComponentPickerCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.

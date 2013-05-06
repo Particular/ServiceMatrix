@@ -8,6 +8,8 @@ using Microsoft.VisualStudio.Modeling;
 using System.IO;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using AbstractEndpoint;
+using NuPattern;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBus.Modeling.EndpointDesign
 {

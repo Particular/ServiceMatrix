@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;
 using NuPattern.Runtime;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
@@ -17,7 +15,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
     [DisplayName("Add Nuget Project References")]
     [Description("Add references in the Endpoint Project to the required nuget projects")]
     [CLSCompliant(false)]
-    public class AddNugetReferencesCommand : FeatureCommand
+    public class AddNugetReferencesCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

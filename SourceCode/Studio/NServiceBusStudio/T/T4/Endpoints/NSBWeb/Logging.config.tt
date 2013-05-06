@@ -1,11 +1,11 @@
 ﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
 <#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
-<#@ Assembly Name="NuPattern.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
 <#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
-<#@ Assembly Name="WebEndpoint.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
 <#@ Import Namespace="global::NuPattern.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
-<#@ Import Namespace="global::WebEndpoint" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
 <#  var nserviceBusHost = ((IProductElement)this.Element).As<INServiceBusWeb>(); #>

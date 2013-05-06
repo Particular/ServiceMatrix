@@ -9,6 +9,8 @@ using Microsoft.VisualStudio.Shell.Interop;
 using System.Windows;
 using Microsoft.VisualStudio;
 using System.Windows.Interop;
+using NuPattern;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio
 {

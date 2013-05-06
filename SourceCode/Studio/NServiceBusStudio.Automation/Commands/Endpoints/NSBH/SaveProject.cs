@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
@@ -11,7 +10,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
     [DisplayName("Save associated Project")]
     [Description("Saves the project")]
     [CLSCompliant(false)]
-    public class SaveProject : FeatureCommand
+    public class SaveProject : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]

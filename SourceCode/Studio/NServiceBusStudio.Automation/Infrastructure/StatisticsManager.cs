@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -17,13 +15,15 @@ using System.Net;
 using System.Collections.Specialized;
 using NServiceBusStudio.Automation.Extensions;
 using Microsoft.VisualStudio.ExtensionManager;
+using NuPattern.Diagnostics;
+using NuPattern;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
     [Export]
     public class StatisticsManager
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<StatisticsManager>();
+        private static readonly ITracer tracer = Tracer.Get<StatisticsManager>();
 
         // Statistics generation constants
         public const string StatisticsListenerNamespace = "NServiceBusStudio";
@@ -139,7 +139,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 var shouldInitializeFile = !File.Exists(this.LoggingFile);
 
                 this.TextWriterListener = new StatisticsTextWriterTraceListener(this.LoggingFile, StatisticsManager.TextWriterListenerName);
-                Tracer.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
+                Tracer.Manager.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
 
                 if (shouldInitializeFile)
                 {
@@ -154,8 +154,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
             {
                 this.TextWriterListener.Flush();
                 this.TextWriterListener.Dispose();
+                Tracer.Manager.RemoveListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
                 this.TextWriterListener = null;
-                Tracer.RemoveListener(StatisticsManager.StatisticsListenerNamespace, StatisticsManager.TextWriterListenerName);
             }
         }
 

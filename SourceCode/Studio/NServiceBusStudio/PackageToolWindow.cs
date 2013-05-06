@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using NuPattern.Runtime.Shell.Properties;
 using NuPattern.Runtime.Shell;
+using NuPattern.Runtime.Shell.ToolWindows;
+using NuPattern;
 
 namespace NServiceBusStudio
 {
@@ -81,6 +83,16 @@ namespace NServiceBusStudio
             }
 
             return (T)window;
+        }
+
+        public ToolWindowPane GetWindow<T>() where T : ToolWindowPane
+        {
+            return GetWindow<T>();
+        }
+
+        public T ShowWindow<T>(bool activate) where T : ToolWindowPane
+        {
+            return ShowWindow<T>(activate);
         }
     }
 }

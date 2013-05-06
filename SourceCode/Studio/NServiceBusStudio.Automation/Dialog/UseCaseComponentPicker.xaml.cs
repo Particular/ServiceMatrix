@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NuPattern.Common.Presentation;
 using NuPattern.Runtime;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Markup;
@@ -19,6 +18,7 @@ using System.Collections.ObjectModel;
 using NServiceBusStudio;
 using System.ComponentModel;
 using System.Windows.Threading;
+using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Dialog
 {

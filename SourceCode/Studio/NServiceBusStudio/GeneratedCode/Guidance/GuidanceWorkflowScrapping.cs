@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+﻿
+using NuPattern.Runtime.Guidance.Workflow;
 using System;
 using System.Collections.Generic;
 using System.Linq;

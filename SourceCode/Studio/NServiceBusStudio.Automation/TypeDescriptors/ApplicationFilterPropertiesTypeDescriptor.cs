@@ -4,7 +4,7 @@
 //using System.Text;
 //using System.ComponentModel;
 //using NuPattern.Runtime;
-//using NuPattern.Extensibility;
+//
 //
 //namespace NServiceBusStudio.Automation.TypeDescriptors
 //{

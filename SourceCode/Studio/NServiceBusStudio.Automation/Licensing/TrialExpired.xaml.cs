@@ -1,4 +1,4 @@
-﻿using NuPattern.Common.Presentation;
+﻿using NuPattern.Presentation;
 using NuPattern.Runtime;
 using System;
 using System.Diagnostics;

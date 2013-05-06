@@ -11,7 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Runtime.Guidance.Workflow;
+using NuPattern.Runtime.Guidance.Extensions;
+using NuPattern.Runtime.Guidance;
+
 
 namespace NServiceBusStudio.Guidance
 {
@@ -28,7 +31,7 @@ namespace NServiceBusStudio.Guidance
 		/// </summary>
 		[Import]
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-		private IFeatureCompositionService FeatureComposition
+		private ICompositionService FeatureComposition
 		{
 			get;
 			set;
@@ -65,13 +68,13 @@ namespace NServiceBusStudio.Guidance
 	/// <summary>
 	/// Defines the feature extension containing the guidance workflow.
 	/// </summary>
-	[Feature("a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefaultName="Working with NServiceBus Studio")]
-	[Export(typeof(IFeatureExtension))]
+	[GuidanceExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefaultName="Working with NServiceBus Studio")]
+	[Export(typeof(IGuidanceExtension))]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	[CLSCompliant(false)]
 	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Builder VS2012", "1.3.20.0")]
-	public partial class Feature : BlackboardFeatureExtension<ProcessWorkflow>
+    public partial class Feature : BlackboardGuidanceExtension<ProcessWorkflow>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Feature"/> class.

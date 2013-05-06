@@ -36,9 +36,9 @@ namespace <#= rootNamespace #>
 		public const string Description = "<#= description #>";
 
 		/// <summary>
-		/// <#= productName #>
+		/// <#= toolkitName #>
 		/// </summary>
-		public const string ProductName = "<#= productName #>";
+		public const string ProductName = "<#= toolkitName #>";
 
 		/// <summary>
 		/// <#= rootNamespace #>

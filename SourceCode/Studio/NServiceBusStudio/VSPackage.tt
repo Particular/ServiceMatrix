@@ -1,5 +1,5 @@
 ﻿<#@ Template Debug="False" Hostspecific="False" language="C#" #>
-<#@ Include File="source.include.t4" #>
+<#@ Include File="source.extension.gen.ttinclude" #>
 <#@ Output Extension=".resx" #>
 <?xml version="1.0" encoding="utf-8"?>
 <root>

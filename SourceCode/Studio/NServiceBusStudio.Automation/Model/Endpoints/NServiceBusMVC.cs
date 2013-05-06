@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.Extensions;
 using abs = AbstractEndpoint;
 using NServiceBusStudio;
 using System.IO;
 using AbstractEndpoint;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {

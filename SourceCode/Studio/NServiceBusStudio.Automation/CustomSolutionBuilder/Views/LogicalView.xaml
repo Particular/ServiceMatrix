@@ -2,24 +2,27 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:cv="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure"
-	        xmlns:pd="clr-namespace:NuPattern.Common.Presentation.Data;assembly=NuPattern.Common.Presentation"
-	        xmlns:l="clr-namespace:NuPattern.Runtime.UI;assembly=NuPattern.Runtime"
-	        xmlns:k="clr-namespace:NuPattern.Runtime.UI.Data;assembly=NuPattern.Runtime"
-            xmlns:p="clr-namespace:NuPattern.Common.Presentation;assembly=NuPattern.Common.Presentation"
+	        xmlns:pd="clr-namespace:NuPattern.Common.Presentation.Data;assembly=NuPattern.Presentation"
+	        xmlns:k="clr-namespace:NuPattern.Runtime.UI.Data;assembly=NuPattern.Runtime.Core"
+            xmlns:p="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+            xmlns:t="clr-namespace:NuPattern.Runtime.UI;assembly=NuPattern.Runtime.Core"
+            xmlns:l="clr-namespace:NuPattern.Runtime.UI.ViewModels;assembly=NuPattern.Runtime.Core"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:local="clr-namespace:NuPattern.Common.Presentation.Data"
+            xmlns:local="clr-namespace:NuPattern.Presentation.Data;assembly=NuPattern.Presentation"
             xmlns:vm="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels"
+            xmlns:c="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Converters"
+            xmlns:dt="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.DataTemplates"
             mc:Ignorable="d" 
 	        Background="{DynamicResource VsVersion.ToolWindowBackgroundKey}"
             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/ContextMenu.xaml" />
-                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/CommandBar.xaml" />
-                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/ComboBox.xaml" />
-                <ResourceDictionary Source="/NuPattern.Common.Presentation;component/Resources/TreeView.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/ContextMenu.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/CommandBar.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/ComboBox.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/TreeView.xaml" />
                 <ResourceDictionary Source="VsVersionStyles.gen.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -69,16 +72,15 @@
 
                     <TreeView.Resources>
                         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-                        <k:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
+                        <c:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
                         <local:UriToCachedImageConverter x:Key="UriToCachedImageConverter" />
-                        <cv:LogicalViewModelIconConverter x:Key="ItemIconWithDefault" />
-                        <l:TreeViewItemOrderingConverter x:Key="TreeViewItemOrderingConverter" />
+                        <c:ItemIconWithDefaultConverter x:Key="ItemIconWithDefault" />
+                        <c:TreeViewItemOrderingConverter x:Key="TreeViewItemOrderingConverter" />
 
                         <ContentControl
-					x:Key="MenuItem.Image"
-					x:Shared="false"
-					Style="{StaticResource MenuItem.Icon}"
-					Content="{Binding ImagePath,Converter={StaticResource UriToCachedImageConverter}}" />
+					        x:Key="MenuItem.Image"
+					        x:Shared="false"
+					        Content="{Binding ImagePath,Converter={StaticResource UriToCachedImageConverter}}" />
 
                         <RadioButton x:Key="MenuItem.ViewButton" x:Shared="false" IsChecked="{Binding IsSelected,Mode=TwoWay}" GroupName="MenuOptions" IsHitTestVisible="False" />
 
@@ -177,31 +179,31 @@
                         <HierarchicalDataTemplate ItemsSource="{Binding LogicalViewNodes, Converter={StaticResource TreeViewItemOrderingConverter}, ConverterParameter=InnerViewModel.Model.InstanceOrder}">
                             <StackPanel Name="panel" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,1" DataContext="{Binding}">
                                 <!--<Image Source="{Binding IconPath}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />-->
-                                <Image Source="{Binding Converter={StaticResource ItemIconWithDefault}}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />
+                                <Image Source="{Binding IconPath, Converter={StaticResource ItemIconWithDefault}}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />
 
                                 <ContentControl Name="display" Margin="3,0,0,0" Padding="0" Content="{Binding InnerViewModel}" Focusable="False">
                                     <ContentControl.Resources>
-                                        <DataTemplate DataType="{x:Type l:ProductViewModel}">
+                                        <DataTemplate x:Key="ProductViewModelDataTemplate">
                                             <TextBlock Name="displayText">
-										<TextBlock.Text>
-											<MultiBinding StringFormat="{}{0} [{1}]">
-												<Binding Path="Model.InstanceName" />
-												<Binding Path="CurrentView.Info.DisplayName" />
-											</MultiBinding>
-										</TextBlock.Text>
-                                        <TextBlock.ToolTip >
-                                            <ToolTip>
-                                                <TextBlock Name="descriptionText">
-                                                    <TextBlock.Text>
-                                                        <MultiBinding StringFormat="{}{0} [{1}]">
-                                                            <Binding Path="Model.Info.Description" />
-                                                            <Binding Path="CurrentView.Info.Description" />
-                                                        </MultiBinding>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                            </ToolTip>
-                                        </TextBlock.ToolTip>
-									</TextBlock>
+										        <TextBlock.Text>
+											        <MultiBinding StringFormat="{}{0} [{1}]">
+												        <Binding Path="Model.InstanceName" />
+												        <Binding Path="CurrentView.Info.DisplayName" />
+											        </MultiBinding>
+										        </TextBlock.Text>
+                                                <TextBlock.ToolTip >
+                                                    <ToolTip>
+                                                        <TextBlock Name="descriptionText">
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} [{1}]">
+                                                                    <Binding Path="Model.Info.Description" />
+                                                                    <Binding Path="CurrentView.Info.Description" />
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+									        </TextBlock>
                                             <DataTemplate.Triggers>
                                                 <DataTrigger Binding="{Binding HasSingleView}" Value="True">
                                                     <Setter TargetName="displayText" Property="Text" Value="{Binding Model.InstanceName}" />
@@ -210,20 +212,27 @@
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
 
-                                        <DataTemplate DataType="{x:Type l:ProductElementViewModel}">
+                                        <DataTemplate x:Key="ProductElementViewModelDataTemplate">
                                             <TextBlock Text="{Binding Model.InstanceName}">
-                                        <TextBlock.ToolTip >
-                                            <ToolTip>
-                                                <TextBlock Text="{Binding Model.Info.Description}"/>
-                                            </ToolTip>
-                                        </TextBlock.ToolTip>
-                                    </TextBlock>
+                                                <TextBlock.ToolTip >
+                                                    <ToolTip>
+                                                        <TextBlock Text="{Binding Model.Info.Description}"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
                                         </DataTemplate>
 
-                                        <DataTemplate DataType="{x:Type vm:LabelElementViewModel}">
+                                        <DataTemplate x:Key="LabelElementViewModelDataTemplate">
                                             <TextBlock Text="{Binding Label}"/>
                                         </DataTemplate>
                                     </ContentControl.Resources>
+                                    <ContentControl.ContentTemplateSelector>
+                                        <dt:ContentControlDataTemplate 
+                                            ProductViewModelDataTemplate="{StaticResource ProductViewModelDataTemplate}"
+                                            ProductElementViewModelDataTemplate="{StaticResource ProductElementViewModelDataTemplate}"
+                                            LabelElementViewModelDataTemplate="{StaticResource LabelElementViewModelDataTemplate}">
+                                        </dt:ContentControlDataTemplate>
+                                    </ContentControl.ContentTemplateSelector>
                                 </ContentControl>
 
                                 <TextBox

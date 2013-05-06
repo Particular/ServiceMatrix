@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+
 using NServiceBusStudio;
 
 namespace WebEndpoint

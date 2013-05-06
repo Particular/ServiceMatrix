@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;

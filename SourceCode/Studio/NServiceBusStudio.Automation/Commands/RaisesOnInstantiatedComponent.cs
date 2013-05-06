@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using NuPattern.Runtime;
+﻿using NuPattern.Runtime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    public class RaisesOnInstantiatedComponent : FeatureCommand
+    public class RaisesOnInstantiatedComponent : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]

@@ -6,8 +6,9 @@
   </PropertyGroup>
 
   <!-- Include VS11 targets if running in Visual Studio 2012 -->
-  <Import Condition="'$(VisualStudioVersion)' == '11.0'" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
-  <Import Condition="'$(VisualStudioVersion)' == '11.0'" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.VisualStudioVersion.v11.Common.props" />
+  <!--<Import Condition="'$(VisualStudioVersion)' == '11.0'" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />-->
+  <!--<Import Condition="'$(VisualStudioVersion)' == '11.0'" Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.VisualStudioVersion.v11.Common.props" />-->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
 
   <PropertyGroup>
     <OldToolsVersion Condition="'$(VisualStudioVersion)' == '11.0'">4.0</OldToolsVersion>

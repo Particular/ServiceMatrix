@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using AbstractEndpoint;
+using NuPattern;
 using NuPattern.Runtime.UI;
+using NuPattern.VisualStudio.Solution;
+using NuPattern.VisualStudio;
+using NuPattern.Presentation;
+using NuPattern.Runtime.UI.Views;
+using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
@@ -46,7 +51,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 , a.Design.UseCases.As<IProductElement>().EnsureChildContainer("UseCase")
                 , sp.TryGetService<IUserMessageService>());
 
-            var view = new AddNewNodeView { DataContext = viewModel };
+            var view = new AddNewNodeView();
+            view.DataContext = viewModel;
             view.Title = String.Format("Start new Use Case from {0}", e.As<IProductElement>().InstanceName);
             view.Owner = System.Windows.Application.Current.MainWindow;
             view.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;

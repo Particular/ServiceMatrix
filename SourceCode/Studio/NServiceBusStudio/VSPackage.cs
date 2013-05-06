@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
-using System.Runtime.InteropServices;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio;
-using NuPattern.Runtime;
-using Microsoft.VisualStudio.ComponentModelHost;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using NuPattern.Runtime.Shell;
-using Microsoft.VisualStudio.Shell.Settings;
-using Microsoft.VisualStudio.Settings;
-using System.ComponentModel.Design;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
-using System.Diagnostics;
-using System.IO;
+using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
 using NServiceBusStudio.Automation.Infrastructure;
+using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using NuPattern;
+using NuPattern.Runtime;
+using NuPattern.VisualStudio;
+using NuPattern.Runtime.Diagnostics;
 
 namespace NServiceBusStudio
 {

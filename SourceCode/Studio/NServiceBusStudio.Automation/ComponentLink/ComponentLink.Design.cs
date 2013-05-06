@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
 using NServiceBusStudio.Core;
 using NServiceBusStudio.Core.Design;
 using NServiceBusStudio;
 using System.ComponentModel.Composition;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.ComponentModel;
+using NuPattern.VisualStudio.Solution;
+
 
 namespace AbstractEndpoint
 {
@@ -129,7 +130,7 @@ namespace AbstractEndpoint
 
             public event EventHandler NamespaceChanged;
 
-            public Microsoft.VisualStudio.TeamArchitect.PowerTools.IProject Project
+            public IProject Project
             {
                 get { throw new NotImplementedException(); }
             }
@@ -202,6 +203,9 @@ namespace AbstractEndpoint
             {
                 throw new NotImplementedException();
             }
+
+
+            public event EventHandler AutoPublishEventsChanged;
         }
     }
 }

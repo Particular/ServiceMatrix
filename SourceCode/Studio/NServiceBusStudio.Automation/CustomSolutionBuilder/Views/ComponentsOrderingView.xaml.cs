@@ -13,7 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Presentation;
+
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {

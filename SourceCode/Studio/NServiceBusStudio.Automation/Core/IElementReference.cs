@@ -1,5 +1,6 @@
 ﻿using System;
 using NuPattern.Runtime;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Core
 {

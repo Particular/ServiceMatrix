@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+
 using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusHost.Automation.Commands

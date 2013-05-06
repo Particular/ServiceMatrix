@@ -5,10 +5,10 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using NuPattern;
+using NuPattern.Diagnostics;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern.Runtime.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
@@ -27,6 +27,8 @@ namespace NServiceBusStudio
 		event EventHandler TransportChanged;
 		event EventHandler TransportConnectionStringChanged;
 		event EventHandler CompanyLogoChanged;
+		event EventHandler TitleChanged;
+		event EventHandler ToolkitVersionChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -59,6 +61,7 @@ namespace NServiceBusStudio
 		event EventHandler ClassBodyChanged;
 		event EventHandler CustomClassBodyChanged;
 		event EventHandler IsSagaChanged;
+		event EventHandler AutoPublishEventsChanged;
 	}
 
 	partial interface IEventLink : IToolkitElement
@@ -380,7 +383,7 @@ namespace NServiceBusStudio
 
 	partial class Application : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Application>();
+		private static readonly ITracer tracer = Tracer.Get<Application>();
 
 		static Application()
 		{
@@ -397,10 +400,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -417,7 +420,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IApplication).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IApplication).FullName)
 					.Select(x => x.Value);
 
@@ -460,6 +463,8 @@ namespace NServiceBusStudio
 		public event EventHandler TransportChanged = (sender, args) => { };
 		public event EventHandler TransportConnectionStringChanged = (sender, args) => { };
 		public event EventHandler CompanyLogoChanged = (sender, args) => { };
+		public event EventHandler TitleChanged = (sender, args) => { };
+		public event EventHandler ToolkitVersionChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -507,6 +512,12 @@ namespace NServiceBusStudio
 				case "CompanyLogo":
 					CompanyLogoChanged(sender, args);
 					break;
+				case "Title":
+					TitleChanged(sender, args);
+					break;
+				case "ToolkitVersion":
+					ToolkitVersionChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -529,7 +540,7 @@ namespace NServiceBusStudio
 
 	partial class Service : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Service>();
+		private static readonly ITracer tracer = Tracer.Get<Service>();
 
 		static Service()
 		{
@@ -546,10 +557,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -566,7 +577,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IService).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IService).FullName)
 					.Select(x => x.Value);
 
@@ -650,7 +661,7 @@ namespace NServiceBusStudio
 
 	partial class Event : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Event>();
+		private static readonly ITracer tracer = Tracer.Get<Event>();
 
 		static Event()
 		{
@@ -667,10 +678,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -687,7 +698,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEvent).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEvent).FullName)
 					.Select(x => x.Value);
 
@@ -775,7 +786,7 @@ namespace NServiceBusStudio
 
 	partial class Command : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Command>();
+		private static readonly ITracer tracer = Tracer.Get<Command>();
 
 		static Command()
 		{
@@ -792,10 +803,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -812,7 +823,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommand).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ICommand).FullName)
 					.Select(x => x.Value);
 
@@ -900,7 +911,7 @@ namespace NServiceBusStudio
 
 	partial class Component : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Component>();
+		private static readonly ITracer tracer = Tracer.Get<Component>();
 
 		static Component()
 		{
@@ -917,10 +928,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -937,7 +948,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IComponent).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IComponent).FullName)
 					.Select(x => x.Value);
 
@@ -979,6 +990,7 @@ namespace NServiceBusStudio
 		public event EventHandler ClassBodyChanged = (sender, args) => { };
 		public event EventHandler CustomClassBodyChanged = (sender, args) => { };
 		public event EventHandler IsSagaChanged = (sender, args) => { };
+		public event EventHandler AutoPublishEventsChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -1023,6 +1035,9 @@ namespace NServiceBusStudio
 				case "IsSaga":
 					IsSagaChanged(sender, args);
 					break;
+				case "AutoPublishEvents":
+					AutoPublishEventsChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -1045,7 +1060,7 @@ namespace NServiceBusStudio
 
 	partial class EventLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<EventLink>();
+		private static readonly ITracer tracer = Tracer.Get<EventLink>();
 
 		static EventLink()
 		{
@@ -1062,10 +1077,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1082,7 +1097,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEventLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEventLink).FullName)
 					.Select(x => x.Value);
 
@@ -1182,7 +1197,7 @@ namespace NServiceBusStudio
 
 	partial class CommandLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<CommandLink>();
+		private static readonly ITracer tracer = Tracer.Get<CommandLink>();
 
 		static CommandLink()
 		{
@@ -1199,10 +1214,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1219,7 +1234,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommandLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ICommandLink).FullName)
 					.Select(x => x.Value);
 
@@ -1327,7 +1342,7 @@ namespace NServiceBusStudio
 
 	partial class SubscribedEventLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<SubscribedEventLink>();
+		private static readonly ITracer tracer = Tracer.Get<SubscribedEventLink>();
 
 		static SubscribedEventLink()
 		{
@@ -1344,10 +1359,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1364,7 +1379,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISubscribedEventLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ISubscribedEventLink).FullName)
 					.Select(x => x.Value);
 
@@ -1476,7 +1491,7 @@ namespace NServiceBusStudio
 
 	partial class ProcessedCommandLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ProcessedCommandLink>();
+		private static readonly ITracer tracer = Tracer.Get<ProcessedCommandLink>();
 
 		static ProcessedCommandLink()
 		{
@@ -1493,10 +1508,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1513,7 +1528,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IProcessedCommandLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IProcessedCommandLink).FullName)
 					.Select(x => x.Value);
 
@@ -1621,7 +1636,7 @@ namespace NServiceBusStudio
 
 	partial class LibraryReference : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<LibraryReference>();
+		private static readonly ITracer tracer = Tracer.Get<LibraryReference>();
 
 		static LibraryReference()
 		{
@@ -1638,10 +1653,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1658,7 +1673,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraryReference).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibraryReference).FullName)
 					.Select(x => x.Value);
 
@@ -1746,7 +1761,7 @@ namespace NServiceBusStudio
 
 	partial class ServiceLibrary : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ServiceLibrary>();
+		private static readonly ITracer tracer = Tracer.Get<ServiceLibrary>();
 
 		static ServiceLibrary()
 		{
@@ -1763,10 +1778,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1783,7 +1798,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServiceLibrary).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IServiceLibrary).FullName)
 					.Select(x => x.Value);
 
@@ -1871,7 +1886,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHost : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusHost>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusHost>();
 
 		static NServiceBusHost()
 		{
@@ -1888,10 +1903,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1908,7 +1923,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHost).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHost).FullName)
 					.Select(x => x.Value);
 
@@ -2048,7 +2063,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHostComponentLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusHostComponentLink>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusHostComponentLink>();
 
 		static NServiceBusHostComponentLink()
 		{
@@ -2065,10 +2080,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2085,7 +2100,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHostComponentLink).FullName)
 					.Select(x => x.Value);
 
@@ -2181,7 +2196,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWeb : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusWeb>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusWeb>();
 
 		static NServiceBusWeb()
 		{
@@ -2198,10 +2213,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2218,7 +2233,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWeb).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWeb).FullName)
 					.Select(x => x.Value);
 
@@ -2350,7 +2365,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWebComponentLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusWebComponentLink>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusWebComponentLink>();
 
 		static NServiceBusWebComponentLink()
 		{
@@ -2367,10 +2382,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2387,7 +2402,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWebComponentLink).FullName)
 					.Select(x => x.Value);
 
@@ -2483,7 +2498,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVC : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusMVC>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusMVC>();
 
 		static NServiceBusMVC()
 		{
@@ -2500,10 +2515,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2520,7 +2535,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVC).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVC).FullName)
 					.Select(x => x.Value);
 
@@ -2648,7 +2663,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVCComponentLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusMVCComponentLink>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusMVCComponentLink>();
 
 		static NServiceBusMVCComponentLink()
 		{
@@ -2665,10 +2680,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2685,7 +2700,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVCComponentLink).FullName)
 					.Select(x => x.Value);
 
@@ -2781,7 +2796,7 @@ namespace NServiceBusStudio
 
 	partial class ContractsProject : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ContractsProject>();
+		private static readonly ITracer tracer = Tracer.Get<ContractsProject>();
 
 		static ContractsProject()
 		{
@@ -2798,10 +2813,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2818,7 +2833,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IContractsProject).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IContractsProject).FullName)
 					.Select(x => x.Value);
 
@@ -2902,7 +2917,7 @@ namespace NServiceBusStudio
 
 	partial class InternalMessagesProject : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<InternalMessagesProject>();
+		private static readonly ITracer tracer = Tracer.Get<InternalMessagesProject>();
 
 		static InternalMessagesProject()
 		{
@@ -2919,10 +2934,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2939,7 +2954,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IInternalMessagesProject).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IInternalMessagesProject).FullName)
 					.Select(x => x.Value);
 
@@ -3023,7 +3038,7 @@ namespace NServiceBusStudio
 
 	partial class Authentication : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Authentication>();
+		private static readonly ITracer tracer = Tracer.Get<Authentication>();
 
 		static Authentication()
 		{
@@ -3040,10 +3055,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3060,7 +3075,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IAuthentication).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IAuthentication).FullName)
 					.Select(x => x.Value);
 
@@ -3160,7 +3175,7 @@ namespace NServiceBusStudio
 
 	partial class UseCase : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCase>();
+		private static readonly ITracer tracer = Tracer.Get<UseCase>();
 
 		static UseCase()
 		{
@@ -3177,10 +3192,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3197,7 +3212,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCase).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCase).FullName)
 					.Select(x => x.Value);
 
@@ -3281,7 +3296,7 @@ namespace NServiceBusStudio
 
 	partial class UseCaseStep : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCaseStep>();
+		private static readonly ITracer tracer = Tracer.Get<UseCaseStep>();
 
 		static UseCaseStep()
 		{
@@ -3298,10 +3313,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3318,7 +3333,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCaseStep).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCaseStep).FullName)
 					.Select(x => x.Value);
 
@@ -3430,7 +3445,7 @@ namespace NServiceBusStudio
 
 	partial class UseCaseLink : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCaseLink>();
+		private static readonly ITracer tracer = Tracer.Get<UseCaseLink>();
 
 		static UseCaseLink()
 		{
@@ -3447,10 +3462,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3467,7 +3482,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCaseLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCaseLink).FullName)
 					.Select(x => x.Value);
 
@@ -3563,7 +3578,7 @@ namespace NServiceBusStudio
 
 	partial class Library : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Library>();
+		private static readonly ITracer tracer = Tracer.Get<Library>();
 
 		static Library()
 		{
@@ -3580,10 +3595,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3600,7 +3615,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibrary).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibrary).FullName)
 					.Select(x => x.Value);
 
@@ -3688,7 +3703,7 @@ namespace NServiceBusStudio
 
 	partial class Services : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Services>();
+		private static readonly ITracer tracer = Tracer.Get<Services>();
 
 		static Services()
 		{
@@ -3705,10 +3720,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3725,7 +3740,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServices).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IServices).FullName)
 					.Select(x => x.Value);
 
@@ -3809,7 +3824,7 @@ namespace NServiceBusStudio
 
 	partial class Contract : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Contract>();
+		private static readonly ITracer tracer = Tracer.Get<Contract>();
 
 		static Contract()
 		{
@@ -3826,10 +3841,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3846,7 +3861,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IContract).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IContract).FullName)
 					.Select(x => x.Value);
 
@@ -3930,7 +3945,7 @@ namespace NServiceBusStudio
 
 	partial class Events : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Events>();
+		private static readonly ITracer tracer = Tracer.Get<Events>();
 
 		static Events()
 		{
@@ -3947,10 +3962,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3967,7 +3982,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEvents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEvents).FullName)
 					.Select(x => x.Value);
 
@@ -4055,7 +4070,7 @@ namespace NServiceBusStudio
 
 	partial class Commands : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Commands>();
+		private static readonly ITracer tracer = Tracer.Get<Commands>();
 
 		static Commands()
 		{
@@ -4072,10 +4087,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4092,7 +4107,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommands).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ICommands).FullName)
 					.Select(x => x.Value);
 
@@ -4180,7 +4195,7 @@ namespace NServiceBusStudio
 
 	partial class Components : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Components>();
+		private static readonly ITracer tracer = Tracer.Get<Components>();
 
 		static Components()
 		{
@@ -4197,10 +4212,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4217,7 +4232,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IComponents).FullName)
 					.Select(x => x.Value);
 
@@ -4301,7 +4316,7 @@ namespace NServiceBusStudio
 
 	partial class Publishes : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Publishes>();
+		private static readonly ITracer tracer = Tracer.Get<Publishes>();
 
 		static Publishes()
 		{
@@ -4318,10 +4333,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4338,7 +4353,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IPublishes).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IPublishes).FullName)
 					.Select(x => x.Value);
 
@@ -4422,7 +4437,7 @@ namespace NServiceBusStudio
 
 	partial class Subscribes : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Subscribes>();
+		private static readonly ITracer tracer = Tracer.Get<Subscribes>();
 
 		static Subscribes()
 		{
@@ -4439,10 +4454,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4459,7 +4474,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISubscribes).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ISubscribes).FullName)
 					.Select(x => x.Value);
 
@@ -4543,7 +4558,7 @@ namespace NServiceBusStudio
 
 	partial class LibraryReferences : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<LibraryReferences>();
+		private static readonly ITracer tracer = Tracer.Get<LibraryReferences>();
 
 		static LibraryReferences()
 		{
@@ -4560,10 +4575,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4580,7 +4595,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraryReferences).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibraryReferences).FullName)
 					.Select(x => x.Value);
 
@@ -4664,7 +4679,7 @@ namespace NServiceBusStudio
 
 	partial class ServiceLibraries : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ServiceLibraries>();
+		private static readonly ITracer tracer = Tracer.Get<ServiceLibraries>();
 
 		static ServiceLibraries()
 		{
@@ -4681,10 +4696,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4701,7 +4716,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServiceLibraries).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IServiceLibraries).FullName)
 					.Select(x => x.Value);
 
@@ -4789,7 +4804,7 @@ namespace NServiceBusStudio
 
 	partial class Endpoints : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Endpoints>();
+		private static readonly ITracer tracer = Tracer.Get<Endpoints>();
 
 		static Endpoints()
 		{
@@ -4806,10 +4821,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4826,7 +4841,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEndpoints).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEndpoints).FullName)
 					.Select(x => x.Value);
 
@@ -4910,7 +4925,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHostComponents : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusHostComponents>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusHostComponents>();
 
 		static NServiceBusHostComponents()
 		{
@@ -4927,10 +4942,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4947,7 +4962,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHostComponents).FullName)
 					.Select(x => x.Value);
 
@@ -5031,7 +5046,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWebComponents : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusWebComponents>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusWebComponents>();
 
 		static NServiceBusWebComponents()
 		{
@@ -5048,10 +5063,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5068,7 +5083,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWebComponents).FullName)
 					.Select(x => x.Value);
 
@@ -5152,7 +5167,7 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVCComponents : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<NServiceBusMVCComponents>();
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusMVCComponents>();
 
 		static NServiceBusMVCComponents()
 		{
@@ -5169,10 +5184,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5189,7 +5204,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVCComponents).FullName)
 					.Select(x => x.Value);
 
@@ -5273,7 +5288,7 @@ namespace NServiceBusStudio
 
 	partial class Infrastructure : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Infrastructure>();
+		private static readonly ITracer tracer = Tracer.Get<Infrastructure>();
 
 		static Infrastructure()
 		{
@@ -5290,10 +5305,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5310,7 +5325,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IInfrastructure).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IInfrastructure).FullName)
 					.Select(x => x.Value);
 
@@ -5394,7 +5409,7 @@ namespace NServiceBusStudio
 
 	partial class Security : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Security>();
+		private static readonly ITracer tracer = Tracer.Get<Security>();
 
 		static Security()
 		{
@@ -5411,10 +5426,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5431,7 +5446,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISecurity).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ISecurity).FullName)
 					.Select(x => x.Value);
 
@@ -5515,7 +5530,7 @@ namespace NServiceBusStudio
 
 	partial class DummyCollection : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<DummyCollection>();
+		private static readonly ITracer tracer = Tracer.Get<DummyCollection>();
 
 		static DummyCollection()
 		{
@@ -5532,10 +5547,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5552,7 +5567,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IDummyCollection).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IDummyCollection).FullName)
 					.Select(x => x.Value);
 
@@ -5636,7 +5651,7 @@ namespace NServiceBusStudio
 
 	partial class UseCases : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<UseCases>();
+		private static readonly ITracer tracer = Tracer.Get<UseCases>();
 
 		static UseCases()
 		{
@@ -5653,10 +5668,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5673,7 +5688,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCases).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCases).FullName)
 					.Select(x => x.Value);
 
@@ -5757,7 +5772,7 @@ namespace NServiceBusStudio
 
 	partial class Libraries : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<Libraries>();
+		private static readonly ITracer tracer = Tracer.Get<Libraries>();
 
 		static Libraries()
 		{
@@ -5774,10 +5789,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5794,7 +5809,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraries).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibraries).FullName)
 					.Select(x => x.Value);
 

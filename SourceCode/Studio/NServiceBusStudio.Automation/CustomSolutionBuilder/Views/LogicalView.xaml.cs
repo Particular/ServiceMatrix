@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using NuPattern.Runtime.UI;
 using System.ComponentModel;
 using NuPattern.Common.Presentation;
-using NuPattern.Extensibility;
+using NuPattern.Presentation;
 using System.ComponentModel.Composition.Hosting;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
@@ -22,6 +22,8 @@ using NuPattern.Runtime;
 using System.ComponentModel.Composition;
 using System.Reflection;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+using NuPattern;
+using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -32,7 +34,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
     {
         public LogicalView(IServiceProvider serviceProvider, object myContext)
         {
-            var myDataContext = new LogicalViewModel(myContext as SolutionBuilderViewModel);
+            var myDataContext = new LogicalViewModel(myContext as ISolutionBuilderViewModel);
             this.DataContext = myDataContext;
             this.InitializeComponent();
             //this.DataContext = myContext;
@@ -117,7 +119,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     if (treeView == null || treeViewItem == null)
                         return;
 
-                    var viewModel = treeView.SelectedItem as ProductElementViewModel;
+                    var viewModel = treeView.SelectedItem as IProductElementViewModel;
                     if (viewModel == null)
                         return;
 
@@ -144,7 +146,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragEnter != null)
             {
-                ElementDragEnter(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
             }
 
             effects = e.Effects;
@@ -157,7 +159,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragEnter != null)
             {
-                ElementDragEnter(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
             }
         }
 
@@ -168,7 +170,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragLeave != null)
             {
-                ElementDragLeave(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragLeave(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
             }
         }
 
@@ -176,7 +178,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         {
             if (ElementDrop != null)
             {
-                ElementDrop(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDrop(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
             }
             e.Handled = true;
         }

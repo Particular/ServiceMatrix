@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
+using NuPattern.Runtime.ToolkitInterface;
+using NuPattern.ComponentModel;
+
 
 namespace NServiceBusStudio.Core.Design
 {

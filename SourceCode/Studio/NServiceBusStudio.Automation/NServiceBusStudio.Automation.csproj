@@ -77,38 +77,41 @@
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="NuPattern.Runtime">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="NuPattern.Runtime.Store">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Store.dll</HintPath>
     </Reference>
     <Reference Include="NuPattern.Runtime.Shell">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
     </Reference>
+    <Reference Include="NuPattern.Runtime.Core">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Schema">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</HintPath>
+    </Reference>
     <Reference Include="NuPattern.Library">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="NuPattern.Runtime.Schema">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</HintPath>
+    <Reference Include="NuPattern.Common">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="NuPattern.Runtime.Interfaces">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Interfaces.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="NuPattern.Common.Presentation">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.Presentation.dll</HintPath>
+    <Reference Include="NuPattern.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="NuPattern.Extensibility">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Extensibility.dll</HintPath>
-      <Private>false</Private>
     </Reference>
     <Reference Include="NuPattern.Authoring.PatternToolkit.Automation">
       <HintPath>$(PatternToolkitBuilder)\NuPattern.Authoring.PatternToolkit.Automation.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.VisualStudio">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.VisualStudio.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -117,15 +120,6 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime">
       <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime.dll</HintPath>
       <Private>false</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools.Features">
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +163,12 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="CustomSolutionBuilder\Converters\ItemIconWithDefaultConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\Converters\MenuGroupingEnumerableConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\Converters\TreeViewItemOrderingConverter.cs" />
     <Compile Include="CustomSolutionBuilder\CustomSolutionBuilder.cs" />
+    <Compile Include="CustomSolutionBuilder\DataTemplates\ContentControlDataTemplate.cs" />
+    <Compile Include="CustomSolutionBuilder\Data\MenuGroupingEnumerableConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Data\UriToCachedImageConverter.cs" />
     <Compile Include="CustomSolutionBuilder\IDetailsWindowsManager.cs" />
     <Compile Include="CustomSolutionBuilder\Infrastructure\LogicalViewModelIconConverter.cs" />
@@ -206,6 +205,7 @@
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
+    <Compile Include="GeneratedCode\ToolkitElement.Generated.Backup.cs" />
     <Compile Include="Licensing\TrialExpired.xaml.cs">
       <DependentUpon>TrialExpired.xaml</DependentUpon>
     </Compile>
@@ -293,6 +293,10 @@
     <Compile Include="Model\UseCase.cs" />
     <Compile Include="Model\UseCaseLink.cs" />
     <Compile Include="Model\UseCaseStep.cs" />
+    <Compile Include="netfx\System\Dynamic\DynamicReflection.cs" />
+    <Compile Include="netfx\System\Dynamic\OutValue.cs" />
+    <Compile Include="netfx\System\Dynamic\RefValue.cs" />
+    <Compile Include="netfx\System\Dynamic\TypeParameter.cs" />
     <Compile Include="ProcessedCommandLink.cs" />
     <Compile Include="ProcessedCommandLink.Design.cs">
       <DependentUpon>ProcessedCommandLink.cs</DependentUpon>

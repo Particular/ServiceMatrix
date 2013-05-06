@@ -33,6 +33,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-VS2012|AnyCPU'">
     <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <Choose>
     <When Condition="'$(VsxVersion)'=='11.0'">
@@ -67,8 +73,14 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsBase" />
-    <Reference Include="NuPattern.Runtime">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.dll</HintPath>
+    <Reference Include="NuPattern.Common">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NuPattern.VisualStudio">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.VisualStudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Core">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
     </Reference>
     <Reference Include="NuPattern.Runtime.Shell">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
@@ -77,26 +89,17 @@
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="NuPattern.Runtime.Interfaces">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Interfaces.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="NuPattern.Common.Presentation">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.Presentation.dll</HintPath>
+    <Reference Include="NuPattern.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="NuPattern.Extensibility">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Extensibility.dll</HintPath>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
       <Private>false</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools.Features">
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamArchitect.PowerTools">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(PatternToolkitRuntime)\Microsoft.VisualStudio.TeamArchitect.PowerTools.dll</HintPath>
-      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -888,6 +891,12 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_LoginPartial.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="NServiceBus.Tools.snk" />
+    <None Include="source.extension.gen.ttinclude">
+      <DependentUpon>source.extension.tt</DependentUpon>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
+    </None>
     <None Include="T\T4\Config\Host\TransportConfig.tt">
       <LastGenOutput>TransportConfig.cs</LastGenOutput>
     </None>
@@ -1151,9 +1160,9 @@
       <IsToolkitManifest>True</IsToolkitManifest>
     </None>
     <Resource Include="Resources\PatternIcon.png" />
-    <Content Include="$(PatternToolkitBuilder)\NuPatternToolkitManager.$(VisualStudioVersion).vsix">
+    <Content Include="$(PatternToolkitBuilder)\NuPatternToolkitManager.vsix">
       <Visible>false</Visible>
-      <Link>NuPatternToolkitManager.$(VisualStudioVersion).vsix</Link>
+      <Link>NuPatternToolkitManager.vsix</Link>
       <FixedLink>
       </FixedLink>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -1180,6 +1189,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSPackage.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -1188,12 +1198,6 @@
       <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>27ac5630-dc35-4694-8173-6def684bc14c</ItemGuid>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="source.include.t4">
-      <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
-      <ItemGuid>1a7bd6d3-abb1-422c-8ba1-7279e34cdf21</ItemGuid>
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

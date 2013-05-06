@@ -4,13 +4,12 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using NuPattern;
-using NuPattern.Extensibility;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
 using System.Collections.ObjectModel;
+using NuPattern.Diagnostics;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -21,9 +20,9 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a Service Picker dialog where new services may be created and chosen, and then adds the current event to those services.")]
     [CLSCompliant(false)]
-    public class ShowSubscriberPicker : FeatureCommand
+    public class ShowSubscriberPicker : NuPattern.Runtime.Command
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<ShowSubscriberPicker>();
+        private static readonly ITracer tracer = Tracer.Get<ShowSubscriberPicker>();
 
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -84,9 +83,9 @@ namespace NServiceBusStudio.Automation.Commands
                 }
             }
             // TODO: Implement command automation code
-            //	TODO: Use tracer.TraceWarning() to note expected and recoverable errors
-            //	TODO: Use tracer.TraceVerbose() to note internal execution logic decisions
-            //	TODO: Use tracer.TraceInformation() to note key results of execution
+            //	TODO: Use tracer.Warning() to note expected and recoverable errors
+            //	TODO: Use tracer.Verbose() to note internal execution logic decisions
+            //	TODO: Use tracer.Info() to note key results of execution
             //	TODO: Raise exceptions for all other errors
         }
     }

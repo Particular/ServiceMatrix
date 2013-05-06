@@ -9,8 +9,9 @@ using System.Security.Principal;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+
 using Rhino.Licensing;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Licensing
 {
@@ -22,7 +23,7 @@ namespace NServiceBusStudio.Automation.Licensing
         private const int TRIAL_DAYS = 30;
         private const int TRIAL_NOTIFICATION_DAYS = 10;
 
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<LicenseManager>();
+        private static readonly ITracer tracer = Tracer.Get<LicenseManager>();
         public static readonly Version SoftwareVersion = GetStudioVersion();
 
         private License license;
@@ -118,7 +119,7 @@ namespace NServiceBusStudio.Automation.Licensing
                     }
                     catch (UnauthorizedAccessException ex)
                     {
-                        tracer.TraceWarning("Could not write to the registry.", ex);
+                        tracer.Warn("Could not write to the registry.", ex);
                         f.DisplayError();
                     }
                     catch (LicenseExpiredException)
@@ -179,9 +180,9 @@ namespace NServiceBusStudio.Automation.Licensing
                 {
                     validator.AssertValidLicense();
 
-                    tracer.TraceInformation((string)"Found a {0} license.", (object)validator.LicenseType);
-                    tracer.TraceInformation((string)"Registered to {0}", (object)validator.Name);
-                    tracer.TraceInformation((string)"Expires on {0}", (object)validator.ExpirationDate);
+                    tracer.Info((string)"Found a {0} license.", (object)validator.LicenseType);
+                    tracer.Info((string)"Registered to {0}", (object)validator.Name);
+                    tracer.Info((string)"Expires on {0}", (object)validator.ExpirationDate);
                     
                     CheckIfStudioVersionIsNewerThanLicenseVersion();
 
@@ -192,21 +193,21 @@ namespace NServiceBusStudio.Automation.Licensing
                 catch (LicenseExpiredException)
                 {
                     trialPeriodHasExpired = true;
-                    tracer.TraceError("License has expired.");
+                    tracer.Error("License has expired.");
                 }
                 catch (LicenseNotFoundException)
                 {
-                    tracer.TraceError("License could not be loaded.");
+                    tracer.Error("License could not be loaded.");
                 }
                 catch (LicenseFileNotFoundException)
                 {
-                    tracer.TraceError("License could not be loaded.");
+                    tracer.Error("License could not be loaded.");
                 }
 
                 return;
             }
 
-            tracer.TraceInformation("No valid license found.");
+            tracer.Info("No valid license found.");
             ConfigureStudioToRunInTrialMode();
         }
 
@@ -226,7 +227,7 @@ namespace NServiceBusStudio.Automation.Licensing
                     {
                         if (registryKey == null)
                         {
-                            tracer.TraceWarning("Falling back to run in Trial license mode.");
+                            tracer.Warn("Falling back to run in Trial license mode.");
 
                             trialPeriodHasExpired = true;
 
@@ -239,7 +240,7 @@ namespace NServiceBusStudio.Automation.Licensing
                             trialStartDateString = DateTime.UtcNow.ToString("yyyy-MM-dd");
                             registryKey.SetValue("TrialStart", trialStartDateString, RegistryValueKind.String);
 
-                            tracer.TraceInformation("First time running NServiceBus v{0}, setting trial license start.",
+                            tracer.Info("First time running NServiceBus v{0}, setting trial license start.",
                                                SoftwareVersion.ToString(2));
                         }
                     }
@@ -252,24 +253,24 @@ namespace NServiceBusStudio.Automation.Licensing
                 }
                 catch (UnauthorizedAccessException ex)
                 {
-                    tracer.TraceInformation("Could not write to the registry. Because we didn't find a license file we assume the trial has expired.", ex);
+                    tracer.Info("Could not write to the registry. Because we didn't find a license file we assume the trial has expired.", ex);
                 }
             }
 
             //Check trial is still valid
             if (trialExpirationDate > DateTime.UtcNow.Date)
             {
-                tracer.TraceInformation("Trial for NServiceBus v{0} is still active, trial expires on {1}.",
+                tracer.Info("Trial for NServiceBus v{0} is still active, trial expires on {1}.",
                                    SoftwareVersion.ToString(2), trialExpirationDate.ToLocalTime().ToShortDateString());
-                tracer.TraceInformation("Configuring NServiceBus to run in trial mode.");
+                tracer.Info("Configuring NServiceBus to run in trial mode.");
 
                 //Run in trial period
                 RunInTrialMode(trialExpirationDate);
             }
             else
             {
-                tracer.TraceInformation("Trial for NServiceBus v{0} has expired.", SoftwareVersion.ToString(2));
-                tracer.TraceWarning("Falling back to run in Basic1 license mode.");
+                tracer.Info("Trial for NServiceBus v{0} has expired.", SoftwareVersion.ToString(2));
+                tracer.Warn("Falling back to run in Basic1 license mode.");
 
                 // Not Run, trial period expired
                 trialPeriodHasExpired = true;
@@ -299,41 +300,41 @@ namespace NServiceBusStudio.Automation.Licensing
         {
             if (!String.IsNullOrEmpty(licenseText))
             {
-                tracer.TraceInformation(@"Using license supplied via fluent API.");
+                tracer.Info(@"Using license supplied via fluent API.");
                 return new StringLicenseValidator(LicenseDescriptor.PublicKey, licenseText);
             }
 
             if (!String.IsNullOrEmpty(LicenseDescriptor.AppConfigLicenseString))
             {
-                tracer.TraceInformation(@"Using embedded license supplied via config file AppSettings/ParticularSoftware/Studio/License.");
+                tracer.Info(@"Using embedded license supplied via config file AppSettings/ParticularSoftware/Studio/License.");
                 licenseText = LicenseDescriptor.AppConfigLicenseString;
             }
             else if (!String.IsNullOrEmpty(LicenseDescriptor.AppConfigLicenseFile))
             {
                 if (File.Exists(LicenseDescriptor.AppConfigLicenseFile))
                 {
-                    tracer.TraceInformation(@"Using license supplied via config file AppSettings/ParticularSoftware/Studio/LicensePath ({0}).", LicenseDescriptor.AppConfigLicenseFile);
+                    tracer.Info(@"Using license supplied via config file AppSettings/ParticularSoftware/Studio/LicensePath ({0}).", LicenseDescriptor.AppConfigLicenseFile);
                     licenseText = ReadAllTextWithoutLocking(LicenseDescriptor.AppConfigLicenseFile);
                 }
             }
             else if (File.Exists(LicenseDescriptor.LocalLicenseFile))
             {
-                tracer.TraceInformation(@"Using license in current folder ({0}).", LicenseDescriptor.LocalLicenseFile);
+                tracer.Info(@"Using license in current folder ({0}).", LicenseDescriptor.LocalLicenseFile);
                 licenseText = ReadAllTextWithoutLocking(LicenseDescriptor.LocalLicenseFile);
             }
             else if (File.Exists(LicenseDescriptor.OldLocalLicenseFile))
             {
-                tracer.TraceInformation(@"Using license in current folder ({0}).", LicenseDescriptor.OldLocalLicenseFile);
+                tracer.Info(@"Using license in current folder ({0}).", LicenseDescriptor.OldLocalLicenseFile);
                 licenseText = ReadAllTextWithoutLocking(LicenseDescriptor.OldLocalLicenseFile);
             }
             else if (!String.IsNullOrEmpty(LicenseDescriptor.HKCULicense))
             {
-                tracer.TraceInformation(@"Using embedded license found in registry [HKEY_CURRENT_USER\SOFTWARE\ParticularSoftware\Studio\{0}\License].", SoftwareVersion.ToString(2));
+                tracer.Info(@"Using embedded license found in registry [HKEY_CURRENT_USER\SOFTWARE\ParticularSoftware\Studio\{0}\License].", SoftwareVersion.ToString(2));
                 licenseText = LicenseDescriptor.HKCULicense;
             }
             else if (!String.IsNullOrEmpty(LicenseDescriptor.HKLMLicense))
             {
-                tracer.TraceInformation(@"Using embedded license found in registry [HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\Studio\{0}\License].", SoftwareVersion.ToString(2));
+                tracer.Info(@"Using embedded license found in registry [HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\Studio\{0}\License].", SoftwareVersion.ToString(2));
                 licenseText = LicenseDescriptor.HKLMLicense;
             }
 
@@ -390,7 +391,7 @@ namespace NServiceBusStudio.Automation.Licensing
                     SetLicenseType(LicenseType.Trial);
                     break;
                 default:
-                    tracer.TraceError((string)"Got unexpected license type [{0}], setting trial license type.",
+                    tracer.Error((string)"Got unexpected license type [{0}], setting trial license type.",
                                        (object)validator.LicenseType.ToString());
                     license.LicenseType = LicenseType.Trial;
                     break;

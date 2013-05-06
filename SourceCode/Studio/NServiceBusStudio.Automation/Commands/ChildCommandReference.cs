@@ -4,12 +4,9 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using NuPattern;
-using NuPattern.Extensibility;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.Collections.Generic;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -20,9 +17,9 @@ namespace NServiceBusStudio.Automation.Commands
 	[Category("Pattern Automation")]
 	[Description("Executes a command on a child element.")]
 	[CLSCompliant(false)]
-	public class ChildCommandReference : FeatureCommand
+    public class ChildCommandReference : NuPattern.Runtime.Command
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ChildCommandReference>();
+		private static readonly ITracer tracer = Tracer.Get<ChildCommandReference>();
 
 		public ChildCommandReference()
 		{

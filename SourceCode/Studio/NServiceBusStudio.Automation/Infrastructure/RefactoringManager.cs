@@ -5,15 +5,18 @@ using System.IO;
 using System.Linq;
 using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern.Diagnostics;
+using NuPattern.VisualStudio.Solution;
+using NuPattern.VisualStudio;
+using NuPattern;
+
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
     [Export]
     public class RefactoringManager
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<RefactoringManager>();
+        private static readonly ITracer tracer = Tracer.Get<RefactoringManager>();
         private FileSystemWatcher Watcher;
 
         public ISolution Solution { get; set; }
@@ -27,7 +30,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public IPatternManager PatternManager { get; set; }
 
         [Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [ImportingConstructor]
         public RefactoringManager([Import] ISolution solution, [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
@@ -156,7 +159,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
                     break;
             }
 
-            tracer.TraceInformation(logTypeDesc + data);
+            tracer.Info(logTypeDesc + data);
             this.StatusBar.DisplayMessage(logTypeDesc + data);
         }
 

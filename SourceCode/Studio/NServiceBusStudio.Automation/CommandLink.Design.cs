@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using NServiceBusStudio.Core.Design;
 using NServiceBusStudio.Core;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
+using NuPattern.ComponentModel;
+
 
 namespace NServiceBusStudio
 {

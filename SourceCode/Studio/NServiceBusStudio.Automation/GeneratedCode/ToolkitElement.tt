@@ -1,16 +1,18 @@
 ﻿<#@ PatternModel processor="PatternModelDirectiveProcessor" requires="fileName='..\..\NServiceBusStudio\PatternModel.patterndefinition'" #>
 <#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\..\Studio.slnbldr'" #>
 <#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
-<#@ Assembly Name="System.Core" #>
-<#@ Assembly Name="NuPattern.Runtime.Interfaces.dll" #>
-<#@ Assembly Name="NuPattern.Extensibility.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.TeamArchitect.PowerTools.dll" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Schema.dll" #>
 <#@ Assembly Name="NuPattern.Authoring.PatternToolkit.Automation.dll" #>
+<#@ Assembly Name="Microsoft.VisualStudio.TextTemplating.Interfaces.11.0" #>
 <#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="NuPattern" #>
 <#@ Import Namespace="NuPattern.Runtime" #>
-<#@ Import Namespace="NuPattern.Extensibility" #>
 <#@ Import Namespace="NuPattern.Authoring" #>
 <#@ Import Namespace="NuPattern.Authoring.PatternToolkit" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
 <#@ output extension=".Generated.cs" #>
 <#
 // This template generates the IToolkitElement interface inheritance and implementation
@@ -23,10 +25,10 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using NuPattern;
+using NuPattern.Diagnostics;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern.Runtime.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
@@ -90,7 +92,7 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 
 	partial class <#= element.CodeIdentifier #> : ISupportInitialize
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<<#= element.CodeIdentifier #>>();
+		private static readonly ITracer tracer = Tracer.Get<<#= element.CodeIdentifier #>>();
 
 		static <#= element.CodeIdentifier #>()
 		{
@@ -107,10 +109,10 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -127,7 +129,7 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(I<#= element.CodeIdentifier #>).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(I<#= element.CodeIdentifier #>).FullName)
 					.Select(x => x.Value);
 

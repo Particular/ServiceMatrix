@@ -13,8 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Markup;
 using NuPattern.Runtime;
-using NuPattern.Common.Presentation;
 using System.ComponentModel;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Dialog
 {

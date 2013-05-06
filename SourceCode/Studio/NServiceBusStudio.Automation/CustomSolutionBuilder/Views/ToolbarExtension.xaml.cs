@@ -15,6 +15,8 @@ using NuPattern.Runtime;
 using NuPattern.Runtime.UI;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 using Microsoft.VisualStudio.Shell.Interop;
+using NuPattern;
+using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -68,7 +70,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             if (NServiceBusView == null)
             {
                 var SBdataContext = this.DataContext;
-                LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as SolutionBuilderViewModel);
+                LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as ISolutionBuilderViewModel);
 
                 NServiceBusView = new LogicalView(LogicalViewModel.NServiceBusViewModel)
                     {
@@ -121,7 +123,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     grid.Children.Add(this.NServiceBusView);
                     this.NServiceBusView.SetValue(Grid.RowProperty, 1);
                     if (window != null &&
-                        (this.DataContext as SolutionBuilderViewModel) != null &&
+                        (this.DataContext as ISolutionBuilderViewModel) != null &&
                         NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels.LogicalViewModel.NServiceBusViewModel.CurrentNode != null)
                     {
                         Dispatcher.BeginInvoke(new Action(() =>
@@ -178,7 +180,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             
             // Refresh Solution Builder View Model
             var SBdataContext = this.DataContext;
-            LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as SolutionBuilderViewModel);
+            LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as ISolutionBuilderViewModel);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)

@@ -2,16 +2,16 @@
 <#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\..\NServiceBusHost.slnbldr'" #>
 <#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
 <#@ Assembly Name="System.Core" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Extensibility.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Interfaces.dll" #>
+<#@ Assembly Name="NuPattern.Extensibility.dll" #>
 <#@ Assembly Name="Microsoft.VisualStudio.TeamArchitect.PowerTools.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Library.Toolkit.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation.dll" #>
+<#@ Assembly Name="NuPattern.Authoring.Library.Toolkit.dll" #>
+<#@ Assembly Name="NuPattern.Authoring.Toolkit.Automation.dll" #>
 <#@ Import Namespace="System.Linq" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Runtime" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Extensibility" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Library" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Authoring" #>
+<#@ Import Namespace="NuPattern.Runtime" #>
+<#@ Import Namespace="NuPattern.Extensibility" #>
+<#@ Import Namespace="NuPattern.Authoring.Library" #>
+<#@ Import Namespace="NuPattern.Authoring.Authoring" #>
 <#@ output extension=".Generated.cs" #>
 <#
 // This template generates the IToolkitElement interface inheritance and implementation
@@ -24,8 +24,8 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Runtime;
+
 using NServiceBusStudio;
 
 namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRootNamespace #>

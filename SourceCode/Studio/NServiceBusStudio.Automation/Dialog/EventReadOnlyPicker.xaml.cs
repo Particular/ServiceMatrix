@@ -11,9 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NuPattern.Common.Presentation;
 using NuPattern.Runtime;
 using System.Windows.Markup;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Dialog
 {

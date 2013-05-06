@@ -1,10 +1,11 @@
-﻿using System;
+﻿using NuPattern.Diagnostics;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+
 
 namespace NServiceBusStudio.Core
 {
@@ -16,16 +17,16 @@ namespace NServiceBusStudio.Core
 		public const string TargetsFilename = "NServiceBus.ToolkitVersion.targets";
 		private const string MSBuildNamespace = "http://schemas.microsoft.com/developer/msbuild/2003";
 
-		private ITraceSource tracer;
+		private ITracer tracer;
 		private string vsHive;
 
-		public VersionHelper(ITraceSource tracer, string vsHive)
+		public VersionHelper(ITracer tracer, string vsHive)
 		{
 			this.tracer = tracer;
 			this.vsHive = vsHive;
 		}
 
-		public static void SyncTargets(ITraceSource tracer, string vsHive)
+		public static void SyncTargets(ITracer tracer, string vsHive)
 		{
 			new VersionHelper(tracer, vsHive).SyncTargets();
 		}
@@ -57,7 +58,7 @@ namespace NServiceBusStudio.Core
 			}
 			catch (Exception ex)
 			{
-				tracer.TraceError(ex, ex.Message);
+				tracer.Error(ex, ex.Message);
 			}
 		}
 

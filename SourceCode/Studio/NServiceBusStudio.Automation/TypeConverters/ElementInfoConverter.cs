@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+
+
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+
 using System.Diagnostics;
 using NuPattern.Library.Automation;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.TypeConverters
 {
@@ -20,7 +21,7 @@ namespace NServiceBusStudio.Automation.TypeConverters
     [CLSCompliant(false)]
     public class ElementInfoConverter : StringConverter
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<ElementInfoConverter>();
+        private static readonly ITracer tracer = Tracer.Get<ElementInfoConverter>();
 
         /// <summary>
         /// Determines whether this converter supports standard values.
@@ -46,10 +47,10 @@ namespace NServiceBusStudio.Automation.TypeConverters
             try
             {
                 // Make initial trace statement for this converter
-                tracer.TraceInformation(
+                tracer.Info(
                     "Determining values for this converter");
 
-                var owner = context.Instance.As<CommandSettings>();
+                var owner = context.Instance.As<ICommandSettings>();
 
                 var product = owner.Store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
                 var elements = owner.Store.DefaultPartition.ElementDirectory.AllElements
@@ -57,9 +58,9 @@ namespace NServiceBusStudio.Automation.TypeConverters
                     .Select(e => e.Name)
                     .ToList();
 
-                //	TODO: Use tracer.TraceWarning() to note expected and recoverable errors
-                //	TODO: Use tracer.TraceVerbose() to note internal execution logic decisions
-                //	TODO: Use tracer.TraceInformation() to note key results of execution
+                //	TODO: Use tracer.Warning() to note expected and recoverable errors
+                //	TODO: Use tracer.Verbose() to note internal execution logic decisions
+                //	TODO: Use tracer.Info() to note key results of execution
                 //	TODO: Raise exceptions for all other errors
 
                 return new StandardValuesCollection(elements);
@@ -68,7 +69,7 @@ namespace NServiceBusStudio.Automation.TypeConverters
             {
                 // TODO: Only catch expected exceptions, and trace them before re-throwing.
                 // TODO: Remove this 'catch' if no expections are expected
-                tracer.TraceError(
+                tracer.Error(
                     ex, "Some error calculating or fetching values");
 
                 throw;

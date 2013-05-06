@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.ValueProviders
 {

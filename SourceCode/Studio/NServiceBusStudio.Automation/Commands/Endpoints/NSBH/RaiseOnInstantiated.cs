@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using NuPattern.Runtime;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using abs = AbstractEndpoint;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
     [DisplayName("Raise On Instantiated")]
     [Description("Raise On Instantiated")]
     [CLSCompliant(false)]
-    public class RaiseOnInstantiated : FeatureCommand
+    public class RaiseOnInstantiated : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]

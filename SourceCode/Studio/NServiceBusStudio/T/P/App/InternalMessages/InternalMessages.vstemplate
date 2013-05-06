@@ -21,17 +21,12 @@
       </Folder>
     </Project>
   </TemplateContent>
-  <!--<WizardExtension>
-    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
-    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  <WizardExtension>
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.InstantiationTemplateWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
-    <Assembly>NuPattern.Library, Version=1.3.20.0, Culture=neutral, PublicKeyToken=ecdd31353928a4a5</Assembly>
-    <FullClassName>NuPattern.Library.Automation.ElementReplacementsWizard</FullClassName>
-  </WizardExtension>-->
-  <!--<WizardData>
-    <packages repository="extension" repositoryId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
-      <package id="NServiceBus" version="3.0.3" />
-    </packages>
-  </WizardData>-->
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.ElementReplacementsTemplateWizard</FullClassName>
+  </WizardExtension>
 </VSTemplate>

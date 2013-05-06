@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio;
 using NServiceBusStudio.Automation;
 using NuPattern.Runtime;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {

@@ -8,7 +8,6 @@ using NuPattern.Library.Automation;
 using Microsoft.VisualStudio.Modeling;
 using System.Windows.Threading;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.Extensions;
 using NuPattern.Library.Commands;
 

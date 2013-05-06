@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using Microsoft.VisualStudio.Modeling;
-using NuPattern.Extensibility;
+
 using NuPattern.Library;
 using NuPattern.Library.Automation;
 using NuPattern.Library.Commands;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern.Diagnostics;
+
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -17,7 +18,7 @@ namespace NServiceBusStudio.Automation.Commands
     [CLSCompliant(false)]
     public class ShowElementTypePickerValidation : ICommandValidationRule
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<ShowElementTypePickerValidation>();
+        private static readonly ITracer tracer = Tracer.Get<ShowElementTypePickerValidation>();
 
         /// <summary>
         /// Called to validate the design-time settings on the custom command
@@ -42,7 +43,7 @@ namespace NServiceBusStudio.Automation.Commands
             catch (Exception ex)
             {
                 // Make error trace statement for the failure
-                tracer.TraceError(
+                tracer.Error(
                     "Validation rule ShowElementTypePickerValidation unexpectedly failed, error was: '{0}'", ex.Message);
                 throw;
             }

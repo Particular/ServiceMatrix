@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
 using NuPattern.Runtime;
+using NuPattern;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -17,7 +16,7 @@ namespace NServiceBusStudio.Automation.Commands
     [DisplayName("Package Config Files")]
     [Description("Creates a ZIP file containing all XML solution, so users can get help easily from Technical Support.")]
     [CLSCompliant(false)]
-    public class PackageConfigFilesCommand : FeatureCommand
+    public class PackageConfigFilesCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current Pattern Manager.

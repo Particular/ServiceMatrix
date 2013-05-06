@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <patternModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/visualstudio/patterning/library/automationextensions" dslVersion="1.2.0.0" Id="04c02f2a-19a6-45b7-bc74-740c27cf3fc1" baseVersion="1.2.0.0" baseId="fda1a39f-99d2-4c3f-8f68-6af20823c15e" xmlns="http://schemas.microsoft.com/visualstudio/patterning/runtime/patternmodel">
   <dm0:extensions>
-    <eventSettings Id="fc6a8263-0819-4bc3-a6fb-dea603990de9" commandId="6a86571c-ba53-456c-b8e4-4815e79e35a0" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+    <eventSettings Id="fc6a8263-0819-4bc3-a6fb-dea603990de9" commandId="6a86571c-ba53-456c-b8e4-4815e79e35a0" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="c17bbb83-0030-4da5-a4dd-a0dc67403253" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="7bafec46-f522-40c4-89f9-f75b811814d3" commandId="03ea6f45-f980-40da-a45d-53942408adc7" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+    <eventSettings Id="7bafec46-f522-40c4-89f9-f75b811814d3" commandId="03ea6f45-f980-40da-a45d-53942408adc7" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b223a469-bb13-46ba-9f00-fd5c961f1c06" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="598a27bb-a924-471b-9518-0d00a174f069" commandId="03ea6f45-f980-40da-a45d-53942408adc7" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementDeletedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+    <eventSettings Id="598a27bb-a924-471b-9518-0d00a174f069" commandId="03ea6f45-f980-40da-a45d-53942408adc7" eventId="NuPattern.Library.Events.IOnElementDeletedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d2e21fb9-e190-4897-bd63-8b74f43706ad" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="3358362a-b532-4dbf-a35a-f83a9b74e9cf" commandId="c0097d3a-79dd-4c56-a590-d3532d1d2799" eventId="Microsoft.VisualStudio.Patterning.Library.Events.IOnElementActivatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+    <eventSettings Id="3358362a-b532-4dbf-a35a-f83a9b74e9cf" commandId="c0097d3a-79dd-4c56-a590-d3532d1d2799" eventId="NuPattern.Library.Events.IOnElementActivatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="5af18fca-feb5-4e97-a9e8-a4c664533c6b" />
       </extendedElement>
@@ -26,7 +26,7 @@
         <automationSettingsSchemaMoniker Id="a29b7fe7-992e-4a5f-8780-fb43e7f2f4f1" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="6a86571c-ba53-456c-b8e4-4815e79e35a0" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+    <commandSettings Id="6a86571c-ba53-456c-b8e4-4815e79e35a0" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e3aeb26a-2451-42f0-8c7c-95f0ec778009" />
       </extendedElement>
@@ -34,7 +34,7 @@
         <propertySettings Id="ca2f1687-10cb-42e6-890d-17d6a1782b3e" value="b517a886-17c8-4e38-86c7-aec7607fb55c;ccea3122-853f-4ad3-8da7-931f4ce29be4;e2f6edaf-a39b-408a-bf82-2d084992b8f2;6b770aba-95b8-4536-8159-9cc60db33863;5b092448-6914-4898-82de-edc5dd9d7799;ec90e995-96e1-403b-bd37-4d6514a9c590;2e03e0c5-611d-4db0-82be-72706f0152ed" name="CommandReferenceList" />
       </properties>
     </commandSettings>
-    <commandSettings Id="b517a886-17c8-4e38-86c7-aec7607fb55c" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.UnfoldVsTemplateCommand">
+    <commandSettings Id="b517a886-17c8-4e38-86c7-aec7607fb55c" typeId="NuPattern.Library.Commands.UnfoldVsTemplateCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="59f63347-fecb-48ee-a2ae-e48605d9ac4c" />
       </extendedElement>
@@ -48,7 +48,7 @@
         <propertySettings Id="9feaf1ee-d80d-4734-b331-a2955486de34" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/bf16cc4c-b1c5-474e-95f1-336d02440852" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="ccea3122-853f-4ad3-8da7-931f4ce29be4" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+    <commandSettings Id="ccea3122-853f-4ad3-8da7-931f4ce29be4" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fa80c12e-587d-4413-a99e-a2a67aef5ce5" />
       </extendedElement>
@@ -56,7 +56,7 @@
         <propertySettings Id="1709b09f-79e9-4f60-99b1-9e19ef8f48b2" value="69b75c18-25e8-4c9b-a47d-10e3064011a1;00d9fad1-1508-4c15-9b96-2cbd77d763fa;8b26f35c-c612-4b4a-bd64-4f96196165c5;f74ea755-0aea-449d-8816-f5edf94c5af8" name="CommandReferenceList" />
       </properties>
     </commandSettings>
-    <commandSettings Id="312ee1e8-24a0-4393-8791-b25600cf93b0" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="312ee1e8-24a0-4393-8791-b25600cf93b0" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="8fa3f8d1-2411-4889-8e91-f9172ae0878d" />
       </extendedElement>
@@ -77,7 +77,7 @@
         <automationSettingsSchemaMoniker Id="353f96e6-c629-4d20-b685-1d836292dc88" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="efc8d2b1-39ca-4871-868c-3932423304b8" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+    <commandSettings Id="efc8d2b1-39ca-4871-868c-3932423304b8" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e4c539e5-86ee-419f-af90-9c581dd6f14e" />
       </extendedElement>
@@ -85,7 +85,7 @@
         <propertySettings Id="61f9558d-15cb-4d9a-8281-5afaf3b09744" value="c48f3a5d-cf3a-48ab-848c-b990a9c38761;4203db5b-b77a-4146-a8b4-76db48ee4aad" name="CommandReferenceList" />
       </properties>
     </commandSettings>
-    <commandSettings Id="c48f3a5d-cf3a-48ab-848c-b990a9c38761" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="c48f3a5d-cf3a-48ab-848c-b990a9c38761" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="a5a98b23-a947-499d-b526-60e32fa1f2c8" />
       </extendedElement>
@@ -101,7 +101,7 @@
         <propertySettings Id="4fd2a418-719e-439c-954d-b00281f3d007" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/72efd64f-bfa0-48f2-a266-dc1396d1a41a" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="4203db5b-b77a-4146-a8b4-76db48ee4aad" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.ActivateElementSolutionItemCommand">
+    <commandSettings Id="4203db5b-b77a-4146-a8b4-76db48ee4aad" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="cc46c3f2-8ad1-40db-aa04-9dba3def2170" />
       </extendedElement>
@@ -109,7 +109,7 @@
         <propertySettings Id="2558dfd4-c3ec-4cf6-95f9-c9673fb6420b" value="True" name="Open" />
         <propertySettings Id="2c89694a-962e-45c2-b0ec-314c1925334d" name="TargetFileName">
           <valueProvider>
-            <valueProviderSettings Id="07287395-bb41-4597-ad98-1eacdeff539c" typeId="Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider">
+            <valueProviderSettings Id="07287395-bb41-4597-ad98-1eacdeff539c" typeId="NuPattern.Library.ValueProviders.ExpressionValueProvider">
               <properties>
                 <propertySettingsMoniker Id="f50f74af-ae43-4da9-a8bb-f14447719337" />
               </properties>
@@ -117,10 +117,10 @@
           </valueProvider>
         </propertySettings>
         <propertySettings Id="76ca7fc9-31e2-42ba-8d76-640e1508b031" value="~" name="TargetPath" />
-        <propertySettings Id="f50f74af-ae43-4da9-a8bb-f14447719337" value="{InstanceName}.endpoints" name="TargetFileName.Microsoft.VisualStudio.Patterning.Library.ValueProviders.ExpressionValueProvider.Expression" />
+        <propertySettings Id="f50f74af-ae43-4da9-a8bb-f14447719337" value="{InstanceName}.endpoints" name="TargetFileName.NuPattern.Library.ValueProviders.ExpressionValueProvider.Expression" />
       </properties>
     </commandSettings>
-    <commandSettings Id="8b26f35c-c612-4b4a-bd64-4f96196165c5" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="8b26f35c-c612-4b4a-bd64-4f96196165c5" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="dfe0c03e-edc4-4ef1-b355-a3ceda1685bd" />
       </extendedElement>
@@ -136,7 +136,7 @@
         <propertySettings Id="cd875c9f-51b9-47ac-83ef-81fa731d2e75" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/8ecf94ae-891b-4049-a59e-d77f9f1808f1" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="f74ea755-0aea-449d-8816-f5edf94c5af8" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="f74ea755-0aea-449d-8816-f5edf94c5af8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="935c8d37-180b-4072-adb8-356e3a847122" />
       </extendedElement>
@@ -152,7 +152,7 @@
         <propertySettings Id="8b772a6b-c0e1-43b9-91cd-a1b4cfeeec57" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/97fe634f-2559-44b6-a762-1c3c8aa63f38" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="69b75c18-25e8-4c9b-a47d-10e3064011a1" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.AggregatorCommand">
+    <commandSettings Id="69b75c18-25e8-4c9b-a47d-10e3064011a1" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="35bc0508-dc93-41af-88c4-6f2298658eb8" />
       </extendedElement>
@@ -160,7 +160,7 @@
         <propertySettings Id="ef4d170d-cb78-4c34-88cc-2f95faeb199b" value="312ee1e8-24a0-4393-8791-b25600cf93b0;c5219cc7-2bb9-43e0-b62e-8e0b0d572b22;4a4a5048-a27c-4df9-9d34-72fae6a38d5a;14f5b3ec-5250-4215-9d08-708d829c290a;8b26f35c-c612-4b4a-bd64-4f96196165c5;b2108b53-9764-48e8-8cf0-22804028e0b1;d213b468-dd9d-4d6f-a328-9e2350f0c52a" name="CommandReferenceList" />
       </properties>
     </commandSettings>
-    <commandSettings Id="c5219cc7-2bb9-43e0-b62e-8e0b0d572b22" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="c5219cc7-2bb9-43e0-b62e-8e0b0d572b22" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="f2a353bd-1646-4c5d-9b58-c2e96a3463ae" />
       </extendedElement>
@@ -176,7 +176,7 @@
         <propertySettings Id="be098b64-d2b8-4109-a1b1-df026171c06e" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/560b7a1a-a63f-4e76-8203-efbe95727caf" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="4a4a5048-a27c-4df9-9d34-72fae6a38d5a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="4a4a5048-a27c-4df9-9d34-72fae6a38d5a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d3705cce-04ba-4d86-a3d0-0a82a38bb17c" />
       </extendedElement>
@@ -192,7 +192,7 @@
         <propertySettings Id="b389d8fb-b483-4820-8132-dd366d307824" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/f08a8245-1170-4182-9cd7-c75085634e5e" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="14f5b3ec-5250-4215-9d08-708d829c290a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="14f5b3ec-5250-4215-9d08-708d829c290a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d99163fd-de7e-4a5d-b03f-faf0b952c2b5" />
       </extendedElement>
@@ -213,7 +213,7 @@
         <automationSettingsSchemaMoniker Id="6f22db2a-887b-4b29-a156-d0842e1148eb" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="e2f6edaf-a39b-408a-bf82-2d084992b8f2" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="e2f6edaf-a39b-408a-bf82-2d084992b8f2" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="75d93d83-f381-49eb-b4a7-25af50cac8f1" />
       </extendedElement>
@@ -239,7 +239,7 @@
         <automationSettingsSchemaMoniker Id="c483adb7-87dc-42a0-a72f-3c3eac05bd48" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="6b770aba-95b8-4536-8159-9cc60db33863" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="6b770aba-95b8-4536-8159-9cc60db33863" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="f4f4e561-857f-4584-9782-b8bc79e17ca5" />
       </extendedElement>
@@ -260,7 +260,7 @@
         <automationSettingsSchemaMoniker Id="c791815f-34b8-418b-91c5-1439966811e8" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="5b092448-6914-4898-82de-edc5dd9d7799" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="5b092448-6914-4898-82de-edc5dd9d7799" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="9225a57d-83f6-45c9-863f-06c8cc623101" />
       </extendedElement>
@@ -284,7 +284,7 @@
         <propertySettings Id="d0c44ee4-b47a-498b-805f-85d893d745d7" value="False" name="IgnoreHost" />
       </properties>
     </commandSettings>
-    <commandSettings Id="d213b468-dd9d-4d6f-a328-9e2350f0c52a" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="d213b468-dd9d-4d6f-a328-9e2350f0c52a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="499a7fa2-a534-418c-a4cb-6ec78f40a29b" />
       </extendedElement>
@@ -300,7 +300,7 @@
         <propertySettings Id="814ef04b-e4c4-4794-b452-0722faefd140" value="solution://938460d2-e239-4095-92e2-c8f0388cdc8a/4276f6e9-1d4a-4a15-8949-995f55bd84b7" name="TemplateAuthoringUri" />
       </properties>
     </commandSettings>
-    <commandSettings Id="b2108b53-9764-48e8-8cf0-22804028e0b1" typeId="Microsoft.VisualStudio.Patterning.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="b2108b53-9764-48e8-8cf0-22804028e0b1" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="00a75ce6-693c-4d35-8bb8-c4772dc71428" />
       </extendedElement>
@@ -397,7 +397,7 @@
       "ValueProvider": null
     }
   ],
-  "TypeId": "Microsoft.VisualStudio.Patterning.Library.ValueProviders.RootNamespaceValueProvider"
+  "TypeId": "NuPattern.Library.ValueProviders.RootNamespaceValueProvider"
 }</valueProvider>
       </property>
       <property Id="c620e239-69c4-4d52-b998-d5ded371b8d3" name="MasterNode" displayName="Master Node" description="Description for AbstractEndpoint.MasterNode" codeIdentifier="MasterNode">

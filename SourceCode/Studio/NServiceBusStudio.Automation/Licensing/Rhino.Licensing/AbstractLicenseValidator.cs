@@ -1,5 +1,6 @@
 ﻿namespace Rhino.Licensing
 {
+    using NuPattern.Diagnostics;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -8,11 +9,11 @@
     using System.Security.Cryptography.Xml;
     using System.Threading;
     using System.Xml;
-    using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+    
 
     public abstract class AbstractLicenseValidator
     {
-        protected static readonly ITraceSource Log = Tracer.GetSourceFor<AbstractLicenseValidator>();
+        protected static readonly ITracer Log = Tracer.Get<AbstractLicenseValidator>();
         private readonly Timer nextLeaseTimer;
         private readonly string publicKey;
 
@@ -31,7 +32,7 @@
             this.LicenseAttributes.Clear();
             if (!this.HasExistingLicense())
             {
-                Log.TraceWarning("Could not validate existing license\r\n{0}", new object[] { this.License });
+                Log.Warn("Could not validate existing license\r\n{0}", new object[] { this.License });
                 throw new LicenseNotFoundException();
             }
         }
@@ -43,10 +44,10 @@
             {
                 if (!this.TryLoadingLicenseValuesFromValidatedXml())
                 {
-                    Log.TraceWarning("Failed validating license:\r\n{0}", new object[] { this.License });
+                    Log.Warn("Failed validating license:\r\n{0}", new object[] { this.License });
                     return false;
                 }
-                Log.TraceInformation("License expiration date is {0}", new object[] { this.ExpirationDate });
+                Log.Info("License expiration date is {0}", new object[] { this.ExpirationDate });
                 if (DateTime.UtcNow >= this.ExpirationDate)
                 {
                     throw new LicenseExpiredException("Expiration Date : " + this.ExpirationDate);
@@ -92,7 +93,7 @@
             XmlElement element = (XmlElement)doc.SelectSingleNode("//sig:Signature", nsmgr);
             if (element == null)
             {
-                Log.TraceWarning("Could not find this signature node on license:\r\n{0}", new object[] { this.License });
+                Log.Warn("Could not find this signature node on license:\r\n{0}", new object[] { this.License });
                 return false;
             }
             xml.LoadXml(element);
@@ -108,12 +109,12 @@
                 doc.LoadXml(this.License);
                 if (!this.TryGetValidDocument(this.publicKey, doc))
                 {
-                    Log.TraceWarning("Could not validate xml signature of:\r\n{0}", new object[] { this.License });
+                    Log.Warn("Could not validate xml signature of:\r\n{0}", new object[] { this.License });
                     return false;
                 }
                 if (doc.FirstChild == null)
                 {
-                    Log.TraceWarning("Could not find first child of:\r\n{0}", new object[] { this.License });
+                    Log.Warn("Could not find first child of:\r\n{0}", new object[] { this.License });
                     return false;
                 }
                 bool flag2 = this.ValidateXmlDocumentLicense(doc);
@@ -129,7 +130,7 @@
             }
             catch (Exception exception)
             {
-                Log.TraceError("Could not validate license", exception);
+                Log.Error("Could not validate license", exception);
                 flag = false;
             }
             return flag;
@@ -140,28 +141,28 @@
             XmlNode node = doc.SelectSingleNode("/license/@id");
             if (node == null)
             {
-                Log.TraceWarning("Could not find id attribute in license:\r\n{0}", new object[] { this.License });
+                Log.Warn("Could not find id attribute in license:\r\n{0}", new object[] { this.License });
                 return false;
             }
             this.UserId = new Guid(node.Value);
             XmlNode node2 = doc.SelectSingleNode("/license/@expiration");
             if (node2 == null)
             {
-                Log.TraceWarning("Could not find expiration in license:\r\n{0}", new object[] { this.License });
+                Log.Warn("Could not find expiration in license:\r\n{0}", new object[] { this.License });
                 return false;
             }
             this.ExpirationDate = DateTime.ParseExact(node2.Value, "yyyy-MM-ddTHH:mm:ss.fffffff", CultureInfo.InvariantCulture);
             XmlNode node3 = doc.SelectSingleNode("/license/@type");
             if (node3 == null)
             {
-                Log.TraceWarning("Could not find license type in {0}", new object[] { node3 });
+                Log.Warn("Could not find license type in {0}", new object[] { node3 });
                 return false;
             }
             this.LicenseType = (Rhino.Licensing.LicenseType)Enum.Parse(typeof(Rhino.Licensing.LicenseType), node3.Value);
             XmlNode node4 = doc.SelectSingleNode("/license/name/text()");
             if (node4 == null)
             {
-                Log.TraceWarning("Could not find licensee's name in license:\r\n{0}", new object[] { this.License });
+                Log.Warn("Could not find licensee's name in license:\r\n{0}", new object[] { this.License });
                 return false;
             }
             this.Name = node4.Value;

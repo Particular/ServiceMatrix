@@ -33,9 +33,9 @@ namespace NServiceBusStudio
 		public const string Description = "A set of Visual Studio integrated tools to author NServiceBus applications";
 
 		/// <summary>
-		/// NServiceBusStudio
+		/// NServiceBus Studio
 		/// </summary>
-		public const string ProductName = "NServiceBusStudio";
+		public const string ProductName = "NServiceBus Studio";
 
 		/// <summary>
 		/// NServiceBusStudio

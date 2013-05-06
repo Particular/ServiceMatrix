@@ -2,12 +2,12 @@
 using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.ComponentModelHost;
-using NuPattern.Extensibility;
+
 using NuPattern.Runtime.Shell.Properties;
 using NuPattern.Runtime.UI;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {

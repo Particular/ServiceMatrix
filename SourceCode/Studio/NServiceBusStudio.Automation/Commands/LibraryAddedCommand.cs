@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
 using NuPattern.Runtime;
-using NuPattern.Extensibility.References;
+using NuPattern.Runtime.References;
 
 namespace NServiceBusStudio.Automation.Commands
 {
     [DisplayName("Handles a New Library Element added")]
     [Description("Checks if the project exists and adds all the needed artifacts")]
     [CLSCompliant(false)]
-    public class LibraryAddedCommand : FeatureCommand
+    public class LibraryAddedCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

@@ -3,12 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using EnvDTE;
-using NuPattern.Extensibility.References;
 using NuPattern.Runtime;
 using NuPattern.Runtime.Schema;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using NServiceBusStudio.Automation.Infrastructure;
+using NuPattern.Runtime.References;
+using NuPattern;
+using NuPattern.Presentation;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -20,7 +21,7 @@ namespace NServiceBusStudio.Automation.Extensions
             if (property == null)
                 return;
             
-            var propertyInfo = property.Info as PropertySchema;
+            var propertyInfo = property.Info as dynamic;
             if (propertyInfo == null)
                 return;
             
@@ -32,7 +33,7 @@ namespace NServiceBusStudio.Automation.Extensions
             if (element == null)
                 return null;
 
-            var references = element.Product.ProductState.GetService<IFxrUriReferenceService>();
+            var references = element.Product.ProductState.GetService<IUriReferenceService>();
 
             return SolutionArtifactLinkReference
                 .GetResolvedReferences(element, references)
@@ -40,7 +41,7 @@ namespace NServiceBusStudio.Automation.Extensions
                 .FirstOrDefault();
         }
 
-        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IFxrUriReferenceService uriService, RefactoringManager refactoringManager)
+        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager)
         {
             using (new MouseCursor(System.Windows.Input.Cursors.Wait))
             {
@@ -63,7 +64,7 @@ namespace NServiceBusStudio.Automation.Extensions
             }
         }
 
-        private static void RenameArtifactLinks(this IProductElement element, IFxrUriReferenceService uriService, string currentName, string newName)
+        private static void RenameArtifactLinks(this IProductElement element, IUriReferenceService uriService, string currentName, string newName)
         {
             foreach (var referenceLink in element.References)
             {
@@ -83,7 +84,7 @@ namespace NServiceBusStudio.Automation.Extensions
             }
         }
 
-        public static void RemoveArtifactLinks(this IProductElement element, IFxrUriReferenceService uriService, ISolution solution)
+        public static void RemoveArtifactLinks(this IProductElement element, IUriReferenceService uriService, ISolution solution)
         {
             using (new MouseCursor(System.Windows.Input.Cursors.Wait))
             {

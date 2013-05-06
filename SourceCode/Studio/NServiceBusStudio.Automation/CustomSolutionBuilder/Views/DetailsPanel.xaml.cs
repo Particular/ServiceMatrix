@@ -16,6 +16,8 @@ using AbstractEndpoint;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell;
+using NuPattern.Runtime.ToolkitInterface;
+using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -36,7 +38,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public DetailsPanelViewModel ViewModel { get; set; }
 
-        public void SetView(IServiceProvider serviceProvider, ProductElementViewModel selectedElementViewModel, object logicalViewDataContext)
+        public void SetView(IServiceProvider serviceProvider, IProductElementViewModel selectedElementViewModel, object logicalViewDataContext)
         {
             this.Caption = "NServiceBus Studio Details - " + selectedElementViewModel.Model.InstanceName;
             if (this.CaptionHasChanged != null)
@@ -45,32 +47,32 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             }
 
             var model = selectedElementViewModel.Model;
-
-            switch (model.DefinitionName)
+            string definitionName = model.DefinitionName.ToString();
+            switch (definitionName)
             {
                 case "Application":
-                    this.ViewModel.BuildDetailsForApplication(model.As<IApplication>(), logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForApplication(model.As<IApplication>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "NServiceBusHost":
                 case "NServiceBusMVC":
                 case "NServiceBusWeb":
-                    this.ViewModel.BuildDetailsForEndpoint(model.As<IToolkitInterface>() as IAbstractEndpoint, logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForEndpoint(model.As<IToolkitInterface>() as IAbstractEndpoint, logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Component":
-                    this.ViewModel.BuildDetailsForComponent(model.As<IComponent>(), logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForComponent(model.As<IComponent>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Command":
-                    this.ViewModel.BuildDetailsForCommand(model.As<ICommand>(), logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForCommand(model.As<ICommand>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Event":
-                    this.ViewModel.BuildDetailsForEvent(model.As<IEvent>(), logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForEvent(model.As<IEvent>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "UseCase":
-                    this.ViewModel.BuildDetailsForUseCase(model.As<IUseCase>(), logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForUseCase(model.As<IUseCase>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Library":
                 case "ServiceLibrary":
-                    this.ViewModel.BuildDetailsForLibrary(model, logicalViewDataContext as SolutionBuilderViewModel);
+                    this.ViewModel.BuildDetailsForLibrary(model, logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 default:
                     this.CleanDetails();

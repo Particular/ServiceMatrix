@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
@@ -11,6 +10,7 @@ using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
 using Microsoft.VisualStudio;
 using System.Windows.Interop;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -18,7 +18,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Show a Use Case Picker for adding an element reference")]
     [CLSCompliant(false)]
-    public class AddReferenceToUseCaseCommand : FeatureCommand
+    public class AddReferenceToUseCaseCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

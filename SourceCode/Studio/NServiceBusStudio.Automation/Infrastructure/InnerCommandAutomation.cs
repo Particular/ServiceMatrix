@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using NuPattern.Library.Automation;
 using NuPattern.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
     public class InnerCommandAutomation : IAutomationExtension
     {
-        FeatureCommand command;
+        NuPattern.Runtime.Command command;
 
-        public InnerCommandAutomation(FeatureCommand command)
+        public InnerCommandAutomation(NuPattern.Runtime.Command command)
         {
             this.command = command;
         }
 
-        public void Execute(IDynamicBindingContext context)
+        public void Execute(NuPattern.Runtime.Bindings.IDynamicBindingContext context)
         {
             Execute();
         }

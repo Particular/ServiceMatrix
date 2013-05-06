@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NuPattern.Runtime;
 using System.ComponentModel;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio
 {

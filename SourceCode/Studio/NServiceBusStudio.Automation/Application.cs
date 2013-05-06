@@ -7,8 +7,10 @@ using Microsoft.VisualStudio.Shell;
 using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell.Interop;
 using NServiceBusStudio.Core;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern;
+
 using AbstractEndpoint;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio
 {
@@ -44,7 +46,7 @@ namespace NServiceBusStudio
 					var shell = value.TryGetService<SVsShell, IVsShell>();
 					if (shell != null)
 					{
-						VersionHelper.SyncTargets(Tracer.GetSourceFor<Application>(), shell.GetHive());
+						VersionHelper.SyncTargets(Tracer.Get<Application>(), shell.GetHive());
 						versionInitialized = true;
 					}
                 }

@@ -1,14 +1,16 @@
 ﻿using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Licensing;
+using NuPattern;
 using NuPattern.Runtime;
+using NuPattern.VisualStudio.Solution;
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio
 {
@@ -113,7 +115,7 @@ namespace NServiceBusStudio
         private void SetDomainSpecifiLogging()
         {
             this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
-            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceInformation("{0} deleted with name: {1}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
+            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.Info("{0} deleted with name: {1}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
         }
 
         private void SetPropagationHandlers()
@@ -226,10 +228,11 @@ namespace NServiceBusStudio
 
         public void InitializeExtensionDependentData()
         {
-            //IVsExtensionManager extensionManager = (IVsExtensionManager) this.VsServiceProvider.TryGetService<SVsExtensionManager>();
-            //var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
-            var resolver = this.ServiceProvider.TryGetService<IFxrUriReferenceService>();
-            var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
+            Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager extensionManager = (Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager) this.VsServiceProvider.TryGetService<Microsoft.VisualStudio.ExtensionManager.SVsExtensionManager>();
+            var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
+            
+            //var resolver = this.ServiceProvider.TryGetService<IUriReferenceService>();
+            //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;
             nserviceBusVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "NServiceBusVersion.txt"));
         }

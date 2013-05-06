@@ -1,5 +1,5 @@
 ﻿<#@ output extension=".vsixmanifest" #>
-<#@ Include File="source.include.t4" #>
+<#@ Include File="source.extension.gen.ttinclude" #>
 <#@ Include File="..\source.version.t4" #>
 <?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
@@ -47,11 +47,11 @@
 	  </References>
 	<Content>
 		<Assembly AssemblyName="<#= assemblyName #>">|%CurrentProject%|</Assembly>
-		<MefComponent>|<#= productName #>|</MefComponent>
-		<MefComponent>|<#= productName #>.Automation|</MefComponent>
+		<MefComponent>|%CurrentProject%|</MefComponent>
+		<MefComponent>|<#=libraryProjectName #>|</MefComponent>
 		<MefComponent>|EndpointDesign|</MefComponent>
 		<MefComponent>|EndpointDesign.Shell|</MefComponent>
-		<CustomExtension Type="PatternModel" AssemblyFile="<#= assemblyName #>.dll"><#= rootNamespace #>.PatternModel.patterndefinition</CustomExtension>		
+		<CustomExtension Type="NuPattern.Toolkit.PatternModel" AssemblyFile="<#= assemblyName #>.dll"><#= rootNamespace #>.PatternModel.patterndefinition</CustomExtension>		
 		<ItemTemplate>T\I</ItemTemplate>
 		<ProjectTemplate>T\P</ProjectTemplate>
 	</Content>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.ExtensionManager;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace NServiceBusStudio.Automation.Extensions
 {
     public static class StatisticsInformation
     {
-        public static void TraceStatisticsHeader(this ITraceSource traceSource, EnvDTE.DTE dte, IVsExtensionManager extensionManager)
+        public static void TraceStatisticsHeader(this ITracer traceSource, EnvDTE.DTE dte, IVsExtensionManager extensionManager)
         {
             traceSource.TraceStatistics("========================= NServiceBusStudio General Information =========================");
             traceSource.TraceStatistics("Operating System: {0}", StatisticsInformation.GetOperatingSystemVersion());
@@ -25,9 +25,9 @@ namespace NServiceBusStudio.Automation.Extensions
             traceSource.TraceStatistics("=========================================================================================");
         }
 
-        public static void TraceStatistics(this ITraceSource traceSource, string format, params object[] args)
+        public static void TraceStatistics(this ITracer traceSource, string format, params object[] args)
         {
-            traceSource.TraceInformation(String.Format (format, args));
+            traceSource.Info(String.Format (format, args));
         }
 
         private static string GetOperatingSystemVersion()

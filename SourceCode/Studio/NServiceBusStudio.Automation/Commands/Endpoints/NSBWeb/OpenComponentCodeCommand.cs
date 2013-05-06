@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
@@ -13,7 +12,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBWeb
     [DisplayName("WebEndpoint OpenComponentCodeCommand")]
     [Description("WebEndpoint OpenComponentCodeCommand")]
     [CLSCompliant(false)]
-    public class OpenComponentCodeCommand : FeatureCommand
+    public class OpenComponentCodeCommand : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]

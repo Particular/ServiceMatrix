@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
-using NuPattern.Runtime;
 using System.ComponentModel;
+using NuPattern.ComponentModel.Design;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Core.Design
 {

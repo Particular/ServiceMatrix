@@ -1,5 +1,4 @@
 ﻿using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using NuPattern.Runtime;
 using System;
 using System.Collections.Generic;
@@ -8,13 +7,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NuPattern.Extensibility;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
+using NuPattern.Presentation;
+using NuPattern;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    public class ShowCommandComponentPicker : FeatureCommand
+    public class ShowCommandComponentPicker : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

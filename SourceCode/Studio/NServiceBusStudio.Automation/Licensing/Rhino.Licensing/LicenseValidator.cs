@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using NuPattern.Diagnostics;
 
     public class LicenseValidator : AbstractLicenseValidator
     {
@@ -18,7 +19,7 @@
         {
             if (!File.Exists(this.licensePath))
             {
-                Log.TraceWarning("Could not find license file: {0}", new object[] { this.licensePath });
+                Log.Warn("Could not find license file: {0}", new object[] { this.licensePath });
                 throw new LicenseFileNotFoundException();
             }
             base.AssertValidLicense();
@@ -42,7 +43,7 @@
                 catch (Exception exception)
                 {
                     this.inMemoryLicense = value;
-                    Log.TraceWarning("Could not write new license value, using in memory model instead", exception);
+                    Log.Warn("Could not write new license value, using in memory model instead", exception);
                 }
             }
         }
