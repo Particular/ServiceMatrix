@@ -1,6 +1,7 @@
 ﻿<#@ PatternModel processor="PatternModelDirectiveProcessor" requires="fileName='..\..\NServiceBusStudio\PatternModel.patterndefinition'" #>
 <#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\..\Studio.slnbldr'" #>
 <#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
+<#@ Assembly Name="Microsoft.CSharp.dll" #>
 <#@ Assembly Name="System.Core.dll" #>
 <#@ Assembly Name="NuPattern.Common.dll" #>
 <#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
@@ -36,11 +37,12 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 {
 	#region Interfaces
 <#
-	var product = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
-    var elements = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements
+    var store = (Microsoft.VisualStudio.Modeling.Store)((dynamic)this.PatternModelSchema).Store;
+	var product = store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
+    var elements = store.DefaultPartition.ElementDirectory.AllElements
         .OfType<IElementInfo>()
         .ToList();
-    var collections = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements
+    var collections = store.DefaultPartition.ElementDirectory.AllElements
         .OfType<ICollectionInfo>()
         .ToList();
 
