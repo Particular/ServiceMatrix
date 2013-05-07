@@ -123,7 +123,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     if (viewModel == null)
                         return;
 
-                    var dragData = new DataObject("VSPAT", viewModel.Model);
+                    var dragData = new DataObject("VSPAT", viewModel.Data);
                     DragDrop.DoDragDrop(treeViewItem, dragData, DragDropEffects.Move);
                 }
             }
@@ -146,7 +146,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragEnter != null)
             {
-                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
 
             effects = e.Effects;
@@ -159,7 +159,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragEnter != null)
             {
-                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
         }
 
@@ -170,7 +170,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragLeave != null)
             {
-                ElementDragLeave(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragLeave(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
         }
 
@@ -178,7 +178,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         {
             if (ElementDrop != null)
             {
-                ElementDrop(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDrop(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
             e.Handled = true;
         }
@@ -201,12 +201,17 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (item != null)
             {
-                var method = typeof(AutomationMenuOptionViewModel)
-                    .GetMethod("ReEvaluateCommand", BindingFlags.NonPublic | BindingFlags.Instance);
+                var type = Type.GetType("NuPattern.Runtime.UI.ViewModels.AutomationMenuOptionViewModel, NuPattern.Runtime.Core");
+                var method = type.GetMethod("ReEvaluateCommand", BindingFlags.NonPublic | BindingFlags.Instance);
                 if (method != null)
                 {
-                    item.ContextMenu.Items.OfType<AutomationMenuOptionViewModel>().ForEach(
-                        m => method.Invoke(m, null));
+                    foreach (var i in item.ContextMenu.Items)
+                    {
+                        if (i.GetType() == type)
+                        {
+                            method.Invoke(i, null);
+                        }
+                    }
                 }
             }
         }

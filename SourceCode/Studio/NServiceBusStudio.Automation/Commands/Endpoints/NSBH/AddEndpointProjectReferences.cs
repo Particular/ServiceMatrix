@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using AbstractEndpoint;
 using NServiceBusStudio.Automation.Extensions;
 using NuPattern.Runtime;
+using Microsoft.VisualStudio.Shell;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
@@ -18,7 +19,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
         [Import(AllowDefault = true)]
         IProductElement Endpoint { get; set; }
 
-        [Import]
+        [Import(typeof(SVsServiceProvider))]
         public IServiceProvider ServiceProvider { get; set; }
 
         public override void Execute()

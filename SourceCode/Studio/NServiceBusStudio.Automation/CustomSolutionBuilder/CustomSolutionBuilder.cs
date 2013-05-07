@@ -19,6 +19,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
     {
         [Import]
         public ISolutionEvents SolutionEvents { get; set; }
+
+        [Import]
+        public IPatternWindows PatternWindows { get; set; }
         
         public static bool HasBeenAlreadyInitialized = false;
 
@@ -45,15 +48,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
             {
                 this.DetailsWindowManager.Show();
             }
-            SolutionBuilderToolWindow tw = null;
+            
+            this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
+            var toolWindow = this.PatternWindows.ShowSolutionBuilder(serviceProvider);
 
-            var ptw = serviceProvider.GetService(typeof(IPackageToolWindow)) as IPackageToolWindow;
-
-            tw = ptw.ShowWindow<SolutionBuilderToolWindow>(true);
-
-            if (tw != null)
+            if (toolWindow != null)
             {
-                var content = tw.Content as UserControl;
+                var content = toolWindow.Content as UserControl;
 
                 var contentGrid = content.Content as Grid;
 
@@ -61,7 +62,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                 {
                     if (theitem is ScrollViewer)
                     {
-                        Scrollviewer = (theitem as ScrollViewer);
+                        this.Scrollviewer = (theitem as ScrollViewer);
                     }
                 }
 
@@ -88,8 +89,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
                     }
                 }
-
-                this.SolutionBuilderViewModel = Scrollviewer.DataContext as ISolutionBuilderViewModel;
             }
         }
 

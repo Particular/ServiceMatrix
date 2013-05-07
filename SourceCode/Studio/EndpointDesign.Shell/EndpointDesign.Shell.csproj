@@ -31,7 +31,23 @@
   </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <ItemGroup>
-    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+	<Reference Include="NuPattern.Library">
+		<HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
+		<Private>false</Private>
+	</Reference>
+	<Reference Include="NuPattern.Common">
+		<HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
+		<Private>false</Private>
+	</Reference>
+	<Reference Include="NuPattern.Runtime.Core">
+		<HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+		<Private>false</Private>
+	</Reference>
+	<Reference Include="NuPattern.Runtime.Extensibility">
+		<HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
+		<Private>false</Private>
+	</Reference>
+	<Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -67,22 +83,6 @@
     <Reference Include="VSLangProj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="NuPattern.Library">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="NuPattern.Common">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="NuPattern.Runtime.Core">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="NuPattern.Runtime.Extensibility">
-      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
-      <Private>false</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -221,9 +221,8 @@
       <Name>EndpointDesign</Name>
     </ProjectReference>
     <ProjectReference Include="..\NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj">
-      <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
+      <Project>{e99c1949-f384-4f9e-9ea8-8f020ca9d8a5}</Project>
       <Name>NServiceBusStudio.Automation</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

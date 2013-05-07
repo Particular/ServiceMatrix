@@ -40,13 +40,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public void SetView(IServiceProvider serviceProvider, IProductElementViewModel selectedElementViewModel, object logicalViewDataContext)
         {
-            this.Caption = "NServiceBus Studio Details - " + selectedElementViewModel.Model.InstanceName;
+            this.Caption = "NServiceBus Studio Details - " + selectedElementViewModel.Data.InstanceName;
             if (this.CaptionHasChanged != null)
             {
                 this.CaptionHasChanged(this, EventArgs.Empty);
             }
 
-            var model = selectedElementViewModel.Model;
+            var model = selectedElementViewModel.Data;
             string definitionName = model.DefinitionName.ToString();
             switch (definitionName)
             {

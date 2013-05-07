@@ -27,7 +27,7 @@ namespace NServiceBusStudio
     public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager
     {
         [Import]
-        public IShellEvents ShellEvents { get; set; }
+        public ITraceOutputWindowManager TraceOutputWindowManager { get; set; }
 
         protected override void Initialize()
         {
@@ -43,7 +43,7 @@ namespace NServiceBusStudio
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
-            new TraceOutputWindowManager(this, this.ShellEvents, new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", StatisticsManager.StatisticsListenerNamespace);
+            this.TraceOutputWindowManager.CreateTracePane (new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", new [] { StatisticsManager.StatisticsListenerNamespace });
             Trace.AutoFlush = true;
         }
 

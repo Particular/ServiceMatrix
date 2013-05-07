@@ -123,15 +123,7 @@
                         </collection>
                         <collection Id="7587a584-abf9-4f90-bb2d-5a44d627f5ee" definitionId="2226c6bc-3e33-4570-8807-f68bbfbbffcd" definitionName="Conditions" instanceName="Conditions" />
                         <collection Id="40465a2c-fe45-43c6-8239-cae382452502" definitionId="f0e386f0-bf6f-4560-978f-32396e30c4e5" definitionName="Events" instanceName="Events" />
-                        <collection Id="147c6610-59e1-42d4-aae0-f9707e8446a5" definitionId="96227e6c-f4a5-421c-8f0a-e38763d86740" definitionName="TypeConverters" instanceName="Type Converters">
-                          <elements>
-                            <element Id="22d9a801-dced-46a0-84a0-2fd04a2faebd" definitionId="8d45d1e8-2551-4539-8449-ff3e0962d5f5" definitionName="EnumTypeConverter" instanceName="ElementInfoConverter">
-                              <references>
-                                <reference Id="b9412e29-c36e-40e4-8bbd-14d52ee9b06d" value="solution://e99c1949-f384-4f9e-9ea8-8f020ca9d8a5/bf581b47-4b14-49b7-b7d4-2eac19ba1359" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: null,&#xD;&#xA;  &quot;SyncNames&quot;: true,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
-                              </references>
-                            </element>
-                          </elements>
-                        </collection>
+                        <collection Id="147c6610-59e1-42d4-aae0-f9707e8446a5" definitionId="96227e6c-f4a5-421c-8f0a-e38763d86740" definitionName="TypeConverters" instanceName="Type Converters" />
                         <collection Id="ce67e45a-b26b-4c6e-b623-7e3b47c90e9c" definitionId="7fe79778-3880-4daf-a4e5-c401f131c5db" definitionName="TypeEditors" instanceName="Type Editors" />
                         <collection Id="4886d0ea-d7ee-46fa-84e4-78345ddc3ca1" definitionId="c398e040-eb92-481a-a1a4-67d1eac1edff" definitionName="ValidationRules" instanceName="Validation Rules" />
                         <collection Id="c3697124-593f-4797-af31-dec476621ce4" definitionId="fa75b840-b733-4365-bcb0-5e513092f4dd" definitionName="ValueProviders" instanceName="Value Providers" />

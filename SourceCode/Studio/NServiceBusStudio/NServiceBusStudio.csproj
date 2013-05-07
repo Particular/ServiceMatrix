@@ -181,7 +181,6 @@
     </Compile>
     <Compile Include="GeneratedCode\Guidance\GuidanceWorkflowScrapping.cs" />
     <Compile Include="GuidList.cs" />
-    <Compile Include="PackageToolWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="T\P\App\InternalMessages\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

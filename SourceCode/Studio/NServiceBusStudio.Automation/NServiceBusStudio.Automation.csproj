@@ -177,6 +177,7 @@
     <Compile Include="CustomSolutionBuilder\ViewModels\InnerPanelViewModel.cs" />
     <Compile Include="CustomSolutionBuilder\ViewModels\LabelProductElementViewModel.cs" />
     <Compile Include="CustomSolutionBuilder\ViewModels\LogicalViewModel.cs" />
+    <Compile Include="CustomSolutionBuilder\ViewModels\TempMenuOptionViewModel.cs" />
     <Compile Include="CustomSolutionBuilder\Views\ApplicationPropertiesView.xaml.cs">
       <DependentUpon>ApplicationPropertiesView.xaml</DependentUpon>
     </Compile>
@@ -347,9 +348,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolkitConstants.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TypeConverters\ElementInfoConverter.cs">
-      <ItemGuid>bf581b47-4b14-49b7-b7d4-2eac19ba1359</ItemGuid>
     </Compile>
     <Compile Include="TypeConverters\TransportTypeConverter.cs" />
     <Compile Include="TypeDescriptors\ApplicationFilterPropertiesTypeDescriptionProvider.cs" />

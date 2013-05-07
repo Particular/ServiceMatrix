@@ -27,13 +27,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
 
             // Add menu sorting
             view.SortDescriptions.Clear();
-            view.SortDescriptions.Add(new SortDescription(Reflector<MenuOptionViewModel>.GetPropertyName(mnu => mnu.GroupIndex), ListSortDirection.Ascending));
-            view.SortDescriptions.Add(new SortDescription(Reflector<MenuOptionViewModel>.GetPropertyName(mnu => mnu.SortOrder), ListSortDirection.Ascending));
-            view.SortDescriptions.Add(new SortDescription(Reflector<MenuOptionViewModel>.GetPropertyName(mnu => mnu.Caption), ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription(Reflector<IMenuOptionViewModel>.GetPropertyName(mnu => mnu.GroupIndex), ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription(Reflector<IMenuOptionViewModel>.GetPropertyName(mnu => mnu.SortOrder), ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription(Reflector<IMenuOptionViewModel>.GetPropertyName(mnu => mnu.Caption), ListSortDirection.Ascending));
 
             // Add menu grouping
             view.GroupDescriptions.Clear();
-            view.GroupDescriptions.Add(new PropertyGroupDescription(Reflector<MenuOptionViewModel>.GetPropertyName(mnu => mnu.GroupIndex)));
+            view.GroupDescriptions.Add(new PropertyGroupDescription(Reflector<IMenuOptionViewModel>.GetPropertyName(mnu => mnu.GroupIndex)));
 
             return view;
         }

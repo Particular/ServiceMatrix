@@ -14,11 +14,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
         {
             foreach (IProductElementViewModel model in nodesCollection)
             {
-                if (model.Model == target)
+                if (model.Data == target)
                 {
                     return model;
                 }
-                IProductElementViewModel model2 = SearchInNodes(model.NodesViewModel, target);
+                IProductElementViewModel model2 = SearchInNodes(model.ChildNodes, target);
                 if (model2 != null)
                 {
                     return model2;
@@ -29,7 +29,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
 
         public static IProductElementViewModel FindNodeFor(this ISolutionBuilderViewModel ViewModel, IProductElement target)
         {
-            return SearchInNodes(ViewModel.NodesViewModel, target);
+            return SearchInNodes(ViewModel.TopLevelNodes, target);
         }
     }
 }

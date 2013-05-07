@@ -93,15 +93,15 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
             }
 
-            this.SourceViewModel.NodesViewModel[0].ContextViewModel.PatternManager.ActivateElement(this.currentNode.InnerViewModel.Model);
+            this.SourceViewModel.TopLevelNodes[0].Context.PatternManager.ActivateElement(this.currentNode.InnerViewModel.Data);
             var innerModelToSelect = this.currentNode.InnerViewModel;
 
-            if (LogicalViewModel.NServiceBusViewModel != this && this.currentNode.InnerViewModel.Model != null)
+            if (LogicalViewModel.NServiceBusViewModel != this && this.currentNode.InnerViewModel.Data != null)
             {
 
                 System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
                     {
-                        string definitionName = this.currentNode.InnerViewModel.Model.DefinitionName.ToString();
+                        string definitionName = this.currentNode.InnerViewModel.Data.DefinitionName.ToString();
                         switch (definitionName)
                         {
                             case "NServiceBusHost":
@@ -203,9 +203,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 this.SelectView("Use Cases");
             }
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
-            LogicalViewModelNode usecasesItem = new LogicalViewModelNode(this, this.SourceViewModel.NodesViewModel.First().NodesViewModel.Named("Use Cases"),
-                this.SourceViewModel.NodesViewModel.First().NodesViewModel.Named("Use Cases").NodesViewModel);
-            observables.Add(new LogicalViewModelNode(this, this.SourceViewModel.NodesViewModel.First<IProductElementViewModel>(), null));
+            LogicalViewModelNode usecasesItem = new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases"),
+                this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases").ChildNodes);
+            observables.Add(new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First<IProductElementViewModel>(), null));
             observables[0].LogicalViewNodes.Add(usecasesItem);
 
             // Add UseCases Node with just the Create New Use Case option
@@ -227,9 +227,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 this.SelectView("Endpoints");
             }
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
-            LogicalViewModelNode endpointsItem = new LogicalViewModelNode(this, this.SourceViewModel.NodesViewModel.First().NodesViewModel.Named("Endpoints"),
-                this.SourceViewModel.NodesViewModel.First().NodesViewModel.Named("Endpoints").NodesViewModel);
-            observables.Add(new LogicalViewModelNode(this, this.SourceViewModel.NodesViewModel.First<IProductElementViewModel>(), null));
+            LogicalViewModelNode endpointsItem = new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints"),
+                this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints").ChildNodes);
+            observables.Add(new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First<IProductElementViewModel>(), null));
             observables[0].LogicalViewNodes.Add(endpointsItem);
 
             // Add Endpoints Node with just the Add->Nodes option
@@ -239,7 +239,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             foreach (var endpoint in endpointsItem.LogicalViewNodes)
             {
                 endpoint.FilterMenuItems("Show Diagram", "Customize Authentication", "Add to Use Case", "Start Use Case");
-                endpoint.MenuOptions.Add(endpoint.InnerViewModel.NodesViewModel.Named("Components").MenuOptions.First(o => o.Caption == "Deploy Component..."));
+                endpoint.MenuOptions.Add(endpoint.InnerViewModel.ChildNodes.Named("Components").MenuOptions.First(o => o.Caption == "Deploy Component..."));
             }
 
             this.LogicalViewNodes = observables;
@@ -299,24 +299,24 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             }
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
 
-            var libraries = this.SourceViewModel.NodesViewModel.First().NodesViewModel.First(n => n.Model.DefinitionName == "Libraries");
-            observables.Add(new LogicalViewModelNode(this, libraries, libraries.NodesViewModel));
+            var libraries = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Libraries");
+            observables.Add(new LogicalViewModelNode(this, libraries, libraries.ChildNodes));
 
-            var services = this.SourceViewModel.NodesViewModel.First().NodesViewModel.First(n => n.Model.DefinitionName == "Services");
+            var services = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
 
             // Add Services Node with just the Add->Service option
-            var servicesNode = new LogicalViewModelNode(this, services, services.NodesViewModel);
+            var servicesNode = new LogicalViewModelNode(this, services, services.ChildNodes);
             servicesNode.FilterMenuItems("Add");
             observables.Add(servicesNode);
 
             foreach (var service in servicesNode.LogicalViewNodes)
             {
                 // Adding menu options for "Add->Commands" and "Add->Events"
-                service.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
-                service.MenuOptions.Add(service.InnerViewModel.NodesViewModel.Named("Libraries").MenuOptions.First(o => o.Caption == "Add"));
+                service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                service.MenuOptions.Add(service.InnerViewModel.ChildNodes.Named("Libraries").MenuOptions.First(o => o.Caption == "Add"));
 
-                foreach (var library in service.InnerViewModel.NodesViewModel
-                    .First(n => n.Model.DefinitionName == "ServiceLibraries").NodesViewModel)
+                foreach (var library in service.InnerViewModel.ChildNodes
+                    .First(n => n.Data.DefinitionName == "ServiceLibraries").ChildNodes)
                 {
                     service.LogicalViewNodes.Add(new LogicalViewModelNode(this, library, null));
                 }
@@ -333,22 +333,22 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             }
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
 
-            var services = this.SourceViewModel.NodesViewModel.First().NodesViewModel.First(n => n.Model.DefinitionName == "Services");
+            var services = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
 
             // Add Services Node with just the Add->Service option
-            var servicesNode = new LogicalViewModelNode(this, services, services.NodesViewModel);
+            var servicesNode = new LogicalViewModelNode(this, services, services.ChildNodes);
             servicesNode.FilterMenuItems("Add");
             observables.Add(servicesNode);
 
             foreach (var service in observables[0].LogicalViewNodes)
             {
                 // Add menu option "Add -> Component" from first child
-                service.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
-                service.MenuOptions.Add( new MenuOptionViewModel("Add",
-                    new List<MenuOptionViewModel>{ 
-                        service.InnerViewModel.NodesViewModel.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
+                service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                service.MenuOptions.Add(new TempMenuOptionViewModel("Add",
+                    new List<IMenuOptionViewModel>{ 
+                        service.InnerViewModel.ChildNodes.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
                     }));
-                foreach (var component in service.InnerViewModel.NodesViewModel.Named("Components").NodesViewModel)
+                foreach (var component in service.InnerViewModel.ChildNodes.Named("Components").ChildNodes)
                 {
                     service.LogicalViewNodes.Add(new LogicalViewModelNode(this, component, null));
                 }
@@ -365,30 +365,30 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             }
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
 
-            var services = this.SourceViewModel.NodesViewModel.First().NodesViewModel.First(n => n.Model.DefinitionName == "Services");
+            var services = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
 
             // Add Services Node with just the Add->Service option
-            var servicesNode = new LogicalViewModelNode(this, services, services.NodesViewModel);
+            var servicesNode = new LogicalViewModelNode(this, services, services.ChildNodes);
             servicesNode.FilterMenuItems("Add");
             observables.Add(servicesNode);
 
             foreach (var service in observables[0].LogicalViewNodes)
             {
                 // Adding menu options for "Add->Commands" and "Add->Events"
-                service.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
+                service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
 
-                service.MenuOptions.Add(new MenuOptionViewModel("Add",
-                    new List<MenuOptionViewModel>{ 
-                        service.InnerViewModel.NodesViewModel.Named("Contract").NodesViewModel.Named("Commands").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First(),
-                        service.InnerViewModel.NodesViewModel.Named("Contract").NodesViewModel.Named("Events").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
+                service.MenuOptions.Add(new TempMenuOptionViewModel("Add",
+                    new List<IMenuOptionViewModel>{ 
+                        service.InnerViewModel.ChildNodes.Named("Contract").ChildNodes.Named("Commands").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First(),
+                        service.InnerViewModel.ChildNodes.Named("Contract").ChildNodes.Named("Events").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
                     }));
 
-                foreach (var component in service.InnerViewModel.NodesViewModel
-                    .First(n => n.Model.DefinitionName == "Contract").NodesViewModel
-                    .First(n => n.Model.DefinitionName == "Commands").NodesViewModel
-                    .Union(service.InnerViewModel.NodesViewModel
-                    .First(n => n.Model.DefinitionName == "Contract").NodesViewModel
-                    .First(n => n.Model.DefinitionName == "Events").NodesViewModel))
+                foreach (var component in service.InnerViewModel.ChildNodes
+                    .First(n => n.Data.DefinitionName == "Contract").ChildNodes
+                    .First(n => n.Data.DefinitionName == "Commands").ChildNodes
+                    .Union(service.InnerViewModel.ChildNodes
+                    .First(n => n.Data.DefinitionName == "Contract").ChildNodes
+                    .First(n => n.Data.DefinitionName == "Events").ChildNodes))
                 {
                     service.LogicalViewNodes.Add(new LogicalViewModelNode(this, component, null));
                 }
@@ -413,11 +413,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             IProductElement target = item.Product;
             string label = item.Text;
-            IProductElementViewModel model = this.SearchInNodes(this.SourceViewModel.NodesViewModel, target);
+            IProductElementViewModel model = this.SearchInNodes(this.SourceViewModel.TopLevelNodes, target);
             if (model == null)
             {
-                var element = this.SourceViewModel.NodesViewModel[0].Model.As<IApplication>().Design.DummyCollection.As<IAbstractElement>();
-                var ctx = this.SourceViewModel.NodesViewModel[0].ContextViewModel;
+                var element = this.SourceViewModel.TopLevelNodes[0].Data.As<IApplication>().Design.DummyCollection.As<IAbstractElement>();
+                var ctx = this.SourceViewModel.TopLevelNodes[0].Context;
                 LabelElementViewModel model2 = new LabelElementViewModel(element, ctx)
                 {
                     Label = label
@@ -426,10 +426,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             }
             else if (item is InnerPanelTitle && (item as InnerPanelTitle).ForceText)
             {
-                var ctx = this.SourceViewModel.NodesViewModel[0].ContextViewModel;
-                if (model.Model is IAbstractElement)
+                var ctx = this.SourceViewModel.TopLevelNodes[0].Context;
+                if (model.Data is IAbstractElement)
                 {
-                    LabelElementViewModel model2 = new LabelElementViewModel(model.Model.As<IAbstractElement>(), ctx)
+                    LabelElementViewModel model2 = new LabelElementViewModel(model.Data.As<IAbstractElement>(), ctx)
                     {
                         Label = item.Text
                     };
@@ -459,11 +459,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             foreach (IProductElementViewModel model in observableCollection)
             {
-                if (model.Model == target)
+                if (model.Data == target)
                 {
                     return model;
                 }
-                IProductElementViewModel model2 = this.SearchInNodes(model.NodesViewModel, target);
+                IProductElementViewModel model2 = this.SearchInNodes(model.ChildNodes, target);
                 if (model2 != null)
                 {
                     return model2;
@@ -482,7 +482,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 {
                     if (this.LogicalViewNodes != null)
                     {
-                        this.CurrentNode = this.FindLogicalNode(this.LogicalViewNodes, n => n.InnerViewModel == this.SourceViewModel.CurrentNodeViewModel);
+                        this.CurrentNode = this.FindLogicalNode(this.LogicalViewNodes, n => n.InnerViewModel == this.SourceViewModel.CurrentElement);
                         this.OnCurrentNodeChanged();
                     }
                 };
@@ -605,9 +605,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
             }
 
-            private ObservableCollection<MenuOptionViewModel> overridableMenuOptions;
+            private ObservableCollection<IMenuOptionViewModel> overridableMenuOptions;
 
-            public ObservableCollection<MenuOptionViewModel> MenuOptions
+            public ObservableCollection<IMenuOptionViewModel> MenuOptions
             {
                 get
                 {
@@ -673,7 +673,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 {
                     sourceMenuOptions = this.MenuOptions;
                 }
-                this.MenuOptions = new ObservableCollection<MenuOptionViewModel>();
+                this.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
                 foreach (var menuOption in sourceMenuOptions.Where(o => captions.Contains(o.Caption)))
                 {
                     this.MenuOptions.Add(menuOption);
@@ -682,7 +682,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
             internal void RemoveDeleteMenuItem()
             {
-                this.MenuOptions = new ObservableCollection<MenuOptionViewModel>(this.MenuOptions.Where(o => o.Caption != "Delete"));
+                this.MenuOptions = new ObservableCollection<IMenuOptionViewModel>(this.MenuOptions.Where(o => o.Caption != "Delete"));
             }
 
             // Properties
@@ -759,7 +759,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
     {
         public static IProductElementViewModel Named(this ObservableCollection<IProductElementViewModel> items, string name)
         {
-            return items.First(n => n.Model.InstanceName == name);
+            return items.First(n => n.Data.InstanceName == name);
         }
     }
 }

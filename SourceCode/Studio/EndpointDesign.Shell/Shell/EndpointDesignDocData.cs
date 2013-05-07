@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
-using NuPattern.Runtime;
 using Microsoft.VisualStudio.Modeling;
 using System.IO;
 using Microsoft.VisualStudio.Modeling.Diagrams;
 using AbstractEndpoint;
 using NuPattern;
+using NuPattern.Runtime;
 using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBus.Modeling.EndpointDesign

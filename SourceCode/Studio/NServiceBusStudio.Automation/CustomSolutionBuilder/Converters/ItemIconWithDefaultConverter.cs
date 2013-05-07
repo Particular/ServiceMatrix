@@ -17,7 +17,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
             var model = value as IProductElementViewModel;
             if (model != null)
             {
-                var element = model.Model.Info;
+                var element = model.Data.Info;
                 if (element != null)
                 {
                     if (!string.IsNullOrEmpty(element.Icon))
