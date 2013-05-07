@@ -177,7 +177,6 @@
     <Compile Include="CustomSolutionBuilder\ViewModels\InnerPanelViewModel.cs" />
     <Compile Include="CustomSolutionBuilder\ViewModels\LabelProductElementViewModel.cs" />
     <Compile Include="CustomSolutionBuilder\ViewModels\LogicalViewModel.cs" />
-    <Compile Include="CustomSolutionBuilder\ViewModels\TempMenuOptionViewModel.cs" />
     <Compile Include="CustomSolutionBuilder\Views\ApplicationPropertiesView.xaml.cs">
       <DependentUpon>ApplicationPropertiesView.xaml</DependentUpon>
     </Compile>

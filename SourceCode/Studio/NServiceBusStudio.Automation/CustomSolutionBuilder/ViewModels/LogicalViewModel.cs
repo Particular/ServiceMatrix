@@ -334,7 +334,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
 
             var services = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
-
+            
             // Add Services Node with just the Add->Service option
             var servicesNode = new LogicalViewModelNode(this, services, services.ChildNodes);
             servicesNode.FilterMenuItems("Add");
@@ -344,9 +344,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 // Add menu option "Add -> Component" from first child
                 service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
-                service.MenuOptions.Add(new TempMenuOptionViewModel("Add",
-                    new List<IMenuOptionViewModel>{ 
-                        service.InnerViewModel.ChildNodes.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
+                service.MenuOptions.Add(new MenuOptionViewModel("Add",
+                    new List<MenuOptionViewModel>{ 
+                        service.InnerViewModel.ChildNodes.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First() as MenuOptionViewModel
                     }));
                 foreach (var component in service.InnerViewModel.ChildNodes.Named("Components").ChildNodes)
                 {
@@ -377,10 +377,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 // Adding menu options for "Add->Commands" and "Add->Events"
                 service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
 
-                service.MenuOptions.Add(new TempMenuOptionViewModel("Add",
-                    new List<IMenuOptionViewModel>{ 
-                        service.InnerViewModel.ChildNodes.Named("Contract").ChildNodes.Named("Commands").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First(),
-                        service.InnerViewModel.ChildNodes.Named("Contract").ChildNodes.Named("Events").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First()
+                service.MenuOptions.Add(new MenuOptionViewModel("Add",
+                    new List<MenuOptionViewModel>{ 
+                        service.InnerViewModel.ChildNodes.Named("Contract").ChildNodes.Named("Commands").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First() as MenuOptionViewModel,
+                        service.InnerViewModel.ChildNodes.Named("Contract").ChildNodes.Named("Events").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First() as MenuOptionViewModel
                     }));
 
                 foreach (var component in service.InnerViewModel.ChildNodes
