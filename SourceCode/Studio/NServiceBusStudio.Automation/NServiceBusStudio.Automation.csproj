@@ -205,7 +205,6 @@
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
-    <Compile Include="GeneratedCode\ToolkitElement.Generated.Backup.cs" />
     <Compile Include="Licensing\TrialExpired.xaml.cs">
       <DependentUpon>TrialExpired.xaml</DependentUpon>
     </Compile>
