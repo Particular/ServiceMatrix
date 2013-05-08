@@ -32,7 +32,13 @@ namespace <#= endpoint.Namespace #>
 	else if (endpoint.EndpointComponents.AbstractComponentLinks.Any(il => il.ComponentReference.Value.Subscribes.ProcessedCommandLinks.Any() || il.ComponentReference.Value.Subscribes.SubscribedEventLinks.Any()))
 	{
 		//MessageProcessor
-		#>, AsA_Server<#	}#><#
+		#>, AsA_Server<#
+	} 
+	else
+	{
+		#>, AsA_Client<#
+	}
+	#><#
 	if (endpoint.ComponentsOrderDefinition != string.Empty)
 	{
 	#>, ISpecifyMessageHandlerOrdering<#
