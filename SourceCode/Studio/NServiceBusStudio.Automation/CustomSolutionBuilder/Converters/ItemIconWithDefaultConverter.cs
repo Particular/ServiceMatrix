@@ -1,6 +1,7 @@
 ﻿using NuPattern.Runtime.UI.ViewModels;
 using System;
 using System.Windows.Data;
+using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
 {
@@ -9,27 +10,38 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
     /// </summary>
     public class ItemIconWithDefaultConverter : IValueConverter
     {
+        const string defaultIconPath = "pack://application:,,,/NuPattern.Runtime.Core;component/Resources/NodeCollection.png";
+
         /// <summary>
         /// Converts a value.
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var model = value as IProductElementViewModel;
+            var model = value as LogicalViewModel.LogicalViewModelNode;
+            var iconPath = default(string);
+
             if (model != null)
             {
-                var element = model.Data.Info;
-                if (element != null)
+                if (model.InnerViewModel.Data != null &&
+                    model.InnerViewModel.Data.Info != null &&
+                    !string.IsNullOrEmpty(model.InnerViewModel.Data.Info.Icon))
                 {
-                    if (!string.IsNullOrEmpty(element.Icon))
-                    {
-                        return element.Icon;
-                    }
+                    iconPath = model.InnerViewModel.Data.Info.Icon;
                 }
-
-                return model.IconPath;
+                else 
+                {
+                    iconPath = model.IconPath;
+                }
             }
 
-            return null;
+            if (iconPath != null)
+            {
+                // Replacing path for NuPattern Icon resources
+                iconPath = iconPath.Replace("../../Resources/", "pack://application:,,,/NuPattern.Runtime.Core;component/Resources/");
+            }
+
+
+            return iconPath ?? defaultIconPath;
         }
 
         /// <summary>
