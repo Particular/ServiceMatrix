@@ -115,7 +115,7 @@ namespace NServiceBusStudio
         private void SetDomainSpecifiLogging()
         {
             this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
-            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.Info("{0} deleted with name: {1}", DateTime.Now.ToString(), e.Value.DefinitionName, e.Value.InstanceName); } };
+            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
         }
 
         private void SetPropagationHandlers()

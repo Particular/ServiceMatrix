@@ -10,6 +10,7 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using NuPattern;
+using NuPattern.Diagnostics;
 using NuPattern.Runtime;
 using NuPattern.VisualStudio;
 using NuPattern.Runtime.Diagnostics;
@@ -43,8 +44,15 @@ namespace NServiceBusStudio
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
-            this.TraceOutputWindowManager.CreateTracePane (new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", new [] { StatisticsManager.StatisticsListenerNamespace });
             Trace.AutoFlush = true;
+
+            var traceManager = Tracer.Manager as TracerManager;
+            if (traceManager != null)
+            {
+                traceManager.SetTracingLevel(StatisticsManager.StatisticsListenerNamespace, SourceLevels.All);
+            }
+
+            this.TraceOutputWindowManager.CreateTracePane (new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", new [] { StatisticsManager.StatisticsListenerNamespace });
         }
 
         private void AddServices()
