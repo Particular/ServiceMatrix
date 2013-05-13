@@ -48,8 +48,8 @@ namespace NServiceBusStudio
         {
             if (!this.AsElement().IsSerializing)
             {
-                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 4");
-                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 4");
+                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 4\" + VSVersion);
+                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 4\" + VSVersion);
 
                 if (!Directory.Exists(programFiles) &&
                     !Directory.Exists(programFilesX86))
