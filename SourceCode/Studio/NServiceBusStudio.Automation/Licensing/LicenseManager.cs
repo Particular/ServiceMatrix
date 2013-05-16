@@ -239,7 +239,8 @@ namespace NServiceBusStudio.Automation.Licensing
 
                         if ((trialStartDateString = (string)registryKey.GetValue("TrialStart", null)) == null)
                         {
-                            trialStartDateString = DateTime.UtcNow.ToString("yyyy-MM-dd");
+                            trialStartDate = DateTime.UtcNow;
+                            trialStartDateString = trialStartDate.ToString("yyyy-MM-dd");
                             registryKey.SetValue("TrialStart", trialStartDateString, RegistryValueKind.String);
 
                             tracer.Info("First time running NServiceBusStudio v{0}, setting trial license start.",
