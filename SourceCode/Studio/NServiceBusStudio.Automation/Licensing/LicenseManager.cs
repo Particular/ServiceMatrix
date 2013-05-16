@@ -223,6 +223,8 @@ namespace NServiceBusStudio.Automation.Licensing
                 try
                 {
                     string trialStartDateString;
+                    DateTime trialStartDate = default(DateTime);
+
                     using (var registryKey = Registry.CurrentUser.CreateSubKey(String.Format(@"SOFTWARE\ParticularSoftware\Studio\{0}", SoftwareVersion.ToString(2))))
                     {
                         if (registryKey == null)
@@ -240,14 +242,22 @@ namespace NServiceBusStudio.Automation.Licensing
                             trialStartDateString = DateTime.UtcNow.ToString("yyyy-MM-dd");
                             registryKey.SetValue("TrialStart", trialStartDateString, RegistryValueKind.String);
 
-                            tracer.Info("First time running NServiceBus v{0}, setting trial license start.",
+                            tracer.Info("First time running NServiceBusStudio v{0}, setting trial license start.",
+                                               SoftwareVersion.ToString(2));
+                        }
+                        else if (!DateTime.TryParseExact(trialStartDateString, "yyyy-MM-dd",
+                                                   CultureInfo.InvariantCulture,
+                                                   DateTimeStyles.AssumeUniversal,
+                                                   out trialStartDate))
+                        {
+                            trialStartDate = DateTime.UtcNow;
+                            trialStartDateString = trialStartDate.ToString("yyyy-MM-dd");
+                            registryKey.SetValue("TrialStart", trialStartDateString, RegistryValueKind.String);
+
+                            tracer.Info("Wrong Trial Start date for NServiceBusStudio v{0}, setting trial license start to today.",
                                                SoftwareVersion.ToString(2));
                         }
                     }
-
-                    var trialStartDate = DateTime.ParseExact(trialStartDateString, "yyyy-MM-dd",
-                                                             CultureInfo.InvariantCulture,
-                                                             DateTimeStyles.AssumeUniversal);
 
                     trialExpirationDate = trialStartDate.Date.AddDays(TRIAL_DAYS);
                 }

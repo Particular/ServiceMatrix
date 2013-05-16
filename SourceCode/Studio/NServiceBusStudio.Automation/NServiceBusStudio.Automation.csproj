@@ -230,11 +230,7 @@
     <Compile Include="Model\Endpoints\NServiceBusHost.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponents.cs" />
     <Compile Include="Model\Endpoints\NServiceBusMVC.cs" />
-    <Compile Include="Model\Endpoints\NServiceBusMVC.VSVersion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>NServiceBusMVC.VSVersion.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Model\Endpoints\NServiceBusMVC.VS$(VsxVersion).cs" />
     <Compile Include="Model\Endpoints\NServiceBusMVCComponentLink.cs" />
     <Compile Include="Model\Endpoints\NServiceBusMVCComponents.cs" />
     <Compile Include="Model\Endpoints\NServiceBusWeb.cs" />
@@ -435,10 +431,6 @@
     <None Include="CustomSolutionBuilder\Views\VsVersionStyles.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VsVersionStyles.gen.xaml</LastGenOutput>
-    </None>
-    <None Include="Model\Endpoints\NServiceBusMVC.VSVersion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>NServiceBusMVC.VSVersion.cs</LastGenOutput>
     </None>
     <None Include="NServiceBus.Tools.snk" />
     <None Include="packages.config" />
