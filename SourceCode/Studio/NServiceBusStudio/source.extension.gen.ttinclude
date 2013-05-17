@@ -38,7 +38,7 @@
 	//------------------------------------------------------------------------------
 	public const string managerVsixIdentifier = @"93373818-600f-414b-8181-3a0cb79fa785";
 	public const string managerVsixName = @"NuPattern Toolkit Manager";
-	public const string managerVsixVersion = @"1.3.20.0";
+	public const string managerVsixVersion = @"1.3.21.0";
 	public const string managerVsixFileName = @"NuPatternToolkitManager.vsix";
 
 	public bool HasValue(string value)

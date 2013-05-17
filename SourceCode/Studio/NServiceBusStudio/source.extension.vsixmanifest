@@ -24,7 +24,7 @@
 		  <Name>NServiceBus Modeling</Name>
 		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.11.0.vsix</VsixPath>
 		</Reference>
-		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.3.20.0">
+		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.3.21.0">
 		  <Name>NuPattern Toolkit Manager</Name>
 			<VsixPath>NuPatternToolkitManager.vsix</VsixPath>
 		</Reference>

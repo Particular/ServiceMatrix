@@ -24,7 +24,7 @@ namespace NServiceBusStudio.Guidance
 	/// </summary>
 	[CLSCompliant(false)]
 	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Builder", "1.3.20.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Builder", "1.3.21.0")]
 	public partial class ProcessWorkflow : GuidanceWorkflow
 	{
         /// <summary>
@@ -65,7 +65,7 @@ namespace NServiceBusStudio.Guidance
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	[CLSCompliant(false)]
 	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Builder", "1.3.20.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Builder", "1.3.21.0")]
     public partial class Feature : BlackboardGuidanceExtension<ProcessWorkflow>
 	{
 		/// <summary>
