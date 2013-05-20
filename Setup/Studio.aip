@@ -37,11 +37,11 @@
     <ROW Component="INSTALL_VS2010" ComponentId="{7DE967FA-4958-415D-BC64-1D924D263DF8}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2010" Options="1"/>
     <ROW Component="INSTALL_VS2012" ComponentId="{F7893637-C839-4BCA-8978-666A007F4BC5}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2012" Options="1"/>
     <ROW Component="NServiceBusStudio.vsix" ComponentId="{56D62F04-8663-4B1F-84D2-CABC8B87DCDB}" Directory_="APPDIR" Attributes="0" KeyPath="NServiceBusStudio.11.0.vsix" Type="0"/>
-    <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="4" KeyPath="ParticularSoftware"/>
+    <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="260" KeyPath="ParticularSoftware"/>
     <ROW Component="ProductInformation" ComponentId="{C58FA273-5A2E-4DE3-92A3-A072DD38D830}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="4" KeyPath="TrialStart"/>
-    <ROW Component="UploadEndpointURL" ComponentId="{8BA837FF-83BE-4378-A155-CA29A53F8E35}" Directory_="APPDIR" Attributes="4" KeyPath="UploadEndpointURL"/>
-    <ROW Component="UsageDataCollectionApproved" ComponentId="{337559D4-5483-440E-A987-E28EEEDFA885}" Directory_="APPDIR" Attributes="4" KeyPath="UsageDataCollectionApproved"/>
+    <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="260" KeyPath="TrialStart"/>
+    <ROW Component="UploadEndpointURL" ComponentId="{8BA837FF-83BE-4378-A155-CA29A53F8E35}" Directory_="APPDIR" Attributes="260" KeyPath="UploadEndpointURL"/>
+    <ROW Component="UsageDataCollectionApproved" ComponentId="{337559D4-5483-440E-A987-E28EEEDFA885}" Directory_="APPDIR" Attributes="260" KeyPath="UsageDataCollectionApproved"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName AI_ExePath INSTALL_VS2010 INSTALL_VS2012 NServiceBusStudio.vsix ParticularSoftware ProductInformation TrialStart UploadEndpointURL UsageDataCollectionApproved"/>
