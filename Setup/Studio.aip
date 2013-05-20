@@ -37,15 +37,15 @@
     <ROW Component="INSTALL_VS2010" ComponentId="{7DE967FA-4958-415D-BC64-1D924D263DF8}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2010" Options="1"/>
     <ROW Component="INSTALL_VS2012" ComponentId="{F7893637-C839-4BCA-8978-666A007F4BC5}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2012" Options="1"/>
     <ROW Component="NServiceBusStudio.vsix" ComponentId="{56D62F04-8663-4B1F-84D2-CABC8B87DCDB}" Directory_="APPDIR" Attributes="0" KeyPath="NServiceBusStudio.11.0.vsix" Type="0"/>
-    <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="4" KeyPath="ParticularSoftware"/>
+    <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="260" KeyPath="ParticularSoftware"/>
     <ROW Component="ProductInformation" ComponentId="{C58FA273-5A2E-4DE3-92A3-A072DD38D830}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="4" KeyPath="TrialStart"/>
-    <ROW Component="UploadEndpointURL" ComponentId="{8BA837FF-83BE-4378-A155-CA29A53F8E35}" Directory_="APPDIR" Attributes="4" KeyPath="UploadEndpointURL"/>
-    <ROW Component="UsageDataCollectionApproved" ComponentId="{337559D4-5483-440E-A987-E28EEEDFA885}" Directory_="APPDIR" Attributes="4" KeyPath="UsageDataCollectionApproved"/>
+    <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="260" KeyPath="TrialStart"/>
+    <ROW Component="UploadEndpointURL" ComponentId="{8BA837FF-83BE-4378-A155-CA29A53F8E35}" Directory_="APPDIR" Attributes="260" KeyPath="UploadEndpointURL"/>
+    <ROW Component="UsageDataCollectionApproved" ComponentId="{337559D4-5483-440E-A987-E28EEEDFA885}" Directory_="APPDIR" Attributes="260" KeyPath="UsageDataCollectionApproved"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="3" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName AI_ExePath INSTALL_VS2010 INSTALL_VS2012 NServiceBusStudio.vsix ParticularSoftware ProductInformation TrialStart UploadEndpointURL UsageDataCollectionApproved"/>
-    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+    <ROW Feature="Studio" Title="Studio" Display="3" Level="1" Directory_="APPDIR" Attributes="16" Components="AI_CustomARPName AI_ExePath INSTALL_VS2010 INSTALL_VS2012 NServiceBusStudio.vsix ParticularSoftware ProductInformation TrialStart UploadEndpointURL UsageDataCollectionApproved"/>
+    <ATTRIBUTE name="CurrentFeature" value="Studio"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="NServiceBusStudio.10.0.vsix" Component_="NServiceBusStudio.vsix" FileName="NServi~3.vsi|NServiceBusStudio.10.0.vsix" Attributes="0" SourcePath="Files\NServiceBusStudio.10.0.vsix" SelfReg="false"/>
@@ -124,6 +124,8 @@
     <ROW Dialog_="AdminWelcomeDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="13" Width="264" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="600"/>
     <ROW Dialog_="BrowseDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="13" Width="264" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1200"/>
     <ROW Dialog_="CustomizeDlg" Control="CustomizeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
+    <ROW Dialog_="CustomizeDlg" Control="QuickSelectionTree" Type="QuickSelectionTree" X="17" Y="150" Width="310" Height="93" Attributes="3" Property="CUSTOMIZEDLGQUICKSELECTIONTREE_1_PROP" Text="Control.Text.CustomizeDlg#QuickSelectionTree" Order="300" TextLocId="Control.Text.CustomizeDlg#QuickSelectionTree" MsiKey="CustomizeDlg#QuickSelectionTree" ExtType="QuickSelectionTree"/>
+    <ROW Dialog_="CustomizeDlg" Control="SubTitle" Type="Text" X="17" Y="106" Width="310" Height="31" Attributes="65539" Text="Select which components of [ProductName] will be installed" Order="500" TextLocId="Azure.Control.Text.CustomizeDlg#Text" MsiKey="CustomizeDlg#SubTitle"/>
     <ROW Dialog_="CustomizeDlg" Control="AdvInst" Type="Text" X="5" Y="388" Width="74" Height="11" Attributes="65539" Text="Advanced Installer" TextStyle="[BrandingStyle]" Order="1200" MsiKey="CustomizeDlg#AdvInst"/>
     <ROW Dialog_="CustomizeDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="13" Width="264" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1300"/>
     <ROW Dialog_="DiskCostDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="13" Width="264" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="600"/>
@@ -329,8 +331,8 @@
     <ROW Action="CollectTroubleshootInfo" Condition="( NOT Installed ) AND ( TB_INFO )" Sequence="203"/>
     <ROW Action="VSIX_INSTALLER_2012" Condition="VS11_INSTALL_FOLDER" Sequence="202"/>
     <ROW Action="VSIX_INSTALLER_2010" Condition="VS10_INSTALL_FOLDER" Sequence="201"/>
-    <ROW Action="InstallVSIX_2010" Condition="( NOT Installed ) AND ( VS10_INSTALL_FOLDER AND INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="6401"/>
-    <ROW Action="InstallVSIX_2012" Condition="( NOT Installed ) AND ( VS12_INSTALL_FOLDER AND INSTALL_VS_2012 AND VSIX_INSTALLER )" Sequence="6402"/>
+    <ROW Action="InstallVSIX_2010" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VS10_INSTALL_FOLDER AND INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="6401"/>
+    <ROW Action="InstallVSIX_2012" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VS12_INSTALL_FOLDER AND INSTALL_VS_2012 AND VSIX_INSTALLER )" Sequence="6402"/>
     <ROW Action="Uninstall_VSIX_2010" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="1601"/>
     <ROW Action="Uninstall_VSIX_2012" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( VS11_INSTALL_FOLDER AND VSIX_INSTALLER )" Sequence="1602"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
@@ -407,6 +409,6 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
-    <ROW Directory_="APPDIR" SourcePath="Files" Feature="MainFeature" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+    <ROW Directory_="APPDIR" SourcePath="Files" Feature="Studio" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
   </COMPONENT>
 </DOCUMENT>
