@@ -44,7 +44,7 @@
 
         case "VSVER11":
             targetVsVersion = "11.0";
-			targetFrxMaxVersion = "4.5";
+			      targetFrxMaxVersion = "4.5";
             break;
 
         default:
