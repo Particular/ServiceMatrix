@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
-  <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bca">
+  <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
 	  <Name>NServiceBus Studio</Name>
 	  <Author>NServiceBus</Author>
 	  <Version>4.0.0</Version>

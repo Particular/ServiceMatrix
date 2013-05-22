@@ -4,11 +4,7 @@
 <#@ Include File="..\source.version.t4" #>
 <?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
-<# if (VersionInfo.TargetVsVersion == "10.0") { #>
-  <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
-<# } else { #>
-  <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bca">
-<# } #>
+  <Identifier Id="<#= identifier #>">
 	  <Name><#= toolkitName #></Name>
 	  <Author><#= author #></Author>
 	  <Version><#= globalversion #></Version>
