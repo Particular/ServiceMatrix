@@ -14,7 +14,9 @@
     <ROW Property="ARPNOREPAIR" Value="1"/>
     <ROW Property="ARPPRODUCTICON" Value="Particular_Studio_all.exe" Type="8"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
+    <ROW Property="AiStyleConditions" Value="|DefaultUIFont;AI_ThemeStyle=&quot;default&quot;:DlgFont8;AI_ThemeStyle=&quot;metrored&quot;:DefaultTextWhite;AI_ThemeStyle=&quot;metrowhite&quot;:DefaultTextBlack|HyperlinkFont;AI_ThemeStyle=&quot;default&quot;:{\MetroLink};AI_ThemeStyle=&quot;metrored&quot;:{\MetroLinkLightRed};AI_ThemeStyle=&quot;metrowhite&quot;:{\MetroLink};|MetroButtonText;AI_ThemeStyle=&quot;default&quot;:{\ImageButton};AI_ThemeStyle=&quot;metrored&quot;:{\MetroButtonTextWhite};AI_ThemeStyle=&quot;metrowhite&quot;:{\MetroButtonTextBlack};|InputCtrlFont;AI_ThemeStyle=&quot;default&quot;:{\InputCtrlFontGray};AI_ThemeStyle=&quot;metrored&quot;:{\InputCtrlFont};AI_ThemeStyle=&quot;metrowhite&quot;:{\InputCtrlFontBlack};|BrandingStyle;AI_ThemeStyle=&quot;default&quot;:{\BrandingStyleGray};AI_ThemeStyle=&quot;metrored&quot;:{\BrandingStyle};AI_ThemeStyle=&quot;metrowhite&quot;:{\BrandingStyleLightGray};|SubTitleStyle;AI_ThemeStyle=&quot;default&quot;:{\SubTitle};AI_ThemeStyle=&quot;metrored&quot;:{\SubTitleWhite};AI_ThemeStyle=&quot;metrowhite&quot;:{\SubTitleBlack};|SubnoteFontStyle;AI_ThemeStyle=&quot;default&quot;:{\SubnoteFont};AI_ThemeStyle=&quot;metrored&quot;:{\SubnoteFontWhite};AI_ThemeStyle=&quot;metrowhite&quot;:{\SubnoteFontGray};|ProductNameForSplash;AI_ThemeStyle=&quot;default&quot;:{\ProductNameForSplash};AI_ThemeStyle=&quot;metrored&quot;:{\ProductNameForSplash};AI_ThemeStyle=&quot;metrowhite&quot;:{\ProductNameForSplashDark};|ManufacturerFont;AI_ThemeStyle=&quot;default&quot;:{\Manufacturer};AI_ThemeStyle=&quot;metrored&quot;:{\Manufacturer};AI_ThemeStyle=&quot;metrowhite&quot;:{\ManufacturerGreen};|MetroInstallButtonFont;AI_ThemeStyle=&quot;default&quot;:{\MetroInstallButton};AI_ThemeStyle=&quot;metrored&quot;:{\MetroInstallButton};AI_ThemeStyle=&quot;metrowhite&quot;:{\MetroInstallButtonGreen};|DEF_FONT;AI_ThemeStyle=&quot;default&quot;:{\DlgFont8};AI_ThemeStyle=&quot;metrored&quot;:{\DefaultTextWhite};AI_ThemeStyle=&quot;metrowhite&quot;:{\DefaultTextBlack}" MsiKey="AiStyleConditions"/>
     <ROW Property="AppLogoIcon" Value="applogoicon" MultiBuildValue="DefaultBuild:Particular_Studio_White.png" Type="1" MsiKey="AppLogoIcon"/>
+    <ROW Property="DEF_FONT" Value="DlgFont8" Type="2"/>
     <ROW Property="INSTALL_VS_2010" Value="1"/>
     <ROW Property="INSTALL_VS_2012" Value="1"/>
     <ROW Property="Manufacturer" Value="Particular Software Ltd."/>
@@ -23,6 +25,7 @@
     <ROW Property="ProductName" Value="Particular Software NServiceBus Studio 4.0.0"/>
     <ROW Property="ProductVersion" Value="4.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
+    <ROW Property="TRB_INFO_REG_VALUE" Value="0"/>
     <ROW Property="UpgradeCode" Value="{6CCE4E4A-DABC-4A26-9928-1767F8CB0FBE}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
     <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -30,13 +33,13 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="TempFolder" Directory_Parent="TARGETDIR" DefaultDir="TempFo~1|TempFolder" IsPseudoRoot="1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_CustomARPName" ComponentId="{ED484AE3-C508-4860-948D-0088E30435C0}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{88788F8E-0D61-44AA-B450-412AF46CF53B}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="INSTALL_VS2010" ComponentId="{7DE967FA-4958-415D-BC64-1D924D263DF8}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2010" Options="1"/>
     <ROW Component="INSTALL_VS2012" ComponentId="{F7893637-C839-4BCA-8978-666A007F4BC5}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2012" Options="1"/>
-    <ROW Component="NServiceBusStudio.vsix" ComponentId="{56D62F04-8663-4B1F-84D2-CABC8B87DCDB}" Directory_="APPDIR" Attributes="0" KeyPath="NServiceBusStudio.11.0.vsix" Type="0"/>
     <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="260" KeyPath="ParticularSoftware"/>
     <ROW Component="ProductInformation" ComponentId="{C58FA273-5A2E-4DE3-92A3-A072DD38D830}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="260" KeyPath="TrialStart"/>
@@ -44,12 +47,8 @@
     <ROW Component="UsageDataCollectionApproved" ComponentId="{337559D4-5483-440E-A987-E28EEEDFA885}" Directory_="APPDIR" Attributes="260" KeyPath="UsageDataCollectionApproved"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="Studio" Title="Studio" Display="3" Level="1" Directory_="APPDIR" Attributes="16" Components="AI_CustomARPName AI_ExePath INSTALL_VS2010 INSTALL_VS2012 NServiceBusStudio.vsix ParticularSoftware ProductInformation TrialStart UploadEndpointURL UsageDataCollectionApproved"/>
+    <ROW Feature="Studio" Title="Studio" Display="3" Level="1" Directory_="APPDIR" Attributes="16" Components="AI_CustomARPName AI_ExePath INSTALL_VS2010 INSTALL_VS2012 ParticularSoftware ProductInformation TrialStart UploadEndpointURL UsageDataCollectionApproved"/>
     <ATTRIBUTE name="CurrentFeature" value="Studio"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="NServiceBusStudio.10.0.vsix" Component_="NServiceBusStudio.vsix" FileName="NServi~3.vsi|NServiceBusStudio.10.0.vsix" Attributes="0" SourcePath="Files\NServiceBusStudio.10.0.vsix" SelfReg="false"/>
-    <ROW File="NServiceBusStudio.11.0.vsix" Component_="NServiceBusStudio.vsix" FileName="NServi~2.vsi|NServiceBusStudio.11.0.vsix" Attributes="0" SourcePath="Files\NServiceBusStudio.11.0.vsix" SelfReg="false" NextFile="NServiceBusStudio.10.0.vsix"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiPersistentPropComponent">
     <ROW Property="INSTALL_VS_2010" Registry="INSTALL_VS2010" HklmSearch="INSTALL_VS2010" HkcuSearch="INSTALL_VS2010_1"/>
@@ -102,6 +101,7 @@
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
     <ROW Name="checkbox.png_1" SourcePath="res\checkbox.png"/>
     <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
+    <ROW Name="tempFiles.dll" SourcePath="&lt;AI_CUSTACTS&gt;tempFiles.dll"/>
     <ROW Name="viewer.exe" SourcePath="&lt;AI_CUSTACTS&gt;viewer.exe"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCheckBoxComponent">
@@ -147,7 +147,7 @@
     <ROW Dialog_="InstallDlg" Control="ProductLogo" Type="Bitmap" X="17" Y="13" Width="264" Height="63" Attributes="1" Text="[AppLogoIcon]" Order="1200"/>
     <ROW Dialog_="InstallDlg" Control="ImageCheckBox_1" Type="ImageCheckBox" X="17" Y="151" Width="290" Height="15" Attributes="3" Property="TB_INFO" Text="checkbox.png_1" Order="1300" ExtType="ImageCheckBox" ExtData="Automatically send troubleshooting information"/>
     <ROW Dialog_="InstallDlg" Control="ImageCheckBox_2" Type="ImageCheckBox" X="17" Y="227" Width="290" Height="13" Attributes="3" Property="INSTALL_VS_2010" Text="checkbox.png_1" Order="1400" ExtType="ImageCheckBox" ExtData="Install Visual Studio 2010 Extension"/>
-    <ROW Dialog_="InstallDlg" Control="ImageCheckBox_3" Type="ImageCheckBox" X="17" Y="249" Width="290" Height="13" Attributes="3" Property="INSTALL_VS_2012" Text="checkbox.png_1" TextStyle="DefaultTextWhite" Order="1500" ExtType="ImageCheckBox" ExtData="Install Visual Studio 2012 Extension"/>
+    <ROW Dialog_="InstallDlg" Control="ImageCheckBox_3" Type="ImageCheckBox" X="17" Y="249" Width="290" Height="13" Attributes="3" Property="INSTALL_VS_2012" Text="checkbox.png_1" TextStyle="[DEF_FONT]" Order="1500" ExtType="ImageCheckBox" ExtData="Install Visual Studio 2012 Extension"/>
     <ROW Dialog_="InstallDlg" Control="Text_1" Type="Text" X="17" Y="166" Width="311" Height="49" Attributes="65539" Property="TEXT_1_PROP" Text="Troubleshooting information and usage statistics will be sent automatically  and securely  in order to  provide better support and help improve the product ." Order="1600"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="AgreementText" Type="ScrollableText" X="17" Y="106" Width="312" Height="243" Attributes="3" Property="EulaRead" Text="License.rtf" Order="600" TextLocId="Control.Text.LicenseAgreementDlg#AgreementText_2" MsiKey="LicenseAgreementDlg#AgreementText"/>
     <ROW Dialog_="LicenseAgreementDlg" Control="PrintBtn" Type="ImageButton" X="301" Y="77" Width="28" Height="28" Attributes="3" Text="[MetroPrintButton]" Order="700" MsiKey="LicenseAgreementDlg#PrintBtn" AssociatedCtrl="AgreementText" ExtType="ImageButton"/>
@@ -206,8 +206,8 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
     <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_2" Action="Show" Condition="VS10_INSTALL_FOLDER"/>
     <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_2" Action="Hide" Condition="NOT VS10_INSTALL_FOLDER"/>
-    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Show" Condition="VS12_INSTALL_FOLDER"/>
-    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Hide" Condition="NOT VS12_INSTALL_FOLDER"/>
+    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Hide" Condition="NOT VS11_INSTALL_FOLDER"/>
+    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Show" Condition="VS11_INSTALL_FOLDER"/>
     <ATTRIBUTE name="DeletedRows" value="AdminBrowseDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@PrepareDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@OutOfRbDiskDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@VerifyRemoveDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@AdminInstallPointDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@MaintenanceTypeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@ProgressDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@ExitDialog#ProductNameTitle#Hide#NOT AIEXTERNALUI@ResumeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@BrowseDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@OutOfDiskDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@VerifyRepairDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@AdminWelcomeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@CustomizeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@FatalError#ProductNameTitle#Hide#NOT AIEXTERNALUI@UserExit#ProductNameTitle#Hide#NOT AIEXTERNALUI"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
@@ -264,8 +264,8 @@
     <ROW Dialog_="PatchWelcomeDlg" Control_="PatchWelcomeDlgDialogInitializer" Event="[Text_Next]" Argument="[Text_Install]" Condition="AI_PATCH" Ordering="3" Options="2"/>
     <ROW Dialog_="PatchWelcomeDlg" Control_="Back" Event="[ButtonText_Next]" Argument="[AI_ButtonText_Next_Orig]" Condition="AI_PATCH" Ordering="0" Options="2"/>
     <ROW Dialog_="PatchWelcomeDlg" Control_="Back" Event="[Text_Next]" Argument="[AI_Text_Next_Orig]" Condition="AI_PATCH" Ordering="1" Options="2"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallButton" Event="[AiEventsControl]" Argument="Next" Condition="AI_PROCESS_STATE=&quot;Stopped&quot;" Ordering="200" MsiKey="InstallDlg#InstallButton#[AiEventsControl]#Next#1"/>
-    <ROW Dialog_="InstallDlg" Control_="InstallButton" Event="SpawnDialog" Argument="SpawnDialog" Condition="AI_INSTALL AND ( AI_PROCESS_STATE=&quot;Running&quot; )" Ordering="201"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallButton" Event="[AiEventsControl]" Argument="Next" Condition="AI_PROCESS_STATE=&quot;Stopped&quot;" Ordering="204" MsiKey="InstallDlg#InstallButton#[AiEventsControl]#Next#1"/>
+    <ROW Dialog_="InstallDlg" Control_="InstallButton" Event="SpawnDialog" Argument="SpawnDialog" Condition="AI_INSTALL AND ( AI_PROCESS_STATE=&quot;Running&quot; )" Ordering="205"/>
     <ROW Dialog_="SpawnDialog" Control_="Yes" Event="EndDialog" Argument="Return" Condition="1" Ordering="100"/>
     <ROW Dialog_="InstallDlg" Control_="InstallButton" Event="DoAction" Argument="DetectVS" Condition="AI_INSTALL" Ordering="98"/>
     <ROW Dialog_="InstallDlg" Control_="InstallButton" Event="DoAction" Argument="AI_DATA_SETTER_1" Condition="AI_INSTALL" Ordering="97"/>
@@ -273,12 +273,15 @@
     <ROW Dialog_="LicenseAgreementDlg" Control_="AgreeInstall" Event="[AI_CONTROL_VISUAL_STYLE]" Argument="[STORE_DEFAULT_VISUAL_STYLE]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="99"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[STORE_DEFAULT_VISUAL_STYLE]" Argument="[AI_CONTROL_VISUAL_STYLE]" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="101"/>
     <ROW Dialog_="LicenseAgreementDlg" Control_="LicenseAgreementDlgDialogInitializer" Event="[AI_CONTROL_VISUAL_STYLE]" Argument="15066597" Condition="AI_INSTALL AND AiLicenseAgreement" Ordering="103"/>
+    <ROW Dialog_="FatalError" Control_="Finish" Event="DoAction" Argument="AI_RemoveTempFiles" Condition="1" Ordering="201"/>
+    <ROW Dialog_="UserExit" Control_="Finish" Event="DoAction" Argument="AI_RemoveTempFiles" Condition="1" Ordering="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_ChooseTextStyles" Type="1" Source="aicustact.dll" Target="ChooseTextStyles"/>
     <ROW Action="AI_DATA_SETTER" Type="51" Source="AI_ExtractFiles" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DATA_SETTER_1" Type="51" Source="CustomActionData" Target="devenv.exe"/>
+    <ROW Action="AI_DATA_SETTER_2" Type="51" Source="AI_RemoveAllTempFiles" Target="[AI_TEMP_FILE_ROLLBACK_INFO]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
     <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
@@ -289,27 +292,29 @@
     <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_ExtractFiles" Type="1025" Source="Prereq.dll" Target="ExtractSourceFiles" AdditionalSeq="AI_DATA_SETTER"/>
     <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_ExtractTempFiles" Type="1" Source="tempFiles.dll" Target="ExtractTempFiles"/>
     <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_GetArpIconPath" Type="1" Source="aicustact.dll" Target="GetArpIconPath"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_RemoveAllTempFiles" Type="1281" Source="tempFiles.dll" Target="RemoveAllTempFiles" AdditionalSeq="AI_DATA_SETTER_2"/>
     <ROW Action="AI_RemoveExternalUIStub" Type="1" Source="ExternalUICleaner.dll" Target="RemoveExternalUIStub"/>
+    <ROW Action="AI_RemoveTempFiles" Type="1" Source="tempFiles.dll" Target="RemoveTempFiles" WithoutSeq="true"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_ResolveLocalizedCredentials" Type="1" Source="aicustact.dll" Target="GetLocalizedCredentials"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="CollectTroubleshootInfo" Type="51" Source="TRB_INFO_REG_VALUE" Target="1"/>
     <ROW Action="DetectVS" Type="1" Source="aicustact.dll" Target="DetectProcess" WithoutSeq="true" Options="3" AdditionalSeq="AI_DATA_SETTER_1"/>
-    <ROW Action="InstallVSIX_2010" Type="3074" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q /a &quot;[#NServiceBusStudio.10.0.vsix]&quot;" Options="1"/>
-    <ROW Action="InstallVSIX_2012" Type="3074" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q /a &quot;[#NServiceBusStudio.11.0.vsix]&quot;" Options="1"/>
+    <ROW Action="InstallVSIX_2010" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[&amp;nservicebusstudio.10.0.vsix]&quot;" Options="1"/>
+    <ROW Action="InstallVSIX_2012" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[&amp;nservicebusstudio.11.0.vsix]&quot;" Options="1"/>
     <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=Studio" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Particular Software\Studio"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
-    <ROW Action="Uninstall_VSIX_2010" Type="3074" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q /uninstall:&quot;a5e9f15b-ad7f-4201-851e-186dd8db3bc9&quot;" Options="1"/>
-    <ROW Action="Uninstall_VSIX_2012" Type="3074" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q /uninstall:&quot;a5e9f15b-ad7f-4201-851e-186dd8db3bc9&quot;" Options="1"/>
+    <ROW Action="Uninstall_VSIX" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q /uninstall:&quot;a5e9f15b-ad7f-4201-851e-186dd8db3bc9&quot;" Options="1"/>
     <ROW Action="VSIX_INSTALLER_2010" Type="51" Source="VSIX_INSTALLER" Target="[VS10_INSTALL_FOLDER]VSIXInstaller.exe"/>
     <ROW Action="VSIX_INSTALLER_2012" Type="51" Source="VSIX_INSTALLER" Target="[VS11_INSTALL_FOLDER]VSIXInstaller.exe"/>
   </COMPONENT>
@@ -322,19 +327,15 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
-    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1502"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1504"/>
     <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
     <ROW Action="AI_ResolveLocalizedCredentials" Sequence="52"/>
     <ROW Action="AI_GetArpIconPath" Sequence="51"/>
-    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
+    <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1503"/>
     <ROW Action="CollectTroubleshootInfo" Condition="( NOT Installed ) AND ( TB_INFO )" Sequence="203"/>
     <ROW Action="VSIX_INSTALLER_2012" Condition="VS11_INSTALL_FOLDER" Sequence="202"/>
     <ROW Action="VSIX_INSTALLER_2010" Condition="VS10_INSTALL_FOLDER" Sequence="201"/>
-    <ROW Action="InstallVSIX_2010" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VS10_INSTALL_FOLDER AND INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="6401"/>
-    <ROW Action="InstallVSIX_2012" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VS12_INSTALL_FOLDER AND INSTALL_VS_2012 AND VSIX_INSTALLER )" Sequence="6402"/>
-    <ROW Action="Uninstall_VSIX_2010" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="1601"/>
-    <ROW Action="Uninstall_VSIX_2012" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( VS11_INSTALL_FOLDER AND VSIX_INSTALLER )" Sequence="1602"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
     <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
@@ -343,12 +344,19 @@
     <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
     <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
     <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="6598" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="6597" Builds="DefaultBuild"/>
     <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
     <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>
-    <ROW Action="InstallFinalize" Sequence="6599" SeqType="0" MsiKey="InstallFinalize"/>
+    <ROW Action="InstallFinalize" Sequence="6598" SeqType="0" MsiKey="InstallFinalize"/>
     <ROW Action="Launch_URL" Condition="( NOT Installed )" Sequence="6600"/>
+    <ROW Action="AI_ExtractTempFiles" Sequence="1001"/>
+    <ROW Action="AI_RemoveTempFiles" Sequence="6599"/>
+    <ROW Action="AI_RemoveAllTempFiles" Sequence="1502"/>
+    <ROW Action="AI_DATA_SETTER_2" Sequence="1501"/>
+    <ROW Action="InstallVSIX_2010" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VS10_INSTALL_FOLDER AND INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="6401"/>
+    <ROW Action="InstallVSIX_2012" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( VS11_INSTALL_FOLDER AND INSTALL_VS_2012 AND VSIX_INSTALLER )" Sequence="6402"/>
+    <ROW Action="Uninstall_VSIX" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (INSTALL_VS_2010 OR INSTALL_VS_2011) AND VSIX_INSTALLER )" Sequence="1601"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -359,6 +367,7 @@
     <ROW Action="AI_ChooseTextStyles" Sequence="74"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
+    <ROW Action="AI_ExtractTempFiles" Sequence="1001"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
@@ -370,8 +379,8 @@
     <ROW Signature_="AppSearchSign_1_1" Root="2" Key="SOFTWARE\Microsoft\VisualStudio\10.0" Name="InstallDir" Type="0"/>
     <ROW Signature_="INSTALL_VS2010" Root="2" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS_2010" Type="2"/>
     <ROW Signature_="INSTALL_VS2010_1" Root="1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS_2010" Type="2"/>
-    <ROW Signature_="INSTALL_VS2012" Root="2" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS_2012" Type="2"/>
-    <ROW Signature_="INSTALL_VS2012_1" Root="1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS_2012" Type="2"/>
+    <ROW Signature_="INSTALL_VS2012" Root="2" Key="Software\[Manufacturer]\[UpgradeCode]" Type="2"/>
+    <ROW Signature_="INSTALL_VS2012_1" Root="1" Key="Software\[Manufacturer]\[UpgradeCode]" Type="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
     <ROW Registry="AI_ExePath" Root="-1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Value="[AI_SETUPEXEPATH]" Component_="AI_ExePath"/>
@@ -383,7 +392,7 @@
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="INSTALL_VS2010" Root="-1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS2010" Value="[INSTALL_VS_2010]" Component_="INSTALL_VS2010"/>
-    <ROW Registry="INSTALL_VS2012" Root="-1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS2012" Value="[INSTALL_VS_2012]" Component_="INSTALL_VS2012"/>
+    <ROW Registry="INSTALL_VS2012" Root="-1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS2012" Component_="INSTALL_VS2012"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
     <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /I [ProductCode]" Component_="AI_CustomARPName"/>
     <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
@@ -408,7 +417,8 @@
     <ROW UpgradeCode="[|UpgradeCode]" VersionMax="[|ProductVersion]" Attributes="1025" ActionProperty="OLDPRODUCTS"/>
     <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
   </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.SynchronizedFolderComponent">
-    <ROW Directory_="APPDIR" SourcePath="Files" Feature="Studio" ExcludePattern="*~|#*#|%*%|._|CVS|.cvsignore|SCCS|vssver.scc|mssccprj.scc|vssver2.scc|.svn|.DS_Store" ExcludeFlags="6"/>
+  <COMPONENT cid="caphyon.advinst.msicomp.TempFileComponent">
+    <ROW FileId="nservicebusstudio.10.0.vsix" Name="NServi~1.vsi|NServiceBusStudio.10.0.vsix" Directory_="TempFolder" Property="AI_NSERVICEBUSSTUDIO.10.0.VSIX" Options="0" Data="Files\NServiceBusStudio.10.0.vsix"/>
+    <ROW FileId="nservicebusstudio.11.0.vsix" Name="NServi~2.vsi|NServiceBusStudio.11.0.vsix" Directory_="TempFolder" Property="AI_NSERVICEBUSSTUDIO.11.0.VSIX" Options="0" Data="Files\NServiceBusStudio.11.0.vsix"/>
   </COMPONENT>
 </DOCUMENT>
