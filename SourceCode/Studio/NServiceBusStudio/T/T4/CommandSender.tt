@@ -2,7 +2,7 @@
 <#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
 <#@ Assembly Name="NuPattern.Common.dll" #>
 <#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
-<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
 <#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
 <#@ Import Namespace="global::NuPattern.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>

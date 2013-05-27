@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NServiceBus.Modeling.EndpointDesign</RootNamespace>
-    <AssemblyName>NServiceBus.Modeling.EndpointDesign</AssemblyName>
+    <AssemblyName>Particular.ServiceMatrix.Modeling.EndpointDesign</AssemblyName>
     <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
     <SignAssembly>true</SignAssembly>

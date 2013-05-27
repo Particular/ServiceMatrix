@@ -24,9 +24,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="<#= this.Dsl.PackageGuid #>">
-    <Name>NServiceBus Modeling</Name>
+    <Name>ServiceMatrix Modeling</Name>
     <Author><#= this.Dsl.CompanyName #></Author>
-	<Version><#= globalversion #></Version>
+	  <Version><#= globalversion #></Version>
     <Description>The design time experience for creating NServiceBus applications.</Description>
     <Locale><#= localeId #></Locale>
     <MoreInfoUrl></MoreInfoUrl>

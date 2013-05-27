@@ -13,14 +13,14 @@ namespace NServiceBusStudio
 		public const string VsixIdentifier = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9";
 
 		/// <summary>
-		/// NServiceBus Studio
+		/// ServiceMatrix
 		/// </summary>
-		public const string ToolkitName = "NServiceBus Studio";
+		public const string ToolkitName = "ServiceMatrix";
 
 		/// <summary>
-		/// NServiceBus
+		/// Particular Software
 		/// </summary>
-		public const string Author = "NServiceBus";
+		public const string Author = "Particular Software";
 
 		/// <summary>
 		/// 4.0.0
@@ -33,9 +33,9 @@ namespace NServiceBusStudio
 		public const string Description = "A set of Visual Studio integrated tools to author NServiceBus applications";
 
 		/// <summary>
-		/// NServiceBus Studio
+		/// ServiceMatrix
 		/// </summary>
-		public const string ProductName = "NServiceBus Studio";
+		public const string ProductName = "ServiceMatrix";
 
 		/// <summary>
 		/// NServiceBusStudio
@@ -43,8 +43,8 @@ namespace NServiceBusStudio
 		public const string RootNamespace = "NServiceBusStudio";
 
 		/// <summary>
-		/// NServiceBusStudio
+		/// Particular.ServiceMatrix
 		/// </summary>
-		public const string AssemblyName = "NServiceBusStudio";
+		public const string AssemblyName = "Particular.ServiceMatrix";
 	}
 }

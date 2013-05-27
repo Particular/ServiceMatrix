@@ -16,7 +16,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
     {
         public NServiceBusDetailsToolWindow()
         {
-            this.Caption = "NServiceBus Studio Details";
+            this.Caption = "ServiceMatrix Details";
             this.BitmapResourceID = 301;
             this.BitmapIndex = 0;
             var pane = new DetailsPanel();

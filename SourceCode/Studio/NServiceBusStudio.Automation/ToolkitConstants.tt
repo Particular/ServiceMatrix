@@ -1,6 +1,6 @@
 ﻿<#@ Template Debug="False" Hostspecific="False" Language="C#" #>
 <#@ Output Extension=".cs" #>
-<#@ Include File="..\NServiceBusStudio\source.include.t4" #>
+<#@ Include File="..\NServiceBusStudio\source.extension.gen.ttinclude" #>
 using System;
 using System.Collections.Generic;
 using System.Linq;

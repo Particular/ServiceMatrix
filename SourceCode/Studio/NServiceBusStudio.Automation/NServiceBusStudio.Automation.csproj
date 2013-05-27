@@ -10,7 +10,7 @@
     <OutputPath>..\Binaries\</OutputPath>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NServiceBusStudio.Automation</RootNamespace>
-    <AssemblyName>NServiceBusStudio.Automation</AssemblyName>
+    <AssemblyName>Particular.ServiceMatrix.Automation</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>

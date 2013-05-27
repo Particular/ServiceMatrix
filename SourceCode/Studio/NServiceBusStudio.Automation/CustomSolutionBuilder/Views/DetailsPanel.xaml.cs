@@ -40,7 +40,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public void SetView(IServiceProvider serviceProvider, IProductElementViewModel selectedElementViewModel, object logicalViewDataContext)
         {
-            this.Caption = "NServiceBus Studio Details - " + selectedElementViewModel.Data.InstanceName;
+            this.Caption = "ServiceMatrix Details - " + selectedElementViewModel.Data.InstanceName;
             if (this.CaptionHasChanged != null)
             {
                 this.CaptionHasChanged(this, EventArgs.Empty);
@@ -149,7 +149,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public void CleanAll()
         {
-            this.Caption = "NServiceBus Studio Details";
+            this.Caption = "ServiceMatrix Details";
             this.CleanDetails();
             if (this.CaptionHasChanged != null)
             {

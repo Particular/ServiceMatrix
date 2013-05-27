@@ -6,7 +6,7 @@
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
              mc:Ignorable="d"
              Title=""
-             Icon="/NServiceBusStudio.Automation;component/Resources/NServiceBusView.png"
+             Icon="/Particular.ServiceMatrix.Automation;component/Resources/NServiceBusView.png"
              ResizeMode="NoResize"
              WindowStyle="ToolWindow"
              WindowStartupLocation="CenterScreen"
@@ -27,10 +27,12 @@
         </Style>
     </src:CommonDialogWindow.Resources>
     <StackPanel Background="#808080">
-        <Image Source="/NServiceBusStudio.Automation;component/Resources/NServiceBusStudioBanner.png"></Image>
+        <StackPanel Background="White">
+            <Image Source="/Particular.ServiceMatrix.Automation;component/Resources/NServiceBusStudioBanner.png" Margin="100, 10" ></Image>
+        </StackPanel>
         <StackPanel x:Name="TrialVersionPane" Visibility="Visible">
             <TextBlock Margin="15, 0, 15, 0" FontWeight="Bold">
-                This is a trial version of Particular Software NServiceBus Studio.
+                This is a trial version of Particular Software ServiceMatrix.
             </TextBlock>
             <StackPanel Margin="15, 0, 15, 0" Orientation="Horizontal">
                 <TextBlock FontWeight="Bold" x:Name="TrialVersionDaysLeft">X</TextBlock>
@@ -39,7 +41,7 @@
         </StackPanel>
         <StackPanel x:Name="ExpiredTrialVersionPane">
             <TextBlock Margin="15, 0, 15, 0"  FontWeight="Bold">
-                Trial period of Particular Software NServiceBus Studio has expired. A license is required in order to continue. Click <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"  NavigateUri="http://www.particularsoftware.com/">here</Hyperlink> to purchase license.
+                Trial period of Particular Software ServiceMatrix has expired. A license is required in order to continue. Click <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"  NavigateUri="http://www.particularsoftware.com/">here</Hyperlink> to purchase license.
             </TextBlock>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -56,7 +58,7 @@
                 <TextBlock x:Name="selectedFileExpirationDateLabel"></TextBlock>
             </StackPanel>
             <StackPanel x:Name="completePanel" Visibility="Collapsed">
-                <Label x:Name="completeMessageLabel" Foreground="Green">Your license is valid. Configuring NServiceBus Studio using the new license...</Label>
+                <Label x:Name="completeMessageLabel" Foreground="Green">Your license is valid. Configuring ServiceMatrix using the new license...</Label>
             </StackPanel>
         </StackPanel>
     </StackPanel>

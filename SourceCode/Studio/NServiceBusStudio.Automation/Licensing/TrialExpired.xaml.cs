@@ -30,7 +30,7 @@ namespace NServiceBusStudio.Automation.Licensing
 
         public void TrialVersion(int daysleft)
         {
-            this.Title = String.Format("NServiceBus Studio - Trial version - {0} days left", daysleft.ToString());
+            this.Title = String.Format("ServiceMatrix - Trial version - {0} days left", daysleft.ToString());
             this.TrialVersionDaysLeft.Text = daysleft.ToString();
 
             this.TrialVersionPane.Visibility = System.Windows.Visibility.Visible;
@@ -41,7 +41,7 @@ namespace NServiceBusStudio.Automation.Licensing
 
         public void ExpiredTrialVersion()
         {
-            this.Title = "NServiceBus Studio - Expired Trial version";
+            this.Title = "ServiceMatrix - Expired Trial version";
 
             this.TrialVersionPane.Visibility = System.Windows.Visibility.Collapsed;
             this.ExpiredTrialVersionPane.Visibility = System.Windows.Visibility.Visible;

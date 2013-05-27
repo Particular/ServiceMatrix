@@ -4361,7 +4361,7 @@
   },
   {
     "Name": "DefaultInstanceName",
-    "Value": "NServiceBus Studio Guidance",
+    "Value": "ServiceMatrix Guidance",
     "ValueProvider": null
   },
   {
@@ -4686,7 +4686,7 @@
         <automationSettingsSchemaMoniker Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" />
       </extendedElement>
     </menuSettings>
-    <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="NServiceBus Studio Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
+    <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
       <extendedElement>
         <patternSchemaMoniker Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" />
       </extendedElement>
@@ -5112,7 +5112,7 @@
       </extendedElement>
     </validationExtension>
   </dm0:extensions>
-  <pattern Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" name="Application" displayName="Application" description="The root of your design." codeIdentifier="Application" isCustomizable="True" icon="pack://application:,,,/NServiceBusStudio;component/Resources/PatternIcon.png" currentDiagramId="d4b6057a-fb60-4a43-b09f-b7c23e6273cd" patternLink="patternmanager://a113fd76-36d0-4d40-8088-1466af36f997">
+  <pattern Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" name="Application" displayName="Application" description="The root of your design." codeIdentifier="Application" isCustomizable="True" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PatternIcon.png" currentDiagramId="d4b6057a-fb60-4a43-b09f-b7c23e6273cd" patternLink="patternmanager://a113fd76-36d0-4d40-8088-1466af36f997">
     <customizationPolicy name="CustomizationPolicySchema1">
       <settings>
         <setting propertyId="DisplayName" />
@@ -5541,7 +5541,7 @@
               </settings>
             </customizationPolicy>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="4aac6b0a-1178-4761-ac92-d2989a83335b" name="Service" displayName="Service" description="A service." codeIdentifier="Service" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Gear.png">
+              <element Id="4aac6b0a-1178-4761-ac92-d2989a83335b" name="Service" displayName="Service" description="A service." codeIdentifier="Service" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Gear.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -5602,7 +5602,7 @@
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">
-                          <element Id="f06eaa91-971c-42ee-a7cb-eaa77a97dbdd" name="Event" displayName="Event" description="An event." codeIdentifier="Event" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Event.png">
+                          <element Id="f06eaa91-971c-42ee-a7cb-eaa77a97dbdd" name="Event" displayName="Event" description="An event." codeIdentifier="Event" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Event.png">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -5757,7 +5757,7 @@
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">
-                          <element Id="c2f83a83-1117-43d5-b427-3ede53888fa4" name="Command" displayName="Command" description="A command." codeIdentifier="Command" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Run.png">
+                          <element Id="c2f83a83-1117-43d5-b427-3ede53888fa4" name="Command" displayName="Command" description="A command." codeIdentifier="Command" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Run.png">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -5886,7 +5886,7 @@
                       </settings>
                     </customizationPolicy>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" name="Component" displayName="Component" description="A component." codeIdentifier="Component" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Component.png">
+                      <element Id="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" name="Component" displayName="Component" description="A component." codeIdentifier="Component" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Component.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -6246,7 +6246,7 @@
                               </automationSettings>
                             </automationSettings>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="999b0f01-0b06-4b91-87aa-c8b7fb276c46" name="EventLink" displayName="Event Link" description="A published event." codeIdentifier="EventLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="999b0f01-0b06-4b91-87aa-c8b7fb276c46" name="EventLink" displayName="Event Link" description="A published event." codeIdentifier="EventLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -6368,7 +6368,7 @@
                               </element>
                             </childElement>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="0d8a0645-22b8-48e8-be8c-774c7fc5442d" name="CommandLink" displayName="Command Link" description="A send command." codeIdentifier="CommandLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="0d8a0645-22b8-48e8-be8c-774c7fc5442d" name="CommandLink" displayName="Command Link" description="A send command." codeIdentifier="CommandLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -6587,7 +6587,7 @@
                               </automationSettings>
                             </automationSettings>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="75f698c0-fb68-4f37-b015-82cd5a1e367c" name="SubscribedEventLink" displayName="Subscribed Event Link" description="A subscribed event." codeIdentifier="SubscribedEventLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="75f698c0-fb68-4f37-b015-82cd5a1e367c" name="SubscribedEventLink" displayName="Subscribed Event Link" description="A subscribed event." codeIdentifier="SubscribedEventLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -6759,7 +6759,7 @@
                               </element>
                             </childElement>
                             <childElement cardinality="ZeroToMany" autoCreate="false">
-                              <element Id="1362e8eb-d279-4f17-82a0-97504b493ab3" name="ProcessedCommandLink" displayName="Processed Command Link" description="A processed command." codeIdentifier="ProcessedCommandLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                              <element Id="1362e8eb-d279-4f17-82a0-97504b493ab3" name="ProcessedCommandLink" displayName="Processed Command Link" description="A processed command." codeIdentifier="ProcessedCommandLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -7048,7 +7048,7 @@
                       </property>
                     </properties>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" name="ServiceLibrary" displayName="Service Library" description="A service library." codeIdentifier="ServiceLibrary" icon="pack://application:,,,/NServiceBusStudio;component/Resources/LibraryFile.png">
+                      <element Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" name="ServiceLibrary" displayName="Service Library" description="A service library." codeIdentifier="ServiceLibrary" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/LibraryFile.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -7152,7 +7152,7 @@
               </settings>
             </customizationPolicy>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NService Bus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
+              <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NService Bus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -7735,7 +7735,7 @@
                       </automationSettings>
                     </automationSettings>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="58bd0df2-5250-472d-a169-4d72726325ae" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusHostComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                      <element Id="58bd0df2-5250-472d-a169-4d72726325ae" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusHostComponentLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -7849,7 +7849,7 @@
               </element>
             </childElement>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NService Bus Web" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
+              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NService Bus Web" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -8393,7 +8393,7 @@
                       </automationSettings>
                     </automationSettings>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusWebComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                      <element Id="813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusWebComponentLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -8507,7 +8507,7 @@
               </element>
             </childElement>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="55173bde-0618-431e-8b1a-5bb2c312c713" name="NServiceBusMVC" displayName="NService Bus MVC" description="A web project that makes use of ASP MVC." codeIdentifier="NServiceBusMVC" icon="pack://application:,,,/NServiceBusStudio;component/Resources/EndpointIcon.png">
+              <element Id="55173bde-0618-431e-8b1a-5bb2c312c713" name="NServiceBusMVC" displayName="NService Bus MVC" description="A web project that makes use of ASP MVC." codeIdentifier="NServiceBusMVC" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -8999,7 +8999,7 @@
                       </automationSettings>
                     </automationSettings>
                     <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="18db2bf8-3414-4c90-9e46-39e0475a018b" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusMVCComponentLink" icon="pack://application:,,,/NServiceBusStudio;component/Resources/Link.png">
+                      <element Id="18db2bf8-3414-4c90-9e46-39e0475a018b" name="ComponentLink" displayName="Component Link" description="A deployed component into the endpoint." codeIdentifier="NServiceBusMVCComponentLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -9846,7 +9846,7 @@
               </automationSettings>
             </automationSettings>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="026d2305-4579-472f-a028-27e89b9abc5e" name="Library" displayName="Library" description="A library." codeIdentifier="Library" icon="pack://application:,,,/NServiceBusStudio;component/Resources/LibraryFile.png">
+              <element Id="026d2305-4579-472f-a028-27e89b9abc5e" name="Library" displayName="Library" description="A library." codeIdentifier="Library" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/LibraryFile.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />

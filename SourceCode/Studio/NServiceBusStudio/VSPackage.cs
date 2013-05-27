@@ -52,7 +52,7 @@ namespace NServiceBusStudio
                 traceManager.SetTracingLevel(StatisticsManager.StatisticsListenerNamespace, SourceLevels.All);
             }
 
-            this.TraceOutputWindowManager.CreateTracePane (new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "NServiceBus Studio Logging", new [] { StatisticsManager.StatisticsListenerNamespace });
+            this.TraceOutputWindowManager.CreateTracePane (new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new [] { StatisticsManager.StatisticsListenerNamespace });
         }
 
         private void AddServices()

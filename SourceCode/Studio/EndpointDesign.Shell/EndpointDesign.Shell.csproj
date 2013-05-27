@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <ApplicationIcon>Resources\File.ico</ApplicationIcon>
     <RootNamespace>NServiceBus.Modeling.EndpointDesign</RootNamespace>
-    <AssemblyName>NServiceBus.Modeling.EndpointDesign.Shell</AssemblyName>
+    <AssemblyName>Particular.ServiceMatrix.Modeling.EndpointDesign.Shell</AssemblyName>
     <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
     <SignAssembly>true</SignAssembly>
@@ -31,23 +31,23 @@
   </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <ItemGroup>
-	<Reference Include="NuPattern.Library">
-		<HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
-		<Private>false</Private>
-	</Reference>
-	<Reference Include="NuPattern.Common">
-		<HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
-		<Private>false</Private>
-	</Reference>
-	<Reference Include="NuPattern.Runtime.Core">
-		<HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
-		<Private>false</Private>
-	</Reference>
-	<Reference Include="NuPattern.Runtime.Extensibility">
-		<HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
-		<Private>false</Private>
-	</Reference>
-	<Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Reference Include="NuPattern.Library">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Common">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Core">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

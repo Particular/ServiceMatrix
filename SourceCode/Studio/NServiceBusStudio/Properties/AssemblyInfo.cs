@@ -7,11 +7,11 @@ using Microsoft.VisualStudio.ExtensibilityHosting;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("NServiceBus Studio")]
+[assembly: AssemblyTitle("ServiceMatrix")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("NServiceBus Studio")]
+[assembly: AssemblyCompany("Particular")]
+[assembly: AssemblyProduct("ServiceMatrix")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

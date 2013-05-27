@@ -121,7 +121,7 @@ namespace NServiceBusStudio.Guidance
             Join previousJoin = null;
             var initial = new Initial
             {
-                Name = "NServiceBus Studio Guidance",
+                Name = "ServiceMatrix Guidance",
             };
 
             foreach (var topic in this.Items.GroupBy(x => x.Item1))

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NServiceBus.Modeling.EndpointDesign.Interfaces</RootNamespace>
-    <AssemblyName>NServiceBus.Modeling.EndpointDesign.Interfaces</AssemblyName>
+    <AssemblyName>Particular.ServiceMatrix.Modeling.EndpointDesign.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -20,8 +20,8 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-	<SignAssembly>true</SignAssembly>
-	<AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <ItemGroup>

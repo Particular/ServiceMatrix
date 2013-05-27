@@ -95,7 +95,7 @@ namespace NServiceBusStudio
                 if (!this.AsProduct().IsSerializing) // is creating
                 {
                     this.CustomSolutionBuilder.ShowNoSolutionState();
-                    throw new Exception("Trial period for NServiceBus Studio has Expired. A new NServiceBus solution cannot be created.");
+                    throw new Exception("Trial period for ServiceMatrix has Expired. A new NServiceBus solution cannot be created.");
                 }
             }
         }

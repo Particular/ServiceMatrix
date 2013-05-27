@@ -18,7 +18,7 @@
     <OutputPath>..\Binaries\</OutputPath>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NServiceBusStudio</RootNamespace>
-    <AssemblyName>NServiceBusStudio</AssemblyName>
+    <AssemblyName>Particular.ServiceMatrix</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -704,8 +704,8 @@
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="..\Binaries\NServiceBus.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix">
-      <Link>NServiceBus.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix</Link>
+    <Content Include="..\Binaries\Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix">
+      <Link>Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
@@ -1140,8 +1140,8 @@
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VSPackage.resx</LastGenOutput>
       <DependentUpon>VSPackage.cs</DependentUpon>
+      <LastGenOutput>VSPackage1.resx</LastGenOutput>
     </None>
     <None Include="Assets\Guidance\ToolkitGuidance.doc">
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252fc883d430-4912-4c10-91e9-f38110aa7c7c</SourceModelReference>
@@ -1200,6 +1200,11 @@
       <DependentUpon>VSPackage.tt</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage1.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.tt</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="source.extension.tt">
@@ -1242,8 +1247,8 @@
     <GacTargetOutput>false</GacTargetOutput>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
-	<TransformFile>source.extension.tt</TransformFile>
-	<TransformOnBuild>true</TransformOnBuild>
+    <TransformFile>source.extension.tt</TransformFile>
+    <TransformOnBuild>true</TransformOnBuild>
   </PropertyGroup>
   <PropertyGroup>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>

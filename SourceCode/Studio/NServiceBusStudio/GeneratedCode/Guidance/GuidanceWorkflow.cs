@@ -60,7 +60,7 @@ namespace NServiceBusStudio.Guidance
 	/// <summary>
 	/// Defines the feature extension containing the guidance workflow.
 	/// </summary>
-	[GuidanceExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefaultName="Working with NServiceBus Studio")]
+	[GuidanceExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefaultName="Working with ServiceMatrix")]
 	[Export(typeof(IGuidanceExtension))]
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	[CLSCompliant(false)]
