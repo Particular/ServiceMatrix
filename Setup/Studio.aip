@@ -41,7 +41,7 @@
     <ROW Component="AI_ExePath" ComponentId="{0DE63DF7-8865-48FB-8C2C-A480A74E7E4F}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
     <ROW Component="INSTALL_VS2010" ComponentId="{7DE967FA-4958-415D-BC64-1D924D263DF8}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2010" Options="1"/>
     <ROW Component="INSTALL_VS2012" ComponentId="{F7893637-C839-4BCA-8978-666A007F4BC5}" Directory_="APPDIR" Attributes="4" KeyPath="INSTALL_VS2012" Options="1"/>
-    <ROW Component="NServiceBusStudio.10.0.vsix" ComponentId="{361C3644-863D-4147-8FA2-D4B9A185B2F1}" Directory_="APPDIR" Attributes="0" KeyPath="NServiceBusStudio.10.0.vsix" Type="0"/>
+    <ROW Component="NServiceBusStudio.10.0.vsix" ComponentId="{361C3644-863D-4147-8FA2-D4B9A185B2F1}" Directory_="APPDIR" Attributes="0" KeyPath="Particular.ServiceMatrix.10.0.vsix" Type="0"/>
     <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="260" KeyPath="ParticularSoftware"/>
     <ROW Component="ProductInformation" ComponentId="{C58FA273-5A2E-4DE3-92A3-A072DD38D830}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="260" KeyPath="TrialStart"/>
@@ -53,8 +53,8 @@
     <ATTRIBUTE name="CurrentFeature" value="Studio"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="NServiceBusStudio.10.0.vsix" Component_="NServiceBusStudio.10.0.vsix" FileName="NServi~1.vsi|NServiceBusStudio.10.0.vsix" Attributes="0" SourcePath="Files\NServiceBusStudio.10.0.vsix" SelfReg="false" NextFile="NServiceBusStudio.11.0.vsix"/>
-    <ROW File="NServiceBusStudio.11.0.vsix" Component_="NServiceBusStudio.10.0.vsix" FileName="NServi~2.vsi|NServiceBusStudio.11.0.vsix" Attributes="0" SourcePath="Files\NServiceBusStudio.11.0.vsix" SelfReg="false"/>
+    <ROW File="Particular.ServiceMatrix.10.0.vsix" Component_="NServiceBusStudio.10.0.vsix" FileName="Partic~1.vsi|Particular.ServiceMatrix.10.0.vsix" Attributes="0" SourcePath="Files\Particular.ServiceMatrix.10.0.vsix" SelfReg="false" NextFile="Particular.ServiceMatrix.11.0.vsix"/>
+    <ROW File="Particular.ServiceMatrix.11.0.vsix" Component_="NServiceBusStudio.10.0.vsix" FileName="Partic~2.vsi|Particular.ServiceMatrix.11.0.vsix" Attributes="0" SourcePath="Files\Particular.ServiceMatrix.11.0.vsix" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.AiPersistentPropComponent">
     <ROW Property="INSTALL_VS_2010" Registry="INSTALL_VS2010" HklmSearch="INSTALL_VS2010" HkcuSearch="INSTALL_VS2010_1"/>
@@ -306,8 +306,8 @@
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="CollectTroubleshootInfo" Type="51" Source="TRB_INFO_REG_VALUE" Target="1"/>
     <ROW Action="DetectVS" Type="1" Source="aicustact.dll" Target="DetectProcess" WithoutSeq="true" Options="3" AdditionalSeq="AI_DATA_SETTER_1"/>
-    <ROW Action="InstallVSIX_2010" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#NServiceBusStudio.10.0.vsix]&quot;" Options="1"/>
-    <ROW Action="InstallVSIX_2012" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#NServiceBusStudio.11.0.vsix]&quot;" Options="1"/>
+    <ROW Action="InstallVSIX_2010" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#Particular.ServiceMatrix.10.0.vsix]&quot;" Options="1"/>
+    <ROW Action="InstallVSIX_2012" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#Particular.ServiceMatrix.11.0.vsix]&quot;" Options="1"/>
     <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=Studio" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Particular Software\Studio"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
