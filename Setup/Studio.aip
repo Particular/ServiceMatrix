@@ -23,7 +23,7 @@
     <ROW Property="Manufacturer" Value="Particular Software Ltd."/>
     <ROW Property="ProductCode" Value="1033:{C24E09CF-0927-4547-A22E-6892C80F8829} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Particular Software NServiceBus ServiceMatrix 4.0.0"/>
+    <ROW Property="ProductName" Value="Particular Software ServiceMatrix 4.0.0"/>
     <ROW Property="ProductVersion" Value="4.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="TRB_INFO_REG_VALUE" Value="0"/>
@@ -309,7 +309,7 @@
     <ROW Action="InstallVSIX_2010" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#Particular.ServiceMatrix.10.0.vsix]&quot;" Options="1"/>
     <ROW Action="InstallVSIX_2012" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#Particular.ServiceMatrix.11.0.vsix]&quot;" Options="1"/>
     <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=Studio" Options="1"/>
-    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Particular Software\Studio"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Particular Software\ServiceMatrix"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
     <ROW Action="Uninstall_VSIX" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q /uninstall:&quot;a5e9f15b-ad7f-4201-851e-186dd8db3bc9&quot;" Options="1"/>
