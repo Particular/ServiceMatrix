@@ -17,6 +17,7 @@ using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 using Microsoft.VisualStudio.Shell.Interop;
 using NuPattern;
 using NuPattern.Runtime.UI.ViewModels;
+using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -185,7 +186,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            const string url = @"https://nservicebus.desk.com/customer/widget/emails/new";
+            var url = String.Format(@"http://particular.net/support?caller=serviceMatrix&smversion={0}&vsversion={1}",
+                                    System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetOperatingSystemVersion()),
+                                    System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetVisualStudioVersion(this.ServiceProvider.GetService<EnvDTE.DTE>())));
             var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
             var frame = default(IVsWindowFrame);
             vsWebBroserService.Navigate(url, 1, out frame);

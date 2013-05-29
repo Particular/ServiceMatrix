@@ -30,14 +30,14 @@ namespace NServiceBusStudio.Automation.Extensions
             traceSource.Info(String.Format (format, args));
         }
 
-        private static string GetOperatingSystemVersion()
+        public static string GetOperatingSystemVersion()
         {
             return String.Format("{0} - {1}",
                                   getOSInfo(),
                                   (Environment.Is64BitOperatingSystem) ? "64 bits" : "32 bits");
         }
 
-        private static string getOSInfo()
+        public static string getOSInfo()
         {
             //Get Operating system information.
             OperatingSystem os = Environment.OSVersion;
@@ -116,7 +116,7 @@ namespace NServiceBusStudio.Automation.Extensions
             return operatingSystem;
         }
 
-        private static string GetVisualStudioVersion(EnvDTE.DTE dte)
+        public static string GetVisualStudioVersion(EnvDTE.DTE dte)
         {
             var version = new Version(dte.Version);
             var vsVersion = "";
