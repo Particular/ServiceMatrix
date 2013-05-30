@@ -26,16 +26,16 @@ task Init {
 task BuildSetup {  
     
 	if($PreRelease -eq "") {
-		$archive = "Studio.$ProductVersion.$PatchVersion" 
+		$archive = "Particular.ServiceMatrix-$ProductVersion.$PatchVersion" 
         $preReleaseName = ""
 	} else {
-		$archive = "Studio.$ProductVersion.$PatchVersion-$PreRelease$BuildNumber"
+		$archive = "Particular.ServiceMatrix-$ProductVersion.$PatchVersion-$PreRelease$BuildNumber"
         $preReleaseName = "-$PreRelease$BuildNumber"
 	}
 
 	# edit Advanced Installer Project	  
 	exec { &$script:AdvinstCLI /edit $setupProjectFile /SetVersion "$ProductVersion.$PatchVersion" -noprodcode }	
-	exec { &$script:AdvinstCLI /edit $setupProjectFile /SetPackageName $archive -buildname DefaultBuild }
+	exec { &$script:AdvinstCLI /edit $setupProjectFile /SetPackageName "$archive.exe" -buildname DefaultBuild }
 	exec { &$script:AdvinstCLI /edit $setupProjectFile /SetOutputLocation -buildname DefaultBuild -path "$baseDir\Setup\Output Package" }
     
     exec { &$script:AdvinstCLI /edit $setupProjectFile /SetProperty OPT_PRERELEASE_NAME="$preReleaseName" }
