@@ -309,7 +309,7 @@
     <ROW Action="DetectVS" Type="1" Source="aicustact.dll" Target="DetectProcess" WithoutSeq="true" Options="3" AdditionalSeq="AI_DATA_SETTER_1"/>
     <ROW Action="InstallVSIX_2010" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#Particular.ServiceMatrix.10.0.vsix]&quot;" Options="1"/>
     <ROW Action="InstallVSIX_2012" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[#Particular.ServiceMatrix.11.0.vsix]&quot;" Options="1"/>
-    <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=Studio" Options="1"/>
+    <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=ServiceMatrix" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Particular Software\ServiceMatrix"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
