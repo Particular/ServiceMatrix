@@ -300,7 +300,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
 
             var libraries = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Libraries");
-            observables.Add(new LogicalViewModelNode(this, libraries, libraries.ChildNodes));
+
+            // Add Libraries Node with just the Add->Library option
+            var librariesNode = new LogicalViewModelNode(this, libraries, libraries.ChildNodes);
+            librariesNode.FilterMenuItems("Add");
+            observables.Add(librariesNode);
 
             var services = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
 
@@ -370,6 +374,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             // Add Services Node with just the Add->Service option
             var servicesNode = new LogicalViewModelNode(this, services, services.ChildNodes);
             servicesNode.FilterMenuItems("Add");
+
             observables.Add(servicesNode);
 
             foreach (var service in observables[0].LogicalViewNodes)
@@ -437,7 +442,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
                 //else
                 //{
-                //    LabelProductElementViewModel model2 = new LabelProductElementViewModel(model.Model.As<IProduct>(), ctx)
+                //    LabelProductElementViewModel model2 = new LabelProductElementViewModel(model.Data.As<IProduct>(), ctx)
                 //    {
                 //        Label = item.Text
                 //    };

@@ -122,7 +122,7 @@
                         <Style x:Key="DynamicMenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="InputGestureText" Value="{Binding InputGestureText}" />
                             <Setter Property="Command" Value="{Binding Command}" />
-                            <Setter Property="CommandParameter" Value="{Binding Model}" />
+                            <Setter Property="CommandParameter" Value="{Binding Data}" />
                             <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
                             <Setter Property="Visibility" Value="{Binding IsVisible,Converter={StaticResource VisibilityConverter}}" />
                             <Style.Triggers>
@@ -176,7 +176,7 @@
                     </TreeView.Resources>
 
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding LogicalViewNodes, Converter={StaticResource TreeViewItemOrderingConverter}, ConverterParameter=InnerViewModel.Model.InstanceOrder}">
+                        <HierarchicalDataTemplate ItemsSource="{Binding LogicalViewNodes, Converter={StaticResource TreeViewItemOrderingConverter}, ConverterParameter=InnerViewModel.Data.InstanceOrder}">
                             <StackPanel Name="panel" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,1" DataContext="{Binding}">
                                 <Image Source="{Binding Converter={StaticResource ItemIconWithDefault}}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />
                                 
@@ -186,8 +186,8 @@
                                             <TextBlock Name="displayText">
 										        <TextBlock.Text>
 											        <MultiBinding StringFormat="{}{0} [{1}]">
-												        <Binding Path="Model.InstanceName" />
-												        <Binding Path="CurrentView.Info.DisplayName" />
+												        <Binding Path="Data.InstanceName" />
+												        <Binding Path="CurrentViewData.Info.DisplayName" />
 											        </MultiBinding>
 										        </TextBlock.Text>
                                                 <TextBlock.ToolTip >
@@ -195,8 +195,8 @@
                                                         <TextBlock Name="descriptionText">
                                                             <TextBlock.Text>
                                                                 <MultiBinding StringFormat="{}{0} [{1}]">
-                                                                    <Binding Path="Model.Info.Description" />
-                                                                    <Binding Path="CurrentView.Info.Description" />
+                                                                    <Binding Path="Data.Info.Description" />
+                                                                    <Binding Path="CurrentViewData.Info.Description" />
                                                                 </MultiBinding>
                                                             </TextBlock.Text>
                                                         </TextBlock>
@@ -205,17 +205,17 @@
 									        </TextBlock>
                                             <DataTemplate.Triggers>
                                                 <DataTrigger Binding="{Binding HasSingleView}" Value="True">
-                                                    <Setter TargetName="displayText" Property="Text" Value="{Binding Model.InstanceName}" />
-                                                    <Setter TargetName="descriptionText" Property="Text" Value="{Binding Model.Info.Description}" />
+                                                    <Setter TargetName="displayText" Property="Text" Value="{Binding Data.InstanceName}" />
+                                                    <Setter TargetName="descriptionText" Property="Text" Value="{Binding Data.Info.Description}" />
                                                 </DataTrigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
 
                                         <DataTemplate x:Key="ProductElementViewModelDataTemplate">
-                                            <TextBlock Text="{Binding Model.InstanceName}">
+                                            <TextBlock Text="{Binding Data.InstanceName}">
                                                 <TextBlock.ToolTip >
                                                     <ToolTip>
-                                                        <TextBlock Text="{Binding Model.Info.Description}"/>
+                                                        <TextBlock Text="{Binding Data.Info.Description}"/>
                                                     </ToolTip>
                                                 </TextBlock.ToolTip>
                                             </TextBlock>
@@ -236,7 +236,7 @@
 
                                 <TextBox
 							Name="edit"
-							Text="{Binding  InnerViewModel.Model.InstanceName}"
+							Text="{Binding  InnerViewModel.Data.InstanceName}"
 							Margin="0,-1,-1,0"
 							Visibility="Collapsed"
 							GotFocus="OnItemEditBoxGotFocus"
@@ -254,18 +254,18 @@
                                     <Setter TargetName="edit" Property="Visibility" Value="Visible" />
                                     <Setter TargetName="panel" Property="FocusManager.FocusedElement" Value="{Binding ElementName=edit}" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding InnerViewModel.Model.Info}" Value="{x:Null}">
+                                <DataTrigger Binding="{Binding InnerViewModel.Data.Info}" Value="{x:Null}">
                                     <Setter Property="ToolTip">
                                         <Setter.Value>
                                             <TextBlock>
 										<Run Text="Extension Name: " />
-										<Run Text="{Binding InnerViewModel.Model.ExtensionName}" />
+										<Run Text="{Binding InnerViewModel.Data.ExtensionName}" />
 										<LineBreak />
 										<Run Text="Author: " />
-										<Run Text="{Binding InnerViewModel.Model.Author}" />
+										<Run Text="{Binding InnerViewModel.Data.Author}" />
 										<LineBreak />
 										<Run Text="Version: " />
-										<Run Text="{Binding InnerViewModel.Model.Version}" />
+										<Run Text="{Binding InnerViewModel.Data.Version}" />
                                             </TextBlock>
                                         </Setter.Value>
                                     </Setter>
