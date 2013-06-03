@@ -11,6 +11,8 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
 using NuPattern.Diagnostics;
+using System.Runtime.Remoting.Messaging;
+using NServiceBusStudio.Automation.WizardExtensions;
 
 namespace NServiceBusStudio
 {
@@ -40,6 +42,8 @@ namespace NServiceBusStudio
 
         partial void Initialize()
         {
+            CheckCreationContext();
+
             this.InfrastructureManager = new InfrastructureManager(this, this.ServiceProvider, this.PatternManager);
 
             if (currentApplication == null)
@@ -79,6 +83,18 @@ namespace NServiceBusStudio
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
             CheckLicense();
+        }
+
+        private void CheckCreationContext()
+        {
+            var validCreationContext = CallContext.GetData(SetValidCreationContextWizardExtension.ValidCreationContextKey);
+
+            if (validCreationContext == null || !((bool)validCreationContext))
+            {
+                throw new OperationCanceledException("You should create NServiceBus System solutions from File > New > Project. On the dialog, select the NServiceBus System project type under Visual C# node.");
+            }
+
+            CallContext.SetData(SetValidCreationContextWizardExtension.ValidCreationContextKey, null);
         }
 
         private void CheckLicense()

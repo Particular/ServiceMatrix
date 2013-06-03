@@ -17,6 +17,10 @@
     <ProjectCollection/>
   </TemplateContent>
   <WizardExtension>
+    <Assembly>Particular.ServiceMatrix.Automation</Assembly>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.SetValidCreationContextWizardExtension</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
     <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
     <FullClassName>NuPattern.VisualStudio.TemplateWizards.InstantiationTemplateWizard</FullClassName>
   </WizardExtension>
