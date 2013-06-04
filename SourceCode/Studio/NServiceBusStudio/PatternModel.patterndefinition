@@ -5202,7 +5202,7 @@
           </settings>
         </customizationPolicy>
       </property>
-      <property Id="d8ea971b-49de-4972-8560-f404017d8b83" name="Transport" displayName="Transport" description="Description for Application.Transport" codeIdentifier="Transport" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.TransportTypeConverter, NServiceBusStudio.Automation">
+      <property Id="d8ea971b-49de-4972-8560-f404017d8b83" name="Transport" displayName="Transport" description="Description for Application.Transport" codeIdentifier="Transport" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.TransportTypeConverter, Particular.ServiceMatrix.Automation">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -6273,7 +6273,7 @@
                                       </settings>
                                     </customizationPolicy>
                                   </property>
-                                  <property Id="14abd907-ac70-44db-83eb-3b10fe5d8b17" name="EventName" displayName="Linked Event" description="Description for Application.Design.Services.Service.Components.Component.Publishes.EventLink.EventName" codeIdentifier="EventName" isVisible="false" typeConverterTypeName="NServiceBusStudio.EventReferenceConverter, NServiceBusStudio.Automation" editorTypeName="NServiceBusStudio.EventReferenceEditor, NServiceBusStudio.Automation">
+                                  <property Id="14abd907-ac70-44db-83eb-3b10fe5d8b17" name="EventName" displayName="Linked Event" description="Description for Application.Design.Services.Service.Components.Component.Publishes.EventLink.EventName" codeIdentifier="EventName" isVisible="false" typeConverterTypeName="NServiceBusStudio.EventReferenceConverter, Particular.ServiceMatrix.Automation" editorTypeName="NServiceBusStudio.EventReferenceEditor, Particular.ServiceMatrix.Automation">
                                     <customizationPolicy name="CustomizationPolicySchema1">
                                       <settings>
                                         <setting propertyId="DisplayName" />
@@ -6614,7 +6614,7 @@
                                       </settings>
                                     </customizationPolicy>
                                   </property>
-                                  <property Id="d1d77316-ca0b-4f89-a8af-ff8ff631b911" name="EventName" displayName="Linked Event" description="Description for Application.Design.Services.Service.Components.Component.Subscribes.SubscribedEventLink.EventName" codeIdentifier="EventName" isVisible="false" typeConverterTypeName="NServiceBusStudio.SubscribedEventReferenceConverter, NServiceBusStudio.Automation" editorTypeName="NServiceBusStudio.SubscribedEventReferenceEditor, NServiceBusStudio.Automation">
+                                  <property Id="d1d77316-ca0b-4f89-a8af-ff8ff631b911" name="EventName" displayName="Linked Event" description="Description for Application.Design.Services.Service.Components.Component.Subscribes.SubscribedEventLink.EventName" codeIdentifier="EventName" isVisible="false" typeConverterTypeName="NServiceBusStudio.SubscribedEventReferenceConverter, Particular.ServiceMatrix.Automation" editorTypeName="NServiceBusStudio.SubscribedEventReferenceEditor, Particular.ServiceMatrix.Automation">
                                     <customizationPolicy name="CustomizationPolicySchema1">
                                       <settings>
                                         <setting propertyId="DisplayName" />
