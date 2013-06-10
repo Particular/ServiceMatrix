@@ -89,7 +89,8 @@ namespace NServiceBusStudio
         {
             var validCreationContext = CallContext.GetData(SetValidCreationContextWizardExtension.ValidCreationContextKey);
 
-            if (validCreationContext == null || !((bool)validCreationContext))
+            if (!this.AsProduct().IsSerializing && // is creating
+                (validCreationContext == null || !((bool)validCreationContext))) 
             {
                 throw new OperationCanceledException("You should create NServiceBus System solutions from File > New > Project. On the dialog, select the NServiceBus System project type under Visual C# node.");
             }
