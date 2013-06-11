@@ -17,14 +17,14 @@ using NuPattern.Runtime.Diagnostics;
 
 namespace NServiceBusStudio
 {
-    [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Transient = false, MultiInstances = false, Style = VsDockStyle.Tabbed, Window = EnvDTE.Constants.vsWindowKindOutput)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
-    [Guid(GuidList.guidNServiceBusStudioPkgString)]
     [PartCreationPolicy(CreationPolicy.Shared)]
+    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
+    [ProvideAutoLoad(UIContextGuids.NoSolution)]
+    [Guid(GuidList.guidNServiceBusStudioPkgString)]
+    [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Window = ToolWindowGuids.TaskList, Style = VsDockStyle.Tabbed, Transient = true)]
     [ProvideService(typeof(IDetailsWindowsManager), ServiceName = "IDetailsWindowManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
-    [ProvideAutoLoad(UIContextGuids.NoSolution)]
     public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager
     {
         [Import]
@@ -33,8 +33,8 @@ namespace NServiceBusStudio
         protected override void Initialize()
         {
             base.Initialize();
+
             this.AddServices();
-            this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             this.EnsureCreateTraceOutput();
         }
 
@@ -52,7 +52,7 @@ namespace NServiceBusStudio
                 traceManager.SetTracingLevel(StatisticsManager.StatisticsListenerNamespace, SourceLevels.All);
             }
 
-            this.TraceOutputWindowManager.CreateTracePane (new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new [] { StatisticsManager.StatisticsListenerNamespace });
+            this.TraceOutputWindowManager.CreateTracePane(new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new[] { StatisticsManager.StatisticsListenerNamespace });
         }
 
         private void AddServices()
@@ -63,7 +63,7 @@ namespace NServiceBusStudio
 
         void IDetailsWindowsManager.Show()
         {
-            var window = this.FindToolWindow(typeof(NServiceBusDetailsToolWindow), 0, false);
+            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var frame = (IVsWindowFrame)window.Frame;
@@ -83,7 +83,7 @@ namespace NServiceBusStudio
 
         private void EnableDisableDetailsPanel(bool enable)
         {
-            var window = this.FindToolWindow(typeof(NServiceBusDetailsToolWindow), 0, false);
+            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var content = (DetailsPanel)window.Content;
@@ -91,30 +91,25 @@ namespace NServiceBusStudio
             }
         }
 
-        void EnsureCreateToolWindow<T>() 
-            where T: class
+        T EnsureCreateToolWindow<T>() where T : class
         {
-            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
+            var window = this.FindToolWindow(typeof(T), 0, false);
+            if (window == null)
+            {
+                try
                 {
-                    var window = this.FindToolWindow(typeof(T), 0, false);
-                    if (window == null)
-                    {
-                        try
-                        {
-                            window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
-
-                        }
-                        catch (Exception ex)
-                        {
-                            var s = ex.Message;
-                            throw;
-                        }
-                    }
+                    window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
                     var serviceContainer = (IServiceContainer)this;
-                    serviceContainer.AddService(typeof(T), window.As<T>(), true); 
-                    var frame = (IVsWindowFrame)window.Frame;
-                    //frame.Show();
-                }));
+                    serviceContainer.AddService(typeof(T), window.As<T>(), true);
+                }
+                catch (Exception ex)
+                {
+                    var s = ex.Message;
+                    throw;
+                }
+            }
+
+            return window as T;
         }
     }
 }
