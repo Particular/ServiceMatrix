@@ -94,8 +94,14 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiAppSearchComponent">
     <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_CU" Builds="DefaultBuild"/>
     <ROW Property="AI_SETUPEXEPATH" Signature_="AI_EXE_PATH_LM" Builds="DefaultBuild"/>
-    <ROW Property="VS11_INSTALL_FOLDER" Signature_="AppSearchSign_1"/>
-    <ROW Property="VS10_INSTALL_FOLDER" Signature_="AppSearchSign_1_1"/>
+    <ROW Property="VS10_PRO" Signature_="AppSearchSign"/>
+    <ROW Property="VS10_INSTALL_FOLDER" Signature_="AppSearchSign_1"/>
+    <ROW Property="VS11_INSTALL_FOLDER" Signature_="AppSearchSign_1_1"/>
+    <ROW Property="VS10_TS" Signature_="AppSearchSign_2"/>
+    <ROW Property="VS11_ULTIMATE" Signature_="AppSearchSign_2_1"/>
+    <ROW Property="VS10_TD" Signature_="AppSearchSign_3"/>
+    <ROW Property="VS11_PREMIUM" Signature_="AppSearchSign_3_1"/>
+    <ROW Property="VS11_PRO" Signature_="AppSearchSign_4"/>
     <ROW Property="INSTALL_VS_2010" Signature_="INSTALL_VS2010"/>
     <ROW Property="INSTALL_VS_2010" Signature_="INSTALL_VS2010_1"/>
     <ROW Property="INSTALL_VS_2012" Signature_="INSTALL_VS2012"/>
@@ -210,10 +216,10 @@
     <ATTRIBUTE name="FixedSizeBitmaps" value="2"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlConditionComponent">
-    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_2" Action="Show" Condition="VS10_INSTALL_FOLDER"/>
-    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_2" Action="Hide" Condition="NOT VS10_INSTALL_FOLDER"/>
-    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Hide" Condition="NOT VS11_INSTALL_FOLDER"/>
-    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Show" Condition="VS11_INSTALL_FOLDER"/>
+    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_2" Action="Show" Condition="(VS10_PRO OR VS10_TD OR VS10_TS)"/>
+    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_2" Action="Hide" Condition="NOT VS10_PRO AND NOT VS10_TD AND NOT VS10_TS"/>
+    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Hide" Condition="NOT VS11_PRO AND NOT VS11_PREMIUM AND NOT VS11_ULTIMATE"/>
+    <ROW Dialog_="InstallDlg" Control_="ImageCheckBox_3" Action="Show" Condition="VS11_PRO OR VS11_PREMIUM OR VS11_ULTIMATE"/>
     <ATTRIBUTE name="DeletedRows" value="AdminBrowseDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@PrepareDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@OutOfRbDiskDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@VerifyRemoveDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@AdminInstallPointDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@MaintenanceTypeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@ProgressDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@ExitDialog#ProductNameTitle#Hide#NOT AIEXTERNALUI@ResumeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@BrowseDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@OutOfDiskDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@VerifyRepairDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@AdminWelcomeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@CustomizeDlg#ProductNameTitle#Hide#NOT AIEXTERNALUI@FatalError#ProductNameTitle#Hide#NOT AIEXTERNALUI@UserExit#ProductNameTitle#Hide#NOT AIEXTERNALUI@MaintenanceTypeDlg#MetroModifyButton#Default#AIEXTERNALUI@MaintenanceTypeDlg#MetroRepairText#Show#AIEXTERNALUI@MaintenanceTypeDlg#MetroRepairText#Hide#NOT AIEXTERNALUI@MaintenanceTypeDlg#MetroModifyText#Show#AIEXTERNALUI@MaintenanceTypeDlg#MetroModifyText#Hide#NOT AIEXTERNALUI"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
@@ -336,12 +342,12 @@
     <ROW Action="AI_GetArpIconPath" Sequence="51"/>
     <ROW Action="AI_RemoveExternalUIStub" Condition="(REMOVE=&quot;ALL&quot;) AND ((VersionNT &gt; 500) OR((VersionNT = 500) AND (ServicePackLevel &gt;= 4)))" Sequence="1501"/>
     <ROW Action="CollectTroubleshootInfo" Condition="( NOT Installed ) AND ( TB_INFO )" Sequence="204"/>
-    <ROW Action="VSIX_INSTALLER_2012" Condition="VS11_INSTALL_FOLDER" Sequence="203"/>
-    <ROW Action="VSIX_INSTALLER_2010" Condition="VS10_INSTALL_FOLDER" Sequence="202"/>
+    <ROW Action="VSIX_INSTALLER_2012" Condition="VS11_PRO OR VS11_PREMIUM OR VS11_ULTIMATE" Sequence="203"/>
+    <ROW Action="VSIX_INSTALLER_2010" Condition="VS10_PRO OR VS10_TD OR VS10_TS" Sequence="202"/>
     <ROW Action="InstallFinalize" Sequence="6598" SeqType="0" MsiKey="InstallFinalize"/>
     <ROW Action="Launch_URL" Condition="( NOT Installed )" Sequence="6599"/>
-    <ROW Action="InstallVSIX_2010" Condition="( NOT Installed ) AND ( VS10_INSTALL_FOLDER AND INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="6401"/>
-    <ROW Action="InstallVSIX_2012" Condition="( NOT Installed ) AND ( VS11_INSTALL_FOLDER AND INSTALL_VS_2012 AND VSIX_INSTALLER )" Sequence="6402"/>
+    <ROW Action="InstallVSIX_2010" Condition="( NOT Installed ) AND ( (VS10_PRO OR VS10_TD OR VS10_TS) AND INSTALL_VS_2010 AND VSIX_INSTALLER )" Sequence="6401"/>
+    <ROW Action="InstallVSIX_2012" Condition="( NOT Installed ) AND ( (VS11_PRO OR VS11_PREMIUM OR VS11_ULTIMATE) AND INSTALL_VS_2012 AND VSIX_INSTALLER )" Sequence="6402"/>
     <ROW Action="Uninstall_VSIX" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (INSTALL_VS_2010 OR INSTALL_VS_2011) AND VSIX_INSTALLER )" Sequence="1601"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
@@ -373,8 +379,14 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegLocatorComponent">
     <ROW Signature_="AI_EXE_PATH_CU" Root="1" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
     <ROW Signature_="AI_EXE_PATH_LM" Root="2" Key="Software\Caphyon\Advanced Installer\LZMA\[ProductCode]\[ProductVersion]" Name="AI_ExePath" Type="2"/>
-    <ROW Signature_="AppSearchSign_1" Root="2" Key="SOFTWARE\Microsoft\VisualStudio\11.0" Name="InstallDir" Type="0"/>
-    <ROW Signature_="AppSearchSign_1_1" Root="2" Key="SOFTWARE\Microsoft\VisualStudio\10.0" Name="InstallDir" Type="0"/>
+    <ROW Signature_="AppSearchSign" Root="2" Key="SOFTWARE\Microsoft\DevDiv\vs\Servicing\10.0\procore" Name="Install" Type="2"/>
+    <ROW Signature_="AppSearchSign_1" Root="2" Key="SOFTWARE\Microsoft\VisualStudio\10.0" Name="InstallDir" Type="2"/>
+    <ROW Signature_="AppSearchSign_1_1" Root="2" Key="SOFTWARE\Microsoft\VisualStudio\11.0" Name="InstallDir" Type="2"/>
+    <ROW Signature_="AppSearchSign_2" Root="2" Key="SOFTWARE\Microsoft\DevDiv\vs\Servicing\10.0\VSTSCore" Name="Install" Type="2"/>
+    <ROW Signature_="AppSearchSign_2_1" Root="2" Key="SOFTWARE\Microsoft\DevDiv\vs\Servicing\11.0\ultimate" Name="Install" Type="2"/>
+    <ROW Signature_="AppSearchSign_3" Root="2" Key="SOFTWARE\Microsoft\DevDiv\vs\Servicing\10.0\VSTDCore" Name="Install" Type="2"/>
+    <ROW Signature_="AppSearchSign_3_1" Root="2" Key="SOFTWARE\Microsoft\DevDiv\vs\Servicing\11.0\premium" Name="Install" Type="2"/>
+    <ROW Signature_="AppSearchSign_4" Root="2" Key="SOFTWARE\Microsoft\DevDiv\vs\Servicing\11.0\professional" Name="Install" Type="2"/>
     <ROW Signature_="INSTALL_VS2010" Root="2" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS_2010" Type="2"/>
     <ROW Signature_="INSTALL_VS2010_1" Root="1" Key="Software\[Manufacturer]\[UpgradeCode]" Name="INSTALL_VS_2010" Type="2"/>
     <ROW Signature_="INSTALL_VS2012" Root="2" Key="Software\[Manufacturer]\[UpgradeCode]" Type="2"/>
