@@ -1,0 +1,33 @@
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var authentication = ((IProductElement)this.Element).As<IAuthentication>(); 
+#>
+using System;
+using NServiceBus;
+using NServiceBus.MessageMutator;
+
+namespace <#= authentication.LocalNamespace #>
+{
+    public class AuthorizeOutgoingMessages : IMutateOutgoingTransportMessages
+    {
+        public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
+        {
+            transportMessage.Headers.Add("User", "");
+        }
+    }
+
+    public class RegisterMutator : INeedInitialization
+    {
+        public void Init()
+        {
+            Configure.Component<AuthorizeOutgoingMessages>(DependencyLifecycle.SingleInstance);
+        }
+    }
+}

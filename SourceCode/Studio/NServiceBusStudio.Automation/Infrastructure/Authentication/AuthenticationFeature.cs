@@ -54,9 +54,13 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                 var authentication = app.Design.Infrastructure.Security.Authentication;
                 var infrastructure = app.Design.Infrastructure;
                 var project = Helpers.GenerateInfrastructureProjectIfNeeded(infrastructure, solution);
-                authentication.Namespace = project.Data.RootNamespace + ".Security";
-                authentication.CodePath = project.Name + @"\GeneratedCode\Security";
-                authentication.CustomCodePath = project.Name + @"\Security";
+
+                if (project != null)
+                {
+                    authentication.Namespace = project.Data.RootNamespace + ".Security";
+                    authentication.CodePath = project.Name + @"\GeneratedCode\Security";
+                    authentication.CustomCodePath = project.Name + @"\Security";
+                }
             }
 
             // Update endpoints artifacts for authentication
@@ -105,8 +109,8 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
             {
                 foreach (var endpoint in app.Design.Endpoints.GetAll())
                 {
-                    var prefix = "AuthenticationEndpointCode" + endpoint.As<IProductElement>().InstanceName;
-                    if (!app.Design.Infrastructure.Security.Authentication.AsElement().AutomationExtensions.Any(a => a.Name.StartsWith(prefix)))
+                    var prefixAuthentication = "AuthenticationEndpointCode" + endpoint.As<IProductElement>().InstanceName;
+                    if (!app.Design.Infrastructure.Security.Authentication.AsElement().AutomationExtensions.Any(a => a.Name.StartsWith(prefixAuthentication)))
                     {
                         app.Design.Infrastructure.Security.Authentication.LocalNamespace = endpoint.Project.Data.RootNamespace
                             + ".Infrastructure";
@@ -114,7 +118,20 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                             .CreateTempGenerateCodeCommand(sp, "Authentication.cs"
                             , endpoint.Project.Name + @"\Infrastructure\GeneratedCode"
                             , @"t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/EndpointAuthentication.tt"
-                            , prefix)
+                            , prefixAuthentication)
+                        .Execute();
+                    }
+
+                    var prefixAuthorize = "AuthorizeOutgoingMessagesEndpointCode" + endpoint.As<IProductElement>().InstanceName;
+                    if (!app.Design.Infrastructure.Security.Authentication.AsElement().AutomationExtensions.Any(a => a.Name.StartsWith(prefixAuthorize)))
+                    {
+                        app.Design.Infrastructure.Security.Authentication.LocalNamespace = endpoint.Project.Data.RootNamespace
+                            + ".Infrastructure";
+                        app.Design.Infrastructure.Security.Authentication.As<IProductElement>()
+                            .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
+                            , endpoint.Project.Name + @"\Infrastructure\GeneratedCode"
+                            , @"t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/EndpointAuthorizeOutgoingMessages.tt"
+                            , prefixAuthorize)
                         .Execute();
                     }
                 }

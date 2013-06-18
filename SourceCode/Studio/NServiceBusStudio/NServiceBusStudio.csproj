@@ -1138,6 +1138,11 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>50af6eba-4205-4aed-ad99-910a10d2be0a</ItemGuid>
     </Content>
+    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>

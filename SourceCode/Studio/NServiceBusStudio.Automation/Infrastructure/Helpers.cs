@@ -45,7 +45,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 };
             }
 
-            return solution.Items.First(i => i.Name == projectName).As<IProject>();
+            var item = solution.Items.First(i => i.Name == projectName);
+            return item.As<IProject>();
         }
 
         // Add a reference to the infrastructure project on each endpoint project
