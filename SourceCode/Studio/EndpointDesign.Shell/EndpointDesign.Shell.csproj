@@ -56,9 +56,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(DslToolsVersion), Version=$(DslToolsVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject.$(DslToolsVersion), Version=$(DslToolsVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
-    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(DslToolsVersion), Version=$(DslToolsVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.GraphObject.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
