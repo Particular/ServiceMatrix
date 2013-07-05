@@ -38,7 +38,7 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 	#region Interfaces
 <#
     var store = (Microsoft.VisualStudio.Modeling.Store)((dynamic)this.PatternModelSchema).Store;
-	var product = store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
+    var product = store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
     var elements = store.DefaultPartition.ElementDirectory.AllElements
         .OfType<IElementInfo>()
         .ToList();
@@ -49,7 +49,8 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
     GenerateInterface(product);
 
     elements.ForEach(e => GenerateInterface(e));
-	collections.ForEach(c => GenerateInterface(c));
+    collections.ForEach(c => GenerateInterface(c));
+    
 #>
 
 	#endregion Interfaces
@@ -67,8 +68,8 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 	#endregion Implementations
 }
 <#+
-private void GenerateInterface(IPatternElementInfo element)
-{
+    private void GenerateInterface(IPatternElementInfo element)
+    {
 #>
 
 	partial interface I<#= element.CodeIdentifier #> : IToolkitElement
@@ -76,20 +77,20 @@ private void GenerateInterface(IPatternElementInfo element)
 		string CodeIdentifier { get; }
 
 <#+
-foreach (var property in element.Properties)
-{
+        foreach (var property in element.Properties)
+        {
 #>
 		event EventHandler <#= property.CodeIdentifier #>Changed;
 <#+
-}	
+        }	
 	
 #>
 	}
 <#+
-}
+    }
 
-private void GenerateImplementation(IPatternElementInfo element, string asRuntimeMethod, bool isProduct = false)
-{
+    private void GenerateImplementation(IPatternElementInfo element, string asRuntimeMethod, bool isProduct = false)
+    {
 #>
 
 	partial class <#= element.CodeIdentifier #> : ISupportInitialize
@@ -168,12 +169,12 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 <#+
-foreach (var property in element.Properties)
-{
+        foreach (var property in element.Properties)
+        {
 #>
 		public event EventHandler <#= property.CodeIdentifier #>Changed = (sender, args) => { };
 <#+
-}	
+        }	
 #>
 
 		public string CodeIdentifier
@@ -202,14 +203,14 @@ foreach (var property in element.Properties)
 			switch (args.PropertyName)
 			{
 <#+
-foreach (var property in element.Properties)
-{
+        foreach (var property in element.Properties)
+        {
 #>
 				case "<#= property.CodeIdentifier #>":
 					<#= property.CodeIdentifier #>Changed(sender, args);
 					break;
 <#+
-}	
+        }	
 #>
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -231,5 +232,5 @@ foreach (var property in element.Properties)
 		}
 	}
 <#+
-}
+    }
 #>

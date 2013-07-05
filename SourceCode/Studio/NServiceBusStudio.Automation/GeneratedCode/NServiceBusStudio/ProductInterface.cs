@@ -105,6 +105,30 @@ namespace NServiceBusStudio
 		String ToolkitVersion { get; set; }
 
 		/// <summary>
+		/// Description for Application.ProjectNameInternalMessages
+		/// </summary>
+		[Description("Description for Application.ProjectNameInternalMessages")]
+		[DisplayName("Project Name Internal Messages")]
+		[Category("General")]
+		String ProjectNameInternalMessages { get; set; }
+
+		/// <summary>
+		/// Description for Application.ProjectNameContracts
+		/// </summary>
+		[Description("Description for Application.ProjectNameContracts")]
+		[DisplayName("Project Name Contracts")]
+		[Category("General")]
+		String ProjectNameContracts { get; set; }
+
+		/// <summary>
+		/// Description for Application.ProjectNameCode
+		/// </summary>
+		[Description("Description for Application.ProjectNameCode")]
+		[DisplayName("Project Name Code")]
+		[Category("General")]
+		String ProjectNameCode { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }

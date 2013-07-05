@@ -29,9 +29,9 @@
 	//------------------------------------------------------------------------------
 	// Environment Info
 	//------------------------------------------------------------------------------
-	public const string supportedVsVersion = @"11.0";
+	public const string supportedVsVersion = @"10.0";
 	public const string supportedFrxMinVersion = @"4.0";
-	public const string supportedFrxMaxVersion = @"4.5";
+	public const string supportedFrxMaxVersion = @"4.0";
 
 	//------------------------------------------------------------------------------
 	// NuPattern Info

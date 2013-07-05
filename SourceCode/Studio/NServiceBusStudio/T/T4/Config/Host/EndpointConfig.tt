@@ -21,7 +21,7 @@ namespace <#= service.Namespace #>
 <#
 	}
 	else
-	{	
+	{
 #>
 	public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher
 <#

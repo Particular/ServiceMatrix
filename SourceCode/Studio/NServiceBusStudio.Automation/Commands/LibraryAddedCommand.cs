@@ -44,7 +44,7 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 serviceLibrary.Parent.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName
                     + "." + serviceLibrary.Parent.Parent.CodeIdentifier;
-                serviceLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + ".Code"
+                serviceLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + "." + libraries.As<IProductElement>().Root.As<IApplication>().ProjectNameCode
                     + "\\" + serviceLibrary.Parent.Parent.CodeIdentifier;
             }
             else
@@ -54,7 +54,7 @@ namespace NServiceBusStudio.Automation.Commands
                 if (infrastructureLibrary != null)
                 {
                     infrastructureLibrary.Parent.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName;
-                    infrastructureLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + ".Code";
+                    infrastructureLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + "." + libraries.As<IProductElement>().Root.As<IApplication>().ProjectNameCode;
                 }
             }
 

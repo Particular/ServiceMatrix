@@ -66,8 +66,10 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml" />
     <Reference Include="PresentationCore" />
@@ -175,6 +177,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
+    <Compile Include="GeneralOptionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralOptionsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneralOptionsUserControl.Designer.cs">
+      <DependentUpon>GeneralOptionsUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="GeneratedCode\Guidance\GuidanceWorkflow.cs">
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252fc883d430-4912-4c10-91e9-f38110aa7c7c</SourceModelReference>
       <ItemGuid>60f176d8-4e9b-4313-8e18-5d61da1edf57</ItemGuid>
@@ -968,7 +979,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>dc84c026-5203-4165-9f99-d6e9042ef012</ItemGuid>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBH\EndpointDiagram.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1127,7 +1137,6 @@
       <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
     </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt">
-      <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5290a37d-dd77-46b3-91a7-6ef79b3cd82a</ItemGuid>
@@ -1192,6 +1201,9 @@
     <Folder Include="T\P\Endpoints\NSBHWeb\Infrastructure\GeneratedCode\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GeneralOptionsUserControl.resx">
+      <DependentUpon>GeneralOptionsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PatternModel.patterndefinition">
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252ff8a514df-bea8-4098-8e0d-aa1154ec8331</SourceModelReference>
       <ItemGuid>ec5ef507-1412-4c0e-88fa-efaad8078bac</ItemGuid>

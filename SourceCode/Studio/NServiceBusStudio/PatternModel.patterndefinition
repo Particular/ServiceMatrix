@@ -338,7 +338,7 @@
       "Properties": [
         {
           "Name": "Expression",
-          "Value": "{Root.InstanceName}.InternalMessages\\{Parent.Parent.Parent.InstanceName}",
+          "Value": "{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\{Parent.Parent.Parent.InstanceName}",
           "ValueProvider": null
         }
       ]
@@ -372,62 +372,63 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="967cd739-1e95-4a66-9d85-fd13059d3824" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": null,
-    "ValueProvider": {
-      "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
-      "Properties": [
+      <properties>
+        [
         {
-          "Name": "Expression",
-          "Value": "{Root.InstanceName}.Contract\\{Parent.Parent.Parent.InstanceName}",
-          "ValueProvider": null
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": null,
+        "ValueProvider": {
+        "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
+        "Properties": [
+        {
+        "Name": "Expression",
+        "Value": "{Root.InstanceName}.{Root.ProjectNameContracts}\\{Parent.Parent.Parent.InstanceName}",
+        "ValueProvider": null
         }
-      ]
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomEventDefinition.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/a2be8c5d-919e-4788-a2fa-126049ca056f",
-    "ValueProvider": null
-  }
-]</properties>
+        ]
+        }
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomEventDefinition.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/a2be8c5d-919e-4788-a2fa-126049ca056f",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="142936e0-8548-4b8d-a8b1-5cfb2c92a56e" typeId="NServiceBusStudio.Automation.Commands.ShowEventSubscriptionPicker">
       <extendedElement>
@@ -630,53 +631,54 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="96312f57-aee9-412d-b226-5303b7908f04" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{Parent.Parent.CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.Parent.Parent.InstanceName}.Code\\Infrastructure\\{Parent.Parent.Parent.Parent.CodeIdentifier}",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CommandSender.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/477d1212-a504-470e-87d4-1d9f10b377e2",
-    "ValueProvider": null
-  }
-]</properties>
+      <properties>
+        [
+        {
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{Parent.Parent.CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": "\\{Parent.Parent.Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\Infrastructure\\{Parent.Parent.Parent.Parent.CodeIdentifier}",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CommandSender.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/477d1212-a504-470e-87d4-1d9f10b377e2",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="66623688-feda-409e-a60e-666ce9289b8f" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
@@ -783,123 +785,125 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b5805c93-096e-4655-947f-a13bc19eac63" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.Code\\Infrastructure\\{Parent.Parent.CodeIdentifier}",
-    "ValueProvider": {
-      "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
-      "Properties": [
+      <properties>
+        [
         {
-          "Name": "SubPath",
-          "Value": "GeneratedCode",
-          "ValueProvider": null
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\Infrastructure\\{Parent.Parent.CodeIdentifier}",
+        "ValueProvider": {
+        "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
+        "Properties": [
+        {
+        "Name": "SubPath",
+        "Value": "GeneratedCode",
+        "ValueProvider": null
         }
-      ]
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentHandlers.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/009202b9-d8d1-4877-bcbf-ff75c983dcd3",
-    "ValueProvider": null
-  }
-]</properties>
+        ]
+        }
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentHandlers.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/009202b9-d8d1-4877-bcbf-ff75c983dcd3",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="595d4410-6d15-4702-b530-b14ca88605e6" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.Code\\{Parent.Parent.CodeIdentifier}",
-    "ValueProvider": {
-      "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
-      "Properties": [
+      <properties>
+        [
         {
-          "Name": "SubPath",
-          "Value": null,
-          "ValueProvider": null
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
+        "ValueProvider": {
+        "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
+        "Properties": [
+        {
+        "Name": "SubPath",
+        "Value": null,
+        "ValueProvider": null
         }
-      ]
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentHandlers.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f63539d8-7392-445a-b2a1-1454caecb2df",
-    "ValueProvider": null
-  }
-]</properties>
+        ]
+        }
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentHandlers.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f63539d8-7392-445a-b2a1-1454caecb2df",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="48b725fa-ffcc-46a9-8324-75f7d6e87c7e" typeId="NServiceBusStudio.Automation.Infrastructure.Authentication.AddAuthenticationCommand">
       <extendedElement>
@@ -1100,145 +1104,148 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0c9d0614-8db1-4a59-ad8c-df29e7e5744e" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "Open",
-    "Value": "True",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.Code\\{Parent.Parent.CodeIdentifier}",
-    "ValueProvider": null
-  }
-]</properties>
+      <properties>
+        [
+        {
+        "Name": "Open",
+        "Value": "True",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="bedce582-4714-46bd-9def-d09e712ddab3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="11088ed6-015a-41a6-95c0-71144c4cfc8c" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": null,
-    "ValueProvider": {
-      "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
-      "Properties": [
+      <properties>
+        [
         {
-          "Name": "Expression",
-          "Value": "{Root.InstanceName}.Contract\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}",
-          "ValueProvider": null
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": null,
+        "ValueProvider": {
+        "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
+        "Properties": [
+        {
+        "Name": "Expression",
+        "Value": "{Root.InstanceName}.{Root.ProjectNameContracts}\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}",
+        "ValueProvider": null
         }
-      ]
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/EventDefinition.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346",
-    "ValueProvider": null
-  }
-]</properties>
+        ]
+        }
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/EventDefinition.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="baf9b6a1-32fe-4902-987a-4e60bbf7baf8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="aae55502-f1eb-494c-8881-6bed5a85881b" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": null,
-    "ValueProvider": {
-      "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
-      "Properties": [
+      <properties>
+        [
         {
-          "Name": "Expression",
-          "Value": "{Root.InstanceName}.InternalMessages\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}",
-          "ValueProvider": null
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": null,
+        "ValueProvider": {
+        "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
+        "Properties": [
+        {
+        "Name": "Expression",
+        "Value": "{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}",
+        "ValueProvider": null
         }
-      ]
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CommandDefinition.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/600e8610-9915-48b1-a338-2cd0a7c4931e",
-    "ValueProvider": null
-  }
-]</properties>
+        ]
+        }
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CommandDefinition.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/600e8610-9915-48b1-a338-2cd0a7c4931e",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="f903ffd1-bb97-436f-89d8-3db8f71d3e8a" typeId="NServiceBusStudio.Automation.Commands.FileRestoreCommand">
       <extendedElement>
@@ -1266,62 +1273,63 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="02e255e6-52f7-4f3c-8253-74ec1a3c2a6d" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": "Compile",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}SagaData.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.Code\\{Parent.Parent.CodeIdentifier}",
-    "ValueProvider": {
-      "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
-      "Properties": [
+      <properties>
+        [
         {
-          "Name": "SubPath",
-          "Value": null,
-          "ValueProvider": null
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetBuildAction",
+        "Value": "Compile",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetCopyToOutput",
+        "Value": "DoNotCopy",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{CodeIdentifier}SagaData.cs",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
+        "ValueProvider": {
+        "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
+        "Properties": [
+        {
+        "Name": "SubPath",
+        "Value": null,
+        "ValueProvider": null
         }
-      ]
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentSagaHandlers.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6c659607-78bc-4671-8c4a-32065bba3c33",
-    "ValueProvider": null
-  }
-]</properties>
+        ]
+        }
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentSagaHandlers.tt",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6c659607-78bc-4671-8c4a-32065bba3c33",
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="885e23c4-7cca-4d0c-af46-944a5d668f6d" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
@@ -1720,43 +1728,44 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="9e4cd816-a728-4d4e-8525-1181098763aa" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{Parent.Parent.InstanceName}.Code",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "template://project/CSharp/485e80115c58-Application.Design.Libraries",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": null,
-    "ValueProvider": null
-  }
-]</properties>
+      <properties>
+        [
+        {
+        "Name": "SanitizeName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "SyncName",
+        "Value": "False",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Tag",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetFileName",
+        "Value": "{Parent.Parent.InstanceName}.{Root.ProjectNameCode}",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TargetPath",
+        "Value": null,
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateUri",
+        "Value": "template://project/CSharp/485e80115c58-Application.Design.Libraries",
+        "ValueProvider": null
+        },
+        {
+        "Name": "TemplateAuthoringUri",
+        "Value": null,
+        "ValueProvider": null
+        }
+        ]</properties>
     </commandSettings>
     <commandSettings Id="aafa86ef-7796-447d-a33a-6b8290bd832a" typeId="NServiceBusStudio.Automation.Commands.AddInfrastructureProjectReferences">
       <extendedElement>
@@ -5309,6 +5318,54 @@
   }
 }</defaultValue>
       </property>
+      <property Id="44ae36f7-a899-4e23-8611-f08ce41c85ff" name="ProjectNameInternalMessages" displayName="Project Name Internal Messages" description="Description for Application.ProjectNameInternalMessages" codeIdentifier="ProjectNameInternalMessages" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="0f48a4d8-72c6-46c0-9d02-0fec854ec573" name="ProjectNameContracts" displayName="Project Name Contracts" description="Description for Application.ProjectNameContracts" codeIdentifier="ProjectNameContracts" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="6f1b4d42-33f8-41b0-a013-57013927d546" name="ProjectNameCode" displayName="Project Name Code" description="Description for Application.ProjectNameCode" codeIdentifier="ProjectNameCode" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
     </properties>
     <automationSettings>
       <automationSettings Id="e3ea3a92-6c74-4192-b127-db1db151eea3" name="GenerateCode" displayName="Set Startup Projects" description="" codeIdentifier="GenerateCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
@@ -5589,16 +5646,17 @@
                                 <setting propertyId="RawValueProvider" />
                               </settings>
                             </customizationPolicy>
-                            <valueProvider>{
-  "Properties": [
-    {
-      "Name": "Expression",
-      "Value": "{Root.CodeIdentifier}.Contract.{Parent.Parent.CodeIdentifier}",
-      "ValueProvider": null
-    }
-  ],
-  "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider"
-}</valueProvider>
+                            <valueProvider>
+                              {
+                              "Properties": [
+                              {
+                              "Name": "Expression",
+                              "Value": "{Root.CodeIdentifier}.{Root.ProjectNameContracts}.{Parent.Parent.CodeIdentifier}",
+                              "ValueProvider": null
+                              }
+                              ],
+                              "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider"
+                              }</valueProvider>
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">
@@ -5744,16 +5802,17 @@
                                 <setting propertyId="RawValueProvider" />
                               </settings>
                             </customizationPolicy>
-                            <valueProvider>{
-  "Properties": [
-    {
-      "Name": "Expression",
-      "Value": "{Root.CodeIdentifier}.InternalMessages.{Parent.Parent.CodeIdentifier}",
-      "ValueProvider": null
-    }
-  ],
-  "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider"
-}</valueProvider>
+                            <valueProvider>
+                              {
+                              "Properties": [
+                              {
+                              "Name": "Expression",
+                              "Value": "{Root.CodeIdentifier}.{Root.ProjectNameInternalMessages}.{Parent.Parent.CodeIdentifier}",
+                              "ValueProvider": null
+                              }
+                              ],
+                              "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider"
+                              }</valueProvider>
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">

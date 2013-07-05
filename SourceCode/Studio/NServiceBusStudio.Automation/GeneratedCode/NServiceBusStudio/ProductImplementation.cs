@@ -167,6 +167,42 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.ProjectNameInternalMessages
+		/// </summary>
+		[Description("Description for Application.ProjectNameInternalMessages")]
+		[DisplayName("Project Name Internal Messages")]
+		[Category("General")]
+		public virtual String ProjectNameInternalMessages
+		{
+			get { return this.proxy.GetValue(() => this.ProjectNameInternalMessages); }
+			set { this.proxy.SetValue(() => this.ProjectNameInternalMessages, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.ProjectNameContracts
+		/// </summary>
+		[Description("Description for Application.ProjectNameContracts")]
+		[DisplayName("Project Name Contracts")]
+		[Category("General")]
+		public virtual String ProjectNameContracts
+		{
+			get { return this.proxy.GetValue(() => this.ProjectNameContracts); }
+			set { this.proxy.SetValue(() => this.ProjectNameContracts, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.ProjectNameCode
+		/// </summary>
+		[Description("Description for Application.ProjectNameCode")]
+		[DisplayName("Project Name Code")]
+		[Category("General")]
+		public virtual String ProjectNameCode
+		{
+			get { return this.proxy.GetValue(() => this.ProjectNameCode); }
+			set { this.proxy.SetValue(() => this.ProjectNameCode, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo

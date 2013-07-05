@@ -23,6 +23,7 @@ namespace NServiceBusStudio
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [Guid(GuidList.guidNServiceBusStudioPkgString)]
     [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Window = ToolWindowGuids.TaskList, Style = VsDockStyle.Tabbed, Transient = true)]
+    [ProvideOptionPage(typeof(GeneralOptionsPage), "ServiceMatrix", "General", 0, 0, true)]
     [ProvideService(typeof(IDetailsWindowsManager), ServiceName = "IDetailsWindowManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
     public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager

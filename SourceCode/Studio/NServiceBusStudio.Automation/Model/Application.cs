@@ -80,9 +80,20 @@ namespace NServiceBusStudio
             this.NServiceBusVersion = nserviceBusVersion;
             this.ExtensionPath = extensionPath;
 
+            SetOptionSettings();
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
             CheckLicense();
+        }
+
+        private void SetOptionSettings()
+        {
+            var envdte = this.ServiceProvider.TryGetService<EnvDTE.DTE>();
+            var properties = envdte.get_Properties("ServiceMatrix", "General");
+
+            this.ProjectNameInternalMessages = properties.Item("ProjectNameInternalMessages").Value.ToString();
+            this.ProjectNameContracts = properties.Item("ProjectNameContracts").Value.ToString();
+            this.ProjectNameCode = properties.Item("ProjectNameCode").Value.ToString();
         }
 
         private void CheckCreationContext()
@@ -202,8 +213,8 @@ namespace NServiceBusStudio
 
                 if (currentApplication.Design.ContractsProject == null)
                 {
-                    currentApplication.Design.CreateContractsProject(string.Format("{0}.Contract", currentApplication.InstanceName));
-                    currentApplication.Design.CreateInternalMessagesProject(string.Format("{0}.InternalMessages", currentApplication.InstanceName));
+                    currentApplication.Design.CreateContractsProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameContracts));
+                    currentApplication.Design.CreateInternalMessagesProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameInternalMessages));
                 }
                 var solution = currentApplication.ServiceProvider.TryGetService<ISolution>();
 

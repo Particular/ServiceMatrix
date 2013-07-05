@@ -75,7 +75,7 @@ namespace NServiceBusStudio.Automation.Commands
                     {
                         var context = sctx as EnvDTE.SolutionContext;
                         //if (projectNamesToDisable.Contains(context.ProjectName))
-                        if (context.ProjectName.EndsWith(".Code.csproj"))
+                        if (context.ProjectName.EndsWith(String.Format (".{0}.csproj", this.CurrentElement.Root.As<IApplication>().ProjectNameCode)))
                         {
                             context.ShouldBuild = false;
                             context.ShouldDeploy = false;

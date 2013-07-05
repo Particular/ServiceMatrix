@@ -29,6 +29,9 @@ namespace NServiceBusStudio
 		event EventHandler CompanyLogoChanged;
 		event EventHandler TitleChanged;
 		event EventHandler ToolkitVersionChanged;
+		event EventHandler ProjectNameInternalMessagesChanged;
+		event EventHandler ProjectNameContractsChanged;
+		event EventHandler ProjectNameCodeChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -465,6 +468,9 @@ namespace NServiceBusStudio
 		public event EventHandler CompanyLogoChanged = (sender, args) => { };
 		public event EventHandler TitleChanged = (sender, args) => { };
 		public event EventHandler ToolkitVersionChanged = (sender, args) => { };
+		public event EventHandler ProjectNameInternalMessagesChanged = (sender, args) => { };
+		public event EventHandler ProjectNameContractsChanged = (sender, args) => { };
+		public event EventHandler ProjectNameCodeChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -517,6 +523,15 @@ namespace NServiceBusStudio
 					break;
 				case "ToolkitVersion":
 					ToolkitVersionChanged(sender, args);
+					break;
+				case "ProjectNameInternalMessages":
+					ProjectNameInternalMessagesChanged(sender, args);
+					break;
+				case "ProjectNameContracts":
+					ProjectNameContractsChanged(sender, args);
+					break;
+				case "ProjectNameCode":
+					ProjectNameCodeChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
