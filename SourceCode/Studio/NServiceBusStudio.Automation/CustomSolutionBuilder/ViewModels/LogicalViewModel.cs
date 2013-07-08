@@ -316,7 +316,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             foreach (var service in servicesNode.LogicalViewNodes)
             {
                 // Adding menu options for "Add->Commands" and "Add->Events"
-                service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                //service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                service.FilterMenuItems("Delete");
                 service.MenuOptions.Add(service.InnerViewModel.ChildNodes.Named("Libraries").MenuOptions.First(o => o.Caption == "Add"));
 
                 foreach (var library in service.InnerViewModel.ChildNodes
@@ -347,7 +348,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             foreach (var service in observables[0].LogicalViewNodes)
             {
                 // Add menu option "Add -> Component" from first child
-                service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                //service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                service.FilterMenuItems("Delete");
                 service.MenuOptions.Add(new MenuOptionViewModel("Add",
                     new List<MenuOptionViewModel>{ 
                         service.InnerViewModel.ChildNodes.Named("Components").MenuOptions.First(o => o.Caption == "Add").MenuOptions.First() as MenuOptionViewModel
@@ -380,7 +382,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             foreach (var service in observables[0].LogicalViewNodes)
             {
                 // Adding menu options for "Add->Commands" and "Add->Events"
-                service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                //service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+                service.FilterMenuItems("Delete");
 
                 service.MenuOptions.Add(new MenuOptionViewModel("Add",
                     new List<MenuOptionViewModel>{ 
