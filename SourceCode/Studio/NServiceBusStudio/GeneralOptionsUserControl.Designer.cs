@@ -60,33 +60,33 @@
             this.lblCode.AutoSize = true;
             this.lblCode.Location = new System.Drawing.Point(6, 104);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(146, 13);
+            this.lblCode.Size = new System.Drawing.Size(93, 13);
             this.lblCode.TabIndex = 6;
-            this.lblCode.Text = "Project Namespace for Code:";
+            this.lblCode.Text = "Code namespace:";
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(219, 101);
+            this.txtCode.Location = new System.Drawing.Point(188, 101);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(166, 20);
+            this.txtCode.Size = new System.Drawing.Size(197, 20);
             this.txtCode.TabIndex = 5;
             this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProjectName_KeyPress);
             this.txtCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyUp);
             // 
             // txtContracts
             // 
-            this.txtContracts.Location = new System.Drawing.Point(219, 75);
+            this.txtContracts.Location = new System.Drawing.Point(188, 75);
             this.txtContracts.Name = "txtContracts";
-            this.txtContracts.Size = new System.Drawing.Size(166, 20);
+            this.txtContracts.Size = new System.Drawing.Size(197, 20);
             this.txtContracts.TabIndex = 4;
             this.txtContracts.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProjectName_KeyPress);
             this.txtContracts.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtContracts_KeyUp);
             // 
             // txtInternalMessages
             // 
-            this.txtInternalMessages.Location = new System.Drawing.Point(219, 49);
+            this.txtInternalMessages.Location = new System.Drawing.Point(188, 49);
             this.txtInternalMessages.Name = "txtInternalMessages";
-            this.txtInternalMessages.Size = new System.Drawing.Size(166, 20);
+            this.txtInternalMessages.Size = new System.Drawing.Size(197, 20);
             this.txtInternalMessages.TabIndex = 3;
             this.txtInternalMessages.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProjectName_KeyPress);
             this.txtInternalMessages.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtInternalMessages_KeyUp);
@@ -96,18 +96,18 @@
             this.lblContracts.AutoSize = true;
             this.lblContracts.Location = new System.Drawing.Point(6, 78);
             this.lblContracts.Name = "lblContracts";
-            this.lblContracts.Size = new System.Drawing.Size(166, 13);
+            this.lblContracts.Size = new System.Drawing.Size(113, 13);
             this.lblContracts.TabIndex = 2;
-            this.lblContracts.Text = "Project Namespace for Contracts:";
+            this.lblContracts.Text = "Contracts namespace:";
             // 
             // lblInternalMessages
             // 
             this.lblInternalMessages.AutoSize = true;
             this.lblInternalMessages.Location = new System.Drawing.Point(6, 52);
             this.lblInternalMessages.Name = "lblInternalMessages";
-            this.lblInternalMessages.Size = new System.Drawing.Size(207, 13);
+            this.lblInternalMessages.Size = new System.Drawing.Size(154, 13);
             this.lblInternalMessages.TabIndex = 1;
-            this.lblInternalMessages.Text = "Project Namespace for Internal Messages:";
+            this.lblInternalMessages.Text = "Internal Messages namespace:";
             // 
             // lblNamingConventionsDescription
             // 

@@ -7,7 +7,7 @@
         <property Id="a8faad37-e203-4fa7-b644-661cc79c3e78" definitionId="293802b7-0b69-440e-be60-927f07f4e636" definitionName="PatternName" rawValue="Application" />
         <property Id="0d6efed1-ec31-43f6-b486-0cb3da29839e" definitionId="710634cd-4863-4314-9785-dc33f6501903" definitionName="PatternDescription" rawValue="An NServiceBus-powered application" />
         <property Id="1992187f-f139-4b18-b666-7cce9e3d68cc" definitionId="00123e2b-3459-4924-9f18-628406735664" definitionName="ExistingToolkitId" />
-        <property Id="353adf58-cfc8-4216-b7d3-bcd6e13838ad" definitionId="5976c04c-d8ad-433f-9794-22e9cd55ac41" definitionName="SolutionName" rawValue="Studio.VS2010" />
+        <property Id="353adf58-cfc8-4216-b7d3-bcd6e13838ad" definitionId="5976c04c-d8ad-433f-9794-22e9cd55ac41" definitionName="SolutionName" rawValue="Studio.VS2012" />
         <property Id="a538420d-9b31-4a5f-9a12-50b7b25c80ef" definitionId="e73753b6-45e3-479f-b953-1c9ab6836362" definitionName="ProjectRootNamespace" rawValue="NServiceBusStudio" />
         <property Id="c163665e-e81d-4bef-aa19-7eecef9f5063" definitionId="4b4b1fdf-ea6d-4ea4-b142-c2f1685c0091" definitionName="ProjectAssemblyName" rawValue="Particular.ServiceMatrix" />
         <property Id="9575e076-2bdb-4181-b44c-db26f618b127" definitionId="4121d8f0-87a2-4757-a6d4-6f28d9fa8728" definitionName="ExcludeFromCodeCoverage" rawValue="True" />
