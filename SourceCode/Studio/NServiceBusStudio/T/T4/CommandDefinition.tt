@@ -9,7 +9,6 @@
 <#@ Import Namespace="System.Linq" #>
 <#  var icommand = ((IProductElement)this.Element).As<ICommand>(); #>
 using System;
-using NServiceBus;
 
 namespace <#= icommand.Parent.Namespace #>
 {
