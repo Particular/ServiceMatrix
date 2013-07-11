@@ -87,11 +87,6 @@
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
       <FileName>T\T4\Config\Host\EndpointConfig.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
@@ -103,6 +98,11 @@
     </TransformationPropertyValue>
     <TransformationPropertyValue>
       <FileName>T\T4\CustomCommandSender.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
