@@ -9,6 +9,7 @@ using NuPattern.Diagnostics;
 using NuPattern.VisualStudio.Solution;
 using NuPattern.VisualStudio;
 using NuPattern;
+using System.Collections.Generic;
 
 
 namespace NServiceBusStudio.Automation.Infrastructure
@@ -129,6 +130,61 @@ namespace NServiceBusStudio.Automation.Infrastructure
             process.ErrorDataReceived += (sender, e) => Log(LogType.Error, e.Data);
 
             process.WaitForExit();
+
+            Log(LogType.Output, "Ready");
+        }
+
+        public void RenameNamespaces(string currentName, string newName, IDictionary<string, string> currentNewNamespace)
+        {
+            SaveSolution();
+
+            Log(LogType.Output, "Loading solution...");
+            Log(LogType.Output, "Finding references...");
+
+            var projects = this.Solution.Find(x => x.Kind == ItemKind.Project);
+            foreach (var project in projects)
+            {
+                foreach (var item in project.Items)
+                {
+                    RenameNamespacesRecursive(item, currentName, newName, currentNewNamespace);
+                }
+            }
+
+            Log(LogType.Output, "Ready");
+        }
+
+        private void RenameNamespacesRecursive(IItemContainer itemContainer, string currentName, string newName, IDictionary<string, string> currentNewNamespace)
+        {
+            if (itemContainer.Kind == ItemKind.Folder)
+            {
+                // Rename namespace on child files
+                foreach (var item in itemContainer.Items)
+                {
+                    RenameNamespacesRecursive(item, currentName, newName, currentNewNamespace);
+                }
+
+                // Do folder renaming
+                if (itemContainer.Name == currentName)
+                {
+                    itemContainer.Rename(newName);
+                }
+            }
+            else
+            {
+                // File exists?
+                if (!System.IO.File.Exists(itemContainer.PhysicalPath))
+                {
+                    return;
+                }
+
+                // Do rename
+                var fileText = File.ReadAllText(itemContainer.PhysicalPath);
+                foreach (var renameNamespace in currentNewNamespace)
+                {
+                    fileText = fileText.Replace(renameNamespace.Key, renameNamespace.Value);
+                }
+                File.WriteAllText(itemContainer.PhysicalPath, fileText);
+            }
         }
 
         private void SaveSolution()

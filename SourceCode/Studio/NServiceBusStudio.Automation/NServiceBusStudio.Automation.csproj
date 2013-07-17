@@ -236,6 +236,7 @@
     <Compile Include="Model\Endpoints\NServiceBusWeb.cs" />
     <Compile Include="Model\Endpoints\NServiceBusWebComponentLink.cs" />
     <Compile Include="Model\Endpoints\NServiceBusWebComponents.cs" />
+    <Compile Include="Model\IRenameRefactoringNamespace.cs" />
     <Compile Include="Model\IRenameRefactoringNotSupported.cs" />
     <Compile Include="Model\IRenameRefactoring.cs" />
     <Compile Include="IContentViewer.cs" />

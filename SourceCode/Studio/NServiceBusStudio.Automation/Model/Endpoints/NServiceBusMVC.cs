@@ -118,12 +118,12 @@ namespace NServiceBusStudio
             return endpoint == null ? string.Empty : string.Format(@"{0}.Components.{1}", endpoint.Project.Data.RootNamespace, service.CodeIdentifier);
         }
 
-        private static string CustomBuildPathForComponentCode(abs.IAbstractEndpoint endpoint, IService service, string subPath)
+        private static string CustomBuildPathForComponentCode(abs.IAbstractEndpoint endpoint, IService service, string subPath, bool useNewServiceName)
         {
-            var result = string.Format(@"{0}\Components\{1}", endpoint.Project.Name, service.InstanceName);
+            var result = string.Format(@"{0}\Components\{1}", endpoint.Project.Name, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             if (subPath != string.Empty && subPath != null)
             {
-                result = string.Format(@"{0}\Infrastructure\{1}\{2}", endpoint.Project.Name, subPath, service.InstanceName);
+                result = string.Format(@"{0}\Infrastructure\{1}\{2}", endpoint.Project.Name, subPath, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             }
             return result;
         }

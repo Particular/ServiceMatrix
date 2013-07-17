@@ -10,6 +10,7 @@ using NuPattern.Runtime.References;
 using NuPattern;
 using NuPattern.Presentation;
 using NuPattern.VisualStudio.Solution;
+using System.Collections.Generic;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -53,6 +54,16 @@ namespace NServiceBusStudio.Automation.Extensions
                     return true;
                 }
 
+                var renameRefactoringNamespace = toolkitElement as IRenameRefactoringNamespace;
+                if (renameRefactoringNamespace != null && toolkitElement.InstanceName != "" && toolkitElement is IService)
+                {
+                    var service = toolkitElement as IService;
+                    service.Rename(uriService, refactoringManager);
+
+                    //MessageBox.Show("The Service renaming is almost done. Please, re-open the solution to finish with the renaming.", "Rename Service", MessageBoxButton.OK);
+                    return true;
+                }
+                
                 var renameRefactoringNotSupported = toolkitElement as IRenameRefactoringNotSupported;
                 if (renameRefactoringNotSupported != null && toolkitElement.InstanceName != "")
                 {
@@ -64,7 +75,8 @@ namespace NServiceBusStudio.Automation.Extensions
             }
         }
 
-        private static void RenameArtifactLinks(this IProductElement element, IUriReferenceService uriService, string currentName, string newName)
+        
+        public static void RenameArtifactLinks(this IProductElement element, IUriReferenceService uriService, string currentName, string newName)
         {
             foreach (var referenceLink in element.References)
             {

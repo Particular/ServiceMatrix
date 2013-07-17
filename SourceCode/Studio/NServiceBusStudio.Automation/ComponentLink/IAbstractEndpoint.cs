@@ -60,7 +60,7 @@ namespace AbstractEndpoint
     {
         public Func<IComponent, string> GetBaseSenderType { get; set; }
         public Func<IAbstractEndpoint, IService, string> BuildNamespaceForComponentCode { get; set; }
-        public Func<IAbstractEndpoint, IService, string, string> BuildPathForComponentCode { get; set; }
+        public Func<IAbstractEndpoint, IService, string, bool, string> BuildPathForComponentCode { get; set; }
         public Func<IComponent, string> GetClassNameSuffix { get; set; }
 
         public static EndpointCustomizationFuncs CreateDefault()
@@ -79,12 +79,12 @@ namespace AbstractEndpoint
             return endpoint == null ? string.Empty : string.Format(@"{0}.{1}", endpoint.Project.Data.RootNamespace, service.CodeIdentifier);
         }
 
-        private static string DefaultBuildPathForComponentCode(IAbstractEndpoint endpoint, IService service, string subPath)
+        private static string DefaultBuildPathForComponentCode(IAbstractEndpoint endpoint, IService service, string subPath, bool useNewServiceName)
         {
-            var result = string.Format(@"{0}\{1}", endpoint.Project.Name, service.InstanceName);
+            var result = string.Format(@"{0}\{1}", endpoint.Project.Name, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             if (subPath != string.Empty && subPath != null)
             {
-                result = string.Format(@"{0}\Infrastructure\{1}\{2}", endpoint.Project.Name, subPath, service.InstanceName);
+                result = string.Format(@"{0}\Infrastructure\{1}\{2}", endpoint.Project.Name, subPath, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             }
             return result;
         }

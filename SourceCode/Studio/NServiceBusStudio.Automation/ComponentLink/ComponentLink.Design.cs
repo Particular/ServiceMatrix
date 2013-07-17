@@ -204,6 +204,11 @@ namespace AbstractEndpoint
                 throw new NotImplementedException();
             }
 
+            public void AddLinks(IAbstractEndpoint endpoint)
+            {
+                throw new NotImplementedException();
+            }
+
 
             public event EventHandler AutoPublishEventsChanged;
         }
