@@ -12,7 +12,6 @@ using System.IO;
 using System.Linq;
 using NuPattern.Diagnostics;
 using System.Runtime.Remoting.Messaging;
-using NServiceBusStudio.Automation.WizardExtensions;
 
 namespace NServiceBusStudio
 {
@@ -42,8 +41,6 @@ namespace NServiceBusStudio
 
         partial void Initialize()
         {
-            CheckCreationContext();
-
             this.InfrastructureManager = new InfrastructureManager(this, this.ServiceProvider, this.PatternManager);
 
             if (currentApplication == null)
@@ -51,9 +48,6 @@ namespace NServiceBusStudio
                 currentApplication = this;
                 // Force initialization of NserviceBusVersion from file
                 this.InitializeExtensionDependentData();
-
-                var events = this.ServiceProvider.TryGetService<ISolutionEvents>();
-                events.SolutionOpened += new EventHandler<SolutionEventArgs>(events_SolutionOpened);
 
                 this.CustomSolutionBuilder.Initialize(this.ServiceProvider);
 
@@ -84,6 +78,9 @@ namespace NServiceBusStudio
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
             CheckLicense();
+
+            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
+                new Action(AddNugetFiles), null);
         }
 
         private void SetOptionSettings()
@@ -94,56 +91,6 @@ namespace NServiceBusStudio
             this.ProjectNameInternalMessages = properties.Item("ProjectNameInternalMessages").Value.ToString();
             this.ProjectNameContracts = properties.Item("ProjectNameContracts").Value.ToString();
             this.ProjectNameCode = properties.Item("ProjectNameCode").Value.ToString();
-        }
-
-        private void CheckCreationContext()
-        {
-            var validCreationContext = CallContext.GetData(SetValidCreationContextWizardExtension.ValidCreationContextKey);
-
-            if (!this.AsProduct().IsSerializing && // is creating
-                (validCreationContext == null || !((bool)validCreationContext))) 
-            {
-                throw new OperationCanceledException("You should create NServiceBus System solutions from File > New > Project. On the dialog, select the NServiceBus System project type under Visual C# node.");
-            }
-
-            CallContext.SetData(SetValidCreationContextWizardExtension.ValidCreationContextKey, null);
-        }
-
-        private void CheckLicense()
-        {
-            try
-            {
-                LicenseManager.PromptUserForLicense();
-                this.EnableSolutionBuilder();
-            }
-            catch (Rhino.Licensing.LicenseExpiredException)
-            {
-                this.DisableSolutionBuilder();
-
-                if (!this.AsProduct().IsSerializing) // is creating
-                {
-                    this.CustomSolutionBuilder.ShowNoSolutionState();
-                    throw new Exception("Trial period for ServiceMatrix has Expired. A new NServiceBus solution cannot be created.");
-                }
-            }
-        }
-
-        private void EnableSolutionBuilder()
-        {
-            this.IsValidLicensed = true;
-            this.CustomSolutionBuilder.EnableSolutionBuilder();
-        }
-
-        private void DisableSolutionBuilder()
-        {
-            this.IsValidLicensed = false;
-            this.CustomSolutionBuilder.DisableSolutionBuilder();
-        }
-
-        private void SetDomainSpecifiLogging()
-        {
-            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
-            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
         }
 
         private void SetPropagationHandlers()
@@ -198,13 +145,13 @@ namespace NServiceBusStudio
             };
         }
 
-        void events_SolutionOpened(object sender, SolutionEventArgs e)
+        private void SetDomainSpecifiLogging()
         {
-            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
-                new Action(AddNugetFiles), null);
+            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
+            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
         }
 
-        static private void AddNugetFiles()
+        private void AddNugetFiles()
         {
             try
             {
@@ -228,6 +175,43 @@ namespace NServiceBusStudio
             }
             catch { }
         }
+
+        private void CheckLicense()
+        {
+            try
+            {
+                LicenseManager.PromptUserForLicense();
+                this.EnableSolutionBuilder();
+            }
+            catch (Rhino.Licensing.LicenseExpiredException)
+            {
+                this.DisableSolutionBuilder();
+
+                if (!this.AsProduct().IsSerializing) // is creating
+                {
+                    this.CustomSolutionBuilder.ShowNoSolutionState();
+                    throw new Exception("Trial period for ServiceMatrix has Expired. A new NServiceBus solution cannot be created.");
+                }
+            }
+        }
+
+        private void EnableSolutionBuilder()
+        {
+            this.IsValidLicensed = true;
+            this.CustomSolutionBuilder.EnableSolutionBuilder();
+        }
+
+        private void DisableSolutionBuilder()
+        {
+            this.IsValidLicensed = false;
+            this.CustomSolutionBuilder.DisableSolutionBuilder();
+        }
+
+        
+
+        
+
+        
 
         public InfrastructureManager InfrastructureManager { get; private set; }
 
