@@ -457,7 +457,6 @@
       <SubType>Designer</SubType>
     </Content>
     <ProjectTemplate Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.vstemplate">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ItemGuid>fc54c8b3-2bb8-4b67-b512-303294cd2082</ItemGuid>
     </ProjectTemplate>
     <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.intellisense.js">

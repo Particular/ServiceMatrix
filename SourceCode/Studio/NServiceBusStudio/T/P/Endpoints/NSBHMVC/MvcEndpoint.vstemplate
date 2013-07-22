@@ -1,18 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>NService Bus MVC</Name>
     <Description>Description for Application.Design.Endpoints.NServiceBusMVC</Description>
     <Icon>HostWebMvc.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <ProjectSubType>
-    </ProjectSubType>
+    <ProjectSubType>Web</ProjectSubType>
     <TemplateID>8266b53c7228-Application.Design.Endpoints.NServiceBusMVC</TemplateID>
-    <SortOrder>1000</SortOrder>
+    <SortOrder>15</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>NServiceBusMVC</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
-    <LocationField>Enabled</LocationField>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>true</Hidden>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <LocationField>Enabled</LocationField>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="MvcEndpoint.csproj" File="MvcEndpoint.csproj" ReplaceParameters="true">
