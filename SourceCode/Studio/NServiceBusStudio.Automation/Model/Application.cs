@@ -180,7 +180,7 @@ namespace NServiceBusStudio
         {
             try
             {
-                LicenseManager.PromptUserForLicense();
+                this.LicensedVersion = LicenseManager.PromptUserForLicense();
                 this.EnableSolutionBuilder();
             }
             catch (Rhino.Licensing.LicenseExpiredException)

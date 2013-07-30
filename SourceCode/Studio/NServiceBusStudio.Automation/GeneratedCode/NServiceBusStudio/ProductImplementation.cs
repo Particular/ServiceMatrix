@@ -203,6 +203,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.LicensedVersion
+		/// </summary>
+		[Description("Description for Application.LicensedVersion")]
+		[DisplayName("Licensed Version")]
+		[Category("General")]
+		public virtual Boolean LicensedVersion
+		{
+			get { return this.proxy.GetValue(() => this.LicensedVersion); }
+			set { this.proxy.SetValue(() => this.LicensedVersion, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo

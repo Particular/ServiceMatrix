@@ -129,6 +129,14 @@ namespace NServiceBusStudio
 		String ProjectNameCode { get; set; }
 
 		/// <summary>
+		/// Description for Application.LicensedVersion
+		/// </summary>
+		[Description("Description for Application.LicensedVersion")]
+		[DisplayName("Licensed Version")]
+		[Category("General")]
+		Boolean LicensedVersion { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }
