@@ -16,12 +16,9 @@ namespace NServiceBusStudio.Automation.Licensing
     /// </summary>
     public partial class TrialExpired : CommonDialogWindow, IDialogWindow, IDisposable
     {
-        DispatcherTimer timer = new DispatcherTimer();
-
         public TrialExpired()
         {
             InitializeComponent();
-            timer.Interval = new TimeSpan(0, 0, 0, 5);
         }
 
         public DateTime CurrentLicenseExpireDate { get; set; }
@@ -35,7 +32,6 @@ namespace NServiceBusStudio.Automation.Licensing
 
             this.TrialVersionPane.Visibility = System.Windows.Visibility.Visible;
             this.ExpiredTrialVersionPane.Visibility = System.Windows.Visibility.Collapsed;
-            this.ContinueOnTrial.Visibility = System.Windows.Visibility.Visible;
             this.ShowDialog();
         }
 
@@ -45,7 +41,6 @@ namespace NServiceBusStudio.Automation.Licensing
 
             this.TrialVersionPane.Visibility = System.Windows.Visibility.Collapsed;
             this.ExpiredTrialVersionPane.Visibility = System.Windows.Visibility.Visible;
-            this.ContinueOnTrial.Visibility = System.Windows.Visibility.Collapsed;
             this.ShowDialog();
         }
 
@@ -63,19 +58,12 @@ namespace NServiceBusStudio.Automation.Licensing
             selectedFileExpirationDateLabel.Text = String.Format("Expiration Date: {0}", expirationDate.ToLocalTime().ToShortDateString());
         }
 
-        private void Hyperlink_RequestNavigate(object sender, RoutedEventArgs e)
-        {
-            string navigateUri = ((Hyperlink)sender).NavigateUri.ToString();
-            Process.Start(new ProcessStartInfo(navigateUri));
-            e.Handled = true;
-        }
-
         private void PurchaseALicense_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("http://www.particularsoftware.com"));
+            Process.Start(new ProcessStartInfo("http://particular.net/licensing"));
         }
 
-        private void ContinueOnTrial_Click(object sender, RoutedEventArgs e)
+        private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -103,20 +91,11 @@ namespace NServiceBusStudio.Automation.Licensing
 
             if (close)
             {
-                PurchaseALicense.IsEnabled = false;
-                ContinueOnTrial.IsEnabled = false;
-                Browse.IsEnabled = false;
-                errorPanel.Visibility = System.Windows.Visibility.Collapsed;
-                completePanel.Visibility = System.Windows.Visibility.Visible;
+                this.DialogResult = true;
+                this.Close();
 
-                timer.Tick += delegate
-                {
-                    timer.Stop();
-                    this.DialogResult = true;
-                    this.Close();
-                };
-
-                timer.Start();
+                var registered = new Registered();
+                registered.ShowDialog();
             }
         }
 

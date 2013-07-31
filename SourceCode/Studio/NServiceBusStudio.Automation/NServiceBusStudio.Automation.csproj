@@ -205,6 +205,9 @@
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
+    <Compile Include="Licensing\Registered.xaml.cs">
+      <DependentUpon>Registered.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Licensing\TrialExpired.xaml.cs">
       <DependentUpon>TrialExpired.xaml</DependentUpon>
     </Compile>
@@ -514,6 +517,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Licensing\Registered.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Licensing\TrialExpired.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -548,7 +555,7 @@
     <Resource Include="Resources\Help.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\NServiceBusStudioBanner.png" />
+    <Resource Include="Resources\ServiceMatrixBanner.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>
