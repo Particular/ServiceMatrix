@@ -95,21 +95,11 @@ namespace NServiceBusStudio
                 if (this.customization == null)
                 {
                     this.customization = abs.EndpointCustomizationFuncs.CreateDefault();
-                    this.customization.GetBaseSenderType = GetBaseSenderType;
+                    this.customization.GetBaseSenderType = c => string.Empty;
                     this.customization.BuildPathForComponentCode = CustomBuildPathForComponentCode;
                     this.customization.BuildNamespaceForComponentCode = CustomBuildNamespaceForComponentCode;
                 }
                 return this.customization;
-            }
-        }
-
-
-
-        private Func<IComponent, string> GetBaseSenderType
-        {
-            get
-            {
-                return c => string.Format("I{0}, NServiceBus.INServiceBusComponent", c.CodeIdentifier, this.Project.Data.RootNamespace);
             }
         }
 

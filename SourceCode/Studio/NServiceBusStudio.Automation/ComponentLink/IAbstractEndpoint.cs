@@ -14,7 +14,6 @@ namespace AbstractEndpoint
         string InstanceName { get; }
 
         IAbstractEndpointComponents EndpointComponents { get; }
-        Boolean CommandSenderNeedsRegistration { get; }
         
         // For Usage: Use CustomizationFuncs() extension method instead
         EndpointCustomizationFuncs Customization { get; }

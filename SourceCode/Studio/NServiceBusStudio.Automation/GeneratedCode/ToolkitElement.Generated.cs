@@ -32,6 +32,7 @@ namespace NServiceBusStudio
 		event EventHandler ProjectNameInternalMessagesChanged;
 		event EventHandler ProjectNameContractsChanged;
 		event EventHandler ProjectNameCodeChanged;
+		event EventHandler LicensedVersionChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -85,7 +86,6 @@ namespace NServiceBusStudio
 		event EventHandler CommandNameChanged;
 		event EventHandler NamespaceChanged;
 		event EventHandler ComponentNameChanged;
-		event EventHandler SenderNeedsRegistrationChanged;
 		event EventHandler ComponentBaseTypeChanged;
 	}
 
@@ -132,7 +132,6 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
-		event EventHandler CommandSenderNeedsRegistrationChanged;
 		event EventHandler ComponentsOrderDefinitionChanged;
 		event EventHandler ErrorQueueChanged;
 		event EventHandler ForwardReceivedMessagesToChanged;
@@ -161,7 +160,6 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
-		event EventHandler CommandSenderNeedsRegistrationChanged;
 		event EventHandler ErrorQueueChanged;
 		event EventHandler ForwardReceivedMessagesToChanged;
 		event EventHandler HasComponentsThatPublishEventChanged;
@@ -188,7 +186,6 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
-		event EventHandler CommandSenderNeedsRegistrationChanged;
 		event EventHandler ErrorQueueChanged;
 		event EventHandler ForwardReceivedMessagesToChanged;
 		event EventHandler HasComponentsThatPublishEventChanged;
@@ -471,6 +468,7 @@ namespace NServiceBusStudio
 		public event EventHandler ProjectNameInternalMessagesChanged = (sender, args) => { };
 		public event EventHandler ProjectNameContractsChanged = (sender, args) => { };
 		public event EventHandler ProjectNameCodeChanged = (sender, args) => { };
+		public event EventHandler LicensedVersionChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -532,6 +530,9 @@ namespace NServiceBusStudio
 					break;
 				case "ProjectNameCode":
 					ProjectNameCodeChanged(sender, args);
+					break;
+				case "LicensedVersion":
+					LicensedVersionChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -1289,7 +1290,6 @@ namespace NServiceBusStudio
 		public event EventHandler CommandNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
 		public event EventHandler ComponentNameChanged = (sender, args) => { };
-		public event EventHandler SenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ComponentBaseTypeChanged = (sender, args) => { };
 
 		public string CodeIdentifier
@@ -1328,9 +1328,6 @@ namespace NServiceBusStudio
 					break;
 				case "ComponentName":
 					ComponentNameChanged(sender, args);
-					break;
-				case "SenderNeedsRegistration":
-					SenderNeedsRegistrationChanged(sender, args);
 					break;
 				case "ComponentBaseType":
 					ComponentBaseTypeChanged(sender, args);
@@ -1974,7 +1971,6 @@ namespace NServiceBusStudio
 		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
-		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ComponentsOrderDefinitionChanged = (sender, args) => { };
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
@@ -2014,9 +2010,6 @@ namespace NServiceBusStudio
 
 			switch (args.PropertyName)
 			{
-				case "CommandSenderNeedsRegistration":
-					CommandSenderNeedsRegistrationChanged(sender, args);
-					break;
 				case "ComponentsOrderDefinition":
 					ComponentsOrderDefinitionChanged(sender, args);
 					break;
@@ -2284,7 +2277,6 @@ namespace NServiceBusStudio
 		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
-		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
 		public event EventHandler HasComponentsThatPublishEventChanged = (sender, args) => { };
@@ -2322,9 +2314,6 @@ namespace NServiceBusStudio
 
 			switch (args.PropertyName)
 			{
-				case "CommandSenderNeedsRegistration":
-					CommandSenderNeedsRegistrationChanged(sender, args);
-					break;
 				case "ErrorQueue":
 					ErrorQueueChanged(sender, args);
 					break;
@@ -2586,7 +2575,6 @@ namespace NServiceBusStudio
 		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
-		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
 		public event EventHandler HasComponentsThatPublishEventChanged = (sender, args) => { };
@@ -2623,9 +2611,6 @@ namespace NServiceBusStudio
 
 			switch (args.PropertyName)
 			{
-				case "CommandSenderNeedsRegistration":
-					CommandSenderNeedsRegistrationChanged(sender, args);
-					break;
 				case "ErrorQueue":
 					ErrorQueueChanged(sender, args);
 					break;

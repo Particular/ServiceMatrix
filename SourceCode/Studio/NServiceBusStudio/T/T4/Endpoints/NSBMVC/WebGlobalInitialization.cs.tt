@@ -29,7 +29,6 @@ if (!nserviceBusHost.SendOnly)
 
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
-                //.ForMvc()
                 .XmlSerializer()
                 .PurgeOnStartup(false)
                 .UnicastBus()
@@ -43,7 +42,6 @@ else
 #> 
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
-                //.ForMvc()
                 .XmlSerializer()
                 .UnicastBus()
                 .SendOnly();

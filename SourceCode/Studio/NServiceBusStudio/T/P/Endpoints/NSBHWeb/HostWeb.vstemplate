@@ -33,7 +33,6 @@
         <ProjectItem TargetFileName="Site.css" ReplaceParameters="false">Site.css</ProjectItem>
       </Folder>
       <Folder Name="Infrastructure" TargetFolderName="Infrastructure">
-        <ProjectItem TargetFileName="INServiceBusComponent.cs" ReplaceParameters="true">INServiceBusComponent.cs</ProjectItem>
       </Folder>
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem TargetFileName="AssemblyInfo.cs" ReplaceParameters="true">AssemblyInfo.cs</ProjectItem>

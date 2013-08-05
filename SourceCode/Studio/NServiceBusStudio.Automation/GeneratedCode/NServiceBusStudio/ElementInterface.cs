@@ -615,14 +615,6 @@ namespace NServiceBusStudio
 		String ComponentName { get; set; }
 
 		/// <summary>
-		/// Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.SenderNeedsRegistration
-		/// </summary>
-		[Description("Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.SenderNeedsRegistration")]
-		[DisplayName("Sender Needs Registration")]
-		[Category("General")]
-		Boolean SenderNeedsRegistration { get; set; }
-
-		/// <summary>
 		/// Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.ComponentBaseType
 		/// </summary>
 		[Description("Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.ComponentBaseType")]
@@ -1129,14 +1121,6 @@ namespace NServiceBusStudio
 	{
 
 		/// <summary>
-		/// Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration
-		/// </summary>
-		[Description("Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration")]
-		[DisplayName("Command Sender Needs Registration")]
-		[Category("General")]
-		Boolean CommandSenderNeedsRegistration { get; set; }
-
-		/// <summary>
 		/// Description for Application.Design.Endpoints.NServiceBusHost.ComponentsOrderDefinition
 		/// </summary>
 		[Description("Description for Application.Design.Endpoints.NServiceBusHost.ComponentsOrderDefinition")]
@@ -1427,14 +1411,6 @@ namespace NServiceBusStudio
 	{
 
 		/// <summary>
-		/// Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration
-		/// </summary>
-		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration")]
-		[DisplayName("Command Sender Needs Registration")]
-		[Category("General")]
-		Boolean CommandSenderNeedsRegistration { get; set; }
-
-		/// <summary>
 		/// Description for Application.Design.Endpoints.NServiceBusWeb.ErrorQueue
 		/// </summary>
 		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.ErrorQueue")]
@@ -1707,14 +1683,6 @@ namespace NServiceBusStudio
 	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.21.0")]
 	public partial interface INServiceBusMVC : IToolkitInterface
 	{
-
-		/// <summary>
-		/// Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
-		/// </summary>
-		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]
-		[DisplayName("Command Sender Needs Registration")]
-		[Category("General")]
-		Boolean CommandSenderNeedsRegistration { get; set; }
 
 		/// <summary>
 		/// Description for Application.Design.Endpoints.NServiceBusMVC.ErrorQueue

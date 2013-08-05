@@ -26,10 +26,31 @@ namespace NServiceBusStudio
         void Subscribe(ICommand command);
         void RemoveLinks(IAbstractEndpoint endpoint);
         void AddLinks(IAbstractEndpoint endpoint);
+
+        bool IsSender { get; }
+        bool IsProcessor { get; }
     }
 
     partial class Component : IValidatableObject, IRenameRefactoring
     {
+        public bool IsSender
+        {
+            get
+            {
+                return this.Publishes.CommandLinks.Any() ||
+                       this.Publishes.EventLinks.Any();
+            }
+        }
+
+        public bool IsProcessor
+        {
+            get
+            {
+                return this.Subscribes.ProcessedCommandLinks.Any() ||
+                       this.Subscribes.SubscribedEventLinks.Any();
+            }
+        }
+
         public IProject Project
         {
             get { return this.AsElement().GetProject(); }
@@ -124,11 +145,11 @@ namespace NServiceBusStudio
                 }
 
                 // Generate Code for Component Handlers
-                this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeHandlers").Execute();
-                this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldCustomHandlers").Execute();
+                this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeConditionalHandlers").Execute();
+                this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldConditionalCustomHandlers").Execute();
                 if (this.IsSaga)
                 {
-                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldConditionalSagaDataCode").Execute();
                 }
 
                 // Add Links for Referenced Libraries
@@ -140,8 +161,7 @@ namespace NServiceBusStudio
         {
             var project = endpoint.Project;
 
-            if (this.Subscribes.ProcessedCommandLinks.Any() ||
-                this.Subscribes.SubscribedEventLinks.Any())
+            if (this.IsProcessor)
             {
 
                 // 1. Add Links for Custom Code
@@ -193,8 +213,7 @@ namespace NServiceBusStudio
             if (project == null)
                 return;
 
-            if (this.Subscribes.ProcessedCommandLinks.Any() ||
-                this.Subscribes.SubscribedEventLinks.Any())
+            if (this.IsProcessor)
             {
 
                 // 1. Remove Links for Custom Code

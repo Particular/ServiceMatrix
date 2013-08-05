@@ -120,12 +120,8 @@
         <ProjectItem ReplaceParameters="false" TargetFileName="orderedList9.png">orderedList9.png</ProjectItem>
       </Folder>
       <Folder Name="Infrastructure" TargetFolderName="Infrastructure">
-        <ProjectItem TargetFileName="ConfigureMvcDependencyInjection.cs" ReplaceParameters="true">ConfigureMvcDependencyInjection.cs</ProjectItem>
-        <ProjectItem TargetFileName="INServiceBusComponent.cs" ReplaceParameters="true">INServiceBusComponent.cs</ProjectItem>
         <Folder Name="GeneratedCode" TargetFolderName="GeneratedCode" />
         <ProjectItem TargetFileName="Logging.config" ReplaceParameters="true">Logging.config</ProjectItem>
-        <ProjectItem TargetFileName="NServiceBusControllerActivator.cs" ReplaceParameters="true">NServiceBusControllerActivator.cs</ProjectItem>
-        <ProjectItem TargetFileName="NServiceBusDependencyResolverAdapter.cs" ReplaceParameters="true">NServiceBusDependencyResolverAdapter.cs</ProjectItem>
       </Folder>
       <Folder Name="Models" TargetFolderName="Models">
         <ProjectItem ReplaceParameters="true" TargetFileName="AccountModels.cs">AccountModels.cs</ProjectItem>

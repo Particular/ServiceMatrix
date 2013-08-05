@@ -154,18 +154,6 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine();
             }
 
-            if (this.Component.Publishes.CommandLinks.Any(cl => cl.SenderNeedsRegistration))
-            {
-                sb.AppendLine("		public class " + this.Component.CodeIdentifier + "Registration : INeedInitialization");
-                sb.AppendLine("		{");
-                sb.AppendLine("       public void Init()");
-                sb.AppendLine("       {");
-                sb.AppendLine("           Configure.Instance.Configurer.ConfigureComponent<" + this.Component.CodeIdentifier + ">(DependencyLifecycle.InstancePerCall);");
-                sb.AppendLine("       }");
-                sb.AppendLine("		}");
-                sb.AppendLine();
-            }
-
             if (this.Component.IsSaga)
             {
                 sb.AppendLine("     }");

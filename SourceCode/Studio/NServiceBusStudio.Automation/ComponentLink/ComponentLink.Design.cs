@@ -211,6 +211,17 @@ namespace AbstractEndpoint
 
 
             public event EventHandler AutoPublishEventsChanged;
+
+
+            public bool IsSender
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public bool IsProcessor
+            {
+                get { throw new NotImplementedException(); }
+            }
         }
     }
 }

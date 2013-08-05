@@ -543,10 +543,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBH\Infrastructure\INServiceBusComponent.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
     <Content Include="T\P\Endpoints\NSBH\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
@@ -563,10 +559,6 @@
     </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\INServiceBusComponent.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -594,22 +586,6 @@
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\ConfigureMvcDependencyInjection.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\INServiceBusComponent.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusControllerActivator.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusDependencyResolverAdapter.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -734,18 +710,6 @@
     <None Include="d4b6057a-fb60-4a43-b09f-b7c23e6273cd.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
     </None>
-    <Content Include="T\T4\CommandSender.tt">
-      <LastGenOutput>CommandHandler.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>477d1212-a504-470e-87d4-1d9f10b377e2</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\CustomCommandSender.tt">
-      <LastGenOutput>CommandHandler.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>0c374c06-3ef4-4399-8fe8-408c61dbeea5</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="T\T4\ComponentHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -1198,6 +1162,7 @@
     <Folder Include="GeneratedCode\Guidance\Content\" />
     <Folder Include="T\I\" />
     <Folder Include="T\P\Endpoints\NSBHWeb\Infrastructure\GeneratedCode\" />
+    <Folder Include="T\P\Endpoints\NSBH\Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GeneralOptionsUserControl.resx">
