@@ -7170,7 +7170,7 @@
               </settings>
             </customizationPolicy>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NService Bus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
+              <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NServiceBus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -7846,7 +7846,7 @@
               </element>
             </childElement>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NService Bus Web" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
+              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NServiceBus ASP.NET Web Forms" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
@@ -8483,7 +8483,7 @@
               </element>
             </childElement>
             <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="55173bde-0618-431e-8b1a-5bb2c312c713" name="NServiceBusMVC" displayName="NService Bus MVC" description="A web project that makes use of ASP MVC." codeIdentifier="NServiceBusMVC" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
+              <element Id="55173bde-0618-431e-8b1a-5bb2c312c713" name="NServiceBusMVC" displayName="NServiceBus ASP.NET MVC" description="A web project that makes use of ASP MVC." codeIdentifier="NServiceBusMVC" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
