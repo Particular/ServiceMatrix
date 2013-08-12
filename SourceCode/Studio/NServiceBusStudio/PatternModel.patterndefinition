@@ -4346,7 +4346,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"535c0bab-96ae-4925-bf1e-bbdeb29d37fd\"\r\n  },\r\n  {\r\n    \"CommandId\": \"fae58295-952d-46a5-b1af-0e094be6dc61\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"a699f3b4-aef7-4d72-a057-1c3375ce33d5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"535c0bab-96ae-4925-bf1e-bbdeb29d37fd\"\r\n  },\r\n  {\r\n    \"CommandId\": \"fae58295-952d-46a5-b1af-0e094be6dc61\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4460,6 +4460,11 @@
     "ValueProvider": null
   }
 ]</properties>
+    </commandSettings>
+    <commandSettings Id="a699f3b4-aef7-4d72-a057-1c3375ce33d5" typeId="NServiceBusStudio.Automation.Commands.ShowNewDiagramCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="1e8a1cd0-326e-49d9-8771-dd579d48fbe6" />
+      </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
@@ -5528,6 +5533,15 @@
         </customizationPolicy>
       </automationSettings>
       <automationSettings Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="Settings" />
+          </settings>
+        </customizationPolicy>
+      </automationSettings>
+      <automationSettings Id="1e8a1cd0-326e-49d9-8771-dd579d48fbe6" name="ShowNewDiagramCommand" displayName="Show New Diagram Command" description="" codeIdentifier="ShowNewDiagramCommand" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />

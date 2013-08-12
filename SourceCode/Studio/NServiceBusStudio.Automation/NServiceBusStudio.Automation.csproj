@@ -33,6 +33,21 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Reference Include="InfragisticsWPF4.Controls.Maps.XamNetworkNode.v13.1, Version=13.1.20131.2155, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NServiceBusStudio\Libs\InfragisticsWPF4.Controls.Maps.XamNetworkNode.v13.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.DataVisualization.v13.1, Version=13.1.20131.2155, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NServiceBusStudio\Libs\InfragisticsWPF4.DataVisualization.v13.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="InfragisticsWPF4.v13.1, Version=13.1.20131.2155, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\NServiceBusStudio\Libs\InfragisticsWPF4.v13.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -129,6 +144,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowNewDiagramCommand.cs" />
     <Compile Include="Commands\ShowEventComponentPicker.cs" />
     <Compile Include="Commands\ShowCommandComponentPicker.cs" />
     <Compile Include="Commands\PackageConfigFilesCommand.cs" />
@@ -201,6 +217,9 @@
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\IElementHierarchyPicker.cs" />
+    <Compile Include="Dialog\NewDiagram.xaml.cs">
+      <DependentUpon>NewDiagram.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
@@ -496,6 +515,10 @@
     <Page Include="Dialog\ElementHierarchyPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\NewDiagram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\UseCaseComponentPicker.xaml">
       <Generator>MSBuild:Compile</Generator>

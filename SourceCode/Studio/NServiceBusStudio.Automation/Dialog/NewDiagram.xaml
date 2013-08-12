@@ -1,0 +1,24 @@
+﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.NewDiagram"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
+             xmlns:ig="clr-namespace:Infragistics.Controls.Maps;assembly=InfragisticsWPF4.Controls.Maps.XamNetworkNode.v13.1"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600" Initialized="CommonDialogWindow_Initialized">
+    <Grid>
+        <ig:XamNetworkNode x:Name="xnn">
+            <ig:XamNetworkNode.GlobalNodeLayouts>
+                <ig:NetworkNodeNodeLayout
+                    TargetTypeName="NodeModel"
+                    DisplayMemberPath="Label"
+                    ToolTipMemberPath="ToolTip"
+                    ConnectionsMemberPath="Connections"
+                    ConnectionTargetMemberPath="Target"
+                    ConnectionWeightMemberPath="Weight"   />
+            </ig:XamNetworkNode.GlobalNodeLayouts>
+        </ig:XamNetworkNode>
+    </Grid>
+</src:CommonDialogWindow>
