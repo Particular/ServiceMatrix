@@ -14,6 +14,8 @@ using NuPattern.Diagnostics;
 using NuPattern.Runtime;
 using NuPattern.VisualStudio;
 using NuPattern.Runtime.Diagnostics;
+using NServiceBusStudio.Automation.Diagrams.Views;
+using NServiceBusStudio.Automation.Diagrams;
 
 namespace NServiceBusStudio
 {
@@ -23,10 +25,13 @@ namespace NServiceBusStudio
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [Guid(GuidList.guidNServiceBusStudioPkgString)]
     [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Window = ToolWindowGuids.TaskList, Style = VsDockStyle.Tabbed, Transient = true)]
+    [ProvideToolWindow(typeof(NServiceBusDiagramsToolWindow), Window = ToolWindowGuids.DocOutline, Style = VsDockStyle.MDI, Transient = true)]
     [ProvideOptionPage(typeof(GeneralOptionsPage), "ServiceMatrix", "General", 0, 0, true)]
     [ProvideService(typeof(IDetailsWindowsManager), ServiceName = "IDetailsWindowManager")]
+    [ProvideService(typeof(IDiagramsWindowsManager), ServiceName = "IDiagramsWindowsManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
-    public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager
+    [ProvideService(typeof(NServiceBusDiagramsToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
+    public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager, IDiagramsWindowsManager
     {
         [Import]
         public ITraceOutputWindowManager TraceOutputWindowManager { get; set; }
@@ -60,6 +65,7 @@ namespace NServiceBusStudio
         {
             var serviceContainer = (IServiceContainer)this;
             serviceContainer.AddService(typeof(IDetailsWindowsManager), this, true);
+            serviceContainer.AddService(typeof(IDiagramsWindowsManager), this, true);
         }
 
         void IDetailsWindowsManager.Show()
@@ -80,6 +86,16 @@ namespace NServiceBusStudio
         void IDetailsWindowsManager.Disable()
         {
             EnableDisableDetailsPanel(false);
+        }
+
+        void IDiagramsWindowsManager.Show()
+        {
+            var window = this.EnsureCreateToolWindow<NServiceBusDiagramsToolWindow>();
+            if (window != null)
+            {
+                var frame = (IVsWindowFrame)window.Frame;
+                frame.Show();
+            }
         }
 
         private void EnableDisableDetailsPanel(bool enable)

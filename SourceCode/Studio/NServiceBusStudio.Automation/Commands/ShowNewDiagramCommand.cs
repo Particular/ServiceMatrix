@@ -11,6 +11,9 @@ using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
 using NuPattern.Presentation;
 using NuPattern;
+using NServiceBusStudio.Automation.Diagrams.Views;
+using Microsoft.VisualStudio.Shell;
+using NServiceBusStudio.Automation.Diagrams;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -27,30 +30,31 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
-        /// <summary>
-        /// Gets or sets the Window Factory, used to create a Window Dialog.
-        /// </summary>
-        [Required]
-        [Import(AllowDefault = true)]
-        private IDialogWindowFactory WindowFactory
-        {
-            get;
-            set;
-        }
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
         public override void Execute()
         {
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var window = WindowFactory.CreateDialog<NewDiagram>();
-            
-            using (new MouseCursor(Cursors.Arrow))
+            var diagramsWindowManager = this.ServiceProvider.TryGetService<IDiagramsWindowsManager>();
+            if (diagramsWindowManager != null)
             {
-                if (window.ShowDialog().Value)
+                using (new MouseCursor(Cursors.Arrow))
                 {
+                    diagramsWindowManager.Show();
                 }
             }
+
+            //var window = (NServiceBusDiagramsToolWindow)this.ServiceProvider.GetService(typeof(NServiceBusDiagramsToolWindow));
+            //if (window != null)
+            //{
+            //    using (new MouseCursor(Cursors.Arrow))
+            //    {
+            //        ((Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame).Show();
+            //    }
+            //}
         }
     }
 }

@@ -14,12 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NServiceBusStudio.Automation.Dialog
+namespace NServiceBusStudio.Automation.Diagrams.Views
 {
     /// <summary>
     /// Interaction logic for NewDiagram.xaml
     /// </summary>
-    public partial class NewDiagram : CommonDialogWindow, IDialogWindow
+    public partial class NewDiagram : UserControl
     {
         public NewDiagram()
         {

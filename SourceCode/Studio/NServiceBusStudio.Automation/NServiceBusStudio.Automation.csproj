@@ -213,13 +213,15 @@
     <Compile Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml.cs">
       <DependentUpon>ToolbarExtension.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Diagrams\IDetailsWindowsManager.cs" />
+    <Compile Include="Diagrams\Views\NewDiagram.xaml.cs">
+      <DependentUpon>NewDiagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagrams\Views\NServiceBusDiagramsToolWindow.cs" />
     <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\IElementHierarchyPicker.cs" />
-    <Compile Include="Dialog\NewDiagram.xaml.cs">
-      <DependentUpon>NewDiagram.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
@@ -508,6 +510,10 @@
       <DependentUpon>VsVersionStyles.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Diagrams\Views\NewDiagram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialog\ComponentPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -515,10 +521,6 @@
     <Page Include="Dialog\ElementHierarchyPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialog\NewDiagram.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\UseCaseComponentPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -550,6 +552,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Diagrams\ViewModels\" />
     <Folder Include="Events\" />
     <Folder Include="WizardExtensions\" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.NewDiagram"
+﻿<UserControl x:Class="NServiceBusStudio.Automation.Diagrams.Views.NewDiagram"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,4 +21,4 @@
             </ig:XamNetworkNode.GlobalNodeLayouts>
         </ig:XamNetworkNode>
     </Grid>
-</src:CommonDialogWindow>
+</UserControl>
