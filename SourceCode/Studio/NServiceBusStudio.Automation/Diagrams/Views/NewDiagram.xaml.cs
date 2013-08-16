@@ -1,4 +1,5 @@
-﻿using NuPattern.Presentation;
+﻿using Mindscape.WpfDiagramming;
+using NuPattern.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,9 @@ namespace NServiceBusStudio.Automation.Diagrams.Views
             list.Add(node3);
             list.Add(node4);
 
-            this.xnn.ItemsSource = list;
+            this.ds.Diagram.Nodes.Add(new ShapeNode { Shape = DiagramShapes.Rectangle, Bounds = new Rect(20, 20, 150, 80) });
+            this.ds.Diagram.Nodes.Add(new ShapeNode { Shape = DiagramShapes.Card, Bounds = new Rect(200, 20, 150, 80) });
+            this.ds.Diagram.Nodes.Add(new ShapeNode { Shape = DiagramShapes.Ellipse, Bounds = new Rect(20, 20, 150, 80) });
         }
 
 

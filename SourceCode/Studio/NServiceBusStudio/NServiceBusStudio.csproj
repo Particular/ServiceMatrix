@@ -49,21 +49,6 @@
   </Choose>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="InfragisticsWPF4.Controls.Maps.XamNetworkNode.v13.1, Version=13.1.20131.2155, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\InfragisticsWPF4.Controls.Maps.XamNetworkNode.v13.1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="InfragisticsWPF4.DataVisualization.v13.1, Version=13.1.20131.2155, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\InfragisticsWPF4.DataVisualization.v13.1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="InfragisticsWPF4.v13.1, Version=13.1.20131.2155, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libs\InfragisticsWPF4.v13.1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -133,9 +118,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Libs\InfragisticsWPF4.Controls.Maps.XamNetworkNode.v13.1.dll" />
-    <Content Include="Libs\InfragisticsWPF4.DataVisualization.v13.1.dll" />
-    <Content Include="Libs\InfragisticsWPF4.v13.1.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.FlowDiagrams.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.FlowDiagrams.xml" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.Design.10.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.Design.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.xml" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.StarDiagrams.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.StarDiagrams.xml" />
     <Content Include="Libs\Mono.Cecil.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -144,6 +134,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Libs\wpfdgmrtl.exe" />
     <Content Include="NServiceBusVersion.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -882,6 +873,7 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_LoginPartial.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Libs\Mindscape.WpfDiagramming.DiagramSurface.lic" />
     <None Include="NServiceBus.Tools.snk" />
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
