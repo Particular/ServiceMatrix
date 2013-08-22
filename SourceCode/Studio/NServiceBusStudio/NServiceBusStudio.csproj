@@ -211,198 +211,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\Content.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\Css.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Content\Site.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_222222_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_2e83ff_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_454545_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_888888_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\images\ui-icons_cd0a0a_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery-ui.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.accordion.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.all.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.autocomplete.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.base.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.button.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.core.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.datepicker.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.dialog.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.progressbar.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.resizable.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.selectable.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.slider.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.tabs.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\jquery.ui.theme.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_222222_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_454545_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_888888_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery-ui.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.accordion.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.autocomplete.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.button.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.core.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.datepicker.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.dialog.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.progressbar.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.resizable.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.selectable.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.slider.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.tabs.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Content\themes\base\minified\jquery.ui.theme.min.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Global.asax">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -412,43 +229,25 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\accent.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\favicon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\bullet.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\heroAccent.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList0.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList1.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList2.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList5.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList7.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList8.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Images\orderedList9.png">
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\search.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.csproj">
@@ -459,54 +258,6 @@
     <ProjectTemplate Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.vstemplate">
       <ItemGuid>fc54c8b3-2bb8-4b67-b512-303294cd2082</ItemGuid>
     </ProjectTemplate>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.intellisense.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-1.7.1.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-ui-1.8.20.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery-ui-1.8.20.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.unobtrusive-ajax.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.unobtrusive-ajax.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate-vsdoc.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.unobtrusive.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\jquery.validate.unobtrusive.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\knockout-2.1.0.debug.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\knockout-2.1.0.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\modernizr-2.5.3.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Scripts\_references.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
@@ -576,10 +327,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Controllers\AccountController.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Controllers\HomeController.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
@@ -589,19 +336,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Models\AccountModels.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\AuthConfig.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\BundleConfig.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\App_Start\FilterConfig.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -610,9 +347,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\App_Start\WebApiConfig.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Filters\InitializeSimpleMembershipAttribute.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="VSPackage.cs" />
@@ -785,19 +519,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\Logging.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\packages.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Register.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\About.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -805,19 +527,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\Error.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_Layout.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Views\Web.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\_ViewStart.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -833,36 +543,6 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Web.Release.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\ExternalLoginConfirmation.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\ExternalLoginFailure.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Login.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Manage.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_ChangePasswordPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_ExternalLoginsListPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_RemoveExternalLoginsPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_SetPasswordPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\Contact.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_LoginPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="NServiceBus.Tools.snk" />
     <None Include="source.extension.gen.ttinclude">
