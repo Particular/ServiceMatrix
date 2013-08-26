@@ -5,13 +5,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace $safeprojectname$ 
+namespace $safeprojectname$
 {
-    public partial class _Default : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void SendMessageLink_Click(object sender, EventArgs e)
+        {
+            // TODO: Insert your send message code here!
+
+            this.MessageSection.Visible = true;
+            this.MessageText.Text = "Message Sent!";
         }
     }
 }

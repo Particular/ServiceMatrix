@@ -258,6 +258,15 @@
     <ProjectTemplate Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.vstemplate">
       <ItemGuid>fc54c8b3-2bb8-4b67-b512-303294cd2082</ItemGuid>
     </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\Content.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\Css.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\Site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
@@ -278,21 +287,26 @@
       <ItemGuid>ebbe43bd-bb7e-4d6c-a74e-7ebcbf768bbe</ItemGuid>
       <SubType>Designer</SubType>
     </ProjectTemplate>
-    <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1-vsdoc.js">
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\favicon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1.js">
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Scripts\jquery-1.4.1.min.js">
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Styles\Site.css">
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -314,16 +328,6 @@
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Properties\AssemblyInfo.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Site.Master.designer.cs">
-      <DependentUpon>Site.Master.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -512,10 +516,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Site.Master">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -841,7 +841,6 @@
     <Folder Include="Assets\Templates\Projects\" />
     <Folder Include="GeneratedCode\Guidance\Content\" />
     <Folder Include="T\I\" />
-    <Folder Include="T\P\Endpoints\NSBHWeb\Infrastructure\GeneratedCode\" />
     <Folder Include="T\P\Endpoints\NSBH\Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
