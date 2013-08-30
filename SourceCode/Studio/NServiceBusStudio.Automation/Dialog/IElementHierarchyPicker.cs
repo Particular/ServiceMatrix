@@ -14,5 +14,6 @@ namespace NServiceBusStudio.Automation.Dialog
         IDictionary<string, ICollection<string>> Elements { get; set; }
         string SelectedMasterItem { get; }
         string SelectedSlaveItem { get; }
+        string Title { get; set; }
     }
 }

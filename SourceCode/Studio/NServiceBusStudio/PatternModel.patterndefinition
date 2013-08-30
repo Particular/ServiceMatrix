@@ -4513,12 +4513,12 @@
         <automationSettingsSchemaMoniker Id="56bfa0a5-d26d-46d7-adcd-e65a4fb0dfb2" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="d57c9faf-48dd-42db-8003-5fa99f0808bf" text="Publish Event" commandId="f1959529-6eef-475b-b4b0-6eb6e274bdda" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="d57c9faf-48dd-42db-8003-5fa99f0808bf" text="Publish Event..." commandId="f1959529-6eef-475b-b4b0-6eb6e274bdda" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="9e6f3fdb-d0e7-483e-b7f9-c2c4351bedd3" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="ed2d3b7e-4d30-41c3-a948-310b2d6f7f07" text="Send Command" commandId="74775974-a991-4646-a4ca-8968ce5e212a" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="ed2d3b7e-4d30-41c3-a948-310b2d6f7f07" text="Send Command..." commandId="74775974-a991-4646-a4ca-8968ce5e212a" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d595aa89-5969-4841-aaae-078fc6b3254f" />
       </extendedElement>
@@ -4538,12 +4538,12 @@
         <automationSettingsSchemaMoniker Id="6eba235c-9265-44ef-a288-85e7bc014a08" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References" commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="40dca3ca-0f16-43e4-8073-b3858d8d8cf9" text="Send Command" commandId="72a376e2-aab4-498b-9448-3544ffc8790a" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="40dca3ca-0f16-43e4-8073-b3858d8d8cf9" text="Send Command..." commandId="72a376e2-aab4-498b-9448-3544ffc8790a" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab4b95e9-041a-492f-8468-0442b0183c1d" />
       </extendedElement>

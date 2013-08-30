@@ -12,5 +12,6 @@ namespace NServiceBusStudio.Automation.Dialog
 
         ICollection<string> Elements { get; set; }
         string SelectedItem { get; }
+        string Title { get; set; }
     }
 }

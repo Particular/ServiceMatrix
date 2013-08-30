@@ -55,8 +55,10 @@ namespace NServiceBusStudio.Automation.Commands
             }
 
             var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>() as IElementHierarchyPicker;
+            
             picker.SlaveName = "Command Name:";
             picker.Elements = elements;
+            picker.Title = "Send Commmand...";
 
             using (new MouseCursor(Cursors.Arrow))
             {

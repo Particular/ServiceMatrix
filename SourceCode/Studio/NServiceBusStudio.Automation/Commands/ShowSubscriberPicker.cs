@@ -60,6 +60,7 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<ServicePicker>() as IServicePicker;
 
             picker.Elements = new ObservableCollection<string>(existingServiceNames);
+            picker.Title = "Add Subscriber...";
 
             using (new MouseCursor(Cursors.Arrow))
             {
