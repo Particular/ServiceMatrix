@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="NServiceBusStudio.Automation.Diagrams.Views.Diagram"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
+             xmlns:ms="http://namespaces.mindscape.co.nz/wpf"
+             xmlns:styles="clr-namespace:NServiceBusStudio.Automation.Diagrams.Styles"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ms:DiagramShapes />
+                <styles:DiagramNodeStyle />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0">
+            <Button Width="100" Height="20" Click="AddEndpoint_Click">Add Endpoint</Button>
+            <Button Width="100" Height="20" Click="AddService_Click">Add Service</Button>
+            <Button Width="100" Height="20" Click="SaveAsImage_Click">Save As Image</Button>
+        </StackPanel>
+
+        <ms:DiagramSurface Grid.Row="1"
+                           x:Name="ds"
+                           Diagram="{Binding}"
+                           Formatter="{StaticResource Formatter}" 
+                           ZoomMode="MouseWheel"
+                           HorizontalSnapSpecifier="{ms:SnapToInterval 20}"
+                           VerticalSnapSpecifier="{ms:SnapToInterval 20}"/>
+    </Grid>
+</UserControl>

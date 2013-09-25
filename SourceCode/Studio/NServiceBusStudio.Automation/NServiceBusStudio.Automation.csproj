@@ -216,9 +216,43 @@
     <Compile Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml.cs">
       <DependentUpon>ToolbarExtension.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Diagrams\IDetailsWindowsManager.cs" />
-    <Compile Include="Diagrams\Views\NewDiagram.xaml.cs">
-      <DependentUpon>NewDiagram.xaml</DependentUpon>
+    <Compile Include="Diagrams\Converters\EndSegmentValueConverter.cs" />
+    <Compile Include="Diagrams\Converters\MiddlePointValueConverter.cs" />
+    <Compile Include="Diagrams\Converters\StartSegmentValueConverter.cs" />
+    <Compile Include="Diagrams\IDiagramsWindowsManager.cs" />
+    <Compile Include="Diagrams\Styles\DiagramConnectionStyle.xaml.cs">
+      <DependentUpon>DiagramConnectionStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagrams\Styles\DiagramNodeStyle.xaml.cs">
+      <DependentUpon>DiagramNodeStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagrams\Styles\DiagramSharedStyle.xaml.cs">
+      <DependentUpon>DiagramSharedStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\ChildNode.cs" />
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\CollapsableConnection.cs" />
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\CollapsedPositionCalculator.cs" />
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\ConnectionBuilder.cs" />
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\ElbowPathfinderAdapter.cs" />
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\GroupableNode.cs" />
+    <Compile Include="Diagrams\ViewModels\BaseViewModels\GroupNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Connections\BaseConnection.cs" />
+    <Compile Include="Diagrams\ViewModels\Connections\CommandConnection.cs" />
+    <Compile Include="Diagrams\ViewModels\Connections\EventConnection.cs" />
+    <Compile Include="Diagrams\ViewModels\NServiceBusConnectionBuilder.cs" />
+    <Compile Include="Diagrams\ViewModels\NServiceBusDiagramAdapter.cs" />
+    <Compile Include="Diagrams\ViewModels\NServiceBusDiagramLayoutAlgorithm.cs" />
+    <Compile Include="Diagrams\ViewModels\NServiceBusDiagramViewModel.cs" />
+    <Compile Include="Diagrams\ViewModels\NServiceBusLayoutAlgorithmInfo.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\CommandNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\ComponentNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\EmptyEndpointNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\EndpointNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\EventNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\MessageBaseNode.cs" />
+    <Compile Include="Diagrams\ViewModels\Shapes\ServiceNode.cs" />
+    <Compile Include="Diagrams\Views\Diagram.xaml.cs">
+      <DependentUpon>Diagram.xaml</DependentUpon>
     </Compile>
     <Compile Include="Diagrams\Views\NServiceBusDiagramsToolWindow.cs" />
     <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
@@ -513,7 +547,19 @@
       <DependentUpon>VsVersionStyles.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Diagrams\Views\NewDiagram.xaml">
+    <Page Include="Diagrams\Styles\DiagramConnectionStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagrams\Styles\DiagramNodeStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagrams\Styles\DiagramSharedStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagrams\Views\Diagram.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -555,7 +601,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Diagrams\ViewModels\" />
     <Folder Include="Events\" />
     <Folder Include="WizardExtensions\" />
   </ItemGroup>
@@ -585,6 +630,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ServiceMatrixBanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagrams\Styles\Images\BlackArrowIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\CommandIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\ComponentIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\EmptyEndpointIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\EndpointIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\EventIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\ServiceIcon.png" />
+    <Resource Include="Diagrams\Styles\Images\WhiteArrowIcon.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>
