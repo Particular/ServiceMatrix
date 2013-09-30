@@ -21,8 +21,7 @@
                 <DataTemplate>
                     <Grid>
                         <Border Background="#4D4D4D" IsHitTestVisible="False" />
-                        <Button Click="ShowMenu_Click" 
-                                Foreground="#E6E6E6"
+                        <Button Foreground="#E6E6E6"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Images/EndpointIcon.png" Width="25"></Image>
@@ -46,8 +45,7 @@
                 <DataTemplate>
                     <Grid>
                         <Rectangle StrokeDashArray="3.0 3.0 3.0" Stroke="#007AC5"  StrokeThickness="2" Fill="White" IsHitTestVisible="False" />
-                        <Button Click="ShowMenu_Click" 
-                                Foreground="#007AC5"
+                        <Button Foreground="#007AC5"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Images/EmptyEndpointIcon.png" Width="25"></Image>
@@ -68,8 +66,7 @@
                 <DataTemplate>
                     <Grid>
                         <Border Background="#808080" />
-                        <Button Click="ShowMenu_Click" 
-                                Foreground="#E6E6E6"
+                        <Button Foreground="#E6E6E6"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Images/ServiceIcon.png" Width="25"></Image>
@@ -90,8 +87,7 @@
                 <DataTemplate>
                     <Grid>
                         <Border Background="#F2F2F2" BorderBrush="#999999" BorderThickness="2" />
-                        <Button Click="ShowMenu_Click" 
-                                Foreground="Black"
+                        <Button Foreground="Black"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Images/ComponentIcon.png" Width="25"></Image>
@@ -121,8 +117,7 @@
                 <DataTemplate>
                     <Grid>
                         <Border Background="#CCCCCC" BorderBrush="#A6A6A6" BorderThickness="2" IsHitTestVisible="False" />
-                        <Button Click="ShowMenu_Click" 
-                                Foreground="Black"
+                        <Button Foreground="Black"
                                 Margin="12,10,0,10"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
@@ -154,8 +149,7 @@
                 <DataTemplate>
                     <Grid>
                         <Border Background="#CCCCCC" BorderBrush="#A6A6A6" BorderThickness="2" IsHitTestVisible="False" />
-                        <Button Click="ShowMenu_Click" 
-                                Foreground="Black"
+                        <Button Foreground="Black"
                                 Margin="12,10,0,10"
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">

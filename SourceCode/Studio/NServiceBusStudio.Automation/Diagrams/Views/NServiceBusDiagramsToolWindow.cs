@@ -29,7 +29,7 @@ namespace NServiceBusStudio.Automation.Diagrams.Views
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
-            var pane = new Diagram(this.NServiceBusDiagramAdapter.ViewModel);
+            var pane = new Diagram(this.NServiceBusDiagramAdapter);
             this.Content = pane;
 
             //pane.CaptionHasChanged += (s, e) =>

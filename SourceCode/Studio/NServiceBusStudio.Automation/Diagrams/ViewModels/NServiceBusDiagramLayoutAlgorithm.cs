@@ -11,6 +11,8 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 {
     public class NServiceBusDiagramLayoutAlgorithm
     {
+        static Dictionary<Guid, Point> SavedPositions = new Dictionary<Guid, Point>();
+
         public NServiceBusDiagramViewModel ViewModel { get; set; }
 
         public NServiceBusDiagramLayoutAlgorithm(NServiceBusDiagramViewModel viewModel)
@@ -18,14 +20,27 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
             this.ViewModel = viewModel;
         }
 
+        public void SetElementPosition(GroupableNode node)
+        {
+            var position = this.LoadElementPosition(node);
 
-        public Point GetElementPosition(Type node)
+            if (!position.HasValue)
+            {
+                position = this.CalculateElementPosition(node);
+                this.SaveElementPosition(node, position.Value);
+            }
+
+            node.BoundsChanged += (s, e) => this.SaveElementPosition(node, node.Bounds.Location);
+            node.Bounds = new Rect (position.Value, node.Bounds.Size);
+        }
+
+        private Point CalculateElementPosition(GroupableNode node)
         {
             const int ShapeWidth = 350;
-            var x = 0.0;
-            var y = 0.0;
+            var x = 50.0;
+            var y = 100.0;
 
-            if (node == typeof(EndpointNode))
+            if (node is EndpointNode)
             {
                 // Align endpoints algorithm
                 var endpointsCount = this.ViewModel.Nodes.Count(n => n is EndpointNode);
@@ -39,14 +54,14 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
                     x = 950;
                 }
             }
-            else if (node == typeof(CommandNode) || node == typeof(EventNode))
+            else if (node is CommandNode || node is EventNode)
             {
                 x = 500;
             }
 
-            var shapesOnSimilarXPosition = this.ViewModel.Nodes.Where(n => n is GroupableNode && ((GroupableNode)n).ParentNode == null &&
-                                                                           ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||
-                                                                           (n.Bounds.X + n.Bounds.Width >= x && n.Bounds.X + n.Bounds.Width <= x + ShapeWidth)));
+            var shapesOnSimilarXPosition = this.ViewModel.Nodes.Cast<GroupableNode>().Where(n => n.ParentNode == null &&
+                                                                                                 ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||
+                                                                                                  (n.Bounds.X + n.Bounds.Width >= x && n.Bounds.X + n.Bounds.Width <= x + ShapeWidth)));
             if (shapesOnSimilarXPosition.Any())
             {
                 y = shapesOnSimilarXPosition.Max(n => n.Bounds.Y + n.Bounds.Height);
@@ -56,6 +71,25 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
             return new Point(x, y);
         }
 
+        public Point? LoadElementPosition(GroupableNode node)
+        {
+            if (SavedPositions.Any(x => x.Key == node.Id))
+            {
+                return SavedPositions.First(x => x.Key == node.Id).Value;
+            }
+
+            return null;
+        }
+
+        public void SaveElementPosition(GroupableNode node, Point point)
+        {
+            if (SavedPositions.Any(x => x.Key == node.Id))
+            {
+                SavedPositions.Remove(node.Id);
+            }
+
+            SavedPositions.Add(node.Id, point);
+        }
     }
 
 }

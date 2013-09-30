@@ -238,7 +238,6 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.BaseViewModels
           }
         }*/
 
-
         #region Shapes Group Position & Resizing
 
         public void SetPosition(double Y)

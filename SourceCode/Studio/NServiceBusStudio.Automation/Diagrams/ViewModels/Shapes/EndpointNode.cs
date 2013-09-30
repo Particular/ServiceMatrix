@@ -13,10 +13,10 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes
 {
     public class EndpointNode: GroupNode
     {
-        public EndpointNode(IProductElementViewModel innerViewModel, Point position) : base (innerViewModel)
+        public EndpointNode(IProductElementViewModel innerViewModel) : base (innerViewModel)
         {
             this.SHAPE_MIN_HEIGHT = 190;
-            this.Bounds = new System.Windows.Rect(position.X, position.Y, 320, this.SHAPE_MIN_HEIGHT);
+            this.Bounds = new System.Windows.Rect(0, 0, 320, this.SHAPE_MIN_HEIGHT);
         }
 
         public string Type 

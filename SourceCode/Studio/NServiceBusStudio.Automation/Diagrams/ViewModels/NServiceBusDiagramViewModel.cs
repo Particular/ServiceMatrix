@@ -30,8 +30,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
             if (endpoint == null)
             {
-                var position = this.LayoutAlgorithm.GetElementPosition(typeof(EndpointNode));
-                endpoint = new EndpointNode(viewModel, position);
+                endpoint = new EndpointNode(viewModel);
+                this.LayoutAlgorithm.SetElementPosition(endpoint);
+
                 this.Nodes.Add(endpoint);
             }
 
@@ -44,8 +45,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
             if (emptyEndpoint == null)
             {
-                var position = this.LayoutAlgorithm.GetElementPosition(typeof(EndpointNode));
-                emptyEndpoint = new EmptyEndpointNode(position);
+                emptyEndpoint = new EmptyEndpointNode();
+                this.LayoutAlgorithm.SetElementPosition(emptyEndpoint);
+
                 this.Nodes.Add(emptyEndpoint);
             }
 
@@ -81,8 +83,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
             if (command == null)
             {
-                var position = this.LayoutAlgorithm.GetElementPosition(typeof(CommandNode));
-                command = new CommandNode(viewModel, position);
+                command = new CommandNode(viewModel);
+                this.LayoutAlgorithm.SetElementPosition(command);
+
                 this.Nodes.Add(command);
             }
 
@@ -95,8 +98,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
             if (@event == null)
             {
-                var position = this.LayoutAlgorithm.GetElementPosition(typeof(EventNode));
-                @event = new EventNode(viewModel, position);
+                @event = new EventNode(viewModel);
+                this.LayoutAlgorithm.SetElementPosition(@event);
+
                 this.Nodes.Add(@event);
             }
 
@@ -146,44 +150,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
             return componentNode;
         }
 
-        
 
-        // ================ HELPERS ==========================
 
-        public IEnumerable<ComponentNode> GetAllComponentsNode(Guid componentId)
-        {
-            return this.Nodes.Where(x => x is ComponentNode && ((ComponentNode)x).Id == componentId).Cast<ComponentNode>().ToList();
-        }
-
-        private T FindNode<T>(Guid elementId) where T : GroupableNode
-        {
-            return this.Nodes.FirstOrDefault(x => x is T && ((T)x).Id == elementId) as T;
-        }
-
-        private T FindNode<T>(Func<T, bool> filter) where T : GroupableNode
-        {
-            return this.Nodes.FirstOrDefault(x => x is T && filter((T)x)) as T;
-        }
-
-        private ComponentNode FindComponent(Guid endpointId, Guid serviceId, Guid componentId)
-        {
-            return this.Nodes.FirstOrDefault(x => x is ComponentNode &&
-                                                ((ComponentNode)x).Id == componentId &&
-                                                ((ComponentNode)x).ParentNode.Id == serviceId &&
-                                                ((ComponentNode)x).ParentNode.ParentNode.Id == endpointId) as ComponentNode;
-        }
-
-        private void DeleteNode(GroupableNode node)
-        {
-            if (node.ParentNode != null)
-            {
-                node.ParentNode.RemoveChild(node);
-            }
-
-            this.Nodes.Remove(node);
-        }
-
-        // Connections
+        // ================ CONNECTIONS ==========================
 
         public CommandConnection GetOrCreateCommandConnection(GroupableNode sourceNode, GroupableNode targetNode)
         {
@@ -215,6 +184,63 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
         {
             return this.Connections.FirstOrDefault(x => source.ConnectionPoints.Any(y => y == x.FromConnectionPoint) &&
                                                         target.ConnectionPoints.Any(y => y == x.ToConnectionPoint));
+        }
+
+
+        // ================ HELPERS ==========================
+
+        public IEnumerable<ComponentNode> GetAllComponentsNode(Guid componentId)
+        {
+            return this.Nodes.Where(x => x is ComponentNode && ((ComponentNode)x).Id == componentId).Cast<ComponentNode>().ToList();
+        }
+
+        private T FindNode<T>(Guid elementId) where T : GroupableNode
+        {
+            return this.Nodes.FirstOrDefault(x => x is T && ((T)x).Id == elementId) as T;
+        }
+
+        private T FindNode<T>(Func<T, bool> filter) where T : GroupableNode
+        {
+            return this.Nodes.FirstOrDefault(x => x is T && filter((T)x)) as T;
+        }
+
+        private ComponentNode FindComponent(Guid endpointId, Guid serviceId, Guid componentId)
+        {
+            return this.Nodes.FirstOrDefault(x => x is ComponentNode &&
+                                                ((ComponentNode)x).Id == componentId &&
+                                                ((ComponentNode)x).ParentNode.Id == serviceId &&
+                                                ((ComponentNode)x).ParentNode.ParentNode.Id == endpointId) as ComponentNode;
+        }
+
+        public void DeleteNodesById(Guid id)
+        {
+            var nodes = this.Nodes.Where(x => x is GroupableNode && ((GroupableNode)x).Id == id).Cast<GroupableNode>().ToList();
+            nodes.ForEach(x => DeleteNode(x));
+        }
+
+        public void DeleteNode(GroupableNode node)
+        {
+            // Remove Node from Parent
+            if (node.ParentNode != null)
+            {
+                node.ParentNode.RemoveChild(node);
+            }
+
+            // Remove child nodes
+            var groupNode = node as GroupNode;
+            if (groupNode != null)
+            {
+                groupNode.ChildNodes.ForEach(x => DeleteNode(x));
+            }
+
+            // Remove node
+            this.Nodes.Remove(node);
+        }
+
+        public void CleanAll()
+        {
+            this.Nodes.ToList().ForEach(x => this.Nodes.Remove(x));
+            this.Connections.ToList().ForEach(x => this.Connections.Remove(x));
         }
     }
 }

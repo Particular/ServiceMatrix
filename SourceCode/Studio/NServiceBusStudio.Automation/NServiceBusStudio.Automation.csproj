@@ -223,6 +223,9 @@
     <Compile Include="Diagrams\Styles\DiagramConnectionStyle.xaml.cs">
       <DependentUpon>DiagramConnectionStyle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Diagrams\Styles\DiagramMenuItemStyle.xaml.cs">
+      <DependentUpon>DiagramMenuItemStyle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Diagrams\Styles\DiagramNodeStyle.xaml.cs">
       <DependentUpon>DiagramNodeStyle.xaml</DependentUpon>
     </Compile>
@@ -243,7 +246,6 @@
     <Compile Include="Diagrams\ViewModels\NServiceBusDiagramAdapter.cs" />
     <Compile Include="Diagrams\ViewModels\NServiceBusDiagramLayoutAlgorithm.cs" />
     <Compile Include="Diagrams\ViewModels\NServiceBusDiagramViewModel.cs" />
-    <Compile Include="Diagrams\ViewModels\NServiceBusLayoutAlgorithmInfo.cs" />
     <Compile Include="Diagrams\ViewModels\Shapes\CommandNode.cs" />
     <Compile Include="Diagrams\ViewModels\Shapes\ComponentNode.cs" />
     <Compile Include="Diagrams\ViewModels\Shapes\EmptyEndpointNode.cs" />
@@ -550,6 +552,10 @@
     <Page Include="Diagrams\Styles\DiagramConnectionStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagrams\Styles\DiagramMenuItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Diagrams\Styles\DiagramNodeStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

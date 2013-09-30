@@ -12,14 +12,14 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes
 {
     public abstract class MessageBaseNode : GroupableNode
     {
-        public MessageBaseNode(IProductElementViewModel innerViewModel, Point position)
+        public MessageBaseNode(IProductElementViewModel innerViewModel)
             : base(innerViewModel)
         {
             ConnectionPoints.Add(new DiagramConnectionPoint(this, Edge.Left));
             ConnectionPoints.Add(new DiagramConnectionPoint(this, Edge.Right));
 
             this.IsResizable = false;
-            this.Bounds = new Rect(position.X, position.Y, 320, 52);
+            this.Bounds = new Rect(0, 0, 320, 52);
         }
     }
 }

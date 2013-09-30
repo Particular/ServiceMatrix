@@ -11,8 +11,8 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes
 {
     public class EventNode : MessageBaseNode
     {
-        public EventNode(IProductElementViewModel innerViewModel, Point position)
-            : base(innerViewModel, position)
+        public EventNode(IProductElementViewModel innerViewModel)
+            : base(innerViewModel)
         {
         }
     }

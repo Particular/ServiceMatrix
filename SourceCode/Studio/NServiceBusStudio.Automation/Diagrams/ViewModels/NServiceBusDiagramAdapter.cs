@@ -14,28 +14,57 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using NuPattern;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 {
     [Export]
     public class NServiceBusDiagramAdapter
     {
+        public ISolution Solution { get; set; }
+
+        public IPatternWindows PatternWindows { get; set; }
+
         public ISolutionBuilderViewModel SolutionBuilderViewModel { get; set; }
 
         public NServiceBusDiagramViewModel ViewModel { get; set; }
 
-        public IPatternWindows PatternWindows { get; set; }
-
-        public IServiceProvider ServiceProvider { get; set; }
-
         [ImportingConstructor]
-        public NServiceBusDiagramAdapter([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider, 
-                                         [Import] IPatternWindows patternWindows)
+        public NServiceBusDiagramAdapter([Import] ISolution solution,
+                                         [Import] IPatternWindows patternWindows,
+                                         [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
             this.ViewModel = new NServiceBusDiagramViewModel();
+            this.Solution = solution;
             this.PatternWindows = patternWindows;
-            this.ServiceProvider = serviceProvider;
+            
+            StartListening(serviceProvider);
+        }
 
+        private void StartListening(IServiceProvider serviceProvider)
+        {
+            var events = serviceProvider.TryGetService<ISolutionEvents>();
+
+            events.SolutionOpened += (s, e) =>
+            {
+                WireSolution(serviceProvider);
+            };
+
+            events.SolutionClosed += (s, e) =>
+            {
+                this.ViewModel.CleanAll();
+                UnhandleChanges(this.SolutionBuilderViewModel.TopLevelNodes);
+                this.SolutionBuilderViewModel = null;
+            };
+
+            if (this.Solution.IsOpen)
+            {
+                WireSolution(serviceProvider);
+            }
+        }
+
+        private void WireSolution(IServiceProvider serviceProvider)
+        {
             this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
 
             GenerateCurrentDiagram(this.SolutionBuilderViewModel.TopLevelNodes);
@@ -70,7 +99,7 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
         private void HandleChanges(ObservableCollection<IProductElementViewModel> observableCollection)
         {
-            observableCollection.CollectionChanged += TopLevelNodes_CollectionChanged;
+            observableCollection.CollectionChanged += ProductElementViewModel_CollectionChanged;
 
             foreach (var item in observableCollection)
             {
@@ -78,7 +107,17 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
             }
         }
 
-        private void TopLevelNodes_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        private void UnhandleChanges(ObservableCollection<IProductElementViewModel> observableCollection)
+        {
+            observableCollection.CollectionChanged -= ProductElementViewModel_CollectionChanged;
+
+            foreach (var item in observableCollection)
+            {
+                HandleChanges(item.ChildNodes);
+            }
+        }
+
+        private void ProductElementViewModel_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
@@ -87,6 +126,13 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
                     {
                         AddElement(newElement);
                         HandleChanges(new ObservableCollection<IProductElementViewModel>(new [] { newElement }));
+                    }
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    foreach (IProductElementViewModel removedElement in e.OldItems)
+                    {
+                        RemoveElement(removedElement);
+                        UnhandleChanges(new ObservableCollection<IProductElementViewModel>(new[] { removedElement }));
                     }
                     break;
             }
@@ -146,12 +192,12 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
                     break;
                 
             }
-
         }
 
-
-
-        
+        private void RemoveElement(IProductElementViewModel removedElement)
+        {
+            this.ViewModel.DeleteNodesById(removedElement.Data.Id);
+        }
 
         private void CreateComponentLink(IAbstractComponentLink componentLink)
         {
@@ -217,6 +263,22 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
         {
             var allNodes = this.SolutionBuilderViewModel.TopLevelNodes.Traverse(x => x.ChildNodes);
             return allNodes.FirstOrDefault(x => x.Data.Id == elementId);
+        }
+
+        // CUSTOM OPERATIONS ON DIAGRAM
+
+        public void AddEndpoint(string endpointName, string hostType)
+        {
+            var app = this.SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
+
+            app.Design.Endpoints.CreateNServiceBusHost(endpointName);
+        }
+
+        public void AddService(string serviceName)
+        {
+            var app = this.SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
+
+            app.Design.Services.CreateService(serviceName);
         }
 
     }

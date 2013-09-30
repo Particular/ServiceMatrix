@@ -11,8 +11,8 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes
 {
     public class CommandNode : MessageBaseNode
     {
-        public CommandNode(IProductElementViewModel innerViewModel, Point position)
-            : base(innerViewModel, position)
+        public CommandNode(IProductElementViewModel innerViewModel)
+            : base(innerViewModel)
         {
         }
     }

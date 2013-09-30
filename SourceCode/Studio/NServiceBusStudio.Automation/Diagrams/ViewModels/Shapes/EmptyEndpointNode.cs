@@ -13,7 +13,7 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes
     {
         public static Guid NodeId = Guid.Empty;
 
-        public EmptyEndpointNode(Point position): base(null, position)
+        public EmptyEndpointNode(): base(null)
         {
         }
 

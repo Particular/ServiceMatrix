@@ -12,12 +12,5 @@ namespace NServiceBusStudio.Automation.Diagrams.Styles
         {
             InitializeComponent();
         }
-
-        private void ShowMenu_Click(object sender, RoutedEventArgs e)
-        {
-            var button = sender as System.Windows.Controls.Button;
-            
-            button.ContextMenu.IsOpen = true;
-        }
     }
 }
