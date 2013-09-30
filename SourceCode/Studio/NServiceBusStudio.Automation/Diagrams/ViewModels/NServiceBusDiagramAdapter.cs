@@ -27,14 +27,14 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
         public ISolutionBuilderViewModel SolutionBuilderViewModel { get; set; }
 
-        public NServiceBusDiagramViewModel ViewModel { get; set; }
+        public NServiceBusDiagramMindscapeViewModel ViewModel { get; set; }
 
         [ImportingConstructor]
         public NServiceBusDiagramAdapter([Import] ISolution solution,
                                          [Import] IPatternWindows patternWindows,
                                          [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            this.ViewModel = new NServiceBusDiagramViewModel();
+            this.ViewModel = new NServiceBusDiagramMindscapeViewModel();
             this.Solution = solution;
             this.PatternWindows = patternWindows;
             
@@ -271,7 +271,20 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
         {
             var app = this.SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
 
-            app.Design.Endpoints.CreateNServiceBusHost(endpointName);
+            switch (hostType)
+            {
+                case "NServiceBusHost":
+                    app.Design.Endpoints.CreateNServiceBusHost(endpointName);
+                    break;
+                case "NServiceBusMVC":
+                    app.Design.Endpoints.CreateNServiceBusMVC(endpointName);
+                    break;
+                case "NServiceBusWeb":
+                    app.Design.Endpoints.CreateNServiceBusWeb(endpointName);
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void AddService(string serviceName)

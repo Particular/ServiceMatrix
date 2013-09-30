@@ -26,31 +26,10 @@ namespace NServiceBusStudio.Automation.Diagrams.Views
     /// </summary>
     public partial class Diagram : UserControl
     {
-        public NServiceBusDiagramAdapter Adapter { get; set; }
-
         public Diagram(NServiceBusDiagramAdapter adapter)
         {
             InitializeComponent();
-
-            this.Adapter = adapter;
-            this.DataContext = this.Adapter.ViewModel;
-        }
-
-        private void OnAddEndpointClick(object sender, RoutedEventArgs e)
-        {
-            this.Adapter.AddEndpoint("New Endpoint", "HOST");
-        }
-
-        private void OnAddServiceClick(object sender, RoutedEventArgs e)
-        {
-            this.Adapter.AddService("New Service");
-        }
-
-        private void OnSaveAsImageClick(object sender, RoutedEventArgs e)
-        {
-            var filename = "Diagram.png";
-            DiagramBitmapRenderer.Png.Render(ds, filename);
-            System.Diagnostics.Process.Start(filename);
+            this.DataContext = new NServiceBusDiagramViewModel (adapter);
         }
     }
 }

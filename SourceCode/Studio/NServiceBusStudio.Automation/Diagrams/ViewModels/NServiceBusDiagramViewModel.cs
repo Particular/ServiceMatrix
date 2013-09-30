@@ -1,246 +1,126 @@
-﻿using NuPattern;
-using AbstractEndpoint;
-using Mindscape.WpfDiagramming;
-using NServiceBusStudio.Automation.Diagrams.ViewModels.BaseViewModels;
-using NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes;
-using NuPattern.Runtime.UI.ViewModels;
+﻿using NuPattern.Presentation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using NServiceBusStudio.Automation.Diagrams.ViewModels.Connections;
 
 namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 {
-    public class NServiceBusDiagramViewModel: Diagram
+    public class NServiceBusDiagramViewModel : INotifyPropertyChanged
     {
-        public NServiceBusDiagramLayoutAlgorithm LayoutAlgorithm { get; set; }
+        public NServiceBusDiagramAdapter Adapter { get; set; }
+        public NServiceBusDiagramMindscapeViewModel Diagram { get; set; }
 
-        public NServiceBusDiagramViewModel()
+        public NServiceBusDiagramViewModel(NServiceBusDiagramAdapter adapter)
         {
-            this.DefaultConnectionBuilder = new NServiceBusConnectionBuilder();
-            this.LayoutAlgorithm = new NServiceBusDiagramLayoutAlgorithm(this);
+            this.Adapter = adapter;
+            this.Diagram = adapter.ViewModel;
+
+            this.OnShowAddEndpoint = new RelayCommand(() => this.ShowAddEndpoint = true);
+            this.OnShowAddService = new RelayCommand(() => this.ShowAddService = true);
+            this.OnAddEndpoint = new RelayCommand(AddEndpoint, () => !string.IsNullOrEmpty (this.EndpointName));
+            this.OnAddService = new RelayCommand(AddService, () => !string.IsNullOrEmpty(this.ServiceName));
+            this.OnCancel = new RelayCommand(ClearValues);
+
+            this.ClearValues();
         }
 
-        public EndpointNode GetOrCreateEndpointNode(IProductElementViewModel viewModel)
+        private void ClearValues()
         {
-            var endpoint = this.FindNode<EndpointNode>(viewModel.Data.Id);
+            this.ShowAddEndpoint = false;
+            this.EndpointName = "";
+            this.EndpointHostType = "NServiceBusHost";
 
-            if (endpoint == null)
+            this.ShowAddService = false;
+            this.ServiceName = "";
+        }
+
+        private void AddEndpoint()
+        {
+            this.Adapter.AddEndpoint(this.EndpointName, this.EndpointHostType);
+            this.ClearValues();
+        }
+
+        private void AddService()
+        {
+            this.Adapter.AddService(this.ServiceName);
+            this.ClearValues();
+        }
+
+        
+        public System.Windows.Input.ICommand OnShowAddService { get; set; }
+        public System.Windows.Input.ICommand OnShowAddEndpoint { get; set; }
+        public System.Windows.Input.ICommand OnAddEndpoint { get; set; }
+        public System.Windows.Input.ICommand OnAddService { get; set; }
+        public System.Windows.Input.ICommand OnCancel { get; set; }
+
+        // Add Endpoint
+        private bool _showAddEndpoint;
+        public bool ShowAddEndpoint 
+        {
+            get { return _showAddEndpoint; }
+            set
             {
-                endpoint = new EndpointNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(endpoint);
-
-                this.Nodes.Add(endpoint);
+                _showAddEndpoint = value;
+                this.OnPropertyChange("ShowAddEndpoint");
             }
-
-            return endpoint;
         }
 
-        private EmptyEndpointNode GetOrCreateEmptyEndpointNode()
+        private string _endpointName;
+        public string EndpointName 
         {
-            var emptyEndpoint = this.FindNode<EmptyEndpointNode>(EmptyEndpointNode.NodeId);
-
-            if (emptyEndpoint == null)
+            get { return _endpointName; }
+            set
             {
-                emptyEndpoint = new EmptyEndpointNode();
-                this.LayoutAlgorithm.SetElementPosition(emptyEndpoint);
-
-                this.Nodes.Add(emptyEndpoint);
+                _endpointName = value;
+                this.OnPropertyChange("EndpointName");
             }
-
-            return emptyEndpoint;
         }
 
-        public ServiceNode GetOrCreateServiceNode(Guid endpointId, IProductElementViewModel viewModel)
+        private string _endpointHostType;
+        public string EndpointHostType 
         {
-            var service = this.FindNode<ServiceNode>((x) => x.Id == viewModel.Data.Id &&
-                                                            x.ParentNode.Id == endpointId);
-
-            if (service == null)
+            get { return _endpointHostType; }
+            set
             {
-                var endpoint = this.FindNode<EndpointNode>(endpointId);
-
-                if (endpoint == null &&
-                    endpointId == EmptyEndpointNode.NodeId)
-                {
-                    endpoint = GetOrCreateEmptyEndpointNode();
-                }
-
-                service = new ServiceNode(viewModel, endpoint);
-                this.Nodes.Add(service);
+                _endpointHostType = value;
+                this.OnPropertyChange("EndpointHostType");
             }
-
-            return service;
         }
-
-
-        public CommandNode GetOrCreateCommandNode(IProductElementViewModel viewModel)
+        
+        // Add Service
+        private bool _showAddService;
+        public bool ShowAddService
         {
-            var command = this.FindNode<CommandNode>(viewModel.Data.Id);
-
-            if (command == null)
+            get { return _showAddService; }
+            set
             {
-                command = new CommandNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(command);
-
-                this.Nodes.Add(command);
+                _showAddService = value;
+                this.OnPropertyChange("ShowAddService");
             }
-
-            return command;
         }
 
-        public EventNode GetOrCreateEventNode(IProductElementViewModel viewModel)
+        private string _serviceName;
+        public string ServiceName 
         {
-            var @event = this.FindNode<EventNode>(viewModel.Data.Id);
-
-            if (@event == null)
+            get { return _serviceName; }
+            set
             {
-                @event = new EventNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(@event);
-
-                this.Nodes.Add(@event);
+                _serviceName = value;
+                this.OnPropertyChange("ServiceName");
             }
-
-            return @event;
         }
 
-        public ComponentNode GetOrCreateComponentNode(IProductElementViewModel viewModel)
-        {
-            var component = this.FindNode<ComponentNode>(viewModel.Data.Id);
+        public event PropertyChangedEventHandler PropertyChanged;
 
-            if (component == null)
+        private void OnPropertyChange(string property)
+        {
+            if (this.PropertyChanged != null)
             {
-                var service = GetOrCreateServiceNode(EmptyEndpointNode.NodeId, viewModel.ParentNode.ParentNode);
-
-                component = new ComponentNode(viewModel, service);
-                this.Nodes.Add(component);
+                this.PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
-
-            return component;
-        }
-
-
-        public ComponentNode GetOrCreateComponentLink(Guid endpointId, IProductElementViewModel serviceViewModel, IProductElementViewModel viewModel)
-        {
-            // Find undeployed component
-            var undeployedComponentNode = FindComponent(EmptyEndpointNode.NodeId,
-                                                        serviceViewModel.Data.Id, 
-                                                        viewModel.Data.Id);
-            this.Nodes.Remove(undeployedComponentNode);
-
-
-            // Create New Component Link
-            var componentNode = FindComponent(endpointId,
-                                              serviceViewModel.Data.Id,
-                                              viewModel.Data.Id);
-
-            if (componentNode == null)
-            {
-                var serviceNode = GetOrCreateServiceNode(endpointId,
-                                                         serviceViewModel);
-
-                componentNode = new ComponentNode(viewModel,
-                                                  serviceNode);
-                this.Nodes.Add(componentNode);
-            }
-
-            return componentNode;
-        }
-
-
-
-        // ================ CONNECTIONS ==========================
-
-        public CommandConnection GetOrCreateCommandConnection(GroupableNode sourceNode, GroupableNode targetNode)
-        {
-            var commandConnection = this.FindConnection(sourceNode, targetNode) as CommandConnection;
-
-            if (commandConnection == null)
-            {
-                commandConnection = new CommandConnection(sourceNode, targetNode);
-                this.Connections.Add(commandConnection);
-            }
-
-            return commandConnection;
-        }
-
-        public EventConnection GetOrCreateEventConnection(GroupableNode sourceNode, GroupableNode targetNode)
-        {
-            var eventConnection = this.FindConnection(sourceNode, targetNode) as EventConnection;
-
-            if (eventConnection == null)
-            {
-                eventConnection = new EventConnection(sourceNode, targetNode);
-                this.Connections.Add(eventConnection);
-            }
-
-            return eventConnection;
-        }
-
-        private DiagramConnection FindConnection(GroupableNode source, GroupableNode target)
-        {
-            return this.Connections.FirstOrDefault(x => source.ConnectionPoints.Any(y => y == x.FromConnectionPoint) &&
-                                                        target.ConnectionPoints.Any(y => y == x.ToConnectionPoint));
-        }
-
-
-        // ================ HELPERS ==========================
-
-        public IEnumerable<ComponentNode> GetAllComponentsNode(Guid componentId)
-        {
-            return this.Nodes.Where(x => x is ComponentNode && ((ComponentNode)x).Id == componentId).Cast<ComponentNode>().ToList();
-        }
-
-        private T FindNode<T>(Guid elementId) where T : GroupableNode
-        {
-            return this.Nodes.FirstOrDefault(x => x is T && ((T)x).Id == elementId) as T;
-        }
-
-        private T FindNode<T>(Func<T, bool> filter) where T : GroupableNode
-        {
-            return this.Nodes.FirstOrDefault(x => x is T && filter((T)x)) as T;
-        }
-
-        private ComponentNode FindComponent(Guid endpointId, Guid serviceId, Guid componentId)
-        {
-            return this.Nodes.FirstOrDefault(x => x is ComponentNode &&
-                                                ((ComponentNode)x).Id == componentId &&
-                                                ((ComponentNode)x).ParentNode.Id == serviceId &&
-                                                ((ComponentNode)x).ParentNode.ParentNode.Id == endpointId) as ComponentNode;
-        }
-
-        public void DeleteNodesById(Guid id)
-        {
-            var nodes = this.Nodes.Where(x => x is GroupableNode && ((GroupableNode)x).Id == id).Cast<GroupableNode>().ToList();
-            nodes.ForEach(x => DeleteNode(x));
-        }
-
-        public void DeleteNode(GroupableNode node)
-        {
-            // Remove Node from Parent
-            if (node.ParentNode != null)
-            {
-                node.ParentNode.RemoveChild(node);
-            }
-
-            // Remove child nodes
-            var groupNode = node as GroupNode;
-            if (groupNode != null)
-            {
-                groupNode.ChildNodes.ForEach(x => DeleteNode(x));
-            }
-
-            // Remove node
-            this.Nodes.Remove(node);
-        }
-
-        public void CleanAll()
-        {
-            this.Nodes.ToList().ForEach(x => this.Nodes.Remove(x));
-            this.Connections.ToList().ForEach(x => this.Connections.Remove(x));
         }
     }
 }

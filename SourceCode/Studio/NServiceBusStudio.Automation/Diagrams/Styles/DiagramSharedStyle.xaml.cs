@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NServiceBusStudio.Automation.Diagrams.ViewModels.BaseViewModels;
+using NuPattern.Runtime.UI.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,6 +21,15 @@ namespace NServiceBusStudio.Automation.Diagrams.Styles
         {
             var button = sender as System.Windows.Controls.Button;
 
+            // Select clicked element on Solution Builder tree view
+            var viewModel = button.DataContext as GroupableNode;
+            if (viewModel != null &&
+                viewModel.InnerViewModel != null)
+            {
+                viewModel.InnerViewModel.IsSelected = true;
+            }
+
+            // Open Context menu
             button.ContextMenu.DataContext = button.DataContext;
             button.ContextMenu.IsOpen = true;
             OnContextMenuOpening(sender, null);

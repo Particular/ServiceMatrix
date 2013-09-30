@@ -13,9 +13,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
     {
         static Dictionary<Guid, Point> SavedPositions = new Dictionary<Guid, Point>();
 
-        public NServiceBusDiagramViewModel ViewModel { get; set; }
+        public NServiceBusDiagramMindscapeViewModel ViewModel { get; set; }
 
-        public NServiceBusDiagramLayoutAlgorithm(NServiceBusDiagramViewModel viewModel)
+        public NServiceBusDiagramLayoutAlgorithm(NServiceBusDiagramMindscapeViewModel viewModel)
         {
             this.ViewModel = viewModel;
         }

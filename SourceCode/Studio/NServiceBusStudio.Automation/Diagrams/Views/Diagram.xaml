@@ -18,12 +18,20 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+        </Grid.Resources>
+        <Popup Placement="Center">
+            <Label FontSize="22">Add Endpoint</Label>
+        </Popup>
+        
         <ms:DiagramSurface x:Name="ds"
-                           Diagram="{Binding}"
+                           Diagram="{Binding Diagram}"
                            Formatter="{StaticResource Formatter}" 
                            ZoomMode="MouseWheel"
                            IsSmartScrollingEnabled="True"
                            DragAction="Pan"
+                           Cursor="Hand"
                            HorizontalSnapSpecifier="{ms:SnapToInterval 10}"
                            VerticalSnapSpecifier="{ms:SnapToInterval 10}"/>
         
@@ -45,24 +53,78 @@
                 </Style>
             </StackPanel.Resources>
 
-            <Button Click="OnAddEndpointClick">
+            <Button Command="{Binding OnShowAddEndpoint}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Styles/Images/EndpointIcon.png" Width="25"></Image>
                     <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Add endpoint</TextBlock>
                 </StackPanel>
             </Button>
-            <Button Click="OnAddServiceClick">
+            <Button Command="{Binding OnShowAddService}">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Styles/Images/ServiceIcon.png" Width="25"></Image>
                     <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Add service</TextBlock>
                 </StackPanel>
             </Button>
-            <Button Click="OnSaveAsImageClick">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Save as image</TextBlock>
-                </StackPanel>
-            </Button>
         </StackPanel>
-      
+
+        <Grid Visibility="{Binding ShowAddEndpoint, Converter={StaticResource BooleanToVisibility}}">
+            <Border Background="Gray" Opacity="0.7">
+                <StackPanel Width="280"
+                            Background="#F1F1F1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <StackPanel.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+                    </StackPanel.BitmapEffect>
+                    <StackPanel Margin="20">
+                        <Label FontSize="22">Add Endpoint</Label>
+                        
+                        <Label Margin="0, 10, 0, 0">Endpoint name</Label>
+                        <TextBox Height="25" Padding="0, 3, 0, 3"
+                                 Text="{Binding EndpointName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        
+                        <Label Margin="0, 10, 0, 0">Host type</Label>
+                        <ComboBox Height="25" Padding="3, 3, 0, 3"
+                                  SelectedValue="{Binding EndpointHostType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                  SelectedValuePath="Tag">
+                            <ComboBoxItem Tag="NServiceBusHost">NServiceBus Host</ComboBoxItem>
+                            <ComboBoxItem Tag="NServiceBusMVC">NServiceBus MVC</ComboBoxItem>
+                            <ComboBoxItem Tag="NServiceBusWeb">NServiceBus Web</ComboBoxItem>
+                        </ComboBox>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                            <Button Width="85" Height="25" Margin="10, 0, 0, 0" Command="{Binding OnCancel}">Cancel</Button>
+                            <Button Width="85" Height="25" Margin="10, 0, 0, 0" Command="{Binding OnAddEndpoint}">OK</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Visibility="{Binding ShowAddService, Converter={StaticResource BooleanToVisibility}}">
+            <Border Background="Gray" Opacity="0.7">
+                <StackPanel Width="280"
+                            Background="#F1F1F1"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <StackPanel.BitmapEffect>
+                        <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+                    </StackPanel.BitmapEffect>
+                    <StackPanel Margin="20">
+                        <Label FontSize="22">Add Service</Label>
+                        
+                        <Label Margin="0, 10, 0, 0">Service name</Label>
+                        <TextBox Height="25" Padding="0, 3, 0, 3"
+                                 Text="{Binding ServiceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                            <Button Width="85" Height="25" Margin="10, 0, 0, 0" Command="{Binding OnCancel}">Cancel</Button>
+                            <Button Width="85" Height="25" Margin="10, 0, 0, 0" Command="{Binding OnAddService}">OK</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
     </Grid>
 </UserControl>

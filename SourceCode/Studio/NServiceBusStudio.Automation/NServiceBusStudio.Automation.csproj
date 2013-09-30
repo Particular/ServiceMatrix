@@ -246,6 +246,7 @@
     <Compile Include="Diagrams\ViewModels\NServiceBusDiagramAdapter.cs" />
     <Compile Include="Diagrams\ViewModels\NServiceBusDiagramLayoutAlgorithm.cs" />
     <Compile Include="Diagrams\ViewModels\NServiceBusDiagramViewModel.cs" />
+    <Compile Include="Diagrams\ViewModels\NServiceBusDiagramMindscapeViewModel.cs" />
     <Compile Include="Diagrams\ViewModels\Shapes\CommandNode.cs" />
     <Compile Include="Diagrams\ViewModels\Shapes\ComponentNode.cs" />
     <Compile Include="Diagrams\ViewModels\Shapes\EmptyEndpointNode.cs" />
