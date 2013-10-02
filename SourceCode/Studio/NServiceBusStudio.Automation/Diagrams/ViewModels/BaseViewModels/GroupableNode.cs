@@ -16,6 +16,7 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.BaseViewModels
         public static int ZOrderCounter = 0;
 
         private bool _isVisible = true;
+        private bool _isHighlighted = false;
         public IProductElementViewModel InnerViewModel { get; set; }
 
         public virtual Guid Id 
@@ -37,6 +38,16 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels.BaseViewModels
         {
             this.InnerViewModel = innerViewModel;
             this.ZOrder = ++ZOrderCounter;
+        }
+
+        // This is for highlighting the node if mouse is over.
+        public bool IsHighlighted
+        {
+            get { return _isHighlighted; }
+            set
+            {
+                Set<bool>(ref _isHighlighted, value, "IsHighlighted");
+            }
         }
 
         // This is for hiding the node if an ancestor group node is collapsed.

@@ -141,7 +141,7 @@
     <!-- TopLevelHeader -->
     <ControlTemplate x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}"
                  TargetType="MenuItem">
-        <Border Name="Border" >
+        <Border Name="Border">
             <Grid>
                 <ContentPresenter 
                     Margin="6,3,6,3" 

@@ -15,7 +15,11 @@ namespace NServiceBusStudio.Automation.Diagrams.Converters
         {
             var segments = (ObservableCollection<DiagramConnectionSegment>)value;
 
-            if (parameter.ToString() == "X")
+            if (parameter == null)
+            {
+                return segments.Last().EndPoint;
+            }
+            else if (parameter.ToString() == "X")
             {
                 return segments.Last().EndPoint.X;
             }

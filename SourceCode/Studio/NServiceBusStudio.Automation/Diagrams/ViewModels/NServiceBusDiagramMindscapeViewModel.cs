@@ -129,7 +129,13 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
             var undeployedComponentNode = FindComponent(EmptyEndpointNode.NodeId,
                                                         serviceViewModel.Data.Id, 
                                                         viewModel.Data.Id);
-            this.Nodes.Remove(undeployedComponentNode);
+            this.DeleteNode(undeployedComponentNode);
+
+            if (undeployedComponentNode.ParentNode != null &&
+                !undeployedComponentNode.ParentNode.ChildNodes.Any())
+            {
+                this.DeleteNode(undeployedComponentNode.ParentNode);
+            }
 
 
             // Create New Component Link
@@ -180,6 +186,7 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
             return eventConnection;
         }
 
+        
         private DiagramConnection FindConnection(GroupableNode source, GroupableNode target)
         {
             return this.Connections.FirstOrDefault(x => source.ConnectionPoints.Any(y => y == x.FromConnectionPoint) &&
@@ -241,6 +248,84 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
         {
             this.Nodes.ToList().ForEach(x => this.Nodes.Remove(x));
             this.Connections.ToList().ForEach(x => this.Connections.Remove(x));
+            this.LayoutAlgorithm.UnloadShapePositiions();
         }
+
+
+        // ================ NODES HIGHLIGHTING ==========================
+
+        internal void HighlightElement(GroupableNode node)
+        {
+            if (node is ServiceNode)
+            {
+                var serviceRelatedNodes = GetServiceRelatedNodes(node);
+                serviceRelatedNodes.ForEach(x => x.IsHighlighted = true);
+            }
+            else if (node is ComponentNode || node is MessageBaseNode)
+            {
+                var relatedNodes = GetComponentsMessagesRelatedNodes(node);
+                relatedNodes.ForEach(x => x.IsHighlighted = true);
+            }
+
+            node.IsHighlighted = true;
+        }
+
+        internal void UnhighlightElement(GroupableNode node)
+        {
+            if (node is ServiceNode)
+            {
+                var serviceRelatedNodes = GetServiceRelatedNodes(node);
+                serviceRelatedNodes.ForEach(x => x.IsHighlighted = false);
+            }
+            else if (node is ComponentNode || node is MessageBaseNode)
+            {
+                var relatedNodes = GetComponentsMessagesRelatedNodes(node);
+                relatedNodes.ForEach(x => x.IsHighlighted = false);
+            }
+
+            node.IsHighlighted = false;
+        }
+
+        private List<GroupableNode> GetComponentsMessagesRelatedNodes(GroupableNode node)
+        {
+            var relatedNodes = new List<GroupableNode>();
+            relatedNodes.Add(node);
+
+            var nodeConnections = this.Connections.Cast<BaseConnection>()
+                                                  .Where(x => x.Source == node ||
+                                                              x.Target == node)
+                                                  .ToList();
+
+            foreach (var nodeConnection in nodeConnections)
+            {
+                var nodeElement = default(GroupableNode);
+                if (nodeConnection.Source == node)
+                    nodeElement = this.Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Target);
+                else
+                    nodeElement = this.Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Source);
+
+                relatedNodes.Add(nodeElement);
+            }
+
+            return relatedNodes;
+        }
+
+        private List<GroupableNode> GetServiceRelatedNodes(GroupableNode node)
+        {
+            var service = node.InnerViewModel.Data.As<IService>();
+
+            var nodesId = new List<Guid>();
+            nodesId.Add(service.AsElement().Id); // Service Id
+            nodesId.AddRange(service.Components.Component.Select(x => x.AsElement().Id)); // Related Components Id
+            nodesId.AddRange(service.Contract.Commands.Command.Select(x => x.AsElement().Id)); // Related Commands Id
+            nodesId.AddRange(service.Contract.Events.Event.Select(x => x.AsElement().Id)); // Related Events Id
+
+            var allNodes = this.Nodes.Cast<GroupableNode>()
+                                     .Where(x => nodesId.Contains(x.Id))
+                                     .ToList();
+            return allNodes;
+        }
+
+        
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Mindscape.WpfDiagramming;
+using Newtonsoft.Json;
 using NServiceBusStudio.Automation.Diagrams.ViewModels.BaseViewModels;
 using NServiceBusStudio.Automation.Diagrams.ViewModels.Shapes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,14 +13,43 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 {
     public class NServiceBusDiagramLayoutAlgorithm
     {
-        static Dictionary<Guid, Point> SavedPositions = new Dictionary<Guid, Point>();
-
         public NServiceBusDiagramMindscapeViewModel ViewModel { get; set; }
+        public string FilePath { get; set; }
+        public Dictionary<Guid, Point> ShapePositions { get; set; }
 
         public NServiceBusDiagramLayoutAlgorithm(NServiceBusDiagramMindscapeViewModel viewModel)
         {
             this.ViewModel = viewModel;
         }
+
+        public void LoadShapePositions (string solutionFolder)
+        {
+            this.FilePath = Path.Combine(solutionFolder, "DiagramShapePositions.json");
+
+            // Load shape positions from file
+            try
+            {
+                if (File.Exists(this.FilePath))
+                {
+                    var fileContent = File.ReadAllText(this.FilePath);
+                    this.ShapePositions = JsonConvert.DeserializeObject<Dictionary<Guid, Point>>(fileContent);
+                }
+            }
+            catch { }
+
+            // If File not exists or an error ocurred
+            if (this.ShapePositions == null)
+            {
+                this.ShapePositions = new Dictionary<Guid, Point>();
+            }
+        }
+
+        public void UnloadShapePositiions ()
+        {
+            this.FilePath = null;
+            this.ShapePositions = null;
+        }
+
 
         public void SetElementPosition(GroupableNode node)
         {
@@ -73,9 +104,9 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
         public Point? LoadElementPosition(GroupableNode node)
         {
-            if (SavedPositions.Any(x => x.Key == node.Id))
+            if (ShapePositions.Any(x => x.Key == node.Id))
             {
-                return SavedPositions.First(x => x.Key == node.Id).Value;
+                return ShapePositions.First(x => x.Key == node.Id).Value;
             }
 
             return null;
@@ -83,13 +114,22 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
         public void SaveElementPosition(GroupableNode node, Point point)
         {
-            if (SavedPositions.Any(x => x.Key == node.Id))
+            if (ShapePositions.Any(x => x.Key == node.Id))
             {
-                SavedPositions.Remove(node.Id);
+                ShapePositions.Remove(node.Id);
             }
 
-            SavedPositions.Add(node.Id, point);
+            ShapePositions.Add(node.Id, point);
+
+            // Saving into file
+            if (this.FilePath != null)
+            {
+                var fileContent = JsonConvert.SerializeObject(this.ShapePositions);
+                File.WriteAllText(this.FilePath, fileContent);
+            }
         }
+
+
     }
 
 }

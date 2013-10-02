@@ -65,6 +65,7 @@ namespace NServiceBusStudio.Automation.Diagrams.ViewModels
 
         private void WireSolution(IServiceProvider serviceProvider)
         {
+            this.ViewModel.LayoutAlgorithm.LoadShapePositions(System.IO.Path.GetDirectoryName(this.Solution.PhysicalPath));
             this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
 
             GenerateCurrentDiagram(this.SolutionBuilderViewModel.TopLevelNodes);

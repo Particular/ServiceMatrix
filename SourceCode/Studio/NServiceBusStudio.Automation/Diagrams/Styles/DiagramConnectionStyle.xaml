@@ -72,12 +72,22 @@
 
     <ms:CorneredPathBuilder x:Key="PathBuilder" EndOffset="5" />
 
-    <Style x:Key="ArrowheadPathStyle" TargetType="Path">
+    <Style x:Key="CommandArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
         <Setter Property="Fill" Value="Black" />
     </Style>
 
-    <DataTemplate x:Key="EndArrowTemplate">
-        <ms:Arrowhead PathStyle="{StaticResource ArrowheadPathStyle}" Length="20" BackWidth="15" />
+    <Style x:Key="EventArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="Fill" Value="White" />
+    </Style>
+
+    <DataTemplate x:Key="CommandEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="EventEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
     </DataTemplate>
 
     <ControlTemplate x:Key="ConnectionPointRequestingConnectionTemplate" TargetType="ms:ConnectionPointThumb">
@@ -88,7 +98,7 @@
         <Canvas>
             <!-- Path: -->
             <Path Name="SelectionHighlight" Data="{TemplateBinding PathGeometry}" Stroke="Gray" StrokeThickness="4" />
-            <Path Data="{Binding Data, ElementName=SelectionHighlight}" Stroke="#00FFFFFF" StrokeThickness="10" />
+            <Path Data="{Binding Data, ElementName=SelectionHighlight}" Stroke="#00FFFFFF" StrokeThickness="4" />
             <Path Name="MainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}" />
 
             <!-- Middle arrow: -->
@@ -119,8 +129,6 @@
                                          RenderTransform="{Binding ToConnectionPoint.Position, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
             <ms:ConnectionRelocatorThumb Name="fromPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Start" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                                          RenderTransform="{Binding FromConnectionPoint.Position, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
-            <ms:ConnectionPointThumb Name="RequestedConnectionPoint" Visibility="Collapsed" Template="{StaticResource ConnectionPointRequestingConnectionTemplate}"
-                                     RenderTransform="{Binding RequestedConnectionPoint, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Property="IsSelected" Value="False">
@@ -137,9 +145,8 @@
                 <Setter TargetName="toPoint" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="fromPoint" Property="Visibility" Value="Collapsed" />
             </Trigger>
-            <Trigger Property="IsRequestingConnectionPoint" Value="True">
-                <Setter TargetName="MainPath" Property="Style" Value="{StaticResource ConnectionStyleWhileRequestingConnectionPoint}" />
-                <Setter TargetName="RequestedConnectionPoint" Property="Visibility" Value="Visible" />
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="MainPath" Property="Stroke" Value="#007AC5" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -149,7 +156,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="PathStyle" Value="{StaticResource CommandConnectionPathStyle}" />
         <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
-        <Setter Property="EndArrowTemplate" Value="{StaticResource EndArrowTemplate}" />
+        <Setter Property="EndArrowTemplate" Value="{StaticResource CommandEndArrowTemplate}" />
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 
@@ -157,7 +164,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="PathStyle" Value="{StaticResource EventConnectionPathStyle}" />
         <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
-        <Setter Property="EndArrowTemplate" Value="{StaticResource EndArrowTemplate}" />
+        <Setter Property="EndArrowTemplate" Value="{StaticResource EventEndArrowTemplate}" />
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 
