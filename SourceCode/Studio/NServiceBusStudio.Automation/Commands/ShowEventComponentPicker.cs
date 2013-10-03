@@ -57,6 +57,7 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>() as IElementHierarchyPicker;
             picker.SlaveName = "Event Name:";
             picker.Elements = elements;
+            picker.Title = "Publish Event...";
 
             using (new MouseCursor(Cursors.Arrow))
             {

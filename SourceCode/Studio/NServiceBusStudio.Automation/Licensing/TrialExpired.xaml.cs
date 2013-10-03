@@ -60,7 +60,7 @@ namespace NServiceBusStudio.Automation.Licensing
 
         private void PurchaseALicense_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start(new ProcessStartInfo("http://particular.net/licensing"));
+            Process.Start(new ProcessStartInfo("http://particular.net/licensing?product=ServiceMatrix"));
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

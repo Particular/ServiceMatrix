@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="9.9" version="10.0" Modules="enterprise" RootPath="." Language="en" Id="{8F3C6593-A5DC-4149-97A2-01DF551AA69A}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="9.9" version="10.3" Modules="enterprise" RootPath="." Language="en" Id="{8F3C6593-A5DC-4149-97A2-01DF551AA69A}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiValidationComponent">
     <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="2147483647" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="3" ColumnIndex="7" ColumnSize="4" MsiKey="File#Sequence"/>
     <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="2147483647" Description="File sequence number for the last file for this media." Options="0" ColumnType="3" ColumnIndex="1" ColumnSize="4" MsiKey="Media#LastSequence"/>
@@ -25,7 +25,7 @@
     <ROW Property="OPT_PRERELEASE_NAME" Value="OPT_PRERELEASE_NAME"/>
     <ROW Property="ProductCode" Value="1033:{C24E09CF-0927-4547-A22E-6892C80F8829} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Particular Software ServiceMatrix 4.0.0"/>
+    <ROW Property="ProductName" Value="Particular Software ServiceMatrix [|ProductVersion]"/>
     <ROW Property="ProductVersion" Value="4.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="TRB_INFO_REG_VALUE" Value="0"/>
@@ -40,8 +40,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_CustomARPName" ComponentId="{ED484AE3-C508-4860-948D-0088E30435C0}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
     <ROW Component="AI_ExePath" ComponentId="{5F718F24-FFD9-44CB-B482-4B8768385AB8}" Directory_="APPDIR" Attributes="4" KeyPath="AI_ExePath"/>
-    <ROW Component="NServiceBusStudio.10.0.vsix" ComponentId="{361C3644-863D-4147-8FA2-D4B9A185B2F1}" Directory_="APPDIR" Attributes="0" KeyPath="Particular.ServiceMatrix.10.0.vsix"/>
-    <ROW Component="Particular.ServiceMatrix.11.0.vsix" ComponentId="{15588D18-3C58-48E1-AFA3-F2A5B1611F8B}" Directory_="APPDIR" Attributes="0" KeyPath="Particular.ServiceMatrix.11.0.vsix"/>
     <ROW Component="ParticularSoftware" ComponentId="{05EF184A-1BE7-4F2C-9BE8-AE7FF9FA231E}" Directory_="APPDIR" Attributes="260" KeyPath="ParticularSoftware"/>
     <ROW Component="ProductInformation" ComponentId="{C58FA273-5A2E-4DE3-92A3-A072DD38D830}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="TrialStart" ComponentId="{0CD8CAE4-BB61-4B4B-9526-EBD790352FC7}" Directory_="APPDIR" Attributes="260" KeyPath="TrialStart"/>
@@ -50,13 +48,9 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
     <ROW Feature="Studio" Title="Studio" Display="3" Level="1" Directory_="APPDIR" Attributes="16" Components="AI_CustomARPName AI_ExePath ParticularSoftware ProductInformation TrialStart UploadEndpointURL UsageDataCollectionApproved"/>
-    <ROW Feature="VS_2010" Title="VS_2010" Description="Description" Display="7" Level="4" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName NServiceBusStudio.10.0.vsix"/>
-    <ROW Feature="VS_2012" Title="VS_2012" Description="Description" Display="5" Level="4" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName Particular.ServiceMatrix.11.0.vsix"/>
+    <ROW Feature="VS_2010" Title="VS_2010" Description="Description" Display="7" Level="4" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName"/>
+    <ROW Feature="VS_2012" Title="VS_2012" Description="Description" Display="5" Level="4" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName"/>
     <ATTRIBUTE name="CurrentFeature" value="Studio"/>
-  </COMPONENT>
-  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="Particular.ServiceMatrix.10.0.vsix" Component_="NServiceBusStudio.10.0.vsix" FileName="Partic~1.vsi|Particular.ServiceMatrix.10.0.vsix" Attributes="0" SourcePath="Files\Particular.ServiceMatrix.10.0.vsix" SelfReg="false" NextFile="Particular.ServiceMatrix.11.0.vsix"/>
-    <ROW File="Particular.ServiceMatrix.11.0.vsix" Component_="Particular.ServiceMatrix.11.0.vsix" FileName="Partic~2.vsi|Particular.ServiceMatrix.11.0.vsix" Attributes="0" SourcePath="Files\Particular.ServiceMatrix.11.0.vsix" SelfReg="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="Output Package" PackageFileName="ServiceMatrix" Languages="en" InstallationType="4" CabsLocation="1" PackageType="1" FilesInsideExe="true" ExeIconPath="res\ServiceMatrix.ico" ExtractionFolder="[AppDataFolder][|Manufacturer]\[|ProductName] [|ProductVersion]\install" MsiCmdLine="/L*V [TempFolder]Studio.LOG" ExtUI="true" UseLargeSchema="true" ExeName="Particular.ServiceMatrix-[|ProductVersion][|OPT_PRERELEASE_NAME]"/>
@@ -356,7 +350,7 @@
     <ROW Action="GetTrialDate" Type="1" Source="Particular.CustomActions.CA.dll" Target="GetTrialStartDate"/>
     <ROW Action="InstallVSIX_2010" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[APPDIR]Particular.ServiceMatrix.10.0.vsix&quot;" Options="1"/>
     <ROW Action="InstallVSIX_2012" Type="1026" Source="viewer.exe" Target="&quot;[VSIX_INSTALLER]&quot; /q &quot;[APPDIR]Particular.ServiceMatrix.11.0.vsix&quot;" Options="1"/>
-    <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=ServiceMatrix" Options="1"/>
+    <ROW Action="Launch_URL" Type="194" Source="viewer.exe" Target="http://www.particular.net/Installation-completed?installer=ServiceMatrix&amp;version=[ProductVersion]" Options="1"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="DefaultBuild:[ProgramFilesFolder]Particular Software\ServiceMatrix"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
@@ -394,13 +388,13 @@
     <ROW Action="AI_AppSearchEx" Sequence="102"/>
     <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
     <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
-    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
-    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
-    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
-    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (NOT PATCH)" Sequence="6597" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6597" Builds="DefaultBuild"/>
     <ROW Action="AI_ExtractFiles" Sequence="3998" Builds="DefaultBuild"/>
     <ROW Action="AI_DATA_SETTER" Sequence="3997"/>
     <ROW Action="AI_EstimateExtractFiles" Sequence="3999" Builds="DefaultBuild"/>

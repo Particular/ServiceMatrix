@@ -59,6 +59,7 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<EventReadOnlyPicker>() as IElementPicker;
 
             picker.Elements = eventNames.Union(new string[] {AnyMessageSupport.TextForUI}).ToList();
+            picker.Title = "Process Messages…";
 
             using (new MouseCursor(Cursors.Arrow))
             {
