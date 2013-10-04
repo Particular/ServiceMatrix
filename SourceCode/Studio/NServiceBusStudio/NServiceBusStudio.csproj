@@ -61,6 +61,10 @@
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mindscape.WpfDiagramming.Foundation, Version=3.0.1315.22118, Culture=neutral, PublicKeyToken=c2e9c4ef235fd77f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -110,6 +114,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="BindingPath.pkgdef" />
     <Content Include="Libs\ICSharpCode.NRefactory.CSharp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -381,7 +386,6 @@
       <FixedLink>
       </FixedLink>
     </Content>
-    <Content Include="BindingPath.pkgdef" />
     <Resource Include="Resources\Link.png" />
     <Resource Include="Resources\Event.png" />
     <Resource Include="Resources\Component.png" />
@@ -436,10 +440,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="..\Binaries\Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix">
-      <Link>Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
@@ -553,37 +553,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\ExternalLoginConfirmation.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\ExternalLoginFailure.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Login.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\Manage.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_ChangePasswordPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_ExternalLoginsListPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_RemoveExternalLoginsPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Account\_SetPasswordPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\Contact.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\Views\Shared\_LoginPartial.cshtml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Libs\Mindscape.WpfDiagramming.DiagramSurface.lic" />
+    <Content Include="Mindscape.WpfDiagramming.DiagramSurface.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="NServiceBus.Tools.snk" />
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
@@ -916,14 +890,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EndpointDesign.Shell\EndpointDesign.Shell.csproj">
-      <Project>{7398C9BA-F668-4F83-84BA-415796193486}</Project>
-      <Name>EndpointDesign.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EndpointDesign\EndpointDesign.csproj">
-      <Project>{94790A8C-85C6-40C8-AA09-0365B8B0B81D}</Project>
-      <Name>EndpointDesign</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj">
       <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
       <Name>NServiceBusStudio.Automation</Name>

@@ -20,10 +20,6 @@
     <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
   </Identifier>
   <References>
-		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
-		  <Name>Particular ServiceMatrix Modeling</Name>
-		  <VsixPath>Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.11.0.vsix</VsixPath>
-		</Reference>
 		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.3.21.0">
 		  <Name>NuPattern Toolkit Manager</Name>
 			<VsixPath>NuPatternToolkitManager.vsix</VsixPath>
@@ -33,10 +29,9 @@
 		<Assembly AssemblyName="Particular.ServiceMatrix">|%CurrentProject%|</Assembly>
 		<MefComponent>|%CurrentProject%|</MefComponent>
 		<MefComponent>|NServiceBusStudio.Automation|</MefComponent>
-		<MefComponent>|EndpointDesign|</MefComponent>
-		<MefComponent>|EndpointDesign.Shell|</MefComponent>
 		<CustomExtension Type="NuPattern.Toolkit.PatternModel" AssemblyFile="Particular.ServiceMatrix.dll">NServiceBusStudio.PatternModel.patterndefinition</CustomExtension>		
 		<ItemTemplate>T\I</ItemTemplate>
 		<ProjectTemplate>T\P</ProjectTemplate>
+    <VsPackage>BindingPath.pkgdef</VsPackage>
 	</Content>
 </Vsix>

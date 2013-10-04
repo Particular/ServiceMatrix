@@ -11,9 +11,9 @@ using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
 using NuPattern.Presentation;
 using NuPattern;
-using NServiceBusStudio.Automation.Diagrams.Views;
+using ServiceMatrix.Diagramming.Views;
 using Microsoft.VisualStudio.Shell;
-using NServiceBusStudio.Automation.Diagrams;
+using ServiceMatrix.Diagramming;
 
 namespace NServiceBusStudio.Automation.Commands
 {

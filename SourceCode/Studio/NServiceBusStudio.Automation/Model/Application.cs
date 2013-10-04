@@ -24,7 +24,7 @@ namespace NServiceBusStudio
     }
 
     partial class Application : IRenameRefactoringNotSupported
-    {        
+    {
         [Import]
         public IPatternManager PatternManager { get; set; }
 
@@ -60,7 +60,7 @@ namespace NServiceBusStudio
                     // If it's a Component Link, remove all links into Endpoints (they're not artifact links)
                     var componentLink = element.As<IAbstractComponentLink>();
 
-                    if (componentLink != null && 
+                    if (componentLink != null &&
                         componentLink.ComponentReference.Value != null)
                     {
                         var endpoint = element.Parent.Parent.As<IAbstractEndpoint>();
@@ -207,11 +207,11 @@ namespace NServiceBusStudio
             this.CustomSolutionBuilder.DisableSolutionBuilder();
         }
 
-        
 
-        
 
-        
+
+
+
 
         public InfrastructureManager InfrastructureManager { get; private set; }
 
@@ -240,9 +240,9 @@ namespace NServiceBusStudio
 
         public void InitializeExtensionDependentData()
         {
-            Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager extensionManager = (Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager) this.VsServiceProvider.TryGetService<Microsoft.VisualStudio.ExtensionManager.SVsExtensionManager>();
+            Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager extensionManager = (Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager)this.VsServiceProvider.TryGetService<Microsoft.VisualStudio.ExtensionManager.SVsExtensionManager>();
             var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
-            
+
             //var resolver = this.ServiceProvider.TryGetService<IUriReferenceService>();
             //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;
@@ -254,7 +254,7 @@ namespace NServiceBusStudio
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
 
-        
+
     }
 
     public enum TransportType

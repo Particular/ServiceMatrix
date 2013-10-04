@@ -37,10 +37,6 @@
     <SupportedFrameworkRuntimeEdition MinVersion="<#=VersionInfo.TargetFrxMinVersion#>" MaxVersion="<#=VersionInfo.TargetFrxMaxVersion#>" />
   </Identifier>
   <References>
-		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
-		  <Name>Particular ServiceMatrix Modeling</Name>
-		  <VsixPath>Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.<#=VersionInfo.TargetVsVersion#>.vsix</VsixPath>
-		</Reference>
 		<Reference Id="<#=managerVsixIdentifier#>"  MinVersion="<#=managerVsixVersion#>">
 		  <Name><#=managerVsixName#></Name>
 			<VsixPath><#=managerVsixFileName#></VsixPath>
@@ -50,10 +46,9 @@
 		<Assembly AssemblyName="<#= assemblyName #>">|%CurrentProject%|</Assembly>
 		<MefComponent>|%CurrentProject%|</MefComponent>
 		<MefComponent>|<#=libraryProjectName #>|</MefComponent>
-		<MefComponent>|EndpointDesign|</MefComponent>
-		<MefComponent>|EndpointDesign.Shell|</MefComponent>
 		<CustomExtension Type="NuPattern.Toolkit.PatternModel" AssemblyFile="<#= assemblyName #>.dll"><#= rootNamespace #>.PatternModel.patterndefinition</CustomExtension>		
 		<ItemTemplate>T\I</ItemTemplate>
 		<ProjectTemplate>T\P</ProjectTemplate>
+    <VsPackage>BindingPath.pkgdef</VsPackage>
 	</Content>
 </Vsix>

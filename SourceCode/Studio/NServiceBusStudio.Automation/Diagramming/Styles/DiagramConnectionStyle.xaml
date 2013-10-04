@@ -1,0 +1,179 @@
+﻿<ResourceDictionary 
+    x:Class="ServiceMatrix.Diagramming.Styles.DiagramConnectionStyle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:connections="clr-namespace:ServiceMatrix.Diagramming.ViewModels.Connections"
+    xmlns:converters="clr-namespace:ServiceMatrix.Diagramming.Converters"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ms="http://namespaces.mindscape.co.nz/wpf">
+
+    <!-- Converters -->
+    <converters:MiddlePointValueConverter x:Key="MiddlePointConverter" />
+    <converters:StartSegmentValueConverter x:Key="StartSegmentConverter" />
+    <converters:EndSegmentValueConverter x:Key="EndSegmentConverter" />
+
+
+    <!-- Connection Styles -->
+
+    <Style x:Key="CommandConnectionPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="StrokeThickness" Value="3" />
+        <Setter Property="BitmapEffect">
+            <Setter.Value>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EventConnectionPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="StrokeThickness" Value="3" />
+        <Setter Property="StrokeDashArray" Value="2, 2" />
+        <Setter Property="BitmapEffect">
+            <Setter.Value>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Visual styles for connection lines -->
+    <!-- These styles are set on the DiagramConnectionElement and cascade down, hence the need to qualify the dependency property names -->
+
+    <!-- Appearance while the user is dragging another connection to meet with this one -->
+    <Style x:Key="ConnectionStyleWhileRequestingConnectionPoint" TargetType="Path">
+        <Setter Property="Stroke" Value="Navy" />
+        <Setter Property="StrokeThickness" Value="2" />
+    </Style>
+
+    <!-- Styles and templates for controls used to manipulate connections -->
+    <Style x:Key="ConnectionPointRelocatorStyle" TargetType="ms:ConnectionRelocatorThumb">
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ms:ConnectionRelocatorThumb">
+                    <Ellipse Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Fill="#800000FF" Stroke="Blue" StrokeThickness="3">
+                        <Ellipse.RenderTransform>
+                            <TranslateTransform X="-9" Y="-9"/>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType={x:Type ms:DiagramSurface}}}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Main connection style -->
+    <ms:SegmentsToAngleConverter x:Key="EndArrowRotationConverter" ConnectionEnd="Finish" />
+    <ms:PointToTranslateTransformConverter x:Key="PointToTranslationConverter" />
+
+    <ms:CorneredPathBuilder x:Key="PathBuilder" EndOffset="5" />
+
+    <Style x:Key="CommandArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="Fill" Value="Black" />
+    </Style>
+
+    <Style x:Key="EventArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="Fill" Value="White" />
+    </Style>
+
+    <DataTemplate x:Key="CommandEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="EventEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
+    </DataTemplate>
+
+    <ControlTemplate x:Key="ConnectionPointRequestingConnectionTemplate" TargetType="ms:ConnectionPointThumb">
+        <Border Width="20" Height="20" Background="HotPink" />
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ConnectionStyleTemplate" TargetType="{x:Type ms:DiagramConnectionElement}">
+        <Canvas>
+            <!-- Path: -->
+            <Path Name="SelectionHighlight" Data="{TemplateBinding PathGeometry}" Stroke="Gray" StrokeThickness="4" />
+            <Path Data="{Binding Data, ElementName=SelectionHighlight}" Stroke="#00FFFFFF" StrokeThickness="4" />
+            <Path Name="MainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}" />
+
+            <!-- Middle arrow: -->
+            <ContentControl VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding EndArrowTemplate}">
+                <ContentControl.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <TranslateTransform>
+                            <TranslateTransform.X>
+                                <MultiBinding Converter="{StaticResource MiddlePointConverter}">
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource StartSegmentConverter}" ConverterParameter="X" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource EndSegmentConverter}" ConverterParameter="X" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                </MultiBinding>
+                            </TranslateTransform.X>
+                            <TranslateTransform.Y>
+                                <MultiBinding Converter="{StaticResource MiddlePointConverter}">
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource StartSegmentConverter}" ConverterParameter="Y" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource EndSegmentConverter}" ConverterParameter="Y" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                </MultiBinding>
+                            </TranslateTransform.Y>
+                        </TranslateTransform>
+                    </TransformGroup>
+                </ContentControl.RenderTransform>
+            </ContentControl>
+
+            <!-- Relocator thumbs and connection point thumb: -->
+            <ms:ConnectionRelocatorThumb Name="toPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Finish" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                         RenderTransform="{Binding ToConnectionPoint.Position, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+            <ms:ConnectionRelocatorThumb Name="fromPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Start" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                         RenderTransform="{Binding FromConnectionPoint.Position, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+        </Canvas>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsSelected" Value="False">
+                <Setter TargetName="SelectionHighlight" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType={x:Type ms:DiagramSurface}}}" Value="True" />
+                    <Condition Binding="{Binding ReadOnlyCanSelect, RelativeSource={RelativeSource AncestorType={x:Type ms:DiagramSurface}}}" Value="False" />
+                </MultiDataTrigger.Conditions>
+                <Setter TargetName="SelectionHighlight" Property="Visibility" Value="Collapsed" />
+            </MultiDataTrigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter TargetName="toPoint" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="fromPoint" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="MainPath" Property="Stroke" Value="#007AC5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <Style x:Key="CommandConnectionStyle" TargetType="ms:DiagramConnectionElement">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="PathStyle" Value="{StaticResource CommandConnectionPathStyle}" />
+        <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
+        <Setter Property="EndArrowTemplate" Value="{StaticResource CommandEndArrowTemplate}" />
+        <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
+    </Style>
+
+    <Style x:Key="EventConnectionStyle" TargetType="ms:DiagramConnectionElement">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="PathStyle" Value="{StaticResource EventConnectionPathStyle}" />
+        <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
+        <Setter Property="EndArrowTemplate" Value="{StaticResource EventEndArrowTemplate}" />
+        <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
+    </Style>
+
+
+    <ms:ShapeNodeStyleSelector x:Key="ConnectionStyleSelector">
+        <ms:TypeStyle DataType="connections:CommandConnection" Style="{StaticResource CommandConnectionStyle}" />
+        <ms:TypeStyle DataType="connections:EventConnection" Style="{StaticResource EventConnectionStyle}" />
+    </ms:ShapeNodeStyleSelector>
+
+
+
+</ResourceDictionary>
