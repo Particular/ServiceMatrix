@@ -16,17 +16,5 @@ namespace $safeprojectname$.Controllers
             return View();
         }
 
-        //
-        // GET: /Home/SendMessage
-
-        public ActionResult SendMessage()
-        {
-            // TODO: Insert your send message code here!
-
-            ViewBag.Message = "Message Sent!";
-
-            return View("Index");
-        }
-
     }
 }
