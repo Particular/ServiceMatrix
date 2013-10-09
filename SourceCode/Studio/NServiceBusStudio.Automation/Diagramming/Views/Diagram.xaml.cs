@@ -84,18 +84,25 @@ namespace ServiceMatrix.Diagramming.Views
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)
         {
-            ds.Zoom += 0.25;
+            if (ds.Zoom >= 2.75)
+            {
+                ds.Zoom = 10;
+            }
+            else
+            {
+                ds.Zoom += 0.25;
+            }
         }
 
         private void ZoomOut_Click(object sender, RoutedEventArgs e)
         {
-            if (ds.Zoom > 0.25)
+            if (ds.Zoom <= 0.50)
             {
-                ds.Zoom -= 0.25;
+                ds.Zoom = 0.25;
             }
             else
             {
-                ds.Zoom = 0.1;
+                ds.Zoom -= 0.25;
             }
         }
     }

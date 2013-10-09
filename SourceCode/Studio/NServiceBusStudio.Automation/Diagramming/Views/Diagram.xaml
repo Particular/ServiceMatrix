@@ -85,7 +85,7 @@
                 <Image Source="../Styles/Images/ZoomIn.png" Width="25"></Image>
             </Button>
             <Slider Value="{Binding ElementName=ds, Path=Zoom, Mode=TwoWay}" 
-                    Maximum="3" Minimum="0.6"
+                    Maximum="3" Minimum="0.25"
                     Orientation="Vertical"
                     Height="100" HorizontalAlignment="Center"></Slider>
             <Button Click="ZoomOut_Click">

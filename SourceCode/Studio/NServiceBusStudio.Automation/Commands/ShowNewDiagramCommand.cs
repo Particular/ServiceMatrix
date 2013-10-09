@@ -19,17 +19,6 @@ namespace NServiceBusStudio.Automation.Commands
 {
     public class ShowNewDiagramCommand : NuPattern.Runtime.Command
     {
-        /// <summary>
-        /// Gets or sets the current element.
-        /// </summary>
-        [Required]
-        [Import(AllowDefault = true)]
-        public IProductElement CurrentElement
-        {
-            get;
-            set;
-        }
-
         [Import(typeof(SVsServiceProvider))]
         public IServiceProvider ServiceProvider { get; set; }
 
@@ -46,15 +35,6 @@ namespace NServiceBusStudio.Automation.Commands
                     diagramsWindowManager.Show();
                 }
             }
-
-            //var window = (NServiceBusDiagramsToolWindow)this.ServiceProvider.GetService(typeof(NServiceBusDiagramsToolWindow));
-            //if (window != null)
-            //{
-            //    using (new MouseCursor(Cursors.Arrow))
-            //    {
-            //        ((Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame).Show();
-            //    }
-            //}
         }
     }
 }
