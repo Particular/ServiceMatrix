@@ -7,6 +7,7 @@
   xmlns:styles="clr-namespace:ServiceMatrix.Diagramming.Styles">
 
     <ResourceDictionary.MergedDictionaries>
+        <styles:DiagramMenuItemStyle />
         <styles:DiagramSharedStyle />
         <styles:DiagramConnectionStyle />
     </ResourceDictionary.MergedDictionaries>

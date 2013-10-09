@@ -13,8 +13,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
     {
         public static Guid NodeId = Guid.Empty;
 
-        public EmptyEndpointNode(): base(null)
+        public EmptyEndpointNode(IMenuOptionViewModel deployUnhostedComponents): base(null)
         {
+            _menuOptions = new ObservableCollection<IMenuOptionViewModel>();
+            _menuOptions.Add(deployUnhostedComponents);
         }
 
         public override Guid Id
@@ -27,9 +29,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
             get { return "Empty Endpoint"; }
         }
 
-        public override ObservableCollection<IMenuOptionViewModel> MenuOptions
+        ObservableCollection<IMenuOptionViewModel> _menuOptions;
+        public override ObservableCollection<IMenuOptionViewModel> MenuOptions 
         {
-            get { return new ObservableCollection<IMenuOptionViewModel>(); }
+            get { return _menuOptions; }
         }
     }
 }

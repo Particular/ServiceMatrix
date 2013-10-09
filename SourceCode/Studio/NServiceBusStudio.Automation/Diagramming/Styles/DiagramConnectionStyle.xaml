@@ -11,6 +11,16 @@
     <converters:StartSegmentValueConverter x:Key="StartSegmentConverter" />
     <converters:EndSegmentValueConverter x:Key="EndSegmentConverter" />
 
+    <converters:ValueConverterGroup x:Key="StartPointToTranslationConverter">
+        <converters:StartSegmentValueConverter />
+        <ms:PointToTranslateTransformConverter />
+    </converters:ValueConverterGroup>
+
+    <converters:ValueConverterGroup x:Key="EndPointToTranslationConverter">
+        <converters:EndSegmentValueConverter />
+        <ms:PointToTranslateTransformConverter />
+    </converters:ValueConverterGroup>
+
 
     <!-- Connection Styles -->
 
@@ -126,9 +136,9 @@
 
             <!-- Relocator thumbs and connection point thumb: -->
             <ms:ConnectionRelocatorThumb Name="toPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Finish" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                         RenderTransform="{Binding ToConnectionPoint.Position, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                         RenderTransform="{Binding Connection.Segments, Converter={StaticResource EndPointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
             <ms:ConnectionRelocatorThumb Name="fromPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Start" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                         RenderTransform="{Binding FromConnectionPoint.Position, Converter={StaticResource PointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                                         RenderTransform="{Binding Connection.Segments, Converter={StaticResource StartPointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Property="IsSelected" Value="False">

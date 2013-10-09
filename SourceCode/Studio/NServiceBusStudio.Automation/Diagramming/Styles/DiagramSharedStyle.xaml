@@ -35,18 +35,6 @@
 
     <RadioButton x:Key="MenuItem.ViewButton" x:Shared="false" IsChecked="{Binding IsSelected,Mode=TwoWay}" GroupName="MenuOptions" IsHitTestVisible="False" />
 
-
-    <Style x:Key="ContextMenuStyle" TargetType="{x:Type ContextMenu}">
-        <Setter Property="SnapsToDevicePixels" Value="True"/>
-        <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Grid.IsSharedSizeScope" Value="true"/>
-        <Setter Property="HasDropShadow" Value="True"/>
-        <Setter Property="Background" Value="Red" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
-        <Setter Property="FontSize" Value="14" />
-    </Style>
-
     <Style x:Key="DynamicMenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Background" Value="Black" />

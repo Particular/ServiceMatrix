@@ -81,5 +81,22 @@ namespace ServiceMatrix.Diagramming.Views
 
             ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightElement(context);
         }
+
+        private void ZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            ds.Zoom += 0.25;
+        }
+
+        private void ZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            if (ds.Zoom > 0.25)
+            {
+                ds.Zoom -= 0.25;
+            }
+            else
+            {
+                ds.Zoom = 0.1;
+            }
+        }
     }
 }

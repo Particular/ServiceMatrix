@@ -135,6 +135,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowDeployUnhostedComponentsPicker.cs" />
     <Compile Include="Commands\ShowNewDiagramCommand.cs" />
     <Compile Include="Commands\ShowEventComponentPicker.cs" />
     <Compile Include="Commands\ShowCommandComponentPicker.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\ItemIconWithDefaultConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\MenuGroupingEnumerableConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\TreeViewItemOrderingConverter.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Diagramming\Converters\EndSegmentValueConverter.cs" />
     <Compile Include="Diagramming\Converters\MiddlePointValueConverter.cs" />
     <Compile Include="Diagramming\Converters\StartSegmentValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\ValueConverterGroup.cs" />
     <Compile Include="Diagramming\IDiagramsWindowsManager.cs" />
     <Compile Include="Diagramming\Styles\DiagramConnectionStyle.xaml.cs">
       <DependentUpon>DiagramConnectionStyle.xaml</DependentUpon>
@@ -631,6 +634,10 @@
     <Resource Include="Diagramming\Styles\Images\EventIcon.png" />
     <Resource Include="Diagramming\Styles\Images\ServiceIcon.png" />
     <Resource Include="Diagramming\Styles\Images\WhiteArrowIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\ZoomIn.png" />
+    <Resource Include="Diagramming\Styles\Images\ZoomOut.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

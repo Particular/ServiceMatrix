@@ -4466,6 +4466,11 @@
         <automationSettingsSchemaMoniker Id="1e8a1cd0-326e-49d9-8771-dd579d48fbe6" />
       </extendedElement>
     </commandSettings>
+    <commandSettings Id="db53572c-43ed-4c33-a456-e61c864fe0ba" typeId="AbstractEndpoint.Automation.Commands.ShowDeployUnhostedComponentsPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="14e667ee-5397-4f8e-92ec-62aeae9e9fc5" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -4509,6 +4514,10 @@
       <conditions>[
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.HasEndpointDefinedCondition",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsProcessorComponentCondition",
     "Properties": []
   }
 ]</conditions>
@@ -4638,6 +4647,11 @@
     <menuSettings Id="4f9ddd1e-d128-423a-9ab2-7362d14ebbad" text="Show Diagram" commandId="efdd0c57-79b2-4064-9615-923758ae4300" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="b4e1ea6b-22f6-4e33-bb8f-b993b74c2a84" text="Deploy Unhosted Components..." commandId="db53572c-43ed-4c33-a456-e61c864fe0ba" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="636c8d2c-15ad-4cf1-bcc8-9081ff8cfb8b" />
       </extendedElement>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
@@ -7183,6 +7197,26 @@
                 <setting propertyId="IsVisible" />
               </settings>
             </customizationPolicy>
+            <automationSettings>
+              <automationSettings Id="636c8d2c-15ad-4cf1-bcc8-9081ff8cfb8b" name="DeployUnhostedComponentsMenu" displayName="Deploy Unhosted Components Menu" description="" codeIdentifier="DeployUnhostedComponentsMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="14e667ee-5397-4f8e-92ec-62aeae9e9fc5" name="DeployUnhostedComponentsCommand" displayName="Deploy Unhosted Components Command" description="" codeIdentifier="DeployUnhostedComponentsCommand" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+            </automationSettings>
             <childElement cardinality="ZeroToMany" autoCreate="false">
               <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NServiceBus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">

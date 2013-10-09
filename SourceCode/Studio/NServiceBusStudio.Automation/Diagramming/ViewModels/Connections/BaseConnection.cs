@@ -19,11 +19,17 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
             {
                 if (_source != null)
                 {
-                    _source.BoundsChanged -= RecalculateConnectionPosition;
+                    foreach (var connectionPoint in _source.ConnectionPoints)
+	                {
+                        connectionPoint.PositionChanged -= RecalculateConnectionPosition;
+	                }
                 }
 
                 _source = value;
-                _source.BoundsChanged += RecalculateConnectionPosition;
+                foreach (var connectionPoint in _source.ConnectionPoints)
+                {
+                    connectionPoint.PositionChanged += RecalculateConnectionPosition;
+                }
             } 
         }
 
@@ -35,11 +41,17 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
             {
                 if (_target != null)
                 {
-                    _target.BoundsChanged -= RecalculateConnectionPosition;
+                    foreach (var connectionPoint in _target.ConnectionPoints)
+                    {
+                        connectionPoint.PositionChanged -= RecalculateConnectionPosition;
+                    }
                 }
 
                 _target = value;
-                _target.BoundsChanged += RecalculateConnectionPosition;
+                foreach (var connectionPoint in _target.ConnectionPoints)
+                {
+                    connectionPoint.PositionChanged += RecalculateConnectionPosition;
+                }
             }
         }
 

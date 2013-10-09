@@ -40,13 +40,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return endpoint;
         }
 
-        private EmptyEndpointNode GetOrCreateEmptyEndpointNode()
+        private EmptyEndpointNode GetOrCreateEmptyEndpointNode(IProductElementViewModel endpointsViewModel)
         {
             var emptyEndpoint = this.FindNode<EmptyEndpointNode>(EmptyEndpointNode.NodeId);
 
             if (emptyEndpoint == null)
             {
-                emptyEndpoint = new EmptyEndpointNode();
+                emptyEndpoint = new EmptyEndpointNode(endpointsViewModel.MenuOptions.FirstOrDefault( x=> x.Caption == "Deploy Unhosted Components..."));
                 this.LayoutAlgorithm.SetElementPosition(emptyEndpoint);
 
                 this.Nodes.Add(emptyEndpoint);
@@ -67,7 +67,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 if (endpoint == null &&
                     endpointId == EmptyEndpointNode.NodeId)
                 {
-                    endpoint = GetOrCreateEmptyEndpointNode();
+                    var endpointsViewModel = viewModel.ParentNode.ParentNode.ChildNodes.First(x => x.Data.InstanceName == "Endpoints");
+                    endpoint = GetOrCreateEmptyEndpointNode(endpointsViewModel);
                 }
 
                 service = new ServiceNode(viewModel, endpoint);

@@ -21,7 +21,23 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 
         public string Type 
         {
-            get { return "(" + this.InnerViewModel.Data.Info.Name + ")"; }
+            get
+            {
+                switch (this.InnerViewModel.Data.Info.Name)
+                {
+                    case "NServiceBusHost":
+                        return "(NSB Host)";
+                        break;
+                    case "NServiceBusMVC":
+                        return "(MVC)";
+                        break;
+                    case "NServiceBusWeb":
+                        return "(Web)";
+                        break;
+                }
+
+                return "";
+            }
         }
     }
 }
