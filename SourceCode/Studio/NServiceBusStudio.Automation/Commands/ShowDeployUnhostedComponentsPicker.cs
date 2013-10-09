@@ -50,6 +50,17 @@ namespace AbstractEndpoint.Automation.Commands
 
         public override void Execute()
         {
+            //var nserviceBusMVC = this.As<INServiceBusMVC>();
+            //var components = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Select(cl => cl.As<NServiceBusMVCComponentLink>().ComponentReference.Value); 
+            //components = components.Where(c => c.IsSender);
+
+            //foreach (var component in components)
+            //{
+            //    component.CodeIdentifier
+            //}
+
+
+
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
