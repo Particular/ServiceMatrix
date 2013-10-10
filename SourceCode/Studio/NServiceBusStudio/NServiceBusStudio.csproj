@@ -61,6 +61,10 @@
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mindscape.WpfDiagramming.Foundation, Version=3.0.1315.22118, Culture=neutral, PublicKeyToken=c2e9c4ef235fd77f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -110,6 +114,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="BindingPath.pkgdef" />
     <Content Include="Libs\ICSharpCode.NRefactory.CSharp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -118,6 +123,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Libs\Mindscape.WpfDiagramming.FlowDiagrams.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.FlowDiagrams.xml" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.Design.10.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.Design.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.xml" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.StarDiagrams.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.StarDiagrams.xml" />
     <Content Include="Libs\Mono.Cecil.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -126,6 +139,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Libs\wpfdgmrtl.exe" />
     <Content Include="NServiceBusVersion.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -220,6 +234,9 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Content\Site.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\TestMessages.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Global.asax">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -372,7 +389,6 @@
       <FixedLink>
       </FixedLink>
     </Content>
-    <Content Include="BindingPath.pkgdef" />
     <Resource Include="Resources\Link.png" />
     <Resource Include="Resources\Event.png" />
     <Resource Include="Resources\Component.png" />
@@ -427,10 +443,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="..\Binaries\Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix">
-      <Link>Particular.ServiceMatrix.Modeling.EndpointDesign.Shell.$(VisualStudioVersion).vsix</Link>
-      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
@@ -543,6 +555,11 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Web.Release.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <None Include="Libs\Mindscape.WpfDiagramming.DiagramSurface.lic" />
+    <Content Include="Mindscape.WpfDiagramming.DiagramSurface.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="NServiceBus.Tools.snk" />
     <None Include="source.extension.gen.ttinclude">
@@ -795,6 +812,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TestMessagesController.cs.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>34f22950-2004-4a24-8d73-70611291a87e</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TestMessagesView.cshtml.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>6f950f0a-8b5d-4ef3-afcd-e6046fcff516</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>
@@ -876,14 +905,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EndpointDesign.Shell\EndpointDesign.Shell.csproj">
-      <Project>{7398C9BA-F668-4F83-84BA-415796193486}</Project>
-      <Name>EndpointDesign.Shell</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EndpointDesign\EndpointDesign.csproj">
-      <Project>{94790A8C-85C6-40C8-AA09-0365B8B0B81D}</Project>
-      <Name>EndpointDesign</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj">
       <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
       <Name>NServiceBusStudio.Automation</Name>

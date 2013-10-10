@@ -69,5 +69,10 @@ namespace NServiceBusStudio
                 next.Order++;
             }
         }
+
+        public IAbstractEndpointComponents ParentEndpointComponents
+        {
+            get { return this.Parent as IAbstractEndpointComponents; }
+        }
     }
 }

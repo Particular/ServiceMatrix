@@ -50,6 +50,12 @@
     <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mindscape.WpfDiagramming.Foundation">
+      <HintPath>..\NServiceBusStudio\Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NuGet.Core, Version=1.6.30117.9648, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
@@ -129,6 +135,8 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowDeployUnhostedComponentsPicker.cs" />
+    <Compile Include="Commands\ShowNewDiagramCommand.cs" />
     <Compile Include="Commands\ShowEventComponentPicker.cs" />
     <Compile Include="Commands\ShowCommandComponentPicker.cs" />
     <Compile Include="Commands\PackageConfigFilesCommand.cs" />
@@ -164,6 +172,7 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\ItemIconWithDefaultConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\MenuGroupingEnumerableConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\TreeViewItemOrderingConverter.cs" />
@@ -197,6 +206,45 @@
     <Compile Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml.cs">
       <DependentUpon>ToolbarExtension.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Diagramming\Converters\EndSegmentValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\MiddlePointValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\StartSegmentValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\ValueConverterGroup.cs" />
+    <Compile Include="Diagramming\IDiagramsWindowsManager.cs" />
+    <Compile Include="Diagramming\Styles\DiagramConnectionStyle.xaml.cs">
+      <DependentUpon>DiagramConnectionStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Styles\DiagramMenuItemStyle.xaml.cs">
+      <DependentUpon>DiagramMenuItemStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Styles\DiagramNodeStyle.xaml.cs">
+      <DependentUpon>DiagramNodeStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Styles\DiagramSharedStyle.xaml.cs">
+      <DependentUpon>DiagramSharedStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\ChildNode.cs" />
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\GroupableNode.cs" />
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\GroupNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\BaseConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\CommandConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\EventConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixConnectionBuilder.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramAdapter.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramLayoutAlgorithm.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramMindscapeViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\CommandNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\ComponentNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\EmptyEndpointNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\EndpointNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\EventNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\MessageBaseNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\ServiceNode.cs" />
+    <Compile Include="Diagramming\Views\Diagram.xaml.cs">
+      <DependentUpon>Diagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Views\ServiceMatrixDiagramToolWindow.cs" />
     <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>
@@ -489,6 +537,26 @@
       <DependentUpon>VsVersionStyles.tt</DependentUpon>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Diagramming\Styles\DiagramConnectionStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramMenuItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramNodeStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramSharedStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Views\Diagram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialog\ComponentPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -556,6 +624,20 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ServiceMatrixBanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlackArrowIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\CommandIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\ComponentIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\EmptyEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\EndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\EventIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\ServiceIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\WhiteArrowIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\ZoomIn.png" />
+    <Resource Include="Diagramming\Styles\Images\ZoomOut.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

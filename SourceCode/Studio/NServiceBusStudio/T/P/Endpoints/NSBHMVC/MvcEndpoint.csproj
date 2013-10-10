@@ -127,6 +127,7 @@
     <Content Include="Content\Content.css" />
     <Content Include="Content\Css.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\TestMessages.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\logo.png" />
