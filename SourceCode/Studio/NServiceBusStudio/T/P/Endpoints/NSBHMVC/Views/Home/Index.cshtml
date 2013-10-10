@@ -219,13 +219,8 @@
                                     <div class="label text-dosis-24"><strong>Try NServiceBus</strong></div>
 
                                     <div class="button small">
-                                        @Html.ActionLink("Sent Test Message", "SendMessage", null, new { @class = "blue"})
+                                        @Html.ActionLink("Test Messages", "Index", "TestMessages", null, new { @class = "blue"})
                                     </div>
-
-                                    @if(!String.IsNullOrEmpty(ViewBag.Message))
-                                    {
-                                        <div class="label text-dosis-16">@ViewBag.Message</div>
-                                    }
                                 </div>
 
                                 <div class="getting-started-images" style="width: 100%; text-align: center;">

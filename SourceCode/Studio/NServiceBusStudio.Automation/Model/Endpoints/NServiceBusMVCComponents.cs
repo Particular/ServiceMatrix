@@ -22,5 +22,10 @@ namespace NServiceBusStudio
                 return this.NServiceBusMVCComponentLinks.Cast<IAbstractComponentLink>();
             }
         }
+
+        public IAbstractEndpoint ParentEndpoint
+        {
+            get { return this.Parent as IAbstractEndpoint; }
+        }
     }
 }

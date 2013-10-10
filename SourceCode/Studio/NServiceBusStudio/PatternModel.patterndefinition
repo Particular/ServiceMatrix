@@ -2474,101 +2474,6 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="506a2020-b3eb-406f-ad44-9e028c4fb205" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="de1aa5e2-a17a-40ac-8e68-65b9e41c212c" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "Open",
-    "Value": "True",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": null,
-    "ValueProvider": {
-      "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
-      "Properties": [
-        {
-          "Name": "Expression",
-          "Value": "{InstanceName}.endpoints",
-          "ValueProvider": null
-        }
-      ]
-    }
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "~",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="55e823c8-ac4a-45a0-bdf5-e500ca3a32b7" typeId="NuPattern.Library.Commands.AggregatorCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="1de05dc1-dc05-4ad1-9a04-ab70db5c5fe2" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"e070a581-f100-4ef6-9e9c-eefa184832e6\"\r\n  },\r\n  {\r\n    \"CommandId\": \"506a2020-b3eb-406f-ad44-9e028c4fb205\"\r\n  }\r\n]",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="e070a581-f100-4ef6-9e9c-eefa184832e6" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="db528942-1ce6-4532-989d-2225cbd22e26" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{InstanceName}.endpoints",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "~",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/EndpointDiagram.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/7bc9d684-b67e-4d26-a55d-ad64c57f6fc1",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
     <commandSettings Id="5673e075-0cf9-4be4-90df-ab5af5e5f62c" typeId="AbstractEndpoint.Automation.Commands.ShowComponentLinkPicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="765fee48-3cbd-450b-8ed5-39a94e04955f" />
@@ -3053,37 +2958,6 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="b697d4d8-6a7a-4aa2-bb73-64c3dc4306f6" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="be7b68c3-603a-4589-be18-55c1bc1bdaa1" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "Open",
-    "Value": "True",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": null,
-    "ValueProvider": {
-      "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
-      "Properties": [
-        {
-          "Name": "Expression",
-          "Value": "{InstanceName}.endpoints",
-          "ValueProvider": null
-        }
-      ]
-    }
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "~",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
     <commandSettings Id="dc6634a9-a147-4285-ac38-d053a40ba00f" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.ProcessRootAfterUnfoldedProject">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="705d99ca-8c9d-4224-8e6d-6a4e7d0c28d7" />
@@ -3093,70 +2967,6 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="f6ba6add-594f-435c-819b-46d5aaa51130" />
       </extendedElement>
-    </commandSettings>
-    <commandSettings Id="3062b9fa-b269-4281-bb17-56919f8fa362" typeId="NuPattern.Library.Commands.AggregatorCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="aed355ca-13a6-4062-8ca6-c5a182c26137" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"5d12fa1c-0df7-4519-9162-5610b58e29fd\"\r\n  },\r\n  {\r\n    \"CommandId\": \"b697d4d8-6a7a-4aa2-bb73-64c3dc4306f6\"\r\n  }\r\n]",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="5d12fa1c-0df7-4519-9162-5610b58e29fd" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="a2f22be7-63ca-4add-a4a2-fddc0abe0cec" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": "None",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{InstanceName}.endpoints",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "~",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/EndpointDiagram.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/39328419-7fe9-4bd1-9755-1bb3129036f2",
-    "ValueProvider": null
-  }
-]</properties>
     </commandSettings>
     <commandSettings Id="fda1c817-b676-4500-9438-5082c5bbfcdb" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
@@ -3395,7 +3205,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"338298e4-094c-4fa3-bb2e-1eb7d8e1097e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71d2d518-0a28-43c8-97bc-b3a1daa1d044\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f1d05d84-fb55-49f4-8bac-0b7b21615f9e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"55056fbd-f4ca-46fb-8c77-0f54707eaf66\"\r\n  },\r\n  {\r\n    \"CommandId\": \"87d1c6b4-d238-4a4a-9436-e8dabc2846f3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ceb76ec1-66d0-43d7-883c-524960335c61\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bb9daf67-ea65-4b21-a8d9-bc4a84536d2e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"afb2611a-a77c-4024-8e30-cfe442f1f610\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"338298e4-094c-4fa3-bb2e-1eb7d8e1097e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71d2d518-0a28-43c8-97bc-b3a1daa1d044\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f1d05d84-fb55-49f4-8bac-0b7b21615f9e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"55056fbd-f4ca-46fb-8c77-0f54707eaf66\"\r\n  },\r\n  {\r\n    \"CommandId\": \"87d1c6b4-d238-4a4a-9436-e8dabc2846f3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ceb76ec1-66d0-43d7-883c-524960335c61\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bb9daf67-ea65-4b21-a8d9-bc4a84536d2e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"afb2611a-a77c-4024-8e30-cfe442f1f610\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7459da8d-a7e6-4547-8019-cbebb69ee7f0\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e79472a8-53c0-4f08-9d5e-4498f6fab3b4\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3672,37 +3482,6 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="a6910131-cf93-440a-9b53-3d06af21ff1f" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="09372161-1012-4c19-94e2-48e0457099ae" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "Open",
-    "Value": "True",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": null,
-    "ValueProvider": {
-      "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
-      "Properties": [
-        {
-          "Name": "Expression",
-          "Value": "{InstanceName}.endpoints",
-          "ValueProvider": null
-        }
-      ]
-    }
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "~",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
     <commandSettings Id="80776373-8131-4f13-bf2f-43fce486c245" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.ProcessRootAfterUnfoldedProject">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="a1fa5792-65d7-4a67-b62a-c23eef52dabe" />
@@ -3712,70 +3491,6 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="2e154970-eeed-4f1e-baee-52df253dbd44" />
       </extendedElement>
-    </commandSettings>
-    <commandSettings Id="e74c564e-2359-494d-8c90-b214504cf962" typeId="NuPattern.Library.Commands.AggregatorCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="2a0e1943-f745-4409-8cf4-c081c469c926" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"be46a53b-762d-456c-855e-df0fd26d98cb\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a6910131-cf93-440a-9b53-3d06af21ff1f\"\r\n  }\r\n]",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="be46a53b-762d-456c-855e-df0fd26d98cb" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="eedb445d-8d55-4af8-9a8d-b6889b3e0615" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": "None",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{InstanceName}.endpoints",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "~",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/EndpointDiagram.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/063e34ac-21e5-44df-a41a-0f2bbf6c23a7",
-    "ValueProvider": null
-  }
-]</properties>
     </commandSettings>
     <commandSettings Id="4dd3672b-f688-467d-8462-b7073b8e4ebf" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
@@ -4317,28 +4032,6 @@
         <automationSettingsSchemaMoniker Id="b207d2ad-649c-4bfe-a860-72144f74b0f8" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="fae58295-952d-46a5-b1af-0e094be6dc61" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="669fdb79-d39f-496d-8def-44da4d991481" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "Open",
-    "Value": "True",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "Endpoints.endpoints",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\Solution Items",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
     <commandSettings Id="efdd0c57-79b2-4064-9615-923758ae4300" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b25a873c-2b51-4b70-adaa-fb57e81a7add" />
@@ -4346,69 +4039,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"535c0bab-96ae-4925-bf1e-bbdeb29d37fd\"\r\n  },\r\n  {\r\n    \"CommandId\": \"fae58295-952d-46a5-b1af-0e094be6dc61\"\r\n  }\r\n]",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="535c0bab-96ae-4925-bf1e-bbdeb29d37fd" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="b10df23c-a787-4f15-a15d-a6411837b647" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "Endpoints.endpoints",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "\\Solution Items",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/EndpointDiagram.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "ModelElement",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "ModelFile",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/7bc9d684-b67e-4d26-a55d-ad64c57f6fc1",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"a699f3b4-aef7-4d72-a057-1c3375ce33d5\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4461,6 +4092,120 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="a699f3b4-aef7-4d72-a057-1c3375ce33d5" typeId="NServiceBusStudio.Automation.Commands.ShowNewDiagramCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="1e8a1cd0-326e-49d9-8771-dd579d48fbe6" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="db53572c-43ed-4c33-a456-e61c864fe0ba" typeId="AbstractEndpoint.Automation.Commands.ShowDeployUnhostedComponentsPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="14e667ee-5397-4f8e-92ec-62aeae9e9fc5" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="7459da8d-a7e6-4547-8019-cbebb69ee7f0" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e0e6fad7-e035-4e0e-9e6b-c60027c99ebe" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "TestMessagesController.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/Controllers",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TestMessagesController.cs.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/34f22950-2004-4a24-8d73-70611291a87e",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="e79472a8-53c0-4f08-9d5e-4498f6fab3b4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b17ab13b-3862-4454-8428-437a686c28c2" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "Index.cshtml",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/Views/TestMessages",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TestMessagesView.cshtml.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6f950f0a-8b5d-4ef3-afcd-e6046fcff516",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -4504,6 +4249,10 @@
       <conditions>[
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.HasEndpointDefinedCondition",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsProcessorComponentCondition",
     "Properties": []
   }
 ]</conditions>
@@ -4558,24 +4307,9 @@
         <automationSettingsSchemaMoniker Id="97a3d8fd-b577-4e61-9493-986784a9b037" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="a01fb9c1-4a07-4287-991e-71e022e03392" text="Show Diagram" commandId="3062b9fa-b269-4281-bb17-56919f8fa362" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="51ed5f1c-d5d9-471c-8a37-380f90becffd" />
-      </extendedElement>
-    </menuSettings>
     <menuSettings Id="71a6f9dc-12fa-4717-9604-7205a34d63ec" text="Deploy Component..." commandId="31c6940e-2946-4c99-85a8-befeb4bed22e" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fbd89a13-e9bd-4aac-8401-b7c072fc24ca" />
-      </extendedElement>
-    </menuSettings>
-    <menuSettings Id="6353b8fe-86a0-429d-9824-41306fa06070" text="Show Diagram" commandId="55e823c8-ac4a-45a0-bdf5-e500ca3a32b7" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="2b33f5f1-36a9-4c93-80cc-ae3766956575" />
-      </extendedElement>
-    </menuSettings>
-    <menuSettings Id="0ad3ec79-9124-4ea3-b9c8-b20f4f1e67c1" text="Show Diagram" commandId="e74c564e-2359-494d-8c90-b214504cf962" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="6e67785d-06bb-4b8c-a15a-1968a589c9d1" />
       </extendedElement>
     </menuSettings>
     <menuSettings Id="c421d585-a008-4297-89d0-ba15dd73c405" text="Deploy Component..." commandId="2e90a7c8-65ba-4419-80b1-a24552bb7848" wizardId="00000000-0000-0000-0000-000000000000">
@@ -4633,6 +4367,11 @@
     <menuSettings Id="4f9ddd1e-d128-423a-9ab2-7362d14ebbad" text="Show Diagram" commandId="efdd0c57-79b2-4064-9615-923758ae4300" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="b4e1ea6b-22f6-4e33-bb8f-b993b74c2a84" text="Deploy Unhosted Components..." commandId="db53572c-43ed-4c33-a456-e61c864fe0ba" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="636c8d2c-15ad-4cf1-bcc8-9081ff8cfb8b" />
       </extendedElement>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
@@ -5500,15 +5239,6 @@
           </settings>
         </customizationPolicy>
       </automationSettings>
-      <automationSettings Id="669fdb79-d39f-496d-8def-44da4d991481" name="OpenDiagramFile" displayName="Open Diagram File" description="" codeIdentifier="OpenDiagramFile" automationType="Command">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="Settings" />
-          </settings>
-        </customizationPolicy>
-      </automationSettings>
       <automationSettings Id="b25a873c-2b51-4b70-adaa-fb57e81a7add" name="ShowDiagramCommand" displayName="Show Diagram Command" description="" codeIdentifier="ShowDiagramCommand" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
@@ -5518,7 +5248,7 @@
           </settings>
         </customizationPolicy>
       </automationSettings>
-      <automationSettings Id="b10df23c-a787-4f15-a15d-a6411837b647" name="UnfoldDiagramCommand" displayName="Unfold Diagram Command" description="" codeIdentifier="UnfoldDiagramCommand" automationType="Command">
+      <automationSettings Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5527,7 +5257,7 @@
           </settings>
         </customizationPolicy>
       </automationSettings>
-      <automationSettings Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+      <automationSettings Id="1e8a1cd0-326e-49d9-8771-dd579d48fbe6" name="ShowNewDiagramCommand" displayName="Show New Diagram Command" description="" codeIdentifier="ShowNewDiagramCommand" automationType="Command">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -7169,6 +6899,26 @@
                 <setting propertyId="IsVisible" />
               </settings>
             </customizationPolicy>
+            <automationSettings>
+              <automationSettings Id="636c8d2c-15ad-4cf1-bcc8-9081ff8cfb8b" name="DeployUnhostedComponentsMenu" displayName="Deploy Unhosted Components Menu" description="" codeIdentifier="DeployUnhostedComponentsMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="14e667ee-5397-4f8e-92ec-62aeae9e9fc5" name="DeployUnhostedComponentsCommand" displayName="Deploy Unhosted Components Command" description="" codeIdentifier="DeployUnhostedComponentsCommand" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+            </automationSettings>
             <childElement cardinality="ZeroToMany" autoCreate="false">
               <element Id="d9665948-7e01-4896-9843-c03ca1eedba7" name="NServiceBusHost" displayName="NServiceBus Host" description="An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application." codeIdentifier="NServiceBusHost" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
                 <customizationPolicy name="CustomizationPolicySchema1">
@@ -7618,42 +7368,6 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="de1aa5e2-a17a-40ac-8e68-65b9e41c212c" name="OpenDiagramFile" displayName="Open Diagram File" description="" codeIdentifier="OpenDiagramFile" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="1de05dc1-dc05-4ad1-9a04-ab70db5c5fe2" name="ShowDiagramCommand" displayName="Show Diagram Command" description="" codeIdentifier="ShowDiagramCommand" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="db528942-1ce6-4532-989d-2225cbd22e26" name="UnfoldDiagramFile" displayName="Unfold Diagram File" description="" codeIdentifier="UnfoldDiagramFile" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="2b33f5f1-36a9-4c93-80cc-ae3766956575" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
                   <automationSettings Id="5aa34322-e4d4-4e8b-9bd8-69a4b2547a4b" name="GenerateTransportConnectionStringConfig" displayName="Generate Transport Connection String Config" description="" codeIdentifier="GenerateTransportConnectionStringConfig" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
@@ -8075,15 +7789,6 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="51ed5f1c-d5d9-471c-8a37-380f90becffd" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
                   <automationSettings Id="d5ca2e37-bf89-4275-a1db-9bd62eccde76" name="AddProjectReferences" displayName="Add Project References" description="" codeIdentifier="AddProjectReferences" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
@@ -8201,15 +7906,6 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="be7b68c3-603a-4589-be18-55c1bc1bdaa1" name="OpenDiagramFile" displayName="Open Diagram File" description="" codeIdentifier="OpenDiagramFile" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
                   <automationSettings Id="705d99ca-8c9d-4224-8e6d-6a4e7d0c28d7" name="ProcessAfterUnfoldingProject" displayName="Process After Unfolding Project" description="" codeIdentifier="ProcessAfterUnfoldingProject" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
@@ -8220,24 +7916,6 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="f6ba6add-594f-435c-819b-46d5aaa51130" name="RaiseOnInstantiated" displayName="Raise On Instantiated" description="" codeIdentifier="RaiseOnInstantiated" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="aed355ca-13a6-4062-8ca6-c5a182c26137" name="ShowDiagramCommand" displayName="Show Diagram Command" description="" codeIdentifier="ShowDiagramCommand" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="a2f22be7-63ca-4add-a4a2-fddc0abe0cec" name="UnfoldDiagramFile" displayName="Unfold Diagram File" description="" codeIdentifier="UnfoldDiagramFile" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -8768,15 +8446,6 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="09372161-1012-4c19-94e2-48e0457099ae" name="OpenDiagramFile" displayName="Open Diagram File" description="" codeIdentifier="OpenDiagramFile" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
                   <automationSettings Id="a1fa5792-65d7-4a67-b62a-c23eef52dabe" name="ProcessAfterUnfoldingProject" displayName="Process After Unfolding Project" description="" codeIdentifier="ProcessAfterUnfoldingProject" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
@@ -8787,24 +8456,6 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="2e154970-eeed-4f1e-baee-52df253dbd44" name="RaiseOnInstantiated" displayName="Raise On Instantiated" description="" codeIdentifier="RaiseOnInstantiated" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="2a0e1943-f745-4409-8cf4-c081c469c926" name="ShowDiagramCommand" displayName="Show Diagram Command" description="" codeIdentifier="ShowDiagramCommand" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="eedb445d-8d55-4af8-9a8d-b6889b3e0615" name="UnfoldDiagramFile" displayName="Unfold Diagram File" description="" codeIdentifier="UnfoldDiagramFile" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -8850,15 +8501,6 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="69e6bcc3-a575-4cf1-906e-71fb810531e1" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="6e67785d-06bb-4b8c-a15a-1968a589c9d1" name="ShowDiagram" displayName="Show Diagram" description="" codeIdentifier="ShowDiagram" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -8913,6 +8555,24 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="18620949-ad26-4e5f-bc9d-df25c1ce6d6e" name="PublishEventCommand" displayName="Publish Event Command" description="" codeIdentifier="PublishEventCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="e0e6fad7-e035-4e0e-9e6b-c60027c99ebe" name="GenerateTestMessagesController" displayName="Generate Test Messages Controller" description="" codeIdentifier="GenerateTestMessagesController" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="b17ab13b-3862-4454-8428-437a686c28c2" name="GenerateTestMessagesView" displayName="Generate Test Messages View" description="" codeIdentifier="GenerateTestMessagesView" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

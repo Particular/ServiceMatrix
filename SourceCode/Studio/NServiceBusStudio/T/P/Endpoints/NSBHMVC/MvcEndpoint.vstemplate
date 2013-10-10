@@ -29,6 +29,7 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="Content.css">Content.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Css.css">Css.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestMessages.css">TestMessages.css</ProjectItem>
       </Folder>
       <Folder Name="Controllers" TargetFolderName="Controllers">
         <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>

@@ -23,6 +23,8 @@ namespace NServiceBusStudio.Automation.Commands
         public override void Execute()
         {
             this.PatternWindows.ShowSolutionBuilder(this.ServiceProvider);
+
+            new ShowNewDiagramCommand () { ServiceProvider = this.ServiceProvider }.Execute();
         }
     }
 }
