@@ -90,7 +90,7 @@ namespace NServiceBusStudio
 
         private void ShowDiagram()
         {
-            new OnApplicationLoadedCommand() { ServiceProvider = this.ServiceProvider, PatternWindows = this.PatternWindows }.Execute();
+            //new OnApplicationLoadedCommand() { ServiceProvider = this.ServiceProvider, PatternWindows = this.PatternWindows }.Execute();
         }
 
         private void SetOptionSettings()

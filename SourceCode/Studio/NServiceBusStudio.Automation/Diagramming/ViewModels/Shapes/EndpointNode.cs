@@ -29,10 +29,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
                         return "(NSB Host)";
                         break;
                     case "NServiceBusMVC":
-                        return "(MVC)";
+                        return "(ASP.NET MVC)";
                         break;
                     case "NServiceBusWeb":
-                        return "(Web)";
+                        return "(ASP.NET Web Forms)";
                         break;
                 }
 

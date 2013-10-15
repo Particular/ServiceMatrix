@@ -120,8 +120,8 @@
                                   SelectedValue="{Binding EndpointHostType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                   SelectedValuePath="Tag">
                         <ComboBoxItem Tag="NServiceBusHost">NServiceBus Host</ComboBoxItem>
-                        <ComboBoxItem Tag="NServiceBusMVC">NServiceBus MVC</ComboBoxItem>
-                        <ComboBoxItem Tag="NServiceBusWeb">NServiceBus Web</ComboBoxItem>
+                        <ComboBoxItem Tag="NServiceBusMVC">NServiceBus ASP.NET MVC</ComboBoxItem>
+                        <ComboBoxItem Tag="NServiceBusWeb">NServiceBus ASP.NET Web Forms</ComboBoxItem>
                     </ComboBox>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
