@@ -17,6 +17,7 @@ using NuPattern.Runtime.Diagnostics;
 using ServiceMatrix.Diagramming.Views;
 using ServiceMatrix.Diagramming;
 using System.ComponentModel.Composition.Hosting;
+using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 
 namespace NServiceBusStudio
 {
@@ -32,7 +33,7 @@ namespace NServiceBusStudio
     [ProvideService(typeof(IDiagramsWindowsManager), ServiceName = "IDiagramsWindowsManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
     [ProvideService(typeof(ServiceMatrixDiagramToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
-    [ProvideBindingPath()]
+    [DslShell::ProvideBindingPath]
     public sealed class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
     {
         [Import]
