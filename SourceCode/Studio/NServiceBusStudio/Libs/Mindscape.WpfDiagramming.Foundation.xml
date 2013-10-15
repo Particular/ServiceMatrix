@@ -3490,6 +3490,11 @@
             Gets the connections attached to this connection point.
             </summary>
         </member>
+        <member name="P:Mindscape.WpfDiagramming.Foundation.DiagramConnectionPointBase`1.HasConnections">
+            <summary>
+            Gets whether or not this connection point currently has any connections mounted on it.
+            </summary>
+        </member>
         <member name="M:Mindscape.WpfDiagramming.DiagramConnectionPoint.#ctor(Mindscape.WpfDiagramming.Foundation.IDiagramConnectable,Mindscape.WpfDiagramming.Edge)">
             <summary>
             Initializes a new instance of the <see cref="T:Mindscape.WpfDiagramming.DiagramConnectionPoint"/> class.
@@ -5263,6 +5268,19 @@
         <member name="P:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm.LayoutDirection">
             <summary>
             Gets or sets the layout direction of this <see cref="T:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm"/>.
+            </summary>
+        </member>
+        <member name="P:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm.StationaryNode">
+            <summary>
+            Gets or sets an <see cref="T:Mindscape.WpfDiagramming.Foundation.IDiagramNode"/> that will not be affected by this algorithm. All other nodes will be positioned based on this node.
+            </summary>
+        </member>
+        <member name="P:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm.GroupSpacing">
+            <summary>
+            Gets or sets the spacing put between individual groups of connected nodes.
+            If this value is negative, instead of spacing out the groups, adjacent groups will be placed as close together as possible.
+            i.e. Nodes from different groups can occupy the same columns/rows if their structures allow them to be nested in that way.
+            The default is -1.
             </summary>
         </member>
         <member name="T:Mindscape.WpfDiagramming.Foundation.LayoutDirection">
@@ -8621,6 +8639,12 @@
             Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.SelectedItem"/> property.
             </summary>
         </member>
+        <member name="M:Mindscape.WpfDiagramming.DiagramSurface.SelectItem(System.Object)">
+            <summary>
+            Selects the given item.
+            </summary>
+            <param name="item">The model item to select</param>
+        </member>
         <member name="F:Mindscape.WpfDiagramming.DiagramSurface.SelectedItemsProperty">
             <summary>
             Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.SelectedItems"/> property.
@@ -8629,6 +8653,11 @@
         <member name="F:Mindscape.WpfDiagramming.DiagramSurface.SelectionModeProperty">
             <summary>
             Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.SelectionMode"/> property.
+            </summary>
+        </member>
+        <member name="F:Mindscape.WpfDiagramming.DiagramSurface.CanCalculateConnectionIntersectionsProperty">
+            <summary>
+            Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.CanCalculateConnectionIntersections"/> property.
             </summary>
         </member>
         <member name="F:Mindscape.WpfDiagramming.DiagramSurface.DiagramProperty">
@@ -8694,6 +8723,11 @@
         <member name="F:Mindscape.WpfDiagramming.DiagramSurface.AllowInfiniteScrollingProperty">
             <summary>
             Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.AllowInfiniteScrolling"/> property.
+            </summary>
+        </member>
+        <member name="F:Mindscape.WpfDiagramming.DiagramSurface.ScrollChangeProperty">
+            <summary>
+            Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.ScrollChange"/> property.
             </summary>
         </member>
         <member name="M:Mindscape.WpfDiagramming.DiagramSurface.SizeToFit">
@@ -9063,6 +9097,21 @@
             </table>
             </remarks>
         </member>
+        <member name="P:Mindscape.WpfDiagramming.DiagramSurface.CanCalculateConnectionIntersections">
+            <summary>
+            Gets or sets whether or not the DiagramSurface keeps track connection intersections.
+            This is for drawing connection bridges and should be set to false for exeptionally large diagrams.
+            The default is true.
+            This is a dependency property.
+            </summary>
+            <remarks>
+            <strong>Dependency Property Information</strong>
+            <table>
+              <tr><td>Identifier field</td><td><see cref="F:Mindscape.WpfDiagramming.DiagramSurface.CanCalculateConnectionIntersectionsProperty"/></td></tr>
+              <tr><td>Metadata properties set to true</td><td>None</td></tr>
+            </table>
+            </remarks>
+        </member>
         <member name="P:Mindscape.WpfDiagramming.DiagramSurface.Diagram">
             <summary>
             Gets or sets the diagram to be displayed.
@@ -9240,6 +9289,19 @@
             <strong>Dependency Property Information</strong>
             <table>
               <tr><td>Identifier field</td><td><see cref="F:Mindscape.WpfDiagramming.DiagramSurface.AllowInfiniteScrollingProperty"/></td></tr>
+              <tr><td>Metadata properties set to true</td><td>None</td></tr>
+            </table>
+            </remarks>
+        </member>
+        <member name="P:Mindscape.WpfDiagramming.DiagramSurface.ScrollChange">
+            <summary>
+            Gets or sets the magnitude of mouse wheel scrolling.
+            This is a dependency property.
+            </summary>
+            <remarks>
+            <strong>Dependency Property Information</strong>
+            <table>
+              <tr><td>Identifier field</td><td><see cref="F:Mindscape.WpfDiagramming.DiagramSurface.ScrollChangeProperty"/></td></tr>
               <tr><td>Metadata properties set to true</td><td>None</td></tr>
             </table>
             </remarks>
@@ -10581,8 +10643,7 @@
         </member>
         <member name="T:Mindscape.WpfDiagramming.Foundation.SizedEventArgs">
             <summary>
-            Provides information about the <see cref="E:Mindscape.WpfDiagramming.Foundation.SizeThumb.Sized"/> event of a
-            <see cref="T:Mindscape.WpfDiagramming.Foundation.SizeThumb"/>.
+            Provides information about the Sized event of a <see cref="P:Mindscape.WpfDiagramming.Foundation.SizedEventArgs.SizeThumb"/>.
             </summary>
         </member>
         <member name="M:Mindscape.WpfDiagramming.Foundation.SizedEventArgs.#ctor(System.Double,System.Double)">
