@@ -37,7 +37,7 @@
     <Style x:Key="EventConnectionPathStyle" TargetType="Path">
         <Setter Property="Stroke" Value="Black" />
         <Setter Property="StrokeThickness" Value="3" />
-        <Setter Property="StrokeDashArray" Value="2, 2" />
+        <Setter Property="StrokeDashArray" Value="1, 1" />
         <Setter Property="BitmapEffect">
             <Setter.Value>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
@@ -87,17 +87,40 @@
         <Setter Property="Fill" Value="Black" />
     </Style>
 
+    <Style x:Key="HighlightedCommandArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="#007AC5" />
+        <Setter Property="Fill" Value="#007AC5" />
+    </Style>
+
     <Style x:Key="EventArrowheadPathStyle" TargetType="Path">
         <Setter Property="Stroke" Value="Black" />
         <Setter Property="Fill" Value="White" />
+        <Setter Property="StrokeThickness" Value="2" />
     </Style>
+
+    <Style x:Key="HighlightedEventArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="#007AC5" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="StrokeThickness" Value="2" />
+    </Style>
+
+
+
 
     <DataTemplate x:Key="CommandEndArrowTemplate">
         <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
     </DataTemplate>
 
+    <DataTemplate x:Key="HighlightedCommandEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource HighlightedCommandArrowheadPathStyle}" Length="20" BackWidth="15" />
+    </DataTemplate>
+
     <DataTemplate x:Key="EventEndArrowTemplate">
-        <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
+        <ms:Arrowhead PathStyle="{StaticResource EventArrowheadPathStyle}"  Length="20" BackWidth="15" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="HighlightedEventEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource HighlightedEventArrowheadPathStyle}"  Length="20" BackWidth="15" />
     </DataTemplate>
 
     <ControlTemplate x:Key="ConnectionPointRequestingConnectionTemplate" TargetType="ms:ConnectionPointThumb">
@@ -112,7 +135,30 @@
             <Path Name="MainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}" />
 
             <!-- Middle arrow: -->
-            <ContentControl VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding EndArrowTemplate}">
+            <ContentControl Name="MiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding EndArrowTemplate}">
+                <ContentControl.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <TranslateTransform>
+                            <TranslateTransform.X>
+                                <MultiBinding Converter="{StaticResource MiddlePointConverter}">
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource StartSegmentConverter}" ConverterParameter="X" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource EndSegmentConverter}" ConverterParameter="X" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                </MultiBinding>
+                            </TranslateTransform.X>
+                            <TranslateTransform.Y>
+                                <MultiBinding Converter="{StaticResource MiddlePointConverter}">
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource StartSegmentConverter}" ConverterParameter="Y" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource EndSegmentConverter}" ConverterParameter="Y" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                </MultiBinding>
+                            </TranslateTransform.Y>
+                        </TranslateTransform>
+                    </TransformGroup>
+                </ContentControl.RenderTransform>
+            </ContentControl>
+
+            <!-- Hightlighted Middle arrow: -->
+            <ContentControl Name="HightlightedMiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding StartArrowTemplate}" Visibility="Collapsed">
                 <ContentControl.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -135,10 +181,12 @@
             </ContentControl>
 
             <!-- Relocator thumbs and connection point thumb: -->
+            <!--
             <ms:ConnectionRelocatorThumb Name="toPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Finish" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                                          RenderTransform="{Binding Connection.Segments, Converter={StaticResource EndPointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
             <ms:ConnectionRelocatorThumb Name="fromPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Start" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
                                          RenderTransform="{Binding Connection.Segments, Converter={StaticResource StartPointToTranslationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+            -->
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Property="IsSelected" Value="False">
@@ -151,12 +199,9 @@
                 </MultiDataTrigger.Conditions>
                 <Setter TargetName="SelectionHighlight" Property="Visibility" Value="Collapsed" />
             </MultiDataTrigger>
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter TargetName="toPoint" Property="Visibility" Value="Collapsed" />
-                <Setter TargetName="fromPoint" Property="Visibility" Value="Collapsed" />
-            </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="MainPath" Property="Stroke" Value="#007AC5" />
+                <Setter TargetName="HightlightedMiddleArrow" Property="Visibility" Value="Visible" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -167,6 +212,7 @@
         <Setter Property="PathStyle" Value="{StaticResource CommandConnectionPathStyle}" />
         <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
         <Setter Property="EndArrowTemplate" Value="{StaticResource CommandEndArrowTemplate}" />
+        <Setter Property="StartArrowTemplate" Value="{StaticResource HighlightedCommandEndArrowTemplate}" />
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 
@@ -175,6 +221,7 @@
         <Setter Property="PathStyle" Value="{StaticResource EventConnectionPathStyle}" />
         <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
         <Setter Property="EndArrowTemplate" Value="{StaticResource EventEndArrowTemplate}" />
+        <Setter Property="StartArrowTemplate" Value="{StaticResource HighlightedEventEndArrowTemplate}" />
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 

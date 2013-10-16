@@ -39,41 +39,42 @@
 
         <!-- Toolbar -->
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Margin="20">
-            <StackPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Background" Value="#9E8FC1" />
-                    <Setter Property="Foreground" Value="White" />
-                    <Setter Property="FontFamily" Value="Segoe UI Semibold" />
-                    <Setter Property="FontSize" Value="14" />
-                    <Setter Property="Width" Value="175" />
-                    <Setter Property="Height" Value="32" />
-                    <Setter Property="BitmapEffect">
-                        <Setter.Value>
-                            <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </StackPanel.Resources>
+        <Grid VerticalAlignment="Top" Height="28" Background="#EEEEF1">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="Width" Value="128" />
+                        <Setter Property="Height" Value="28" />
+                    </Style>
+                </StackPanel.Resources>
 
-            <Button Command="{Binding OnShowAddEndpoint}">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="../Styles/Images/EndpointIcon.png" Width="25"></Image>
-                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Add endpoint</TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Command="{Binding OnShowAddService}">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="../Styles/Images/ServiceIcon.png" Width="25"></Image>
-                    <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Add service</TextBlock>
-                </StackPanel>
-            </Button>
-        </StackPanel>
+                <Button Command="{Binding OnShowAddEndpoint}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Styles/Images/BlueEndpointIcon.png" Width="23"></Image>
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New endpoint</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Border Width="1" Background="#B1B1B1" Margin="0, 5, 0, 5"></Border>
+                <Border Width="2" Background="#FFFFFF" Margin="0, 5, 0, 5"></Border>
+
+                <Button Command="{Binding OnShowAddService}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Styles/Images/BlueServiceIcon.png" Width="23"></Image>
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New service</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
 
         <!-- Zoom Slider -->
 
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,70,20,0">
+        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,40,20,0">
             <StackPanel.Resources>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="Transparent" />

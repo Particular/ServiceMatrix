@@ -639,6 +639,10 @@
     <Resource Include="Diagramming\Styles\Images\ZoomIn.png" />
     <Resource Include="Diagramming\Styles\Images\ZoomOut.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlueEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\BlueServiceIcon.png" />
+  </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>
     <CopyVsixDebuggingDependencies>false</CopyVsixDebuggingDependencies>
