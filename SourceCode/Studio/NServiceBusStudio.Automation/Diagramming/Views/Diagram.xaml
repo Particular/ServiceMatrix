@@ -21,10 +21,7 @@
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
         </Grid.Resources>
-        <Popup Placement="Center">
-            <Label FontSize="22">Add Endpoint</Label>
-        </Popup>
-
+        
         <!-- Diagram Surface -->
 
         <ms:DiagramSurface x:Name="ds"
@@ -34,6 +31,7 @@
                            IsSmartScrollingEnabled="True"
                            DragAction="Pan"
                            Cursor="Hand"
+                           Background="White"
                            HorizontalSnapSpecifier="{ms:SnapToInterval 10}"
                            VerticalSnapSpecifier="{ms:SnapToInterval 10}"/>
 
@@ -94,6 +92,53 @@
             </Button>
         </StackPanel>
 
+        
+        <!-- Empty state buttons -->
+
+        <Grid x:Name="EmptyStateButtons" Visibility="Visible">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+
+                <Button Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding OnShowAddEndpoint}">
+                    <Grid Width="248" Height="125">
+                        <Rectangle StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="../Styles/Images/GrayEndpointIcon.png" Width="55"></Image>
+                            <TextBlock Margin="5,0,0,0" 
+                                        Foreground="#CCCCCC" 
+                                        FontSize="20" 
+                                        FontFamily="Segoe UI Bold" 
+                                        FontWeight="Bold"
+                                        VerticalAlignment="Center">New endpoint</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+                <Button Margin="10, 0, 0, 0"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding OnShowAddService}">
+                    <Grid Width="248" Height="125">
+                        <Rectangle StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Image Source="../Styles/Images/GrayServiceIcon.png" Width="55"></Image>
+                            <TextBlock Margin="5,0,0,0" 
+                                        Foreground="#CCCCCC" 
+                                        FontSize="20" 
+                                        FontFamily="Segoe UI Bold" 
+                                        FontWeight="Bold"
+                                        VerticalAlignment="Center">New service</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+
         <!-- Add endpoint popup -->
 
         <Grid Visibility="{Binding ShowAddEndpoint, Converter={StaticResource BooleanToVisibility}}">
@@ -106,7 +151,7 @@
                     <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
                 </StackPanel.BitmapEffect>
                 <StackPanel Margin="20">
-                    <Label FontSize="22">Add Endpoint</Label>
+                    <Label FontSize="22">New Endpoint</Label>
 
                     <Label Margin="0, 10, 0, 0">Endpoint name</Label>
                     <TextBox Height="25" Padding="0, 3, 0, 3"
@@ -145,7 +190,7 @@
                     <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
                 </StackPanel.BitmapEffect>
                 <StackPanel Margin="20">
-                    <Label FontSize="22">Add Service</Label>
+                    <Label FontSize="22">New Service</Label>
 
                     <Label Margin="0, 10, 0, 0">Service name</Label>
                     <TextBox Height="25" Padding="0, 3, 0, 3"

@@ -64,6 +64,8 @@ namespace ServiceMatrix.Diagramming.Views
                 }
                 break;
             }
+
+            EmptyStateButtons.Visibility = (ds.DiagramElements.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void diagramNodeElement_MouseEnter(object sender, MouseEventArgs e)
