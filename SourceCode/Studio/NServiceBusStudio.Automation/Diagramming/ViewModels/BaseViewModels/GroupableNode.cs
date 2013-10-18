@@ -37,7 +37,24 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
         public GroupableNode(IProductElementViewModel innerViewModel)
         {
             this.InnerViewModel = innerViewModel;
+            if (this.InnerViewModel != null)
+            {
+                this.InnerViewModel.Data.PropertyChanged += InnerViewModelData_PropertyChanged;
+            }
+
             this.ZOrder = ++ZOrderCounter;
+        }
+
+        void InnerViewModelData_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Id")
+            {
+                this.OnPropertyChanged("Id");
+            } 
+            else if (e.PropertyName == "InstanceName")
+            {
+                this.OnPropertyChanged("Name");
+            }
         }
 
         // This is for highlighting the node if mouse is over.
