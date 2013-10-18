@@ -256,7 +256,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         // ================ NODES HIGHLIGHTING ==========================
 
-        internal void HighlightElement(GroupableNode node)
+        public void HighlightNode(GroupableNode node)
         {
             if (node is ServiceNode)
             {
@@ -272,7 +272,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             node.IsHighlighted = true;
         }
 
-        internal void UnhighlightElement(GroupableNode node)
+        public void UnhighlightNode(GroupableNode node)
         {
             if (node is ServiceNode)
             {
@@ -328,6 +328,26 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return allNodes;
         }
 
-        
+
+        // ================ CONNECTIONS HIGHLIGHTING ==========================
+
+        public void HighlightConnection(BaseConnection context)
+        {
+            this.SetConnectionsIsShadowed(context, true);
+        }
+
+        public void UnhighlightConnection(BaseConnection context)
+        {
+            this.SetConnectionsIsShadowed(context, false);
+        }
+
+        public void SetConnectionsIsShadowed(BaseConnection context, bool value)
+        {
+            var otherNodeConnections = this.Connections.Cast<BaseConnection>()
+                                                       .Where(x => x != context)
+                                                       .ToList();
+
+            otherNodeConnections.ForEach(x => x.IsShadowed = value);
+        }
     }
 }

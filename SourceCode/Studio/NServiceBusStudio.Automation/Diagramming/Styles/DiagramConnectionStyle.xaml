@@ -10,6 +10,8 @@
     <converters:MiddlePointValueConverter x:Key="MiddlePointConverter" />
     <converters:StartSegmentValueConverter x:Key="StartSegmentConverter" />
     <converters:EndSegmentValueConverter x:Key="EndSegmentConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+    
 
     <converters:ValueConverterGroup x:Key="StartPointToTranslationConverter">
         <converters:StartSegmentValueConverter />
@@ -27,22 +29,12 @@
     <Style x:Key="CommandConnectionPathStyle" TargetType="Path">
         <Setter Property="Stroke" Value="Black" />
         <Setter Property="StrokeThickness" Value="3" />
-        <Setter Property="BitmapEffect">
-            <Setter.Value>
-                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <Style x:Key="EventConnectionPathStyle" TargetType="Path">
         <Setter Property="Stroke" Value="Black" />
         <Setter Property="StrokeThickness" Value="3" />
         <Setter Property="StrokeDashArray" Value="1, 1" />
-        <Setter Property="BitmapEffect">
-            <Setter.Value>
-                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
     <!-- Visual styles for connection lines -->
@@ -92,6 +84,12 @@
         <Setter Property="Fill" Value="#007AC5" />
     </Style>
 
+    <Style x:Key="ShadowedCommandArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="#CCCCCC" />
+        <Setter Property="Fill" Value="#CCCCCC" />
+    </Style>
+    
+
     <Style x:Key="EventArrowheadPathStyle" TargetType="Path">
         <Setter Property="Stroke" Value="Black" />
         <Setter Property="Fill" Value="White" />
@@ -104,8 +102,11 @@
         <Setter Property="StrokeThickness" Value="2" />
     </Style>
 
-
-
+    <Style x:Key="ShadowedEventArrowheadPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="#CCCCCC" />
+        <Setter Property="Fill" Value="White" />
+        <Setter Property="StrokeThickness" Value="2" />
+    </Style>
 
     <DataTemplate x:Key="CommandEndArrowTemplate">
         <ms:Arrowhead PathStyle="{StaticResource CommandArrowheadPathStyle}" Length="20" BackWidth="15" />
@@ -113,6 +114,10 @@
 
     <DataTemplate x:Key="HighlightedCommandEndArrowTemplate">
         <ms:Arrowhead PathStyle="{StaticResource HighlightedCommandArrowheadPathStyle}" Length="20" BackWidth="15" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="ShadowedCommandEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource ShadowedCommandArrowheadPathStyle}" Length="20" BackWidth="15" />
     </DataTemplate>
 
     <DataTemplate x:Key="EventEndArrowTemplate">
@@ -123,19 +128,26 @@
         <ms:Arrowhead PathStyle="{StaticResource HighlightedEventArrowheadPathStyle}"  Length="20" BackWidth="15" />
     </DataTemplate>
 
+    <DataTemplate x:Key="ShadowedEventEndArrowTemplate">
+        <ms:Arrowhead PathStyle="{StaticResource ShadowedEventArrowheadPathStyle}"  Length="20" BackWidth="15" />
+    </DataTemplate>
+
     <ControlTemplate x:Key="ConnectionPointRequestingConnectionTemplate" TargetType="ms:ConnectionPointThumb">
         <Border Width="20" Height="20" Background="HotPink" />
     </ControlTemplate>
+    
 
     <ControlTemplate x:Key="ConnectionStyleTemplate" TargetType="{x:Type ms:DiagramConnectionElement}">
         <Canvas>
             <!-- Path: -->
             <Path Name="SelectionHighlight" Data="{TemplateBinding PathGeometry}" Stroke="Gray" StrokeThickness="4" />
             <Path Data="{Binding Data, ElementName=SelectionHighlight}" Stroke="#00FFFFFF" StrokeThickness="4" />
-            <Path Name="MainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}" />
-
+            <Path Name="MainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}"
+                  Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=true}" />
+            
             <!-- Middle arrow: -->
-            <ContentControl Name="MiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding EndArrowTemplate}">
+            <ContentControl Name="MiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding EndArrowTemplate}"
+                            Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=true}">
                 <ContentControl.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -180,6 +192,33 @@
                 </ContentControl.RenderTransform>
             </ContentControl>
 
+            <!-- Shadow Middle arrow: -->
+            <Path Name="ShadowPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}"
+                  Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}"
+                  Stroke="#CCCCCC" />
+
+            <ContentControl Name="ShadowMiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding ContentTemplate}" Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}">
+                <ContentControl.RenderTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
+                        <TranslateTransform>
+                            <TranslateTransform.X>
+                                <MultiBinding Converter="{StaticResource MiddlePointConverter}">
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource StartSegmentConverter}" ConverterParameter="X" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource EndSegmentConverter}" ConverterParameter="X" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                </MultiBinding>
+                            </TranslateTransform.X>
+                            <TranslateTransform.Y>
+                                <MultiBinding Converter="{StaticResource MiddlePointConverter}">
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource StartSegmentConverter}" ConverterParameter="Y" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                    <Binding Path="Connection.Segments" Converter="{StaticResource EndSegmentConverter}" ConverterParameter="Y" RelativeSource="{RelativeSource TemplatedParent}"></Binding>
+                                </MultiBinding>
+                            </TranslateTransform.Y>
+                        </TranslateTransform>
+                    </TransformGroup>
+                </ContentControl.RenderTransform>
+            </ContentControl>
+
             <!-- Relocator thumbs and connection point thumb: -->
             <!--
             <ms:ConnectionRelocatorThumb Name="toPoint" Style="{StaticResource ConnectionPointRelocatorStyle}" MovingEnd="Finish" ConnectionElement="{Binding RelativeSource={RelativeSource TemplatedParent}}"
@@ -203,6 +242,10 @@
                 <Setter TargetName="MainPath" Property="Stroke" Value="#007AC5" />
                 <Setter TargetName="HightlightedMiddleArrow" Property="Visibility" Value="Visible" />
             </Trigger>
+            <!--<DataTrigger Binding="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource DebugConverter}, Mode=OneWay}" Value="True">
+                <Setter TargetName="MainPath" Property="Stroke" Value="#CCCCCC" />
+                <Setter TargetName="ShadowMiddleArrow" Property="Visibility" Value="Visible" />
+            </DataTrigger>-->
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
@@ -213,6 +256,7 @@
         <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
         <Setter Property="EndArrowTemplate" Value="{StaticResource CommandEndArrowTemplate}" />
         <Setter Property="StartArrowTemplate" Value="{StaticResource HighlightedCommandEndArrowTemplate}" />
+        <Setter Property="ContentTemplate" Value="{StaticResource ShadowedCommandEndArrowTemplate}" />
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 
@@ -222,6 +266,7 @@
         <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
         <Setter Property="EndArrowTemplate" Value="{StaticResource EventEndArrowTemplate}" />
         <Setter Property="StartArrowTemplate" Value="{StaticResource HighlightedEventEndArrowTemplate}" />
+        <Setter Property="ContentTemplate" Value="{StaticResource ShadowedEventEndArrowTemplate}" />
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 

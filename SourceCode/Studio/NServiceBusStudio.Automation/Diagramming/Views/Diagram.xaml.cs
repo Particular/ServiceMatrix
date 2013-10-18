@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ServiceMatrix.Diagramming.Converters;
 
 namespace ServiceMatrix.Diagramming.Views
 {
@@ -31,6 +32,7 @@ namespace ServiceMatrix.Diagramming.Views
         public Diagram(ServiceMatrixDiagramAdapter adapter)
         {
             InitializeComponent();
+
             this.DataContext = new ServiceMatrixDiagramViewModel (adapter);
 
             var diagramElementsCollection = ds.DiagramElements as INotifyCollectionChanged;
@@ -44,23 +46,17 @@ namespace ServiceMatrix.Diagramming.Views
                 case NotifyCollectionChangedAction.Add:
                 foreach (var item in e.NewItems)
                 {
-                    var diagramNodeElement = item as DiagramNodeElement;
-                    if (diagramNodeElement != null)
-                    {
-                        diagramNodeElement.MouseEnter += diagramNodeElement_MouseEnter;
-                        diagramNodeElement.MouseLeave += diagramNodeElement_MouseLeave;
-                    }
+                    var diagramNodeElement = item as DiagramElement;
+                    diagramNodeElement.MouseEnter += diagramNodeElement_MouseEnter;
+                    diagramNodeElement.MouseLeave += diagramNodeElement_MouseLeave;
                 }
                 break;
                 case NotifyCollectionChangedAction.Remove:
                 foreach (var item in e.OldItems)
                 {
-                    var diagramNodeElement = item as DiagramNodeElement;
-                    if (diagramNodeElement != null)
-                    {
-                        diagramNodeElement.MouseEnter -= diagramNodeElement_MouseEnter;
-                        diagramNodeElement.MouseLeave -= diagramNodeElement_MouseLeave;
-                    }
+                    var diagramNodeElement = item as DiagramElement;
+                    diagramNodeElement.MouseEnter -= diagramNodeElement_MouseEnter;
+                    diagramNodeElement.MouseLeave -= diagramNodeElement_MouseLeave;
                 }
                 break;
             }
@@ -71,17 +67,37 @@ namespace ServiceMatrix.Diagramming.Views
         private void diagramNodeElement_MouseEnter(object sender, MouseEventArgs e)
         {
             var diagramNodeElement = sender as DiagramNodeElement;
-            var context = diagramNodeElement.Content as GroupableNode;
+            var diagramConnectionElement = sender as DiagramConnectionElement;
 
-            ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightElement(context);
+            if (diagramNodeElement != null)
+            {
+                var context = diagramNodeElement.Content as GroupableNode;
+                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightNode(context);
+            }
+            else if (diagramConnectionElement != null)
+            {
+                var context = diagramConnectionElement.Content as BaseConnection;
+                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightConnection(context);
+            }
+
+            
         }
 
         private void diagramNodeElement_MouseLeave(object sender, MouseEventArgs e)
         {
             var diagramNodeElement = sender as DiagramNodeElement;
-            var context = diagramNodeElement.Content as GroupableNode;
+            var diagramConnectionElement = sender as DiagramConnectionElement;
 
-            ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightElement(context);
+            if (diagramNodeElement != null)
+            {
+                var context = diagramNodeElement.Content as GroupableNode;
+                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightNode(context);
+            }
+            else if (diagramConnectionElement != null)
+            {
+                var context = diagramConnectionElement.Content as BaseConnection;
+                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightConnection(context);
+            }
         }
 
         private void ZoomIn_Click(object sender, RoutedEventArgs e)

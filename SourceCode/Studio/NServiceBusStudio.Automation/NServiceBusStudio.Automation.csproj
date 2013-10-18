@@ -206,6 +206,7 @@
     <Compile Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml.cs">
       <DependentUpon>ToolbarExtension.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Diagramming\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Diagramming\Converters\EndSegmentValueConverter.cs" />
     <Compile Include="Diagramming\Converters\MiddlePointValueConverter.cs" />
     <Compile Include="Diagramming\Converters\StartSegmentValueConverter.cs" />
