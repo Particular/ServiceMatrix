@@ -5270,6 +5270,11 @@
             Gets or sets the layout direction of this <see cref="T:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm"/>.
             </summary>
         </member>
+        <member name="P:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm.LayoutOrientation">
+            <summary>
+            Gets or sets the orientation of arranging individual trees.
+            </summary>
+        </member>
         <member name="P:Mindscape.WpfDiagramming.Foundation.TreeLayoutAlgorithm.StationaryNode">
             <summary>
             Gets or sets an <see cref="T:Mindscape.WpfDiagramming.Foundation.IDiagramNode"/> that will not be affected by this algorithm. All other nodes will be positioned based on this node.
@@ -5306,6 +5311,26 @@
         <member name="F:Mindscape.WpfDiagramming.Foundation.LayoutDirection.BottomToTop">
             <summary>
             Bottom to top layout.
+            </summary>
+        </member>
+        <member name="T:Mindscape.WpfDiagramming.Foundation.LayoutOrientation">
+            <summary>
+            Specifies the orientation of groups of nodes in a layout algorithm.
+            </summary>
+        </member>
+        <member name="F:Mindscape.WpfDiagramming.Foundation.LayoutOrientation.Auto">
+            <summary>
+            The groups of nodes are automatically arranged.
+            </summary>
+        </member>
+        <member name="F:Mindscape.WpfDiagramming.Foundation.LayoutOrientation.Horizontal">
+            <summary>
+            The groups of nodes are arranged horizontally.
+            </summary>
+        </member>
+        <member name="F:Mindscape.WpfDiagramming.Foundation.LayoutOrientation.Vertical">
+            <summary>
+            The groups of nodes are arranged vertically.
             </summary>
         </member>
         <member name="T:Infralution.Licensing.LicenseResources">
