@@ -218,7 +218,7 @@
         <Border Name="Border" >
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" MinWidth="30" SharedSizeGroup="Icon"/>
+                    <ColumnDefinition Width="30" SharedSizeGroup="Icon"/>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut"/>
                     <ColumnDefinition Width="13"/>
@@ -289,7 +289,7 @@
         <Border Name="Border" >
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" MinWidth="30" SharedSizeGroup="Icon"/>
+                    <ColumnDefinition Width="30" SharedSizeGroup="Icon"/>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" SharedSizeGroup="Shortcut"/>
                     <ColumnDefinition Width="13"/>

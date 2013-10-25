@@ -149,6 +149,8 @@
     <Content Include="Resources\ProductPreview.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Resource Include="Resources\PublishEvent.png" />
+    <Resource Include="Resources\SendCommand.png" />
     <Content Include="T\P\App\App.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
@@ -392,13 +394,19 @@
     <Resource Include="Resources\Link.png" />
     <Resource Include="Resources\Event.png" />
     <Resource Include="Resources\Component.png" />
-    <Content Include="Resources\Package.ico" />
-    <Content Include="Resources\Page.png" />
-    <Resource Include="Resources\SingleMessage.ico" />
-    <Content Include="Resources\ToolkitIcon.png">
-      <IncludeInVSIX>True</IncludeInVSIX>
+    <Content Include="Resources\Package.ico">
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\VSPackageIcons.bmp" />
+    <Content Include="Resources\Page.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\SingleMessage.ico" />
+    <Resource Include="Resources\ToolkitIcon.png">
+      <IncludeInVSIX>True</IncludeInVSIX>
+    </Resource>
+    <Content Include="Resources\VSPackageIcons.bmp">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="T\P\App\Libraries\Libraries.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

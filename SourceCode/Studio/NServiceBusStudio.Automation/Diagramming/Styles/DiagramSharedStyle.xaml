@@ -5,8 +5,7 @@
     xmlns:shapes="clr-namespace:ServiceMatrix.Diagramming.ViewModels.Shapes"
     xmlns:converters="clr-namespace:ServiceMatrix.Diagramming.Converters"
     xmlns:c="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Converters"
-    xmlns:p="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
-    xmlns:local="clr-namespace:NuPattern.Presentation.Data;assembly=NuPattern.Presentation"
+    xmlns:p="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"   
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ms="http://namespaces.mindscape.co.nz/wpf">
 
@@ -16,7 +15,7 @@
 
     <c:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
     <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-    <local:UriToCachedImageConverter x:Key="UriToCachedImageConverter" />
+    <converters:DiagramUriToCachedImageConverter x:Key="UriToCachedImageConverter" />
 
     <p:MenuItemSeparatorStyleSelector x:Key="SeparatorStyleSelector">
         <p:MenuItemSeparatorStyleSelector.EmptyTemplate>
@@ -29,10 +28,10 @@
         </p:MenuItemSeparatorStyleSelector.SeparatorTemplate>
     </p:MenuItemSeparatorStyleSelector>
 
-    <ContentControl x:Key="MenuItem.Image"
-					x:Shared="false"
-					Content="{Binding ImagePath,Converter={StaticResource UriToCachedImageConverter}}" />
-
+    <Image x:Key="MenuItem.Image"
+           x:Shared="false"
+           Source="{Binding ImagePath, Converter={StaticResource UriToCachedImageConverter}}" />
+    
     <RadioButton x:Key="MenuItem.ViewButton" x:Shared="false" IsChecked="{Binding IsSelected,Mode=TwoWay}" GroupName="MenuOptions" IsHitTestVisible="False" />
 
     <Style x:Key="DynamicMenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
@@ -43,6 +42,14 @@
         <Setter Property="CommandParameter" Value="{Binding Data}" />
         <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
         <Setter Property="Visibility" Value="{Binding IsVisible,Converter={StaticResource VisibilityConverter}}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IconType}" Value="Image">
+                <Setter Property="Icon" Value="{StaticResource MenuItem.Image}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IconType}" Value="SingleSelect">
+                <Setter Property="Icon" Value="{StaticResource MenuItem.ViewButton}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="MenuButtonContextMenuStyle" TargetType="ContextMenu">

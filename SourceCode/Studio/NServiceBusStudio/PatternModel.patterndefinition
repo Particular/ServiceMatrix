@@ -4206,7 +4206,7 @@
   }
 ]</properties>
     </commandSettings>
-    <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
       </extendedElement>
@@ -4216,7 +4216,7 @@
         <automationSettingsSchemaMoniker Id="01dd3fa9-02b6-4dff-83e2-b09981e0556e" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="b9da06c0-60f2-48e4-be95-4a4ef996dae2" text="Generate Code" commandId="a9f03d8e-8f3c-4904-be92-12bd4818ad11" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="b9da06c0-60f2-48e4-be95-4a4ef996dae2" text="Generate Code" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PatternIcon.png" commandId="a9f03d8e-8f3c-4904-be92-12bd4818ad11" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e3ea3a92-6c74-4192-b127-db1db151eea3" />
       </extendedElement>
@@ -4262,12 +4262,12 @@
         <automationSettingsSchemaMoniker Id="56bfa0a5-d26d-46d7-adcd-e65a4fb0dfb2" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="d57c9faf-48dd-42db-8003-5fa99f0808bf" text="Publish Event..." commandId="f1959529-6eef-475b-b4b0-6eb6e274bdda" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="d57c9faf-48dd-42db-8003-5fa99f0808bf" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="f1959529-6eef-475b-b4b0-6eb6e274bdda" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="9e6f3fdb-d0e7-483e-b7f9-c2c4351bedd3" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="ed2d3b7e-4d30-41c3-a948-310b2d6f7f07" text="Send Command..." commandId="74775974-a991-4646-a4ca-8968ce5e212a" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="ed2d3b7e-4d30-41c3-a948-310b2d6f7f07" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="74775974-a991-4646-a4ca-8968ce5e212a" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d595aa89-5969-4841-aaae-078fc6b3254f" />
       </extendedElement>
@@ -4292,7 +4292,7 @@
         <automationSettingsSchemaMoniker Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="40dca3ca-0f16-43e4-8073-b3858d8d8cf9" text="Send Command..." commandId="72a376e2-aab4-498b-9448-3544ffc8790a" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="40dca3ca-0f16-43e4-8073-b3858d8d8cf9" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="72a376e2-aab4-498b-9448-3544ffc8790a" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab4b95e9-041a-492f-8468-0442b0183c1d" />
       </extendedElement>
@@ -4334,32 +4334,32 @@
   }
 ]</conditions>
     </menuSettings>
-    <menuSettings Id="bc2ed4d7-7b81-43c8-ac96-f8ce76c7e122" text="Send Command..." commandId="cffe2ae5-e4d9-4411-82fa-1d3d2fc9c4ba" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="bc2ed4d7-7b81-43c8-ac96-f8ce76c7e122" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="cffe2ae5-e4d9-4411-82fa-1d3d2fc9c4ba" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="c033a5be-b050-4176-a9bc-62b2c8ed4bb4" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="a1a90ceb-98f8-43bd-adbb-a1c7c3f9289c" text="Publish Event..." commandId="20a6e3e7-d8f7-4fdf-8087-e6aeff8decbe" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="a1a90ceb-98f8-43bd-adbb-a1c7c3f9289c" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="20a6e3e7-d8f7-4fdf-8087-e6aeff8decbe" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b602c0c8-8d04-46eb-93fa-68620e18e574" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="1ad340c0-e194-498b-be5a-2e52d70d531c" text="Publish Event..." commandId="8e1a6a25-7063-4543-973f-26203721274b" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="1ad340c0-e194-498b-be5a-2e52d70d531c" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="8e1a6a25-7063-4543-973f-26203721274b" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="35b9983c-a755-4006-9b8b-c8e5975b42de" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="caaa48c6-eed9-471f-909f-2a711a55fc38" text="Send Command..." commandId="dd6f1bee-4a1b-410d-951c-929648b6b2b5" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="caaa48c6-eed9-471f-909f-2a711a55fc38" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="dd6f1bee-4a1b-410d-951c-929648b6b2b5" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="636692ae-7db3-42ce-be88-290d47dd421c" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="259910c9-62fe-45cf-864d-0f0c9512639e" text="Publish Event..." commandId="2adc6882-c200-405d-8bdf-5f3c29b4a072" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="259910c9-62fe-45cf-864d-0f0c9512639e" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="2adc6882-c200-405d-8bdf-5f3c29b4a072" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="42b98ea8-8584-4345-9063-94103a01a95f" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="076a511a-3190-47a6-a290-23ecbe708304" text="Send Command..." commandId="5382586e-5e44-45c2-96e0-e6f5952fba72" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="076a511a-3190-47a6-a290-23ecbe708304" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="5382586e-5e44-45c2-96e0-e6f5952fba72" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="7614f045-29d6-41be-818c-ebdf6f720e4f" />
       </extendedElement>

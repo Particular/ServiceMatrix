@@ -179,7 +179,7 @@
     <Compile Include="CustomSolutionBuilder\CustomSolutionBuilder.cs" />
     <Compile Include="CustomSolutionBuilder\DataTemplates\ContentControlDataTemplate.cs" />
     <Compile Include="CustomSolutionBuilder\Data\MenuGroupingEnumerableConverter.cs" />
-    <Compile Include="CustomSolutionBuilder\Data\UriToCachedImageConverter.cs" />
+    <Compile Include="Diagramming\Converters\DiagramUriToCachedImageConverter.cs" />
     <Compile Include="CustomSolutionBuilder\IDetailsWindowsManager.cs" />
     <Compile Include="CustomSolutionBuilder\Infrastructure\LogicalViewModelIconConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Infrastructure\SolutionBuilderViewModelExtensions.cs" />
@@ -647,6 +647,13 @@
   <ItemGroup>
     <Resource Include="Diagramming\Styles\Images\GrayEndpointIcon.png" />
     <Resource Include="Diagramming\Styles\Images\GrayServiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MenuItems\CommandProperties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MenuItems\PublishEvent.png" />
+    <Resource Include="Diagramming\Styles\Images\MenuItems\SendCommand.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

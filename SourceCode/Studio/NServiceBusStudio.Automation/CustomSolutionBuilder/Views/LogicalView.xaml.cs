@@ -13,7 +13,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NuPattern.Runtime.UI;
 using System.ComponentModel;
-using NuPattern.Common.Presentation;
 using NuPattern.Presentation;
 using System.ComponentModel.Composition.Hosting;
 using Microsoft.VisualStudio.ComponentModelHost;

@@ -4,16 +4,19 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using System.IO;
+using System.Linq;
 
-namespace NuPattern.Common.Presentation.Data
+namespace ServiceMatrix.Diagramming.Converters
 {
     /// <summary>
     /// Converts a <see cref="string"/> or <see cref="Uri"/> to a cached <see cref="BitmapImage"/>.
     /// </summary>
     [ValueConversion(typeof(string), typeof(BitmapImage))]
     [ValueConversion(typeof(Uri), typeof(BitmapImage))]
-    public sealed class UriToCachedImageConverter : IValueConverter
+    public sealed class DiagramUriToCachedImageConverter : IValueConverter
     {
+        public const string imagesPath = "pack://application:,,,/Particular.ServiceMatrix.Automation;component/Diagramming/Styles/Images/MenuItems/";
+
         /// <summary>
         /// Converts a value.
         /// </summary>
@@ -27,7 +30,10 @@ namespace NuPattern.Common.Presentation.Data
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Uri imageUrl;
+            //value = "pack://application:,,,/Particular.ServiceMatrix.Automation;component/Diagramming/Styles/Images/MenuItems/CommandProperties.png"
+            
             var path = value as string;
+            
             if (path != null)
             {
                 if (string.IsNullOrEmpty(path))
@@ -48,6 +54,9 @@ namespace NuPattern.Common.Presentation.Data
             {
                 try
                 {
+                    var imageName = imageUrl.Segments.Last();
+                    imageUrl = new Uri(imagesPath + imageName, UriKind.RelativeOrAbsolute);
+
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = imageUrl;
@@ -56,7 +65,7 @@ namespace NuPattern.Common.Presentation.Data
                     image.Freeze();
                     return image;
                 }
-                catch (FileNotFoundException)
+                catch (Exception)
                 {
                     return DependencyProperty.UnsetValue;
                 }
