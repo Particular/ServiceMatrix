@@ -109,6 +109,12 @@ namespace NServiceBusStudio
             {
                 result.Add(new ValidationResult(string.Format("{0}.{1} should be allocated to an endpoint.", this.Parent.Parent.InstanceName, this.InstanceName)));
             }
+
+            if (this.IsSaga && !(this.Subscribes.ProcessedCommandLinks.Any (c => c.StartsSaga) || this.Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
+            {
+                result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", this.Parent.Parent.InstanceName, this.InstanceName)));
+            }
+
             return result;
         }
 
