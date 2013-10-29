@@ -189,7 +189,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void SaveSolution()
         {
-            this.Solution.As<EnvDTE.Solution>().SaveAs(this.Solution.Name);
+            this.Solution.As<EnvDTE.Solution>().SaveAs(this.Solution.PhysicalPath);
 
             var projects = this.Solution.Find(x => x.Kind == ItemKind.Project);
             foreach (var project in projects)
