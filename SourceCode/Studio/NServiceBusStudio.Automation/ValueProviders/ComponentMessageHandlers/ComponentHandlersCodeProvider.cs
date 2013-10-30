@@ -124,7 +124,9 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                     {
                         if (publishedEvent.EventReference.Value != null)
                         {
-                            sb.AppendLine("			this.Bus.Publish<" + publishedEvent.GetMessageTypeFullName() + ">(e => { /* set properties on e in here */ });");
+                            sb.AppendLine("			this.Bus.Publish<" + publishedEvent.GetMessageTypeFullName() + ">(e => {");
+                            sb.AppendLine("			    /* If set properties is required: set \"Auto Publish Event\" to False, and move this line inside HandleImplementation method. */ });");
+                            
                         }
                     }
                 }
@@ -176,7 +178,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine();
                 sb.AppendLine("        partial void HandleImplementation(" + typename + " message)");
                 sb.AppendLine("        {");
-                sb.AppendLine("            // Implement your handler logic here.");
+                sb.AppendLine("            // TODO: " + this.Component.CodeIdentifier + ": Add code to handle the " + typename + " message.");
                 sb.AppendLine("            Console.WriteLine(\"" + this.Component.Parent.Parent.InstanceName + " received \" + message.GetType().Name);");
 
                 sb.AppendLine("        }");
