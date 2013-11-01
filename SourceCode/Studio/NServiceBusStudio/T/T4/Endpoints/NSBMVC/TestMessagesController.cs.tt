@@ -49,7 +49,7 @@ using NServiceBus;
 
 namespace <#= nserviceBusMVC.Namespace #>.Controllers
 {
-    public class TestMessagesController : Controller
+    public partial class TestMessagesController : Controller
     {
         //
         // GET: /TestMessages/
@@ -69,7 +69,9 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
         public ActionResult SendMessage<#= command.CodeIdentifier #>()
         {
-            MvcApplication.Bus.Send (new <#= command.CodeIdentifier #>());
+            var <#= command.CodeIdentifier #> = new <#= command.CodeIdentifier #>();
+            Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #>);
+            MvcApplication.Bus.Send(<#= command.CodeIdentifier #>);
 
             ViewBag.MessageSent = "<#= command.CodeIdentifier #>";
 
@@ -88,7 +90,9 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
         public ActionResult SendMessage<#= @event.CodeIdentifier #>()
         {
-            MvcApplication.Bus.Publish (new <#= @event.CodeIdentifier #>());
+            var <#= @event.CodeIdentifier #> = new <#= @event.CodeIdentifier #>();
+            Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #>);
+            MvcApplication.Bus.Publish(<#= @event.CodeIdentifier #>);
 
             ViewBag.MessageSent = "<#= @event.CodeIdentifier #>";
 
@@ -97,8 +101,30 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 		<#
 
 			}
-                
-                
-		#>
+
+      // Send Commands
+      foreach (var command in commands)
+      {
+
+      #>
+
+        public partial void Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> message);
+        <#
+      
+      }
+
+      // Send Events
+      foreach (var @event in events)
+      {
+
+      #>
+
+         public partial void Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #> message);
+<#
+      
+      }
+
+      #>
+    }
 }
-}
+    

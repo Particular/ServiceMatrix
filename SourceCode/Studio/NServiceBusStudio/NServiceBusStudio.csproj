@@ -372,6 +372,9 @@
     <Content Include="T\P\Endpoints\NSBHMVC\App_Start\WebApiConfig.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Controllers\TestMessagesController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="VSPackage.cs" />
     <Content Include="$(PatternToolkitRuntime)\GeneratedCode\LibrarySchema.xsd">
       <Visible>true</Visible>

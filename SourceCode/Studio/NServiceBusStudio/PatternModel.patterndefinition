@@ -4134,7 +4134,7 @@
   },
   {
     "Name": "TargetFileName",
-    "Value": "TestMessagesController.cs",
+    "Value": "TestMessagesController.generated.cs",
     "ValueProvider": null
   },
   {
