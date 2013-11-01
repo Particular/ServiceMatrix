@@ -29,14 +29,32 @@ namespace ServiceMatrix.Diagramming.Views
     /// </summary>
     public partial class Diagram : UserControl
     {
+        public ServiceMatrixDiagramAdapter Adapter { get; set; }
+        public bool ItemHasBeenAdded { get; set; }
+
         public Diagram(ServiceMatrixDiagramAdapter adapter)
         {
             InitializeComponent();
 
-            this.DataContext = new ServiceMatrixDiagramViewModel (adapter);
+            this.Adapter = adapter;
+            this.DataContext = new ServiceMatrixDiagramViewModel (this.Adapter);
 
+            // Visible elements on DiagramSurface (only elements rendered by Virtualization)
             var diagramElementsCollection = ds.DiagramElements as INotifyCollectionChanged;
             diagramElementsCollection.CollectionChanged += diagramElementsCollection_CollectionChanged;
+
+            // All nodes on Diagram Nodes 
+            var nodesCollection = adapter.ViewModel.Nodes as INotifyCollectionChanged;
+            nodesCollection.CollectionChanged += nodesCollection_CollectionChanged;
+
+            nodesCollection_CollectionChanged(null, null);
+            ds.SizeToFit();
+        }
+
+        void nodesCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            this.ItemHasBeenAdded = true;
+            EmptyStateButtons.Visibility = (this.Adapter.ViewModel.Nodes.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void diagramElementsCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -61,8 +79,17 @@ namespace ServiceMatrix.Diagramming.Views
                 break;
             }
 
-            EmptyStateButtons.Visibility = (ds.DiagramElements.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
+            try
+            {
+                if (this.ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
+                {
+                    ds.SizeToFit();
+                    this.ItemHasBeenAdded = false;
+                }
+            }
+            catch { }
         }
+
 
         private void diagramNodeElement_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -123,5 +150,7 @@ namespace ServiceMatrix.Diagramming.Views
                 ds.Zoom -= 0.25;
             }
         }
+
+        
     }
 }

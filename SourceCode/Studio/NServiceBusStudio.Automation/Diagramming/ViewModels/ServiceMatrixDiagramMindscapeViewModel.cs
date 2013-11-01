@@ -133,10 +133,20 @@ namespace ServiceMatrix.Diagramming.ViewModels
                                                         viewModel.Data.Id);
             this.DeleteNode(undeployedComponentNode);
 
-            if (undeployedComponentNode.ParentNode != null &&
-                !undeployedComponentNode.ParentNode.ChildNodes.Any())
+            // Remove service if it's empty on Empty Endpoint
+            var emptyserviceNode = undeployedComponentNode.ParentNode;
+            if (emptyserviceNode != null &&
+                !emptyserviceNode.ChildNodes.Any())
             {
-                this.DeleteNode(undeployedComponentNode.ParentNode);
+                this.DeleteNode(emptyserviceNode);
+
+                // Remove empty endpoint if it's empty
+                var emptyendpointNode = emptyserviceNode.ParentNode;
+                if (emptyendpointNode != null &&
+                    !emptyendpointNode.ChildNodes.Any())
+                {
+                    this.DeleteNode(emptyendpointNode);
+                }
             }
 
 
@@ -242,6 +252,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 groupNode.ChildNodes.ForEach(x => DeleteNode(x));
             }
 
+            this.LayoutAlgorithm.RemoveElementPosition(node);
             // Remove node
             this.Nodes.Remove(node);
         }

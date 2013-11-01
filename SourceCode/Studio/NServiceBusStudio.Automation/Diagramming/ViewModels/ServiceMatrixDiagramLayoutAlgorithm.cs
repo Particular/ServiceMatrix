@@ -17,6 +17,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
         public string FilePath { get; set; }
         public Dictionary<Guid, Point> ShapePositions { get; set; }
 
+        private const double Endpoint_LeftAlignment = 50;
+        private const double Endpoint_RightAlignment = 950;
+        private const double Message_Alignment = 500;
+
         public ServiceMatrixDiagramLayoutAlgorithm(ServiceMatrixDiagramMindscapeViewModel viewModel)
         {
             this.ViewModel = viewModel;
@@ -65,41 +69,55 @@ namespace ServiceMatrix.Diagramming.ViewModels
             node.Bounds = new Rect (position.Value, node.Bounds.Size);
         }
 
+        public void RemoveElementPosition(GroupableNode node)
+        {
+            this.SaveElementPosition(node, null);
+        }
+
         private Point CalculateElementPosition(GroupableNode node)
         {
-            const int ShapeWidth = 350;
+            
             var x = 50.0;
             var y = 100.0;
 
             if (node is EndpointNode)
             {
-                // Align endpoints algorithm
-                var endpointsCount = this.ViewModel.Nodes.Count(n => n is EndpointNode);
-                // Snap to 2 columns
-                if (endpointsCount % 2 == 0)
+                var leftAlignment = GetYPosition(Endpoint_LeftAlignment);
+                var rightAlignment = GetYPosition(Endpoint_RightAlignment);
+
+                if (leftAlignment <= rightAlignment)
                 {
-                    x = 50;
+                    x = Endpoint_LeftAlignment;
                 }
                 else
                 {
-                    x = 950;
+                    x = Endpoint_RightAlignment;
                 }
             }
             else if (node is CommandNode || node is EventNode)
             {
-                x = 500;
+                x = Message_Alignment;
             }
 
+            y = GetYPosition(x);
+
+            return new Point(x, y);
+        }
+
+        private double GetYPosition(double x)
+        {
+            const int ShapeWidth = 350;
+            double y = 0;
+
             var shapesOnSimilarXPosition = this.ViewModel.Nodes.Cast<GroupableNode>().Where(n => n.ParentNode == null &&
-                                                                                                 ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||
-                                                                                                  (n.Bounds.X + n.Bounds.Width >= x && n.Bounds.X + n.Bounds.Width <= x + ShapeWidth)));
+                                                                                            ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||
+                                                                                            (n.Bounds.X + n.Bounds.Width >= x && n.Bounds.X + n.Bounds.Width <= x + ShapeWidth)));
             if (shapesOnSimilarXPosition.Any())
             {
                 y = shapesOnSimilarXPosition.Max(n => n.Bounds.Y + n.Bounds.Height);
-                y = y + 100;
+                y = y + 50;
             }
-
-            return new Point(x, y);
+            return y;
         }
 
         public Point? LoadElementPosition(GroupableNode node)
@@ -112,14 +130,17 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return null;
         }
 
-        public void SaveElementPosition(GroupableNode node, Point point)
+        public void SaveElementPosition(GroupableNode node, Point? point)
         {
             if (ShapePositions.Any(x => x.Key == node.Id))
             {
                 ShapePositions.Remove(node.Id);
             }
 
-            ShapePositions.Add(node.Id, point);
+            if (point.HasValue)
+            {
+                ShapePositions.Add(node.Id, point.Value);
+            }
 
             // Saving into file
             if (this.FilePath != null)
