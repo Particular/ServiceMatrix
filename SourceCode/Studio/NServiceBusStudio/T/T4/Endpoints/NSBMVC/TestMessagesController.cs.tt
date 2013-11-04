@@ -67,6 +67,9 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
 		#>
 
+		//
+        // GET: /TestMessages/SendMessage<#= command.CodeIdentifier #>
+		
         public ActionResult SendMessage<#= command.CodeIdentifier #>()
         {
             var <#= command.CodeIdentifier #> = new <#= command.CodeIdentifier #>();
@@ -88,6 +91,9 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
 		#>
 
+		//
+        // GET: /TestMessages/SendMessage<#= @event.CodeIdentifier #>
+		
         public ActionResult SendMessage<#= @event.CodeIdentifier #>()
         {
             var <#= @event.CodeIdentifier #> = new <#= @event.CodeIdentifier #>();
@@ -98,7 +104,7 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
             return View("Index");
         }
-		<#
+	  <#
 
 			}
 
@@ -108,8 +114,8 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
       #>
 
-        public partial void Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> message);
-        <#
+        partial void Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> message);
+      <#
       
       }
 
@@ -119,12 +125,10 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
       #>
 
-         public partial void Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #> message);
+         partial void Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #> message);
 <#
-      
       }
+#>
 
-      #>
     }
 }
-    
