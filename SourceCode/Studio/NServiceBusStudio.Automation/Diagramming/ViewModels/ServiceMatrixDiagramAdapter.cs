@@ -27,10 +27,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         [ImportingConstructor]
         public ServiceMatrixDiagramAdapter([Import] ISolution solution,
-                                         [Import] IPatternWindows patternWindows,
-                                         [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
+                                           [Import] IPatternWindows patternWindows,
+                                           [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            this.ViewModel = new ServiceMatrixDiagramMindscapeViewModel();
+            this.ViewModel = new ServiceMatrixDiagramMindscapeViewModel(patternWindows, serviceProvider);
             this.Solution = solution;
             this.PatternWindows = patternWindows;
             

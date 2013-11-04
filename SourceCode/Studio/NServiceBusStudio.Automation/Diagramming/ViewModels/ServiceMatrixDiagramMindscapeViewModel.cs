@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using ServiceMatrix.Diagramming.ViewModels.Connections;
 using NServiceBusStudio;
+using NuPattern.Runtime;
+using System.Windows.Controls;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
@@ -19,10 +21,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
     {
         public ServiceMatrixDiagramLayoutAlgorithm LayoutAlgorithm { get; set; }
 
-        public ServiceMatrixDiagramMindscapeViewModel()
+        public ServiceMatrixDiagramMindscapeViewModel(IPatternWindows patternWindows, IServiceProvider serviceProvider)
         {
             this.DefaultConnectionBuilder = new ServiceMatrixConnectionBuilder();
             this.LayoutAlgorithm = new ServiceMatrixDiagramLayoutAlgorithm(this);
+
+            this.PatternWindows = patternWindows;
+            this.ServiceProvider = serviceProvider;
         }
 
         public EndpointNode GetOrCreateEndpointNode(IProductElementViewModel viewModel)
@@ -34,11 +39,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 endpoint = new EndpointNode(viewModel);
                 this.LayoutAlgorithm.SetElementPosition(endpoint);
 
-                this.Nodes.Add(endpoint);
+                AddNode(endpoint);
             }
 
             return endpoint;
         }
+
+        
 
         private EmptyEndpointNode GetOrCreateEmptyEndpointNode(IProductElementViewModel endpointsViewModel)
         {
@@ -49,7 +56,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 emptyEndpoint = new EmptyEndpointNode(endpointsViewModel.MenuOptions.FirstOrDefault( x=> x.Caption == "Deploy Unhosted Components..."));
                 this.LayoutAlgorithm.SetElementPosition(emptyEndpoint);
 
-                this.Nodes.Add(emptyEndpoint);
+                AddNode(emptyEndpoint);
             }
 
             return emptyEndpoint;
@@ -72,7 +79,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 }
 
                 service = new ServiceNode(viewModel, endpoint);
-                this.Nodes.Add(service);
+                AddNode(service);
             }
 
             return service;
@@ -88,7 +95,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 command = new CommandNode(viewModel);
                 this.LayoutAlgorithm.SetElementPosition(command);
 
-                this.Nodes.Add(command);
+                AddNode(command);
             }
 
             return command;
@@ -103,7 +110,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 @event = new EventNode(viewModel);
                 this.LayoutAlgorithm.SetElementPosition(@event);
 
-                this.Nodes.Add(@event);
+                AddNode(@event);
             }
 
             return @event;
@@ -118,7 +125,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 var service = GetOrCreateServiceNode(EmptyEndpointNode.NodeId, viewModel.ParentNode.ParentNode);
 
                 component = new ComponentNode(viewModel, service);
-                this.Nodes.Add(component);
+                AddNode(component);
             }
 
             return component;
@@ -162,7 +169,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
                 componentNode = new ComponentNode(viewModel,
                                                   serviceNode);
-                this.Nodes.Add(componentNode);
+                AddNode(componentNode);
             }
 
             return componentNode;
@@ -255,6 +262,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
             this.LayoutAlgorithm.RemoveElementPosition(node);
             // Remove node
             this.Nodes.Remove(node);
+
+            // Unhandle events
+            node.ActivateElement -= Node_ActivateElement;
+
+            node = null;
         }
 
         public void CleanAll()
@@ -262,6 +274,34 @@ namespace ServiceMatrix.Diagramming.ViewModels
             this.Nodes.ToList().ForEach(x => this.Nodes.Remove(x));
             this.Connections.ToList().ForEach(x => this.Connections.Remove(x));
             this.LayoutAlgorithm.UnloadShapePositiions();
+        }
+
+        private void AddNode(GroupableNode node)
+        {
+            this.Nodes.Add(node);
+            node.ActivateElement += Node_ActivateElement;
+        }
+
+        void Node_ActivateElement(object sender, EventArgs e)
+        {
+            var toolWindow = this.PatternWindows.ShowSolutionBuilder(this.ServiceProvider);
+
+            var content = toolWindow.Content as UserControl;
+            var contentGrid = content.Content as Grid;
+            var scrollviewer = default(ScrollViewer);
+
+            foreach (var theitem in contentGrid.Children)
+            {
+                if (theitem is ScrollViewer)
+                {
+                    scrollviewer = (theitem as ScrollViewer);
+                }
+            }
+
+            if (scrollviewer != null)
+            {
+                scrollviewer.Focus();
+            }
         }
 
 
@@ -360,5 +400,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             otherNodeConnections.ForEach(x => x.IsShadowed = value);
         }
+
+        public IPatternManager PatternManager { get; set; }
+
+        public IPatternWindows PatternWindows { get; set; }
+
+        public IServiceProvider ServiceProvider { get; set; }
     }
 }

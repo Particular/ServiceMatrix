@@ -19,6 +19,9 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
         private bool _isHighlighted = false;
         public IProductElementViewModel InnerViewModel { get; set; }
 
+        public delegate void ActivateElementHandler(object sender, EventArgs e);
+        public event ActivateElementHandler ActivateElement;
+
         public virtual Guid Id 
         { 
             get { return this.InnerViewModel.Data.Id; } 
@@ -56,6 +59,17 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 this.OnPropertyChanged("Name");
             }
         }
+
+        public void Activate()
+        {
+            this.InnerViewModel.IsSelected = true;
+
+            if (this.ActivateElement != null)
+            {
+                this.ActivateElement(this, new EventArgs() { });
+            }
+        }
+    
 
         // This is for highlighting the node if mouse is over.
         public bool IsHighlighted

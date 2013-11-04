@@ -26,7 +26,7 @@ namespace ServiceMatrix.Diagramming.Styles
             if (viewModel != null &&
                 viewModel.InnerViewModel != null)
             {
-                viewModel.InnerViewModel.IsSelected = true;
+                viewModel.Activate();
             }
 
             // Open Context menu
