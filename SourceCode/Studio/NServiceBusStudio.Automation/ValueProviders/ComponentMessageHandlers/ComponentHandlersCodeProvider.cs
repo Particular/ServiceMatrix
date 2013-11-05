@@ -156,15 +156,6 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("		public IBus Bus { get; set; }");
             }
 
-            foreach (var typename in this.Component.Publishes.CommandLinks.Select(c => c.CommandReference.Value.CodeIdentifier))
-            {
-                sb.AppendLine();
-                sb.AppendLine("		public void Send(" + typename + " message)");
-                sb.AppendLine("		{");
-                sb.AppendLine("			Bus.Send(message);");
-                sb.AppendLine("		}");
-            }
-
             if (this.Component.IsSaga)
             {
                 sb.AppendLine("     }");
