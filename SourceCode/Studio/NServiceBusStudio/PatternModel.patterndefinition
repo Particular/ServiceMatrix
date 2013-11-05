@@ -5751,7 +5751,7 @@
                               </settings>
                             </customizationPolicy>
                           </property>
-                          <property Id="5a315359-d13e-4eed-902a-6abf54b02014" name="AutoPublishEvents" displayName="Auto Publish Events" description="Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents" codeIdentifier="AutoPublishEvents" type="System.Boolean">
+                          <property Id="5a315359-d13e-4eed-902a-6abf54b02014" name="AutoPublishMessages" displayName="Auto Publish Messages" description="If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component." codeIdentifier="AutoPublishMessages" type="System.Boolean">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />

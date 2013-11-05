@@ -354,12 +354,12 @@ namespace NServiceBusStudio
 		Boolean IsSaga { get; set; }
 
 		/// <summary>
-		/// Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents
+		/// If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.
 		/// </summary>
-		[Description("Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents")]
-		[DisplayName("Auto Publish Events")]
+		[Description("If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.")]
+		[DisplayName("Auto Publish Messages")]
 		[Category("General")]
-		Boolean AutoPublishEvents { get; set; }
+		Boolean AutoPublishMessages { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.

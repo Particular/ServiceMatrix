@@ -622,15 +622,15 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
-		/// Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents
+		/// If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.
 		/// </summary>
-		[Description("Description for Application.Design.Services.Service.Components.Component.AutoPublishEvents")]
-		[DisplayName("Auto Publish Events")]
+		[Description("If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.")]
+		[DisplayName("Auto Publish Messages")]
 		[Category("General")]
-		public virtual Boolean AutoPublishEvents
+		public virtual Boolean AutoPublishMessages
 		{
-			get { return this.proxy.GetValue(() => this.AutoPublishEvents); }
-			set { this.proxy.SetValue(() => this.AutoPublishEvents, value); }
+			get { return this.proxy.GetValue(() => this.AutoPublishMessages); }
+			set { this.proxy.SetValue(() => this.AutoPublishMessages, value); }
 		}
 
 		/// <summary>

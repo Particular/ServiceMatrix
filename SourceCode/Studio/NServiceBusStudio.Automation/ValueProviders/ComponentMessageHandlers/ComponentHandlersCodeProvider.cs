@@ -117,17 +117,22 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("		{");
                 sb.AppendLine("			this.HandleImplementation(message);");
 
-                if (this.Component.AutoPublishEvents && this.Component.Publishes.EventLinks.Any())
+                if (this.Component.AutoPublishMessages)
                 {
-                    sb.AppendLine();
+                    foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine("			var " + publishedCommand.CodeIdentifier + " = new " + publishedCommand.GetMessageTypeFullName() + "();");
+                        sb.AppendLine("			Configure" + publishedCommand.CodeIdentifier + "(message, " + publishedCommand.CodeIdentifier + ");");
+                        sb.AppendLine("			this.Bus.Send(" + publishedCommand.CodeIdentifier + ");");
+                    }
+
                     foreach (var publishedEvent in this.Component.Publishes.EventLinks)
                     {
-                        if (publishedEvent.EventReference.Value != null)
-                        {
-                            sb.AppendLine("			var " + publishedEvent.CodeIdentifier + " = new " + publishedEvent.GetMessageTypeFullName() + "();");
-                            sb.AppendLine("			Configure" + publishedEvent.CodeIdentifier + "(" + publishedEvent.CodeIdentifier + ");");
-                            sb.AppendLine("			this.Bus.Publish (" + publishedEvent.CodeIdentifier + ");");
-                        }
+                        sb.AppendLine();
+                        sb.AppendLine("			var " + publishedEvent.CodeIdentifier + " = new " + publishedEvent.GetMessageTypeFullName() + "();");
+                        sb.AppendLine("			Configure" + publishedEvent.CodeIdentifier + "(message, " + publishedEvent.CodeIdentifier + ");");
+                        sb.AppendLine("			this.Bus.Publish(" + publishedEvent.CodeIdentifier + ");");
                     }
                 }
 
@@ -138,15 +143,23 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             {
                 sb.AppendLine();
                 sb.AppendLine("		partial void HandleImplementation(" + typename + " message);");
-            }
+            
 
-            if (this.Component.AutoPublishEvents && this.Component.Publishes.EventLinks.Any())
-            {
-                foreach (var publishedEvent in this.Component.Publishes.EventLinks)
+                if (this.Component.AutoPublishMessages)
                 {
-                    sb.AppendLine();
-                    sb.AppendLine("		partial void Configure" + publishedEvent.CodeIdentifier + " (" + publishedEvent.GetMessageTypeFullName() + " message);");
+                    foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine("		partial void Configure" + publishedCommand.CodeIdentifier + " (" + typename + " incomingMessage, " + publishedCommand.GetMessageTypeFullName() + " message);");
+                    }
+
+                    foreach (var publishedEvent in this.Component.Publishes.EventLinks)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine("		partial void Configure" + publishedEvent.CodeIdentifier + " (" + typename + " incomingMessage, " + publishedEvent.GetMessageTypeFullName() + " message);");
+                    }
                 }
+
             }
 
             // Check to avoid collision with Saga Bus
