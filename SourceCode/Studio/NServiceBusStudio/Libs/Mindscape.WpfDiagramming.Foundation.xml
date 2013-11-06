@@ -8685,6 +8685,11 @@
             Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.CanCalculateConnectionIntersections"/> property.
             </summary>
         </member>
+        <member name="F:Mindscape.WpfDiagramming.DiagramSurface.IsVirtualizingProperty">
+            <summary>
+            Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.IsVirtualizing"/> property.
+            </summary>
+        </member>
         <member name="F:Mindscape.WpfDiagramming.DiagramSurface.DiagramProperty">
             <summary>
             Identifies the <see cref="P:Mindscape.WpfDiagramming.DiagramSurface.Diagram"/> property.
@@ -9133,6 +9138,19 @@
             <strong>Dependency Property Information</strong>
             <table>
               <tr><td>Identifier field</td><td><see cref="F:Mindscape.WpfDiagramming.DiagramSurface.CanCalculateConnectionIntersectionsProperty"/></td></tr>
+              <tr><td>Metadata properties set to true</td><td>None</td></tr>
+            </table>
+            </remarks>
+        </member>
+        <member name="P:Mindscape.WpfDiagramming.DiagramSurface.IsVirtualizing">
+            <summary>
+            Gets or sets whether or not the <see cref="T:Mindscape.WpfDiagramming.DiagramSurface"/> virtualizes the elements. The default is true.
+            This is a dependency property.
+            </summary>
+            <remarks>
+            <strong>Dependency Property Information</strong>
+            <table>
+              <tr><td>Identifier field</td><td><see cref="F:Mindscape.WpfDiagramming.DiagramSurface.IsVirtualizingProperty"/></td></tr>
               <tr><td>Metadata properties set to true</td><td>None</td></tr>
             </table>
             </remarks>

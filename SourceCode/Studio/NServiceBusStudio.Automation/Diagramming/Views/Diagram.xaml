@@ -75,6 +75,7 @@
                            Background="White"
                            HorizontalSnapSpecifier="{ms:SnapToInterval 10}"
                            VerticalSnapSpecifier="{ms:SnapToInterval 10}"
+                           IsVirtualizing="False"
                            />
 
         <!-- Zoom Slider -->
@@ -103,10 +104,11 @@
         <!-- Empty state buttons -->
 
         <Grid x:Name="EmptyStateButtons" Grid.RowSpan="2" Visibility="Visible">
+            
             <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-
+                
                 <Button Background="Transparent"
                         BorderThickness="0"
                         Command="{Binding OnShowAddEndpoint}">

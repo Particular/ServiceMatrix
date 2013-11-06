@@ -107,7 +107,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         private double GetYPosition(double x)
         {
             const int ShapeWidth = 350;
-            double y = 0;
+            double y = 100.0;
 
             var shapesOnSimilarXPosition = this.ViewModel.Nodes.Cast<GroupableNode>().Where(n => n.ParentNode == null &&
                                                                                             ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||

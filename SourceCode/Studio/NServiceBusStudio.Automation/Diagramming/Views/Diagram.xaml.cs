@@ -47,8 +47,11 @@ namespace ServiceMatrix.Diagramming.Views
             var nodesCollection = adapter.ViewModel.Nodes as INotifyCollectionChanged;
             nodesCollection.CollectionChanged += nodesCollection_CollectionChanged;
 
-            nodesCollection_CollectionChanged(null, null);
-            ds.SizeToFit();
+            if (adapter.ViewModel.Nodes.Count > 0)
+            {
+                nodesCollection_CollectionChanged(null, null);
+                ds.SizeToFit();
+            }
         }
 
         void nodesCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
