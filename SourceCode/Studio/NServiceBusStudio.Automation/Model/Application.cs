@@ -180,6 +180,13 @@ namespace NServiceBusStudio
                     var folder = solution.CreateSolutionFolder(".nuget");
                     folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.exe"), @".nuget\NuGet.exe");
                     folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.targets"), @".nuget\NuGet.targets");
+
+                    var solutionItems = solution.SolutionFolders.FirstOrDefault(x => x.Name == "Solution Items");
+                    if (solutionItems == null)
+                    {
+                        solutionItems = solutionItems.CreateSolutionFolder("Solution Items");
+                    }
+                    solutionItems.Add(Path.Combine(currentApplication.ExtensionPath, @"ServiceMatrixVersion.txt"), @"ServiceMatrixVersion.txt");
                 }
                 solution.Select();
             }

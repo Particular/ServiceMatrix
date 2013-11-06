@@ -151,6 +151,10 @@
     </Content>
     <Resource Include="Resources\PublishEvent.png" />
     <Resource Include="Resources\SendCommand.png" />
+    <Content Include="ServiceMatrixVersion.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="T\P\App\App.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
