@@ -109,39 +109,65 @@
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
                 
-                <Button Background="Transparent"
-                        BorderThickness="0"
+                <Button BorderThickness="0"
                         Command="{Binding OnShowAddEndpoint}">
-                    <Grid Width="248" Height="125">
-                        <Rectangle StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Image Source="../Styles/Images/GrayEndpointIcon.png" Width="55"></Image>
-                            <TextBlock Margin="5,0,0,0" 
-                                        Foreground="#CCCCCC" 
-                                        FontSize="20" 
-                                        FontFamily="Segoe UI Bold" 
-                                        FontWeight="Bold"
-                                        VerticalAlignment="Center">New endpoint</TextBlock>
-                        </StackPanel>
-                    </Grid>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Width="248" Height="125">
+                                <Rectangle x:Name="Border" StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Image x:Name="Image" Source="../Styles/Images/GrayEndpointIcon.png" Width="55"></Image>
+                                    <TextBlock x:Name="Text"  
+                                                Margin="5,0,0,0" 
+                                                Foreground="#CCCCCC" 
+                                                FontSize="20" 
+                                                FontFamily="Segoe UI Bold" 
+                                                FontWeight="Bold"
+                                                VerticalAlignment="Center">New endpoint</TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Fill" Value="Transparent" TargetName="Border" />
+                                    <Setter Property="Stroke" Value="#237EC7" TargetName="Border" />
+                                    <Setter Property="Foreground" Value="#237EC7" TargetName="Text" />
+                                    <Setter Property="Source" Value="../Styles/Images/BlueEndpointIcon.png" TargetName="Image" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
                 <Button Margin="10, 0, 0, 0"
-                        Background="Transparent"
                         BorderThickness="0"
                         Command="{Binding OnShowAddService}">
-                    <Grid Width="248" Height="125">
-                        <Rectangle StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Image Source="../Styles/Images/GrayServiceIcon.png" Width="55"></Image>
-                            <TextBlock Margin="5,0,0,0" 
-                                        Foreground="#CCCCCC" 
-                                        FontSize="20" 
-                                        FontFamily="Segoe UI Bold" 
-                                        FontWeight="Bold"
-                                        VerticalAlignment="Center">New service</TextBlock>
-                        </StackPanel>
-                    </Grid>
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Width="248" Height="125">
+                                <Rectangle x:Name="Border" StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Image x:Name="Image" Source="../Styles/Images/GrayServiceIcon.png" Width="55"></Image>
+                                    <TextBlock x:Name="Text"  
+                                                Margin="5,0,0,0" 
+                                                Foreground="#CCCCCC" 
+                                                FontSize="20" 
+                                                FontFamily="Segoe UI Bold" 
+                                                FontWeight="Bold"
+                                                VerticalAlignment="Center">New service</TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Fill" Value="Transparent" TargetName="Border" />
+                                    <Setter Property="Stroke" Value="#237EC7" TargetName="Border" />
+                                    <Setter Property="Foreground" Value="#237EC7" TargetName="Text" />
+                                    <Setter Property="Source" Value="../Styles/Images/BlueServiceIcon.png" TargetName="Image" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
                 </Button>
 
             </StackPanel>
