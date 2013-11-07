@@ -24,12 +24,17 @@
         <ProjectItem ReplaceParameters="true" TargetFileName="Content.css">Content.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Css.css">Css.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestMessages.css">TestMessages.css</ProjectItem>
       </Folder>
       <ProjectItem TargetFileName="Global.asax" ReplaceParameters="true">Global.asax</ProjectItem>
       <ProjectItem TargetFileName="Global.asax.cs" ReplaceParameters="true">Global.asax.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx">Default.aspx</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx.cs">Default.aspx.cs</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx.designer.cs">Default.aspx.designer.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="TestMessages.aspx">TestMessages.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="TestMessages.aspx.cs">TestMessages.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="TestMessages.aspx.designer.cs">TestMessages.aspx.designer.cs</ProjectItem>
+
       <Folder Name="Images" TargetFolderName="Images">
         <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
         <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
