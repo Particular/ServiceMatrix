@@ -138,21 +138,25 @@ namespace ServiceMatrix.Diagramming.ViewModels
             var undeployedComponentNode = FindComponent(EmptyEndpointNode.NodeId,
                                                         serviceViewModel.Data.Id, 
                                                         viewModel.Data.Id);
-            this.DeleteNode(undeployedComponentNode);
 
-            // Remove service if it's empty on Empty Endpoint
-            var emptyserviceNode = undeployedComponentNode.ParentNode;
-            if (emptyserviceNode != null &&
-                !emptyserviceNode.ChildNodes.Any())
+            if (undeployedComponentNode != null)
             {
-                this.DeleteNode(emptyserviceNode);
+                this.DeleteNode(undeployedComponentNode);
 
-                // Remove empty endpoint if it's empty
-                var emptyendpointNode = emptyserviceNode.ParentNode;
-                if (emptyendpointNode != null &&
-                    !emptyendpointNode.ChildNodes.Any())
+                // Remove service if it's empty on Empty Endpoint
+                var emptyserviceNode = undeployedComponentNode.ParentNode;
+                if (emptyserviceNode != null &&
+                    !emptyserviceNode.ChildNodes.Any())
                 {
-                    this.DeleteNode(emptyendpointNode);
+                    this.DeleteNode(emptyserviceNode);
+
+                    // Remove empty endpoint if it's empty
+                    var emptyendpointNode = emptyserviceNode.ParentNode;
+                    if (emptyendpointNode != null &&
+                        !emptyendpointNode.ChildNodes.Any())
+                    {
+                        this.DeleteNode(emptyendpointNode);
+                    }
                 }
             }
 
