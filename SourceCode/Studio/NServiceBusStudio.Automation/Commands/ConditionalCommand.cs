@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -14,7 +13,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Execute Command If Boolean Property Has Expected Value.")]
     [CLSCompliant(false)]
-    public class ConditionalCommand : FeatureCommand
+    public class ConditionalCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

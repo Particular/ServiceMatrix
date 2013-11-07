@@ -1,51 +1,79 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
-using System.Runtime.InteropServices;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.ComponentModelHost;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.Patterning.Runtime.Shell;
-using Microsoft.VisualStudio.Shell.Settings;
-using Microsoft.VisualStudio.Settings;
+using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
+using NServiceBusStudio.Automation.Infrastructure;
+using System;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using NuPattern;
+using NuPattern.Diagnostics;
+using NuPattern.Runtime;
+using NuPattern.VisualStudio;
+using NuPattern.Runtime.Diagnostics;
+using ServiceMatrix.Diagramming.Views;
+using ServiceMatrix.Diagramming;
+using System.ComponentModel.Composition.Hosting;
+using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 
 namespace NServiceBusStudio
 {
-    [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Transient = false, MultiInstances = false, Style = VsDockStyle.Tabbed, Window = EnvDTE.Constants.vsWindowKindOutput)]
     [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
-    [Guid(GuidList.guidNServiceBusStudioPkgString)]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ProvideService(typeof(IDetailsWindowsManager), ServiceName = "IDetailsWindowManager")]
-    [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
+    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
-    public sealed class VSPackage : NServiceBus.Modeling.EndpointDesign.EndpointDesignPackage, IDetailsWindowsManager
+    [Guid(GuidList.guidNServiceBusStudioPkgString)]
+    [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Window = ToolWindowGuids.TaskList, Style = VsDockStyle.Tabbed, Transient = true)]
+    [ProvideToolWindow(typeof(ServiceMatrixDiagramToolWindow), Window = ToolWindowGuids.DocOutline, Style = VsDockStyle.MDI, Transient = true)]
+    [ProvideOptionPage(typeof(GeneralOptionsPage), "ServiceMatrix", "General", 0, 0, true)]
+    [ProvideService(typeof(IDetailsWindowsManager), ServiceName = "IDetailsWindowManager")]
+    [ProvideService(typeof(IDiagramsWindowsManager), ServiceName = "IDiagramsWindowsManager")]
+    [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
+    [ProvideService(typeof(ServiceMatrixDiagramToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
+    [DslShell::ProvideBindingPath]
+    public sealed class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
     {
+        [Import]
+        public ITraceOutputWindowManager TraceOutputWindowManager { get; set; }
+
         protected override void Initialize()
         {
             base.Initialize();
+
             this.AddServices();
-            this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            this.EnsureCreateTraceOutput();
+        }
+
+        private void EnsureCreateTraceOutput()
+        {
+            // Creating Trace Output Window
+            var componentModel = this.GetService<SComponentModel, IComponentModel>();
+            componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
+
+            Trace.AutoFlush = true;
+
+            var traceManager = Tracer.Manager as TracerManager;
+            if (traceManager != null)
+            {
+                traceManager.SetTracingLevel(StatisticsManager.StatisticsListenerNamespace, SourceLevels.All);
+            }
+
+            this.TraceOutputWindowManager.CreateTracePane(new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new[] { StatisticsManager.StatisticsListenerNamespace });
         }
 
         private void AddServices()
         {
             var serviceContainer = (IServiceContainer)this;
             serviceContainer.AddService(typeof(IDetailsWindowsManager), this, true);
+            serviceContainer.AddService(typeof(IDiagramsWindowsManager), this, true);
         }
 
         void IDetailsWindowsManager.Show()
         {
-            var window = this.FindToolWindow(typeof(NServiceBusDetailsToolWindow), 0, false);
+            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var frame = (IVsWindowFrame)window.Frame;
@@ -53,30 +81,55 @@ namespace NServiceBusStudio
             }
         }
 
-        void EnsureCreateToolWindow<T>() 
-            where T: class
+        void IDetailsWindowsManager.Enable()
         {
-            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
-                {
-                    var window = this.FindToolWindow(typeof(T), 0, false);
-                    if (window == null)
-                    {
-                        try
-                        {
-                            window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
+            EnableDisableDetailsPanel(true);
+        }
 
-                        }
-                        catch (Exception ex)
-                        {
-                            var s = ex.Message;
-                            throw;
-                        }
-                    }
+        void IDetailsWindowsManager.Disable()
+        {
+            EnableDisableDetailsPanel(false);
+        }
+
+        void IDiagramsWindowsManager.Show()
+        {
+            var window = this.EnsureCreateToolWindow<ServiceMatrixDiagramToolWindow>();
+            if (window != null)
+            {
+                var frame = (IVsWindowFrame)window.Frame;
+                frame.Show();
+            }
+        }
+
+        private void EnableDisableDetailsPanel(bool enable)
+        {
+            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            if (window != null)
+            {
+                var content = (DetailsPanel)window.Content;
+                content.IsEnabled = enable;
+            }
+        }
+
+        T EnsureCreateToolWindow<T>() where T : class
+        {
+            var window = this.FindToolWindow(typeof(T), 0, false);
+            if (window == null)
+            {
+                try
+                {
+                    window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
                     var serviceContainer = (IServiceContainer)this;
-                    serviceContainer.AddService(typeof(T), window.As<T>(), true); 
-                    var frame = (IVsWindowFrame)window.Frame;
-                    //frame.Show();
-                }));
+                    serviceContainer.AddService(typeof(T), window.As<T>(), true);
+                }
+                catch (Exception ex)
+                {
+                    var s = ex.Message;
+                    throw;
+                }
+            }
+
+            return window as T;
         }
     }
 }

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using System.Windows;
 using Microsoft.VisualStudio;
 using System.Windows.Interop;
+using NuPattern;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio
 {

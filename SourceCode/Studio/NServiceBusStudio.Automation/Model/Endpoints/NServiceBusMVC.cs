@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.Extensions;
 using abs = AbstractEndpoint;
 using NServiceBusStudio;
 using System.IO;
 using AbstractEndpoint;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {
@@ -48,8 +48,8 @@ namespace NServiceBusStudio
         {
             if (!this.AsElement().IsSerializing)
             {
-                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 4");
-                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 4");
+                var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 4\" + VSVersion);
+                var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 4\" + VSVersion);
 
                 if (!Directory.Exists(programFiles) &&
                     !Directory.Exists(programFilesX86))
@@ -95,21 +95,11 @@ namespace NServiceBusStudio
                 if (this.customization == null)
                 {
                     this.customization = abs.EndpointCustomizationFuncs.CreateDefault();
-                    this.customization.GetBaseSenderType = GetBaseSenderType;
+                    this.customization.GetBaseSenderType = c => string.Empty;
                     this.customization.BuildPathForComponentCode = CustomBuildPathForComponentCode;
                     this.customization.BuildNamespaceForComponentCode = CustomBuildNamespaceForComponentCode;
                 }
                 return this.customization;
-            }
-        }
-
-
-
-        private Func<IComponent, string> GetBaseSenderType
-        {
-            get
-            {
-                return c => string.Format("I{0}, NServiceBus.INServiceBusComponent", c.CodeIdentifier, this.Project.Data.RootNamespace);
             }
         }
 
@@ -118,12 +108,12 @@ namespace NServiceBusStudio
             return endpoint == null ? string.Empty : string.Format(@"{0}.Components.{1}", endpoint.Project.Data.RootNamespace, service.CodeIdentifier);
         }
 
-        private static string CustomBuildPathForComponentCode(abs.IAbstractEndpoint endpoint, IService service, string subPath)
+        private static string CustomBuildPathForComponentCode(abs.IAbstractEndpoint endpoint, IService service, string subPath, bool useNewServiceName)
         {
-            var result = string.Format(@"{0}\Components\{1}", endpoint.Project.Name, service.InstanceName);
+            var result = string.Format(@"{0}\Components\{1}", endpoint.Project.Name, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             if (subPath != string.Empty && subPath != null)
             {
-                result = string.Format(@"{0}\Infrastructure\{1}\{2}", endpoint.Project.Name, subPath, service.InstanceName);
+                result = string.Format(@"{0}\Infrastructure\{1}\{2}", endpoint.Project.Name, subPath, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             }
             return result;
         }

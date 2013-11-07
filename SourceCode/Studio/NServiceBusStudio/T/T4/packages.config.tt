@@ -1,12 +1,13 @@
-﻿<#@ Template Inherits="Microsoft.VisualStudio.Patterning.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
-<#@ ModelElement Type="Microsoft.VisualStudio.Patterning.Runtime.IProductElement" Processor="ModelElementProcessor" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
-<#@ Assembly Name="NServiceBusStudio.Automation.dll" #>
-<#@ Import Namespace="global::Microsoft.VisualStudio.Patterning.Runtime" #>
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="System.Linq" #>
-<#  var nservicebusversion = ((IProductElement)this.Element).Product.As<IApplication>().NServiceBusVersion; 
-#>
+<#  var nservicebusversion = ((IProductElement)this.Element).Product.As<IApplication>().NServiceBusVersion; #>
 <?xml version="1.0" encoding="utf-8"?>
 <packages>
   <package id="NServiceBus.Interfaces" version="<#= nservicebusversion #>" />

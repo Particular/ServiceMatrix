@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using System.Runtime.InteropServices;
 using System.IO;
+using NuPattern.VisualStudio.Solution;
+using NuPattern;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -122,7 +123,7 @@ namespace NServiceBusStudio.Automation.Extensions
             var basePath = infraproject.PhysicalPath;
             var solutionPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath));
             var packageConfig = Path.Combine(Path.GetDirectoryName(basePath), "packages.config");
-            var packageSources = string.Empty;
+            var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669;http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
 
             try
             {

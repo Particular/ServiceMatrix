@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Patterning.Extensibility.References;
+using NuPattern.Runtime;
+using NuPattern.Runtime.References;
 
 namespace NServiceBusStudio.Automation.Commands
 {
     [DisplayName("Handles a New Library Element added")]
     [Description("Checks if the project exists and adds all the needed artifacts")]
     [CLSCompliant(false)]
-    public class LibraryAddedCommand : FeatureCommand
+    public class LibraryAddedCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -45,7 +44,7 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 serviceLibrary.Parent.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName
                     + "." + serviceLibrary.Parent.Parent.CodeIdentifier;
-                serviceLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + ".Code"
+                serviceLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + "." + libraries.As<IProductElement>().Root.As<IApplication>().ProjectNameCode
                     + "\\" + serviceLibrary.Parent.Parent.CodeIdentifier;
             }
             else
@@ -55,7 +54,7 @@ namespace NServiceBusStudio.Automation.Commands
                 if (infrastructureLibrary != null)
                 {
                     infrastructureLibrary.Parent.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName;
-                    infrastructureLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + ".Code";
+                    infrastructureLibrary.FilePath = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName + "." + libraries.As<IProductElement>().Root.As<IApplication>().ProjectNameCode;
                 }
             }
 

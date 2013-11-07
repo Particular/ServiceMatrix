@@ -1,9 +1,10 @@
-﻿using System;
+﻿using NuPattern.Diagnostics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+
+
 
 namespace NServiceBusStudio.Automation.TypeConverters
 {
@@ -16,7 +17,7 @@ namespace NServiceBusStudio.Automation.TypeConverters
     [CLSCompliant(false)]
     public class TransportTypeConverter : StringConverter
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<TransportTypeConverter>();
+        private static readonly ITracer tracer = Tracer.Get<TransportTypeConverter>();
 
         /// <summary>
         /// Determines whether this converter supports standard values.
@@ -44,7 +45,7 @@ namespace NServiceBusStudio.Automation.TypeConverters
 			try
 			{
 				// Make initial trace statement for this converter
-				tracer.TraceInformation(
+				tracer.Info(
 					"Determining values for this converter");
 
                 foreach (var item in Enum.GetValues(typeof(TransportType)))
@@ -56,7 +57,7 @@ namespace NServiceBusStudio.Automation.TypeConverters
 			}
 			catch (Exception ex)
 			{
-				tracer.TraceError(
+				tracer.Error(
 					ex, "Some error calculating or fetching values");
 
 				throw;

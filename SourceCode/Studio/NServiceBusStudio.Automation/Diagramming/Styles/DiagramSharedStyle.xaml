@@ -1,0 +1,141 @@
+﻿<ResourceDictionary 
+    x:Class="ServiceMatrix.Diagramming.Styles.DiagramSharedStyle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:styles="clr-namespace:ServiceMatrix.Diagramming.Styles"
+    xmlns:shapes="clr-namespace:ServiceMatrix.Diagramming.ViewModels.Shapes"
+    xmlns:converters="clr-namespace:ServiceMatrix.Diagramming.Converters"
+    xmlns:c="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Converters"
+    xmlns:p="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"   
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ms="http://namespaces.mindscape.co.nz/wpf">
+
+    <ResourceDictionary.MergedDictionaries>
+        <styles:DiagramMenuItemStyle />
+    </ResourceDictionary.MergedDictionaries>
+
+    <c:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
+    <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+    <converters:DiagramUriToCachedImageConverter x:Key="UriToCachedImageConverter" />
+
+    <p:MenuItemSeparatorStyleSelector x:Key="SeparatorStyleSelector">
+        <p:MenuItemSeparatorStyleSelector.EmptyTemplate>
+            <DataTemplate />
+        </p:MenuItemSeparatorStyleSelector.EmptyTemplate>
+        <p:MenuItemSeparatorStyleSelector.SeparatorTemplate>
+            <DataTemplate>
+                <Separator Style="{StaticResource {x:Static MenuItem.SeparatorStyleKey}}" />
+            </DataTemplate>
+        </p:MenuItemSeparatorStyleSelector.SeparatorTemplate>
+    </p:MenuItemSeparatorStyleSelector>
+
+    <Image x:Key="MenuItem.Image"
+           x:Shared="false"
+           Source="{Binding ImagePath, Converter={StaticResource UriToCachedImageConverter}}" />
+    
+    <RadioButton x:Key="MenuItem.ViewButton" x:Shared="false" IsChecked="{Binding IsSelected,Mode=TwoWay}" GroupName="MenuOptions" IsHitTestVisible="False" />
+
+    <Style x:Key="DynamicMenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="InputGestureText" Value="{Binding InputGestureText}" />
+        <Setter Property="Command" Value="{Binding Command}" />
+        <Setter Property="CommandParameter" Value="{Binding Data}" />
+        <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
+        <Setter Property="Visibility" Value="{Binding IsVisible,Converter={StaticResource VisibilityConverter}}" />
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IconType}" Value="Image">
+                <Setter Property="Icon" Value="{StaticResource MenuItem.Image}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IconType}" Value="SingleSelect">
+                <Setter Property="Icon" Value="{StaticResource MenuItem.ViewButton}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MenuButtonContextMenuStyle" TargetType="ContextMenu">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Grid.IsSharedSizeScope" Value="true"/>
+        <Setter Property="HasDropShadow" Value="True"/>
+        <Setter Property="Background" Value="Black" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <Grid>
+                        <Polygon Points="0.5,0.5 0,1 1,1"
+                                 Fill="Black"
+                                 Width="20"
+                                 Height="10"
+                                 Stretch="Fill"
+                                 VerticalAlignment="Top"
+                                 HorizontalAlignment="Center" />
+                        <Border Name="Border"
+                                Margin="0,10,0,0"
+                                Background="Black"
+                                BorderThickness="0">
+                            <ItemsPresenter />
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="HasDropShadow" Value="true">
+                            <Setter TargetName="Border" Property="Padding" Value="0,3,0,3"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MenuButton" TargetType="Button">
+        <Setter Property="IsHitTestVisible" Value="True" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="34" />
+        <Setter Property="Margin" Value="12, 3, 0, 3" />
+        <Setter Property="ContextMenuService.Placement" Value="Bottom" />
+        <EventSetter Event="Click" Handler="OnClickShowMenu" />
+        <EventSetter Event="ContextMenuOpening" Handler="OnContextMenuOpening" />
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu Style="{StaticResource MenuButtonContextMenuStyle}"
+                             ItemContainerStyle="{StaticResource DynamicMenuItem}"
+                             ItemsSource="{Binding MenuOptions,Converter={StaticResource MenuGroupingConverter}}">
+                    <ContextMenu.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding MenuOptions}">
+                            <ContentPresenter Content="{Binding Caption}" RecognizesAccessKey="True" />
+                        </HierarchicalDataTemplate>
+                    </ContextMenu.ItemTemplate>
+                    <ContextMenu.GroupStyle>
+                        <GroupStyle HidesIfEmpty="True" HeaderTemplateSelector="{StaticResource SeparatorStyleSelector}" />
+                    </ContextMenu.GroupStyle>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <ControlTemplate.Resources>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="TextDecorations" Value="Underline" />
+                                </Style>
+                            </ControlTemplate.Resources>
+                            <Border BorderThickness="1">
+                                <ContentPresenter />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

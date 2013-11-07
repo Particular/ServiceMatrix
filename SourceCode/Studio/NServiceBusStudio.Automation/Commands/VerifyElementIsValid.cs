@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.Properties;
 using System.Globalization;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
+using NuPattern.Library.Commands;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands
 {
 	[CLSCompliant(false)]
 	[Category("Pattern Automation")]
-	public class VerifyElementIsValid : FeatureCommand
+    public class VerifyElementIsValid : NuPattern.Runtime.Command
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<VerifyElementIsValid>();
+		private static readonly ITracer tracer = Tracer.Get<VerifyElementIsValid>();
         private const bool DefaultValidateAscendants = false;
         private const bool DefaultValidateDescendants = true;
 
@@ -52,7 +51,7 @@ namespace NServiceBusStudio.Automation.Commands
 		{
 			Validator.ValidateObject(this, new ValidationContext(this, null, null));
 
-			tracer.TraceInformation(
+			tracer.Info(
 				Resources.VerifyElementIsValid_TraceInitial, this.CurrentElement.InstanceName, this.ValidateDescendants);
 
 			var instances = this.ValidateDescendants ? this.CurrentElement.Traverse().OfType<IInstanceBase>() : new[] { this.CurrentElement };
@@ -62,7 +61,7 @@ namespace NServiceBusStudio.Automation.Commands
 
 			var result = this.ProductManager.Validate(elements);
 
-			tracer.TraceInformation(
+			tracer.Info(
 				Resources.VerifyElementIsValid_TraceEvaluation, this.CurrentElement.InstanceName, this.ValidateDescendants, result);
 
 			if (!result)

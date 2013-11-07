@@ -1,0 +1,43 @@
+﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ElementHierarchyPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="278" 
+             Height="140" Width="278"
+             FocusManager.FocusedElement="{Binding ElementName=DropDown}">
+    <Grid  Margin="5,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Service Name:</Label>
+        <ComboBox x:Name="MasterDropDown" Grid.Column="1" Grid.Row="0" IsEditable="true"  Margin="5,10"
+                  ItemsSource="{Binding Path=MasterElements}" 
+                  Text="{Binding Path=SelectedMasterItem}">
+        </ComboBox>
+        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" x:Name="SlaveLabel">Slave Name:</Label>
+        <ComboBox x:Name="SlaveDropDown" Grid.Column="1" Grid.Row="1" IsEditable="true" Margin="5, 0, 5,10"
+                  ItemsSource="{Binding Path=SlaveElements}" 
+                  Text="{Binding Path=SelectedSlaveItem}">
+        </ComboBox>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" IsSharedSizeScope="true" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
+            </Grid.ColumnDefinitions>
+            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" />
+            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
+        </Grid>
+    </Grid>
+</src:CommonDialogWindow>
+

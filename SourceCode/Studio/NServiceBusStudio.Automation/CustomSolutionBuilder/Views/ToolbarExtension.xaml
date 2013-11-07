@@ -7,11 +7,14 @@
              d:DesignHeight="16" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" Height="16">
         <Separator/>
-        <Button Click="Button_Click" ToolTip="NServiceBus Studio View" x:Name="NServiceBusViewButton" Focusable="False">
+        <Button Click="Button_Click" ToolTip="ServiceMatrix View" x:Name="NServiceBusViewButton" Focusable="False">
             <BitmapImage UriSource="../../Resources/NServiceBusView.png" />
         </Button>
         <Button Click="Button_Click_1" ToolTip="Solution Builder Default View" Focusable="False">
             <BitmapImage UriSource="../../Resources/Hierarchy.png" />
+        </Button>
+        <Button Click="Button_Click_2" ToolTip="Get Help from Particular Software Support Call" Focusable="False">
+            <BitmapImage UriSource="../../Resources/Help.png" />
         </Button>
     </StackPanel>
 </UserControl>

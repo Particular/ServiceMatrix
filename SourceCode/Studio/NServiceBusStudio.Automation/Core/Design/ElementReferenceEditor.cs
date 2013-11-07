@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
-using Microsoft.VisualStudio.Patterning.Runtime;
 using System.ComponentModel;
+using NuPattern.ComponentModel.Design;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Core.Design
 {
@@ -37,7 +37,7 @@ namespace NServiceBusStudio.Core.Design
                 {
                 }
 
-                return referencedValue.As<Microsoft.VisualStudio.Patterning.Runtime.IElement>().InstanceName;
+                return referencedValue.As<NuPattern.Runtime.IElement>().InstanceName;
             }
 
             return selectedValue;

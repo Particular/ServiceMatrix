@@ -5,12 +5,13 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning.Extensibility;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.Patterning.Extensibility.References;
+using NuPattern.Runtime;
 using System.Diagnostics;
+using NuPattern.Runtime.Validation;
+using NuPattern.Diagnostics;
+using NuPattern;
+using NuPattern.Runtime.References;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.ValidationRules
 {
@@ -21,7 +22,7 @@ namespace NServiceBusStudio.Automation.ValidationRules
     [CLSCompliant(false)]
     public class DeleteMissingArtifactReferences : ValidationRule
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<DeleteMissingArtifactReferences>();
+        private static readonly ITracer tracer = Tracer.Get<DeleteMissingArtifactReferences>();
 
         /// <summary>
         /// Gets or sets the current element to validate.
@@ -32,7 +33,7 @@ namespace NServiceBusStudio.Automation.ValidationRules
 
         [Required]
         [Import(AllowDefault = true)]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         /// <summary>
         /// Evaluates the violations for the rule.
@@ -72,7 +73,7 @@ namespace NServiceBusStudio.Automation.ValidationRules
                                 }
                                 catch (Exception ex)
                                 {
-                                    tracer.TraceError(ex.Message);
+                                    tracer.Error(ex.Message);
                                 }
                             }
 

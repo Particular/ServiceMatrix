@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using NServiceBusStudio.Core.Design;
 using NServiceBusStudio.Core;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
+using NuPattern.ComponentModel;
+
 
 namespace NServiceBusStudio
 {
@@ -59,7 +60,7 @@ namespace NServiceBusStudio
 
             public string InstanceName { get; set; }
 
-            public IEnumerable<Microsoft.VisualStudio.Patterning.Runtime.IReference> References { get; private set; }
+            public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
 
             public string Notes { get; set; }
 
@@ -77,7 +78,7 @@ namespace NServiceBusStudio
                 throw new NotImplementedException();
             }
 
-            public Microsoft.VisualStudio.Patterning.Runtime.IElement AsElement()
+            public NuPattern.Runtime.IElement AsElement()
             {
                 throw new NotImplementedException();
             }

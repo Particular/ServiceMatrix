@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:src="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
-             xmlns:vs="clr-namespace:Microsoft.VisualStudio.PlatformUI;assembly=Microsoft.VisualStudio.Shell.10.0" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d" 
              SizeToContent="Height" Width="458"
              FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" d:DesignHeight="257">
@@ -42,11 +42,11 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView Grid.Row="0" x:Name="ServicesList"  
+        <ListView Grid.Row="0" x:Name="ServicesList"  Margin="5,10"
                   ItemsSource="{Binding Path=Elements}" 
-                  SelectionMode="Multiple" 
+                  SelectionMode="Multiple" MinHeight="20"
                   ItemTemplate="{StaticResource ItemDataTemplate}"></ListView>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="5,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -55,7 +55,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="60"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,5,5,0">To subscribe a new service type the service name and press 'Add'</TextBlock>
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,0,5,0">To subscribe a new service type the service name and press 'Add'</TextBlock>
             <TextBox Grid.Row="1" Grid.Column="0" x:Name="AddServiceText" Margin="5"></TextBox>
             <Button Grid.Row="1" Grid.Column="1" Click="AddService_Click" Margin="5">Add</Button>
         </Grid>
@@ -64,8 +64,8 @@
                 <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
                 <ColumnDefinition Width="Auto" SharedSizeGroup="CmdBtn" />
             </Grid.ColumnDefinitions>
-            <vs:DialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
-            <vs:DialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
+            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
+            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
         </Grid>
     </Grid>
 </src:CommonDialogWindow>

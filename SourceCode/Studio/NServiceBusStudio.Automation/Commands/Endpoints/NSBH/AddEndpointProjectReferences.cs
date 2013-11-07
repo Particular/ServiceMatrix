@@ -4,22 +4,22 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
+using Microsoft.VisualStudio.Shell;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
     [DisplayName("Add Endpoint Project References")]
     [Description("Add references in the Service Project to the required projects")]
     [CLSCompliant(false)]
-    public class AddEndpointProjectReferences : FeatureCommand
+    public class AddEndpointProjectReferences : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]
         IProductElement Endpoint { get; set; }
 
-        [Import]
+        [Import(typeof(SVsServiceProvider))]
         public IServiceProvider ServiceProvider { get; set; }
 
         public override void Execute()

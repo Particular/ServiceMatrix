@@ -3,16 +3,14 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning;
-using Microsoft.VisualStudio.Patterning.Extensibility;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.TypeConverters;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
 using System.Drawing.Design;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
+using NuPattern.Diagnostics;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -23,9 +21,9 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a dialog where the user can choose or create an event, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowEventTypePicker : FeatureCommand
+    public class ShowEventTypePicker : NuPattern.Runtime.Command
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<ShowEventTypePicker>();
+        private static readonly ITracer tracer = Tracer.Get<ShowEventTypePicker>();
 
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -76,6 +74,7 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
 
             picker.Elements = eventNames.ToList();
+            picker.Title = "Publish Event...";
 
             using (new MouseCursor(Cursors.Arrow))
             {
@@ -96,12 +95,12 @@ namespace NServiceBusStudio.Automation.Commands
                 }
             }
             // Make initial trace statement for this command
-            //tracer.TraceInformation(
+            //tracer.Info(
             //    "Executing ShowElementTypePicker on current element '{0}' with AProperty '{1}'", this.CurrentElement.InstanceName, this.ElementType);
 
-            //	TODO: Use tracer.TraceWarning() to note expected and recoverable errors
-            //	TODO: Use tracer.TraceVerbose() to note internal execution logic decisions
-            //	TODO: Use tracer.TraceInformation() to note key results of execution
+            //	TODO: Use tracer.Warning() to note expected and recoverable errors
+            //	TODO: Use tracer.Verbose() to note internal execution logic decisions
+            //	TODO: Use tracer.Info() to note key results of execution
             //	TODO: Raise exceptions for all other errors
         }
     }

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
     [DisplayName("ExecuteUnfoldEndpointDiagram")]
     [Description("ExecuteUnfoldEndpointDiagram")]
     [CLSCompliant(false)]
-    public class ExecuteUnfoldEndpointDiagram : FeatureCommand
+    public class ExecuteUnfoldEndpointDiagram : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]

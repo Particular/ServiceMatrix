@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 {
     [DisplayName("WebMVCEndpoint OpenComponentCodeCommand")]
     [Description("WebMVCEndpoint OpenComponentCodeCommand")]
     [CLSCompliant(false)]
-    public class OpenComponentCodeCommand : FeatureCommand
+    public class OpenComponentCodeCommand : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]

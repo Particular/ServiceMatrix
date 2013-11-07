@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
@@ -15,7 +15,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
     [Category("General")]
     [Description("Add authentication code for all the endpoints.")]
     [CLSCompliant(false)]
-    public class AuthenticationAddedCommand : FeatureCommand
+    public class AuthenticationAddedCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -38,7 +38,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         [Required]
         [Import(AllowDefault = true)]
-        public Microsoft.VisualStudio.TeamArchitect.PowerTools.ISolution Solution { get; set; }
+        public ISolution Solution { get; set; }
 
         [Import(typeof(SVsServiceProvider))]
         public IServiceProvider ServiceProvider { get; set; }

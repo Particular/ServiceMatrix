@@ -2,9 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Runtime;
 using AbstractEndpoint;
 using System.Linq;
 using System.IO;
@@ -12,6 +10,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -19,7 +18,7 @@ namespace NServiceBusStudio.Automation.Commands
     [DisplayName("Set StartUp Projects")]
     [Description("Set Endpoint projects as StartUp Projects")]
     [CLSCompliant(false)]
-    public class SetStartUpProjects : FeatureCommand
+    public class SetStartUpProjects : NuPattern.Runtime.Command
     {
         public SetStartUpProjects()
         {
@@ -76,7 +75,7 @@ namespace NServiceBusStudio.Automation.Commands
                     {
                         var context = sctx as EnvDTE.SolutionContext;
                         //if (projectNamesToDisable.Contains(context.ProjectName))
-                        if (context.ProjectName.EndsWith(".Code.csproj"))
+                        if (context.ProjectName.EndsWith(String.Format (".{0}.csproj", this.CurrentElement.Root.As<IApplication>().ProjectNameCode)))
                         {
                             context.ShouldBuild = false;
                             context.ShouldDeploy = false;

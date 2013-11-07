@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Patterning.Extensibility;
+using NuPattern.Runtime;
 using AbstractEndpoint.Automation.Dialog;
 using NServiceBusStudio.Automation.Dialog;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using NuPattern;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    public class ShowComponentReferencePicker : FeatureCommand
+    public class ShowComponentReferencePicker : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.

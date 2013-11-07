@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
 using NServiceBusStudio.Core;
 using NServiceBusStudio.Core.Design;
 using NServiceBusStudio;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Runtime;
+using NuPattern.ComponentModel;
+using NuPattern.VisualStudio.Solution;
+
 
 namespace AbstractEndpoint
 {
@@ -65,7 +66,7 @@ namespace AbstractEndpoint
 
             public string InstanceName { get; set; }
 
-            public IEnumerable<Microsoft.VisualStudio.Patterning.Runtime.IReference> References { get; private set; }
+            public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
 
             public string Notes { get; set; }
 
@@ -79,7 +80,7 @@ namespace AbstractEndpoint
             {
             }
 
-            public Microsoft.VisualStudio.Patterning.Runtime.IElement AsElement()
+            public NuPattern.Runtime.IElement AsElement()
             {
                 return null;
             }
@@ -129,7 +130,7 @@ namespace AbstractEndpoint
 
             public event EventHandler NamespaceChanged;
 
-            public Microsoft.VisualStudio.TeamArchitect.PowerTools.IProject Project
+            public IProject Project
             {
                 get { throw new NotImplementedException(); }
             }
@@ -156,6 +157,7 @@ namespace AbstractEndpoint
             public string ClassBody { get; set; }
             public string CustomClassBody { get; set; }
             public bool IsSaga { get; set; }
+            public bool AutoPublishMessages { get; set; }
 
 
             public event EventHandler AdditionalUsingsChanged;
@@ -200,6 +202,25 @@ namespace AbstractEndpoint
             public void RemoveLinks(IAbstractEndpoint endpoint)
             {
                 throw new NotImplementedException();
+            }
+
+            public void AddLinks(IAbstractEndpoint endpoint)
+            {
+                throw new NotImplementedException();
+            }
+
+
+            public event EventHandler AutoPublishEventsChanged;
+
+
+            public bool IsSender
+            {
+                get { throw new NotImplementedException(); }
+            }
+
+            public bool IsProcessor
+            {
+                get { throw new NotImplementedException(); }
             }
         }
     }

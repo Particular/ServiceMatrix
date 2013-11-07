@@ -11,17 +11,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Runtime.UI;
 using System.ComponentModel;
-using Microsoft.VisualStudio.Patterning.Common.Presentation;
-using Microsoft.VisualStudio.Patterning.Extensibility;
+using NuPattern.Presentation;
 using System.ComponentModel.Composition.Hosting;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using System.ComponentModel.Composition;
 using System.Reflection;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+using NuPattern;
+using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -32,7 +33,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
     {
         public LogicalView(IServiceProvider serviceProvider, object myContext)
         {
-            var myDataContext = new LogicalViewModel(myContext as SolutionBuilderViewModel);
+            var myDataContext = new LogicalViewModel(myContext as ISolutionBuilderViewModel);
             this.DataContext = myDataContext;
             this.InitializeComponent();
             //this.DataContext = myContext;
@@ -117,11 +118,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     if (treeView == null || treeViewItem == null)
                         return;
 
-                    var viewModel = treeView.SelectedItem as ProductElementViewModel;
+                    var viewModel = treeView.SelectedItem as IProductElementViewModel;
                     if (viewModel == null)
                         return;
 
-                    var dragData = new DataObject("VSPAT", viewModel.Model);
+                    var dragData = new DataObject("VSPAT", viewModel.Data);
                     DragDrop.DoDragDrop(treeViewItem, dragData, DragDropEffects.Move);
                 }
             }
@@ -144,7 +145,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragEnter != null)
             {
-                ElementDragEnter(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
 
             effects = e.Effects;
@@ -157,7 +158,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragEnter != null)
             {
-                ElementDragEnter(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragEnter(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
         }
 
@@ -168,7 +169,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (ElementDragLeave != null)
             {
-                ElementDragLeave(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDragLeave(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
         }
 
@@ -176,7 +177,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         {
             if (ElementDrop != null)
             {
-                ElementDrop(((ProductElementViewModel)(((TreeViewItem)sender).DataContext)).Model, e);
+                ElementDrop(((IProductElementViewModel)(((TreeViewItem)sender).DataContext)).Data, e);
             }
             e.Handled = true;
         }
@@ -199,12 +200,17 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
             if (item != null)
             {
-                var method = typeof(AutomationMenuOptionViewModel)
-                    .GetMethod("ReEvaluateCommand", BindingFlags.NonPublic | BindingFlags.Instance);
+                var type = Type.GetType("NuPattern.Runtime.UI.ViewModels.AutomationMenuOptionViewModel, NuPattern.Runtime.Core");
+                var method = type.GetMethod("ReEvaluateCommand", BindingFlags.NonPublic | BindingFlags.Instance);
                 if (method != null)
                 {
-                    item.ContextMenu.Items.OfType<AutomationMenuOptionViewModel>().ForEach(
-                        m => method.Invoke(m, null));
+                    foreach (var i in item.ContextMenu.Items)
+                    {
+                        if (i.GetType() == type)
+                        {
+                            method.Invoke(i, null);
+                        }
+                    }
                 }
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EnvDTE;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {

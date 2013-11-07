@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.ComponentModel.DataAnnotations;
 using NServiceBusStudio;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Patterning.Extensibility;
+using NuPattern.Runtime;
 using AbstractEndpoint.Automation.Dialog;
 using NServiceBusStudio.Automation.Dialog;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using NuPattern.Diagnostics;
+using NuPattern;
+using NuPattern.Runtime.ToolkitInterface;
+using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Commands
 {
@@ -21,9 +22,9 @@ namespace AbstractEndpoint.Automation.Commands
     [Category("General")]
     [Description("Shows starting Endpoint Picker dialog.")]
     [CLSCompliant(false)]
-    public class ShowStartedByPicker : FeatureCommand
+    public class ShowStartedByPicker : NuPattern.Runtime.Command
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<ShowComponentLinkPicker>();
+        private static readonly ITracer tracer = Tracer.Get<ShowComponentLinkPicker>();
 
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.

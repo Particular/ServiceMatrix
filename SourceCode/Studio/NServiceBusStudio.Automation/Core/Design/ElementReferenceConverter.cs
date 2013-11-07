@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.Patterning.Runtime;
 using System.Globalization;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Design;
+using NuPattern.Runtime;
+using NuPattern.Runtime.ToolkitInterface;
+using NuPattern.ComponentModel;
+
 
 namespace NServiceBusStudio.Core.Design
 {
@@ -31,7 +33,7 @@ namespace NServiceBusStudio.Core.Design
                         // use the referenced message by id.
                         reference.Refresh();
 
-                        return reference.Value == null ? reference.NoneText : reference.Value.As<Microsoft.VisualStudio.Patterning.Runtime.IElement>().InstanceName;
+                        return reference.Value == null ? reference.NoneText : reference.Value.As<NuPattern.Runtime.IElement>().InstanceName;
                     }
                 }
                 catch (NotSupportedException)

@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using NuPattern;
+using NuPattern.Runtime;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
+using NuPattern.Library.Commands;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.Patterning.Library.Automation;
+using NuPattern.Library.Automation;
+using NuPattern.VisualStudio.Solution;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
@@ -44,7 +45,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 };
             }
 
-            return solution.Items.First(i => i.Name == projectName).As<IProject>();
+            var item = solution.Items.First(i => i.Name == projectName);
+            return item.As<IProject>();
         }
 
         // Add a reference to the infrastructure project on each endpoint project
@@ -156,11 +158,11 @@ namespace NServiceBusStudio.Automation.Infrastructure
             var guid = Guid.NewGuid();
             ISolution solution = sp.TryGetService<ISolution>();
             IPatternManager patternManager = sp.TryGetService<IPatternManager>();
-            IFxrUriReferenceService uriService = sp.TryGetService<IFxrUriReferenceService>();
+            IUriReferenceService uriService = sp.TryGetService<IUriReferenceService>();
             var command = new GenerateProductCodeCommand
             {
                 TargetBuildAction = buildAction,
-                TargetCopyToOutput = Microsoft.VisualStudio.Patterning.Extensibility.CopyToOutput.DoNotCopy,
+                TargetCopyToOutput = CopyToOutput.DoNotCopy,
                 Settings = new EmptySettings { Name = String.Format("{0}{1}", namePrefix, guid.ToString()), Id = guid },
                 PatternManager = patternManager,
                 UriService = uriService,

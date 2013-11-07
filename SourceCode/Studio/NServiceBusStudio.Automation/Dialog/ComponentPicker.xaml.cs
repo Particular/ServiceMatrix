@@ -11,11 +11,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualStudio.Patterning.Common.Presentation;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Markup;
 using System.Collections.ObjectModel;
+using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Dialog
 {

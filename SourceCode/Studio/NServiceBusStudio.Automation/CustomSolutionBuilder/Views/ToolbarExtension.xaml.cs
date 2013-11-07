@@ -11,8 +11,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
+using NuPattern.Runtime;
+using NuPattern.Runtime.UI;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+using Microsoft.VisualStudio.Shell.Interop;
+using NuPattern;
+using NuPattern.Runtime.UI.ViewModels;
+using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -30,8 +35,31 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public ScrollViewer ContentScrollViewer { get; set; }
 
+        public IServiceProvider ServiceProvider { get; set; }
+
         private object DefaultSolutionBuilderView = null;
         private LogicalView NServiceBusView = null;
+        private bool IsEnabledNServiceBusView;
+
+        public void Enable()
+        {
+            EnableDisableNServiceBusView(true);
+        }
+
+        public void Disable()
+        {
+            EnableDisableNServiceBusView(false);
+        }
+
+        private void EnableDisableNServiceBusView(bool enable)
+        {
+            if (this.NServiceBusView != null)
+            {
+                this.NServiceBusView.IsEnabled = enable;
+            }
+            this.IsEnabledNServiceBusView = enable;
+        }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -43,7 +71,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             if (NServiceBusView == null)
             {
                 var SBdataContext = this.DataContext;
-                LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as SolutionBuilderViewModel);
+                LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as ISolutionBuilderViewModel);
 
                 NServiceBusView = new LogicalView(LogicalViewModel.NServiceBusViewModel)
                     {
@@ -51,6 +79,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     };
 
                 NServiceBusView.InitializeViewSelector();
+
+                EnableDisableNServiceBusView(this.IsEnabledNServiceBusView);
 
                 NServiceBusView.SelectedItemChanged += (s, f) =>
                 {
@@ -94,7 +124,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                     grid.Children.Add(this.NServiceBusView);
                     this.NServiceBusView.SetValue(Grid.RowProperty, 1);
                     if (window != null &&
-                        (this.DataContext as SolutionBuilderViewModel) != null &&
+                        (this.DataContext as ISolutionBuilderViewModel) != null &&
                         NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels.LogicalViewModel.NServiceBusViewModel.CurrentNode != null)
                     {
                         Dispatcher.BeginInvoke(new Action(() =>
@@ -134,8 +164,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             }
         }
 
-        public IServiceProvider ServiceProvider { get; set; }
-
         internal void ShowNoSolutionState()
         {
             this.ShowNServiceBusStudioView(false);
@@ -153,7 +181,17 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             
             // Refresh Solution Builder View Model
             var SBdataContext = this.DataContext;
-            LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as SolutionBuilderViewModel);
+            LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as ISolutionBuilderViewModel);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            var url = String.Format(@"http://particular.net/support?caller=serviceMatrix&smversion={0}&vsversion={1}",
+                                    System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetOperatingSystemVersion()),
+                                    System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetVisualStudioVersion(this.ServiceProvider.GetService<EnvDTE.DTE>())));
+            var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
+            var frame = default(IVsWindowFrame);
+            vsWebBroserService.Navigate(url, 1, out frame);
         }
     }
 }

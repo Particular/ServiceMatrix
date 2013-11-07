@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -44,9 +44,9 @@ namespace NServiceBusStudio.Automation.Extensions
             Configure.Instance");
                 sb.AppendLine();
                 sb.AppendLine("            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.Design.InternalMessagesProject.As<IProductElement>().GetProject().Data.RootNamespace + "\"))");
+                    app.CodeIdentifier + "." + app.ProjectNameInternalMessages + "\"))");
                 sb.AppendLine("            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.Design.ContractsProject.As<IProductElement>().GetProject().Data.RootNamespace + "\"));");
+                    app.CodeIdentifier + "." + app.ProjectNameContracts + "\"));");
                 sb.Append(@"        }
     }
 }

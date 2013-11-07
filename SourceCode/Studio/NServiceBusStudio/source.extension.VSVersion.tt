@@ -1,0 +1,101 @@
+<#@ template language="C#" hostspecific="true" #>
+<#@ output extension=".gen.ttinclude" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="EnvDTE" #>
+<#@ parameter name="VsVer" type="System.String" #>
+<#
+    var vsVersion = "";
+    if (String.IsNullOrEmpty(VsVer))
+    {
+        // This code detects the target version of Visual Studio by reading the 
+        // MSBUILD variables of the "Versioning" project that are determined by the current build configuration (see BuildConfiguration.CSharp.props)
+        // This template will only work correctly when transformed within Visual Studio
+        var projectName = "NServiceBusStudio";
+        var buildConstantName = "DefineConstants";
+        var buildConstantPrefix = "VSVER";
+
+        var serviceProvider = (IServiceProvider)this.Host;
+        var dte = serviceProvider.GetService(typeof(EnvDTE.DTE)) as EnvDTE.DTE;
+
+        // Determine the VSVERXX build constant
+        var projects = GetProjectsFromSolution(dte.Solution).Where(p => p != null);
+
+        var versionProject = projects.First(p => p.Name == projectName);
+        var buildConstants = versionProject.ConfigurationManager.ActiveConfiguration.Properties.Item(buildConstantName).Value.ToString();
+        vsVersion = buildConstants.Substring(buildConstants.IndexOf(buildConstantPrefix), buildConstantPrefix.Length + 2);
+    }
+    else
+    {
+        vsVersion = VsVer;
+    }
+
+    var targetVsVersion = "";
+	var targetFrxMinVersion = "4.0";
+	var targetFrxMaxVersion = "4.0";
+
+    switch (vsVersion)
+    {
+        case "VSVER10":
+            targetVsVersion = "10.0";
+            break;
+
+        case "VSVER11":
+            targetVsVersion = "11.0";
+			      targetFrxMaxVersion = "4.5";
+            break;
+
+        default:
+            targetVsVersion = vsVersion;
+            break;
+    }
+ #>
+\<#+
+// Product Version Info
+public static class VersionInfo
+{
+    // Framework Version
+    public static readonly string TargetVsVersion = "<#=targetVsVersion#>";
+	public static readonly string TargetFrxMinVersion = "<#=targetFrxMinVersion#>";
+	public static readonly string TargetFrxMaxVersion = "<#=targetFrxMaxVersion#>";
+
+}
+\#><#+
+ private static IEnumerable<EnvDTE.Project> GetProjectsFromSolution(EnvDTE.Solution solution)
+ {
+    var projects = new List<EnvDTE.Project>();
+
+    foreach (var p in solution.Projects.OfType<EnvDTE.Project>())
+    {
+        if (p.Kind == Constants.vsProjectKindSolutionItems)
+        {
+            projects.AddRange(GetSubProjects(p.ProjectItems.OfType<EnvDTE.ProjectItem>()));
+        }
+        else
+        {
+            projects.Add(p);
+        }
+    }
+
+    return projects;
+ }
+
+ private static IEnumerable<EnvDTE.Project> GetSubProjects(IEnumerable<EnvDTE.ProjectItem> projectItems)
+ {
+    var projects = new List<EnvDTE.Project>();
+    foreach (var pi in projectItems)
+    {
+        if (pi.Kind == Constants.vsProjectItemKindSolutionItems)
+        {
+            projects.Add(pi.SubProject);
+        }
+        else if (pi.Kind == Constants.vsProjectKindSolutionItems)
+        {
+            projects.AddRange(GetSubProjects(pi.ProjectItems.OfType<EnvDTE.ProjectItem>()));
+        }
+    }
+    return projects;
+ }
+#>

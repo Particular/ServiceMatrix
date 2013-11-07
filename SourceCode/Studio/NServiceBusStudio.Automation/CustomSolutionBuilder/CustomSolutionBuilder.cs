@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Patterning.Runtime.Shell;
-using System.Windows.Controls;
+﻿using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Shell.Interop;
+using NuPattern;
+using NuPattern.Runtime;
+using NuPattern.Runtime.Shell.ToolWindows;
+using NuPattern.Runtime.UI.ViewModels;
+using NuPattern.VisualStudio.Solution;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+using System.Linq;
 using System.Threading;
+using System.Windows.Controls;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 {
@@ -20,7 +20,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
         [Import]
         public ISolutionEvents SolutionEvents { get; set; }
 
+        [Import]
+        public IPatternWindows PatternWindows { get; set; }
+        
         public static bool HasBeenAlreadyInitialized = false;
+
+        private ISolutionBuilderViewModel SolutionBuilderViewModel;
+        private ToolbarExtension ToolBarExtension;
+        private ScrollViewer Scrollviewer;
 
         public void Initialize(IServiceProvider serviceProvider)
         {
@@ -41,25 +48,21 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
             {
                 this.DetailsWindowManager.Show();
             }
-            SolutionBuilderToolWindow tw = null;
+            
+            this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
+            var toolWindow = this.PatternWindows.ShowSolutionBuilder(serviceProvider);
 
-            var ptw = serviceProvider.GetService(typeof(IPackageToolWindow)) as IPackageToolWindow;
-
-            tw = ptw.ShowWindow<SolutionBuilderToolWindow>();
-
-            if (tw != null)
+            if (toolWindow != null)
             {
-                var content = tw.Content as UserControl;
+                var content = toolWindow.Content as UserControl;
 
                 var contentGrid = content.Content as Grid;
-
-                ScrollViewer scrollviewer = null;
 
                 foreach (var theitem in contentGrid.Children)
                 {
                     if (theitem is ScrollViewer)
                     {
-                        scrollviewer = (theitem as ScrollViewer);
+                        this.Scrollviewer = (theitem as ScrollViewer);
                     }
                 }
 
@@ -76,7 +79,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
                                 this.ToolBarExtension = new ToolbarExtension
                                 {
-                                    ContentScrollViewer = scrollviewer,
+                                    ContentScrollViewer = Scrollviewer,
                                     ServiceProvider = serviceProvider
                                 }; 
 
@@ -86,24 +89,37 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
                     }
                 }
-
-                this.SolutionBuilderViewModel = scrollviewer.DataContext as Microsoft.VisualStudio.Patterning.Runtime.UI.SolutionBuilderViewModel;
             }
         }
 
-        private Microsoft.VisualStudio.Patterning.Runtime.UI.SolutionBuilderViewModel SolutionBuilderViewModel;
-        private ToolbarExtension ToolBarExtension;
+        public void EnableSolutionBuilder()
+        {
+            this.Scrollviewer.IsEnabled = true;
+            this.DetailsWindowManager.Enable();
+            this.ToolBarExtension.Enable();
+        }
 
+        public void DisableSolutionBuilder()
+        {
+            this.Scrollviewer.IsEnabled = false;
+            this.DetailsWindowManager.Disable();
+            this.ToolBarExtension.Disable();
+        }
+
+        public void ShowNoSolutionState()
+        {
+            if (this.ToolBarExtension != null)
+            {
+                this.ToolBarExtension.ShowNoSolutionState();
+                //NServiceBusStudio.Automation.Tasks.NServiceBusTaskProgressToolWindow.ShowNoSolutionState();
+            }
+        }
 
         private void WireSolutionEvents()
         {
             this.SolutionEvents.SolutionClosed += (s, e) => 
             {
-                if (this.ToolBarExtension != null)
-                {
-                    this.ToolBarExtension.ShowNoSolutionState();
-                    //NServiceBusStudio.Automation.Tasks.NServiceBusTaskProgressToolWindow.ShowNoSolutionState();
-                }
+                this.ShowNoSolutionState();
             };
             this.SolutionEvents.SolutionOpened += (s, e) => 
             {
@@ -142,18 +158,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
 
         #region Pattern Management Methods
-
-        /// <summary>
-        /// This function gets the MenuOptionViewModel instances from SolutionBuilder
-        /// that can create new Endpoints
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<IInstalledToolkitInfo> GetEndpointExtensionsInfo()
-        {
-            var r = this.SolutionBuilderViewModel.Nodes.First().Context.PatternManager.GetCandidateExtensionPoints("a5e9f15b-ad7f-4201-851e-186dd8db3bc9.Application.Design.Endpoints.Host");
-
-            return r;
-        }
 
         public void WaitForComponentsCreated(Action OnceCreatedAction, IService service, params string [] componentNames)
         {

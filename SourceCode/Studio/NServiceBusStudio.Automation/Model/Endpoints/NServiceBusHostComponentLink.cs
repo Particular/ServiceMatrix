@@ -6,7 +6,7 @@ using AbstractEndpoint;
 using NServiceBusStudio;
 using NServiceBusStudio.Core;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio
 {
@@ -45,6 +45,7 @@ namespace NServiceBusStudio
             Action<object, EventArgs> nameChange = (sender, args) => this.InstanceName = this.ComponentReference.Value == null ? "(None)" : string.Format("{0:D2}. {1}.{2}", this.Order, this.ComponentReference.Value.Parent.Parent.InstanceName, this.ComponentReference.Value.InstanceName);
 
             this.ComponentIdChanged += new EventHandler(nameChange);
+            this.ComponentNameChanged += new EventHandler(nameChange);
             this.OrderChanged += (sender, args) => { reorderNext(this); nameChange(sender, args); };
             if (this.ComponentReference.Value == null)
                 this.InstanceName = "(None)";
@@ -67,6 +68,11 @@ namespace NServiceBusStudio
             {
                 next.Order++;
             }
+        }
+
+        public IAbstractEndpointComponents ParentEndpointComponents
+        {
+            get { return this.Parent as IAbstractEndpointComponents; }
         }
     }
 }

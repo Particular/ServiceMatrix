@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Timers;
-using NServiceBusStudio.Automation.Commands;
-using Microsoft.VisualStudio.Patterning.Runtime;
+﻿using AbstractEndpoint;
+using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using System.IO;
-using Microsoft.VisualStudio.ExtensionManager;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.CustomSolutionBuilder;
+using NServiceBusStudio.Automation.Licensing;
+using NuPattern;
+using NuPattern.Runtime;
+using NuPattern.VisualStudio.Solution;
+using System;
 using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Model;
-using System.ComponentModel.DataAnnotations;
-using System.Windows;
-using System.ComponentModel;
-using NServiceBusStudio.Automation.TypeDescriptors;
-using Microsoft.VisualStudio.Patterning.Runtime.Store;
+using System.IO;
+using System.Linq;
+using NuPattern.Diagnostics;
+using System.Runtime.Remoting.Messaging;
+using NServiceBusStudio.Automation.Commands;
 
 namespace NServiceBusStudio
 {
@@ -32,19 +26,20 @@ namespace NServiceBusStudio
 
     partial class Application : IRenameRefactoringNotSupported
     {
-        static partial void StaticInitialization()
-        {
-            TypeDescriptor.AddProvider(new ApplicationFilterPropertiesTypeDescriptionProvider(), typeof(Product));
-        }
-
         [Import]
         public IPatternManager PatternManager { get; set; }
+
+        [Import]
+        public IPatternWindows PatternWindows { get; set; }
 
         [Import]
         private ISolution Solution { get; set; }
 
         [Import]
         public CustomSolutionBuilder CustomSolutionBuilder { get; set; }
+
+        [Import]
+        public StatisticsManager StatisticsManager { get; set; }
 
         public IEndpoints Endpoints { get; set; }
 
@@ -58,9 +53,6 @@ namespace NServiceBusStudio
                 // Force initialization of NserviceBusVersion from file
                 this.InitializeExtensionDependentData();
 
-                var events = this.ServiceProvider.TryGetService<ISolutionEvents>();
-                events.SolutionOpened += new EventHandler<SolutionEventArgs>(events_SolutionOpened);
-
                 this.CustomSolutionBuilder.Initialize(this.ServiceProvider);
 
                 this.PatternManager.ElementDeleting += (s, e) =>
@@ -72,7 +64,7 @@ namespace NServiceBusStudio
                     // If it's a Component Link, remove all links into Endpoints (they're not artifact links)
                     var componentLink = element.As<IAbstractComponentLink>();
 
-                    if (componentLink != null && 
+                    if (componentLink != null &&
                         componentLink.ComponentReference.Value != null)
                     {
                         var endpoint = element.Parent.Parent.As<IAbstractEndpoint>();
@@ -86,7 +78,29 @@ namespace NServiceBusStudio
             this.NServiceBusVersion = nserviceBusVersion;
             this.ExtensionPath = extensionPath;
 
+            SetOptionSettings();
             SetPropagationHandlers();
+            SetDomainSpecifiLogging();
+            CheckLicense();
+            ShowDiagram();
+
+            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
+                new Action(AddNugetFiles), null);
+        }
+
+        private void ShowDiagram()
+        {
+            //new OnApplicationLoadedCommand() { ServiceProvider = this.ServiceProvider, PatternWindows = this.PatternWindows }.Execute();
+        }
+
+        private void SetOptionSettings()
+        {
+            var envdte = this.ServiceProvider.TryGetService<EnvDTE.DTE>();
+            var properties = envdte.get_Properties("ServiceMatrix", "General");
+
+            this.ProjectNameInternalMessages = properties.Item("ProjectNameInternalMessages").Value.ToString();
+            this.ProjectNameContracts = properties.Item("ProjectNameContracts").Value.ToString();
+            this.ProjectNameCode = properties.Item("ProjectNameCode").Value.ToString();
         }
 
         private void SetPropagationHandlers()
@@ -119,15 +133,35 @@ namespace NServiceBusStudio
                     }
                 }
             };
+
+            this.TransportChanged += (s, e) =>
+            {
+                if (this.Transport == TransportType.Msmq.ToString())
+                {
+                    this.TransportConnectionString = @"";
+                }
+                else if (this.Transport == TransportType.ActiveMQ.ToString())
+                {
+                    this.TransportConnectionString = @"ServerUrl=activemq:tcp://mybroker";
+                }
+                else if (this.Transport == TransportType.RabbitMQ.ToString())
+                {
+                    this.TransportConnectionString = @"host=localhost";
+                }
+                else if (this.Transport == TransportType.SqlServer.ToString())
+                {
+                    this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
+                }
+            };
         }
 
-        static void events_SolutionOpened(object sender, SolutionEventArgs e)
+        private void SetDomainSpecifiLogging()
         {
-            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
-                new Action(AddNugetFiles), null);
+            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
+            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
         }
 
-        static private void AddNugetFiles()
+        private void AddNugetFiles()
         {
             try
             {
@@ -136,8 +170,8 @@ namespace NServiceBusStudio
 
                 if (currentApplication.Design.ContractsProject == null)
                 {
-                    currentApplication.Design.CreateContractsProject(string.Format("{0}.Contract", currentApplication.InstanceName));
-                    currentApplication.Design.CreateInternalMessagesProject(string.Format("{0}.InternalMessages", currentApplication.InstanceName));
+                    currentApplication.Design.CreateContractsProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameContracts));
+                    currentApplication.Design.CreateInternalMessagesProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameInternalMessages));
                 }
                 var solution = currentApplication.ServiceProvider.TryGetService<ISolution>();
 
@@ -146,11 +180,55 @@ namespace NServiceBusStudio
                     var folder = solution.CreateSolutionFolder(".nuget");
                     folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.exe"), @".nuget\NuGet.exe");
                     folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.targets"), @".nuget\NuGet.targets");
+
+                    var solutionItems = solution.SolutionFolders.FirstOrDefault(x => x.Name == "Solution Items");
+                    if (solutionItems == null)
+                    {
+                        solutionItems = solutionItems.CreateSolutionFolder("Solution Items");
+                    }
+                    solutionItems.Add(Path.Combine(currentApplication.ExtensionPath, @"ServiceMatrixVersion.txt"), @"ServiceMatrixVersion.txt");
                 }
                 solution.Select();
             }
             catch { }
         }
+
+        private void CheckLicense()
+        {
+            try
+            {
+                this.LicensedVersion = LicenseManager.PromptUserForLicense();
+                this.EnableSolutionBuilder();
+            }
+            catch (Rhino.Licensing.LicenseExpiredException)
+            {
+                this.DisableSolutionBuilder();
+
+                if (!this.AsProduct().IsSerializing) // is creating
+                {
+                    this.CustomSolutionBuilder.ShowNoSolutionState();
+                    throw new Exception("Trial period for ServiceMatrix has Expired. A new NServiceBus solution cannot be created.");
+                }
+            }
+        }
+
+        private void EnableSolutionBuilder()
+        {
+            this.IsValidLicensed = true;
+            this.CustomSolutionBuilder.EnableSolutionBuilder();
+        }
+
+        private void DisableSolutionBuilder()
+        {
+            this.IsValidLicensed = false;
+            this.CustomSolutionBuilder.DisableSolutionBuilder();
+        }
+
+
+
+
+
+
 
         public InfrastructureManager InfrastructureManager { get; private set; }
 
@@ -179,10 +257,11 @@ namespace NServiceBusStudio
 
         public void InitializeExtensionDependentData()
         {
-            //IVsExtensionManager extensionManager = (IVsExtensionManager) this.VsServiceProvider.TryGetService<SVsExtensionManager>();
-            //var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
-            var resolver = this.ServiceProvider.TryGetService<IFxrUriReferenceService>();
-            var extension = resolver.ResolveUri<IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
+            Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager extensionManager = (Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager)this.VsServiceProvider.TryGetService<Microsoft.VisualStudio.ExtensionManager.SVsExtensionManager>();
+            var extension = extensionManager.GetInstalledExtension("a5e9f15b-ad7f-4201-851e-186dd8db3bc9");
+
+            //var resolver = this.ServiceProvider.TryGetService<IUriReferenceService>();
+            //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;
             nserviceBusVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "NServiceBusVersion.txt"));
         }
@@ -191,6 +270,8 @@ namespace NServiceBusStudio
         {
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
+
+
     }
 
     public enum TransportType

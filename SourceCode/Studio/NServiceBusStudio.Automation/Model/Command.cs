@@ -6,7 +6,6 @@ using System.Windows;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 
 namespace NServiceBusStudio
 {
@@ -19,8 +18,18 @@ namespace NServiceBusStudio
 
         partial void Initialize()
         {
-            this.AsElement().Deleting += (s, e) =>
+            this.AsElement().Deleting += (sender, eventargs) =>
             {
+                // Find Component Links to the deleted Component
+                var root = this.AsElement().Root.As<IApplication>();
+                
+                var commandLinks = root.Design.Services.Service.SelectMany(s => s.Components.Component.SelectMany (c => c.Publishes.CommandLinks.Where (cl => cl.CommandReference.Value == this))).ToList();
+                commandLinks.ForEach(cl => cl.Delete());
+
+                var processedCommandLinks = root.Design.Services.Service.SelectMany(s => s.Components.Component.SelectMany(c => c.Subscribes.ProcessedCommandLinks.Where(cl => cl.CommandReference.Value == this))).ToList();
+                processedCommandLinks.ForEach(cl => cl.Delete());
+
+                // Remove related components
                 var result = MessageBox.Show("Do you want to delete the related Components?", "Delete related Components", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {

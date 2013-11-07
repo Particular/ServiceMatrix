@@ -20,34 +20,36 @@
   </TemplateData>
   <TemplateContent>
     <Project File="HostWeb.csproj" TargetFileName="HostWeb.csproj" ReplaceParameters="true">
-      <Folder Name="App_Data" TargetFolderName="App_Data" />
-      <ProjectItem TargetFileName="Default.aspx" ReplaceParameters="true" OpenInEditor="false">Default.aspx</ProjectItem>
-      <ProjectItem TargetFileName="Default.aspx.cs" ReplaceParameters="true">Default.aspx.cs</ProjectItem>
-      <ProjectItem TargetFileName="Default.aspx.designer.cs" ReplaceParameters="true">Default.aspx.designer.cs</ProjectItem>
-      <ProjectItem TargetFileName="Site.Master" ReplaceParameters="true">Site.Master</ProjectItem>
-      <ProjectItem TargetFileName="Site.Master.cs" ReplaceParameters="true">Site.Master.cs</ProjectItem>
-      <ProjectItem TargetFileName="Site.Master.designer.cs" ReplaceParameters="true">Site.Master.designer.cs</ProjectItem>
+      <Folder Name="Content" TargetFolderName="Content">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Content.css">Content.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Css.css">Css.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
+      </Folder>
       <ProjectItem TargetFileName="Global.asax" ReplaceParameters="true">Global.asax</ProjectItem>
       <ProjectItem TargetFileName="Global.asax.cs" ReplaceParameters="true">Global.asax.cs</ProjectItem>
-      <Folder Name="Styles" TargetFolderName="Styles">
-        <ProjectItem TargetFileName="Site.css" ReplaceParameters="false">Site.css</ProjectItem>
-      </Folder>
-      <Folder Name="Infrastructure" TargetFolderName="Infrastructure">
-        <ProjectItem TargetFileName="WebGlobalInitialization.cs" ReplaceParameters="true">WebGlobalInitialization.cs</ProjectItem>
-        <ProjectItem TargetFileName="INServiceBusComponent.cs" ReplaceParameters="true">INServiceBusComponent.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx">Default.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx.cs">Default.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx.designer.cs">Default.aspx.designer.cs</ProjectItem>
+      <Folder Name="Images" TargetFolderName="Images">
+        <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step1.png">ns-step1.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step2.png">ns-step2.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step3.png">ns-step3.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step4.png">ns-step4.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="search.png">search.png</ProjectItem>
       </Folder>
       <Folder Name="Properties" TargetFolderName="Properties">
-        <ProjectItem TargetFileName="AssemblyInfo.cs" ReplaceParameters="true">AssemblyInfo.cs</ProjectItem>
-      </Folder>
-      <Folder Name="Scripts" TargetFolderName="Scripts">
-        <ProjectItem TargetFileName="jquery-1.4.1.js" ReplaceParameters="false">jquery-1.4.1.js</ProjectItem>
-        <ProjectItem TargetFileName="jquery-1.4.1.min.js" ReplaceParameters="false">jquery-1.4.1.min.js</ProjectItem>
-        <ProjectItem TargetFileName="jquery-1.4.1-vsdoc.js" ReplaceParameters="false">jquery-1.4.1-vsdoc.js</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       </Folder>
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.Patterning.Library, PublicKeyToken=31bf3856ad364e35</Assembly>
-    <FullClassName>Microsoft.VisualStudio.Patterning.Library.Automation.ElementReplacementsWizard</FullClassName>
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.InstantiationTemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.ElementReplacementsTemplateWizard</FullClassName>
   </WizardExtension>
 </VSTemplate>

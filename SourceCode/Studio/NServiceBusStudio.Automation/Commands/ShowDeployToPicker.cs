@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.ComponentModel.DataAnnotations;
 using NServiceBusStudio;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Patterning.Extensibility;
+using NuPattern.Runtime;
 using AbstractEndpoint.Automation.Dialog;
 using NServiceBusStudio.Automation.Dialog;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using NuPattern.Diagnostics;
+using NuPattern.Runtime.ToolkitInterface;
+using NuPattern;
+using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Commands
 {
@@ -21,9 +22,9 @@ namespace AbstractEndpoint.Automation.Commands
     [Category("General")]
     [Description("Shows a Endpoint Picker dialog where endpoints may chosen, and then linked to the component.")]
     [CLSCompliant(false)]
-    public class ShowDeployToPicker : FeatureCommand
+    public class ShowDeployToPicker : NuPattern.Runtime.Command
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<ShowComponentLinkPicker>();
+        private static readonly ITracer tracer = Tracer.Get<ShowComponentLinkPicker>();
 
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -78,7 +79,34 @@ namespace AbstractEndpoint.Automation.Commands
                             selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             element.DeployTo(selectedEndpoint);
                         }
+                        else
+                        {
+                            var regexMatch = System.Text.RegularExpressions.Regex.Match(selectedElement, "(?'name'[^\\[]*?)\\[(?'type'[^\\]]*?)\\]");
+                            var selectedName = regexMatch.Groups["name"].Value.Trim();
+                            var selectedType = regexMatch.Groups["type"].Value.Trim();
 
+                            var app = CurrentElement.Root.As<IApplication>();
+                            var handler = default(System.EventHandler);
+                            handler = new System.EventHandler((s, e) =>
+                            {
+                                element.DeployTo((IAbstractEndpoint)s);
+                                app.OnInstantiatedEndpoint -= handler;
+                            });
+                            app.OnInstantiatedEndpoint += handler;
+
+                            if (selectedType == "NService Bus MVC")
+                            {
+                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
+                            }
+                            else if (selectedType == "NService Bus Web")
+                            {
+                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusWeb(selectedName);
+                            }
+                            else
+                            {
+                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusHost(selectedName);
+                            }
+                        }
                     }
                 }
             }

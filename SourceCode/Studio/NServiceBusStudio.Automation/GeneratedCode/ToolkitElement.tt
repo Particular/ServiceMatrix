@@ -1,17 +1,19 @@
 ﻿<#@ PatternModel processor="PatternModelDirectiveProcessor" requires="fileName='..\..\NServiceBusStudio\PatternModel.patterndefinition'" #>
 <#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\..\Studio.slnbldr'" #>
 <#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
-<#@ Assembly Name="System.Core" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Runtime.Interfaces.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Extensibility.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.TeamArchitect.PowerTools.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Library.Toolkit.dll" #>
-<#@ Assembly Name="Microsoft.VisualStudio.Patterning.Authoring.Toolkit.Automation.dll" #>
+<#@ Assembly Name="Microsoft.CSharp.dll" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Schema.dll" #>
+<#@ Assembly Name="NuPattern.Authoring.PatternToolkit.Automation.dll" #>
+<#@ Assembly Name="Microsoft.VisualStudio.TextTemplating.Interfaces.11.0" #>
 <#@ Import Namespace="System.Linq" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Runtime" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Extensibility" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Library" #>
-<#@ Import Namespace="Microsoft.VisualStudio.Patterning.Authoring.Authoring" #>
+<#@ Import Namespace="NuPattern" #>
+<#@ Import Namespace="NuPattern.Runtime" #>
+<#@ Import Namespace="NuPattern.Authoring" #>
+<#@ Import Namespace="NuPattern.Authoring.PatternToolkit" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
 <#@ output extension=".Generated.cs" #>
 <#
 // This template generates the IToolkitElement interface inheritance and implementation
@@ -24,9 +26,10 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern;
+using NuPattern.Diagnostics;
+using NuPattern.Runtime;
+using NuPattern.Runtime.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
@@ -34,18 +37,20 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 {
 	#region Interfaces
 <#
-	var product = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
-    var elements = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements
+    var store = (Microsoft.VisualStudio.Modeling.Store)((dynamic)this.PatternModelSchema).Store;
+    var product = store.DefaultPartition.ElementDirectory.AllElements.OfType<IPatternInfo>().First();
+    var elements = store.DefaultPartition.ElementDirectory.AllElements
         .OfType<IElementInfo>()
         .ToList();
-    var collections = this.PatternModelSchema.Store.DefaultPartition.ElementDirectory.AllElements
+    var collections = store.DefaultPartition.ElementDirectory.AllElements
         .OfType<ICollectionInfo>()
         .ToList();
 
     GenerateInterface(product);
 
     elements.ForEach(e => GenerateInterface(e));
-	collections.ForEach(c => GenerateInterface(c));
+    collections.ForEach(c => GenerateInterface(c));
+    
 #>
 
 	#endregion Interfaces
@@ -63,8 +68,8 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 	#endregion Implementations
 }
 <#+
-private void GenerateInterface(IPatternElementInfo element)
-{
+    private void GenerateInterface(IPatternElementInfo element)
+    {
 #>
 
 	partial interface I<#= element.CodeIdentifier #> : IToolkitElement
@@ -72,24 +77,26 @@ private void GenerateInterface(IPatternElementInfo element)
 		string CodeIdentifier { get; }
 
 <#+
-foreach (var property in element.Properties)
-{
+        foreach (var property in element.Properties)
+        {
 #>
 		event EventHandler <#= property.CodeIdentifier #>Changed;
 <#+
-}	
+        }	
 	
 #>
 	}
 <#+
-}
+    }
 
-private void GenerateImplementation(IPatternElementInfo element, string asRuntimeMethod, bool isProduct = false)
-{
+    private void GenerateImplementation(IPatternElementInfo element, string asRuntimeMethod, bool isProduct = false)
+    {
 #>
 
 	partial class <#= element.CodeIdentifier #> : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<<#= element.CodeIdentifier #>>();
+
 		static <#= element.CodeIdentifier #>()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(<#= element.CodeIdentifier #>)), typeof(<#= element.CodeIdentifier #>));
@@ -105,10 +112,10 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -125,7 +132,7 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(I<#= element.CodeIdentifier #>).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(I<#= element.CodeIdentifier #>).FullName)
 					.Select(x => x.Value);
 
@@ -162,12 +169,12 @@ private void GenerateImplementation(IPatternElementInfo element, string asRuntim
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 <#+
-foreach (var property in element.Properties)
-{
+        foreach (var property in element.Properties)
+        {
 #>
 		public event EventHandler <#= property.CodeIdentifier #>Changed = (sender, args) => { };
 <#+
-}	
+        }	
 #>
 
 		public string CodeIdentifier
@@ -186,17 +193,24 @@ foreach (var property in element.Properties)
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.<#= asRuntimeMethod #>().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "<#= element.CodeIdentifier #>", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 <#+
-foreach (var property in element.Properties)
-{
+        foreach (var property in element.Properties)
+        {
 #>
 				case "<#= property.CodeIdentifier #>":
 					<#= property.CodeIdentifier #>Changed(sender, args);
 					break;
 <#+
-}	
+        }	
 #>
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -218,5 +232,5 @@ foreach (var property in element.Properties)
 		}
 	}
 <#+
-}
+    }
 #>

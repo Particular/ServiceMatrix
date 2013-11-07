@@ -5,9 +5,10 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern;
+using NuPattern.Diagnostics;
+using NuPattern.Runtime;
+using NuPattern.Runtime.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
 
@@ -24,9 +25,14 @@ namespace NServiceBusStudio
 		event EventHandler NServiceBusVersionChanged;
 		event EventHandler ExtensionPathChanged;
 		event EventHandler TransportChanged;
-		event EventHandler TransportSqlServerChanged;
-		event EventHandler TransportSqlDatabaseChanged;
-		event EventHandler TransportBrokerUriChanged;
+		event EventHandler TransportConnectionStringChanged;
+		event EventHandler CompanyLogoChanged;
+		event EventHandler TitleChanged;
+		event EventHandler ToolkitVersionChanged;
+		event EventHandler ProjectNameInternalMessagesChanged;
+		event EventHandler ProjectNameContractsChanged;
+		event EventHandler ProjectNameCodeChanged;
+		event EventHandler LicensedVersionChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -59,6 +65,7 @@ namespace NServiceBusStudio
 		event EventHandler ClassBodyChanged;
 		event EventHandler CustomClassBodyChanged;
 		event EventHandler IsSagaChanged;
+		event EventHandler AutoPublishEventsChanged;
 	}
 
 	partial interface IEventLink : IToolkitElement
@@ -79,7 +86,6 @@ namespace NServiceBusStudio
 		event EventHandler CommandNameChanged;
 		event EventHandler NamespaceChanged;
 		event EventHandler ComponentNameChanged;
-		event EventHandler SenderNeedsRegistrationChanged;
 		event EventHandler ComponentBaseTypeChanged;
 	}
 
@@ -126,7 +132,6 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
-		event EventHandler CommandSenderNeedsRegistrationChanged;
 		event EventHandler ComponentsOrderDefinitionChanged;
 		event EventHandler ErrorQueueChanged;
 		event EventHandler ForwardReceivedMessagesToChanged;
@@ -155,7 +160,6 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
-		event EventHandler CommandSenderNeedsRegistrationChanged;
 		event EventHandler ErrorQueueChanged;
 		event EventHandler ForwardReceivedMessagesToChanged;
 		event EventHandler HasComponentsThatPublishEventChanged;
@@ -166,6 +170,7 @@ namespace NServiceBusStudio
 		event EventHandler NumberOfWorkerThreadsChanged;
 		event EventHandler SenderBaseTypeChanged;
 		event EventHandler SLAChanged;
+		event EventHandler SendOnlyChanged;
 	}
 
 	partial interface INServiceBusWebComponentLink : IToolkitElement
@@ -181,7 +186,6 @@ namespace NServiceBusStudio
 	{
 		string CodeIdentifier { get; }
 
-		event EventHandler CommandSenderNeedsRegistrationChanged;
 		event EventHandler ErrorQueueChanged;
 		event EventHandler ForwardReceivedMessagesToChanged;
 		event EventHandler HasComponentsThatPublishEventChanged;
@@ -191,6 +195,7 @@ namespace NServiceBusStudio
 		event EventHandler NamespaceChanged;
 		event EventHandler NumberOfWorkerThreadsChanged;
 		event EventHandler SLAChanged;
+		event EventHandler SendOnlyChanged;
 	}
 
 	partial interface INServiceBusMVCComponentLink : IToolkitElement
@@ -378,6 +383,8 @@ namespace NServiceBusStudio
 
 	partial class Application : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Application>();
+
 		static Application()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Application)), typeof(Application));
@@ -393,10 +400,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -413,7 +420,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IApplication).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IApplication).FullName)
 					.Select(x => x.Value);
 
@@ -454,9 +461,14 @@ namespace NServiceBusStudio
 		public event EventHandler NServiceBusVersionChanged = (sender, args) => { };
 		public event EventHandler ExtensionPathChanged = (sender, args) => { };
 		public event EventHandler TransportChanged = (sender, args) => { };
-		public event EventHandler TransportSqlServerChanged = (sender, args) => { };
-		public event EventHandler TransportSqlDatabaseChanged = (sender, args) => { };
-		public event EventHandler TransportBrokerUriChanged = (sender, args) => { };
+		public event EventHandler TransportConnectionStringChanged = (sender, args) => { };
+		public event EventHandler CompanyLogoChanged = (sender, args) => { };
+		public event EventHandler TitleChanged = (sender, args) => { };
+		public event EventHandler ToolkitVersionChanged = (sender, args) => { };
+		public event EventHandler ProjectNameInternalMessagesChanged = (sender, args) => { };
+		public event EventHandler ProjectNameContractsChanged = (sender, args) => { };
+		public event EventHandler ProjectNameCodeChanged = (sender, args) => { };
+		public event EventHandler LicensedVersionChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -474,6 +486,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsProduct().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Application", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ForwardReceivedMessagesTo":
@@ -491,14 +510,29 @@ namespace NServiceBusStudio
 				case "Transport":
 					TransportChanged(sender, args);
 					break;
-				case "TransportSqlServer":
-					TransportSqlServerChanged(sender, args);
+				case "TransportConnectionString":
+					TransportConnectionStringChanged(sender, args);
 					break;
-				case "TransportSqlDatabase":
-					TransportSqlDatabaseChanged(sender, args);
+				case "CompanyLogo":
+					CompanyLogoChanged(sender, args);
 					break;
-				case "TransportBrokerUri":
-					TransportBrokerUriChanged(sender, args);
+				case "Title":
+					TitleChanged(sender, args);
+					break;
+				case "ToolkitVersion":
+					ToolkitVersionChanged(sender, args);
+					break;
+				case "ProjectNameInternalMessages":
+					ProjectNameInternalMessagesChanged(sender, args);
+					break;
+				case "ProjectNameContracts":
+					ProjectNameContractsChanged(sender, args);
+					break;
+				case "ProjectNameCode":
+					ProjectNameCodeChanged(sender, args);
+					break;
+				case "LicensedVersion":
+					LicensedVersionChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -522,6 +556,8 @@ namespace NServiceBusStudio
 
 	partial class Service : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Service>();
+
 		static Service()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Service)), typeof(Service));
@@ -537,10 +573,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -557,7 +593,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IService).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IService).FullName)
 					.Select(x => x.Value);
 
@@ -610,6 +646,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Service", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -634,6 +677,8 @@ namespace NServiceBusStudio
 
 	partial class Event : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Event>();
+
 		static Event()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Event)), typeof(Event));
@@ -649,10 +694,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -669,7 +714,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEvent).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEvent).FullName)
 					.Select(x => x.Value);
 
@@ -723,6 +768,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Event", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "DoNotAutogenerateComponents":
@@ -750,6 +802,8 @@ namespace NServiceBusStudio
 
 	partial class Command : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Command>();
+
 		static Command()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Command)), typeof(Command));
@@ -765,10 +819,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -785,7 +839,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommand).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ICommand).FullName)
 					.Select(x => x.Value);
 
@@ -839,6 +893,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Command", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "DoNotAutogenerateComponents":
@@ -866,6 +927,8 @@ namespace NServiceBusStudio
 
 	partial class Component : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Component>();
+
 		static Component()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Component)), typeof(Component));
@@ -881,10 +944,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -901,7 +964,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IComponent).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IComponent).FullName)
 					.Select(x => x.Value);
 
@@ -943,6 +1006,7 @@ namespace NServiceBusStudio
 		public event EventHandler ClassBodyChanged = (sender, args) => { };
 		public event EventHandler CustomClassBodyChanged = (sender, args) => { };
 		public event EventHandler IsSagaChanged = (sender, args) => { };
+		public event EventHandler AutoPublishEventsChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -960,6 +1024,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Component", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -979,6 +1050,9 @@ namespace NServiceBusStudio
 					break;
 				case "IsSaga":
 					IsSagaChanged(sender, args);
+					break;
+				case "AutoPublishEvents":
+					AutoPublishEventsChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -1002,6 +1076,8 @@ namespace NServiceBusStudio
 
 	partial class EventLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<EventLink>();
+
 		static EventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(EventLink)), typeof(EventLink));
@@ -1017,10 +1093,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1037,7 +1113,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEventLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEventLink).FullName)
 					.Select(x => x.Value);
 
@@ -1094,6 +1170,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "EventLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "EventId":
@@ -1130,6 +1213,8 @@ namespace NServiceBusStudio
 
 	partial class CommandLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<CommandLink>();
+
 		static CommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(CommandLink)), typeof(CommandLink));
@@ -1145,10 +1230,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1165,7 +1250,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommandLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ICommandLink).FullName)
 					.Select(x => x.Value);
 
@@ -1205,7 +1290,6 @@ namespace NServiceBusStudio
 		public event EventHandler CommandNameChanged = (sender, args) => { };
 		public event EventHandler NamespaceChanged = (sender, args) => { };
 		public event EventHandler ComponentNameChanged = (sender, args) => { };
-		public event EventHandler SenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ComponentBaseTypeChanged = (sender, args) => { };
 
 		public string CodeIdentifier
@@ -1224,6 +1308,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "CommandLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandId":
@@ -1237,9 +1328,6 @@ namespace NServiceBusStudio
 					break;
 				case "ComponentName":
 					ComponentNameChanged(sender, args);
-					break;
-				case "SenderNeedsRegistration":
-					SenderNeedsRegistrationChanged(sender, args);
 					break;
 				case "ComponentBaseType":
 					ComponentBaseTypeChanged(sender, args);
@@ -1266,6 +1354,8 @@ namespace NServiceBusStudio
 
 	partial class SubscribedEventLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<SubscribedEventLink>();
+
 		static SubscribedEventLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(SubscribedEventLink)), typeof(SubscribedEventLink));
@@ -1281,10 +1371,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1301,7 +1391,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISubscribedEventLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ISubscribedEventLink).FullName)
 					.Select(x => x.Value);
 
@@ -1361,6 +1451,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "SubscribedEventLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "EventId":
@@ -1406,6 +1503,8 @@ namespace NServiceBusStudio
 
 	partial class ProcessedCommandLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<ProcessedCommandLink>();
+
 		static ProcessedCommandLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLink)), typeof(ProcessedCommandLink));
@@ -1421,10 +1520,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1441,7 +1540,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IProcessedCommandLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IProcessedCommandLink).FullName)
 					.Select(x => x.Value);
 
@@ -1500,6 +1599,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ProcessedCommandLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "CommandId":
@@ -1542,6 +1648,8 @@ namespace NServiceBusStudio
 
 	partial class LibraryReference : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<LibraryReference>();
+
 		static LibraryReference()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReference)), typeof(LibraryReference));
@@ -1557,10 +1665,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1577,7 +1685,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraryReference).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibraryReference).FullName)
 					.Select(x => x.Value);
 
@@ -1631,6 +1739,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "LibraryReference", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "LibraryId":
@@ -1658,6 +1773,8 @@ namespace NServiceBusStudio
 
 	partial class ServiceLibrary : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<ServiceLibrary>();
+
 		static ServiceLibrary()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibrary)), typeof(ServiceLibrary));
@@ -1673,10 +1790,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1693,7 +1810,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServiceLibrary).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IServiceLibrary).FullName)
 					.Select(x => x.Value);
 
@@ -1747,6 +1864,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ServiceLibrary", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "FilePath":
@@ -1774,6 +1898,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHost : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusHost>();
+
 		static NServiceBusHost()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHost)), typeof(NServiceBusHost));
@@ -1789,10 +1915,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1809,7 +1935,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHost).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHost).FullName)
 					.Select(x => x.Value);
 
@@ -1845,7 +1971,6 @@ namespace NServiceBusStudio
 		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
-		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ComponentsOrderDefinitionChanged = (sender, args) => { };
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
@@ -1876,11 +2001,15 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
-				case "CommandSenderNeedsRegistration":
-					CommandSenderNeedsRegistrationChanged(sender, args);
-					break;
 				case "ComponentsOrderDefinition":
 					ComponentsOrderDefinitionChanged(sender, args);
 					break;
@@ -1942,6 +2071,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHostComponentLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusHostComponentLink>();
+
 		static NServiceBusHostComponentLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponentLink)), typeof(NServiceBusHostComponentLink));
@@ -1957,10 +2088,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -1977,7 +2108,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHostComponentLink).FullName)
 					.Select(x => x.Value);
 
@@ -2033,6 +2164,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHostComponentLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ComponentId":
@@ -2066,6 +2204,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWeb : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusWeb>();
+
 		static NServiceBusWeb()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWeb)), typeof(NServiceBusWeb));
@@ -2081,10 +2221,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2101,7 +2241,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWeb).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWeb).FullName)
 					.Select(x => x.Value);
 
@@ -2137,7 +2277,6 @@ namespace NServiceBusStudio
 		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
-		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
 		public event EventHandler HasComponentsThatPublishEventChanged = (sender, args) => { };
@@ -2148,6 +2287,7 @@ namespace NServiceBusStudio
 		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
 		public event EventHandler SenderBaseTypeChanged = (sender, args) => { };
 		public event EventHandler SLAChanged = (sender, args) => { };
+		public event EventHandler SendOnlyChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2165,11 +2305,15 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusWeb", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
-				case "CommandSenderNeedsRegistration":
-					CommandSenderNeedsRegistrationChanged(sender, args);
-					break;
 				case "ErrorQueue":
 					ErrorQueueChanged(sender, args);
 					break;
@@ -2200,6 +2344,9 @@ namespace NServiceBusStudio
 				case "SLA":
 					SLAChanged(sender, args);
 					break;
+				case "SendOnly":
+					SendOnlyChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -2222,6 +2369,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWebComponentLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusWebComponentLink>();
+
 		static NServiceBusWebComponentLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponentLink)), typeof(NServiceBusWebComponentLink));
@@ -2237,10 +2386,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2257,7 +2406,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWebComponentLink).FullName)
 					.Select(x => x.Value);
 
@@ -2313,6 +2462,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusWebComponentLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ComponentId":
@@ -2346,6 +2502,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVC : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusMVC>();
+
 		static NServiceBusMVC()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVC)), typeof(NServiceBusMVC));
@@ -2361,10 +2519,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2381,7 +2539,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVC).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVC).FullName)
 					.Select(x => x.Value);
 
@@ -2417,7 +2575,6 @@ namespace NServiceBusStudio
 		public string OriginalInstanceName { get; set; }
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
-		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 		public event EventHandler ErrorQueueChanged = (sender, args) => { };
 		public event EventHandler ForwardReceivedMessagesToChanged = (sender, args) => { };
 		public event EventHandler HasComponentsThatPublishEventChanged = (sender, args) => { };
@@ -2427,6 +2584,7 @@ namespace NServiceBusStudio
 		public event EventHandler NamespaceChanged = (sender, args) => { };
 		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
 		public event EventHandler SLAChanged = (sender, args) => { };
+		public event EventHandler SendOnlyChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2444,11 +2602,15 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVC", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
-				case "CommandSenderNeedsRegistration":
-					CommandSenderNeedsRegistrationChanged(sender, args);
-					break;
 				case "ErrorQueue":
 					ErrorQueueChanged(sender, args);
 					break;
@@ -2476,6 +2638,9 @@ namespace NServiceBusStudio
 				case "SLA":
 					SLAChanged(sender, args);
 					break;
+				case "SendOnly":
+					SendOnlyChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
@@ -2498,6 +2663,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVCComponentLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusMVCComponentLink>();
+
 		static NServiceBusMVCComponentLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponentLink)), typeof(NServiceBusMVCComponentLink));
@@ -2513,10 +2680,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2533,7 +2700,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVCComponentLink).FullName)
 					.Select(x => x.Value);
 
@@ -2589,6 +2756,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVCComponentLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ComponentId":
@@ -2622,6 +2796,8 @@ namespace NServiceBusStudio
 
 	partial class ContractsProject : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<ContractsProject>();
+
 		static ContractsProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ContractsProject)), typeof(ContractsProject));
@@ -2637,10 +2813,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2657,7 +2833,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IContractsProject).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IContractsProject).FullName)
 					.Select(x => x.Value);
 
@@ -2710,6 +2886,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ContractsProject", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -2734,6 +2917,8 @@ namespace NServiceBusStudio
 
 	partial class InternalMessagesProject : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<InternalMessagesProject>();
+
 		static InternalMessagesProject()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(InternalMessagesProject)), typeof(InternalMessagesProject));
@@ -2749,10 +2934,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2769,7 +2954,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IInternalMessagesProject).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IInternalMessagesProject).FullName)
 					.Select(x => x.Value);
 
@@ -2822,6 +3007,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "InternalMessagesProject", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -2846,6 +3038,8 @@ namespace NServiceBusStudio
 
 	partial class Authentication : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Authentication>();
+
 		static Authentication()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Authentication)), typeof(Authentication));
@@ -2861,10 +3055,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -2881,7 +3075,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IAuthentication).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IAuthentication).FullName)
 					.Select(x => x.Value);
 
@@ -2938,6 +3132,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Authentication", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -2974,6 +3175,8 @@ namespace NServiceBusStudio
 
 	partial class UseCase : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<UseCase>();
+
 		static UseCase()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCase)), typeof(UseCase));
@@ -2989,10 +3192,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3009,7 +3212,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCase).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCase).FullName)
 					.Select(x => x.Value);
 
@@ -3062,6 +3265,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCase", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -3086,6 +3296,8 @@ namespace NServiceBusStudio
 
 	partial class UseCaseStep : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<UseCaseStep>();
+
 		static UseCaseStep()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseStep)), typeof(UseCaseStep));
@@ -3101,10 +3313,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3121,7 +3333,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCaseStep).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCaseStep).FullName)
 					.Select(x => x.Value);
 
@@ -3181,6 +3393,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCaseStep", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "PatternValue":
@@ -3226,6 +3445,8 @@ namespace NServiceBusStudio
 
 	partial class UseCaseLink : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<UseCaseLink>();
+
 		static UseCaseLink()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseLink)), typeof(UseCaseLink));
@@ -3241,10 +3462,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3261,7 +3482,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCaseLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCaseLink).FullName)
 					.Select(x => x.Value);
 
@@ -3317,6 +3538,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCaseLink", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "ElementType":
@@ -3350,6 +3578,8 @@ namespace NServiceBusStudio
 
 	partial class Library : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Library>();
+
 		static Library()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Library)), typeof(Library));
@@ -3365,10 +3595,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3385,7 +3615,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibrary).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibrary).FullName)
 					.Select(x => x.Value);
 
@@ -3439,6 +3669,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Library", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "FilePath":
@@ -3466,6 +3703,8 @@ namespace NServiceBusStudio
 
 	partial class Services : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Services>();
+
 		static Services()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Services)), typeof(Services));
@@ -3481,10 +3720,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3501,7 +3740,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServices).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IServices).FullName)
 					.Select(x => x.Value);
 
@@ -3554,6 +3793,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Services", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -3578,6 +3824,8 @@ namespace NServiceBusStudio
 
 	partial class Contract : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Contract>();
+
 		static Contract()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Contract)), typeof(Contract));
@@ -3593,10 +3841,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3613,7 +3861,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IContract).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IContract).FullName)
 					.Select(x => x.Value);
 
@@ -3666,6 +3914,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Contract", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -3690,6 +3945,8 @@ namespace NServiceBusStudio
 
 	partial class Events : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Events>();
+
 		static Events()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Events)), typeof(Events));
@@ -3705,10 +3962,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3725,7 +3982,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEvents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEvents).FullName)
 					.Select(x => x.Value);
 
@@ -3779,6 +4036,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Events", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -3806,6 +4070,8 @@ namespace NServiceBusStudio
 
 	partial class Commands : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Commands>();
+
 		static Commands()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Commands)), typeof(Commands));
@@ -3821,10 +4087,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3841,7 +4107,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommands).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ICommands).FullName)
 					.Select(x => x.Value);
 
@@ -3895,6 +4161,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Commands", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -3922,6 +4195,8 @@ namespace NServiceBusStudio
 
 	partial class Components : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Components>();
+
 		static Components()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Components)), typeof(Components));
@@ -3937,10 +4212,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -3957,7 +4232,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IComponents).FullName)
 					.Select(x => x.Value);
 
@@ -4010,6 +4285,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Components", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4034,6 +4316,8 @@ namespace NServiceBusStudio
 
 	partial class Publishes : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Publishes>();
+
 		static Publishes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Publishes)), typeof(Publishes));
@@ -4049,10 +4333,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4069,7 +4353,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IPublishes).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IPublishes).FullName)
 					.Select(x => x.Value);
 
@@ -4122,6 +4406,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Publishes", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4146,6 +4437,8 @@ namespace NServiceBusStudio
 
 	partial class Subscribes : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Subscribes>();
+
 		static Subscribes()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Subscribes)), typeof(Subscribes));
@@ -4161,10 +4454,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4181,7 +4474,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISubscribes).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ISubscribes).FullName)
 					.Select(x => x.Value);
 
@@ -4234,6 +4527,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Subscribes", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4258,6 +4558,8 @@ namespace NServiceBusStudio
 
 	partial class LibraryReferences : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<LibraryReferences>();
+
 		static LibraryReferences()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReferences)), typeof(LibraryReferences));
@@ -4273,10 +4575,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4293,7 +4595,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraryReferences).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibraryReferences).FullName)
 					.Select(x => x.Value);
 
@@ -4346,6 +4648,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "LibraryReferences", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4370,6 +4679,8 @@ namespace NServiceBusStudio
 
 	partial class ServiceLibraries : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<ServiceLibraries>();
+
 		static ServiceLibraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibraries)), typeof(ServiceLibraries));
@@ -4385,10 +4696,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4405,7 +4716,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServiceLibraries).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IServiceLibraries).FullName)
 					.Select(x => x.Value);
 
@@ -4459,6 +4770,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ServiceLibraries", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":
@@ -4486,6 +4804,8 @@ namespace NServiceBusStudio
 
 	partial class Endpoints : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Endpoints>();
+
 		static Endpoints()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Endpoints)), typeof(Endpoints));
@@ -4501,10 +4821,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4521,7 +4841,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEndpoints).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IEndpoints).FullName)
 					.Select(x => x.Value);
 
@@ -4574,6 +4894,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Endpoints", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4598,6 +4925,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusHostComponents : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusHostComponents>();
+
 		static NServiceBusHostComponents()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponents)), typeof(NServiceBusHostComponents));
@@ -4613,10 +4942,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4633,7 +4962,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusHostComponents).FullName)
 					.Select(x => x.Value);
 
@@ -4686,6 +5015,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHostComponents", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4710,6 +5046,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusWebComponents : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusWebComponents>();
+
 		static NServiceBusWebComponents()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponents)), typeof(NServiceBusWebComponents));
@@ -4725,10 +5063,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4745,7 +5083,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusWebComponents).FullName)
 					.Select(x => x.Value);
 
@@ -4798,6 +5136,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusWebComponents", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4822,6 +5167,8 @@ namespace NServiceBusStudio
 
 	partial class NServiceBusMVCComponents : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<NServiceBusMVCComponents>();
+
 		static NServiceBusMVCComponents()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponents)), typeof(NServiceBusMVCComponents));
@@ -4837,10 +5184,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4857,7 +5204,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(INServiceBusMVCComponents).FullName)
 					.Select(x => x.Value);
 
@@ -4910,6 +5257,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVCComponents", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -4934,6 +5288,8 @@ namespace NServiceBusStudio
 
 	partial class Infrastructure : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Infrastructure>();
+
 		static Infrastructure()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Infrastructure)), typeof(Infrastructure));
@@ -4949,10 +5305,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -4969,7 +5325,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IInfrastructure).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IInfrastructure).FullName)
 					.Select(x => x.Value);
 
@@ -5022,6 +5378,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Infrastructure", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5046,6 +5409,8 @@ namespace NServiceBusStudio
 
 	partial class Security : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Security>();
+
 		static Security()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Security)), typeof(Security));
@@ -5061,10 +5426,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5081,7 +5446,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISecurity).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ISecurity).FullName)
 					.Select(x => x.Value);
 
@@ -5134,6 +5499,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Security", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5158,6 +5530,8 @@ namespace NServiceBusStudio
 
 	partial class DummyCollection : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<DummyCollection>();
+
 		static DummyCollection()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(DummyCollection)), typeof(DummyCollection));
@@ -5173,10 +5547,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5193,7 +5567,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IDummyCollection).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IDummyCollection).FullName)
 					.Select(x => x.Value);
 
@@ -5246,6 +5620,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "DummyCollection", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5270,6 +5651,8 @@ namespace NServiceBusStudio
 
 	partial class UseCases : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<UseCases>();
+
 		static UseCases()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCases)), typeof(UseCases));
@@ -5285,10 +5668,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5305,7 +5688,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCases).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(IUseCases).FullName)
 					.Select(x => x.Value);
 
@@ -5358,6 +5741,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "UseCases", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "InstanceName":
@@ -5382,6 +5772,8 @@ namespace NServiceBusStudio
 
 	partial class Libraries : ISupportInitialize
 	{
+		private static readonly ITracer tracer = Tracer.Get<Libraries>();
+
 		static Libraries()
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Libraries)), typeof(Libraries));
@@ -5397,10 +5789,10 @@ namespace NServiceBusStudio
 		public bool IsInitialized { get; private set; }
 		
 		[Import(AllowDefault = true)]
-		public IFeatureCompositionService CompositionService { get; set; }
+		public INuPatternCompositionService CompositionService { get; set; }
 
 		[Import]
-        public IFxrUriReferenceService UriService { get; set; }
+        public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
@@ -5417,7 +5809,7 @@ namespace NServiceBusStudio
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraries).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
-					.FromFeaturesCatalog()
+//					.FromFeaturesCatalog()
 					.Where(x => x.Metadata["ContractName"] == typeof(ILibraries).FullName)
 					.Select(x => x.Value);
 
@@ -5471,6 +5863,13 @@ namespace NServiceBusStudio
 		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
 		{
 			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Libraries", property.Value.ToString());
+			}
+
 			switch (args.PropertyName)
 			{
 				case "Namespace":

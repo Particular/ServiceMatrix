@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.Patterning.Library.Automation;
+using NuPattern.Library.Automation;
 using Microsoft.VisualStudio.Modeling;
 using System.Windows.Threading;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
+using NuPattern.Library.Commands;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {

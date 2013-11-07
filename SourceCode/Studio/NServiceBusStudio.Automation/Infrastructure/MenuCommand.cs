@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
+using NuPattern.Runtime.Automation;
+using NuPattern.Runtime.Bindings;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {

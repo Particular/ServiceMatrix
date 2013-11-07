@@ -2,28 +2,27 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:cv="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure"
-	        xmlns:pd="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
-	        xmlns:l="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI;assembly=Microsoft.VisualStudio.Patterning.Runtime"
-	        xmlns:k="clr-namespace:Microsoft.VisualStudio.Patterning.Runtime.UI.Data;assembly=Microsoft.VisualStudio.Patterning.Runtime"
-	        xmlns:vsfx="clr-namespace:Microsoft.VisualStudio.Shell;assembly=Microsoft.VisualStudio.Shell.10.0"
-            xmlns:p="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation;assembly=Microsoft.VisualStudio.Patterning.Common.Presentation"
+	        xmlns:k="clr-namespace:NuPattern.Runtime.UI.Data;assembly=NuPattern.Runtime.Core"
+            xmlns:p="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+            xmlns:t="clr-namespace:NuPattern.Runtime.UI;assembly=NuPattern.Runtime.Core"
+            xmlns:l="clr-namespace:NuPattern.Runtime.UI.ViewModels;assembly=NuPattern.Runtime.Core"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:local="clr-namespace:Microsoft.VisualStudio.Patterning.Common.Presentation.Data"
+            xmlns:local="clr-namespace:NuPattern.Presentation.Data;assembly=NuPattern.Presentation"
             xmlns:vm="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels"
+            xmlns:c="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.Converters"
+            xmlns:dt="clr-namespace:NServiceBusStudio.Automation.CustomSolutionBuilder.DataTemplates"
             mc:Ignorable="d" 
-	        Background="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBackgroundKey}}"
+	        Background="{DynamicResource VsVersion.ToolWindowBackgroundKey}"
             d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ContextMenu.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/CommandBar.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/TreeView.xaml" />-->
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ContextMenu.xaml" />
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/CommandBar.xaml" />
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/ComboBox.xaml" />
-                <ResourceDictionary Source="/Microsoft.VisualStudio.Patterning.Common.Presentation;component/Resources/TreeView.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/ContextMenu.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/CommandBar.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/ComboBox.xaml" />
+                <ResourceDictionary Source="/NuPattern.Presentation;component/Resources/TreeView.xaml" />
+                <ResourceDictionary Source="VsVersionStyles.gen.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -32,19 +31,19 @@
         <KeyBinding Key="Right" Modifiers="Control" Command="{Binding RightCommand}" />
     </UserControl.InputBindings>
 
-    <Border BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.ToolWindowBorderKey}}" BorderThickness="1">
+    <Border BorderBrush="{DynamicResource VsVersion.GridLineKey}" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarGradientKey}}"
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{DynamicResource VsVersion.CommandBarGradientKey}"
                   x:Name="TitleGrid">
                 <TextBlock x:Name="TitleText" Text="{Binding Title}"  Margin="5,3,3,3"
-                       Foreground="{DynamicResource {x:Static vsfx:VsBrushes.CommandBarTextActiveKey}}"/>
+                       Foreground="{DynamicResource VsVersion.CommandBarTextActiveKey}"/>
             </Grid>
-            <Border BorderBrush="{DynamicResource {x:Static vsfx:VsBrushes.GridLineKey}}" BorderThickness="3"
+            <Border BorderBrush="{DynamicResource VsVersion.GridLineKey}" BorderThickness="3"
                     x:Name="ViewSelectorBorder"
                     Grid.Row="1" Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Stretch">
                 <ComboBox x:Name="ViewSelector" Template="{StaticResource ComboBox.Template}" Height="22"
@@ -72,16 +71,15 @@
 
                     <TreeView.Resources>
                         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-                        <k:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
+                        <c:MenuGroupingEnumerableConverter x:Key="MenuGroupingConverter" />
                         <local:UriToCachedImageConverter x:Key="UriToCachedImageConverter" />
-                        <cv:LogicalViewModelIconConverter x:Key="ItemIconWithDefault" />
-                        <l:TreeViewItemOrderingConverter x:Key="TreeViewItemOrderingConverter" />
+                        <c:ItemIconWithDefaultConverter x:Key="ItemIconWithDefault" />
+                        <c:TreeViewItemOrderingConverter x:Key="TreeViewItemOrderingConverter" />
 
-                        <ContentControl
-					x:Key="MenuItem.Image"
-					x:Shared="false"
-					Style="{StaticResource MenuItem.Icon}"
-					Content="{Binding ImagePath,Converter={StaticResource UriToCachedImageConverter}}" />
+                        <Image
+					        x:Key="MenuItem.Image"
+					        x:Shared="false"
+					        Source="{Binding ImagePath,Converter={StaticResource UriToCachedImageConverter}}" />
 
                         <RadioButton x:Key="MenuItem.ViewButton" x:Shared="false" IsChecked="{Binding IsSelected,Mode=TwoWay}" GroupName="MenuOptions" IsHitTestVisible="False" />
 
@@ -123,7 +121,7 @@
                         <Style x:Key="DynamicMenuItem" TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
                             <Setter Property="InputGestureText" Value="{Binding InputGestureText}" />
                             <Setter Property="Command" Value="{Binding Command}" />
-                            <Setter Property="CommandParameter" Value="{Binding Model}" />
+                            <Setter Property="CommandParameter" Value="{Binding Data}" />
                             <Setter Property="IsEnabled" Value="{Binding IsEnabled}" />
                             <Setter Property="Visibility" Value="{Binding IsVisible,Converter={StaticResource VisibilityConverter}}" />
                             <Style.Triggers>
@@ -177,61 +175,67 @@
                     </TreeView.Resources>
 
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding LogicalViewNodes, Converter={StaticResource TreeViewItemOrderingConverter}, ConverterParameter=InnerViewModel.Model.InstanceOrder}">
+                        <HierarchicalDataTemplate ItemsSource="{Binding LogicalViewNodes, Converter={StaticResource TreeViewItemOrderingConverter}, ConverterParameter=InnerViewModel.Data.InstanceOrder}">
                             <StackPanel Name="panel" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,1" DataContext="{Binding}">
-                                <!--<Image Source="{Binding IconPath}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />-->
                                 <Image Source="{Binding Converter={StaticResource ItemIconWithDefault}}" SnapsToDevicePixels="True" Width="16" Height="16" Margin="0,0,1,0" Focusable="False" />
-
+                                
                                 <ContentControl Name="display" Margin="3,0,0,0" Padding="0" Content="{Binding InnerViewModel}" Focusable="False">
                                     <ContentControl.Resources>
-                                        <DataTemplate DataType="{x:Type l:ProductViewModel}">
+                                        <DataTemplate x:Key="ProductViewModelDataTemplate">
                                             <TextBlock Name="displayText">
-										<TextBlock.Text>
-											<MultiBinding StringFormat="{}{0} [{1}]">
-												<Binding Path="Model.InstanceName" />
-												<Binding Path="CurrentView.Info.DisplayName" />
-											</MultiBinding>
-										</TextBlock.Text>
-                                        <TextBlock.ToolTip >
-                                            <ToolTip>
-                                                <TextBlock Name="descriptionText">
-                                                    <TextBlock.Text>
-                                                        <MultiBinding StringFormat="{}{0} [{1}]">
-                                                            <Binding Path="Model.Info.Description" />
-                                                            <Binding Path="CurrentView.Info.Description" />
-                                                        </MultiBinding>
-                                                    </TextBlock.Text>
-                                                </TextBlock>
-                                            </ToolTip>
-                                        </TextBlock.ToolTip>
-									</TextBlock>
+										        <TextBlock.Text>
+											        <MultiBinding StringFormat="{}{0} [{1}]">
+												        <Binding Path="Data.InstanceName" />
+												        <Binding Path="CurrentViewData.Info.DisplayName" />
+											        </MultiBinding>
+										        </TextBlock.Text>
+                                                <TextBlock.ToolTip >
+                                                    <ToolTip>
+                                                        <TextBlock Name="descriptionText">
+                                                            <TextBlock.Text>
+                                                                <MultiBinding StringFormat="{}{0} [{1}]">
+                                                                    <Binding Path="Data.Info.Description" />
+                                                                    <Binding Path="CurrentViewData.Info.Description" />
+                                                                </MultiBinding>
+                                                            </TextBlock.Text>
+                                                        </TextBlock>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+									        </TextBlock>
                                             <DataTemplate.Triggers>
                                                 <DataTrigger Binding="{Binding HasSingleView}" Value="True">
-                                                    <Setter TargetName="displayText" Property="Text" Value="{Binding Model.InstanceName}" />
-                                                    <Setter TargetName="descriptionText" Property="Text" Value="{Binding Model.Info.Description}" />
+                                                    <Setter TargetName="displayText" Property="Text" Value="{Binding Data.InstanceName}" />
+                                                    <Setter TargetName="descriptionText" Property="Text" Value="{Binding Data.Info.Description}" />
                                                 </DataTrigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
 
-                                        <DataTemplate DataType="{x:Type l:ProductElementViewModel}">
-                                            <TextBlock Text="{Binding Model.InstanceName}">
-                                        <TextBlock.ToolTip >
-                                            <ToolTip>
-                                                <TextBlock Text="{Binding Model.Info.Description}"/>
-                                            </ToolTip>
-                                        </TextBlock.ToolTip>
-                                    </TextBlock>
+                                        <DataTemplate x:Key="ProductElementViewModelDataTemplate">
+                                            <TextBlock Text="{Binding Data.InstanceName}">
+                                                <TextBlock.ToolTip >
+                                                    <ToolTip>
+                                                        <TextBlock Text="{Binding Data.Info.Description}"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
                                         </DataTemplate>
 
-                                        <DataTemplate DataType="{x:Type vm:LabelElementViewModel}">
+                                        <DataTemplate x:Key="LabelElementViewModelDataTemplate">
                                             <TextBlock Text="{Binding Label}"/>
                                         </DataTemplate>
                                     </ContentControl.Resources>
+                                    <ContentControl.ContentTemplateSelector>
+                                        <dt:ContentControlDataTemplate 
+                                            ProductViewModelDataTemplate="{StaticResource ProductViewModelDataTemplate}"
+                                            ProductElementViewModelDataTemplate="{StaticResource ProductElementViewModelDataTemplate}"
+                                            LabelElementViewModelDataTemplate="{StaticResource LabelElementViewModelDataTemplate}">
+                                        </dt:ContentControlDataTemplate>
+                                    </ContentControl.ContentTemplateSelector>
                                 </ContentControl>
 
                                 <TextBox
 							Name="edit"
-							Text="{Binding  InnerViewModel.Model.InstanceName}"
+							Text="{Binding  InnerViewModel.Data.InstanceName}"
 							Margin="0,-1,-1,0"
 							Visibility="Collapsed"
 							GotFocus="OnItemEditBoxGotFocus"
@@ -249,18 +253,18 @@
                                     <Setter TargetName="edit" Property="Visibility" Value="Visible" />
                                     <Setter TargetName="panel" Property="FocusManager.FocusedElement" Value="{Binding ElementName=edit}" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding InnerViewModel.Model.Info}" Value="{x:Null}">
+                                <DataTrigger Binding="{Binding InnerViewModel.Data.Info}" Value="{x:Null}">
                                     <Setter Property="ToolTip">
                                         <Setter.Value>
                                             <TextBlock>
 										<Run Text="Extension Name: " />
-										<Run Text="{Binding InnerViewModel.Model.ExtensionName}" />
+										<Run Text="{Binding InnerViewModel.Data.ExtensionName}" />
 										<LineBreak />
 										<Run Text="Author: " />
-										<Run Text="{Binding InnerViewModel.Model.Author}" />
+										<Run Text="{Binding InnerViewModel.Data.Author}" />
 										<LineBreak />
 										<Run Text="Version: " />
-										<Run Text="{Binding InnerViewModel.Model.Version}" />
+										<Run Text="{Binding InnerViewModel.Data.Version}" />
                                             </TextBlock>
                                         </Setter.Value>
                                     </Setter>

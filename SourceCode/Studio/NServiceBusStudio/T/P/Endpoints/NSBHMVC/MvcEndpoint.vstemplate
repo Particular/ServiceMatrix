@@ -1,176 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
   <TemplateData>
     <Name>NService Bus MVC</Name>
     <Description>Description for Application.Design.Endpoints.NServiceBusMVC</Description>
     <Icon>HostWebMvc.ico</Icon>
     <ProjectType>CSharp</ProjectType>
-    <ProjectSubType>
-    </ProjectSubType>
+    <ProjectSubType>Web</ProjectSubType>
     <TemplateID>8266b53c7228-Application.Design.Endpoints.NServiceBusMVC</TemplateID>
-    <SortOrder>1000</SortOrder>
+    <SortOrder>15</SortOrder>
     <CreateNewFolder>true</CreateNewFolder>
     <DefaultName>NServiceBusMVC</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
-    <LocationField>Enabled</LocationField>
+    <PromptForSaveOnCreation>true</PromptForSaveOnCreation>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Hidden>true</Hidden>
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+    <LocationField>Enabled</LocationField>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
   </TemplateData>
   <TemplateContent>
     <Project TargetFileName="MvcEndpoint.csproj" File="MvcEndpoint.csproj" ReplaceParameters="true">
-      <Folder Name="App_Data" TargetFolderName="App_Data" />
       <Folder Name="App_Start" TargetFolderName="App_Start">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AuthConfig.cs">AuthConfig.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="BundleConfig.cs">BundleConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="FilterConfig.cs">FilterConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="RouteConfig.cs">RouteConfig.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="WebApiConfig.cs">WebApiConfig.cs</ProjectItem>
       </Folder>
       <Folder Name="Content" TargetFolderName="Content">
+        <ProjectItem ReplaceParameters="true" TargetFileName="Content.css">Content.css</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Css.css">Css.css</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="Site.css">Site.css</ProjectItem>
-        <Folder Name="themes" TargetFolderName="themes">
-          <Folder Name="base" TargetFolderName="base">
-            <Folder Name="images" TargetFolderName="images">
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_flat_0_aaaaaa_40x100.png">ui-bg_flat_0_aaaaaa_40x100.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_flat_75_ffffff_40x100.png">ui-bg_flat_75_ffffff_40x100.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_55_fbf9ee_1x400.png">ui-bg_glass_55_fbf9ee_1x400.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_65_ffffff_1x400.png">ui-bg_glass_65_ffffff_1x400.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_75_dadada_1x400.png">ui-bg_glass_75_dadada_1x400.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_75_e6e6e6_1x400.png">ui-bg_glass_75_e6e6e6_1x400.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_95_fef1ec_1x400.png">ui-bg_glass_95_fef1ec_1x400.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_highlight-soft_75_cccccc_1x100.png">ui-bg_highlight-soft_75_cccccc_1x100.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_222222_256x240.png">ui-icons_222222_256x240.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_2e83ff_256x240.png">ui-icons_2e83ff_256x240.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_454545_256x240.png">ui-icons_454545_256x240.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_888888_256x240.png">ui-icons_888888_256x240.png</ProjectItem>
-              <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_cd0a0a_256x240.png">ui-icons_cd0a0a_256x240.png</ProjectItem>
-            </Folder>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.css">jquery-ui.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.accordion.css">jquery.ui.accordion.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.all.css">jquery.ui.all.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.autocomplete.css">jquery.ui.autocomplete.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.base.css">jquery.ui.base.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.button.css">jquery.ui.button.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.core.css">jquery.ui.core.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.datepicker.css">jquery.ui.datepicker.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.dialog.css">jquery.ui.dialog.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.progressbar.css">jquery.ui.progressbar.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.resizable.css">jquery.ui.resizable.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.selectable.css">jquery.ui.selectable.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.slider.css">jquery.ui.slider.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.tabs.css">jquery.ui.tabs.css</ProjectItem>
-            <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.theme.css">jquery.ui.theme.css</ProjectItem>
-            <Folder Name="minified" TargetFolderName="minified">
-              <Folder Name="images" TargetFolderName="images">
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_flat_0_aaaaaa_40x100.png">ui-bg_flat_0_aaaaaa_40x100.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_flat_75_ffffff_40x100.png">ui-bg_flat_75_ffffff_40x100.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_55_fbf9ee_1x400.png">ui-bg_glass_55_fbf9ee_1x400.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_65_ffffff_1x400.png">ui-bg_glass_65_ffffff_1x400.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_75_dadada_1x400.png">ui-bg_glass_75_dadada_1x400.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_75_e6e6e6_1x400.png">ui-bg_glass_75_e6e6e6_1x400.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_glass_95_fef1ec_1x400.png">ui-bg_glass_95_fef1ec_1x400.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-bg_highlight-soft_75_cccccc_1x100.png">ui-bg_highlight-soft_75_cccccc_1x100.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_222222_256x240.png">ui-icons_222222_256x240.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_2e83ff_256x240.png">ui-icons_2e83ff_256x240.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_454545_256x240.png">ui-icons_454545_256x240.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_888888_256x240.png">ui-icons_888888_256x240.png</ProjectItem>
-                <ProjectItem ReplaceParameters="false" TargetFileName="ui-icons_cd0a0a_256x240.png">ui-icons_cd0a0a_256x240.png</ProjectItem>
-              </Folder>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui.min.css">jquery-ui.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.accordion.min.css">jquery.ui.accordion.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.autocomplete.min.css">jquery.ui.autocomplete.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.button.min.css">jquery.ui.button.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.core.min.css">jquery.ui.core.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.datepicker.min.css">jquery.ui.datepicker.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.dialog.min.css">jquery.ui.dialog.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.progressbar.min.css">jquery.ui.progressbar.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.resizable.min.css">jquery.ui.resizable.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.selectable.min.css">jquery.ui.selectable.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.slider.min.css">jquery.ui.slider.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.tabs.min.css">jquery.ui.tabs.min.css</ProjectItem>
-              <ProjectItem ReplaceParameters="true" TargetFileName="jquery.ui.theme.min.css">jquery.ui.theme.min.css</ProjectItem>
-            </Folder>
-          </Folder>
-        </Folder>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestMessages.css">TestMessages.css</ProjectItem>
       </Folder>
       <Folder Name="Controllers" TargetFolderName="Controllers">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AccountController.cs">AccountController.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="HomeController.cs">HomeController.cs</ProjectItem>
-      </Folder>
-      <Folder Name="Filters" TargetFolderName="Filters">
-        <ProjectItem ReplaceParameters="true" TargetFileName="InitializeSimpleMembershipAttribute.cs">InitializeSimpleMembershipAttribute.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TestMessagesController.cs">TestMessagesController.cs</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax.cs">Global.asax.cs</ProjectItem>
       <Folder Name="Images" TargetFolderName="Images">
-        <ProjectItem ReplaceParameters="false" TargetFileName="accent.png">accent.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="bullet.png">bullet.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="heroAccent.png">heroAccent.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList0.png">orderedList0.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList1.png">orderedList1.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList2.png">orderedList2.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList3.png">orderedList3.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList4.png">orderedList4.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList5.png">orderedList5.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList6.png">orderedList6.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList7.png">orderedList7.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList8.png">orderedList8.png</ProjectItem>
-        <ProjectItem ReplaceParameters="false" TargetFileName="orderedList9.png">orderedList9.png</ProjectItem>
-      </Folder>
-      <Folder Name="Infrastructure" TargetFolderName="Infrastructure">
-        <ProjectItem TargetFileName="ConfigureMvcDependencyInjection.cs" ReplaceParameters="true">ConfigureMvcDependencyInjection.cs</ProjectItem>
-        <ProjectItem TargetFileName="INServiceBusComponent.cs" ReplaceParameters="true">INServiceBusComponent.cs</ProjectItem>
-        <Folder Name="GeneratedCode" TargetFolderName="GeneratedCode" />
-        <ProjectItem TargetFileName="Logging.config" ReplaceParameters="true">Logging.config</ProjectItem>
-        <ProjectItem TargetFileName="NServiceBusControllerActivator.cs" ReplaceParameters="true">NServiceBusControllerActivator.cs</ProjectItem>
-        <ProjectItem TargetFileName="NServiceBusDependencyResolverAdapter.cs" ReplaceParameters="true">NServiceBusDependencyResolverAdapter.cs</ProjectItem>
-        <ProjectItem TargetFileName="WebGlobalInitialization.cs" ReplaceParameters="true">WebGlobalInitialization.cs</ProjectItem>
-      </Folder>
-      <Folder Name="Models" TargetFolderName="Models">
-        <ProjectItem ReplaceParameters="true" TargetFileName="AccountModels.cs">AccountModels.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="favicon.ico">favicon.ico</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="logo.png">logo.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step1.png">ns-step1.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step2.png">ns-step2.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step3.png">ns-step3.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="ns-step4.png">ns-step4.png</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="search.png">search.png</ProjectItem>
       </Folder>
       <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <Folder Name="Properties" TargetFolderName="Properties">
         <ProjectItem ReplaceParameters="true" TargetFileName="AssemblyInfo.cs">AssemblyInfo.cs</ProjectItem>
       </Folder>
-      <Folder Name="Scripts" TargetFolderName="Scripts">
-        <ProjectItem ReplaceParameters="true" TargetFileName="_references.js">_references.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.7.1.intellisense.js">jquery-1.7.1.intellisense.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.7.1.js">jquery-1.7.1.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-1.7.1.min.js">jquery-1.7.1.min.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui-1.8.20.js">jquery-ui-1.8.20.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery-ui-1.8.20.min.js">jquery-ui-1.8.20.min.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.unobtrusive-ajax.js">jquery.unobtrusive-ajax.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.unobtrusive-ajax.min.js">jquery.unobtrusive-ajax.min.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate-vsdoc.js">jquery.validate-vsdoc.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.js">jquery.validate.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.min.js">jquery.validate.min.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.unobtrusive.js">jquery.validate.unobtrusive.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="jquery.validate.unobtrusive.min.js">jquery.validate.unobtrusive.min.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="knockout-2.1.0.debug.js">knockout-2.1.0.debug.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="knockout-2.1.0.js">knockout-2.1.0.js</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="modernizr-2.5.3.js">modernizr-2.5.3.js</ProjectItem>
-      </Folder>
       <Folder Name="Views" TargetFolderName="Views">
-        <ProjectItem ReplaceParameters="true" TargetFileName="_ViewStart.cshtml">_ViewStart.cshtml</ProjectItem>
-        <Folder Name="Account" TargetFolderName="Account">
-          <ProjectItem ReplaceParameters="true" TargetFileName="_ChangePasswordPartial.cshtml">_ChangePasswordPartial.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="_ExternalLoginsListPartial.cshtml">_ExternalLoginsListPartial.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="_RemoveExternalLoginsPartial.cshtml">_RemoveExternalLoginsPartial.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="_SetPasswordPartial.cshtml">_SetPasswordPartial.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginConfirmation.cshtml">ExternalLoginConfirmation.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="ExternalLoginFailure.cshtml">ExternalLoginFailure.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Login.cshtml">Login.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Manage.cshtml">Manage.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Register.cshtml">Register.cshtml</ProjectItem>
-        </Folder>
         <Folder Name="Home" TargetFolderName="Home">
-          <ProjectItem ReplaceParameters="true" TargetFileName="About.cshtml">About.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Contact.cshtml">Contact.cshtml</ProjectItem>
           <ProjectItem ReplaceParameters="true" TargetFileName="Index.cshtml">Index.cshtml</ProjectItem>
-        </Folder>
-        <Folder Name="Shared" TargetFolderName="Shared">
-          <ProjectItem ReplaceParameters="true" TargetFileName="_Layout.cshtml">_Layout.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="_LoginPartial.cshtml">_LoginPartial.cshtml</ProjectItem>
-          <ProjectItem ReplaceParameters="true" TargetFileName="Error.cshtml">Error.cshtml</ProjectItem>
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
       </Folder>
@@ -180,44 +62,11 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
-    <Assembly>Microsoft.VisualStudio.Patterning.Library, PublicKeyToken=31bf3856ad364e35</Assembly>
-    <FullClassName>Microsoft.VisualStudio.Patterning.Library.Automation.ElementReplacementsWizard</FullClassName>
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.InstantiationTemplateWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
-    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
-    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.ElementReplacementsTemplateWizard</FullClassName>
   </WizardExtension>
-  <WizardData>
-    <packages repository="registry" keyName="AspNetMvc4VS2010" isPreunzipped="true">
-      <package id="EntityFramework" version="5.0.0" skipAssemblyReferences="true" />
-      <package id="jQuery" version="1.7.1.1" />
-      <package id="jQuery.Validation" version="1.9.0.1" />
-      <package id="jQuery.UI.Combined" version="1.8.20.1" />
-      <package id="Microsoft.jQuery.Unobtrusive.Validation" version="2.0.20710.0" />
-      <package id="Microsoft.jQuery.Unobtrusive.Ajax" version="2.0.20710.0" />
-      <package id="Modernizr" version="2.5.3" />
-      <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" skipAssemblyReferences="true" />
-      <package id="Newtonsoft.Json" version="4.5.6" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.Razor" version="2.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebPages" version="2.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.Mvc" version="4.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebApi.Client" version="4.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.Net.Http" version="2.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebApi.Core" version="4.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebApi.WebHost" version="4.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebApi" version="4.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.Web.Optimization" version="1.0.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebPages.Data" version="2.0.20710.0"  skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebPages.OAuth" version="2.0.20710.0" skipAssemblyReferences="true" />
-      <package id="Microsoft.AspNet.WebPages.WebData" version="2.0.20710.0" skipAssemblyReferences="true" />
-      <package id="DotNetOpenAuth.AspNet" version="4.0.3.12153" skipAssemblyReferences="true" />
-      <package id="DotNetOpenAuth.Core" version="4.0.3.12153" skipAssemblyReferences="true" />
-      <package id="DotNetOpenAuth.OAuth.Consumer" version="4.0.3.12153" skipAssemblyReferences="true" />
-      <package id="DotNetOpenAuth.OAuth.Core" version="4.0.3.12153" skipAssemblyReferences="true" />
-      <package id="DotNetOpenAuth.OpenId.Core" version="4.0.3.12153" skipAssemblyReferences="true" />
-      <package id="DotNetOpenAuth.OpenId.RelyingParty" version="4.0.3.12153" skipAssemblyReferences="true" />
-      <package id="WebGrease" version="1.1.0" skipAssemblyReferences="true" />
-      <package id="knockoutjs" version="2.1.0" />
-    </packages>
-  </WizardData>
 </VSTemplate>

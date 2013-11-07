@@ -55,6 +55,11 @@ namespace NServiceBusStudio
         {
              return eventlink.EventReference.Value.Parent.Namespace + "." + eventlink.EventReference.Value.CodeIdentifier;
         }
+
+        public static string GetMessageTypeFullName(this ICommandLink commandlink)
+        {
+            return commandlink.CommandReference.Value.Parent.Namespace + "." + commandlink.CommandReference.Value.CodeIdentifier;
+        }
     }
 
 

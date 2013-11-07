@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
-	<Name>NServiceBus Studio</Name>
-	<Author>NServiceBus</Author>
-	<Version>3.4.0</Version>
-	<Description xml:space="preserve">A set of Visual Studio integrated tools to author NServiceBus applications</Description>
+	  <Name>ServiceMatrix</Name>
+	  <Author>Particular Software</Author>
+	  <Version>4.0.0</Version>
+	  <Description xml:space="preserve">A set of Visual Studio integrated tools to author NServiceBus applications</Description>
     <Locale>1033</Locale>
-		<Icon>Resources\ToolkitIcon.png</Icon>
-	<MoreInfoUrl></MoreInfoUrl>
+    <Icon>Resources\ToolkitIcon.png</Icon>
+	  <MoreInfoUrl></MoreInfoUrl>
     <GettingStartedGuide></GettingStartedGuide>
-	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
+	  <PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
-      <VisualStudio Version="10.0">
+      <VisualStudio Version="11.0">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
@@ -20,23 +20,18 @@
     <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
   </Identifier>
   <References>
-		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
-		  <Name>NServiceBus Modeling</Name>
-		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>
-		</Reference>
-		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785" MinVersion="1.2.0.0">
-		<Name>Pattern Toolkit Manager</Name>
-			<VsixPath>PatternToolkitManager.vsix</VsixPath>
+		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.3.21.0">
+		  <Name>NuPattern Toolkit Manager</Name>
+			<VsixPath>NuPatternToolkitManager.vsix</VsixPath>
 		</Reference>
 	  </References>
 	<Content>
-		<Assembly AssemblyName="NServiceBusStudio">|%CurrentProject%|</Assembly>
-		<MefComponent>|NServiceBusStudio|</MefComponent>
+		<Assembly AssemblyName="Particular.ServiceMatrix">|%CurrentProject%|</Assembly>
+		<MefComponent>|%CurrentProject%|</MefComponent>
 		<MefComponent>|NServiceBusStudio.Automation|</MefComponent>
-		<MefComponent>|EndpointDesign|</MefComponent>
-		<MefComponent>|EndpointDesign.Shell|</MefComponent>
-		<CustomExtension Type="PatternModel" AssemblyFile="NServiceBusStudio.dll">NServiceBusStudio.PatternModel.patterndefinition</CustomExtension>		
+		<CustomExtension Type="NuPattern.Toolkit.PatternModel" AssemblyFile="Particular.ServiceMatrix.dll">NServiceBusStudio.PatternModel.patterndefinition</CustomExtension>		
 		<ItemTemplate>T\I</ItemTemplate>
 		<ProjectTemplate>T\P</ProjectTemplate>
+    <VsPackage>BindingPath.pkgdef</VsPackage>
 	</Content>
 </Vsix>

@@ -1,61 +1,54 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ Assembly Name="System.Core.dll" #>
-<#@ Import Namespace="System.Linq" #>
-<#@ output extension=".vsixmanifest" #>
-<#@ Include File="source.include.t4" #>
+﻿<#@ output extension=".vsixmanifest" #>
+<#@ Include File="source.extension.gen.ttinclude" #>
+<#@ Include File="source.extension.VSVersion.gen.ttinclude" #>
 <#@ Include File="..\source.version.t4" #>
 <?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="<#= identifier #>">
-	<Name><#= toolkitName #></Name>
-	<Author><#= author #></Author>
-	<Version><#= globalversion #></Version>
-	<Description xml:space="preserve"><#= description #></Description>
+	  <Name><#= toolkitName #></Name>
+	  <Author><#= author #></Author>
+	  <Version><#= globalversion #></Version>
+	  <Description xml:space="preserve"><#= description #></Description>
     <Locale>1033</Locale>
 <#if(HasValue(eula))
 {
 #>
-		<License><#= eula #></License>
+    <License><#= eula #></License>
 <#
 }
 #>
 <#if(HasValue(icon))
 {
 #>
-		<Icon><#= icon #></Icon>
+    <Icon><#= icon #></Icon>
 <#
 }
 #>
-	<MoreInfoUrl></MoreInfoUrl>
+	  <MoreInfoUrl></MoreInfoUrl>
     <GettingStartedGuide></GettingStartedGuide>
-	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
+	  <PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
-      <VisualStudio Version="10.0">
+      <VisualStudio Version="<#=VersionInfo.TargetVsVersion#>">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
       </VisualStudio>
     </SupportedProducts>
-    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
+    <SupportedFrameworkRuntimeEdition MinVersion="<#=VersionInfo.TargetFrxMinVersion#>" MaxVersion="<#=VersionInfo.TargetFrxMaxVersion#>" />
   </Identifier>
   <References>
-		<Reference Id="be731d99-2fd0-4514-9d8d-8d803fe6dc4a">
-		  <Name>NServiceBus Modeling</Name>
-		  <VsixPath>NServiceBus.Modeling.EndpointDesign.Shell.vsix</VsixPath>
-		</Reference>
-		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785" MinVersion="1.2.0.0">
-		<Name>Pattern Toolkit Manager</Name>
-			<VsixPath>PatternToolkitManager.vsix</VsixPath>
+		<Reference Id="<#=managerVsixIdentifier#>"  MinVersion="<#=managerVsixVersion#>">
+		  <Name><#=managerVsixName#></Name>
+			<VsixPath><#=managerVsixFileName#></VsixPath>
 		</Reference>
 	  </References>
 	<Content>
 		<Assembly AssemblyName="<#= assemblyName #>">|%CurrentProject%|</Assembly>
-		<MefComponent>|<#= productName #>|</MefComponent>
-		<MefComponent>|<#= productName #>.Automation|</MefComponent>
-		<MefComponent>|EndpointDesign|</MefComponent>
-		<MefComponent>|EndpointDesign.Shell|</MefComponent>
-		<CustomExtension Type="PatternModel" AssemblyFile="<#= assemblyName #>.dll"><#= rootNamespace #>.PatternModel.patterndefinition</CustomExtension>		
+		<MefComponent>|%CurrentProject%|</MefComponent>
+		<MefComponent>|<#=libraryProjectName #>|</MefComponent>
+		<CustomExtension Type="NuPattern.Toolkit.PatternModel" AssemblyFile="<#= assemblyName #>.dll"><#= rootNamespace #>.PatternModel.patterndefinition</CustomExtension>		
 		<ItemTemplate>T\I</ItemTemplate>
 		<ProjectTemplate>T\P</ProjectTemplate>
+    <VsPackage>BindingPath.pkgdef</VsPackage>
 	</Content>
 </Vsix>

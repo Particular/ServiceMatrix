@@ -7,7 +7,8 @@ using System.Globalization;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio;
 using NServiceBusStudio.Automation;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {

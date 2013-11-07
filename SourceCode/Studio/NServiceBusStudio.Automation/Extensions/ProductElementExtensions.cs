@@ -3,12 +3,14 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using EnvDTE;
-using Microsoft.VisualStudio.Patterning.Extensibility.References;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.Patterning.Runtime.Schema;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Runtime;
+using NuPattern.Runtime.Schema;
 using NServiceBusStudio.Automation.Infrastructure;
+using NuPattern.Runtime.References;
+using NuPattern;
+using NuPattern.Presentation;
+using NuPattern.VisualStudio.Solution;
+using System.Collections.Generic;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -20,7 +22,7 @@ namespace NServiceBusStudio.Automation.Extensions
             if (property == null)
                 return;
             
-            var propertyInfo = property.Info as PropertySchema;
+            var propertyInfo = property.Info as dynamic;
             if (propertyInfo == null)
                 return;
             
@@ -32,7 +34,7 @@ namespace NServiceBusStudio.Automation.Extensions
             if (element == null)
                 return null;
 
-            var references = element.Product.ProductState.GetService<IFxrUriReferenceService>();
+            var references = element.Product.ProductState.GetService<IUriReferenceService>();
 
             return SolutionArtifactLinkReference
                 .GetResolvedReferences(element, references)
@@ -40,27 +42,41 @@ namespace NServiceBusStudio.Automation.Extensions
                 .FirstOrDefault();
         }
 
-        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IFxrUriReferenceService uriService, RefactoringManager refactoringManager)
+        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager)
         {
-            var renameRefactoring = toolkitElement as IRenameRefactoring;
-            if (renameRefactoring != null)
+            using (new MouseCursor(System.Windows.Input.Cursors.Wait))
             {
-                refactoringManager.RenameClass(renameRefactoring.Namespace, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
-                element.RenameArtifactLinks(uriService, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
+                var renameRefactoring = toolkitElement as IRenameRefactoring;
+                if (renameRefactoring != null)
+                {
+                    refactoringManager.RenameClass(renameRefactoring.Namespace, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
+                    element.RenameArtifactLinks(uriService, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
+                    return true;
+                }
+
+                var renameRefactoringNamespace = toolkitElement as IRenameRefactoringNamespace;
+                if (renameRefactoringNamespace != null && toolkitElement.InstanceName != "" && toolkitElement is IService)
+                {
+                    var service = toolkitElement as IService;
+                    service.Rename(uriService, refactoringManager);
+
+                    //MessageBox.Show("The Service renaming is almost done. Please, re-open the solution to finish with the renaming.", "Rename Service", MessageBoxButton.OK);
+                    return true;
+                }
+                
+                var renameRefactoringNotSupported = toolkitElement as IRenameRefactoringNotSupported;
+                if (renameRefactoringNotSupported != null && toolkitElement.InstanceName != "")
+                {
+                    var result = MessageBox.Show("This element doesn't support code refactoring, you will need to update your code manually. Do you want to do the renaming anyway?", "Rename element", MessageBoxButton.YesNo);
+                    return result == MessageBoxResult.Yes;
+                }
+                
                 return true;
             }
-
-            var renameRefactoringNotSupported = toolkitElement as IRenameRefactoringNotSupported;
-            if (renameRefactoringNotSupported != null)
-            {
-                var result = MessageBox.Show("This element doesn't support code refactoring, you will need to update your code manually. Do you want to do the renaming anyway?", "Rename element", MessageBoxButton.YesNo);
-                return result == MessageBoxResult.Yes;
-            }
-
-            return true;
         }
 
-        public static void RenameArtifactLinks(this IProductElement element, IFxrUriReferenceService uriService, string currentName, string newName)
+        
+        public static void RenameArtifactLinks(this IProductElement element, IUriReferenceService uriService, string currentName, string newName)
         {
             foreach (var referenceLink in element.References)
             {
@@ -71,37 +87,42 @@ namespace NServiceBusStudio.Automation.Extensions
                 }
                 catch { }
 
-                if (item != null && item.Kind == ItemKind.Item)
+                if (item != null && 
+                    item.Kind == ItemKind.Item &&
+                    Path.GetFileNameWithoutExtension(item.Name) != newName)
                 {
-                    item.As<ProjectItem>().Name = item.Name.Replace (currentName, newName);
+                    item.As<ProjectItem>().Name = item.Name.Replace(currentName, newName);
                 }
             }
         }
 
-        public static void RemoveArtifactLinks(this IProductElement element, IFxrUriReferenceService uriService, ISolution solution)
+        public static void RemoveArtifactLinks(this IProductElement element, IUriReferenceService uriService, ISolution solution)
         {
-            foreach (var referenceLink in element.References)
+            using (new MouseCursor(System.Windows.Input.Cursors.Wait))
             {
-                var item = default (IItemContainer);
-                try
+                foreach (var referenceLink in element.References)
                 {
-                    item = uriService.ResolveUri<IItemContainer>(new Uri(referenceLink.Value));
-                }
-                catch { }
-
-                if (item != null)
-                {
-                    var physicalPath = item.PhysicalPath;
-
-                    if (item.Kind == ItemKind.Project)
+                    var item = default(IItemContainer);
+                    try
                     {
-                        solution.As<Solution>().Remove(item.As<Project>());
-                        System.IO.Directory.Delete(Path.GetDirectoryName(physicalPath), true);
+                        item = uriService.ResolveUri<IItemContainer>(new Uri(referenceLink.Value));
                     }
-                    else if (item.Kind == ItemKind.Item)
+                    catch { }
+
+                    if (item != null)
                     {
-                        item.As<ProjectItem>().Delete();
-                        System.IO.File.Delete(physicalPath);
+                        var physicalPath = item.PhysicalPath;
+
+                        if (item.Kind == ItemKind.Project)
+                        {
+                            solution.As<Solution>().Remove(item.As<Project>());
+                            System.IO.Directory.Delete(Path.GetDirectoryName(physicalPath), true);
+                        }
+                        else if (item.Kind == ItemKind.Item)
+                        {
+                            item.As<ProjectItem>().Delete();
+                            System.IO.File.Delete(physicalPath);
+                        }
                     }
                 }
             }

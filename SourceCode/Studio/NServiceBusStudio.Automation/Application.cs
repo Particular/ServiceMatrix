@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell.Interop;
 using NServiceBusStudio.Core;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern;
+
 using AbstractEndpoint;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio
 {
@@ -24,6 +26,12 @@ namespace NServiceBusStudio
         /// </summary>
         public bool IsDirty { get; set; }
 
+        /// <summary>
+        /// Sets or Gets if the license is Valid
+        /// or the trial has not expired yet
+        /// </summary>
+        public bool IsValidLicensed { get; set; }
+
 		[Import(typeof(SVsServiceProvider))]
 		public virtual IServiceProvider ServiceProvider
 		{
@@ -38,7 +46,7 @@ namespace NServiceBusStudio
 					var shell = value.TryGetService<SVsShell, IVsShell>();
 					if (shell != null)
 					{
-						VersionHelper.SyncTargets(Tracer.GetSourceFor<Application>(), shell.GetHive());
+						VersionHelper.SyncTargets(Tracer.Get<Application>(), shell.GetHive());
 						versionInitialized = true;
 					}
                 }
@@ -64,6 +72,9 @@ namespace NServiceBusStudio
 
             // IsDirty should be initialized to true
             this.IsDirty = true;
+
+            // IsValidLicensed should be initialized to true
+            this.IsValidLicensed = true;
         }
 
         // This event is raised even initializing after deserializing the endpoint
@@ -72,6 +83,10 @@ namespace NServiceBusStudio
         // This event is raised just when it was explicitly instantiated and not
         // on deserialization
         public event EventHandler OnInstantiatedEndpoint;
+
+        // This event is raised just when it was explicitly instantiated and not
+        // on deserialization
+        public event EventHandler OnInstantiatedComponent;
 
         public void RaiseOnInitializingEndpoint(IAbstractEndpoint endpoint)
         {
@@ -86,6 +101,14 @@ namespace NServiceBusStudio
             if (OnInstantiatedEndpoint != null)
             {
                 OnInstantiatedEndpoint(endpoint, EventArgs.Empty);
+            }
+        }
+
+        public void RaiseOnInstantiatedComponent(IComponent component)
+        {
+            if (OnInstantiatedComponent != null)
+            {
+                OnInstantiatedComponent(component, EventArgs.Empty);
             }
         }
 
@@ -114,6 +137,7 @@ namespace NServiceBusStudio
         event EventHandler OnApplicationLoaded;
         void RaiseOnApplicationLoaded();
         bool IsDirty { get; set; }
+        bool IsValidLicensed { get; set; }
 
         // This event is raised even initializing after deserializing the endpoint
         event EventHandler OnInitializingEndpoint;
@@ -121,9 +145,14 @@ namespace NServiceBusStudio
         // This event is raised just when it was explicitly instantiated and not
         // on deserialization
         event EventHandler OnInstantiatedEndpoint;
+        
+        // This event is raised just when it was explicitly instantiated and not
+        // on deserialization
+        event EventHandler OnInstantiatedComponent;
 
         void RaiseOnInitializingEndpoint(IAbstractEndpoint endpoint);
         void RaiseOnInstantiatedEndpoint(IAbstractEndpoint endpoint);
+        void RaiseOnInstantiatedComponent(IComponent component);
         void CheckForFirstBuild();
     }
 }

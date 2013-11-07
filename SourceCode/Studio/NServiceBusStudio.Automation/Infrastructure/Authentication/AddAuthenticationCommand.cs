@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using NuPattern.Runtime;
 using AbstractEndpoint;
 using Microsoft.VisualStudio.Shell;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
@@ -17,7 +16,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
     [Category("General")]
     [Description("Generates an Authentication element on Infrastructure-Security.")]
     [CLSCompliant(false)]
-    public class AddAuthenticationCommand : FeatureCommand
+    public class AddAuthenticationCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -32,7 +31,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         [Required]
         [Import(AllowDefault = true)]
-        public Microsoft.VisualStudio.TeamArchitect.PowerTools.ISolution Solution { get; set; }
+        public ISolution Solution { get; set; }
 
 
         [Import(typeof(SVsServiceProvider))]

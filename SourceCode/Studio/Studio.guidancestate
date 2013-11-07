@@ -1168,4 +1168,20 @@
     <Key>Creating Pattern Toolkits.Arranging Shapes on Pattern Model.StateOverride</Key>
     <Value>False</Value>
   </KeyValueOfstringstring>
+  <KeyValueOfstringstring>
+    <Key>Creating Pattern Toolkits.What is NuPattern?.StateOverride</Key>
+    <Value>False</Value>
+  </KeyValueOfstringstring>
+  <KeyValueOfstringstring>
+    <Key>Creating Pattern Toolkits.Installing NuPattern.StateOverride</Key>
+    <Value>False</Value>
+  </KeyValueOfstringstring>
+  <KeyValueOfstringstring>
+    <Key>Creating Pattern Toolkits.(Placeholder) Solution Builder.StateOverride</Key>
+    <Value>False</Value>
+  </KeyValueOfstringstring>
+  <KeyValueOfstringstring>
+    <Key>Creating Pattern Toolkits.Join43.StateOverride</Key>
+    <Value>False</Value>
+  </KeyValueOfstringstring>
 </ArrayOfKeyValueOfstringstring>

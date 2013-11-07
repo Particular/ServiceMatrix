@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime.UI;
+using NuPattern.Runtime;
+using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
 {
     public static class SolutionBuilderViewModelExtensions
     {
-        public static ProductElementViewModel SearchInNodes(IEnumerable<ProductElementViewModel> nodesCollection, IProductElement target)
+        public static IProductElementViewModel SearchInNodes(IEnumerable<IProductElementViewModel> nodesCollection, IProductElement target)
         {
-            foreach (ProductElementViewModel model in nodesCollection)
+            foreach (IProductElementViewModel model in nodesCollection)
             {
-                if (model.Model == target)
+                if (model.Data == target)
                 {
                     return model;
                 }
-                ProductElementViewModel model2 = SearchInNodes(model.Nodes, target);
+                IProductElementViewModel model2 = SearchInNodes(model.ChildNodes, target);
                 if (model2 != null)
                 {
                     return model2;
@@ -26,9 +27,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
             return null;
         }
 
-        public static ProductElementViewModel FindNodeFor(this SolutionBuilderViewModel ViewModel, IProductElement target)
+        public static IProductElementViewModel FindNodeFor(this ISolutionBuilderViewModel ViewModel, IProductElement target)
         {
-            return SearchInNodes(ViewModel.Nodes, target);
+            return SearchInNodes(ViewModel.TopLevelNodes, target);
         }
     }
 }

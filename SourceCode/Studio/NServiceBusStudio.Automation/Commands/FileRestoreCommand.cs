@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.Patterning.Library.Commands;
+using NuPattern.Library.Commands;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
+using NuPattern.Runtime;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
     [DisplayName("File Restore Command")]
     [Description("If the file doesn't exist, it runs the command.")]
-    public class FileRestoreCommand : FeatureCommand
+    public class FileRestoreCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

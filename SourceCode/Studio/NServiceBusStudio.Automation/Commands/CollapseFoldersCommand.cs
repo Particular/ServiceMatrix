@@ -2,9 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
+using NuPattern.Runtime;
 using AbstractEndpoint;
 using System.Linq;
 using System.IO;
@@ -12,7 +10,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.HierarchyNodes;
+using NuPattern;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -20,7 +18,7 @@ namespace NServiceBusStudio.Automation.Commands
     [DisplayName("Collapse Solution Explorer Folders")]
     [Description("Collapse solution explorer folders matching names.")]
     [CLSCompliant(false)]
-    public class CollapseFoldersCommand : FeatureCommand
+    public class CollapseFoldersCommand : NuPattern.Runtime.Command
     {
         [Import(typeof(SVsServiceProvider))]
         private IServiceProvider ServiceProvider { get; set; }

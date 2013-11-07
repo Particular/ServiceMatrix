@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using AbstractEndpoint;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
 
 namespace NServiceBusStudio.Automation.Commands
 {
     [DisplayName("Create Service Folder On Endpoints")]
     [Description("Add folder for service components code on Endpoint Projects")]
     [CLSCompliant(false)]
-    public class CreateServiceFolderOnEndpoints : FeatureCommand
+    public class CreateServiceFolderOnEndpoints : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.

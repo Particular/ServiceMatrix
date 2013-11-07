@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Data;
-using Microsoft.VisualStudio.Patterning.Runtime.UI;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime.UI;
+using NuPattern.Runtime;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
@@ -21,7 +21,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
                     var model = node.InnerViewModel;
                     if (model != null)
                     {
-                        var element = model.Model.Info as IPatternElementSchema;
+                        var element = model.Data.Info as IPatternElementSchema;
                         if (element != null)
                         {
                             if (!string.IsNullOrEmpty(element.Icon))

@@ -3,13 +3,10 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Microsoft.VisualStudio.Patterning;
-using Microsoft.VisualStudio.Patterning.Extensibility;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
+using NuPattern;
+using NuPattern.Runtime;
 using System.Collections.Generic;
+using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -20,9 +17,9 @@ namespace NServiceBusStudio.Automation.Commands
 	[Category("Pattern Automation")]
 	[Description("Executes a command on a child element.")]
 	[CLSCompliant(false)]
-	public class ChildCommandReference : FeatureCommand
+    public class ChildCommandReference : NuPattern.Runtime.Command
 	{
-		private static readonly ITraceSource tracer = Tracer.GetSourceFor<ChildCommandReference>();
+		private static readonly ITracer tracer = Tracer.Get<ChildCommandReference>();
 
 		public ChildCommandReference()
 		{
@@ -61,7 +58,8 @@ namespace NServiceBusStudio.Automation.Commands
 		{
 			Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
 
-            if (this.CurrentElement.As<IApplication>().IsDirty)
+            if (this.CurrentElement.As<IApplication>().IsDirty &&
+                this.CurrentElement.As<IApplication>().IsValidLicensed)
             {
                 var children = default(IEnumerable<IProductElement>);
 

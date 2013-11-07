@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 using AbstractEndpoint;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualStudio.Patterning.Extensibility.References;
 using System.IO;
 using EnvDTE;
 using System.ComponentModel.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
+using NuPattern.VisualStudio.Solution;
+using NuPattern.Runtime.References;
+using NuPattern;
 
 
 namespace NServiceBusStudio
@@ -24,10 +25,32 @@ namespace NServiceBusStudio
         void Publish(IEvent @event);
         void Subscribe(ICommand command);
         void RemoveLinks(IAbstractEndpoint endpoint);
+        void AddLinks(IAbstractEndpoint endpoint);
+
+        bool IsSender { get; }
+        bool IsProcessor { get; }
     }
 
     partial class Component : IValidatableObject, IRenameRefactoring
     {
+        public bool IsSender
+        {
+            get
+            {
+                return this.Publishes.CommandLinks.Any() ||
+                       this.Publishes.EventLinks.Any();
+            }
+        }
+
+        public bool IsProcessor
+        {
+            get
+            {
+                return this.Subscribes.ProcessedCommandLinks.Any() ||
+                       this.Subscribes.SubscribedEventLinks.Any();
+            }
+        }
+
         public IProject Project
         {
             get { return this.AsElement().GetProject(); }
@@ -40,6 +63,15 @@ namespace NServiceBusStudio
                 foreach (var endpoint in this.DeployedTo)
                 {
                     DeleteComponentLink(endpoint);   
+                }
+            };
+
+            this.InstanceNameChanged += (s, e) =>
+            {
+                foreach (var endpoint in this.DeployedTo)
+                {
+                    this.RemoveLinks(endpoint);
+                    this.AddLinks(endpoint);
                 }
             };
         }
@@ -77,6 +109,12 @@ namespace NServiceBusStudio
             {
                 result.Add(new ValidationResult(string.Format("{0}.{1} should be allocated to an endpoint.", this.Parent.Parent.InstanceName, this.InstanceName)));
             }
+
+            if (this.IsSaga && !(this.Subscribes.ProcessedCommandLinks.Any (c => c.StartsSaga) || this.Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
+            {
+                result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", this.Parent.Parent.InstanceName, this.InstanceName)));
+            }
+
             return result;
         }
 
@@ -113,11 +151,11 @@ namespace NServiceBusStudio
                 }
 
                 // Generate Code for Component Handlers
-                this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeHandlers").Execute();
-                this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldCustomHandlers").Execute();
+                this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeConditionalHandlers").Execute();
+                this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldConditionalCustomHandlers").Execute();
                 if (this.IsSaga)
                 {
-                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldConditionalSagaDataCode").Execute();
                 }
 
                 // Add Links for Referenced Libraries
@@ -125,23 +163,28 @@ namespace NServiceBusStudio
             }
         }
 
-        private void AddLinks(IAbstractEndpoint endpoint)
+        public void AddLinks(IAbstractEndpoint endpoint)
         {
             var project = endpoint.Project;
 
-            // 1. Add Links for Custom Code
-            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
-            AddLinkToProject(project, this.As<IProductElement>(), customCodePath, 
-                items => items.First(i => 
-                    Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) != "Infrastructure"
-                ));
+            if (this.IsProcessor)
+            {
 
-            //2. Add Links for Infrastructure Code
-            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure");
-            AddLinkToProject(project, this.As<IProductElement>(), infraCodePath,
-                items => items.First(i =>
-                    Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) == "Infrastructure"
-                ));
+                // 1. Add Links for Custom Code
+                var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
+                AddLinkToProject(project, this.As<IProductElement>(), customCodePath,
+                    items => items.First(i =>
+                        Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) != "Infrastructure"
+                    ));
+
+                //2. Add Links for Infrastructure Code
+                var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", true);
+                AddLinkToProject(project, this.As<IProductElement>(), infraCodePath,
+                    items => items.First(i =>
+                        Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) == "Infrastructure"
+                    ));
+
+            }
 
             // 3. Add Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
@@ -163,7 +206,7 @@ namespace NServiceBusStudio
                     }
                 }
 
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
+                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
 
                 AddLinkToProject(project, element, suggestedPath, i => i.First());
             }
@@ -176,13 +219,18 @@ namespace NServiceBusStudio
             if (project == null)
                 return;
 
-            // 1. Remove Links for Custom Code
-            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
-            RemoveLinkFromProject(project, this.InstanceName + ".cs", customCodePath);
+            if (this.IsProcessor)
+            {
 
-            //2. Remove Links for Infrastructure Code
-            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure");
-            RemoveLinkFromProject(project, this.InstanceName + ".cs", infraCodePath);
+                // 1. Remove Links for Custom Code
+                var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
+                RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", customCodePath);
+
+                //2. Remove Links for Infrastructure Code
+                var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", false);
+                RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", infraCodePath);
+
+            }
 
             // 3. Remove Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
@@ -204,8 +252,7 @@ namespace NServiceBusStudio
                     }
                 }
 
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null);
-
+                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
                 RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
             }
         }
@@ -247,8 +294,8 @@ namespace NServiceBusStudio
 
         private static IItem FindSourceItemForElement(IProductElement element, Func<IEnumerable<IItem>, IItem> filter)
         {
-            var references = Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.ServiceProviderExtensions
-                .GetService<IFxrUriReferenceService>(element.Product.ProductState);
+            var references = ServiceProviderExtensions
+                .GetService<IUriReferenceService>(element.Product.ProductState);
 
             var sourceFile = filter(SolutionArtifactLinkReference.GetResolvedReferences(element, references).OfType<IItem>());
             return sourceFile;

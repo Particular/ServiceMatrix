@@ -1,29 +1,102 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools;
-using System.Diagnostics;
-using Microsoft.VisualStudio.Patterning.Runtime;
-using Microsoft.VisualStudio.TeamArchitect.PowerTools.Features.Diagnostics;
 using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using NuPattern.Runtime;
+using Microsoft.VisualStudio.Shell;
+using NuPattern.Diagnostics;
+using NuPattern.VisualStudio.Solution;
+using NuPattern.VisualStudio;
+using NuPattern;
+using System.Collections.Generic;
+
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
     [Export]
     public class RefactoringManager
     {
-        private static readonly ITraceSource tracer = Tracer.GetSourceFor<RefactoringManager>();
+        private static readonly ITracer tracer = Tracer.Get<RefactoringManager>();
+        private FileSystemWatcher Watcher;
 
         public ISolution Solution { get; set; }
+
+        public System.Windows.Threading.Dispatcher Dispatcher { get; set; }
+        
+        [Import]
         public IStatusBar StatusBar { get; set; }
 
+        [Import]
+        public IPatternManager PatternManager { get; set; }
+
+        [Import]
+        public IUriReferenceService UriService { get; set; }
+
         [ImportingConstructor]
-        public RefactoringManager(ISolution solution, IStatusBar statusBar)
+        public RefactoringManager([Import] ISolution solution, [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
             this.Solution = solution;
-            this.StatusBar = statusBar;
+            this.Dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
+            StartListening(serviceProvider);
+        }
+
+        private void StartListening(IServiceProvider serviceProvider)
+        {
+            var events = serviceProvider.TryGetService<ISolutionEvents>();
+
+            events.SolutionOpened += (s, e) => {
+                InitializeWatcher();
+            };
+            
+            events.SolutionClosed += (s, e) => {
+                if (this.Watcher != null)
+                {
+                    this.Watcher.EnableRaisingEvents = false;
+                    this.Watcher = null;
+                }
+            };
+
+            if (this.Solution.IsOpen)
+            {
+                InitializeWatcher();
+            }
+        }
+
+        private void InitializeWatcher()
+        {
+            this.Watcher = new FileSystemWatcher(Path.GetDirectoryName(this.Solution.PhysicalPath), "*.cs");
+            this.Watcher.IncludeSubdirectories = true;
+
+            this.Watcher.Renamed += new RenamedEventHandler(Watcher_Renamed);
+            this.Watcher.EnableRaisingEvents = true;
+        }
+
+        private void Watcher_Renamed(object sender, RenamedEventArgs renamedFile)
+        {
+            // Get Reference Uri for renamed File
+            var item = this.Solution.Find(renamedFile.Name).FirstOrDefault();
+            if (item == null)
+            {
+                return;
+            }
+
+            var referenceUri = this.UriService.CreateUri(item);
+
+            // Get Root Pattern Elements 
+            var rootElements = this.PatternManager.Products.SelectMany(x => x.Views.SelectMany(v => v.AllElements));
+            // Get all Pattern Elements 
+            var allElements = rootElements.Traverse<IProductElement>((e) => e.GetChildren()); 
+
+            // Get related elements to the Renamed File
+            var relatedElements = allElements.Where(e => e.References.Any(r => r.Value == referenceUri.ToString()) &&
+                                                         e.InstanceName == Path.GetFileNameWithoutExtension(renamedFile.OldName))
+                                             .ToList();
+            
+            this.Dispatcher.BeginInvoke(new Action(() =>
+                // Rename related elements with new name
+                relatedElements.ForEach(x => x.InstanceName = Path.GetFileNameWithoutExtension(renamedFile.Name))
+            ));
         }
 
         public void RenameClass(string classNamespace, string classCurrentName, string classNewName)
@@ -57,11 +130,66 @@ namespace NServiceBusStudio.Automation.Infrastructure
             process.ErrorDataReceived += (sender, e) => Log(LogType.Error, e.Data);
 
             process.WaitForExit();
+
+            Log(LogType.Output, "Ready");
+        }
+
+        public void RenameNamespaces(string currentName, string newName, IDictionary<string, string> currentNewNamespace)
+        {
+            SaveSolution();
+
+            Log(LogType.Output, "Loading solution...");
+            Log(LogType.Output, "Finding references...");
+
+            var projects = this.Solution.Find(x => x.Kind == ItemKind.Project);
+            foreach (var project in projects)
+            {
+                foreach (var item in project.Items)
+                {
+                    RenameNamespacesRecursive(item, currentName, newName, currentNewNamespace);
+                }
+            }
+
+            Log(LogType.Output, "Ready");
+        }
+
+        private void RenameNamespacesRecursive(IItemContainer itemContainer, string currentName, string newName, IDictionary<string, string> currentNewNamespace)
+        {
+            if (itemContainer.Kind == ItemKind.Folder)
+            {
+                // Rename namespace on child files
+                foreach (var item in itemContainer.Items)
+                {
+                    RenameNamespacesRecursive(item, currentName, newName, currentNewNamespace);
+                }
+
+                // Do folder renaming
+                if (itemContainer.Name == currentName)
+                {
+                    itemContainer.Rename(newName);
+                }
+            }
+            else
+            {
+                // File exists?
+                if (!System.IO.File.Exists(itemContainer.PhysicalPath))
+                {
+                    return;
+                }
+
+                // Do rename
+                var fileText = File.ReadAllText(itemContainer.PhysicalPath);
+                foreach (var renameNamespace in currentNewNamespace)
+                {
+                    fileText = fileText.Replace(renameNamespace.Key, renameNamespace.Value);
+                }
+                File.WriteAllText(itemContainer.PhysicalPath, fileText);
+            }
         }
 
         private void SaveSolution()
         {
-            this.Solution.As<EnvDTE.Solution>().SaveAs(this.Solution.Name);
+            this.Solution.As<EnvDTE.Solution>().SaveAs(this.Solution.PhysicalPath);
 
             var projects = this.Solution.Find(x => x.Kind == ItemKind.Project);
             foreach (var project in projects)
@@ -87,10 +215,12 @@ namespace NServiceBusStudio.Automation.Infrastructure
                     break;
             }
 
-            tracer.TraceInformation(logTypeDesc + data);
+            tracer.Info(logTypeDesc + data);
             this.StatusBar.DisplayMessage(logTypeDesc + data);
         }
 
+
+        
     }
 
     public enum LogType

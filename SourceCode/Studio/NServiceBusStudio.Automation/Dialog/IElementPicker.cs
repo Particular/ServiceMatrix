@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Dialog
 {
@@ -12,5 +12,6 @@ namespace NServiceBusStudio.Automation.Dialog
 
         ICollection<string> Elements { get; set; }
         string SelectedItem { get; }
+        string Title { get; set; }
     }
 }

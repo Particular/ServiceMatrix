@@ -1,0 +1,11 @@
+<#+
+// Product Version Info
+public static class VersionInfo
+{
+    // Framework Version
+    public static readonly string TargetVsVersion = "11.0";
+	public static readonly string TargetFrxMinVersion = "4.0";
+	public static readonly string TargetFrxMaxVersion = "4.0";
+
+}
+#>

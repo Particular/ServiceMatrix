@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.Patterning.Library.Automation;
-using Microsoft.VisualStudio.Patterning.Runtime;
+using NuPattern.Library.Automation;
+using NuPattern.Runtime;
+using NuPattern.Runtime.Bindings;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
@@ -46,5 +47,10 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public Guid Id { get; set; }
         public string Name { get; set; }
         public IPatternElementSchema Owner { get; set; }
+
+        public Microsoft.VisualStudio.Modeling.Store Store
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

@@ -1,17 +1,16 @@
 ﻿<#@ output extension=".targets" #>
-<#@ Include File="source.include.t4" #>
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- Version Properties -->
   <PropertyGroup>
     <!-- Current version of toolkit -->
-    <NServiceBusStudioVersion>3.4.0</NServiceBusStudioVersion>
+    <NServiceBusStudioVersion>4.0.0</NServiceBusStudioVersion>
 
     <!-- This can be overwridden in unfolded project file -->
     <ExtensionsHive Condition="'$(ExtensionsHive)' == ''">10.0</ExtensionsHive>
 
     <VSExtensionsPath>$(LocalAppData)\Microsoft\VisualStudio\$(ExtensionsHive)\Extensions</VSExtensionsPath>
-    <NServiceBusStudioToolkit>$(VSExtensionsPath)\NServiceBus\NServiceBus Studio\$(NServiceBusStudioVersion)</NServiceBusStudioToolkit>
+    <NServiceBusStudioToolkit>$(VSExtensionsPath)\Particular\ServiceMatrix\$(NServiceBusStudioVersion)</NServiceBusStudioToolkit>
   </PropertyGroup>
   
   <!-- Additional targets -->
