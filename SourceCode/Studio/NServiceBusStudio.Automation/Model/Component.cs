@@ -115,6 +115,13 @@ namespace NServiceBusStudio
                 result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", this.Parent.Parent.InstanceName, this.InstanceName)));
             }
 
+            if (this.Subscribes.ProcessedCommandLinks.Any() &&
+                root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll()
+                .Count(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this)) > 1)
+            {
+                result.Add(new ValidationResult(string.Format("{0}.{1} is a command-processing component, and it's deployed on more than one Endpoint. This scenario is not supported, undeploy the component from one of the endpoints.", this.Parent.Parent.InstanceName, this.InstanceName)));
+            }
+
             return result;
         }
 
