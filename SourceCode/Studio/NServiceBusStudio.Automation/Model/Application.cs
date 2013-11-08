@@ -82,15 +82,9 @@ namespace NServiceBusStudio
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
             CheckLicense();
-            ShowDiagram();
 
             System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
-        }
-
-        private void ShowDiagram()
-        {
-            //new OnApplicationLoadedCommand() { ServiceProvider = this.ServiceProvider, PatternWindows = this.PatternWindows }.Execute();
         }
 
         private void SetOptionSettings()
