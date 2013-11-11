@@ -166,8 +166,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     this.ViewModel.GetOrCreateEventNode(newElement);
                     break;
                 case "ComponentLink":
-                    var componentLink = newElement.Data.As<IAbstractComponentLink>();
-                    CreateComponentLink(componentLink);
+                    CreateComponentLink(newElement);
                     break;
 
                 // Connections
@@ -194,10 +193,18 @@ namespace ServiceMatrix.Diagramming.ViewModels
         private void RemoveElement(IProductElementViewModel removedElement)
         {
             this.ViewModel.DeleteNodesById(removedElement.Data.Id);
+
+            switch (removedElement.Data.Info.Name)
+            {
+                case "ComponentLink":
+                    this.ViewModel.DeleteComponentLinkNode(removedElement);
+                    break;
+            }
         }
 
-        private void CreateComponentLink(IAbstractComponentLink componentLink)
+        private void CreateComponentLink(IProductElementViewModel viewModel)
         {
+            var componentLink = viewModel.Data.As<IAbstractComponentLink>();
             var component = componentLink.ComponentReference.Value;
             var service = component.Parent.Parent;
             var serviceViewModel = FindViewModel(service.AsElement().Id);
@@ -205,7 +212,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             this.ViewModel.GetOrCreateComponentLink(componentLink.ParentEndpointComponents.ParentEndpoint.As<NuPattern.Runtime.IProductElement>().Id,
                                                     serviceViewModel,
-                                                    componentViewModel);
+                                                    componentViewModel,
+                                                    viewModel);
 
             component.Publishes.CommandLinks.ForEach(x => CreateCommandLink(x));
             component.Publishes.EventLinks.ForEach(x => CreateEventLink(x));

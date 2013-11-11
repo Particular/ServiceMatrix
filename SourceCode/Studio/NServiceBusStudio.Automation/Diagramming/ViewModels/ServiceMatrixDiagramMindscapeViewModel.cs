@@ -124,7 +124,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             {
                 var service = GetOrCreateServiceNode(EmptyEndpointNode.NodeId, viewModel.ParentNode.ParentNode);
 
-                component = new ComponentNode(viewModel, service);
+                component = new ComponentNode(viewModel, service, null);
                 AddNode(component);
             }
 
@@ -132,13 +132,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
         }
 
 
-        public ComponentNode GetOrCreateComponentLink(Guid endpointId, IProductElementViewModel serviceViewModel, IProductElementViewModel viewModel)
+        public ComponentNode GetOrCreateComponentLink(Guid endpointId, IProductElementViewModel serviceViewModel, IProductElementViewModel componentViewModel, IProductElementViewModel viewModel)
         {
             // Find undeployed component
             var undeployedComponentNode = FindComponent(EmptyEndpointNode.NodeId,
                                                         serviceViewModel.Data.Id, 
-                                                        viewModel.Data.Id);
-
+                                                        componentViewModel.Data.Id);
+            
             if (undeployedComponentNode != null)
             {
                 this.DeleteNode(undeployedComponentNode);
@@ -164,22 +164,40 @@ namespace ServiceMatrix.Diagramming.ViewModels
             // Create New Component Link
             var componentNode = FindComponent(endpointId,
                                               serviceViewModel.Data.Id,
-                                              viewModel.Data.Id);
+                                              componentViewModel.Data.Id);
 
             if (componentNode == null)
             {
                 var serviceNode = GetOrCreateServiceNode(endpointId,
                                                          serviceViewModel);
 
-                componentNode = new ComponentNode(viewModel,
-                                                  serviceNode);
+                componentNode = new ComponentNode(componentViewModel,
+                                                  serviceNode,
+                                                  viewModel);
                 AddNode(componentNode);
             }
 
             return componentNode;
         }
 
+        public void DeleteComponentLinkNode(IProductElementViewModel removedElement)
+        {
+            var component = this.Nodes.FirstOrDefault(x => x is ComponentNode && ((ComponentNode)x).ComponentLinkViewModel == removedElement) as ComponentNode;
 
+            if (component != null)
+            {
+                this.DeleteNode(component);
+
+                // Remove service if it's empty
+                var serviceNode = component.ParentNode;
+                if (serviceNode != null &&
+                    !serviceNode.ChildNodes.Any())
+                {
+                    this.DeleteNode(serviceNode);
+                }
+            }
+            
+        }
 
         // ================ CONNECTIONS ==========================
 
@@ -260,7 +278,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             var groupNode = node as GroupNode;
             if (groupNode != null)
             {
-                groupNode.ChildNodes.ForEach(x => DeleteNode(x));
+                groupNode.ChildNodes.ToList().ForEach(x => DeleteNode(x));
             }
 
             this.LayoutAlgorithm.RemoveElementPosition(node);
@@ -410,5 +428,6 @@ namespace ServiceMatrix.Diagramming.ViewModels
         public IPatternWindows PatternWindows { get; set; }
 
         public IServiceProvider ServiceProvider { get; set; }
+
     }
 }

@@ -11,9 +11,12 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 {
     public class ComponentNode : ChildNode
     {
-        public ComponentNode(IProductElementViewModel innerViewModel, ServiceNode parent)
+        public IProductElementViewModel ComponentLinkViewModel { get; set; }
+
+        public ComponentNode(IProductElementViewModel innerViewModel, ServiceNode parent, IProductElementViewModel componentLinkViewModel)
             : base(innerViewModel)
         {
+            this.ComponentLinkViewModel = componentLinkViewModel;
             this.IsResizable = false;
             
             this.Bounds = new Rect(12, 40, 276, 38);
