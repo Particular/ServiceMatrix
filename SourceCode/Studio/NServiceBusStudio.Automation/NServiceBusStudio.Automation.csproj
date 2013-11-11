@@ -255,6 +255,7 @@
     </Compile>
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
+    <Compile Include="Infrastructure\RemoveEmptyAddMenus.cs" />
     <Compile Include="Licensing\Registered.xaml.cs">
       <DependentUpon>Registered.xaml</DependentUpon>
     </Compile>

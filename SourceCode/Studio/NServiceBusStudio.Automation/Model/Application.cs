@@ -41,6 +41,9 @@ namespace NServiceBusStudio
         [Import]
         public StatisticsManager StatisticsManager { get; set; }
 
+        [Import]
+        public RemoveEmptyAddMenus RemoveEmptyAddMenus { get; set; }
+
         public IEndpoints Endpoints { get; set; }
 
         partial void Initialize()
@@ -82,9 +85,15 @@ namespace NServiceBusStudio
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
             CheckLicense();
+            SetRemoveEmptyAddMenus();
 
             System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
+        }
+
+        private void SetRemoveEmptyAddMenus()
+        {
+            this.RemoveEmptyAddMenus.WireSolution(this.ServiceProvider);
         }
 
         private void SetOptionSettings()
