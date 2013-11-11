@@ -20,8 +20,8 @@ namespace NServiceBusStudio.Automation.Licensing
         private const string LicenseTypeKey = "LicenseType";
         private const string LicenseVersionKey = "LicenseVersion";
 
-        private const int TRIAL_DAYS = 30;
-        private const int TRIAL_NOTIFICATION_DAYS = 10;
+        private const int TRIAL_DAYS = 45;
+        private const int TRIAL_NOTIFICATION_DAYS = 15;
 
         private static readonly ITracer tracer = Tracer.Get<LicenseManager>();
         public static readonly Version SoftwareVersion = GetStudioVersion();
@@ -72,26 +72,30 @@ namespace NServiceBusStudio.Automation.Licensing
         /// <summary>
         /// Prompts the users if their trial license has expired
         /// </summary>
-        public static bool PromptUserForLicense()
+        public static bool PromptUserForLicense(bool forcePrompt = false)
         {
             if (instance == null)
                 instance = new LicenseManager();
 
-            return instance.PromptUserForLicenseInternal();
+            return instance.PromptUserForLicenseInternal(forcePrompt);
         }
 
-        private bool PromptUserForLicenseInternal()
+        private bool PromptUserForLicenseInternal(bool forcePrompt)
         {
-            if (license.LicenseType == LicenseType.Standard) 
+            if (!forcePrompt)
             {
-                return true;               
-            }
-            else if (license.LicenseType == LicenseType.Trial &&
-                    (license.ExpirationDate - DateTime.Now).TotalDays >= TRIAL_NOTIFICATION_DAYS)
-            {
-                return false;
+                if (license.LicenseType == LicenseType.Standard)
+                {
+                    return true;
+                }
+                else if (license.LicenseType == LicenseType.Trial &&
+                        (license.ExpirationDate - DateTime.Now).TotalDays >= TRIAL_NOTIFICATION_DAYS)
+                {
+                    return false;
+                }
             }
 
+           
             //prompt user for license file
             using (var form = new TrialExpired())
             {

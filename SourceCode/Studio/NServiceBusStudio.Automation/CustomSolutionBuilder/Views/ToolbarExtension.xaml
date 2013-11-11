@@ -16,5 +16,8 @@
         <Button Click="Button_Click_2" ToolTip="Get Help from Particular Software Support Call" Focusable="False">
             <BitmapImage UriSource="../../Resources/Help.png" />
         </Button>
+        <Button Click="Button_Click_3" ToolTip="Register ServiceMatrix" Focusable="False">
+            <BitmapImage UriSource="../../Resources/Register.png" />
+        </Button>
     </StackPanel>
 </UserControl>

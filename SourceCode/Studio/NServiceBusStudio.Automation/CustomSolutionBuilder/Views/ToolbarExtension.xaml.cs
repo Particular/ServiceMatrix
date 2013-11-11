@@ -18,6 +18,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using NuPattern;
 using NuPattern.Runtime.UI.ViewModels;
 using NServiceBusStudio.Automation.Extensions;
+using NServiceBusStudio.Automation.Licensing;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -192,6 +193,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
             var frame = default(IVsWindowFrame);
             vsWebBroserService.Navigate(url, 1, out frame);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            LicenseManager.PromptUserForLicense(true);
         }
     }
 }

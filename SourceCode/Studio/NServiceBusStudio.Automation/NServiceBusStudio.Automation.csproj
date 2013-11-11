@@ -655,6 +655,9 @@
     <Resource Include="Diagramming\Styles\Images\MenuItems\PublishEvent.png" />
     <Resource Include="Diagramming\Styles\Images\MenuItems\SendCommand.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Register.png" />
+  </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>
     <CopyVsixDebuggingDependencies>false</CopyVsixDebuggingDependencies>
