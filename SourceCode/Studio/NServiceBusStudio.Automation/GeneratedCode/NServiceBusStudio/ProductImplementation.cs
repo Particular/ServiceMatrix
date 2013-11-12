@@ -215,6 +215,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.ServiceControlEndpointPluginVersion
+		/// </summary>
+		[Description("Description for Application.ServiceControlEndpointPluginVersion")]
+		[DisplayName("Service Control Endpoint Plugin Version")]
+		[Category("General")]
+		public virtual String ServiceControlEndpointPluginVersion
+		{
+			get { return this.proxy.GetValue(() => this.ServiceControlEndpointPluginVersion); }
+			set { this.proxy.SetValue(() => this.ServiceControlEndpointPluginVersion, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo

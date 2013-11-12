@@ -79,6 +79,7 @@ namespace NServiceBusStudio
             // Set/Get static values
             currentApplication = this;
             this.NServiceBusVersion = nserviceBusVersion;
+            this.ServiceControlEndpointPluginVersion = serviceControlEndpointPluginVersion;
             this.ExtensionPath = extensionPath;
 
             SetOptionSettings();
@@ -254,6 +255,7 @@ namespace NServiceBusStudio
         static Application currentApplication = null;
         static string extensionPath;
         static string nserviceBusVersion;
+        static string serviceControlEndpointPluginVersion;
 
         [Import(typeof(Microsoft.VisualStudio.Shell.SVsServiceProvider))]
         public IServiceProvider VsServiceProvider { get; set; }
@@ -267,6 +269,7 @@ namespace NServiceBusStudio
             //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;
             nserviceBusVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "NServiceBusVersion.txt"));
+            serviceControlEndpointPluginVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "ServiceControlEndpointPluginVersion.txt"));
         }
 
         public static void SelectSolution()

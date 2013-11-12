@@ -115,6 +115,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="BindingPath.pkgdef" />
+    <Content Include="ServiceControlEndpointPluginVersion.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Libs\ICSharpCode.NRefactory.CSharp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

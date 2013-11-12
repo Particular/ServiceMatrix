@@ -10,6 +10,7 @@
 <#  
     var application = ((IProductElement)this.Element).Root.As<NServiceBusStudio.IApplication>();
     var nservicebusversion = application.NServiceBusVersion; 
+    var servicecontrolendpointpluginversion = application.ServiceControlEndpointPluginVersion; 
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <packages>
@@ -37,5 +38,6 @@ else if (application.Transport == TransportType.SqlServer.ToString())
   <package id="NServiceBus.SqlServer" version="<#= nservicebusversion #>" />
 <#
 }
-#>
+  #>
+  <package id="ServiceControl.EndpointPlugin" version="<#= servicecontrolendpointpluginversion #>" targetFramework="net40" />
 </packages>

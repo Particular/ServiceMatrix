@@ -137,6 +137,14 @@ namespace NServiceBusStudio
 		Boolean LicensedVersion { get; set; }
 
 		/// <summary>
+		/// Description for Application.ServiceControlEndpointPluginVersion
+		/// </summary>
+		[Description("Description for Application.ServiceControlEndpointPluginVersion")]
+		[DisplayName("Service Control Endpoint Plugin Version")]
+		[Category("General")]
+		String ServiceControlEndpointPluginVersion { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }

@@ -125,6 +125,19 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 Endpoint.Project.RemoveReference("NServiceBus.Transports.SqlServer");
             }
+
+            if (!Endpoint.Project.HasReference("ServiceControl.EndpointPlugin"))
+            {
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\ServiceControl.EndpointPlugin.{1}\lib\net40\ServiceControl.EndpointPlugin.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
+
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\ServiceControl.EndpointPlugin.{1}\lib\net40\ServiceControl.EndpointPlugin.Messages.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
+            }
         }
     }
 }
