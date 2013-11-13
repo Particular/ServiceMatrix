@@ -419,6 +419,7 @@
     <Compile Include="ValueProviders\NamespaceForEndpointProjectValueProvider.cs" />
     <Compile Include="ValueProviders\ParentComponentPublishesAnEventValueProvider.cs" />
     <Compile Include="ValueProviders\ProcessedEventLinkHandlerNameProvider.cs" />
+    <Compile Include="ValueProviders\ServiceControlInstanceURIValueProvider.cs" />
     <Compile Include="ValueProviders\ToolkitVersionValueProvider.cs" />
     <Compile Include="VersionHelper.cs" />
     <Compile Include="GeneratedCode\NServiceBusStudio\CollectionImplementation.cs">

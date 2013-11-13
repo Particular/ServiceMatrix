@@ -145,6 +145,14 @@ namespace NServiceBusStudio
 		String ServiceControlEndpointPluginVersion { get; set; }
 
 		/// <summary>
+		/// The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.
+		/// </summary>
+		[Description("The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.")]
+		[DisplayName("Service Control Instance URI")]
+		[Category("General")]
+		String ServiceControlInstanceURI { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }
