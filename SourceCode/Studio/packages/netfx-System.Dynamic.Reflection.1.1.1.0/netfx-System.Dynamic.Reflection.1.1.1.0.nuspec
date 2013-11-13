@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>netfx-System.Dynamic.Reflection</id>
+    <version>1.1.1.0</version>
+    <title>NETFx Dynamic Reflection</title>
+    <authors>Daniel Cazzulino,  kzu,  Clarius</authors>
+    <owners>Daniel Cazzulino,  kzu,  Clarius</owners>
+    <licenseUrl>http://netfx.codeplex.com/license</licenseUrl>
+    <projectUrl>http://netfx.codeplex.com/</projectUrl>
+    <iconUrl>http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=netfx&amp;DownloadId=199201</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides full reflection capabilities using C# 4.0 dynamic syntax, including invoking and accessing public, internal or private, instance or static members including constructors.</description>
+    <language>en-US</language>
+    <tags>netfx dynamic reflection</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
