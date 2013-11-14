@@ -25,14 +25,15 @@ namespace NServiceBusStudio.Automation.ValueProviders
             }
 
             var regeditPort = 0;
-            using (var registryKey = Registry.CurrentUser.OpenSubKey(@"Software\ParticularSoftware\NServicebus"))
-            {
-                if (registryKey != null)
+            using (var baseKey = RegistryKey.OpenBaseKey (RegistryHive.LocalMachine, RegistryView.Registry64))
+                using (var registryKey = baseKey.OpenSubKey(@"Software\ParticularSoftware\ServiceControl"))
                 {
-                    regeditPort = (int)registryKey.GetValue("Port", 0);
+                    if (registryKey != null)
+                    {
+                        regeditPort = (int)registryKey.GetValue("Port", 0);
+                    }
                 }
-            }
-
+            
             if (regeditPort != 0)
             {
                 var regeditUrl = String.Format("http://localhost:{0}/api", regeditPort);
