@@ -62,17 +62,17 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 		<#
 
 			// Send Commands
-			foreach (var command in commands)
-			{
+      foreach (var command in commands)
+      {
 
-		#>
+      #>
 
-		//
-        // GET: /TestMessages/SendMessage<#= command.CodeIdentifier #>
-		
-        public ActionResult SendMessage<#= command.CodeIdentifier #>()
+        //
+        // POST: /TestMessages/SendMessage<#= command.CodeIdentifier #>
+          
+		    [HttpPost]
+        public ActionResult SendMessage<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> <#= command.CodeIdentifier #>)
         {
-            var <#= command.CodeIdentifier #> = new <#= command.CodeIdentifier #>();
             Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #>);
             MvcApplication.Bus.Send(<#= command.CodeIdentifier #>);
 
@@ -91,12 +91,12 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
 		#>
 
-		//
-        // GET: /TestMessages/SendMessage<#= @event.CodeIdentifier #>
+		    //
+        // POST: /TestMessages/SendMessage<#= @event.CodeIdentifier #>
 		
-        public ActionResult SendMessage<#= @event.CodeIdentifier #>()
+        [HttpPost]
+        public ActionResult SendMessage<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #> <#= @event.CodeIdentifier #>)
         {
-            var <#= @event.CodeIdentifier #> = new <#= @event.CodeIdentifier #>();
             Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #>);
             MvcApplication.Bus.Publish(<#= @event.CodeIdentifier #>);
 
