@@ -21,7 +21,6 @@ namespace NServiceBusStudio
         string ContractsProjectName { get; }
         string InternalMessagesProjectName { get; }
         InfrastructureManager InfrastructureManager { get; }
-        IEndpoints Endpoints { get; set; }
     }
 
     partial class Application : IRenameRefactoringNotSupported
@@ -41,7 +40,8 @@ namespace NServiceBusStudio
         [Import]
         public StatisticsManager StatisticsManager { get; set; }
 
-        public IEndpoints Endpoints { get; set; }
+        [Import]
+        public RemoveEmptyAddMenus RemoveEmptyAddMenus { get; set; }
 
         partial void Initialize()
         {
@@ -76,21 +76,18 @@ namespace NServiceBusStudio
             // Set/Get static values
             currentApplication = this;
             this.NServiceBusVersion = nserviceBusVersion;
+            this.ServiceControlEndpointPluginVersion = serviceControlEndpointPluginVersion;
             this.ExtensionPath = extensionPath;
 
             SetOptionSettings();
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
+            SetRemoveEmptyAddMenus();
+            SetF5Experience();
             CheckLicense();
-            ShowDiagram();
 
             System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
-        }
-
-        private void ShowDiagram()
-        {
-            //new OnApplicationLoadedCommand() { ServiceProvider = this.ServiceProvider, PatternWindows = this.PatternWindows }.Execute();
         }
 
         private void SetOptionSettings()
@@ -101,6 +98,46 @@ namespace NServiceBusStudio
             this.ProjectNameInternalMessages = properties.Item("ProjectNameInternalMessages").Value.ToString();
             this.ProjectNameContracts = properties.Item("ProjectNameContracts").Value.ToString();
             this.ProjectNameCode = properties.Item("ProjectNameCode").Value.ToString();
+        }
+
+        private void SetF5Experience()
+        {
+            var envdte = this.ServiceProvider.TryGetService<EnvDTE.DTE>();
+            this.DebuggerEvents = envdte.DTE.Events.DebuggerEvents;
+            this.DebuggerEvents.OnEnterRunMode += DebuggerEvents_OnEnterRunMode;
+        }
+
+        void DebuggerEvents_OnEnterRunMode(EnvDTE.dbgEventReason Reason)
+        {
+            if (String.IsNullOrEmpty(this.ServiceControlInstanceURI))
+            {
+                return;
+            }
+
+            // Write DebugSessionId on Endpoints Bin folder
+            var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, this.InstanceName, DateTime.Now.ToUniversalTime().ToString()).Replace(" ", "_");
+            foreach (var endpoint in this.Design.Endpoints.GetAll())
+            {
+                var binFolder = Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), "Bin");
+
+                if (endpoint.As<INServiceBusHost>() != null)
+                {
+                    binFolder = Path.Combine(binFolder, "Debug");
+                }
+
+                File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
+            }
+
+            // If ServiceInsight is installed and invocation URI registerd
+            if (Microsoft.Win32.Registry.ClassesRoot.OpenSubKey("si") != null)
+            {
+                // Start ServiceInsight with parameters
+                System.Diagnostics.Process.Start(String.Format("si://{0}&Endpoint={1}&Search={2}&AutoRefresh={3}",
+                                                                        this.ServiceControlInstanceURI,
+                                                                        this.Design.Endpoints.GetAll().First().InstanceName,
+                                                                        debugSessionId,
+                                                                        1));
+            }
         }
 
         private void SetPropagationHandlers()
@@ -160,6 +197,12 @@ namespace NServiceBusStudio
             this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
             this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
         }
+
+        private void SetRemoveEmptyAddMenus()
+        {
+            this.RemoveEmptyAddMenus.WireSolution(this.ServiceProvider);
+        }
+
 
         private void AddNugetFiles()
         {
@@ -251,6 +294,7 @@ namespace NServiceBusStudio
         static Application currentApplication = null;
         static string extensionPath;
         static string nserviceBusVersion;
+        static string serviceControlEndpointPluginVersion;
 
         [Import(typeof(Microsoft.VisualStudio.Shell.SVsServiceProvider))]
         public IServiceProvider VsServiceProvider { get; set; }
@@ -264,6 +308,7 @@ namespace NServiceBusStudio
             //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://a5e9f15b-ad7f-4201-851e-186dd8db3bc9"));
             extensionPath = extension.InstallPath;
             nserviceBusVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "NServiceBusVersion.txt"));
+            serviceControlEndpointPluginVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "ServiceControlEndpointPluginVersion.txt"));
         }
 
         public static void SelectSolution()
@@ -272,6 +317,8 @@ namespace NServiceBusStudio
         }
 
 
+
+        public EnvDTE.DebuggerEvents DebuggerEvents { get; set; }
     }
 
     public enum TransportType

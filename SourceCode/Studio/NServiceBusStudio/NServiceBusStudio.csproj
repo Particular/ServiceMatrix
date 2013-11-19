@@ -115,6 +115,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="BindingPath.pkgdef" />
+    <Content Include="ServiceControlEndpointPluginVersion.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Libs\ICSharpCode.NRefactory.CSharp.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -290,9 +293,13 @@
     <Content Include="T\P\Endpoints\NSBHWeb\Content\Site.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\TestMessages.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Global.asax">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -329,6 +336,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHWeb\Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx">
+      <SubType>ASPXCodeBehind</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\Properties\AssemblyInfo.cs">
@@ -377,6 +388,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Controllers\TestMessagesController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx.cs">
+      <DependentUpon>TestMessages.aspx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx.designer.cs">
+      <DependentUpon>TestMessages.aspx.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="VSPackage.cs" />
@@ -838,6 +857,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>6f950f0a-8b5d-4ef3-afcd-e6046fcff516</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>23a83f8e-6d63-4cbe-a965-c73e279f72c4</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.cs.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>92008bd9-7d4f-4aa2-828b-0f4578a4b365</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.designer.cs.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>5ddee7e0-7cd1-4713-ab12-8d59d622a228</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

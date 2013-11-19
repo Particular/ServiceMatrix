@@ -2513,7 +2513,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"07f9c0cf-994d-4978-a9b9-5e70e8c03dce\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8ead16bf-7a2b-42d6-a414-2182f54b4763\"\r\n  },\r\n  {\r\n    \"CommandId\": \"d23181a1-6b27-4314-b3a5-33021fc0eb57\"\r\n  },\r\n  {\r\n    \"CommandId\": \"5733ebbc-2a45-4add-bf19-4744bc480fcc\"\r\n  },\r\n  {\r\n    \"CommandId\": \"16906dd4-d11d-4d5f-ad82-ae41994017d8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"83de9acc-c878-4659-bbca-eda21bcd6a6f\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f86ce38e-ee17-41f0-8945-346e957940f9\"\r\n  },\r\n  {\r\n    \"CommandId\": \"cc7f9160-fc82-4e32-888b-a78e4e092022\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"07f9c0cf-994d-4978-a9b9-5e70e8c03dce\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8ead16bf-7a2b-42d6-a414-2182f54b4763\"\r\n  },\r\n  {\r\n    \"CommandId\": \"d23181a1-6b27-4314-b3a5-33021fc0eb57\"\r\n  },\r\n  {\r\n    \"CommandId\": \"5733ebbc-2a45-4add-bf19-4744bc480fcc\"\r\n  },\r\n  {\r\n    \"CommandId\": \"16906dd4-d11d-4d5f-ad82-ae41994017d8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"83de9acc-c878-4659-bbca-eda21bcd6a6f\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f86ce38e-ee17-41f0-8945-346e957940f9\"\r\n  },\r\n  {\r\n    \"CommandId\": \"cc7f9160-fc82-4e32-888b-a78e4e092022\"\r\n  },\r\n  {\r\n    \"CommandId\": \"0e9cbc74-ebd5-4b66-8dfa-bfaf9f540cc3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8076b123-b5b0-46dd-8c1d-621239ff8fee\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f40ddb7d-bf2d-46f3-ad73-f34fa5af702e\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4206,6 +4206,162 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="0e9cbc74-ebd5-4b66-8dfa-bfaf9f540cc3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e9605406-10a1-4d9f-b8f0-c51b8fe836a9" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Content",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "TestMessages.aspx",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TestMessages.aspx.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/23a83f8e-6d63-4cbe-a965-c73e279f72c4",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="8076b123-b5b0-46dd-8c1d-621239ff8fee" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="70cf8a62-55f9-478c-9757-cf7a0b53c352" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "TestMessages.aspx.generated.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/TestMessages.aspx",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TestMessages.aspx.cs.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/92008bd9-7d4f-4aa2-828b-0f4578a4b365",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="f40ddb7d-bf2d-46f3-ad73-f34fa5af702e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="316b6bd2-b84f-43a6-9ffc-e09e34cffe1d" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "TestMessages.aspx.designer.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/TestMessages.aspx",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TestMessages.aspx.designer.cs.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/5ddee7e0-7cd1-4713-ab12-8d59d622a228",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -5064,6 +5220,46 @@
   "Name": "DefaultValue",
   "Value": "False",
   "ValueProvider": null
+}</defaultValue>
+      </property>
+      <property Id="f754071a-321c-40dd-a177-0e1ef12143bb" name="ServiceControlEndpointPluginVersion" displayName="Service Control Endpoint Plugin Version" description="Description for Application.ServiceControlEndpointPluginVersion" codeIdentifier="ServiceControlEndpointPluginVersion" isVisible="false">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
+      <property Id="b943e76d-90d1-45d2-b98b-bf2986088bff" name="ServiceControlInstanceURI" displayName="Service Control Instance URI" description="The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior." codeIdentifier="ServiceControlInstanceURI">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.ServiceControlInstanceURIValueProvider",
+    "Properties": []
+  }
 }</defaultValue>
       </property>
     </properties>
@@ -8006,6 +8202,33 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="b207d2ad-649c-4bfe-a860-72144f74b0f8" name="SendCommandCommand" displayName="Send Command Command" description="" codeIdentifier="SendCommandCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="e9605406-10a1-4d9f-b8f0-c51b8fe836a9" name="GenerateTestMessagesAspx" displayName="Generate Test Messages Aspx" description="" codeIdentifier="GenerateTestMessagesAspx" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="70cf8a62-55f9-478c-9757-cf7a0b53c352" name="GenerateTestMessagesAspxCs" displayName="Generate Test Messages Aspx Cs" description="" codeIdentifier="GenerateTestMessagesAspxCs" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="316b6bd2-b84f-43a6-9ffc-e09e34cffe1d" name="GenerateTestMessagesAspxDesignerCs" displayName="Generate Test Messages Aspx Designer Cs" description="" codeIdentifier="GenerateTestMessagesAspxDesignerCs" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

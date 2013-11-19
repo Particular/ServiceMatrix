@@ -215,6 +215,30 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.ServiceControlEndpointPluginVersion
+		/// </summary>
+		[Description("Description for Application.ServiceControlEndpointPluginVersion")]
+		[DisplayName("Service Control Endpoint Plugin Version")]
+		[Category("General")]
+		public virtual String ServiceControlEndpointPluginVersion
+		{
+			get { return this.proxy.GetValue(() => this.ServiceControlEndpointPluginVersion); }
+			set { this.proxy.SetValue(() => this.ServiceControlEndpointPluginVersion, value); }
+		}
+
+		/// <summary>
+		/// The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.
+		/// </summary>
+		[Description("The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.")]
+		[DisplayName("Service Control Instance URI")]
+		[Category("General")]
+		public virtual String ServiceControlInstanceURI
+		{
+			get { return this.proxy.GetValue(() => this.ServiceControlInstanceURI); }
+			set { this.proxy.SetValue(() => this.ServiceControlInstanceURI, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo

@@ -236,19 +236,37 @@
                                 </header>
 
                                 <p>You can send test Commands/Events directly from here. This page is auto-generated based on the Publisher/Sender components deployed on this endpoint.</p>
-                                
+
+                                <div class="sidebar text-lato-16">
 		<#
 
 			// Send Commands
-			foreach (var command in commands)
-			{
+      foreach (var command in commands)
+      {
 
-		#>
+      #>
 
-                                <div class="sidebar text-lato-16">
-                                    <div class="button small">
-                                        @Html.ActionLink("Send <#= command.CodeIdentifier #> Command", "SendMessage<#= command.CodeIdentifier #>", null, new { @class = "blue"})
-                                    </div>
+                                <div class="sendMessage">
+                                    <h2 class="text-lato-16"><#= command.CodeIdentifier #></h2>
+
+                                    @using (Html.BeginForm("SendMessage<#= command.CodeIdentifier #>", "TestMessages", FormMethod.Post, new { id = "SendMessage<#= command.CodeIdentifier #>" }))
+                                    {
+                                      <div>
+                                        <table style="margin: 0px auto;">
+                                          @foreach (var field in typeof(<#= command.Parent.Namespace #>.<#= command.CodeIdentifier #>).GetProperties())
+                                          {
+                                          <tr>
+                                            <td>@field.Name</td>
+                                            <td>
+                                              <input type="text" id="@field.Name" name="@field.Name" />
+                                            </td>
+                                          </tr>
+                                          }
+                                        </table>
+                                      </div>
+
+                                      <a onclick="javascript:document.getElementById('SendMessage<#= command.CodeIdentifier #>').submit();">Send!</a>
+                                    }
 
                                     @if(ViewBag.MessageSent == "<#= command.CodeIdentifier #>")
                                     {
@@ -260,20 +278,37 @@
 
 			}
 
-			// Send Events
-			foreach (var @event in events)
-			{
+      // Send Events
+      foreach (var @event in events)
+      {
 
 
-		#>
-								<div class="sidebar text-lato-16">
-                                    <div class="button small">
-                                        @Html.ActionLink("Send <#= @event.CodeIdentifier #> Event", "SendMessage<#= @event.CodeIdentifier #>", null, new { @class = "blue"})
-                                    </div>
+      #>
+                                <div class="sendMessage">
+                                    <h2 class="text-lato-16"><#= @event.CodeIdentifier #></h2>
+
+                                    @using (Html.BeginForm("SendMessage<#= @event.CodeIdentifier #>", "TestMessages", FormMethod.Post, new { id = "SendMessage<#= @event.CodeIdentifier #>" }))
+                                    {
+                                      <div>
+                                        <table style="margin: 0px auto;">
+                                          @foreach (var field in typeof(<#= @event.Parent.Namespace #>.<#= @event.CodeIdentifier #>).GetProperties())
+                                            {
+                                            <tr>
+                                            <td>@field.Name</td>
+                                            <td>
+                                              <input type="text" id="@field.Name" name="@field.Name" />
+                                            </td>
+                                          </tr>
+                                          }
+                                        </table>
+                                      </div>
+
+                                      <a onclick="javascript:document.getElementById('SendMessage<#= @event.CodeIdentifier #>').submit();">Send!</a>
+                                    }
 
                                     @if(ViewBag.MessageSent == "<#= @event.CodeIdentifier #>")
                                     {
-                                        <div class="label text-dosis-16">Event sent!</div>
+                                      <div class="label text-dosis-16">Event sent!</div>
                                     }
                                 </div>
 		<#

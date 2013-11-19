@@ -59,7 +59,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
         }
 
-        private void WireSolution(IServiceProvider serviceProvider)
+        public void WireSolution(IServiceProvider serviceProvider)
         {
             this.ViewModel.LayoutAlgorithm.LoadShapePositions(System.IO.Path.GetDirectoryName(this.Solution.PhysicalPath));
             this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);

@@ -218,7 +218,7 @@
                                         <div class="label text-dosis-24"><strong>Try NServiceBus</strong></div>
 
                                         <div class="button small">
-                                            <asp:LinkButton ID="SendMessageLink" runat="server" CssClass="blue" OnClick="SendMessageLink_Click">Sent Test Message</asp:LinkButton>
+                                            <asp:LinkButton ID="TestMessagesLink" runat="server" CssClass="blue" OnClick="TestMessagesLink_Click">Test Messages</asp:LinkButton>
                                         </div>
 
                                         <asp:Panel ID="MessageSection" runat="server" Visible="false">

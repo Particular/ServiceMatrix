@@ -8,6 +8,8 @@ using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
 using NuPattern.Runtime.Shell.ToolWindows;
 using NuPattern.Runtime;
+using ServiceMatrix.Diagramming.ViewModels;
+using NServiceBusStudio.Automation.Infrastructure;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -20,11 +22,21 @@ namespace NServiceBusStudio.Automation.Commands
         [Import]
         public IPatternWindows PatternWindows { get; set; }
 
+        [Import]
+        public ServiceMatrixDiagramAdapter ServiceMatrixDiagramAdapter { get; set; }
+
+        [Import]
+        public RemoveEmptyAddMenus RemoveEmptyAddMenus { get; set; }
+
+
         public override void Execute()
         {
             this.PatternWindows.ShowSolutionBuilder(this.ServiceProvider);
 
             new ShowNewDiagramCommand () { ServiceProvider = this.ServiceProvider }.Execute();
+
+            this.ServiceMatrixDiagramAdapter.WireSolution(this.ServiceProvider);
+            this.RemoveEmptyAddMenus.WireSolution(this.ServiceProvider);
         }
     }
 }
