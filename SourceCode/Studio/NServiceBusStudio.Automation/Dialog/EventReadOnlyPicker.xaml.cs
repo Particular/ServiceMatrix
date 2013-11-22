@@ -33,6 +33,12 @@ namespace NServiceBusStudio.Automation.Dialog
             base.OnActivated(e);
         }
 
+        public string MasterName
+        {
+            get;
+            set;
+        }
+
         public ICollection<string> Elements
         {
             get;

@@ -64,6 +64,7 @@ namespace AbstractEndpoint.Automation.Dialog
             if (this.AddEndpointText.Text.Length > 0)
             {
                 AddEndpointItem();
+                AddEndpointCancel_Click(null, null);
             }
         }
 
@@ -77,6 +78,18 @@ namespace AbstractEndpoint.Automation.Dialog
                 this.AddEndpointText.Text = string.Empty;
             }));
         }
+
+        private void NewEndpoint_Click(object sender, RoutedEventArgs e)
+        {
+            this.NewEndpoint.Visibility = System.Windows.Visibility.Visible;
+            this.AddEndpointText.Text = "";
+        }
+
+        private void AddEndpointCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.NewEndpoint.Visibility = System.Windows.Visibility.Collapsed;
+        }
+        
     }
 
 }

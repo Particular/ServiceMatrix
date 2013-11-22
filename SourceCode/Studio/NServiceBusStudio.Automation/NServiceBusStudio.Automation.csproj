@@ -242,6 +242,12 @@
     <Compile Include="Diagramming\ViewModels\Shapes\EventNode.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageBaseNode.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\ServiceNode.cs" />
+    <Compile Include="Diagramming\Views\AddEndpoint.xaml.cs">
+      <DependentUpon>AddEndpoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Views\AddService.xaml.cs">
+      <DependentUpon>AddService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Diagramming\Views\Diagram.xaml.cs">
       <DependentUpon>Diagram.xaml</DependentUpon>
     </Compile>
@@ -556,6 +562,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Diagramming\Views\AddEndpoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagramming\Views\AddService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Diagramming\Views\Diagram.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -659,6 +673,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlackEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\BlackServiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\WhiteEndpointIcon.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

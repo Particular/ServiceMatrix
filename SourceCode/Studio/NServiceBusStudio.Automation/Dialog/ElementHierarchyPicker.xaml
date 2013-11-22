@@ -6,38 +6,40 @@
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
              xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="278" 
-             Height="140" Width="278"
-             FocusManager.FocusedElement="{Binding ElementName=DropDown}">
-    <Grid  Margin="5,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center">Service Name:</Label>
-        <ComboBox x:Name="MasterDropDown" Grid.Column="1" Grid.Row="0" IsEditable="true"  Margin="5,10"
+             Width="280"
+             Height="250"
+             FocusManager.FocusedElement="{Binding ElementName=MasterDropDown}"
+             WindowStyle="None"
+             ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Width="280" Background="#F1F1F1">
+            <StackPanel.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </StackPanel.BitmapEffect>
+            <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="imgTitle" Source="../Diagramming/Styles/Images/EventIcon.png" Width="24"></Image>
+                    <Label x:Name="lblTitle" FontSize="22" >Publish Event</Label>
+                </StackPanel>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333">Service name</Label>
+                <ComboBox x:Name="MasterDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="true" 
                   ItemsSource="{Binding Path=MasterElements}" 
-                  Text="{Binding Path=SelectedMasterItem}">
-        </ComboBox>
-        <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" x:Name="SlaveLabel">Slave Name:</Label>
-        <ComboBox x:Name="SlaveDropDown" Grid.Column="1" Grid.Row="1" IsEditable="true" Margin="5, 0, 5,10"
+                  Text="{Binding Path=SelectedMasterItem}"
+                  Cursor="IBeam" />
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" x:Name="SlaveLabel">Event name</Label>
+                <ComboBox x:Name="SlaveDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="true"
                   ItemsSource="{Binding Path=SlaveElements}" 
-                  Text="{Binding Path=SelectedSlaveItem}">
-        </ComboBox>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2" IsSharedSizeScope="true" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
-                <ColumnDefinition Width="3" />
-                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
-            </Grid.ColumnDefinitions>
-            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" />
-            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
-        </Grid>
+                  Text="{Binding Path=SelectedSlaveItem}"
+                  Cursor="IBeam" />
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="ok_Click">Done</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </src:CommonDialogWindow>
 

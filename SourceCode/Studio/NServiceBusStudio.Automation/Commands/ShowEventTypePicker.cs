@@ -74,7 +74,8 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
 
             picker.Elements = eventNames.ToList();
-            picker.Title = "Publish Event...";
+            picker.Title = "Publish Event";
+            picker.MasterName = "Event name";
 
             using (new MouseCursor(Cursors.Arrow))
             {

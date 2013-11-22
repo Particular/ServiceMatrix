@@ -74,7 +74,8 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
 
             picker.Elements = commandNames.ToList();
-            picker.Title = "Send Command...";
+            picker.Title = "Send Command";
+            picker.MasterName = "Command name";
 
             using (new MouseCursor(Cursors.Arrow))
             {

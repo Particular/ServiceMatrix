@@ -6,8 +6,11 @@
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
              xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d" 
-             SizeToContent="Height" Width="458"
-             FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" d:DesignHeight="257">
+             Width="280" d:DesignHeight="270"
+             SizeToContent="Height" 
+             FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" 
+             WindowStyle="None"
+             ResizeMode="NoResize">
     <src:CommonDialogWindow.Resources>
         <ControlTemplate x:Key="ItemTemplate" TargetType="ListViewItem">
             <Border
@@ -37,35 +40,30 @@
         </DataTemplate>
     </src:CommonDialogWindow.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ListView Grid.Row="0" x:Name="ServicesList"  Margin="5,10"
+        <StackPanel Width="280" Background="#F1F1F1">
+            <StackPanel.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </StackPanel.BitmapEffect>
+            <StackPanel Margin="20">
+                <Label x:Name="lblTitle" FontSize="22" >Add event subscriber</Label>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333">Existing services</Label>
+                <ListView x:Name="ServicesList"
                   ItemsSource="{Binding Path=Elements}" 
-                  SelectionMode="Multiple" MinHeight="20"
-                  ItemTemplate="{StaticResource ItemDataTemplate}"></ListView>
-        <Grid Grid.Row="1" Margin="5,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,0,5,0">To subscribe a new service type the service name and press 'Add'</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="0" x:Name="AddServiceText" Margin="5"></TextBox>
-            <Button Grid.Row="1" Grid.Column="1" Click="AddService_Click" Margin="5">Add</Button>
-        </Grid>
-        <Grid Grid.Row="2" IsSharedSizeScope="true" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="CmdBtn" />
-            </Grid.ColumnDefinitions>
-            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
-            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
-        </Grid>
+                  ItemTemplate="{StaticResource ItemDataTemplate}"
+                  SelectionMode="Multiple" MinHeight="50"></ListView>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333">Add new service</Label>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="AddServiceText" Width="214"></TextBox>
+                    <Button Click="AddService_Click">Add</Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="ok_Click">Done</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </src:CommonDialogWindow>
