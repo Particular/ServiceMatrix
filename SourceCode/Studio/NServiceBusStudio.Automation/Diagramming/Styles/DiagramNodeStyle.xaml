@@ -97,7 +97,9 @@
                                 Style="{StaticResource MenuButton}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="Images/ComponentIcon.png" Width="25"></Image>
-                                <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Name}"></TextBlock>
+                                <TextBlock Margin="5,0,0,0" VerticalAlignment="Center" Text="{Binding Name}" 
+                                           TextTrimming="CharacterEllipsis" MaxWidth="200"
+                                           ToolTip="{Binding Name}"></TextBlock>
                                 <Image Margin="5,0,0,0" Source="Images/BlackArrowIcon.png" Width="12"></Image>
                             </StackPanel>
                         </Button>
