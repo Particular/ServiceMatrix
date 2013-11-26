@@ -120,7 +120,7 @@ namespace NServiceBusStudio
             {
                 var binFolder = Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), "Bin");
 
-                if (endpoint.As<INServiceBusHost>() != null)
+                if (endpoint is INServiceBusHost)
                 {
                     binFolder = Path.Combine(binFolder, "Debug");
                 }
@@ -131,12 +131,14 @@ namespace NServiceBusStudio
             // If ServiceInsight is installed and invocation URI registerd
             if (Microsoft.Win32.Registry.ClassesRoot.OpenSubKey("si") != null)
             {
+                var url = String.Format("si://{0}&EndpointName={1}&Search={2}&AutoRefresh={3}",
+                                            this.ServiceControlInstanceURI,
+                                            this.Design.Endpoints.GetAll().First().InstanceName,
+                                            debugSessionId,
+                                            1);
+
                 // Start ServiceInsight with parameters
-                System.Diagnostics.Process.Start(String.Format("si://{0}&Endpoint={1}&Search={2}&AutoRefresh={3}",
-                                                                        this.ServiceControlInstanceURI,
-                                                                        this.Design.Endpoints.GetAll().First().InstanceName,
-                                                                        debugSessionId,
-                                                                        1));
+                System.Diagnostics.Process.Start(url);
             }
         }
 
