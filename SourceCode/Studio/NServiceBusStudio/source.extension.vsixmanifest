@@ -3,7 +3,7 @@
   <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
 	  <Name>ServiceMatrix</Name>
 	  <Author>Particular Software</Author>
-	  <Version>4.0.0</Version>
+	  <Version>2.0.0</Version>
 	  <Description xml:space="preserve">A set of Visual Studio integrated tools to author NServiceBus applications</Description>
     <Locale>1033</Locale>
     <Icon>Resources\ToolkitIcon.png</Icon>

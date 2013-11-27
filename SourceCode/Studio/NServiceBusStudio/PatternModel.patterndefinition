@@ -4382,7 +4382,7 @@
         <automationSettingsSchemaMoniker Id="ca079ca9-3b29-4ab8-9921-cdf575be22d2" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="2c1c62df-1ee5-42e8-90e2-bcb3c21eaa6c" text="Deploy to..." commandId="ccd80bf1-1638-4cb5-ae70-a1539dbaf6de" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="2c1c62df-1ee5-42e8-90e2-bcb3c21eaa6c" text="Deploy Component..." commandId="ccd80bf1-1638-4cb5-ae70-a1539dbaf6de" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d6cc507d-ea29-493a-82be-29644608715c" />
       </extendedElement>
@@ -4443,7 +4443,7 @@
         <automationSettingsSchemaMoniker Id="6eba235c-9265-44ef-a288-85e7bc014a08" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" />
       </extendedElement>

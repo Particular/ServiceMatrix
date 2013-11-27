@@ -85,15 +85,19 @@
     </Reference>
     <Reference Include="NuPattern.Runtime.Store">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Store.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Runtime.Shell">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Runtime.Core">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Runtime.Schema">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Library">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
@@ -109,7 +113,7 @@
     </Reference>
     <Reference Include="NuPattern.Presentation">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Authoring.PatternToolkit.Automation">
       <HintPath>$(PatternToolkitBuilder)\NuPattern.Authoring.PatternToolkit.Automation.dll</HintPath>
@@ -117,7 +121,7 @@
     </Reference>
     <Reference Include="NuPattern.VisualStudio">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.VisualStudio.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
