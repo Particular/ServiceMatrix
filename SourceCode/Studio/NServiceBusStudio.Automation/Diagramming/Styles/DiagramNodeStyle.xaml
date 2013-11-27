@@ -40,20 +40,16 @@
 
 
     <Style x:Key="EmptyEndpointNodeStyle" TargetType="ms:DiagramNodeElement">
-        <Setter Property="Foreground" Value="#007AC5" />
+        <Setter Property="Foreground" Value="#808080" />
         <Setter Property="NodeTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <Grid>
-                        <Rectangle StrokeDashArray="3.0 3.0 3.0" Stroke="#007AC5"  StrokeThickness="2" Fill="White" IsHitTestVisible="False" />
-                        <Button Foreground="#007AC5"
-                                Style="{StaticResource MenuButton}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="Images/EmptyEndpointIcon.png" Width="25"></Image>
-                                <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">Deploy Endpoint</TextBlock>
-                                <Image Margin="5,0,0,0" Source="Images/BlackArrowIcon.png" Width="12"></Image>
-                            </StackPanel>
-                        </Button>
+                        <Rectangle StrokeDashArray="3.0 3.0 3.0" Stroke="#808080"  StrokeThickness="2" Fill="White" IsHitTestVisible="False" />
+                        <TextBlock Margin="15,10,0,3" Foreground="#808080" 
+                                   FontSize="16" FontFamily="Segoe UI Bold" FontWeight="Bold"
+                                   Height="34" IsHitTestVisible="False" 
+                                   VerticalAlignment="Top" HorizontalAlignment="Left">Undeployed components</TextBlock>
                     </Grid>
                 </DataTemplate>
             </Setter.Value>
