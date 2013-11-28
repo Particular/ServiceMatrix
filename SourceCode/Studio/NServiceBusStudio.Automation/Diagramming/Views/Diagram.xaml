@@ -110,7 +110,8 @@
                         Orientation="Horizontal">
                 
                 <Button BorderThickness="0"
-                        Command="{Binding OnShowAddEndpoint}">
+                        Command="{Binding OnShowAddEndpoint}"
+                        Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Grid Width="248" Height="125">
@@ -141,7 +142,8 @@
 
                 <Button Margin="10, 0, 0, 0"
                         BorderThickness="0"
-                        Command="{Binding OnShowAddService}">
+                        Command="{Binding OnShowAddService}"
+                        Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Grid Width="248" Height="125">
