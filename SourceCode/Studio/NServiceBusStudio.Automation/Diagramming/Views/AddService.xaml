@@ -8,7 +8,8 @@
              ResizeMode="NoResize"
              WindowStyle="None"
              SizeToContent="WidthAndHeight"
-             WindowStartupLocation="CenterScreen">
+             WindowStartupLocation="CenterScreen"
+             FocusManager.FocusedElement="{Binding ElementName=ServiceName}">
     <Grid>
         <StackPanel Width="280"
                             Background="#F1F1F1"

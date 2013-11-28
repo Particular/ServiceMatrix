@@ -83,6 +83,7 @@ namespace AbstractEndpoint.Automation.Dialog
         {
             this.NewEndpoint.Visibility = System.Windows.Visibility.Visible;
             this.AddEndpointText.Text = "";
+            this.AddEndpointText.Focus();
         }
 
         private void AddEndpointCancel_Click(object sender, RoutedEventArgs e)

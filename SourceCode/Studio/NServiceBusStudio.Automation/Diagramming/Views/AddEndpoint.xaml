@@ -8,7 +8,8 @@
              ResizeMode="NoResize"
              WindowStyle="None"
              SizeToContent="WidthAndHeight"
-             WindowStartupLocation="CenterScreen">
+             WindowStartupLocation="CenterScreen"
+             FocusManager.FocusedElement="{Binding ElementName=EndpointName}">
     <Window.BitmapEffect>
         <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
     </Window.BitmapEffect>

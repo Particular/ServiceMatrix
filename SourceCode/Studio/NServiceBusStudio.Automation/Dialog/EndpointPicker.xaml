@@ -64,6 +64,12 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Width="280" MinHeight="270" Background="#666666" x:Name="NewEndpoint" Visibility="Collapsed">
+            <StackPanel.Resources>
+                <RoutedUICommand x:Key="AddNewEndpoint" />
+            </StackPanel.Resources>
+            <StackPanel.CommandBindings>
+                <CommandBinding Command="{StaticResource AddNewEndpoint}" Executed="AddEndpoint_Click" />
+            </StackPanel.CommandBindings>
             <StackPanel.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
             </StackPanel.BitmapEffect>
@@ -80,7 +86,7 @@
                 <Label Margin="0, 10, 0, 0" Foreground="White">Endpoint name</Label>
                 <TextBox Height="25" Padding="0, 3, 0, 3" x:Name="AddEndpointText">
                     <TextBox.InputBindings>
-                        <KeyBinding Command="{Binding Path=OnAddEndpoint}" Key="Enter" />
+                        <KeyBinding  Command="{StaticResource AddNewEndpoint}" Key="Enter" />
                     </TextBox.InputBindings>
                 </TextBox>
 
