@@ -26,7 +26,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
                 if ((result.HasValue ? result.Value : false) && !String.IsNullOrEmpty(window.EndpointName.Text))
                 {
-                    this.Adapter.AddEndpoint(window.EndpointName.Text, window.EndpointHostType.SelectedValue.ToString());
+                    try
+                    {
+                        this.Adapter.AddEndpoint(window.EndpointName.Text, window.EndpointHostType.SelectedValue.ToString());
+                    }
+                    catch (OperationCanceledException) { }
                 }
             });
 
@@ -37,7 +41,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
                 if ((result.HasValue ? result.Value : false) && !String.IsNullOrEmpty(window.ServiceName.Text))
                 {
-                    this.Adapter.AddService(window.ServiceName.Text);
+                    try
+                    {
+                        this.Adapter.AddService(window.ServiceName.Text);
+                    }
+                    catch (OperationCanceledException) { }
                 }
             });
         }

@@ -26,6 +26,24 @@ namespace AbstractEndpoint
 
     public static class AbstractEndpointExtensions
     {
+        public static void CheckNameUniqueness(this IAbstractEndpoint endpoint)
+        {
+            // If opening existing endpoint, return
+            if (endpoint.As<IProductElement>().IsSerializing)
+            {
+                return;
+            }
+
+            var endpoints = endpoint.As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll();
+
+            if (endpoints.Any (x => x.InstanceName == endpoint.InstanceName))
+            {
+                var error = "There is already an endpoint with the same name. Please, select a new name for your endpoint.";
+                System.Windows.MessageBox.Show(error, "New Endpoint Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                throw new OperationCanceledException(error);
+            }
+        }
+
         public static void RaiseOnInitializing(this IAbstractEndpoint endpoint)
         {
             endpoint.As<IProductElement>().Root.As<IApplication>().RaiseOnInitializingEndpoint(endpoint);
