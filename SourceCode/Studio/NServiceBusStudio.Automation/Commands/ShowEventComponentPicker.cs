@@ -81,7 +81,7 @@ namespace NServiceBusStudio.Automation.Commands
                     var component = service.Components.Component.FirstOrDefault(x => x.Publishes.EventLinks.Any(y => y.EventReference.Value == @event));
                     if (component == null)
                     {
-                        component = service.Components.CreateComponent(@event.InstanceName + "Sender", x => x.Publishes.CreateEventLink(@event.InstanceName, y => y.EventReference.Value = @event));
+                        component = service.Components.CreateComponent(@event.InstanceName + "Sender", x => x.Publishes.CreateLink(@event));
 
                         var deployToEndpoint = default(EventHandler);
 

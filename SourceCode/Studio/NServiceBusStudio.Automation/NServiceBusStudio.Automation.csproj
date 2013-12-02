@@ -354,7 +354,9 @@
     <Compile Include="Model\LibraryReference.cs" />
     <Compile Include="Infrastructure\RefactoringManager.cs" />
     <Compile Include="Model\Library.cs" />
+    <Compile Include="Model\Publishes.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\Subscribes.cs" />
     <Compile Include="Model\UseCase.cs" />
     <Compile Include="Model\UseCaseLink.cs" />
     <Compile Include="Model\UseCaseStep.cs" />

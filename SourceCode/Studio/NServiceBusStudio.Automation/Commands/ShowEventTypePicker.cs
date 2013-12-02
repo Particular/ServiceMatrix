@@ -92,7 +92,7 @@ namespace NServiceBusStudio.Automation.Commands
                         selectedEvent = CurrentComponent.Parent.Parent.Contract.Events.CreateEvent(selectedElement);
                     }
 
-                    CurrentComponent.Publishes.CreateEventLink(selectedEvent.InstanceName, p => p.EventReference.Value = selectedEvent);
+                    CurrentComponent.Publishes.CreateLink(selectedEvent);
                 }
             }
             // Make initial trace statement for this command

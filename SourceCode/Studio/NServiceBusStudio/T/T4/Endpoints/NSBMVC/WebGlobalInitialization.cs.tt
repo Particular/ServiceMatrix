@@ -30,6 +30,7 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
     {
         public static IBus InitializeNServiceBus()
         {
+			Configure.Serialization.Xml();
 <#
 if (!nserviceBusHost.SendOnly)
 {
@@ -38,7 +39,6 @@ if (!nserviceBusHost.SendOnly)
 
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
-                .XmlSerializer()
                 .PurgeOnStartup(false)
                 .UnicastBus()
                 .RunHandlersUnderIncomingPrincipal(false)
@@ -51,7 +51,6 @@ else
 #> 
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
-                .XmlSerializer()
                 .UnicastBus()
                 .SendOnly();
 <#
