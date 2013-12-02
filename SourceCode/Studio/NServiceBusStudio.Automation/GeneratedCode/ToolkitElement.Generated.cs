@@ -2005,7 +2005,11 @@ namespace NServiceBusStudio
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
 			if (property != null && property.Info.IsVisible)
 			{
-				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
+                try
+                {
+                    tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
+                }
+                catch { }
 			}
 
 			switch (args.PropertyName)

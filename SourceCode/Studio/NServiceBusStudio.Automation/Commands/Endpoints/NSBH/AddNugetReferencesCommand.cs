@@ -137,11 +137,17 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                     string.Format(@"{0}\packages\ServiceControl.EndpointPlugin.{1}\lib\net40\ServiceControl.EndpointPlugin.Messages.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
+
+                Endpoint.Project.AddReference(
+                    string.Format(@"{0}\packages\ServiceControl.Plugin.DebugSession.{1}\lib\net40\ServiceControl.Plugin.DebugSession.dll",
+                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
+                    this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
             }
             else
             {
                 Endpoint.Project.RemoveReference("ServiceControl.EndpointPlugin");
                 Endpoint.Project.RemoveReference("ServiceControl.EndpointPlugin.Messages");
+                Endpoint.Project.RemoveReference("ServiceControl.Plugin.DebugSession");
             }
         }
     }

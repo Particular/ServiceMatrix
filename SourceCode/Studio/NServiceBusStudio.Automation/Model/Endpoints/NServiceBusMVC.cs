@@ -32,7 +32,7 @@ namespace NServiceBusStudio
         {
             CheckMVCIsInstalled();
 
-           abs.AbstractEndpointExtensions.CheckNameUniqueness(this);
+            abs.AbstractEndpointExtensions.CheckNameUniqueness(this);
 
             abs.AbstractEndpointExtensions.RaiseOnInitializing(this);
 

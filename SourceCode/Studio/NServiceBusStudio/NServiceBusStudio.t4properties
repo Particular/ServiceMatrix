@@ -27,21 +27,6 @@
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBH\packages.config.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBMVC\packages.config.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBWeb\packages.config.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
       <FileName>T\T4\Endpoints\NSBWeb\TransportConfig.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
@@ -113,6 +98,21 @@
     </TransformationPropertyValue>
     <TransformationPropertyValue>
       <FileName>NServiceBus.ToolkitVersion.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBH\packages.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBMVC\packages.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBWeb\packages.config.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>

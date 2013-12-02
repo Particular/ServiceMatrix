@@ -51,4 +51,5 @@ else if (application.Transport == TransportType.SqlServer.ToString())
 }
 #>
   <package id="ServiceControl.EndpointPlugin" version="<#= servicecontrolendpointpluginversion #>" targetFramework="net40" />
+  <package id="ServiceControl.Plugin.DebugSession" version="<#= servicecontrolendpointpluginversion #>" targetFramework="net40" />
 </packages>

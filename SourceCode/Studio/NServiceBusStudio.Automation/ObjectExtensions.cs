@@ -43,7 +43,7 @@ namespace NServiceBusStudio
             catch (NotSupportedException)
             {
                 var ielement = element as IElement;
-                if (element != null)
+                if (ielement != null)
                 {
                     // Invokes the ToolkitInterfaceLayer
                     var telement = ToolkitInterfaceLayer.As<IToolkitInterface>(ielement) as T;
