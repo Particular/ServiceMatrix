@@ -139,6 +139,8 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowCommandTypePickerFromService.cs" />
+    <Compile Include="Commands\ShowEventTypePickerFromService.cs" />
     <Compile Include="Commands\ShowDeployUnhostedComponentsPicker.cs" />
     <Compile Include="Commands\ShowNewDiagramCommand.cs" />
     <Compile Include="Commands\ShowEventComponentPicker.cs" />

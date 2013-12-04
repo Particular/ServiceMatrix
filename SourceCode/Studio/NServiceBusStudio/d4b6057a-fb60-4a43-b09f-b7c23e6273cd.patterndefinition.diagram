@@ -23,12 +23,12 @@
         <elementListCompartment Id="49682ecd-e2e8-4a9b-bb58-66cf51881468" absoluteBounds="2.64, 74.778779296875, 1.5950000000000002, 0.2493896484375" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </collectionShape>
-    <elementShape Id="72cc05c1-f925-4608-b9cd-175a10aaa805" absoluteBounds="4.5, 75.375, 2.75, 1.3781689453125026">
+    <elementShape Id="72cc05c1-f925-4608-b9cd-175a10aaa805" absoluteBounds="4.5, 75.375, 2.75, 2.1473746744791526">
       <elementSchemaMoniker Id="4aac6b0a-1178-4761-ac92-d2989a83335b" />
       <nestedChildShapes>
         <elementListCompartment Id="7a1a3a0f-ea1a-46f7-9e5f-8e4617666fbe" absoluteBounds="4.515, 75.885, 2.7199999999999998, 0.2493896484375" name="Properties" titleTextColor="Black" itemTextColor="Black" />
-        <elementListCompartment Id="d2da39fa-2d40-40eb-ba32-647873ea069b" isExpanded="false" absoluteBounds="4.515, 76.14438964843751, 2.7199999999999998, 0.2493896484375" name="LaunchPoints" titleTextColor="Black" itemTextColor="Black" />
-        <elementListCompartment Id="86444015-d034-4ea7-a881-878862899485" isExpanded="false" absoluteBounds="4.515, 76.403779296875, 2.7199999999999998, 0.2493896484375" name="Automation" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d2da39fa-2d40-40eb-ba32-647873ea069b" absoluteBounds="4.515, 76.1443896484375, 2.7199999999999998, 0.63399251302083326" name="LaunchPoints" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="86444015-d034-4ea7-a881-878862899485" absoluteBounds="4.515, 76.78838216145833, 2.7199999999999998, 0.633992513020833" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </elementShape>
     <collectionShape Id="b4c050a7-94aa-4c93-b0c1-0a21fb584cf4" absoluteBounds="7.5, 81.875, 1.625, 1.3781689453125003">
@@ -150,14 +150,14 @@
         <collectionShapeMoniker Id="42886267-88a1-4511-96a4-2b209f7d497f" />
       </nodes>
     </viewHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(3.4375 : 75.1281689453125); (3.4375 : 76.0640844726562); (4.5 : 76.0640844726562)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(3.4375 : 75.1431689449772); (3.4375 : 76.4586873372396); (4.5 : 76.4586873372396)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <collectionShapeMoniker Id="42886267-88a1-4511-96a4-2b209f7d497f" />
         <elementShapeMoniker Id="72cc05c1-f925-4608-b9cd-175a10aaa805" />
       </nodes>
     </elementHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(5.875 : 76.7531689453125); (5.875 : 82.5640844726562); (7.5 : 82.5640844726562)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(4.5 : 76.4586873372396); (4.125 : 76.4586873372396); (4.125 : 82.5640844726562); (7.48500000033528 : 82.5640844726562)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <elementShapeMoniker Id="72cc05c1-f925-4608-b9cd-175a10aaa805" />
@@ -192,7 +192,7 @@
         <elementShapeMoniker Id="55bb5d4f-2488-4b5c-b44b-c739f9354884" />
       </nodes>
     </elementHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(5.875 : 76.7531689453125); (5.875 : 94.9390844726562); (7.5 : 94.9390844726562)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(4.5 : 76.4586873372396); (4.0625 : 76.4586873372396); (4.0625 : 94.9390844726562); (7.48500000033528 : 94.9390844726562)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <elementShapeMoniker Id="72cc05c1-f925-4608-b9cd-175a10aaa805" />
@@ -443,7 +443,7 @@
         <elementListCompartment Id="2d0d3aec-5774-456c-936e-ce8e9d12c5d4" absoluteBounds="7.515, 78.221080729166658, 2.2199999999999998, 0.2493896484375" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </collectionShape>
-    <elementHasElementsConnector edgePoints="[(5.875 : 76.7531689453125); (5.875 : 77.7852351888021); (7.5 : 77.7852351888021)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(5.875 : 77.5223746744792); (5.875 : 77.7852351888021); (7.5 : 77.7852351888021)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <elementShapeMoniker Id="72cc05c1-f925-4608-b9cd-175a10aaa805" />
