@@ -28,6 +28,31 @@ namespace NServiceBusStudio.Automation.Dialog
             InitializeComponent();
         }
 
+        public new string Title 
+        {
+            get 
+            {
+                return this.lblTitle.Content.ToString();
+            }
+            set
+            {
+                this.lblTitle.Content = value;
+
+                var uriSource = default(Uri);
+
+                if (value == "Publish Event")
+                {
+                    uriSource = new Uri("../Diagramming/Styles/Images/EventIcon.png", UriKind.Relative);
+                }
+                else if (value == "Send Command")
+                {
+                    uriSource = new Uri("../Diagramming/Styles/Images/CommandIcon.png", UriKind.Relative);
+                }
+
+                this.imgTitle.Source = new BitmapImage(uriSource);
+            }
+        }
+
         protected override void OnActivated(EventArgs e)
         {
             this.DataContext = this;

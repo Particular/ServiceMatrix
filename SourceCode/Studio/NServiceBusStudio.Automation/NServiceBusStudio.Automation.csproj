@@ -33,6 +33,9 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Reference Include="ExceptionReporter.WinForms">
+      <HintPath>..\NServiceBusStudio\Libs\ExceptionReporter.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -85,15 +88,19 @@
     </Reference>
     <Reference Include="NuPattern.Runtime.Store">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Store.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Runtime.Shell">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Runtime.Core">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Runtime.Schema">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Library">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
@@ -109,7 +116,7 @@
     </Reference>
     <Reference Include="NuPattern.Presentation">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="NuPattern.Authoring.PatternToolkit.Automation">
       <HintPath>$(PatternToolkitBuilder)\NuPattern.Authoring.PatternToolkit.Automation.dll</HintPath>
@@ -117,7 +124,7 @@
     </Reference>
     <Reference Include="NuPattern.VisualStudio">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.VisualStudio.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -135,6 +142,8 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowCommandTypePickerFromService.cs" />
+    <Compile Include="Commands\ShowEventTypePickerFromService.cs" />
     <Compile Include="Commands\ShowDeployUnhostedComponentsPicker.cs" />
     <Compile Include="Commands\ShowNewDiagramCommand.cs" />
     <Compile Include="Commands\ShowEventComponentPicker.cs" />
@@ -242,6 +251,12 @@
     <Compile Include="Diagramming\ViewModels\Shapes\EventNode.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageBaseNode.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\ServiceNode.cs" />
+    <Compile Include="Diagramming\Views\AddEndpoint.xaml.cs">
+      <DependentUpon>AddEndpoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Views\AddService.xaml.cs">
+      <DependentUpon>AddService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Diagramming\Views\Diagram.xaml.cs">
       <DependentUpon>Diagram.xaml</DependentUpon>
     </Compile>
@@ -344,7 +359,9 @@
     <Compile Include="Model\LibraryReference.cs" />
     <Compile Include="Infrastructure\RefactoringManager.cs" />
     <Compile Include="Model\Library.cs" />
+    <Compile Include="Model\Publishes.cs" />
     <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\Subscribes.cs" />
     <Compile Include="Model\UseCase.cs" />
     <Compile Include="Model\UseCaseLink.cs" />
     <Compile Include="Model\UseCaseStep.cs" />
@@ -556,6 +573,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Diagramming\Views\AddEndpoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagramming\Views\AddService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Diagramming\Views\Diagram.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -659,6 +684,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlackEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\BlackServiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\WhiteEndpointIcon.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

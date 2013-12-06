@@ -74,7 +74,7 @@ namespace NServiceBusStudio.Automation.Commands
                     else if (eventNames.Contains(selectedElement))
                     {
                         selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                        CurrentElement.CreateSubscribedEventLink(selectedEvent.InstanceName, p => p.EventReference.Value = selectedEvent);
+                        CurrentElement.CreateLink(selectedEvent);
                     }
                 }
             }

@@ -74,7 +74,8 @@ namespace NServiceBusStudio.Automation.Commands
             var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
 
             picker.Elements = commandNames.ToList();
-            picker.Title = "Send Command...";
+            picker.Title = "Send Command";
+            picker.MasterName = "Command name";
 
             using (new MouseCursor(Cursors.Arrow))
             {
@@ -91,7 +92,7 @@ namespace NServiceBusStudio.Automation.Commands
                         selectedCommand = CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement);
                     }
 
-                    CurrentComponent.Publishes.CreateCommandLink(selectedCommand.InstanceName, p => p.CommandReference.Value = selectedCommand);
+                    CurrentComponent.Publishes.CreateLink(selectedCommand);
                 }
             }
             // Make initial trace statement for this command

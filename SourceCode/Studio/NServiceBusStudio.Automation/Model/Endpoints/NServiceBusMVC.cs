@@ -32,6 +32,8 @@ namespace NServiceBusStudio
         {
             CheckMVCIsInstalled();
 
+            abs.AbstractEndpointExtensions.CheckNameUniqueness(this);
+
             abs.AbstractEndpointExtensions.RaiseOnInitializing(this);
 
             this.ErrorQueueChanged += (s, e) =>

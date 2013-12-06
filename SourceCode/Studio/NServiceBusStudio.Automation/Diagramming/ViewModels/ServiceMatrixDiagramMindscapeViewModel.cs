@@ -142,24 +142,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             if (undeployedComponentNode != null)
             {
                 this.DeleteNode(undeployedComponentNode);
-
-                // Remove service if it's empty on Empty Endpoint
-                var emptyserviceNode = undeployedComponentNode.ParentNode;
-                if (emptyserviceNode != null &&
-                    !emptyserviceNode.ChildNodes.Any())
-                {
-                    this.DeleteNode(emptyserviceNode);
-
-                    // Remove empty endpoint if it's empty
-                    var emptyendpointNode = emptyserviceNode.ParentNode;
-                    if (emptyendpointNode != null &&
-                        !emptyendpointNode.ChildNodes.Any())
-                    {
-                        this.DeleteNode(emptyendpointNode);
-                    }
-                }
             }
-
 
             // Create New Component Link
             var componentNode = FindComponent(endpointId,
@@ -281,7 +264,25 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 groupNode.ChildNodes.ToList().ForEach(x => DeleteNode(x));
             }
 
+            // If It's a Component, Remove Empty Service
+            if (node is ComponentNode &&
+                node.ParentNode is ServiceNode &&
+                node.ParentNode.ChildNodes.Count == 0)
+            {
+                this.DeleteNode(node.ParentNode);
+            }
+
+            // If It's a Service, Remove Empty Undeployed Endpoint
+            if (node is ServiceNode &&
+                node.ParentNode is EmptyEndpointNode &&
+                node.ParentNode.ChildNodes.Count == 0)
+            {
+                this.DeleteNode(node.ParentNode);
+            }
+
+            // Remove Layout information
             this.LayoutAlgorithm.RemoveElementPosition(node);
+
             // Remove node
             this.Nodes.Remove(node);
 

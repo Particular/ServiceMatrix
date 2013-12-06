@@ -354,18 +354,12 @@ namespace NServiceBusStudio
        
         public void Publish(IEvent @event)
         {
-            if (!this.Publishes.EventLinks.Any(el => el.EventReference.Value == @event))
-            {
-                var linkSource = this.Publishes.CreateEventLink(String.Format("{0}.{1}", @event.Parent.Parent.Parent.InstanceName, @event.InstanceName), e => e.EventReference.Value = @event);
-            }
+            this.Publishes.CreateLink(@event);
         }
 
         public void Subscribe(ICommand command)
         {
-            if (!this.Subscribes.ProcessedCommandLinks.Any(cl => cl.CommandReference.Value == command))
-            {
-                var linkSource = this.Subscribes.CreateProcessedCommandLink(String.Format("{0}.{1}", command.Parent.Parent.Parent.InstanceName, command.InstanceName), e => e.CommandReference.Value = command);
-            }
+            this.Subscribes.CreateLink(command);
         }
     }
 }

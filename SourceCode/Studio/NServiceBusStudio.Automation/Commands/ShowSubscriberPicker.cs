@@ -79,7 +79,7 @@ namespace NServiceBusStudio.Automation.Commands
                         }
 
                         var component = selectedService.Components.CreateComponent(string.Format("{0}Processor", CurrentElement.InstanceName));
-                        component.Subscribes.CreateSubscribedEventLink(CurrentElement.InstanceName, e => e.EventReference.Value = CurrentElement);
+                        component.Subscribes.CreateLink(CurrentElement);
                     }
                 }
             }

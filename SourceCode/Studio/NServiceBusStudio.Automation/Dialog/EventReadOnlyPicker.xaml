@@ -6,22 +6,33 @@
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
              xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d" 
-             d:DesignHeight="110" d:DesignWidth="278" 
-             Height="110" Width="278">
+             Width="280"
+             Height="190"
+             FocusManager.FocusedElement="{Binding ElementName=DropDown}"
+             WindowStyle="None"
+             ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ComboBox x:Name="DropDown"  Grid.Row="0" ItemsSource="{Binding Path=Elements}" Text="{Binding Path=SelectedItem}" Margin="5,10"></ComboBox>
-        <Grid Grid.Row="1" IsSharedSizeScope="true" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
-                <ColumnDefinition Width="3" />
-                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
-            </Grid.ColumnDefinitions>
-            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" />
-            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" />
-        </Grid>
+        <StackPanel Width="280" Background="#F1F1F1">
+            <StackPanel.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </StackPanel.BitmapEffect>
+            <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal">
+                    <Image x:Name="imgTitle" Source="../Diagramming/Styles/Images/EventIcon.png" Width="24"></Image>
+                    <Label x:Name="lblTitle" FontSize="22" >Process Messages</Label>
+                </StackPanel>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333">Event name</Label>
+                <ComboBox x:Name="DropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="true" 
+                      ItemsSource="{Binding Path=Elements}" 
+                      Text="{Binding Path=SelectedItem}"
+                      Cursor="IBeam" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="ok_Click">Done</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </src:CommonDialogWindow>

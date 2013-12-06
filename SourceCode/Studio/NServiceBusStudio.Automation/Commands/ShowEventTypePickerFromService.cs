@@ -17,13 +17,13 @@ namespace NServiceBusStudio.Automation.Commands
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
-    [DisplayName("Show an Event Picker Dialog for Publishing")]
+    [DisplayName("Show an Event Picker Dialog for Publishing from a Service")]
     [Category("General")]
     [Description("Shows a dialog where the user can choose or create an event, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowEventTypePicker : NuPattern.Runtime.Command
+    public class ShowEventTypePickerFromService : NuPattern.Runtime.Command
     {
-        private static readonly ITracer tracer = Tracer.Get<ShowEventTypePicker>();
+        private static readonly ITracer tracer = Tracer.Get<ShowEventTypePickerFromService>();
 
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -47,7 +47,7 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
-        public IComponent CurrentComponent
+        public IService CurrentService
         {
             get;
             set;
@@ -59,16 +59,12 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentComponent = this.CurrentElement.As<IComponent>();
-            if (this.CurrentComponent == null)
-            {
-                this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
-            }
+            this.CurrentService = this.CurrentElement.As<IService>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var events = CurrentComponent.Parent.Parent.Contract.Events.Event;
+            var events = CurrentService.Contract.Events.Event;
             var eventNames = events.Select(e => e.InstanceName);
 
             var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
@@ -89,10 +85,19 @@ namespace NServiceBusStudio.Automation.Commands
                     }
                     else
                     {
-                        selectedEvent = CurrentComponent.Parent.Parent.Contract.Events.CreateEvent(selectedElement);
+                        selectedEvent = CurrentService.Contract.Events.CreateEvent(selectedElement);
                     }
 
-                    CurrentComponent.Publishes.CreateLink(selectedEvent);
+                    var component = CurrentService.Components.Component.FirstOrDefault(x => x.InstanceName == selectedElement + "Sender");
+                    if (component == null)
+                    {
+                        component = CurrentService.Components.CreateComponent(selectedElement + "Sender", (c) => c.Publishes.CreateLink(selectedEvent));
+                    }
+                    else
+                    {
+                        component.Publishes.CreateLink(selectedEvent);
+                    }
+                    
                 }
             }
             // Make initial trace statement for this command

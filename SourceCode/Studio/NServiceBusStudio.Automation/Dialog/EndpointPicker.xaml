@@ -6,22 +6,26 @@
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
              xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d"
-             SizeToContent="Height" Width="458"
-             FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" d:DesignHeight="257">
+             Width="280"
+             SizeToContent="Height" 
+             FocusManager.FocusedElement="{Binding ElementName=AddServiceText}" 
+             WindowStyle="None"
+             ResizeMode="NoResize"
+             BorderThickness="0">
     <src:CommonDialogWindow.Resources>
         <ControlTemplate x:Key="ItemTemplate" TargetType="ListViewItem">
             <Border
-		BorderThickness="{TemplateBinding Border.BorderThickness}"
-		Padding="{TemplateBinding Control.Padding}"
-		BorderBrush="{TemplateBinding Border.BorderBrush}"
-		Background="{TemplateBinding Panel.Background}"
-		SnapsToDevicePixels="True">
+		        BorderThickness="{TemplateBinding Border.BorderThickness}"
+		        Padding="{TemplateBinding Control.Padding}"
+		        BorderBrush="{TemplateBinding Border.BorderBrush}"
+		        Background="{TemplateBinding Panel.Background}"
+		        SnapsToDevicePixels="True">
                 <ContentPresenter
-			Content="{TemplateBinding ContentControl.Content}"
-			ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
-			HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
-			VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
-			SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+			        Content="{TemplateBinding ContentControl.Content}"
+			        ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+			        HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+			        VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+			        SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
             </Border>
         </ControlTemplate>
 
@@ -31,47 +35,75 @@
 
         <DataTemplate x:Key="ItemDataTemplate">
             <CheckBox
-			x:Name="checkbox"
-			Content="{Binding}"
-			IsChecked="{Binding	RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
+			    x:Name="checkbox"
+			    Content="{Binding}"
+			    IsChecked="{Binding	RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
         </DataTemplate>
     </src:CommonDialogWindow.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <ListView Grid.Row="0" x:Name="EndpointsList" Margin="5,10"
+        <StackPanel Width="280" Background="#F1F1F1">
+            <StackPanel.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </StackPanel.BitmapEffect>
+            <StackPanel Margin="20">
+                <Label x:Name="lblTitle" FontSize="22" >Deploy to endpoint</Label>
+                
+                <Label Margin="0, 10, 0, 0" Foreground="#333333">Host endpoints</Label>
+                <ListView x:Name="EndpointsList"
                   ItemsSource="{Binding Path=Elements}" 
-                  SelectionMode="Multiple" MinHeight="20"
-                  ItemTemplate="{StaticResource ItemDataTemplate}"></ListView>
-        <Grid Grid.Row="1" Margin="5,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="135"/>
-                <ColumnDefinition Width="60"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.ColumnSpan="3" TextWrapping="Wrap" Margin="5,0,5,0">To create a new endpoint, type the name, select the type and press 'Add'</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="0" x:Name="AddEndpointText" Margin="5"></TextBox>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="AddEndpointType" Margin="5">
-                <ComboBoxItem IsSelected="true">NService Bus Host</ComboBoxItem>
-                <ComboBoxItem>NService Bus MVC</ComboBoxItem>
-                <ComboBoxItem>NService Bus Web</ComboBoxItem>
-            </ComboBox>
-            <Button Grid.Row="1" Grid.Column="2" Click="AddEndpoint_Click" Margin="5">Add</Button>
-        </Grid>
-        <Grid Grid.Row="2" IsSharedSizeScope="true" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" SharedSizeGroup="CmdBtn" />
-                <ColumnDefinition Width="Auto" SharedSizeGroup="CmdBtn" />
-            </Grid.ColumnDefinitions>
-            <vsfx:VsDialogButton Name="ok" VerticalAlignment="Top" Content="OK" IsDefault="true" Click="ok_Click" HorizontalAlignment="Right"/>
-            <vsfx:VsDialogButton Grid.Column="2" VerticalAlignment="Top" Content="Cancel" IsCancel="true" HorizontalAlignment="Right"/>
-        </Grid>
+                  ItemTemplate="{StaticResource ItemDataTemplate}"
+                  SelectionMode="Multiple"
+                  Background="Transparent" BorderThickness="0"></ListView>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333"><Hyperlink Click="NewEndpoint_Click">New endpoint -></Hyperlink></Label>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="ok_Click">Done</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Width="280" MinHeight="270" Background="#666666" x:Name="NewEndpoint" Visibility="Collapsed">
+            <StackPanel.Resources>
+                <RoutedUICommand x:Key="AddNewEndpoint" />
+            </StackPanel.Resources>
+            <StackPanel.CommandBindings>
+                <CommandBinding Command="{StaticResource AddNewEndpoint}" Executed="AddEndpoint_Click" />
+            </StackPanel.CommandBindings>
+            <StackPanel.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </StackPanel.BitmapEffect>
+            <StackPanel Margin="20">
+                    
+                <Label Margin="0, 0, 0, 0" Foreground="#333333">
+                    <Hyperlink Click="AddEndpointCancel_Click" Foreground="#8EBDE3">&lt;- Deploy to endpoint</Hyperlink>
+                </Label>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Diagramming/Styles/Images/WhiteEndpointIcon.png" Width="23"></Image>
+                    <Label FontSize="22" Foreground="White">Add endpoint</Label>
+                </StackPanel>
+                <Label Margin="0, 10, 0, 0" Foreground="White">Endpoint name</Label>
+                <TextBox Height="25" Padding="0, 3, 0, 3" x:Name="AddEndpointText">
+                    <TextBox.InputBindings>
+                        <KeyBinding  Command="{StaticResource AddNewEndpoint}" Key="Enter" />
+                    </TextBox.InputBindings>
+                </TextBox>
+
+                <Label Margin="0, 10, 0, 0" Foreground="White">Endpoint host type</Label>
+                <ComboBox Height="25" Padding="3, 3, 0, 3"
+                                  x:Name="AddEndpointType">
+                    <ComboBoxItem Tag="NServiceBusHost" IsSelected="True">NServiceBus Host</ComboBoxItem>
+                    <ComboBoxItem Tag="NServiceBusMVC">NServiceBus ASP.NET MVC</ComboBoxItem>
+                    <ComboBoxItem Tag="NServiceBusWeb">NServiceBus ASP.NET Web Forms</ComboBoxItem>
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" Click="AddEndpointCancel_Click">Cancel</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="AddEndpoint_Click">Add</Button>
+                </StackPanel>
+
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </src:CommonDialogWindow>

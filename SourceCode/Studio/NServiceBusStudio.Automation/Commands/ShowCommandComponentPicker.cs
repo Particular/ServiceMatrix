@@ -58,7 +58,7 @@ namespace NServiceBusStudio.Automation.Commands
             
             picker.SlaveName = "Command Name:";
             picker.Elements = elements;
-            picker.Title = "Send Commmand...";
+            picker.Title = "Send Command";
 
             using (new MouseCursor(Cursors.Arrow))
             {

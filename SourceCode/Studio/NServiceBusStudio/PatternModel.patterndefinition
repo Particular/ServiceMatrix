@@ -4362,6 +4362,16 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="77ce2b85-89d4-4f3f-8cae-baf31df6219f" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePickerFromService">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="f0db4ce5-7cb2-441d-a848-2b6ae83b36d3" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="928b38d7-aa0e-4b75-86d1-178b2ecc54cb" typeId="NServiceBusStudio.Automation.Commands.ShowCommandTypePickerFromService">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="48e6d9b6-881f-46b8-9502-ffb7ddc78980" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -4382,7 +4392,7 @@
         <automationSettingsSchemaMoniker Id="ca079ca9-3b29-4ab8-9921-cdf575be22d2" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="2c1c62df-1ee5-42e8-90e2-bcb3c21eaa6c" text="Deploy to..." commandId="ccd80bf1-1638-4cb5-ae70-a1539dbaf6de" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="2c1c62df-1ee5-42e8-90e2-bcb3c21eaa6c" text="Deploy Component..." commandId="ccd80bf1-1638-4cb5-ae70-a1539dbaf6de" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d6cc507d-ea29-493a-82be-29644608715c" />
       </extendedElement>
@@ -4443,7 +4453,7 @@
         <automationSettingsSchemaMoniker Id="6eba235c-9265-44ef-a288-85e7bc014a08" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" />
       </extendedElement>
@@ -4528,6 +4538,16 @@
     <menuSettings Id="b4e1ea6b-22f6-4e33-bb8f-b993b74c2a84" text="Deploy Unhosted Components..." commandId="db53572c-43ed-4c33-a456-e61c864fe0ba" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="636c8d2c-15ad-4cf1-bcc8-9081ff8cfb8b" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="61b5bed9-98b5-4176-937d-33ab8df4659d" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="77ce2b85-89d4-4f3f-8cae-baf31df6219f" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="7ee667ba-8ea5-4173-812e-6029f05e2d50" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="dab8ab55-2e34-4fae-905b-9851ade16ebd" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="928b38d7-aa0e-4b75-86d1-178b2ecc54cb" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="d2cdefab-f949-44e8-aa3a-505117cfd102" />
       </extendedElement>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
@@ -5495,6 +5515,44 @@
                     <setting propertyId="IsVisible" />
                   </settings>
                 </customizationPolicy>
+                <automationSettings>
+                  <automationSettings Id="7ee667ba-8ea5-4173-812e-6029f05e2d50" name="PublishMenu" displayName="Publish Menu" description="" codeIdentifier="PublishMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="d2cdefab-f949-44e8-aa3a-505117cfd102" name="SendMenu" displayName="Send Menu" description="" codeIdentifier="SendMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="f0db4ce5-7cb2-441d-a848-2b6ae83b36d3" name="PublishCommand" displayName="Publish Command" description="" codeIdentifier="PublishCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="48e6d9b6-881f-46b8-9502-ffb7ddc78980" name="SendCommand" displayName="Send Command" description="" codeIdentifier="SendCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                </automationSettings>
                 <childElement>
                   <collection Id="14dd0a39-32b5-4814-9ed5-4279aba392af" name="Contract" displayName="Contract" description="The set of message types that are owned by a service." codeIdentifier="Contract">
                     <customizationPolicy name="CustomizationPolicySchema1">

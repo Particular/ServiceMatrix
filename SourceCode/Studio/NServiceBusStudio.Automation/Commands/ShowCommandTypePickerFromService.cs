@@ -17,13 +17,13 @@ namespace NServiceBusStudio.Automation.Commands
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
-    [DisplayName("Show an Event Picker Dialog for Publishing")]
+    [DisplayName("Show an Command Picker Dialog for Sending From Service")]
     [Category("General")]
-    [Description("Shows a dialog where the user can choose or create an event, and adds a publish link to it.")]
+    [Description("Shows a dialog where the user can choose or create a command, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowEventTypePicker : NuPattern.Runtime.Command
+    public class ShowCommandTypePickerFromService : NuPattern.Runtime.Command
     {
-        private static readonly ITracer tracer = Tracer.Get<ShowEventTypePicker>();
+        private static readonly ITracer tracer = Tracer.Get<ShowCommandTypePickerFromService>();
 
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -47,7 +47,7 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
-        public IComponent CurrentComponent
+        private IService CurrentService
         {
             get;
             set;
@@ -59,40 +59,34 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentComponent = this.CurrentElement.As<IComponent>();
-            if (this.CurrentComponent == null)
-            {
-                this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
-            }
+            this.CurrentService = this.CurrentElement.As<IService>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var events = CurrentComponent.Parent.Parent.Contract.Events.Event;
-            var eventNames = events.Select(e => e.InstanceName);
+            var commands = CurrentService.Contract.Commands.Command;
+            var commandNames = commands.Select(e => e.InstanceName);
 
             var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
 
-            picker.Elements = eventNames.ToList();
-            picker.Title = "Publish Event";
-            picker.MasterName = "Event name";
+            picker.Elements = commandNames.ToList();
+            picker.Title = "Send Command";
+            picker.MasterName = "Command name";
 
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    var selectedEvent = default(IEvent);
-                    if (eventNames.Contains(selectedElement))
+                    var selectedCommand = default(ICommand);
+                    if (commandNames.Contains(selectedElement))
                     {
-                        selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                        selectedCommand = commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
                     }
                     else
                     {
-                        selectedEvent = CurrentComponent.Parent.Parent.Contract.Events.CreateEvent(selectedElement);
+                        selectedCommand = CurrentService.Contract.Commands.CreateCommand(selectedElement);
                     }
-
-                    CurrentComponent.Publishes.CreateLink(selectedEvent);
                 }
             }
             // Make initial trace statement for this command

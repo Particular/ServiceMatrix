@@ -28,7 +28,10 @@ namespace NServiceBusStudio
 
         partial void Initialize()
         {
+            AbstractEndpointExtensions.CheckNameUniqueness(this);
+
             AbstractEndpointExtensions.RaiseOnInitializing(this);
+
             this.ErrorQueueChanged += (s, e) =>
             {
                 this.SetOverridenProperties("ErrorQueue", this.ErrorQueue != this.AsElement().Root.As<IApplication>().ErrorQueue);

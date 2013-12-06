@@ -23,9 +23,9 @@ namespace NServiceBusStudio.Automation.Commands
         public override void Execute()
         {
             CreateComponent(String.Format("{0}Sender", this.Command.InstanceName),
-                           (c) => c.Publishes.CreateCommandLink(this.Command.InstanceName, p => p.CommandReference.Value = this.Command));
+                           (c) => c.Publishes.CreateLink(this.Command));
             CreateComponent(String.Format("{0}Processor", this.Command.InstanceName),
-                            (c) => c.Subscribes.CreateProcessedCommandLink(this.Command.InstanceName, p => p.CommandReference.Value = this.Command));
+                            (c) => c.Subscribes.CreateLink(this.Command));
         }
 
         private void CreateComponent(string componentName, Action<IComponent> componentInitializer)
