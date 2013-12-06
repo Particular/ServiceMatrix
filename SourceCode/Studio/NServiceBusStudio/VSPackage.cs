@@ -9,6 +9,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Linq;
 using NuPattern;
 using NuPattern.Diagnostics;
 using NuPattern.Runtime;
@@ -45,6 +46,29 @@ namespace NServiceBusStudio
 
             this.AddServices();
             this.EnsureCreateTraceOutput();
+            this.TrackUnhandledExceptions();
+        }
+
+        private void TrackUnhandledExceptions()
+        {
+            var reporter = new ExceptionReporting.ExceptionReporter();
+            reporter.Config.AppName = "ServiceMatrix";
+            reporter.Config.AppVersion = "2.0.0";
+            reporter.Config.CompanyName = "Particular Software";
+            reporter.Config.ContactEmail = "contact@particular.net";
+            reporter.Config.EmailReportAddress = "support@particular.net";
+            reporter.Config.WebUrl = "http://particular.net";
+            reporter.Config.TitleText = "ServiceMatrix - Unexpected error";
+            reporter.Config.ShowFullDetail = false;
+            reporter.Config.ShowLessMoreDetailButton = true;
+            reporter.Config.ContactMessageTop = "[ServiceMatrix] Exception Report";
+            
+            var type = typeof(TraceSourceExtensions);
+            var field = type.GetField("ShowExceptionAction", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            field.SetValue(null, new Action<string, Exception>((s, e) =>
+            {
+                reporter.Show(e);
+            }));
         }
 
         private void EnsureCreateTraceOutput()

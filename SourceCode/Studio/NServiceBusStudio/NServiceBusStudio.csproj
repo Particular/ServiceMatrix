@@ -49,6 +49,10 @@
   </Choose>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="ExceptionReporter.WinForms, Version=2.1.1.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\ExceptionReporter.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -119,6 +123,8 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="BindingPath.pkgdef" />
+    <Content Include="Libs\ExceptionReporter.WinForms.dll" />
+    <Content Include="Libs\ExceptionReporter.WinForms.xml" />
     <Content Include="ServiceControlEndpointPluginVersion.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

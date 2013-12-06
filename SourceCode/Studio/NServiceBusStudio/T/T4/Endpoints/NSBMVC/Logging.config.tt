@@ -18,4 +18,4 @@
   </auto-generated>
 -->
   
-<Logging Threshold="WARN"/>
+<Logging Threshold="INFO"/>
