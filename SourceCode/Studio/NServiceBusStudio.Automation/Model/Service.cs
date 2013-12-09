@@ -17,6 +17,30 @@ namespace NServiceBusStudio
 
     partial class Service : IRenameRefactoringNamespace
     {
+
+        partial void Initialize()
+        {
+            CheckNameUniqueness(this);
+        }
+
+        private void CheckNameUniqueness(Service service)
+        {
+            // If opening existing service, return
+            if (service.As<IProductElement>().IsSerializing)
+            {
+                return;
+            }
+
+            var services = service.As<IProductElement>().Root.As<IApplication>().Design.Services.Service;
+
+            if (services.Any(x => String.Compare(x.InstanceName, service.InstanceName, true) == 0 && x != service))
+            {
+                var error = "There is already a service with the same name. Please, select a new name for your service.";
+                System.Windows.MessageBox.Show(error, "New Service Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                throw new OperationCanceledException(error);
+            }
+        }
+
         public void Rename(IUriReferenceService uriService, RefactoringManager refactoringManager)
         {
             var element = this.As<IProductElement>();
