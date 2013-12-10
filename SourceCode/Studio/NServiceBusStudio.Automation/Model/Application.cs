@@ -115,7 +115,7 @@ namespace NServiceBusStudio
             }
 
             // Write DebugSessionId on Endpoints Bin folder
-            var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, this.InstanceName, DateTime.Now.ToUniversalTime().ToString()).Replace(" ", "_");
+            var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, this.InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
             foreach (var endpoint in this.Design.Endpoints.GetAll())
             {
                 var binFolder = Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), "Bin");
