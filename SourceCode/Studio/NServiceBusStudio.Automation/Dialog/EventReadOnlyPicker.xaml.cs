@@ -25,6 +25,7 @@ namespace NServiceBusStudio.Automation.Dialog
         public EventReadOnlyPicker()
         {
             InitializeComponent();
+            this.SelectedItem = "";
         }
 
         protected override void OnActivated(EventArgs e)

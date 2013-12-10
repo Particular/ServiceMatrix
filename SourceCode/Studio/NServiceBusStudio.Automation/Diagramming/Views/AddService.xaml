@@ -30,7 +30,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="True">Cancel</Button>
-                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="True" Click="Button_Click">Done</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="True" IsEnabled="{Binding ElementName=ServiceName, Path=Text.Length}" Click="Button_Click">Done</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

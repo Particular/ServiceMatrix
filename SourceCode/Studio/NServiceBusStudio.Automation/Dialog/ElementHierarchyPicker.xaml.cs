@@ -26,6 +26,8 @@ namespace NServiceBusStudio.Automation.Dialog
         public ElementHierarchyPicker()
         {
             InitializeComponent();
+            this.SelectedMasterItem = "";
+            this.SelectedSlaveItem = "";
         }
 
         public new string Title 

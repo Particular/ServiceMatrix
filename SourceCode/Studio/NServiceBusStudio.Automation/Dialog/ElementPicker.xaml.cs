@@ -26,6 +26,7 @@ namespace NServiceBusStudio.Automation.Dialog
         public ElementPicker()
         {
             InitializeComponent();
+            this.SelectedItem = "";
         }
 
         public new string Title

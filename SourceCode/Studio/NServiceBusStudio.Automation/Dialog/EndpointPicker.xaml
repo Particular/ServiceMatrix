@@ -59,7 +59,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
-                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="ok_Click">Done</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" IsEnabled="{Binding ElementName=EndpointsList, Path=SelectedItems.Count}" Click="ok_Click">Done</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -100,7 +100,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" Click="AddEndpointCancel_Click">Cancel</Button>
-                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Click="AddEndpoint_Click">Add</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" IsEnabled="{Binding ElementName=AddEndpointText, Path=Text.Length}" Click="AddEndpoint_Click">Add</Button>
                 </StackPanel>
 
             </StackPanel>
