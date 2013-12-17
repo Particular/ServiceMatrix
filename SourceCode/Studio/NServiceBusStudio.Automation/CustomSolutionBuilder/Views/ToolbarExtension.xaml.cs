@@ -19,6 +19,7 @@ using NuPattern;
 using NuPattern.Runtime.UI.ViewModels;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Licensing;
+using NServiceBusStudio.Automation.Commands;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -61,6 +62,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             this.IsEnabledNServiceBusView = enable;
         }
 
+        private void Canvas_Click(object sender, RoutedEventArgs e)
+        {
+            new ShowNewDiagramCommand() { ServiceProvider = this.ServiceProvider }.Execute();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

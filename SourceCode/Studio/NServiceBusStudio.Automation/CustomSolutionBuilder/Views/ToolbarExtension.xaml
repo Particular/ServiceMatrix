@@ -7,6 +7,9 @@
              d:DesignHeight="16" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" Height="16">
         <Separator/>
+        <Button Click="Canvas_Click" ToolTip="Canvas View" x:Name="CanvasViewButton" Focusable="False">
+            <BitmapImage UriSource="../../Resources/CanvasView.png" />
+        </Button>
         <Button Click="Button_Click" ToolTip="ServiceMatrix View" x:Name="NServiceBusViewButton" Focusable="False">
             <BitmapImage UriSource="../../Resources/NServiceBusView.png" />
         </Button>

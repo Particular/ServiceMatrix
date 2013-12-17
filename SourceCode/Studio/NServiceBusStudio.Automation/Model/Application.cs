@@ -86,6 +86,8 @@ namespace NServiceBusStudio
             SetF5Experience();
             CheckLicense();
 
+            new ShowNewDiagramCommand() { ServiceProvider = this.ServiceProvider }.Execute();
+
             System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
         }
