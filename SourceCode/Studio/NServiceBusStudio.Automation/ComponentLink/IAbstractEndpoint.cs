@@ -37,7 +37,7 @@ namespace AbstractEndpoint
 
             var endpoints = endpoint.As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll();
 
-            if (endpoints.Any (x => x.InstanceName == endpoint.InstanceName && x != endpoint))
+            if (endpoints.Any(x => String.Compare(x.InstanceName, endpoint.InstanceName, true) == 0 && x != endpoint))
             {
                 var error = "There is already an endpoint with the same name. Please, select a new name for your endpoint.";
                 System.Windows.MessageBox.Show(error, "New Endpoint Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
