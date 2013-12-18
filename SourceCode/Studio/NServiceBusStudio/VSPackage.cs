@@ -19,6 +19,7 @@ using ServiceMatrix.Diagramming.Views;
 using ServiceMatrix.Diagramming;
 using System.ComponentModel.Composition.Hosting;
 using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
+using NServiceBusStudio.Automation.Exceptions;
 
 namespace NServiceBusStudio
 {
@@ -67,7 +68,10 @@ namespace NServiceBusStudio
             var field = type.GetField("ShowExceptionAction", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
             field.SetValue(null, new Action<string, Exception>((s, e) =>
             {
-                reporter.Show(e);
+                if (!(e is ElementAlreadyExistsException))
+                {
+                    reporter.Show(e);
+                }
             }));
         }
 

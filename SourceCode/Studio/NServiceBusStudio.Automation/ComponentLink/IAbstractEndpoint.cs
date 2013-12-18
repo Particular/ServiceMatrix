@@ -5,6 +5,7 @@ using System.Text;
 using NServiceBusStudio;
 using NuPattern.Runtime.ToolkitInterface;
 using NuPattern.Runtime;
+using NServiceBusStudio.Automation.Exceptions;
 
 namespace AbstractEndpoint
 {
@@ -40,7 +41,7 @@ namespace AbstractEndpoint
             {
                 var error = "There is already an endpoint with the same name. Please, select a new name for your endpoint.";
                 System.Windows.MessageBox.Show(error, "New Endpoint Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
-                throw new OperationCanceledException(error);
+                throw new ElementAlreadyExistsException(error, endpoint.As<IProductElement>().DefinitionName, endpoint.InstanceName);
             }
         }
 
