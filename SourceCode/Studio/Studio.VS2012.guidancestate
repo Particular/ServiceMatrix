@@ -1160,4 +1160,12 @@
     <Key>Creating Pattern Toolkits.Feedback.StateOverride</Key>
     <Value>False</Value>
   </KeyValueOfstringstring>
+  <KeyValueOfstringstring>
+    <Key>Creating Pattern Toolkits.Understanding: What are Guidance Shortcuts?.StateOverride</Key>
+    <Value>False</Value>
+  </KeyValueOfstringstring>
+  <KeyValueOfstringstring>
+    <Key>Creating Pattern Toolkits.How To: Creating a Guidance Shortcut.StateOverride</Key>
+    <Value>False</Value>
+  </KeyValueOfstringstring>
 </ArrayOfKeyValueOfstringstring>
