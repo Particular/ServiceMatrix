@@ -696,6 +696,9 @@
   <ItemGroup>
     <Resource Include="Resources\CanvasView.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SolutionBuilder.png" />
+  </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>
     <CopyVsixDebuggingDependencies>false</CopyVsixDebuggingDependencies>

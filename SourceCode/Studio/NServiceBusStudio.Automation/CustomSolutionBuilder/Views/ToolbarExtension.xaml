@@ -7,20 +7,21 @@
              d:DesignHeight="16" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" Height="16">
         <Separator/>
-        <Button Click="Canvas_Click" ToolTip="Canvas View" x:Name="CanvasViewButton" Focusable="False">
-            <BitmapImage UriSource="../../Resources/CanvasView.png" />
-        </Button>
-        <Button Click="Button_Click" ToolTip="ServiceMatrix View" x:Name="NServiceBusViewButton" Focusable="False">
-            <BitmapImage UriSource="../../Resources/NServiceBusView.png" />
-        </Button>
-        <Button Click="Button_Click_1" ToolTip="Solution Builder Default View" Focusable="False">
-            <BitmapImage UriSource="../../Resources/Hierarchy.png" />
-        </Button>
         <Button Click="Button_Click_2" ToolTip="Get Help from Particular Software Support Call" Focusable="False">
             <BitmapImage UriSource="../../Resources/Help.png" />
         </Button>
         <Button Click="Button_Click_3" ToolTip="Register ServiceMatrix" Focusable="False">
             <BitmapImage UriSource="../../Resources/Register.png" />
+        </Button>
+        <Separator/>
+        <Button Click="Button_Click_1" ToolTip="Solution Builder Default View" Focusable="False">
+            <BitmapImage UriSource="../../Resources/SolutionBuilder.png" />
+        </Button>
+        <Button Click="Button_Click" ToolTip="ServiceMatrix View" x:Name="NServiceBusViewButton" Focusable="False">
+            <BitmapImage UriSource="../../Resources/NServiceBusView.png" />
+        </Button>
+        <Button Click="Canvas_Click" ToolTip="Canvas View" x:Name="CanvasViewButton" Focusable="False">
+            <BitmapImage UriSource="../../Resources/CanvasView.png" />
         </Button>
     </StackPanel>
 </UserControl>
