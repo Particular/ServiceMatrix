@@ -4372,6 +4372,18 @@
         <automationSettingsSchemaMoniker Id="48e6d9b6-881f-46b8-9502-ffb7ddc78980" />
       </extendedElement>
     </commandSettings>
+    <commandSettings Id="a8f60871-b0e4-4dc1-b592-5f9d0218746f" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.AddNugetReferencesCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a0028e67-2dfa-4e71-a8fb-dc083b18d621" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "IgnoreHost",
+    "Value": "True",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -9732,6 +9744,15 @@
                 </customizationPolicy>
               </automationSettings>
               <automationSettings Id="9e4cd816-a728-4d4e-8525-1181098763aa" name="UnfordLibrariesTemplate" displayName="Unford Libraries Template" description="" codeIdentifier="UnfordLibrariesTemplate" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="a0028e67-2dfa-4e71-a8fb-dc083b18d621" name="GenerateCodeNugetReferences" displayName="Generate Code Nuget References" description="" codeIdentifier="GenerateCodeNugetReferences" automationType="Command">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />

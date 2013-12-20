@@ -28,126 +28,130 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             set;
         }
 
-        [Required]
-        [Import(AllowDefault = true)]
-        public IAbstractEndpoint Endpoint { get; set; }
-
+       
         public bool IgnoreHost { get; set; }
 
         public override void Execute()
         {
-            var basePath = Endpoint.Project.PhysicalPath;
+            var project = this.CurrentElement.GetProject();
+            if (project == null)
+            {
+                return;
+            }
 
+            var basePath = project.PhysicalPath;
+            
             //<Reference Include="NServiceBus" />
             //<Reference Include="NServiceBus.Core" />
             //<Reference Include="NServiceBus.Host" />
 
-            Endpoint.Project.DownloadNuGetPackages();
 
-            if (!Endpoint.Project.HasReference("NServiceBus"))
+            project.DownloadNuGetPackages();
+
+            if (!project.HasReference("NServiceBus"))
             {
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.Core.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
                 if (!this.IgnoreHost)
                 {
-                    Endpoint.Project.AddReference(
+                    project.AddReference(
                         string.Format(@"{0}\packages\NServiceBus.Host.{1}\lib\net40\NServiceBus.Host.exe",
                         System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                         this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                 }
             }
 
-            var app = Endpoint.As<IProductElement>().Root.As<IApplication>();
+            var app = this.CurrentElement.Root.As<IApplication>();
 
             //<Reference Include="NServiceBus.ActiveMQ" />
             if (app.Transport == TransportType.ActiveMQ.ToString()) 
             {
                   
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\Apache.NMS.1.5.1\lib\net40\Apache.NMS.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                
 
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\Apache.NMS.ActiveMQ.1.5.6\lib\net40\Apache.NMS.ActiveMQ.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
                 
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.Transports.ActiveMQ.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
             }
             else 
             {
-                Endpoint.Project.RemoveReference ("Apache.NMS");
-                Endpoint.Project.RemoveReference ("Apache.NMS.ActiveMQ");
-                Endpoint.Project.RemoveReference ("NServiceBus.Transports.ActiveMQ");
+                project.RemoveReference ("Apache.NMS");
+                project.RemoveReference ("Apache.NMS.ActiveMQ");
+                project.RemoveReference ("NServiceBus.Transports.ActiveMQ");
             }
 
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
             if (app.Transport == TransportType.RabbitMQ.ToString())
             {
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\RabbitMQ.Client.3.0.0\lib\net30\RabbitMQ.Client.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
 
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.RabbitMQ.{1}\lib\net40\NServiceBus.Transports.RabbitMQ.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
             }
             else
             {
-                Endpoint.Project.RemoveReference("RabbitMQ.Client");
-                Endpoint.Project.RemoveReference("NServiceBus.Transports.RabbitMQ");
+                project.RemoveReference("RabbitMQ.Client");
+                project.RemoveReference("NServiceBus.Transports.RabbitMQ");
             }
 
             //<Reference Include="NServiceBus.Transports.SqlServer" />
             if (app.Transport == TransportType.SqlServer.ToString())
             {
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\NServiceBus.SqlServer.{1}\lib\net40\NServiceBus.Transports.SqlServer.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
             }
             else
             {
-                Endpoint.Project.RemoveReference("NServiceBus.Transports.SqlServer");
+                project.RemoveReference("NServiceBus.Transports.SqlServer");
             }
 
             if (!String.IsNullOrEmpty(app.ServiceControlInstanceURI))
             {
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\ServiceControl.EndpointPlugin.{1}\lib\net40\ServiceControl.EndpointPlugin.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
 
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\ServiceControl.EndpointPlugin.{1}\lib\net40\ServiceControl.EndpointPlugin.Messages.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
 
-                Endpoint.Project.AddReference(
+                project.AddReference(
                     string.Format(@"{0}\packages\ServiceControl.Plugin.DebugSession.{1}\lib\net40\ServiceControl.Plugin.DebugSession.dll",
                     System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
                     this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
             }
             else
             {
-                Endpoint.Project.RemoveReference("ServiceControl.EndpointPlugin");
-                Endpoint.Project.RemoveReference("ServiceControl.EndpointPlugin.Messages");
-                Endpoint.Project.RemoveReference("ServiceControl.Plugin.DebugSession");
+                project.RemoveReference("ServiceControl.EndpointPlugin");
+                project.RemoveReference("ServiceControl.EndpointPlugin.Messages");
+                project.RemoveReference("ServiceControl.Plugin.DebugSession");
             }
         }
     }
