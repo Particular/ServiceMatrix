@@ -136,5 +136,10 @@
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Security\EndpointAuthorizeOutgoingMessages.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
   </Values>
 </TransformationPropertyValues>

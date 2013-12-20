@@ -28,7 +28,10 @@ namespace <#= authentication.LocalNamespace #>
     {
         public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
         {
-            transportMessage.Headers.Add("User", "");
+            if (!transportMessage.Headers.ContainsKey("User"))
+            {
+                transportMessage.Headers.Add("User", "");
+            }
         }
     }
 
