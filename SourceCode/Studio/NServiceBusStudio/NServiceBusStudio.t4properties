@@ -97,21 +97,6 @@
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
     <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBH\packages.config.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBMVC\packages.config.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
-      <FileName>T\T4\Endpoints\NSBWeb\packages.config.tt</FileName>
-      <PropertyName>Host</PropertyName>
-      <Value>VisualStudio</Value>
-    </TransformationPropertyValue>
-    <TransformationPropertyValue>
       <FileName>T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
@@ -138,6 +123,21 @@
     </TransformationPropertyValue>
     <TransformationPropertyValue>
       <FileName>T\T4\Security\EndpointAuthorizeOutgoingMessages.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBH\packages.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBMVC\packages.config.tt</FileName>
+      <PropertyName>Host</PropertyName>
+      <Value>VisualStudio</Value>
+    </TransformationPropertyValue>
+    <TransformationPropertyValue>
+      <FileName>T\T4\Endpoints\NSBWeb\packages.config.tt</FileName>
       <PropertyName>Host</PropertyName>
       <Value>VisualStudio</Value>
     </TransformationPropertyValue>
