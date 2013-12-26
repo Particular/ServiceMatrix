@@ -149,7 +149,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             switch (elementType)
             {
                 case "Application":
-                    newElement.ChildNodes.Traverse(x => x.ChildNodes).ForEach (x => AddElement (x));
+                    newElement.ChildNodes.Traverse(x => x.ChildNodes).Where(x => x.Data.DefinitionName != "Service").ForEach (x => AddElement (x));
                     break;
 
                 case "NServiceBusHost":
