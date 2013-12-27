@@ -30,7 +30,7 @@ namespace NServiceBusStudio
                 processedCommandLinks.ForEach(cl => cl.Delete());
 
                 // Remove related components
-                var result = MessageBox.Show("Do you want to delete the related Components?", "Delete related Components", MessageBoxButton.YesNo);
+                var result = MessageBox.Show("Do you want to delete the related Components?", "ServiceMatrix - Delete related Components", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     DeleteComponent(String.Format("{0}Sender", this.InstanceName));

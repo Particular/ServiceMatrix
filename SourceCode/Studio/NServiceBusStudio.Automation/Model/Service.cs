@@ -36,7 +36,7 @@ namespace NServiceBusStudio
             if (services.Any(x => String.Compare(x.InstanceName, service.InstanceName, true) == 0 && x != service))
             {
                 var error = "There is already a service with the same name. Please, select a new name for your service.";
-                System.Windows.MessageBox.Show(error, "New Service Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                System.Windows.MessageBox.Show(error, "ServiceMatrix - New Service Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                 throw new OperationCanceledException(error);
             }
         }

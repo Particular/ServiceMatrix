@@ -55,6 +55,15 @@ namespace AbstractEndpoint.Automation.Commands
 
             var element = CurrentElement.As<NServiceBusStudio.IComponent>();
             var endpoints = this.CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll();
+
+            if (element.Subscribes.ProcessedCommandLinks.Any() &&
+                this.CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll()
+                .Count(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == element)) >= 1)
+            {
+                var error = String.Format ("The command-processing component {0}.{1} is already deployed. Please, undeploy the component from the endpoint and try again.", element.Parent.Parent.InstanceName, element.InstanceName);
+                System.Windows.MessageBox.Show(error, "ServiceMatrix - Processing Component already Deployed", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                return;
+            }
             
             // Filter those endpoints that already have the component deploed
             endpoints = endpoints.Where(e => !e.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == element));

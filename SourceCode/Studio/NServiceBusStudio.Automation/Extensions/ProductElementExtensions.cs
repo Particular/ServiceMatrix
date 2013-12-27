@@ -60,14 +60,14 @@ namespace NServiceBusStudio.Automation.Extensions
                     var service = toolkitElement as IService;
                     service.Rename(uriService, refactoringManager);
 
-                    //MessageBox.Show("The Service renaming is almost done. Please, re-open the solution to finish with the renaming.", "Rename Service", MessageBoxButton.OK);
+                    //MessageBox.Show("The Service renaming is almost done. Please, re-open the solution to finish with the renaming.", "ServiceMatrix - Rename Service", MessageBoxButton.OK);
                     return true;
                 }
                 
                 var renameRefactoringNotSupported = toolkitElement as IRenameRefactoringNotSupported;
                 if (renameRefactoringNotSupported != null && toolkitElement.InstanceName != "")
                 {
-                    var result = MessageBox.Show("This element doesn't support code refactoring, you will need to update your code manually. Do you want to do the renaming anyway?", "Rename element", MessageBoxButton.YesNo);
+                    var result = MessageBox.Show("This element doesn't support code refactoring, you will need to update your code manually. Do you want to do the renaming anyway?", "ServiceMatrix - Rename element", MessageBoxButton.YesNo);
                     return result == MessageBoxResult.Yes;
                 }
                 

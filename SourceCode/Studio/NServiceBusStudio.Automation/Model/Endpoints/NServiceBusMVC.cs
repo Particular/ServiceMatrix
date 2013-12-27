@@ -57,7 +57,7 @@ namespace NServiceBusStudio
                     !Directory.Exists(programFilesX86))
                 {
                     var error = "You cannot create this endpoint because ASP.NET MVC 4 is not installed. Install ASP.NET MVC 4 and try again.";
-                    System.Windows.MessageBox.Show(error, "NService Bus ASP NET MVC Endpoint", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show(error, "ServiceMatrix - ASP.NET MVC 4 not installed", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
                     throw new OperationCanceledException(error);
                 }
             }
