@@ -4542,7 +4542,7 @@
         <automationSettingsSchemaMoniker Id="7614f045-29d6-41be-818c-ebdf6f720e4f" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="4f9ddd1e-d128-423a-9ab2-7362d14ebbad" text="Show Diagram" commandId="efdd0c57-79b2-4064-9615-923758ae4300" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="4f9ddd1e-d128-423a-9ab2-7362d14ebbad" text="Show Canvas" commandId="efdd0c57-79b2-4064-9615-923758ae4300" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="11522f68-940f-4c5c-ad5b-e650371d1f0b" />
       </extendedElement>

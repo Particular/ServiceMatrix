@@ -17,7 +17,7 @@ namespace ServiceMatrix.Diagramming.Views
         public ServiceMatrixDiagramToolWindow() :
             base(null)
         {
-            this.Caption = "ServiceMatrix - NServiceBus Diagram";
+            this.Caption = "ServiceMatrix - NServiceBus Canvas";
             this.BitmapResourceID = 301;
             this.BitmapIndex = 0;
         }
