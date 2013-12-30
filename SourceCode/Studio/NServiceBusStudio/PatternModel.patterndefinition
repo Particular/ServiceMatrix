@@ -5270,7 +5270,7 @@
           </settings>
         </customizationPolicy>
       </property>
-      <property Id="b943e76d-90d1-45d2-b98b-bf2986088bff" name="ServiceControlInstanceURI" displayName="Service Control Instance URI" description="The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior." codeIdentifier="ServiceControlInstanceURI">
+      <property Id="b943e76d-90d1-45d2-b98b-bf2986088bff" name="ServiceControlInstanceURI" displayName="ServiceControl Instance URI" description="The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior." codeIdentifier="ServiceControlInstanceURI" category="Debugging">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5292,6 +5292,27 @@
     "TypeId": "NServiceBusStudio.Automation.ValueProviders.ServiceControlInstanceURIValueProvider",
     "Properties": []
   }
+}</defaultValue>
+      </property>
+      <property Id="1ed83bc3-ef51-4efc-b8d1-128afc800298" name="LaunchServiceInsightOnDebug" displayName="Launch ServiceInsight on Debug" description="When debugging the application, ServiceInsight will be launched, filtered (by default) to show messages created by the current Visual Studio debug activity." codeIdentifier="LaunchServiceInsightOnDebug" type="System.Boolean" category="Debugging">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "False",
+  "ValueProvider": null
 }</defaultValue>
       </property>
     </properties>

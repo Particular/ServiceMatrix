@@ -148,9 +148,17 @@ namespace NServiceBusStudio
 		/// The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.
 		/// </summary>
 		[Description("The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.")]
-		[DisplayName("Service Control Instance URI")]
-		[Category("General")]
+		[DisplayName("ServiceControl Instance URI")]
+		[Category("Debugging")]
 		String ServiceControlInstanceURI { get; set; }
+
+		/// <summary>
+		/// When debugging the application, ServiceInsight will be launched, filtered (by default) to show messages created by the current Visual Studio debug activity.
+		/// </summary>
+		[Description("When debugging the application, ServiceInsight will be launched, filtered (by default) to show messages created by the current Visual Studio debug activity.")]
+		[DisplayName("Launch ServiceInsight on Debug")]
+		[Category("Debugging")]
+		Boolean LaunchServiceInsightOnDebug { get; set; }
 
 		/// <summary>
 		/// Gets or sets the ToolkitInfo property.

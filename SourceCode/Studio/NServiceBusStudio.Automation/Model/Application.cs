@@ -131,7 +131,8 @@ namespace NServiceBusStudio
             }
 
             // If ServiceInsight is installed and invocation URI registerd
-            if (Microsoft.Win32.Registry.ClassesRoot.OpenSubKey("si") != null)
+            if (this.LaunchServiceInsightOnDebug &&
+                Microsoft.Win32.Registry.ClassesRoot.OpenSubKey("si") != null)
             {
                 var url = String.Format("si://{0}?EndpointName={1}.{2}&Search={3}&AutoRefresh={4}",
                                             this.ServiceControlInstanceURI.Replace("http://", ""),

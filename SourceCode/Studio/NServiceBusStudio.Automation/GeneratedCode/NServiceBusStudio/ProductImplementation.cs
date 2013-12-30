@@ -230,12 +230,24 @@ namespace NServiceBusStudio
 		/// The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.
 		/// </summary>
 		[Description("The URI for an instance of the ServiceControl instance process. This will be used by ServiceMatrix for providing more information on solution's runtime behavior.")]
-		[DisplayName("Service Control Instance URI")]
-		[Category("General")]
+		[DisplayName("ServiceControl Instance URI")]
+		[Category("Debugging")]
 		public virtual String ServiceControlInstanceURI
 		{
 			get { return this.proxy.GetValue(() => this.ServiceControlInstanceURI); }
 			set { this.proxy.SetValue(() => this.ServiceControlInstanceURI, value); }
+		}
+
+		/// <summary>
+		/// When debugging the application, ServiceInsight will be launched, filtered (by default) to show messages created by the current Visual Studio debug activity.
+		/// </summary>
+		[Description("When debugging the application, ServiceInsight will be launched, filtered (by default) to show messages created by the current Visual Studio debug activity.")]
+		[DisplayName("Launch ServiceInsight on Debug")]
+		[Category("Debugging")]
+		public virtual Boolean LaunchServiceInsightOnDebug
+		{
+			get { return this.proxy.GetValue(() => this.LaunchServiceInsightOnDebug); }
+			set { this.proxy.SetValue(() => this.LaunchServiceInsightOnDebug, value); }
 		}
 
 		/// <summary>
