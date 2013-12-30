@@ -22,7 +22,7 @@ namespace AbstractEndpoint.Automation.Dialog
     /// <summary>
     /// Interaction logic for ComponentPicker.xaml
     /// </summary>
-    public partial class EndpointPicker : CommonDialogWindow, IDialogWindow, IServicePicker, IComponentConnector
+    public partial class EndpointPicker : CommonDialogWindow, IDialogWindow, IEndpointPicker, IComponentConnector
     {
         public EndpointPicker()
         {
@@ -45,6 +45,12 @@ namespace AbstractEndpoint.Automation.Dialog
         {
             get;
             private set;
+        }
+
+        public string ComponentName
+        {
+            get;
+            set;
         }
 
         private void ok_Click(object sender, RoutedEventArgs e)

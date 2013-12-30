@@ -265,6 +265,7 @@
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\IElementHierarchyPicker.cs" />
+    <Compile Include="Dialog\IEndpointPicker.cs" />
     <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>

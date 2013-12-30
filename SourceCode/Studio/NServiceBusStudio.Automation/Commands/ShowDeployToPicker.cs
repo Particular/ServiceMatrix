@@ -70,8 +70,9 @@ namespace AbstractEndpoint.Automation.Commands
 
             // Get endpoint names
             var existingEndpointNames = endpoints.Select(e => String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName));
-            var picker = WindowFactory.CreateDialog<EndpointPicker>() as IServicePicker;
+            var picker = WindowFactory.CreateDialog<EndpointPicker>() as IEndpointPicker;
             picker.Title = "Deploy to...";
+            picker.ComponentName = element.InstanceName + " component";
 
             picker.Elements = new ObservableCollection<string>(existingEndpointNames);
 
