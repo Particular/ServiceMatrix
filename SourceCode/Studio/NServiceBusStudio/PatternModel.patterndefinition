@@ -295,7 +295,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="e0cce5ad-fee6-4711-89d3-01a04457a8f0" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="e0cce5ad-fee6-4711-89d3-01a04457a8f0" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="c96b138b-d52f-440f-860e-731f5951f798" />
       </extendedElement>
@@ -368,7 +368,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="0757e840-a92f-4f7c-ade6-a9bc878796d4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="0757e840-a92f-4f7c-ade6-a9bc878796d4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="967cd739-1e95-4a66-9d85-fd13059d3824" />
       </extendedElement>
@@ -673,7 +673,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="0fa0f1e3-2a8d-4e12-b629-9012e20354ad" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="0fa0f1e3-2a8d-4e12-b629-9012e20354ad" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b5805c93-096e-4655-947f-a13bc19eac63" />
       </extendedElement>
@@ -735,7 +735,7 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="595d4410-6d15-4702-b530-b14ca88605e6" />
       </extendedElement>
@@ -844,7 +844,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="53a2bbd6-bf49-4f34-87dc-12d40a23db55" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="53a2bbd6-bf49-4f34-87dc-12d40a23db55" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="cf34debb-31ec-4438-9023-a33f70dbf68f" />
       </extendedElement>
@@ -896,7 +896,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="faab3dac-5ee3-4a8b-b9cb-1b213c5febb8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="faab3dac-5ee3-4a8b-b9cb-1b213c5febb8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b84763e6-e0f0-4d3c-b5bf-69efe2f4be60" />
       </extendedElement>
@@ -1015,7 +1015,7 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="bedce582-4714-46bd-9def-d09e712ddab3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="bedce582-4714-46bd-9def-d09e712ddab3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="11088ed6-015a-41a6-95c0-71144c4cfc8c" />
       </extendedElement>
@@ -1077,7 +1077,7 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="baf9b6a1-32fe-4902-987a-4e60bbf7baf8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="baf9b6a1-32fe-4902-987a-4e60bbf7baf8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="aae55502-f1eb-494c-8881-6bed5a85881b" />
       </extendedElement>
@@ -1161,7 +1161,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="b2adde29-7d8c-4c77-9640-3aaa7ba96752" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="b2adde29-7d8c-4c77-9640-3aaa7ba96752" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="02e255e6-52f7-4f3c-8253-74ec1a3c2a6d" />
       </extendedElement>
@@ -1223,7 +1223,7 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="885e23c4-7cca-4d0c-af46-944a5d668f6d" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="885e23c4-7cca-4d0c-af46-944a5d668f6d" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="73b4d03e-070c-4b65-9f33-80fabcff08ab" />
       </extendedElement>
@@ -1377,7 +1377,7 @@
         <automationSettingsSchemaMoniker Id="706987d5-9533-4610-b0d9-c68967d276a8" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="cb26f4c4-865f-4bd7-8260-b04f8ab85b6c" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="cb26f4c4-865f-4bd7-8260-b04f8ab85b6c" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="afa61011-10f6-4263-b7ba-094f3eb85410" />
       </extendedElement>
@@ -1485,7 +1485,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="d4a9b7ec-2c77-4c47-bb26-ddbc494b0a16" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="d4a9b7ec-2c77-4c47-bb26-ddbc494b0a16" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="39496399-ee07-41cd-9a1b-ee00ca7cd421" />
       </extendedElement>
@@ -1676,7 +1676,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="50493a62-3d06-4400-a30f-a56f499d0b85" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="50493a62-3d06-4400-a30f-a56f499d0b85" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="254f9e73-37f6-4f47-86f8-b22a5c46ffc9" />
       </extendedElement>
@@ -1745,7 +1745,7 @@
         <automationSettingsSchemaMoniker Id="8d8972e0-6cb8-4cc4-a983-4df773af3506" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="abcfeacd-c72b-4fe3-82b8-9ed93c6cf167" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="abcfeacd-c72b-4fe3-82b8-9ed93c6cf167" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e6fc00fb-64a0-4429-a10f-2a82442fa131" />
       </extendedElement>
@@ -1863,7 +1863,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="68894bb3-5b54-41e0-8972-b4186984c290" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="68894bb3-5b54-41e0-8972-b4186984c290" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e4dd521b-725d-407a-aa26-c3cd9cb3dc48" />
       </extendedElement>
@@ -1915,7 +1915,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="f640e8f1-1189-43f8-8d95-3bbd26ce574d" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="f640e8f1-1189-43f8-8d95-3bbd26ce574d" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e8e31481-82d3-490c-af06-5b479d52cda6" />
       </extendedElement>
@@ -1967,7 +1967,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="bf64d66f-34c0-425b-ac64-41db5dee3c2b" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="bf64d66f-34c0-425b-ac64-41db5dee3c2b" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="24a1a5ab-319a-44aa-99c8-53da98b98b3d" />
       </extendedElement>
@@ -2058,7 +2058,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="45fca2b9-4ca6-47d5-a720-54ca0239e02a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="45fca2b9-4ca6-47d5-a720-54ca0239e02a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="13bb63e6-47c5-476b-86d4-961872ded5dd" />
       </extendedElement>
@@ -2110,7 +2110,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="163abd93-cedc-4e41-8a7d-67eedfac41aa" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="163abd93-cedc-4e41-8a7d-67eedfac41aa" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="927c8d92-1560-4940-9045-cbfb02d07765" />
       </extendedElement>
@@ -2162,7 +2162,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="0c7a14be-6b82-476d-ac17-a46f8871d884" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="0c7a14be-6b82-476d-ac17-a46f8871d884" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="4503e987-f304-4aa7-9f3c-3f77c6f42005" />
       </extendedElement>
@@ -2214,7 +2214,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="a99928a4-309c-4c2f-ab3f-0459aed6a3c6" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="a99928a4-309c-4c2f-ab3f-0459aed6a3c6" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="f55cd649-8298-4962-ae93-be4b5e89f526" />
       </extendedElement>
@@ -2266,7 +2266,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="61a98a15-e465-4876-96f9-e3079b9d03f8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="61a98a15-e465-4876-96f9-e3079b9d03f8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e05ee069-6f0c-40ec-b313-49d73a60ed4f" />
       </extendedElement>
@@ -2318,7 +2318,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="4dfafba4-8e2b-4437-8c84-495041cb219f" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="4dfafba4-8e2b-4437-8c84-495041cb219f" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="22bd7997-6fd1-4507-ade6-ca24790b2a88" />
       </extendedElement>
@@ -2370,7 +2370,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="24589f3f-059f-4d5a-9b9b-a3897fff2449" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="24589f3f-059f-4d5a-9b9b-a3897fff2449" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="46e02e57-e5ff-4260-a56b-908967658b22" />
       </extendedElement>
@@ -2422,7 +2422,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="e4f4bcc6-41e9-4237-be6f-7fd91e691ced" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="e4f4bcc6-41e9-4237-be6f-7fd91e691ced" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="558223c2-13dd-4a0c-a29e-7132303fc226" />
       </extendedElement>
@@ -2530,7 +2530,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="07f9c0cf-994d-4978-a9b9-5e70e8c03dce" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="07f9c0cf-994d-4978-a9b9-5e70e8c03dce" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e367f933-06f9-4c54-b934-473c2200344d" />
       </extendedElement>
@@ -2582,7 +2582,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="83de9acc-c878-4659-bbca-eda21bcd6a6f" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="83de9acc-c878-4659-bbca-eda21bcd6a6f" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="022c9205-29a3-4398-8f45-bb9c95e2eca6" />
       </extendedElement>
@@ -2634,7 +2634,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="8ead16bf-7a2b-42d6-a414-2182f54b4763" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="8ead16bf-7a2b-42d6-a414-2182f54b4763" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="a39e679a-aa35-4afd-bd37-882a20e3d207" />
       </extendedElement>
@@ -2686,7 +2686,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="d23181a1-6b27-4314-b3a5-33021fc0eb57" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="d23181a1-6b27-4314-b3a5-33021fc0eb57" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b32ca308-1991-4c57-986d-182584c46387" />
       </extendedElement>
@@ -2738,7 +2738,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="4bc12ca6-a46c-4e82-94b0-129018e87271" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="4bc12ca6-a46c-4e82-94b0-129018e87271" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="f9949417-b101-46e2-a618-b678601eaefe" />
       </extendedElement>
@@ -2790,7 +2790,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="f5f8f224-0afb-40ad-8f97-f913ecfde19c" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="f5f8f224-0afb-40ad-8f97-f913ecfde19c" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="cc84f3da-7403-4bc3-b86a-3cb1d2e36486" />
       </extendedElement>
@@ -2842,7 +2842,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="5733ebbc-2a45-4add-bf19-4744bc480fcc" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="5733ebbc-2a45-4add-bf19-4744bc480fcc" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="9b875919-123b-464c-8314-d04d6db127da" />
       </extendedElement>
@@ -2894,7 +2894,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="074e1cb0-8b59-4e7a-b1fa-9571cd2b2830" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="074e1cb0-8b59-4e7a-b1fa-9571cd2b2830" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="70444481-f71b-4256-b35a-d42e9805f577" />
       </extendedElement>
@@ -2968,7 +2968,7 @@
         <automationSettingsSchemaMoniker Id="f6ba6add-594f-435c-819b-46d5aaa51130" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="fda1c817-b676-4500-9438-5082c5bbfcdb" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="fda1c817-b676-4500-9438-5082c5bbfcdb" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="8ed133d1-75a5-41c3-9e8d-8fafcfacd33b" />
       </extendedElement>
@@ -3020,7 +3020,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="9f696e71-25da-4688-b7a9-709c0c59e901" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="9f696e71-25da-4688-b7a9-709c0c59e901" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="82adae33-a011-4bac-9065-e2b8bf282ebb" />
       </extendedElement>
@@ -3072,7 +3072,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="cc7f9160-fc82-4e32-888b-a78e4e092022" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="cc7f9160-fc82-4e32-888b-a78e4e092022" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="18e94134-bdc3-474d-b377-819f9763cfc5" />
       </extendedElement>
@@ -3210,7 +3210,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="338298e4-094c-4fa3-bb2e-1eb7d8e1097e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="338298e4-094c-4fa3-bb2e-1eb7d8e1097e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="5eeb5da6-b5ab-477f-8629-f3a45c653ae2" />
       </extendedElement>
@@ -3262,7 +3262,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="ceb76ec1-66d0-43d7-883c-524960335c61" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="ceb76ec1-66d0-43d7-883c-524960335c61" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="575c03fc-4702-4380-bc5b-6cb251059170" />
       </extendedElement>
@@ -3314,7 +3314,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="71d2d518-0a28-43c8-97bc-b3a1daa1d044" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="71d2d518-0a28-43c8-97bc-b3a1daa1d044" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fe4b1748-6b2b-4288-92a4-a61d785412bb" />
       </extendedElement>
@@ -3366,7 +3366,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="f1d05d84-fb55-49f4-8bac-0b7b21615f9e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="f1d05d84-fb55-49f4-8bac-0b7b21615f9e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="c0d59fb3-136d-40d9-9ff9-91fdffee7fa1" />
       </extendedElement>
@@ -3418,7 +3418,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="55056fbd-f4ca-46fb-8c77-0f54707eaf66" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="55056fbd-f4ca-46fb-8c77-0f54707eaf66" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="f0aee632-4e52-4d73-b4a5-fe3188618b3f" />
       </extendedElement>
@@ -3492,7 +3492,7 @@
         <automationSettingsSchemaMoniker Id="2e154970-eeed-4f1e-baee-52df253dbd44" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="4dd3672b-f688-467d-8462-b7073b8e4ebf" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="4dd3672b-f688-467d-8462-b7073b8e4ebf" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="495a8f34-9f56-45c5-a1df-63fbf8210483" />
       </extendedElement>
@@ -3544,7 +3544,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="60149b6b-52bd-4fac-9259-1a8ba480851a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="60149b6b-52bd-4fac-9259-1a8ba480851a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="fe0192d7-2645-4ad5-8b95-d658a53ba45e" />
       </extendedElement>
@@ -3596,7 +3596,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="afb2611a-a77c-4024-8e30-cfe442f1f610" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="afb2611a-a77c-4024-8e30-cfe442f1f610" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="908b3ac4-45f8-463a-9de6-03dd118bdc23" />
       </extendedElement>
@@ -3705,7 +3705,7 @@
         <automationSettingsSchemaMoniker Id="c635c6e1-c397-41a9-a065-eb171f6a6278" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="99be7198-69a8-4174-bb1e-35190f5b6496" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="99be7198-69a8-4174-bb1e-35190f5b6496" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="5aa34322-e4d4-4e8b-9bd8-69a4b2547a4b" />
       </extendedElement>
@@ -3757,7 +3757,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="bb9daf67-ea65-4b21-a8d9-bc4a84536d2e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="bb9daf67-ea65-4b21-a8d9-bc4a84536d2e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="72350bea-c0eb-4b0a-beb1-e8d50770b4f1" />
       </extendedElement>
@@ -3809,7 +3809,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="f86ce38e-ee17-41f0-8945-346e957940f9" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="f86ce38e-ee17-41f0-8945-346e957940f9" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="8d2f8353-0e53-403f-a86f-274929f63558" />
       </extendedElement>
@@ -3861,7 +3861,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="87d1c6b4-d238-4a4a-9436-e8dabc2846f3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="87d1c6b4-d238-4a4a-9436-e8dabc2846f3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="8490b9ea-0163-48c8-96ea-8db22c1d6701" />
       </extendedElement>
@@ -3913,7 +3913,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="16906dd4-d11d-4d5f-ad82-ae41994017d8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="16906dd4-d11d-4d5f-ad82-ae41994017d8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="5bbd759b-29ba-452a-8d15-6b11b517d61a" />
       </extendedElement>
@@ -4102,7 +4102,7 @@
         <automationSettingsSchemaMoniker Id="14e667ee-5397-4f8e-92ec-62aeae9e9fc5" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="7459da8d-a7e6-4547-8019-cbebb69ee7f0" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="7459da8d-a7e6-4547-8019-cbebb69ee7f0" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e0e6fad7-e035-4e0e-9e6b-c60027c99ebe" />
       </extendedElement>
@@ -4154,7 +4154,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="e79472a8-53c0-4f08-9d5e-4498f6fab3b4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="e79472a8-53c0-4f08-9d5e-4498f6fab3b4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b17ab13b-3862-4454-8428-437a686c28c2" />
       </extendedElement>
@@ -4206,7 +4206,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="0e9cbc74-ebd5-4b66-8dfa-bfaf9f540cc3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="0e9cbc74-ebd5-4b66-8dfa-bfaf9f540cc3" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e9605406-10a1-4d9f-b8f0-c51b8fe836a9" />
       </extendedElement>
@@ -4258,7 +4258,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="8076b123-b5b0-46dd-8c1d-621239ff8fee" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="8076b123-b5b0-46dd-8c1d-621239ff8fee" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="70cf8a62-55f9-478c-9757-cf7a0b53c352" />
       </extendedElement>
@@ -4310,7 +4310,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="f40ddb7d-bf2d-46f3-ad73-f34fa5af702e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="f40ddb7d-bf2d-46f3-ad73-f34fa5af702e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="316b6bd2-b84f-43a6-9ffc-e09e34cffe1d" />
       </extendedElement>

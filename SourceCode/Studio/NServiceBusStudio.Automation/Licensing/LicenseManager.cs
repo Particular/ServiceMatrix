@@ -82,12 +82,12 @@ namespace NServiceBusStudio.Automation.Licensing
 
         private bool PromptUserForLicenseInternal(bool forcePrompt)
         {
-            if (!forcePrompt)
+            if (!forcePrompt && !trialPeriodHasExpired)
             {
                 if (license.LicenseType == LicenseType.Standard)
                 {
                     return true;
-                }
+                }    
                 else if (license.LicenseType == LicenseType.Trial &&
                         (license.ExpirationDate - DateTime.Now).TotalDays >= TRIAL_NOTIFICATION_DAYS)
                 {
@@ -99,8 +99,7 @@ namespace NServiceBusStudio.Automation.Licensing
             //prompt user for license file
             using (var form = new TrialExpired())
             {
-                form.CurrentLicenseExpireDate = license.ExpirationDate;
-
+                
                 form.ValidateLicenseFile = (f, s) =>
                 {
                     StringLicenseValidator licenseValidator = null;
@@ -154,6 +153,7 @@ namespace NServiceBusStudio.Automation.Licensing
                 }
                 else
                 {
+                    form.CurrentLicenseExpireDate = license.ExpirationDate;
                     form.TrialVersion((license.ExpirationDate - DateTime.Now).Days);
                 }
 
@@ -161,15 +161,15 @@ namespace NServiceBusStudio.Automation.Licensing
                 validator = CreateValidator();
                 Validate();
 
-                if (license.LicenseType == LicenseType.Standard)
-                {
-                    return true;
-                }
-                else if (license.LicenseType == LicenseType.Trial && trialPeriodHasExpired)
+                if (trialPeriodHasExpired)
                 {
                     throw new LicenseExpiredException();
                 }
-
+                else if (license.LicenseType == LicenseType.Standard)
+                {
+                    return true;
+                }
+                
                 return false;
             }
         }
