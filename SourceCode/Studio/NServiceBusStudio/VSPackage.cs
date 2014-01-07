@@ -20,6 +20,7 @@ using ServiceMatrix.Diagramming;
 using System.ComponentModel.Composition.Hosting;
 using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 using NServiceBusStudio.Automation.Exceptions;
+using System.IO;
 
 namespace NServiceBusStudio
 {
@@ -68,9 +69,28 @@ namespace NServiceBusStudio
             var field = type.GetField("ShowExceptionAction", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
             field.SetValue(null, new Action<string, Exception>((s, e) =>
             {
+                var customMessage = "";
+
+                if (File.Exists(StatisticsManager.LoggingFile))
+                {
+                    using (var fileStream = new FileStream(StatisticsManager.LoggingFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    using (var textReader = new StreamReader(fileStream))
+                    {
+                        customMessage = textReader.ReadToEnd();
+                    }
+                }
+
                 if (!(e is ElementAlreadyExistsException))
                 {
-                    reporter.Show(e);
+                    if (string.IsNullOrEmpty(customMessage))
+                    {
+                        reporter.Show(e);
+                    }
+                    else
+                    {  
+                        reporter.Show(e.Message + Environment.NewLine + Environment.NewLine +
+                                      "Additional Log:" + Environment.NewLine + customMessage, e);
+                    }
                 }
             }));
         }

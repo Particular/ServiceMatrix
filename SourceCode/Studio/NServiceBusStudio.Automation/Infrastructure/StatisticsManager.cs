@@ -41,17 +41,17 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public TextWriterTraceListener TextWriterListener { get; set; }
         public Timer TimerUploadStatistics { get; set; }
 
-        public string LoggingFile
+        public static string LoggingFile
         {
             get
             {
-                return Path.Combine(Path.GetDirectoryName(this.GetType().Assembly.Location), String.Format("{0}-{1}.{2}", Environment.MachineName, Environment.UserName, StatisticsManager.StatisticsFileExtension));
+                return Path.Combine(Path.GetDirectoryName(typeof(StatisticsManager).Assembly.Location), String.Format("{0}-{1}.{2}", Environment.MachineName, Environment.UserName, StatisticsManager.StatisticsFileExtension));
             }
         }
 
         public string LastUploadFile
         {
-            get { return this.LoggingFile + ".lastupload"; }
+            get { return LoggingFile + ".lastupload"; }
         }
 
         // Registry Getters/Setters
@@ -108,7 +108,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             {
                 // Clean statistics
                 this.StopCollectingStatistics();
-                File.Delete(this.LoggingFile);
+                File.Delete(LoggingFile);
                 this.StartCollectingStatistics();
 
                 // Upload in UploadStatisticsInterval
@@ -136,9 +136,9 @@ namespace NServiceBusStudio.Automation.Infrastructure
         {
             if (this.TextWriterListener == null && this.ShouldUpload)
             {
-                var shouldInitializeFile = !File.Exists(this.LoggingFile);
+                var shouldInitializeFile = !File.Exists(LoggingFile);
 
-                this.TextWriterListener = new StatisticsTextWriterTraceListener(this.LoggingFile, StatisticsManager.TextWriterListenerName);
+                this.TextWriterListener = new StatisticsTextWriterTraceListener(LoggingFile, StatisticsManager.TextWriterListenerName);
                 Tracer.Manager.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
 
                 if (shouldInitializeFile)
@@ -161,7 +161,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void UploadStatistics()
         {
-            if (!File.Exists(this.LoggingFile) || !this.ShouldUpload || String.IsNullOrEmpty(this.UploadEndpointURL))
+            if (!File.Exists(LoggingFile) || !this.ShouldUpload || String.IsNullOrEmpty(this.UploadEndpointURL))
             {
                 return;
             }
@@ -172,13 +172,13 @@ namespace NServiceBusStudio.Automation.Infrastructure
             {
                 using (var wc = new System.Net.WebClient())
                 {
-                    var resp = wc.UploadFile(this.UploadEndpointURL, "POST", this.LoggingFile);
+                    var resp = wc.UploadFile(this.UploadEndpointURL, "POST", LoggingFile);
 
                     if (Encoding.ASCII.GetString(resp) != "\"ok\"")
                         return;
                 }
 
-                File.Delete(this.LoggingFile);
+                File.Delete(LoggingFile);
                 TimerUploadStatistics.Stop();
                 this.LastUpload = DateTime.Now;
             }
