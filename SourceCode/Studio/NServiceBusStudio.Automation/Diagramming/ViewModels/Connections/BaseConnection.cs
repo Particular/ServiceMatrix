@@ -11,7 +11,18 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
 {
     public abstract class BaseConnection : DiagramConnection
     {
+        private bool _isHighlighted = false;
         private bool _isShadowed = false;
+
+        // This is for highlighting the node if mouse is over.
+        public bool IsHighlighted
+        {
+            get { return _isHighlighted; }
+            set
+            {
+                Set<bool>(ref _isHighlighted, value, "IsHighlighted");
+            }
+        }
 
         // This is for highlighting the node if mouse is over.
         public bool IsShadowed

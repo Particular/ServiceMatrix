@@ -142,9 +142,19 @@
             <!-- Path: -->
             <Path Name="SelectionHighlight" Data="{TemplateBinding PathGeometry}" Stroke="Gray" StrokeThickness="4" />
             <Path Data="{Binding Data, ElementName=SelectionHighlight}" Stroke="#00FFFFFF" StrokeThickness="4" />
+            
             <Path Name="MainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}"
                   Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=true}" />
-            
+
+            <Path Name="HighlightedMainPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}"
+                  Visibility="{Binding Content.IsHighlighted, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}" 
+                  Stroke="#007AC5" />
+
+            <Path Name="ShadowPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}"
+                  Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}"
+                  Stroke="#CCCCCC" />
+
+
             <!-- Middle arrow: -->
             <ContentControl Name="MiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding EndArrowTemplate}"
                             Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=true}">
@@ -170,7 +180,8 @@
             </ContentControl>
 
             <!-- Hightlighted Middle arrow: -->
-            <ContentControl Name="HightlightedMiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding StartArrowTemplate}" Visibility="Collapsed">
+            <ContentControl Name="HightlightedMiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding StartArrowTemplate}"
+                            Visibility="{Binding Content.IsHighlighted, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}">
                 <ContentControl.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />
@@ -193,11 +204,8 @@
             </ContentControl>
 
             <!-- Shadow Middle arrow: -->
-            <Path Name="ShadowPath" Style="{TemplateBinding PathStyle}" Data="{Binding Data, ElementName=SelectionHighlight}"
-                  Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}"
-                  Stroke="#CCCCCC" />
-
-            <ContentControl Name="ShadowMiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding ContentTemplate}" Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}">
+            <ContentControl Name="ShadowMiddleArrow" VerticalAlignment="Top" HorizontalAlignment="Left" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                            Visibility="{Binding Content.IsShadowed, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibility}, ConverterParameter=false}">
                 <ContentControl.RenderTransform>
                     <TransformGroup>
                         <RotateTransform Angle="{Binding Connection.Segments, Converter={StaticResource EndArrowRotationConverter}, RelativeSource={RelativeSource TemplatedParent}}" />

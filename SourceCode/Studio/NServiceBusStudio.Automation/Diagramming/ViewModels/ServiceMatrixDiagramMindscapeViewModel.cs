@@ -341,6 +341,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             {
                 var relatedNodes = GetComponentsMessagesRelatedNodes(node);
                 relatedNodes.ForEach(x => x.IsHighlighted = true);
+                HighlightConnection(relatedNodes);
             }
 
             node.IsHighlighted = true;
@@ -357,6 +358,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             {
                 var relatedNodes = GetComponentsMessagesRelatedNodes(node);
                 relatedNodes.ForEach(x => x.IsHighlighted = false);
+                UnhighlightConnection(relatedNodes);
             }
 
             node.IsHighlighted = false;
@@ -407,11 +409,25 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void HighlightConnection(BaseConnection context)
         {
+            context.IsHighlighted = true;
             this.SetConnectionsIsShadowed(context, true);
         }
 
         public void UnhighlightConnection(BaseConnection context)
         {
+            context.IsHighlighted = false;
+            this.SetConnectionsIsShadowed(context, false);
+        }
+        
+        public void HighlightConnection(List<GroupableNode> context)
+        {
+            this.SetConnectionsIsHighlighted(context, true);
+            this.SetConnectionsIsShadowed(context, true);
+        }
+
+        public void UnhighlightConnection(List<GroupableNode> context)
+        {
+            this.SetConnectionsIsHighlighted(context, false);
             this.SetConnectionsIsShadowed(context, false);
         }
 
@@ -422,6 +438,24 @@ namespace ServiceMatrix.Diagramming.ViewModels
                                                        .ToList();
 
             otherNodeConnections.ForEach(x => x.IsShadowed = value);
+        }
+
+        public void SetConnectionsIsShadowed(List<GroupableNode> context, bool value)
+        {
+            var otherNodeConnections = this.Connections.Cast<BaseConnection>()
+                                                       .Where(x => !(context.Contains (x.Source) && context.Contains(x.Target)))
+                                                       .ToList();
+
+            otherNodeConnections.ForEach(x => x.IsShadowed = value);
+        }
+
+        private void SetConnectionsIsHighlighted(List<GroupableNode> context, bool value)
+        {
+            var otherNodeConnections = this.Connections.Cast<BaseConnection>()
+                                                       .Where(x => context.Contains(x.Source) && context.Contains(x.Target))
+                                                       .ToList();
+
+            otherNodeConnections.ForEach(x => x.IsHighlighted = value);
         }
 
         public IPatternManager PatternManager { get; set; }
