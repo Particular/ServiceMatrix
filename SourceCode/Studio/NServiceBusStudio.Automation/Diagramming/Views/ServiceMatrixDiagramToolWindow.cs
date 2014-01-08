@@ -5,6 +5,7 @@ using NuPattern;
 using System;
 using System.ComponentModel.Composition;
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace ServiceMatrix.Diagramming.Views
 {
@@ -29,9 +30,15 @@ namespace ServiceMatrix.Diagramming.Views
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
+            this.NServiceBusDiagramAdapter.CloseWindow = () =>
+            {
+                IVsWindowFrame windowFrame = (IVsWindowFrame)this.Frame;
+                windowFrame.Hide();
+            };
+
             var pane = new Diagram(this.NServiceBusDiagramAdapter);
             this.Content = pane;
-
+            
             //pane.CaptionHasChanged += (s, e) =>
             //{
             //    this.Caption = pane.Caption;

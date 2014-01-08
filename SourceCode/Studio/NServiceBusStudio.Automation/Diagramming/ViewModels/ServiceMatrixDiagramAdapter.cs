@@ -25,6 +25,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceMatrixDiagramMindscapeViewModel ViewModel { get; set; }
 
+        public Action CloseWindow { get; set; }
+
         [ImportingConstructor]
         public ServiceMatrixDiagramAdapter([Import] ISolution solution,
                                            [Import] IPatternWindows patternWindows,
@@ -51,6 +53,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 this.ViewModel.CleanAll();
                 UnhandleChanges(this.SolutionBuilderViewModel.TopLevelNodes);
                 this.SolutionBuilderViewModel = null;
+                this.CloseWindow();
             };
 
             if (this.Solution.IsOpen)
