@@ -4384,6 +4384,21 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="39746ce7-26a0-4946-9ba5-1b0c3c847099" typeId="NServiceBusStudio.Automation.Infrastructure.Authentication.AddAuthenticationCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="9c8ffe05-e1a8-4bc2-8ce2-be2119fd92fc" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="20ff6e2a-5a97-48d7-8fb7-6d001d744860" typeId="NServiceBusStudio.Automation.Infrastructure.Authentication.AddAuthenticationCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="fe1844e4-bee3-4194-b5b6-e56c3ed34e93" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="14a17875-0b8e-44db-85c5-9046ebfe940f" typeId="NServiceBusStudio.Automation.Infrastructure.Authentication.AddAuthenticationCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="033fb6e0-753e-4288-bb20-a204dc13499d" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -4561,6 +4576,39 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d2cdefab-f949-44e8-aa3a-505117cfd102" />
       </extendedElement>
+    </menuSettings>
+    <menuSettings Id="dc06847c-afcb-447b-9126-201c2a287011" text="Add Authentication" commandId="39746ce7-26a0-4946-9ba5-1b0c3c847099" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="071c8729-4c2a-4b4b-a245-d2351862f6d9" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Infrastructure.Authentication.CanCreateAuthenticationCondition",
+    "Properties": []
+  }
+]</conditions>
+    </menuSettings>
+    <menuSettings Id="20d7c69b-088c-4b6d-89ca-036d8aba7f5d" text="Add Authentication" commandId="20ff6e2a-5a97-48d7-8fb7-6d001d744860" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="654e4e31-07c3-4081-b19e-8a9ac2f2d26f" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Infrastructure.Authentication.CanCreateAuthenticationCondition",
+    "Properties": []
+  }
+]</conditions>
+    </menuSettings>
+    <menuSettings Id="a0ccb637-9c9e-4530-9df0-73d6f4bb3f48" text="Add Authentication" commandId="14a17875-0b8e-44db-85c5-9046ebfe940f" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="8774621f-53c3-4623-a7dd-6d4ca5973972" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Infrastructure.Authentication.CanCreateAuthenticationCondition",
+    "Properties": []
+  }
+]</conditions>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
       <extendedElement>
@@ -7700,6 +7748,24 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
+                  <automationSettings Id="071c8729-4c2a-4b4b-a245-d2351862f6d9" name="AddAuthentication" displayName="Add Authentication" description="" codeIdentifier="AddAuthentication" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="9c8ffe05-e1a8-4bc2-8ce2-be2119fd92fc" name="AddAuthenticationCommand" displayName="Add Authentication Command" description="" codeIdentifier="AddAuthenticationCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
                 </automationSettings>
                 <childElement>
                   <collection Id="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusHostComponents">
@@ -8328,6 +8394,24 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
+                  <automationSettings Id="8774621f-53c3-4623-a7dd-6d4ca5973972" name="AddAuthentication" displayName="Add Authentication" description="" codeIdentifier="AddAuthentication" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="033fb6e0-753e-4288-bb20-a204dc13499d" name="AddAuthenticationCommand" displayName="Add Authentication Command" description="" codeIdentifier="AddAuthenticationCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
                 </automationSettings>
                 <childElement>
                   <collection Id="7fd9877f-4de1-4d74-a0a3-d3a09cc06a73" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusWebComponents">
@@ -8887,6 +8971,24 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="b17ab13b-3862-4454-8428-437a686c28c2" name="GenerateTestMessagesView" displayName="Generate Test Messages View" description="" codeIdentifier="GenerateTestMessagesView" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="654e4e31-07c3-4081-b19e-8a9ac2f2d26f" name="AddAuthentication" displayName="Add Authentication" description="" codeIdentifier="AddAuthentication" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="fe1844e4-bee3-4194-b5b6-e56c3ed34e93" name="AddAuthenticationCommand" displayName="Add Authentication Command" description="" codeIdentifier="AddAuthenticationCommand" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

@@ -70,7 +70,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
         // Creates if needed and sets MenuItem visibility according to the authentication state
         public static void UpdateEndpointsForAuthentication(IApplication app, ISolution solution, IServiceProvider sp)
         {
-            app.SetEndpointsMenuItems("Customize Authentication"
+            app.SetEndpointsMenuItems("View Authentication Code"
                 , (e, a) => ApplyCustomAuthentication(e, a, sp)
                 , (e, a) => a.HasAuthentication);
         }

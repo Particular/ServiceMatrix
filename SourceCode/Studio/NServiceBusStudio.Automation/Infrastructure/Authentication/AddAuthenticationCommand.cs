@@ -39,7 +39,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         public override void Execute()
         {
-            var infrastructure = this.CurrentElement.As<IInfrastructure>();
+            var infrastructure = this.CurrentElement.Root.As<IApplication>().Design.Infrastructure;
             var security = infrastructure.Security?? infrastructure.CreateSecurity("Security");
             var authentication = security.CreateAuthentication("Authentication");
             AuthenticationFeature.InitializeAuthenticationValues(this.CurrentElement.Root.As<IApplication>(), Solution, this.ServiceProvider);
@@ -65,8 +65,8 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         public override bool  Evaluate()
         {
- 	        return (this.CurrentElement.As<IInfrastructure>().Security == null
-                    || this.CurrentElement.As<IInfrastructure>().Security.Authentication == null);
+ 	        return (this.CurrentElement.Root.As<IApplication>().Design.Infrastructure.Security == null
+                    || this.CurrentElement.Root.As<IApplication>().Design.Infrastructure.Security.Authentication == null);
 
         }
     }
