@@ -4404,7 +4404,7 @@
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="4d09acc6-7db8-41f1-9c02-189e23cb9ffe" text="Add Subscriber..." commandId="342de258-1635-4a98-9b5c-05c86921714b" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="4d09acc6-7db8-41f1-9c02-189e23cb9ffe" text="Add Subscriber..." commandId="342de258-1635-4a98-9b5c-05c86921714b" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="101">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="01dd3fa9-02b6-4dff-83e2-b09981e0556e" />
       </extendedElement>
@@ -4609,6 +4609,16 @@
     "Properties": []
   }
 ]</conditions>
+    </menuSettings>
+    <menuSettings Id="dd741398-ce03-4901-af9f-46bae710f584" text="View Code" commandId="bb6ccc74-ad9f-4e2f-b90b-e2ac1e3b2204" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c1ae1788-5b46-4893-82e4-173458342221" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="77c61b64-5fae-4aca-a010-5b214bce6c0e" text="View Code" commandId="128181df-4a4f-4a1f-a1be-117cdc564d8b" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b2c09f51-392e-4e38-8a3d-f48a19c41242" />
+      </extendedElement>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
       <extendedElement>
@@ -5787,7 +5797,16 @@
                                   </settings>
                                 </customizationPolicy>
                               </automationSettings>
-                              <automationSettings Id="9339fb26-e604-4971-9996-8737e90ce7a8" name="OpenCode" displayName="Open Code" description="" codeIdentifier="OpenCode" automationType="Command">
+                              <automationSettings Id="9339fb26-e604-4971-9996-8737e90ce7a8" name="OpenCodeFile" displayName="Open Code File" description="" codeIdentifier="OpenCodeFile" automationType="Command">
+                                <customizationPolicy name="CustomizationPolicySchema1">
+                                  <settings>
+                                    <setting propertyId="DisplayName" />
+                                    <setting propertyId="Description" />
+                                    <setting propertyId="Settings" />
+                                  </settings>
+                                </customizationPolicy>
+                              </automationSettings>
+                              <automationSettings Id="c1ae1788-5b46-4893-82e4-173458342221" name="OpenCode" displayName="Open Code" description="" codeIdentifier="OpenCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -5934,7 +5953,7 @@
                                   </settings>
                                 </customizationPolicy>
                               </automationSettings>
-                              <automationSettings Id="08858709-84fa-4a46-acae-31474b88d853" name="OpenCode" displayName="Open Code" description="" codeIdentifier="OpenCode" automationType="Command">
+                              <automationSettings Id="08858709-84fa-4a46-acae-31474b88d853" name="OpenCodeFile" displayName="Open Code File" description="" codeIdentifier="OpenCodeFile" automationType="Command">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
@@ -5944,6 +5963,15 @@
                                 </customizationPolicy>
                               </automationSettings>
                               <automationSettings Id="3fcf9e0e-7d1c-46c3-aff8-15b1f06d28f3" name="CheckForCreateCommandComponents" displayName="Check For Create Command Components" description="" codeIdentifier="CheckForCreateCommandComponents" automationType="Command">
+                                <customizationPolicy name="CustomizationPolicySchema1">
+                                  <settings>
+                                    <setting propertyId="DisplayName" />
+                                    <setting propertyId="Description" />
+                                    <setting propertyId="Settings" />
+                                  </settings>
+                                </customizationPolicy>
+                              </automationSettings>
+                              <automationSettings Id="b2c09f51-392e-4e38-8a3d-f48a19c41242" name="OpenCode" displayName="Open Code" description="" codeIdentifier="OpenCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />
