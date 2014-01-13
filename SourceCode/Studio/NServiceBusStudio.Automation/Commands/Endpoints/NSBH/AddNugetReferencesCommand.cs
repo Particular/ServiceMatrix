@@ -46,26 +46,28 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Host" />
 
 
-            project.DownloadNuGetPackages();
+            // project.DownloadNuGetPackages();
 
             if (!project.HasReference("NServiceBus"))
             {
-                project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                project.DownloadNuGetPackages("NServiceBus");
+                project.DownloadNuGetPackages("NServiceBus.Interfaces");
 
                 project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.Core.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "NServiceBus.dll");
+
+                project.AddReference(
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "NServiceBus.Core.dll");
 
                 if (!this.IgnoreHost)
                 {
+                    project.DownloadNuGetPackages("NServiceBus.Host");
+
                     project.AddReference(
-                        string.Format(@"{0}\packages\NServiceBus.Host.{1}\lib\net40\NServiceBus.Host.exe",
-                        System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                        this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                        string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                        "NServiceBus.Host.exe");
                 }
             }
 
@@ -74,22 +76,20 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.ActiveMQ" />
             if (app.Transport == TransportType.ActiveMQ.ToString()) 
             {
+
+                project.DownloadNuGetPackages("NServiceBus.ActiveMQ");
                   
                 project.AddReference(
-                    string.Format(@"{0}\packages\Apache.NMS.1.5.1\lib\net40\Apache.NMS.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
-               
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "Apache.NMS.dll");
 
                 project.AddReference(
-                    string.Format(@"{0}\packages\Apache.NMS.ActiveMQ.1.5.6\lib\net40\Apache.NMS.ActiveMQ.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
-                
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "Apache.NMS.ActiveMQ");
+
                 project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.Transports.ActiveMQ.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "NServiceBus.Transports.ActiveMQ");
             }
             else 
             {
@@ -101,15 +101,15 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
             if (app.Transport == TransportType.RabbitMQ.ToString())
             {
-                project.AddReference(
-                    string.Format(@"{0}\packages\RabbitMQ.Client.3.0.0\lib\net30\RabbitMQ.Client.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                project.DownloadNuGetPackages("NServiceBus.RabbitMQ");
 
                 project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.RabbitMQ.{1}\lib\net40\NServiceBus.Transports.RabbitMQ.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "RabbitMQ.Client.dll");
+
+                project.AddReference(
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "NServiceBus.Transports.RabbitMQ.dll");
             }
             else
             {
@@ -120,10 +120,11 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Transports.SqlServer" />
             if (app.Transport == TransportType.SqlServer.ToString())
             {
+                project.DownloadNuGetPackages("NServiceBus.SqlServer");
+                
                 project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.SqlServer.{1}\lib\net40\NServiceBus.Transports.SqlServer.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "NServiceBus.Transports.SqlServer.dll");
             }
             else
             {
@@ -132,10 +133,11 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
             if (!String.IsNullOrEmpty(app.ServiceControlInstanceURI))
             {
+                project.DownloadNuGetPackages("ServiceControl.Plugin.DebugSession");
+
                 project.AddReference(
-                    string.Format(@"{0}\packages\ServiceControl.Plugin.DebugSession.{1}\lib\net40\ServiceControl.Plugin.DebugSession.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
+                    string.Format(@"{0}\packages", System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath))),
+                    "ServiceControl.Plugin.DebugSession.dll");
             }
             else
             {

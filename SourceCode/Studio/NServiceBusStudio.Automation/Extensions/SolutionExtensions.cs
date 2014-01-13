@@ -103,6 +103,20 @@ namespace NServiceBusStudio.Automation.Extensions
             }
         }
 
+        /// <summary>
+        /// Adds the given <paramref name="referenceLibraryPath"/> dll as a 
+        /// project reference to <paramref name="project"/>.
+        /// </summary>
+        public static void AddReference(this IProject project, string packagesPath, string assemblyFileName)
+        {
+            var files = Directory.EnumerateFiles(packagesPath, assemblyFileName, SearchOption.AllDirectories);
+
+            if (files.Any())
+            {
+                AddReference(project, files.First());
+            }
+        }
+
 
         public static bool HasReference(this IProject project, string name)
         {
@@ -131,6 +145,44 @@ namespace NServiceBusStudio.Automation.Extensions
                 {
                     Arguments = string.Format(" install \"{0}\" -source \"{1}\" -o \"{2}\""
                     , packageConfig
+                    , packageSources
+                    , Path.Combine(solutionPath, @"packages")),
+                    CreateNoWindow = true,
+                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
+                };
+
+                var p = System.Diagnostics.Process.Start(pi);
+
+                // Redirecting Output to VSStatusBar and Output Window
+                p.BeginOutputReadLine();
+                p.OutputDataReceived += (sender, e) => Log("Output", e.Data);
+
+                // Redirecting Error to VSStatusBar and Output Window
+                p.BeginErrorReadLine();
+                p.ErrorDataReceived += (sender, e) => Log("Error", e.Data);
+
+                p.WaitForExit(120 * 1000);
+            }
+            catch { }
+            return solutionPath;
+        }
+
+        public static string DownloadNuGetPackages(this IProject infraproject, string packageName)
+        {
+            var basePath = infraproject.PhysicalPath;
+            var solutionPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath));
+            var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669;http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
+
+            try
+            {
+                var pi = new System.Diagnostics.ProcessStartInfo(Path.Combine(solutionPath, @".nuget\nuget.exe"))
+                {
+                    Arguments = string.Format(" install \"{0}\" -source \"{1}\" -o \"{2}\""
+                    , packageName
                     , packageSources
                     , Path.Combine(solutionPath, @"packages")),
                     CreateNoWindow = true,
