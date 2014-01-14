@@ -145,8 +145,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
             // Saving into file
             if (this.FilePath != null)
             {
-                var fileContent = JsonConvert.SerializeObject(this.ShapePositions);
-                File.WriteAllText(this.FilePath, fileContent);
+                try
+                {
+                    var fileContent = JsonConvert.SerializeObject(this.ShapePositions);
+                    File.WriteAllText(this.FilePath, fileContent);
+                }
+                catch (Exception) { }
             }
         }
 
