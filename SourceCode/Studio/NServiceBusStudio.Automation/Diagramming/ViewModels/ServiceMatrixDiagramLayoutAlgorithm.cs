@@ -1,5 +1,6 @@
 ﻿using Mindscape.WpfDiagramming;
 using Newtonsoft.Json;
+using NuPattern.Diagnostics;
 using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
 using ServiceMatrix.Diagramming.ViewModels.Shapes;
 using System;
@@ -13,6 +14,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
 {
     public class ServiceMatrixDiagramLayoutAlgorithm
     {
+        private static readonly ITracer tracer = Tracer.Get<ServiceMatrixDiagramLayoutAlgorithm>();
+
         public ServiceMatrixDiagramMindscapeViewModel ViewModel { get; set; }
         public string FilePath { get; set; }
         public Dictionary<Guid, Point> ShapePositions { get; set; }
@@ -39,7 +42,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     this.ShapePositions = JsonConvert.DeserializeObject<Dictionary<Guid, Point>>(fileContent);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                tracer.Error(ex, "Cannot load shape positions from DiagramShapePositions.json.");
+            }
 
             // If File not exists or an error ocurred
             if (this.ShapePositions == null)
@@ -150,7 +156,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     var fileContent = JsonConvert.SerializeObject(this.ShapePositions);
                     File.WriteAllText(this.FilePath, fileContent);
                 }
-                catch (Exception) { }
+                catch (Exception ex) 
+                {
+                    tracer.Error(ex, "Cannot save shape positions to DiagramShapePositions.json.");
+                }
             }
         }
 
