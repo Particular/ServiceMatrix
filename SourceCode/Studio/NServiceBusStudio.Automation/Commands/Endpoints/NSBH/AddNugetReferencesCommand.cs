@@ -9,6 +9,8 @@ using System.ComponentModel.DataAnnotations;
 using NuPattern.Runtime;
 using AbstractEndpoint;
 using NServiceBusStudio;
+using NuGet.VisualStudio;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
@@ -28,7 +30,9 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             set;
         }
 
-       
+        [Import]
+        public IVsPackageInstaller VsPackageInstaller { get; set; }
+
         public bool IgnoreHost { get; set; }
 
         public override void Execute()
@@ -39,33 +43,17 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 return;
             }
 
-            var basePath = project.PhysicalPath;
-            
             //<Reference Include="NServiceBus" />
             //<Reference Include="NServiceBus.Core" />
             //<Reference Include="NServiceBus.Host" />
 
-
-            project.DownloadNuGetPackages();
-
             if (!project.HasReference("NServiceBus"))
             {
-                project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
-
-                project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.{1}\lib\net40\NServiceBus.Core.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                InstallPackage(project, "NServiceBus");
 
                 if (!this.IgnoreHost)
                 {
-                    project.AddReference(
-                        string.Format(@"{0}\packages\NServiceBus.Host.{1}\lib\net40\NServiceBus.Host.exe",
-                        System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                        this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                    InstallPackage(project, "NServiceBus.Host");
                 }
             }
 
@@ -74,22 +62,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.ActiveMQ" />
             if (app.Transport == TransportType.ActiveMQ.ToString()) 
             {
-                  
-                project.AddReference(
-                    string.Format(@"{0}\packages\Apache.NMS.1.5.1\lib\net40\Apache.NMS.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
-               
-
-                project.AddReference(
-                    string.Format(@"{0}\packages\Apache.NMS.ActiveMQ.1.5.6\lib\net40\Apache.NMS.ActiveMQ.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
-                
-                project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.ActiveMQ.{1}\lib\net40\NServiceBus.Transports.ActiveMQ.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                if (!project.HasReference("NServiceBus.ActiveMQ"))
+                {
+                    InstallPackage(project, "NServiceBus.ActiveMQ");
+                }
             }
             else 
             {
@@ -101,15 +77,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
             if (app.Transport == TransportType.RabbitMQ.ToString())
             {
-                project.AddReference(
-                    string.Format(@"{0}\packages\RabbitMQ.Client.3.0.0\lib\net30\RabbitMQ.Client.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
-
-                project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.RabbitMQ.{1}\lib\net40\NServiceBus.Transports.RabbitMQ.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                if (!project.HasReference("NServiceBus.Transports.RabbitMQ"))
+                {
+                    InstallPackage(project, "NServiceBus.Transports.RabbitMQ");
+                }
             }
             else
             {
@@ -120,26 +91,56 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Transports.SqlServer" />
             if (app.Transport == TransportType.SqlServer.ToString())
             {
-                project.AddReference(
-                    string.Format(@"{0}\packages\NServiceBus.SqlServer.{1}\lib\net40\NServiceBus.Transports.SqlServer.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                if (!project.HasReference("NServiceBus.Transports.SqlServer"))
+                {
+                    InstallPackage(project, "NServiceBus.Transports.SqlServer");
+                }
             }
             else
             {
                 project.RemoveReference("NServiceBus.Transports.SqlServer");
             }
 
+            //<Reference Include="ServiceControl.Plugin.DebugSession" />
             if (!String.IsNullOrEmpty(app.ServiceControlInstanceURI))
             {
-                project.AddReference(
-                    string.Format(@"{0}\packages\ServiceControl.Plugin.DebugSession.{1}\lib\net40\ServiceControl.Plugin.DebugSession.dll",
-                    System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath)),
-                    this.CurrentElement.Root.As<IApplication>().ServiceControlEndpointPluginVersion));
+                if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
+                {
+                    InstallPackage(project, "ServiceControl.Plugin.DebugSession");
+                }
             }
             else
             {
                 project.RemoveReference("ServiceControl.Plugin.DebugSession");
+            }
+        }
+
+        private void InstallPackage(IProject project, string package)
+        {
+            try
+            {
+                try
+                {
+                    var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669";
+                    this.VsPackageInstaller.InstallPackage(packageSources,
+                                                           project.As<EnvDTE.Project>(),
+                                                           package,
+                                                           default(Version),
+                                                           false);
+                }
+                catch (InvalidOperationException)
+                {
+                    var fallbackPackageSource = "http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
+                    this.VsPackageInstaller.InstallPackage(fallbackPackageSource,
+                                                           project.As<EnvDTE.Project>(),
+                                                           package,
+                                                           default(Version),
+                                                           false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("NuGet Package {0} cannot be installed.", package), ex);
             }
         }
     }
