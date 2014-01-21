@@ -6,27 +6,16 @@
 <#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
 <#@ Import Namespace="global::NuPattern.Runtime" #>
 <#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
-<#  var service = ((IProductElement)this.Element).As<IService>(); #>
+<#  var endpoint = ((IProductElement)this.Element).As<INServiceBusHost>(); #>
 using System;
 using NServiceBus;
  
-namespace <#= service.Namespace #>
+namespace <#= endpoint.Namespace #>
 {
-<#
-	if (service.Components.Component.Any(c => c.Subscribes.SubscribedEventLinks.Any()))
-	{
-#>
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
-<#
-	}
-	else
-	{
-#>
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher
-<#
-	}
-#>
-    {
-    }
+  public partial class EndpointConfig    
+  {
+      
+  }
 }
