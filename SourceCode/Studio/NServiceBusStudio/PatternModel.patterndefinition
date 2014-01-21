@@ -237,6 +237,11 @@
         <automationSettingsSchemaMoniker Id="f0e87da6-c244-4600-bc44-0d603e7caf70" />
       </extendedElement>
     </eventSettings>
+    <eventSettings Id="6b733228-0b1d-4b7b-83e2-08e6cfaab9e5" commandId="dd6f8532-1bf6-4d01-b2fc-08c4b3d00ffe" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="5e0fff4e-bc09-4762-92b3-f21b37015059" />
+      </extendedElement>
+    </eventSettings>
     <commandSettings Id="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" />
@@ -1355,7 +1360,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"5e6b5fec-870f-4f44-9a76-d9ffbdf9f49d\"\r\n  },\r\n  {\r\n    \"CommandId\": \"40735865-b53c-4880-8ef2-f31dd9a9a581\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"5e6b5fec-870f-4f44-9a76-d9ffbdf9f49d\"\r\n  },\r\n  {\r\n    \"CommandId\": \"40735865-b53c-4880-8ef2-f31dd9a9a581\"\r\n  },\r\n  {\r\n    \"CommandId\": \"952f230b-dc48-4d68-8f5f-81b9801123fb\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -2901,7 +2906,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"4f45fc70-0514-411c-9dbb-f8b30e2b5bb3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"34e99412-ec8f-4940-ba3e-21b43b846ffa\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dc48cc98-0f74-4482-b275-833b8247f8d6\"\r\n  },\r\n  {\r\n    \"CommandId\": \"9f696e71-25da-4688-b7a9-709c0c59e901\"\r\n  },\r\n  {\r\n    \"CommandId\": \"fda1c817-b676-4500-9438-5082c5bbfcdb\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a713ee03-f59d-476b-a0fb-844d5e753217\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dc6634a9-a147-4285-ac38-d053a40ba00f\"\r\n  },\r\n  {\r\n    \"CommandId\": \"373f5296-2275-4818-895e-c3ac9fd06ad2\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"4f45fc70-0514-411c-9dbb-f8b30e2b5bb3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"373f5296-2275-4818-895e-c3ac9fd06ad2\"\r\n  },\r\n  {\r\n    \"CommandId\": \"9f696e71-25da-4688-b7a9-709c0c59e901\"\r\n  },\r\n  {\r\n    \"CommandId\": \"fda1c817-b676-4500-9438-5082c5bbfcdb\"\r\n  },\r\n  {\r\n    \"CommandId\": \"34e99412-ec8f-4940-ba3e-21b43b846ffa\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dc48cc98-0f74-4482-b275-833b8247f8d6\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a713ee03-f59d-476b-a0fb-844d5e753217\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dc6634a9-a147-4285-ac38-d053a40ba00f\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3373,7 +3378,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"8cd30cfb-d028-480d-82df-61d6b009df17\"\r\n  },\r\n  {\r\n    \"CommandId\": \"803c9b2d-3d78-4c53-acf6-57b57d202930\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f258cc61-aa0a-4fe8-82df-75bdabb3d96c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"60149b6b-52bd-4fac-9259-1a8ba480851a\"\r\n  },\r\n  {\r\n    \"CommandId\": \"4dd3672b-f688-467d-8462-b7073b8e4ebf\"\r\n  },\r\n  {\r\n    \"CommandId\": \"42fbe5dc-3cc8-4347-8842-f83c2765d6b2\"\r\n  },\r\n  {\r\n    \"CommandId\": \"80776373-8131-4f13-bf2f-43fce486c245\"\r\n  },\r\n  {\r\n    \"CommandId\": \"028b4628-fc8e-409c-a743-7be007bcd645\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"8cd30cfb-d028-480d-82df-61d6b009df17\"\r\n  },\r\n  {\r\n    \"CommandId\": \"028b4628-fc8e-409c-a743-7be007bcd645\"\r\n  },\r\n  {\r\n    \"CommandId\": \"803c9b2d-3d78-4c53-acf6-57b57d202930\"\r\n  },\r\n  {\r\n    \"CommandId\": \"60149b6b-52bd-4fac-9259-1a8ba480851a\"\r\n  },\r\n  {\r\n    \"CommandId\": \"4dd3672b-f688-467d-8462-b7073b8e4ebf\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f258cc61-aa0a-4fe8-82df-75bdabb3d96c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"42fbe5dc-3cc8-4347-8842-f83c2765d6b2\"\r\n  },\r\n  {\r\n    \"CommandId\": \"80776373-8131-4f13-bf2f-43fce486c245\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4216,17 +4221,10 @@
         <automationSettingsSchemaMoniker Id="48e6d9b6-881f-46b8-9502-ffb7ddc78980" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="a8f60871-b0e4-4dc1-b592-5f9d0218746f" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBH.AddNugetReferencesCommand">
+    <commandSettings Id="952f230b-dc48-4d68-8f5f-81b9801123fb" typeId="NServiceBusStudio.Automation.Commands.AddInfrastructureProjectReferences">
       <extendedElement>
-        <automationSettingsSchemaMoniker Id="a0028e67-2dfa-4e71-a8fb-dc083b18d621" />
+        <automationSettingsSchemaMoniker Id="0410031e-c43e-4596-b1e6-bc781bd671e5" />
       </extendedElement>
-      <properties>[
-  {
-    "Name": "IgnoreHost",
-    "Value": "True",
-    "ValueProvider": null
-  }
-]</properties>
     </commandSettings>
     <commandSettings Id="39746ce7-26a0-4946-9ba5-1b0c3c847099" typeId="NServiceBusStudio.Automation.Infrastructure.Authentication.AddAuthenticationCommand">
       <extendedElement>
@@ -4291,6 +4289,18 @@
   {
     "Name": "TemplateAuthoringUri",
     "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9665ea51-8bf4-4a28-b0a5-37cdf5148f39",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="dd6f8532-1bf6-4d01-b2fc-08c4b3d00ffe" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a178b646-568a-4fe8-8793-b84b3efdb2d2" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"952f230b-dc48-4d68-8f5f-81b9801123fb\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -9781,7 +9791,25 @@
                   </settings>
                 </customizationPolicy>
               </automationSettings>
-              <automationSettings Id="a0028e67-2dfa-4e71-a8fb-dc083b18d621" name="GenerateCodeNugetReferences" displayName="Generate Code Nuget References" description="" codeIdentifier="GenerateCodeNugetReferences" automationType="Command">
+              <automationSettings Id="0410031e-c43e-4596-b1e6-bc781bd671e5" name="GenerateCodeReferences" displayName="Generate Code References" description="" codeIdentifier="GenerateCodeReferences" automationType="Command">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="5e0fff4e-bc09-4762-92b3-f21b37015059" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
+                <customizationPolicy name="CustomizationPolicySchema1">
+                  <settings>
+                    <setting propertyId="DisplayName" />
+                    <setting propertyId="Description" />
+                    <setting propertyId="Settings" />
+                  </settings>
+                </customizationPolicy>
+              </automationSettings>
+              <automationSettings Id="a178b646-568a-4fe8-8793-b84b3efdb2d2" name="OnInstantiatedCommand" displayName="On Instantiated Command" description="" codeIdentifier="OnInstantiatedCommand" automationType="Command">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />

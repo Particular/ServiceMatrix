@@ -9,6 +9,8 @@ using System.ComponentModel.DataAnnotations;
 using NuPattern.Runtime;
 using AbstractEndpoint;
 using System.IO;
+using NuPattern.VisualStudio.Solution;
+using NuGet.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -28,6 +30,9 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
+        [Import]
+        public IVsPackageInstaller VsPackageInstaller { get; set; }
+
         public override void Execute()
         {
             var infraproject = this.CurrentElement.GetProject();
@@ -36,14 +41,37 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 if (!infraproject.HasReference("NServiceBus"))
                 {
-                    var solutionPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(infraproject.PhysicalPath));
-                    infraproject.DownloadNuGetPackages();
-
-                    infraproject.AddReference(
-                        string.Format(@"{0}\packages\NServiceBus.Interfaces.{1}\lib\net40\NServiceBus.dll",
-                        solutionPath,
-                        this.CurrentElement.Root.As<IApplication>().NServiceBusVersion));
+                    InstallPackage(infraproject, "NServiceBus");
                 }
+            }
+        }
+
+        private void InstallPackage(IProject project, string package)
+        {
+            try
+            {
+                try
+                {
+                    var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669";
+                    this.VsPackageInstaller.InstallPackage(packageSources,
+                                                           project.As<EnvDTE.Project>(),
+                                                           package,
+                                                           default(Version),
+                                                           false);
+                }
+                catch (InvalidOperationException)
+                {
+                    var fallbackPackageSource = "http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
+                    this.VsPackageInstaller.InstallPackage(fallbackPackageSource,
+                                                           project.As<EnvDTE.Project>(),
+                                                           package,
+                                                           default(Version),
+                                                           false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("NuGet Package {0} cannot be installed.", package), ex);
             }
         }
 
