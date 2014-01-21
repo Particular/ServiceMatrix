@@ -468,15 +468,6 @@
     <ProjectTemplate Include="T\P\Endpoints\NSBH\Host.vstemplate">
       <ItemGuid>a969556e-c993-49ae-a3e2-59b6266a5dec</ItemGuid>
     </ProjectTemplate>
-    <Content Include="T\T4\Config\Host\App.config.tt">
-      <LastGenOutput>App.config.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>bcbf52e1-c5aa-4cef-a496-4860d2061c0a</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Config\Host\EndpointConfig.tt">
-      <ItemGuid>7c1796fe-73a7-474f-962d-a83db6ec3c60</ItemGuid>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="T\T4\EventDefinition.tt">
       <LastGenOutput>EventDefinition.cs</LastGenOutput>
       <ItemGuid>cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346</ItemGuid>
@@ -622,9 +613,6 @@
       <LastGenOutput>source.extension.VSVersion.gen.ttinclude</LastGenOutput>
       <DependentUpon>source.extension.tt</DependentUpon>
     </None>
-    <None Include="T\T4\Config\Host\TransportConfig.tt">
-      <LastGenOutput>TransportConfig.cs</LastGenOutput>
-    </None>
     <Content Include="T\T4\Endpoints\NSBH\DefaultApp.config.tt">
       <LastGenOutput>DefaultApp.config.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -632,7 +620,7 @@
       <ItemGuid>895bc0b9-2336-4ac7-baae-cb2f2e5b1346</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.tt">
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.generated.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>51c08094-9e68-4abe-a168-4e1962888e9b</ItemGuid>
@@ -654,12 +642,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>e8d4c471-2fd7-4520-aa61-7e504df71414</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBH\packages.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>75b0905c-a561-4e6f-a2b2-b6300c4dc944</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBH\SecondLevelRetriesConfig.config.tt">
@@ -727,12 +709,6 @@
       <ItemGuid>2cb98bc0-0a56-45dc-94c1-681f343fc9a4</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\packages.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>b85efc92-f991-4a30-a177-cb8ed3bcc890</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -797,12 +773,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>9985b0ec-a356-44dc-922d-22d9840df107</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\packages.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>8facc8e9-2b33-4985-bc19-09e16e19e420</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.config.tt">
@@ -886,6 +856,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5ddee7e0-7cd1-4713-ab12-8d59d622a228</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>9665ea51-8bf4-4a28-b0a5-37cdf5148f39</ItemGuid>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Web.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Web.Debug.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Web.Release.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
