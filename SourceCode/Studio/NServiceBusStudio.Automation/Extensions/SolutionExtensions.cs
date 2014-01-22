@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using NuPattern.VisualStudio.Solution;
 using NuPattern;
+using NuGet.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -118,44 +119,74 @@ namespace NServiceBusStudio.Automation.Extensions
             return false;
         }
 
-        public static string DownloadNuGetPackages(this IProject infraproject)
+        public static void InstallNuGetPackage(this IProject project, IVsPackageInstaller VsPackageInstaller, string packageName)
         {
-            var basePath = infraproject.PhysicalPath;
-            var solutionPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath));
-            var packageConfig = Path.Combine(Path.GetDirectoryName(basePath), "packages.config");
-            var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669;http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
-
             try
             {
-                var pi = new System.Diagnostics.ProcessStartInfo(Path.Combine(solutionPath, @".nuget\nuget.exe"))
+                try
                 {
-                    Arguments = string.Format(" install \"{0}\" -source \"{1}\" -o \"{2}\""
-                    , packageConfig
-                    , packageSources
-                    , Path.Combine(solutionPath, @"packages")),
-                    CreateNoWindow = true,
-                    WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    RedirectStandardInput = true,
-                    UseShellExecute = false,
-                };
-
-                var p = System.Diagnostics.Process.Start(pi);
-
-                // Redirecting Output to VSStatusBar and Output Window
-                p.BeginOutputReadLine();
-                p.OutputDataReceived += (sender, e) => Log("Output", e.Data);
-
-                // Redirecting Error to VSStatusBar and Output Window
-                p.BeginErrorReadLine();
-                p.ErrorDataReceived += (sender, e) => Log("Error", e.Data);
-
-                p.WaitForExit(120 * 1000);
+                    var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669";
+                    VsPackageInstaller.InstallPackage(packageSources,
+                                                           project.As<EnvDTE.Project>(),
+                                                           packageName,
+                                                           default(Version),
+                                                           false);
+                }
+                catch (InvalidOperationException)
+                {
+                    var fallbackPackageSource = "http://builds.particular.net/guestAuth/app/nuget/v1/FeedService.svc";
+                    VsPackageInstaller.InstallPackage(fallbackPackageSource,
+                                                           project.As<EnvDTE.Project>(),
+                                                           packageName,
+                                                           default(Version),
+                                                           false);
+                }
             }
-            catch { }
-            return solutionPath;
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("NuGet Package {0} cannot be installed ({1}).", packageName, ex.Message), ex);
+            }
         }
+
+
+        //public static string DownloadNuGetPackages(this IProject infraproject)
+        //{
+        //    var basePath = infraproject.PhysicalPath;
+        //    var solutionPath = System.IO.Path.GetDirectoryName(System.IO.Path.GetDirectoryName(basePath));
+        //    var packageConfig = Path.Combine(Path.GetDirectoryName(basePath), "packages.config");
+        //    var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669;http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
+
+        //    try
+        //    {
+        //        var pi = new System.Diagnostics.ProcessStartInfo(Path.Combine(solutionPath, @".nuget\nuget.exe"))
+        //        {
+        //            Arguments = string.Format(" install \"{0}\" -source \"{1}\" -o \"{2}\""
+        //            , packageConfig
+        //            , packageSources
+        //            , Path.Combine(solutionPath, @"packages")),
+        //            CreateNoWindow = true,
+        //            WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden,
+        //            RedirectStandardOutput = true,
+        //            RedirectStandardError = true,
+        //            RedirectStandardInput = true,
+        //            UseShellExecute = false,
+        //        };
+
+        //        var p = System.Diagnostics.Process.Start(pi);
+
+        //        // Redirecting Output to VSStatusBar and Output Window
+        //        p.BeginOutputReadLine();
+        //        p.OutputDataReceived += (sender, e) => Log("Output", e.Data);
+
+        //        // Redirecting Error to VSStatusBar and Output Window
+        //        p.BeginErrorReadLine();
+        //        p.ErrorDataReceived += (sender, e) => Log("Error", e.Data);
+
+        //        p.WaitForExit(120 * 1000);
+        //    }
+        //    catch { }
+        //    return solutionPath;
+        //}
 
         private static object Log(string type, string log)
         {

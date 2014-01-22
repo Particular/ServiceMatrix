@@ -41,39 +41,9 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 if (!infraproject.HasReference("NServiceBus"))
                 {
-                    InstallPackage(infraproject, "NServiceBus");
+                    infraproject.InstallNuGetPackage(VsPackageInstaller, "NServiceBus");
                 }
             }
         }
-
-        private void InstallPackage(IProject project, string package)
-        {
-            try
-            {
-                try
-                {
-                    var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669";
-                    this.VsPackageInstaller.InstallPackage(packageSources,
-                                                           project.As<EnvDTE.Project>(),
-                                                           package,
-                                                           default(Version),
-                                                           false);
-                }
-                catch (InvalidOperationException)
-                {
-                    var fallbackPackageSource = "http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
-                    this.VsPackageInstaller.InstallPackage(fallbackPackageSource,
-                                                           project.As<EnvDTE.Project>(),
-                                                           package,
-                                                           default(Version),
-                                                           false);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(String.Format("NuGet Package {0} cannot be installed.", package), ex);
-            }
-        }
-
     }
 }

@@ -49,11 +49,11 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
             if (!project.HasReference("NServiceBus"))
             {
-                InstallPackage(project, "NServiceBus");
+                project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus");
 
                 if (!this.IgnoreHost)
                 {
-                    InstallPackage(project, "NServiceBus.Host");
+                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Host");
                 }
             }
 
@@ -64,11 +64,13 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.ActiveMQ"))
                 {
-                    InstallPackage(project, "NServiceBus.ActiveMQ");
+                    project.InstallNuGetPackage(VsPackageInstaller, "Apache.NMS");
+                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.ActiveMQ");
                 }
             }
             else 
             {
+
                 project.RemoveReference ("Apache.NMS");
                 project.RemoveReference ("Apache.NMS.ActiveMQ");
                 project.RemoveReference ("NServiceBus.Transports.ActiveMQ");
@@ -77,9 +79,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
             if (app.Transport == TransportType.RabbitMQ.ToString())
             {
-                if (!project.HasReference("NServiceBus.Transports.RabbitMQ"))
+                if (!project.HasReference("NServiceBus.RabbitMQ"))
                 {
-                    InstallPackage(project, "NServiceBus.Transports.RabbitMQ");
+                    project.InstallNuGetPackage(VsPackageInstaller, "RabbitMQ.Client");
+                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.RabbitMQ");
                 }
             }
             else
@@ -88,17 +91,17 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 project.RemoveReference("NServiceBus.Transports.RabbitMQ");
             }
 
-            //<Reference Include="NServiceBus.Transports.SqlServer" />
+            //<Reference Include="NServiceBus.SqlServer" />
             if (app.Transport == TransportType.SqlServer.ToString())
             {
-                if (!project.HasReference("NServiceBus.Transports.SqlServer"))
+                if (!project.HasReference("NServiceBus.SqlServer"))
                 {
-                    InstallPackage(project, "NServiceBus.Transports.SqlServer");
+                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.SqlServer");
                 }
             }
             else
             {
-                project.RemoveReference("NServiceBus.Transports.SqlServer");
+                project.RemoveReference("NServiceBus.SqlServer");
             }
 
             //<Reference Include="ServiceControl.Plugin.DebugSession" />
@@ -106,41 +109,12 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
                 {
-                    InstallPackage(project, "ServiceControl.Plugin.DebugSession");
+                    project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.DebugSession");
                 }
             }
             else
             {
                 project.RemoveReference("ServiceControl.Plugin.DebugSession");
-            }
-        }
-
-        private void InstallPackage(IProject project, string package)
-        {
-            try
-            {
-                try
-                {
-                    var packageSources = "https://go.microsoft.com/fwlink/?LinkID=206669";
-                    this.VsPackageInstaller.InstallPackage(packageSources,
-                                                           project.As<EnvDTE.Project>(),
-                                                           package,
-                                                           default(Version),
-                                                           false);
-                }
-                catch (InvalidOperationException)
-                {
-                    var fallbackPackageSource = "http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc";
-                    this.VsPackageInstaller.InstallPackage(fallbackPackageSource,
-                                                           project.As<EnvDTE.Project>(),
-                                                           package,
-                                                           default(Version),
-                                                           false);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(String.Format("NuGet Package {0} cannot be installed.", package), ex);
             }
         }
     }
