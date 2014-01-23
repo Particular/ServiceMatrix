@@ -17,9 +17,5 @@
     the code is regenerated.
   </auto-generated>
 -->
-  
-<UnicastBusConfig>
-    <MessageEndpointMappings>
-			<#= nserviceBusHost.MessageEndpointMappingsConfig #>
-    </MessageEndpointMappings>
-</UnicastBusConfig>
+
+<AuditConfig QueueName="<#=nserviceBusHost.ForwardReceivedMessagesTo#>" />

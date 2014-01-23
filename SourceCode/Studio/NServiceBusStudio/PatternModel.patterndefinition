@@ -1867,7 +1867,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"0c7a14be-6b82-476d-ac17-a46f8871d884\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a99928a4-309c-4c2f-ab3f-0459aed6a3c6\"\r\n  },\r\n  {\r\n    \"CommandId\": \"24589f3f-059f-4d5a-9b9b-a3897fff2449\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e4f4bcc6-41e9-4237-be6f-7fd91e691ced\"\r\n  },\r\n  {\r\n    \"CommandId\": \"163abd93-cedc-4e41-8a7d-67eedfac41aa\"\r\n  },\r\n  {\r\n    \"CommandId\": \"4dfafba4-8e2b-4437-8c84-495041cb219f\"\r\n  },\r\n  {\r\n    \"CommandId\": \"99be7198-69a8-4174-bb1e-35190f5b6496\"\r\n  },\r\n  {\r\n    \"CommandId\": \"61a98a15-e465-4876-96f9-e3079b9d03f8\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"0c7a14be-6b82-476d-ac17-a46f8871d884\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a99928a4-309c-4c2f-ab3f-0459aed6a3c6\"\r\n  },\r\n  {\r\n    \"CommandId\": \"24589f3f-059f-4d5a-9b9b-a3897fff2449\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e4f4bcc6-41e9-4237-be6f-7fd91e691ced\"\r\n  },\r\n  {\r\n    \"CommandId\": \"163abd93-cedc-4e41-8a7d-67eedfac41aa\"\r\n  },\r\n  {\r\n    \"CommandId\": \"4dfafba4-8e2b-4437-8c84-495041cb219f\"\r\n  },\r\n  {\r\n    \"CommandId\": \"99be7198-69a8-4174-bb1e-35190f5b6496\"\r\n  },\r\n  {\r\n    \"CommandId\": \"61a98a15-e465-4876-96f9-e3079b9d03f8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"1decf8a2-8fda-4ca0-9410-a54735fde0c9\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -2967,7 +2967,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"338298e4-094c-4fa3-bb2e-1eb7d8e1097e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71d2d518-0a28-43c8-97bc-b3a1daa1d044\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f1d05d84-fb55-49f4-8bac-0b7b21615f9e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"55056fbd-f4ca-46fb-8c77-0f54707eaf66\"\r\n  },\r\n  {\r\n    \"CommandId\": \"87d1c6b4-d238-4a4a-9436-e8dabc2846f3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ceb76ec1-66d0-43d7-883c-524960335c61\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bb9daf67-ea65-4b21-a8d9-bc4a84536d2e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7459da8d-a7e6-4547-8019-cbebb69ee7f0\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e79472a8-53c0-4f08-9d5e-4498f6fab3b4\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"338298e4-094c-4fa3-bb2e-1eb7d8e1097e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71d2d518-0a28-43c8-97bc-b3a1daa1d044\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f1d05d84-fb55-49f4-8bac-0b7b21615f9e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"55056fbd-f4ca-46fb-8c77-0f54707eaf66\"\r\n  },\r\n  {\r\n    \"CommandId\": \"87d1c6b4-d238-4a4a-9436-e8dabc2846f3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ceb76ec1-66d0-43d7-883c-524960335c61\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bb9daf67-ea65-4b21-a8d9-bc4a84536d2e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8fb1dadd-4c90-456f-a54c-0ec5df9d9a9a\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7459da8d-a7e6-4547-8019-cbebb69ee7f0\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e79472a8-53c0-4f08-9d5e-4498f6fab3b4\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4162,6 +4162,162 @@
   {
     "Name": "CommandReferenceList",
     "Value": "[\r\n  {\r\n    \"CommandId\": \"952f230b-dc48-4d68-8f5f-81b9801123fb\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="1decf8a2-8fda-4ca0-9410-a54735fde0c9" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="7fc56b19-87ce-41fb-8595-214a9fe56ee9" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Content",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "PreserveNewest",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "AuditConfig.config",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/Infrastructure/GeneratedCode/Config/",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/AuditConfig.config.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/515382fd-e45b-442d-83fa-c4e7096b3581",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="8fb1dadd-4c90-456f-a54c-0ec5df9d9a9a" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="06f26a68-7ca5-4b45-8e91-ac95a5c6a9bc" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Content",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "PreserveNewest",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "AuditConfig.config",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/Infrastructure/GeneratedCode/Config/",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/AuditConfig.config.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/21cb8031-2d8f-417f-89fb-f5a5e94a49f0",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="9e830ae4-ca06-4f05-ad32-2cf36904e377" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="43826215-221f-46f1-80ab-a8909ccbb964" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Content",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "PreserveNewest",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "AuditConfig.config",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/Infrastructure/GeneratedCode/Config/",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/AuditConfig.config.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/92514fe6-6836-445c-910b-53407046c60d",
     "ValueProvider": null
   }
 ]</properties>
@@ -7561,6 +7717,15 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
+                  <automationSettings Id="7fc56b19-87ce-41fb-8595-214a9fe56ee9" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
                 </automationSettings>
                 <childElement>
                   <collection Id="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusHostComponents">
@@ -8198,6 +8363,15 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
+                  <automationSettings Id="43826215-221f-46f1-80ab-a8909ccbb964" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
                 </automationSettings>
                 <childElement>
                   <collection Id="7fd9877f-4de1-4d74-a0a3-d3a09cc06a73" name="Components" displayName="Components" description="Components emit and process messages and are deployed to endpoints." codeIdentifier="NServiceBusWebComponents">
@@ -8766,6 +8940,15 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="fe1844e4-bee3-4194-b5b6-e56c3ed34e93" name="AddAuthenticationCommand" displayName="Add Authentication Command" description="" codeIdentifier="AddAuthenticationCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="06f26a68-7ca5-4b45-8e91-ac95a5c6a9bc" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

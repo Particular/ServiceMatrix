@@ -18,7 +18,7 @@
   </auto-generated>
 -->
   
-<UnicastBusConfig ForwardReceivedMessagesTo="<#=nserviceBusHost.ForwardReceivedMessagesTo#>">
+<UnicastBusConfig>
     <MessageEndpointMappings>
 			<#= nserviceBusHost.MessageEndpointMappingsConfig #>
     </MessageEndpointMappings>

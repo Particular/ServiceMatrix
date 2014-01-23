@@ -861,6 +861,24 @@
     <Content Include="T\P\Endpoints\NSBHWeb\Web.Release.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="T\T4\Endpoints\NSBH\AuditConfig.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>515382fd-e45b-442d-83fa-c4e7096b3581</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\AuditConfig.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>21cb8031-2d8f-417f-89fb-f5a5e94a49f0</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\AuditConfig.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>92514fe6-6836-445c-910b-53407046c60d</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>
