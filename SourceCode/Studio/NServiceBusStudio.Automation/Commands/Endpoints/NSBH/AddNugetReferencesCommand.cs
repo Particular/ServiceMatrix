@@ -105,16 +105,30 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             }
 
             //<Reference Include="ServiceControl.Plugin.DebugSession" />
+            //<Reference Include="ServiceControl.Plugin.Heartbeat" />
+            //<Reference Include="ServiceControl.Plugin.CustomChecks" />
             if (!String.IsNullOrEmpty(app.ServiceControlInstanceURI))
             {
                 if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
                 {
                     project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.DebugSession");
                 }
+
+                if (!project.HasReference("ServiceControl.Plugin.Heartbeat"))
+                {
+                    project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.Heartbeat");
+                }
+
+                if (!project.HasReference("ServiceControl.Plugin.CustomChecks"))
+                {
+                    project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.CustomChecks");
+                }
             }
             else
             {
                 project.RemoveReference("ServiceControl.Plugin.DebugSession");
+                project.RemoveReference("ServiceControl.Plugin.Heartbeat");
+                project.RemoveReference("ServiceControl.Plugin.CustomChecks");
             }
         }
     }
