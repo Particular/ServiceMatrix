@@ -511,7 +511,9 @@
       <LastGenOutput>VsVersionStyles.gen.xaml</LastGenOutput>
     </None>
     <None Include="NServiceBus.Tools.snk" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GeneratedCode\ToolkitElement.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>

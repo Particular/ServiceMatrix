@@ -118,10 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Run.png" />
-    <Content Include=".nuget\NuGet.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="BindingPath.pkgdef" />
     <Content Include="Libs\ExceptionReporter.WinForms.dll" />
     <Content Include="Libs\ExceptionReporter.WinForms.xml" />
@@ -483,10 +479,6 @@
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
     </None>
-    <Content Include=".nuget\NuGet.targets">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <None Include="598ff0ef-28a9-4ca2-b431-269f67a9694b.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
     </None>
@@ -549,10 +541,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>6c659607-78bc-4671-8c4a-32065bba3c33</ItemGuid>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\packages.config.tt">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>dc743cce-5b69-43c5-944e-702bee9d6384</ItemGuid>
     </Content>
     <None Include="e1a3e420-bdf8-4ce6-b918-0ca0a7febaf3.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>

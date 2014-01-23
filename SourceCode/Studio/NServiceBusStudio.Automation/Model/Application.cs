@@ -226,9 +226,9 @@ namespace NServiceBusStudio
 
                 if (!solution.Find(".nuget").Any())
                 {
-                    var folder = solution.CreateSolutionFolder(".nuget");
-                    folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.exe"), @".nuget\NuGet.exe");
-                    folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.targets"), @".nuget\NuGet.targets");
+                    //var folder = solution.CreateSolutionFolder(".nuget");
+                    //folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.exe"), @".nuget\NuGet.exe");
+                    //folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.targets"), @".nuget\NuGet.targets");
 
                     var solutionItems = solution.SolutionFolders.FirstOrDefault(x => x.Name == "Solution Items");
                     if (solutionItems == null)
