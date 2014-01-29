@@ -13,6 +13,7 @@ using System.Linq;
 using NuPattern.Diagnostics;
 using System.Runtime.Remoting.Messaging;
 using NServiceBusStudio.Automation.Commands;
+using NuGet.VisualStudio;
 
 namespace NServiceBusStudio
 {
@@ -42,6 +43,9 @@ namespace NServiceBusStudio
 
         [Import]
         public RemoveEmptyAddMenus RemoveEmptyAddMenus { get; set; }
+
+        [Import]
+        public IVsPackageInstaller VsPackageInstaller { get; set; }
 
         partial void Initialize()
         {
@@ -186,14 +190,17 @@ namespace NServiceBusStudio
                 else if (this.Transport == TransportType.ActiveMQ.ToString())
                 {
                     this.TransportConnectionString = @"ServerUrl=activemq:tcp://mybroker";
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.ActiveMQ"));
                 }
                 else if (this.Transport == TransportType.RabbitMQ.ToString())
                 {
                     this.TransportConnectionString = @"host=localhost";
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.RabbitMQ"));
                 }
                 else if (this.Transport == TransportType.SqlServer.ToString())
                 {
                     this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.SqlServer"));
                 }
             };
         }

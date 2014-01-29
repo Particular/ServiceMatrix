@@ -64,7 +64,6 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.ActiveMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "Apache.NMS");
                     project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.ActiveMQ");
                 }
             }
@@ -73,7 +72,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
                 project.RemoveReference ("Apache.NMS");
                 project.RemoveReference ("Apache.NMS.ActiveMQ");
-                project.RemoveReference ("NServiceBus.Transports.ActiveMQ");
+                project.RemoveReference ("NServiceBus.ActiveMQ");
             }
 
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
@@ -101,7 +100,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             }
             else
             {
-                project.RemoveReference("NServiceBus.SqlServer");
+                project.RemoveReference("NServiceBus.Transports.SQLServer");
             }
 
             //<Reference Include="ServiceControl.Plugin.DebugSession" />
