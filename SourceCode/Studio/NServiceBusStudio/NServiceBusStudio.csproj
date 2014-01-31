@@ -648,7 +648,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>49afd489-a5ff-4743-bfd0-2c4d33e0d6de</ItemGuid>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBH\UnicastBusConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -707,7 +706,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>850114f6-382e-4477-aa77-edfd35447c20</ItemGuid>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBWeb\UnicastBusConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -773,7 +771,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>186f6ae9-49fd-4f9f-969d-034848f06541</ItemGuid>
-      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\UnicastBusConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -52,7 +52,19 @@ namespace <#= endpoint.Namespace #>
 #>
 			Configure.Instance.UseTransport<SqlServer>();	
 <#
-	}
+    }
+    else if (application.Transport == TransportType.AzureQueues.ToString())
+    {
+#>
+			Configure.Instance.UseTransport<AzureStorageQueue>();
+<#
+    }
+    else if (application.Transport == TransportType.AzureServiceBus.ToString())
+    {
+#>
+			Configure.Instance.UseTransport<AzureServiceBus>();
+<#
+    }
 #>
 		}
 	}

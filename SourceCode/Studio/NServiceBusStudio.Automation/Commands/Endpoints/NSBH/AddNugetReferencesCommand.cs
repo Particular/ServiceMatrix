@@ -103,6 +103,32 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 project.RemoveReference("NServiceBus.Transports.SQLServer");
             }
 
+            //<Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues" />
+            if (app.Transport == TransportType.AzureQueues.ToString())
+            {
+                if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues"))
+                {
+                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+                }
+            }
+            else
+            {
+                project.RemoveReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+            }
+
+            //<Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus" />
+            if (app.Transport == TransportType.AzureServiceBus.ToString())
+            {
+                if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus"))
+                {
+                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+                }
+            }
+            else
+            {
+                project.RemoveReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+            }
+
             //<Reference Include="ServiceControl.Plugin.DebugSession" />
             //<Reference Include="ServiceControl.Plugin.Heartbeat" />
             //<Reference Include="ServiceControl.Plugin.CustomChecks" />

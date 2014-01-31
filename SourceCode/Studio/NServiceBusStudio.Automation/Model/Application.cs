@@ -202,6 +202,16 @@ namespace NServiceBusStudio
                     this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
                     this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.SqlServer"));
                 }
+                else if (this.Transport == TransportType.AzureQueues.ToString())
+                {
+                    this.TransportConnectionString = @"UseDevelopmentStorage=True;";
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues"));
+                }
+                else if (this.Transport == TransportType.AzureServiceBus.ToString())
+                {
+                    this.TransportConnectionString = @"UseDevelopmentStorage=True;";
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureServiceBus"));
+                }
             };
         }
 
@@ -339,6 +349,8 @@ namespace NServiceBusStudio
         Msmq,
         ActiveMQ,
         RabbitMQ,
-        SqlServer
+        SqlServer,
+        AzureQueues,
+        AzureServiceBus
     }
 }

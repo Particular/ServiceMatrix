@@ -29,30 +29,42 @@ namespace <#= endpoint.Namespace #>
 		public void Init()
 		{
 <#
-	if (application.Transport == TransportType.Msmq.ToString())
-  {
+    if (application.Transport == TransportType.Msmq.ToString())
+    {
 #>
 			// Tranport: Msmq (Default) - No configuration needed
 <#
-	}
-	else if (application.Transport == TransportType.ActiveMQ.ToString())
-	{	
+    }
+    else if (application.Transport == TransportType.ActiveMQ.ToString())
+    {	
 #>
 			Configure.Instance.UseTransport<ActiveMQ>();
 <#
-	}
-	else if (application.Transport == TransportType.RabbitMQ.ToString())
-	{	
+    }
+    else if (application.Transport == TransportType.RabbitMQ.ToString())
+    {	
 #>
 			Configure.Instance.UseTransport<NServiceBus.RabbitMQ>();
 <#
-	}
-	else if (application.Transport == TransportType.SqlServer.ToString())
-	{
+    }
+    else if (application.Transport == TransportType.SqlServer.ToString())
+    {
 #>
 			Configure.Instance.UseTransport<SqlServer>();
 <#
-	}
+    }
+    else if (application.Transport == TransportType.AzureQueues.ToString())
+    {
+#>
+			Configure.Instance.UseTransport<AzureStorageQueue>();
+<#
+    }
+    else if (application.Transport == TransportType.AzureServiceBus.ToString())
+    {
+#>
+			Configure.Instance.UseTransport<AzureServiceBus>();
+<#
+    }
 #>
 		}
 	}
