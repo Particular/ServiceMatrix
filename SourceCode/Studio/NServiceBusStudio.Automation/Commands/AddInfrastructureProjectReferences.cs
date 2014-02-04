@@ -39,14 +39,15 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
+            var app = this.CurrentElement.Root.As<IApplication>();
             var infraproject = this.CurrentElement.GetProject();
 
             if (infraproject != null)
             {
                 if (!infraproject.HasReference("NServiceBus"))
                 {
-                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", "4.3.3");
-                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", "4.3.3");
+                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.NuGetPackageVersionNServiceBus);
+                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", app.NuGetPackageVersionNServiceBus);
                 }
             }
         }

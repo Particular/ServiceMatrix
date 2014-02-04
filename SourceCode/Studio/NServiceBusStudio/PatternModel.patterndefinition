@@ -5296,6 +5296,156 @@
   "ValueProvider": null
 }</defaultValue>
       </property>
+      <property Id="e41c271e-ae58-44af-878c-462d53221100" name="NuGetPackageVersionNServiceBus" displayName="Nu Get Package Version NService Bus" description="Description for Application.NuGetPackageVersionNServiceBus" codeIdentifier="NuGetPackageVersionNServiceBus" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.LatestNuGetPackageVersionValueProvider",
+    "Properties": [
+      {
+        "Name": "PackageName",
+        "Value": "NServiceBus",
+        "ValueProvider": null
+      }
+    ]
+  }
+}</defaultValue>
+      </property>
+      <property Id="302c2b55-ab10-4aae-b387-051596886b4b" name="NuGetPackageVersionServiceControlPlugins" displayName="Nu Get Package Version Service Control Plugins" description="Description for Application.NuGetPackageVersionServiceControlPlugins" codeIdentifier="NuGetPackageVersionServiceControlPlugins" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.LatestNuGetPackageVersionValueProvider",
+    "Properties": [
+      {
+        "Name": "PackageName",
+        "Value": "ServiceControl.Plugin.DebugSession",
+        "ValueProvider": null
+      }
+    ]
+  }
+}</defaultValue>
+      </property>
+      <property Id="fb8e85b2-1734-4d51-b92d-a0f5c43d2995" name="NuGetPackageVersionNServiceBusActiveMQ" displayName="Nu Get Package Version NService Bus Active MQ" description="Description for Application.NuGetPackageVersionNServiceBusActiveMQ" codeIdentifier="NuGetPackageVersionNServiceBusActiveMQ" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.LatestNuGetPackageVersionValueProvider",
+    "Properties": [
+      {
+        "Name": "PackageName",
+        "Value": "NServiceBus.ActiveMQ",
+        "ValueProvider": null
+      }
+    ]
+  }
+}</defaultValue>
+      </property>
+      <property Id="16ac19e7-d4bb-4783-8fb7-78f8957cab7b" name="NuGetPackageVersionNServiceBusRabbitMQ" displayName="Nu Get Package Version NService Bus Rabbit MQ" description="Description for Application.NuGetPackageVersionNServiceBusRabbitMQ" codeIdentifier="NuGetPackageVersionNServiceBusRabbitMQ" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.LatestNuGetPackageVersionValueProvider",
+    "Properties": [
+      {
+        "Name": "PackageName",
+        "Value": "NServiceBus.RabbitMQ",
+        "ValueProvider": null
+      }
+    ]
+  }
+}</defaultValue>
+      </property>
+      <property Id="f24cf461-f3d0-4215-b1b6-52a1b7541cbf" name="NuGetPackageVersionNServiceBusSqlServer" displayName="Nu Get Package Version NService Bus Sql Server" description="Description for Application.NuGetPackageVersionNServiceBusSqlServer" codeIdentifier="NuGetPackageVersionNServiceBusSqlServer" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "",
+  "ValueProvider": {
+    "TypeId": "NServiceBusStudio.Automation.ValueProviders.LatestNuGetPackageVersionValueProvider",
+    "Properties": [
+      {
+        "Name": "PackageName",
+        "Value": "NServiceBus.SqlServer",
+        "ValueProvider": null
+      }
+    ]
+  }
+}</defaultValue>
+      </property>
     </properties>
     <automationSettings>
       <automationSettings Id="e3ea3a92-6c74-4192-b127-db1db151eea3" name="GenerateCode" displayName="Set Startup Projects" description="" codeIdentifier="GenerateCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
