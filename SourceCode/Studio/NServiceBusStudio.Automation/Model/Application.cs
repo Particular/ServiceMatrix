@@ -14,6 +14,7 @@ using NuPattern.Diagnostics;
 using System.Runtime.Remoting.Messaging;
 using NServiceBusStudio.Automation.Commands;
 using NuGet.VisualStudio;
+using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio
 {
@@ -46,6 +47,9 @@ namespace NServiceBusStudio
 
         [Import]
         public IVsPackageInstaller VsPackageInstaller { get; set; }
+
+        [Import]
+        public IStatusBar StatusBar { get; set; }
 
         partial void Initialize()
         {
@@ -190,27 +194,27 @@ namespace NServiceBusStudio
                 else if (this.Transport == TransportType.ActiveMQ.ToString())
                 {
                     this.TransportConnectionString = @"ServerUrl=activemq:tcp://mybroker";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.ActiveMQ"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", "1.0.5"));
                 }
                 else if (this.Transport == TransportType.RabbitMQ.ToString())
                 {
                     this.TransportConnectionString = @"host=localhost";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.RabbitMQ"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", "1.1.0"));
                 }
                 else if (this.Transport == TransportType.SqlServer.ToString())
                 {
                     this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.SqlServer"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", "1.1.0"));
                 }
                 else if (this.Transport == TransportType.AzureQueues.ToString())
                 {
                     this.TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", "5.0.0"));
                 }
                 else if (this.Transport == TransportType.AzureServiceBus.ToString())
                 {
                     this.TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureServiceBus"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", "5.0.0"));
                 }
             };
         }

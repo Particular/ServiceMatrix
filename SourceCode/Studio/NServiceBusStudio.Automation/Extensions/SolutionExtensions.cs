@@ -7,6 +7,7 @@ using System.IO;
 using NuPattern.VisualStudio.Solution;
 using NuPattern;
 using NuGet.VisualStudio;
+using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
@@ -119,17 +120,29 @@ namespace NServiceBusStudio.Automation.Extensions
             return false;
         }
 
-        
 
-        public static void InstallNuGetPackage(this IProject project, IVsPackageInstaller VsPackageInstaller, string packageName)
+
+        public static void InstallNuGetPackage(this IProject project, IVsPackageInstaller VsPackageInstaller, IStatusBar StatusBar, string packageName, string version)
         {
+
+
             try
             {
+                var v = default(Version);
+                if (!String.IsNullOrEmpty(version))
+                {
+                    v = Version.Parse(version);
+                }
+
+                StatusBar.DisplayMessage(String.Format ("Installing Package: {0} {1}...", packageName, version));
+
                 VsPackageInstaller.InstallPackage("All",
                                                   project.As<EnvDTE.Project>(),
                                                   packageName,
-                                                  default(Version),
+                                                  v,
                                                   false);
+
+                StatusBar.DisplayMessage(String.Format ("Package installed: {0} {1}...", packageName, version));
             }
             catch (Exception ex)
             {

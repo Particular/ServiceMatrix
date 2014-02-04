@@ -11,6 +11,7 @@ using AbstractEndpoint;
 using System.IO;
 using NuPattern.VisualStudio.Solution;
 using NuGet.VisualStudio;
+using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -31,6 +32,9 @@ namespace NServiceBusStudio.Automation.Commands
         }
 
         [Import]
+        public IStatusBar StatusBar { get; set; }
+
+        [Import]
         public IVsPackageInstaller VsPackageInstaller { get; set; }
 
         public override void Execute()
@@ -41,7 +45,8 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 if (!infraproject.HasReference("NServiceBus"))
                 {
-                    infraproject.InstallNuGetPackage(VsPackageInstaller, "NServiceBus");
+                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", "4.3.3");
+                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", "4.3.3");
                 }
             }
         }

@@ -11,6 +11,7 @@ using AbstractEndpoint;
 using NServiceBusStudio;
 using NuGet.VisualStudio;
 using NuPattern.VisualStudio.Solution;
+using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
@@ -33,6 +34,9 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
         [Import]
         public IVsPackageInstaller VsPackageInstaller { get; set; }
 
+        [Import]
+        public IStatusBar StatusBar { get; set; }
+
         public bool IgnoreHost { get; set; }
 
         public override void Execute()
@@ -49,11 +53,12 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
             if (!project.HasReference("NServiceBus"))
             {
-                project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus");
+                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", "4.3.3");
+                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", "4.3.3");
 
                 if (!this.IgnoreHost)
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Host");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Host", "4.3.3");
                 }
             }
 
@@ -64,7 +69,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.ActiveMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.ActiveMQ");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", "1.0.5");
                 }
             }
             else 
@@ -80,8 +85,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.RabbitMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "RabbitMQ.Client");
-                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.RabbitMQ");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", "1.1.0");
                 }
             }
             else
@@ -95,7 +99,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.SqlServer"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.SqlServer");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", "1.1.0");
                 }
             }
             else
@@ -108,7 +112,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", "5.0.0");
                 }
             }
             else
@@ -121,7 +125,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", "5.0.0");
                 }
             }
             else
@@ -136,17 +140,17 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.DebugSession");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession", "1.0.0");
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.Heartbeat"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.Heartbeat");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat", "1.0.0");
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.CustomChecks"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, "ServiceControl.Plugin.CustomChecks");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", "1.0.0");
                 }
             }
             else
