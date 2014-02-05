@@ -161,6 +161,62 @@ namespace NServiceBusStudio
 		Boolean LaunchServiceInsightOnDebug { get; set; }
 
 		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBus
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBus")]
+		[DisplayName("Nu Get Package Version NService Bus")]
+		[Category("General")]
+		String NuGetPackageVersionNServiceBus { get; set; }
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionServiceControlPlugins
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionServiceControlPlugins")]
+		[DisplayName("Nu Get Package Version Service Control Plugins")]
+		[Category("General")]
+		String NuGetPackageVersionServiceControlPlugins { get; set; }
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusActiveMQ
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusActiveMQ")]
+		[DisplayName("Nu Get Package Version NService Bus Active MQ")]
+		[Category("General")]
+		String NuGetPackageVersionNServiceBusActiveMQ { get; set; }
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusRabbitMQ
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusRabbitMQ")]
+		[DisplayName("Nu Get Package Version NService Bus Rabbit MQ")]
+		[Category("General")]
+		String NuGetPackageVersionNServiceBusRabbitMQ { get; set; }
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusSqlServer
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusSqlServer")]
+		[DisplayName("Nu Get Package Version NService Bus Sql Server")]
+		[Category("General")]
+		String NuGetPackageVersionNServiceBusSqlServer { get; set; }
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusAzureQueues
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusAzureQueues")]
+		[DisplayName("Nu Get Package Version NService Bus Azure Queues")]
+		[Category("General")]
+		String NuGetPackageVersionNServiceBusAzureQueues { get; set; }
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus")]
+		[DisplayName("Nu Get Package Version NService Bus Azure Service Bus")]
+		[Category("General")]
+		String NuGetPackageVersionNServiceBusAzureServiceBus { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }

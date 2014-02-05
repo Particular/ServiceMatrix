@@ -41,6 +41,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
         public override void Execute()
         {
+            var app = this.CurrentElement.Root.As<IApplication>();
             var project = this.CurrentElement.GetProject();
             if (project == null)
             {
@@ -53,31 +54,28 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
             if (!project.HasReference("NServiceBus"))
             {
-                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", "4.3.3");
-                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", "4.3.3");
+                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.NuGetPackageVersionNServiceBus);
+                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", app.NuGetPackageVersionNServiceBus);
 
                 if (!this.IgnoreHost)
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Host", "4.3.3");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Host", app.NuGetPackageVersionNServiceBus);
                 }
             }
 
-            var app = this.CurrentElement.Root.As<IApplication>();
-
             //<Reference Include="NServiceBus.ActiveMQ" />
-            if (app.Transport == TransportType.ActiveMQ.ToString()) 
+            if (app.Transport == TransportType.ActiveMQ.ToString())
             {
                 if (!project.HasReference("NServiceBus.ActiveMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", "1.0.5");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", app.NuGetPackageVersionNServiceBusActiveMQ);
                 }
             }
-            else 
+            else
             {
-
-                project.RemoveReference ("Apache.NMS");
-                project.RemoveReference ("Apache.NMS.ActiveMQ");
-                project.RemoveReference ("NServiceBus.ActiveMQ");
+                project.RemoveReference("Apache.NMS");
+                project.RemoveReference("Apache.NMS.ActiveMQ");
+                project.RemoveReference("NServiceBus.ActiveMQ");
             }
 
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
@@ -85,7 +83,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.RabbitMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", "1.1.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", app.NuGetPackageVersionNServiceBusRabbitMQ);
                 }
             }
             else
@@ -99,7 +97,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.SqlServer"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", "1.1.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", app.NuGetPackageVersionNServiceBusSqlServer);
                 }
             }
             else
@@ -112,7 +110,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", "5.0.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", app.NuGetPackageVersionNServiceBusAzureQueues);
                 }
             }
             else
@@ -125,7 +123,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", "5.0.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", app.NuGetPackageVersionNServiceBusAzureServiceBus);
                 }
             }
             else
@@ -140,17 +138,17 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession", "1.0.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession", app.NuGetPackageVersionServiceControlPlugins);
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.Heartbeat"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat", "1.0.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat", app.NuGetPackageVersionServiceControlPlugins);
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.CustomChecks"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", "1.0.0");
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", app.NuGetPackageVersionServiceControlPlugins);
                 }
             }
             else

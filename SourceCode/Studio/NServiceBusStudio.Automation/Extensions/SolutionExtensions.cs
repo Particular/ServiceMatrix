@@ -134,7 +134,8 @@ namespace NServiceBusStudio.Automation.Extensions
                     v = Version.Parse(version);
                 }
 
-                StatusBar.DisplayMessage(String.Format ("Installing Package: {0} {1}...", packageName, version));
+
+                StatusBar.DisplayMessage(String.Format("Installing Package: {0} {1}...", packageName, version));
 
                 VsPackageInstaller.InstallPackage("All",
                                                   project.As<EnvDTE.Project>(),
@@ -142,7 +143,7 @@ namespace NServiceBusStudio.Automation.Extensions
                                                   v,
                                                   false);
 
-                StatusBar.DisplayMessage(String.Format ("Package installed: {0} {1}...", packageName, version));
+                StatusBar.DisplayMessage(String.Format("Package installed: {0} {1}...", packageName, version));
             }
             catch (Exception ex)
             {

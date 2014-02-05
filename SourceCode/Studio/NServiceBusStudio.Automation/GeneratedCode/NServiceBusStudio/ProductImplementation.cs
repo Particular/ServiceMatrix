@@ -251,6 +251,90 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBus
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBus")]
+		[DisplayName("Nu Get Package Version NService Bus")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionNServiceBus
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionNServiceBus); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionNServiceBus, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionServiceControlPlugins
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionServiceControlPlugins")]
+		[DisplayName("Nu Get Package Version Service Control Plugins")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionServiceControlPlugins
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionServiceControlPlugins); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionServiceControlPlugins, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusActiveMQ
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusActiveMQ")]
+		[DisplayName("Nu Get Package Version NService Bus Active MQ")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionNServiceBusActiveMQ
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionNServiceBusActiveMQ); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionNServiceBusActiveMQ, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusRabbitMQ
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusRabbitMQ")]
+		[DisplayName("Nu Get Package Version NService Bus Rabbit MQ")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionNServiceBusRabbitMQ
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionNServiceBusRabbitMQ); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionNServiceBusRabbitMQ, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusSqlServer
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusSqlServer")]
+		[DisplayName("Nu Get Package Version NService Bus Sql Server")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionNServiceBusSqlServer
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionNServiceBusSqlServer); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionNServiceBusSqlServer, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusAzureQueues
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusAzureQueues")]
+		[DisplayName("Nu Get Package Version NService Bus Azure Queues")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionNServiceBusAzureQueues
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionNServiceBusAzureQueues); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionNServiceBusAzureQueues, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus
+		/// </summary>
+		[Description("Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus")]
+		[DisplayName("Nu Get Package Version NService Bus Azure Service Bus")]
+		[Category("General")]
+		public virtual String NuGetPackageVersionNServiceBusAzureServiceBus
+		{
+			get { return this.proxy.GetValue(() => this.NuGetPackageVersionNServiceBusAzureServiceBus); }
+			set { this.proxy.SetValue(() => this.NuGetPackageVersionNServiceBusAzureServiceBus, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo
