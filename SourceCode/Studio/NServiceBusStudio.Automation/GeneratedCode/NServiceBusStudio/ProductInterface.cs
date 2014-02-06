@@ -161,59 +161,59 @@ namespace NServiceBusStudio
 		Boolean LaunchServiceInsightOnDebug { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionNServiceBus
+		/// NServiceBus Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionNServiceBus")]
-		[DisplayName("Nu Get Package Version NService Bus")]
-		[Category("General")]
+		[Description("NServiceBus Nuget package version number")]
+		[DisplayName("NServiceBus version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionNServiceBus { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionServiceControlPlugins
+		/// ServiceControl Plugins  Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionServiceControlPlugins")]
-		[DisplayName("Nu Get Package Version Service Control Plugins")]
-		[Category("General")]
+		[Description("ServiceControl Plugins  Nuget package version number")]
+		[DisplayName("ServiceControl Plugins version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionServiceControlPlugins { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionNServiceBusActiveMQ
+		/// NServiceBus ActiveMQ  Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionNServiceBusActiveMQ")]
-		[DisplayName("Nu Get Package Version NService Bus Active MQ")]
-		[Category("General")]
+		[Description("NServiceBus ActiveMQ  Nuget package version number")]
+		[DisplayName("NServiceBus ActiveMQ version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionNServiceBusActiveMQ { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionNServiceBusRabbitMQ
+		/// NServiceBus RabbitMQ  Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionNServiceBusRabbitMQ")]
-		[DisplayName("Nu Get Package Version NService Bus Rabbit MQ")]
-		[Category("General")]
+		[Description("NServiceBus RabbitMQ  Nuget package version number")]
+		[DisplayName("NServiceBus RabbitMQ version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionNServiceBusRabbitMQ { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionNServiceBusSqlServer
+		/// NServiceBus Sql Server  Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionNServiceBusSqlServer")]
-		[DisplayName("Nu Get Package Version NService Bus Sql Server")]
-		[Category("General")]
+		[Description("NServiceBus Sql Server  Nuget package version number")]
+		[DisplayName("NServiceBus Sql Server version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionNServiceBusSqlServer { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionNServiceBusAzureQueues
+		/// NServiceBus AzureQueues  Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionNServiceBusAzureQueues")]
-		[DisplayName("Nu Get Package Version NService Bus Azure Queues")]
-		[Category("General")]
+		[Description("NServiceBus AzureQueues  Nuget package version number")]
+		[DisplayName("NServiceBus AzureQueues version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionNServiceBusAzureQueues { get; set; }
 
 		/// <summary>
-		/// Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus
+		/// NServiceBus AzureServiceBus  Nuget package version number
 		/// </summary>
-		[Description("Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus")]
-		[DisplayName("Nu Get Package Version NService Bus Azure Service Bus")]
-		[Category("General")]
+		[Description("NServiceBus AzureServiceBus  Nuget package version number")]
+		[DisplayName("NServiceBus AzureServiceBus version")]
+		[Category("Nuget Packages")]
 		String NuGetPackageVersionNServiceBusAzureServiceBus { get; set; }
 
 		/// <summary>

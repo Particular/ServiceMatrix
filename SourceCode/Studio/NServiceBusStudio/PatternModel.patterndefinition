@@ -5296,7 +5296,7 @@
   "ValueProvider": null
 }</defaultValue>
       </property>
-      <property Id="e41c271e-ae58-44af-878c-462d53221100" name="NuGetPackageVersionNServiceBus" displayName="Nu Get Package Version NService Bus" description="Description for Application.NuGetPackageVersionNServiceBus" codeIdentifier="NuGetPackageVersionNServiceBus" isReadOnly="true">
+      <property Id="e41c271e-ae58-44af-878c-462d53221100" name="NuGetPackageVersionNServiceBus" displayName="NServiceBus version" description="NServiceBus Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBus" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5326,7 +5326,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="302c2b55-ab10-4aae-b387-051596886b4b" name="NuGetPackageVersionServiceControlPlugins" displayName="Nu Get Package Version Service Control Plugins" description="Description for Application.NuGetPackageVersionServiceControlPlugins" codeIdentifier="NuGetPackageVersionServiceControlPlugins" isReadOnly="true">
+      <property Id="302c2b55-ab10-4aae-b387-051596886b4b" name="NuGetPackageVersionServiceControlPlugins" displayName="ServiceControl Plugins version" description="ServiceControl Plugins  Nuget package version number" codeIdentifier="NuGetPackageVersionServiceControlPlugins" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5356,7 +5356,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="fb8e85b2-1734-4d51-b92d-a0f5c43d2995" name="NuGetPackageVersionNServiceBusActiveMQ" displayName="Nu Get Package Version NService Bus Active MQ" description="Description for Application.NuGetPackageVersionNServiceBusActiveMQ" codeIdentifier="NuGetPackageVersionNServiceBusActiveMQ" isReadOnly="true">
+      <property Id="fb8e85b2-1734-4d51-b92d-a0f5c43d2995" name="NuGetPackageVersionNServiceBusActiveMQ" displayName="NServiceBus ActiveMQ version" description="NServiceBus ActiveMQ  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusActiveMQ" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5386,7 +5386,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="16ac19e7-d4bb-4783-8fb7-78f8957cab7b" name="NuGetPackageVersionNServiceBusRabbitMQ" displayName="Nu Get Package Version NService Bus Rabbit MQ" description="Description for Application.NuGetPackageVersionNServiceBusRabbitMQ" codeIdentifier="NuGetPackageVersionNServiceBusRabbitMQ" isReadOnly="true">
+      <property Id="16ac19e7-d4bb-4783-8fb7-78f8957cab7b" name="NuGetPackageVersionNServiceBusRabbitMQ" displayName="NServiceBus RabbitMQ version" description="NServiceBus RabbitMQ  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusRabbitMQ" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5416,7 +5416,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="f24cf461-f3d0-4215-b1b6-52a1b7541cbf" name="NuGetPackageVersionNServiceBusSqlServer" displayName="Nu Get Package Version NService Bus Sql Server" description="Description for Application.NuGetPackageVersionNServiceBusSqlServer" codeIdentifier="NuGetPackageVersionNServiceBusSqlServer" isReadOnly="true">
+      <property Id="f24cf461-f3d0-4215-b1b6-52a1b7541cbf" name="NuGetPackageVersionNServiceBusSqlServer" displayName="NServiceBus Sql Server version" description="NServiceBus Sql Server  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusSqlServer" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5446,7 +5446,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="e55b5b30-3f9a-4563-98d7-351fa8dd4aa0" name="NuGetPackageVersionNServiceBusAzureQueues" displayName="Nu Get Package Version NService Bus Azure Queues" description="Description for Application.NuGetPackageVersionNServiceBusAzureQueues" codeIdentifier="NuGetPackageVersionNServiceBusAzureQueues" isReadOnly="true">
+      <property Id="e55b5b30-3f9a-4563-98d7-351fa8dd4aa0" name="NuGetPackageVersionNServiceBusAzureQueues" displayName="NServiceBus AzureQueues version" description="NServiceBus AzureQueues  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusAzureQueues" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5476,7 +5476,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="672974e5-8baf-47ad-87e8-8f81eeb022dd" name="NuGetPackageVersionNServiceBusAzureServiceBus" displayName="Nu Get Package Version NService Bus Azure Service Bus" description="Description for Application.NuGetPackageVersionNServiceBusAzureServiceBus" codeIdentifier="NuGetPackageVersionNServiceBusAzureServiceBus" isReadOnly="true">
+      <property Id="672974e5-8baf-47ad-87e8-8f81eeb022dd" name="NuGetPackageVersionNServiceBusAzureServiceBus" displayName="NServiceBus AzureServiceBus version" description="NServiceBus AzureServiceBus  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusAzureServiceBus" isReadOnly="true" category="Nuget Packages">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
