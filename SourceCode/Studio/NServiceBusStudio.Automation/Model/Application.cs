@@ -47,9 +47,6 @@ namespace NServiceBusStudio
         public RemoveEmptyAddMenus RemoveEmptyAddMenus { get; set; }
 
         [Import]
-        public IVsPackageInstaller VsPackageInstaller { get; set; }
-
-        [Import]
         public IStatusBar StatusBar { get; set; }
 
         partial void Initialize()
