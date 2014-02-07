@@ -20,11 +20,17 @@ namespace NServiceBusStudio.Automation.ValueProviders
         public override object Evaluate()
         {
             var uri = String.Format("https://nuget.org/api/v2/package-versions/{0}", PackageName);
+            return GetVersion(this.PackageName);
+        }
+
+        public static string GetVersion(string packageName)
+        {
+            var uri = String.Format("https://nuget.org/api/v2/package-versions/{0}", packageName);
 
             return GetHTTPGetLatestPackageVersion(uri);
         }
 
-        private string GetHTTPGetLatestPackageVersion(string regeditUrl)
+        private static string GetHTTPGetLatestPackageVersion(string regeditUrl)
         {
             try
             {

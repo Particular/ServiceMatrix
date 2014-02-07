@@ -15,6 +15,7 @@ using System.Runtime.Remoting.Messaging;
 using NServiceBusStudio.Automation.Commands;
 using NuGet.VisualStudio;
 using NuPattern.VisualStudio;
+using NServiceBusStudio.Automation.ValueProviders;
 
 namespace NServiceBusStudio
 {
@@ -87,6 +88,7 @@ namespace NServiceBusStudio
             this.ServiceControlEndpointPluginVersion = serviceControlEndpointPluginVersion;
             this.ExtensionPath = extensionPath;
 
+            SetNuGetPackagesVersion();
             SetOptionSettings();
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
@@ -98,6 +100,19 @@ namespace NServiceBusStudio
 
             System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
+        }
+
+        private void SetNuGetPackagesVersion()
+        {
+            this.StatusBar.DisplayMessage("Obtaining NuGet packages versions...");
+            this.NuGetPackageVersionNServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus");
+            this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
+            this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
+            this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
+            this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+            this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+            this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
+            this.StatusBar.DisplayMessage(" ");
         }
 
         private void SetOptionSettings()
