@@ -126,21 +126,15 @@ namespace NServiceBusStudio.Automation.Extensions
         {
             try
             {
-                var v = default(Version);
-                if (!String.IsNullOrEmpty(version))
-                {
-                    v = Version.Parse(version);
-                }
-
                 StatusBar.DisplayMessage(String.Format("Installing Package: {0} {1}...", packageName, version));
 
                 VsPackageInstaller.InstallPackage("All",
                                                   project.As<EnvDTE.Project>(),
                                                   packageName,
-                                                  v,
+                                                  version,
                                                   false);
 
-                StatusBar.DisplayMessage(String.Format("Package installed: {0} {1}...", packageName, version));
+                StatusBar.DisplayMessage("");
             }
             catch (Exception ex)
             {
