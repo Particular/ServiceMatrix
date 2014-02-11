@@ -174,7 +174,7 @@ namespace NServiceBusStudio
         {
             var project = endpoint.Project;
 
-            if (this.IsProcessor)
+            if (this.IsProcessor || this.IsSender)
             {
 
                 // 1. Add Links for Custom Code
@@ -226,9 +226,9 @@ namespace NServiceBusStudio
             if (project == null)
                 return;
 
-            if (this.IsProcessor)
+            if (this.IsProcessor || this.IsSender)
             {
-
+                
                 // 1. Remove Links for Custom Code
                 var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
                 RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", customCodePath);

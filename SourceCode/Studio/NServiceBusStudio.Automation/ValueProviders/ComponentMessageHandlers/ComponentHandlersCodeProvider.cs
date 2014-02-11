@@ -162,6 +162,15 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
             }
 
+            foreach (var typename in this.Component.Publishes.CommandLinks.Select(c => c.CommandReference.Value.CodeIdentifier))
+            {
+                sb.AppendLine();
+                sb.AppendLine("		public void Send(" + typename + " message)");
+                sb.AppendLine("		{");
+                sb.AppendLine("         Bus.Send(message);");
+                sb.AppendLine("		}");
+            }
+
             // Check to avoid collision with Saga Bus
             if (!this.Component.IsSaga)
             {

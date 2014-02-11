@@ -30,11 +30,11 @@ namespace NServiceBusStudio.Automation.Commands
 
             var component = this.CurrentElement.As<IComponent>();
 
-            if (component.IsProcessor)
-            {
+            //if (component.IsProcessor)
+            //{
                 var command = this.CurrentElement.AutomationExtensions.First(a => a.Name == this.CommandName);
                 command.Execute();
-            }
+            //}
         }
     }
 }

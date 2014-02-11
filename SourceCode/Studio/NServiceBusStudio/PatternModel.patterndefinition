@@ -4366,10 +4366,6 @@
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.HasEndpointDefinedCondition",
     "Properties": []
-  },
-  {
-    "TypeId": "NServiceBusStudio.Automation.Conditions.IsProcessorComponentCondition",
-    "Properties": []
   }
 ]</conditions>
     </menuSettings>
