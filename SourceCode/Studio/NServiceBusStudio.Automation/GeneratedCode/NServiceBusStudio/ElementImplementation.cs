@@ -1077,6 +1077,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.SenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.SenderNeedsRegistration")]
+		[DisplayName("Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean SenderNeedsRegistration
+		{
+			get { return this.proxy.GetValue(() => this.SenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.SenderNeedsRegistration, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -2111,6 +2123,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean CommandSenderNeedsRegistration
+		{
+			get { return this.proxy.GetValue(() => this.CommandSenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.CommandSenderNeedsRegistration, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -2575,6 +2599,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean CommandSenderNeedsRegistration
+		{
+			get { return this.proxy.GetValue(() => this.CommandSenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.CommandSenderNeedsRegistration, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -3024,6 +3060,18 @@ namespace NServiceBusStudio
 		{
 			get { return this.proxy.GetValue(() => this.SendOnly); }
 			set { this.proxy.SetValue(() => this.SendOnly, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		public virtual Boolean CommandSenderNeedsRegistration
+		{
+			get { return this.proxy.GetValue(() => this.CommandSenderNeedsRegistration); }
+			set { this.proxy.SetValue(() => this.CommandSenderNeedsRegistration, value); }
 		}
 
 		/// <summary>

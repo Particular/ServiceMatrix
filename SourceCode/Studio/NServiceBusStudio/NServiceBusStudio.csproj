@@ -405,6 +405,21 @@
       <DependentUpon>TestMessages.aspx.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\ConfigureMvcDependencyInjection.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusDependencyResolverAdapter.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Include="VSPackage.cs" />
     <Content Include="$(PatternToolkitRuntime)\GeneratedCode\LibrarySchema.xsd">
       <Visible>true</Visible>
@@ -876,6 +891,19 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>92514fe6-6836-445c-910b-53407046c60d</ItemGuid>
     </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\NServiceBusControllerActivator.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\CommandSender.tt">
+      <LastGenOutput>CommandSender.cs</LastGenOutput>
+      <ItemGuid>da4e9946-83cb-4f6c-9b9c-681f5c3e23b9</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\CustomCommandSender.tt">
+      <LastGenOutput>CustomCommandSender.cs</LastGenOutput>
+      <ItemGuid>506dda71-1e63-4b68-b639-d83ed965aa96</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>
@@ -922,7 +950,6 @@
     <Folder Include="Assets\Templates\Projects\" />
     <Folder Include="GeneratedCode\Guidance\Content\" />
     <Folder Include="T\I\" />
-    <Folder Include="T\P\Endpoints\NSBH\Infrastructure\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="GeneralOptionsUserControl.resx">

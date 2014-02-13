@@ -23,6 +23,7 @@ namespace AbstractEndpoint
         IEnumerable<string> OverridenProperties { get; }
         string ErrorQueue { get; set; }
         string ForwardReceivedMessagesTo { get; set; }
+        bool CommandSenderNeedsRegistration { get; set; }
     }
 
     public static class AbstractEndpointExtensions

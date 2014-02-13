@@ -11,8 +11,8 @@
 <#  var nserviceBusMVC = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
 <# 
     var root = ((IProductElement)this.Element).Root.As<IApplication>();
-	var components = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Select(cl => cl.ComponentReference.Value);
-	var sendercomponents = components.Where(c => c.IsSender);
+    var components = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Select(cl => cl.ComponentReference.Value);
+    var sendercomponents = components.Where(c => c.IsSender);
 
     var commands = sendercomponents.SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value)).Distinct();
     var events = sendercomponents.SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value)).Distinct();
@@ -45,9 +45,16 @@ using NServiceBus;
 #>using <#=root.CodeIdentifier#>.Contracts.<#= serviceName #>;
 <#
     }
-#>
 
-namespace <#= nserviceBusMVC.Namespace #>.Controllers
+    foreach (var serviceName in sendercomponents.Select(s => s.Parent.Parent.CodeIdentifier).Distinct())
+  {
+  #>using <#=root.CodeIdentifier#>.<#= serviceName #>;
+<#
+    }
+  #>
+
+
+  namespace <#= nserviceBusMVC.Namespace #>.Controllers
 {
     public partial class TestMessagesController : Controller
     {
@@ -67,14 +74,18 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
       #>
 
+	    
+
         //
         // POST: /TestMessages/SendMessage<#= command.CodeIdentifier #>
           
-		    [HttpPost]
+        public I<#= command.CodeIdentifier #>Sender <#= command.CodeIdentifier #>Sender { get; set; }
+          
+        [HttpPost]
         public ActionResult SendMessage<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> <#= command.CodeIdentifier #>)
         {
             Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #>);
-            MvcApplication.Bus.Send(<#= command.CodeIdentifier #>);
+            <#= command.CodeIdentifier #>Sender.Send(<#= command.CodeIdentifier #>);
 
             ViewBag.MessageSent = "<#= command.CodeIdentifier #>";
 

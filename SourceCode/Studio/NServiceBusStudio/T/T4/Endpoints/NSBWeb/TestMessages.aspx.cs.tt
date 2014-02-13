@@ -44,7 +44,7 @@ using NServiceBus;
 #>using <#=root.CodeIdentifier#>.Contracts.<#= serviceName #>;
 <#
     }
-#>
+  #>
 
 namespace <#= nserviceBusWeb.Namespace #>
 {

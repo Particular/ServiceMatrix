@@ -623,6 +623,14 @@ namespace NServiceBusStudio
 		String ComponentBaseType { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.SenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Publishes.CommandLink.SenderNeedsRegistration")]
+		[DisplayName("Sender Needs Registration")]
+		[Category("General")]
+		Boolean SenderNeedsRegistration { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -1225,6 +1233,14 @@ namespace NServiceBusStudio
 		String SLTimeIncrease { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		Boolean CommandSenderNeedsRegistration { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -1499,6 +1515,14 @@ namespace NServiceBusStudio
 		Boolean SendOnly { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		Boolean CommandSenderNeedsRegistration { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -1763,6 +1787,14 @@ namespace NServiceBusStudio
 		[DisplayName("Send Only")]
 		[Category("General")]
 		Boolean SendOnly { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]
+		[DisplayName("Command Sender Needs Registration")]
+		[Category("General")]
+		Boolean CommandSenderNeedsRegistration { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.

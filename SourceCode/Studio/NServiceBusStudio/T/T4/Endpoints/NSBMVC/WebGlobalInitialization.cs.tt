@@ -39,6 +39,7 @@ if (!nserviceBusHost.SendOnly)
 
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
+                .ForMvc()
                 .PurgeOnStartup(false)
                 .UnicastBus()
                 .RunHandlersUnderIncomingPrincipal(false)
@@ -51,6 +52,7 @@ else
 #> 
             return NServiceBus.Configure.With()
                 .DefaultBuilder()
+                .ForMvc()
                 .UnicastBus()
                 .SendOnly();
 <#

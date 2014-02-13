@@ -432,6 +432,7 @@
     <Compile Include="TypeDescriptors\ApplicationFilterPropertiesTypeDescriptor.cs" />
     <Compile Include="ValidationRules\DeleteMissingArtifactReferences.cs" />
     <Compile Include="ValueProviders\CodeIdentifierByIdValueProvider.cs" />
+    <Compile Include="ValueProviders\CommandSenderRequiresRegistrationValueProvider.cs" />
     <Compile Include="ValueProviders\ComponentFromLinkBasedValueProvider.cs" />
     <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentHandlersCodeProvider.cs" />
     <Compile Include="ValueProviders\ComponentFuncFromEndpointValueProvider.cs" />
