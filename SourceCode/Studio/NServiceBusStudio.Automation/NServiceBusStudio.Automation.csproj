@@ -144,7 +144,6 @@
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
-    <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
     <Compile Include="Commands\GenerateProductCodeCommandCustom.cs" />
     <Compile Include="Commands\ShowCommandTypePickerFromService.cs" />
     <Compile Include="Commands\ShowEventTypePickerFromService.cs" />
@@ -185,7 +184,6 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
-    <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\ItemIconWithDefaultConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\MenuGroupingEnumerableConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\TreeViewItemOrderingConverter.cs" />

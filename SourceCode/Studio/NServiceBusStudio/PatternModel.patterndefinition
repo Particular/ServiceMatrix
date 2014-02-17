@@ -1673,7 +1673,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"280dba83-d002-44b2-ad3d-ef392191f153\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dd1f1d61-fe6b-41bc-a3cf-824461639b77\"\r\n  },\r\n  {\r\n    \"CommandId\": \"6f1b5010-ce08-4cf5-81c6-711922944ed5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f77a5b64-c9ff-44d4-b5d6-e1b15141af26\"\r\n  },\r\n  {\r\n    \"CommandId\": \"47f2a720-e7a1-4568-addc-9cae1c53a38b\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"280dba83-d002-44b2-ad3d-ef392191f153\"\r\n  },\r\n  {\r\n    \"CommandId\": \"36939d09-f7c3-45f5-881c-3908f1476ab4\"\r\n  },\r\n  {\r\n    \"CommandId\": \"6f1b5010-ce08-4cf5-81c6-711922944ed5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f77a5b64-c9ff-44d4-b5d6-e1b15141af26\"\r\n  },\r\n  {\r\n    \"CommandId\": \"47f2a720-e7a1-4568-addc-9cae1c53a38b\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3861,50 +3861,26 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="6f1b5010-ce08-4cf5-81c6-711922944ed5" typeId="NServiceBusStudio.Automation.Commands.ConditionalProcessorComponentCommand">
+    <commandSettings Id="6f1b5010-ce08-4cf5-81c6-711922944ed5" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0d75e31e-4c35-49a6-a939-75ff962a0b1f" />
       </extendedElement>
       <properties>[
   {
-    "Name": "CommandName",
-    "Value": "UnfoldHandlers",
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"0fa0f1e3-2a8d-4e12-b629-9012e20354ad\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="f77a5b64-c9ff-44d4-b5d6-e1b15141af26" typeId="NServiceBusStudio.Automation.Commands.ConditionalProcessorComponentCommand">
+    <commandSettings Id="f77a5b64-c9ff-44d4-b5d6-e1b15141af26" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="8a069718-4318-49ce-9a65-b2d4609ab051" />
       </extendedElement>
       <properties>[
   {
-    "Name": "CommandName",
-    "Value": "UnfoldSagaIfNeeded",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="dd1f1d61-fe6b-41bc-a3cf-824461639b77" typeId="NServiceBusStudio.Automation.Commands.ConditionalProcessorComponentCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="a39d5902-8cb8-4a95-bfd7-d35f513c64d1" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "CommandName",
-    "Value": "UnfoldCustomHandlers",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="86cb974c-d1f2-466d-84f4-7acab05d434e" typeId="NServiceBusStudio.Automation.Commands.ConditionalProcessorComponentCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="3ab236bd-85e1-47e5-9859-102cdff6d740" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "CommandName",
-    "Value": "UnfoldSagaDataCode",
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"f903ffd1-bb97-436f-89d8-3db8f71d3e8a\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -6446,7 +6422,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="0d75e31e-4c35-49a6-a939-75ff962a0b1f" name="GenerateCodeConditionalHandlers" displayName="Generate Code Conditional Handlers" description="" codeIdentifier="GenerateCodeConditionalHandlers" automationType="Command">
+                          <automationSettings Id="0d75e31e-4c35-49a6-a939-75ff962a0b1f" name="GenerateCodeHandlers" displayName="Generate Code Handlers" description="" codeIdentifier="GenerateCodeHandlers" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -6455,25 +6431,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="8a069718-4318-49ce-9a65-b2d4609ab051" name="GenerateCodeConditionalSagaIfNeeded" displayName="Generate Code Conditional Saga If Needed" description="" codeIdentifier="GenerateCodeConditionalSagaIfNeeded" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="a39d5902-8cb8-4a95-bfd7-d35f513c64d1" name="UnfoldConditionalCustomHandlers" displayName="Unfold Conditional Custom Handlers" description="" codeIdentifier="UnfoldConditionalCustomHandlers" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="3ab236bd-85e1-47e5-9859-102cdff6d740" name="UnfoldConditionalSagaDataCode" displayName="Unfold Conditional Saga Data Code" description="" codeIdentifier="UnfoldConditionalSagaDataCode" automationType="Command">
+                          <automationSettings Id="8a069718-4318-49ce-9a65-b2d4609ab051" name="GenerateCodeSagaIfNeeded" displayName="Generate Code Saga If Needed" description="" codeIdentifier="GenerateCodeSagaIfNeeded" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />

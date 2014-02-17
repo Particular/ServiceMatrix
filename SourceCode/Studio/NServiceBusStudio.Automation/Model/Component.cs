@@ -158,11 +158,11 @@ namespace NServiceBusStudio
                 }
 
                 // Generate Code for Component Handlers
-                this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeConditionalHandlers").Execute();
-                this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldConditionalCustomHandlers").Execute();
+                this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeHandlers").Execute();
+                this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldCustomHandlers").Execute();
                 if (this.IsSaga)
                 {
-                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldConditionalSagaDataCode").Execute();
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
                 }
 
                 // Add Links for Referenced Libraries
