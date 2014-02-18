@@ -24,7 +24,7 @@ using NServiceBus.MessageMutator;
 
 namespace <#= authentication.LocalNamespace #>
 {
-    public partial class AuthorizeOutgoingMessages : IMutateOutgoingTransportMessages
+    public partial class AuthorizeOutgoingMessages : <#= authentication.Namespace #>.AuthorizeOutgoingMessages, IMutateOutgoingTransportMessages
     {
     }
 

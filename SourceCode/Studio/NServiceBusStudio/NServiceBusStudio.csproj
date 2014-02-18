@@ -909,6 +909,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>2a3c2931-a8f9-4464-a458-c33d2731eff1</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>f6bfe406-6a36-47dd-b00a-6302381ecb36</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>

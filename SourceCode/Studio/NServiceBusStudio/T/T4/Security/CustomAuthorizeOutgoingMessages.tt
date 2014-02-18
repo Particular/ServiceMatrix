@@ -11,17 +11,17 @@
 #>
 using System;
 using NServiceBus;
-using NServiceBus.MessageMutator;
 
-namespace <#= authentication.LocalNamespace #>
+namespace <#= authentication.Namespace #>
 {
     public partial class AuthorizeOutgoingMessages
     {
-        public void MutateOutgoingImplementation(object[] messages, TransportMessage transportMessage)
+        public virtual void MutateOutgoingImplementation(object[] messages, TransportMessage transportMessage)
         {
-			// Overrides the common authentication
-            // Implementing a custom one for this endpoint.
             // Implement your custom logic as needed
+            // This logic will be applied to all the endpoints
+            // that doesn't customize authentication
+			// overriding it.
             if (!transportMessage.Headers.ContainsKey("User"))
             {
                 transportMessage.Headers.Add("User", "");

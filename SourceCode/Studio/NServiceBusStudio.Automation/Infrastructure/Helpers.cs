@@ -34,7 +34,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             {
                 // Unfold the project
                 infrastructure.As<IProductElement>().Execute("GenerateProjectCommand");
-                infrastructure.As<IProductElement>().Execute("UnfoldPackagesConfig");
+                infrastructure.As<IProductElement>().Execute("InstallNuGetPackages");
 
                 // Add the references on existing projects
                 AddInfrastructureReferences(infrastructure.Parent.Parent, solution);

@@ -242,11 +242,6 @@
         <automationSettingsSchemaMoniker Id="5e0fff4e-bc09-4762-92b3-f21b37015059" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="84af1762-9390-4b9d-87ef-e7a62ddbece7" commandId="1f53baa7-0372-4edf-a7ef-114e00d4d6ec" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="bce16dd0-54ce-458f-8ac6-59edabf78d3e" />
-      </extendedElement>
-    </eventSettings>
     <commandSettings Id="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" />
@@ -961,7 +956,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="53a2bbd6-bf49-4f34-87dc-12d40a23db55" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+    <commandSettings Id="53a2bbd6-bf49-4f34-87dc-12d40a23db55" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="cf34debb-31ec-4438-9023-a33f70dbf68f" />
       </extendedElement>
@@ -1013,7 +1008,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="faab3dac-5ee3-4a8b-b9cb-1b213c5febb8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+    <commandSettings Id="faab3dac-5ee3-4a8b-b9cb-1b213c5febb8" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b84763e6-e0f0-4d3c-b5bf-69efe2f4be60" />
       </extendedElement>
@@ -1072,7 +1067,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"53a2bbd6-bf49-4f34-87dc-12d40a23db55\"\r\n  },\r\n  {\r\n    \"CommandId\": \"faab3dac-5ee3-4a8b-b9cb-1b213c5febb8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"6dd267fc-9cee-41a3-9595-6f0b9cfabb21\"\r\n  },\r\n  {\r\n    \"CommandId\": \"076a40d9-312e-4f7d-b44a-8f74e2d6d8aa\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"53a2bbd6-bf49-4f34-87dc-12d40a23db55\"\r\n  },\r\n  {\r\n    \"CommandId\": \"2f72fa6d-0d5e-4793-bd63-e6731ca60a9c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"faab3dac-5ee3-4a8b-b9cb-1b213c5febb8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ad39dc41-ba71-402c-af06-38f10df1df13\"\r\n  },\r\n  {\r\n    \"CommandId\": \"6dd267fc-9cee-41a3-9595-6f0b9cfabb21\"\r\n  },\r\n  {\r\n    \"CommandId\": \"076a40d9-312e-4f7d-b44a-8f74e2d6d8aa\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -1340,14 +1335,54 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="1f53baa7-0372-4edf-a7ef-114e00d4d6ec" typeId="NuPattern.Library.Commands.AggregatorCommand">
+    <commandSettings Id="2f72fa6d-0d5e-4793-bd63-e6731ca60a9c" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
       <extendedElement>
-        <automationSettingsSchemaMoniker Id="73686abb-b60c-4b60-b44f-1e1f1ea827ec" />
+        <automationSettingsSchemaMoniker Id="11c3e972-8ba3-4487-88ef-87aee694061e" />
       </extendedElement>
       <properties>[
   {
-    "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"68cd8225-7eee-4960-aa6e-ae7870db24e9\"\r\n  }\r\n]",
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "AuthorizeOutgoingMessages.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "{CodePath}",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/AuthorizeOutgoingMessages.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/2a3c2931-a8f9-4464-a458-c33d2731eff1",
     "ValueProvider": null
   }
 ]</properties>
@@ -4401,6 +4436,58 @@
   {
     "Name": "TemplateAuthoringUri",
     "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/92514fe6-6836-445c-910b-53407046c60d",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="ad39dc41-ba71-402c-af06-38f10df1df13" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b0647941-6aae-45bc-8eeb-e859ebf758ba" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "AuthorizeOutgoingMessages.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "{CustomCodePath}",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/CustomAuthorizeOutgoingMessages.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f6bfe406-6a36-47dd-b00a-6302381ecb36",
     "ValueProvider": null
   }
 ]</properties>
@@ -9514,24 +9601,6 @@
                   </settings>
                 </customizationPolicy>
               </automationSettings>
-              <automationSettings Id="bce16dd0-54ce-458f-8ac6-59edabf78d3e" name="OnInstantiate" displayName="On Instantiate" description="" codeIdentifier="OnInstantiate" automationType="Event Launch Point" classification="LaunchPoint">
-                <customizationPolicy name="CustomizationPolicySchema1">
-                  <settings>
-                    <setting propertyId="DisplayName" />
-                    <setting propertyId="Description" />
-                    <setting propertyId="Settings" />
-                  </settings>
-                </customizationPolicy>
-              </automationSettings>
-              <automationSettings Id="73686abb-b60c-4b60-b44f-1e1f1ea827ec" name="OnInstantiateCommand" displayName="On Instantiate Command" description="" codeIdentifier="OnInstantiateCommand" automationType="Command">
-                <customizationPolicy name="CustomizationPolicySchema1">
-                  <settings>
-                    <setting propertyId="DisplayName" />
-                    <setting propertyId="Description" />
-                    <setting propertyId="Settings" />
-                  </settings>
-                </customizationPolicy>
-              </automationSettings>
             </automationSettings>
             <childElement cardinality="ZeroToOne" autoCreate="false" allowAddNew="false">
               <collection Id="56d7865c-0be2-4f31-8b0d-0b0e12156582" name="Security" displayName="Security" description="The place where security concerns are handled." codeIdentifier="Security">
@@ -9628,7 +9697,7 @@
                       </property>
                     </properties>
                     <automationSettings>
-                      <automationSettings Id="cf34debb-31ec-4438-9023-a33f70dbf68f" name="GenerateCode" displayName="Generate Code" description="" codeIdentifier="GenerateCode" automationType="Command">
+                      <automationSettings Id="cf34debb-31ec-4438-9023-a33f70dbf68f" name="GenerateCodeAuthentication" displayName="Generate Code Authentication" description="" codeIdentifier="GenerateCodeAuthentication" automationType="Command">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -9637,7 +9706,7 @@
                           </settings>
                         </customizationPolicy>
                       </automationSettings>
-                      <automationSettings Id="b84763e6-e0f0-4d3c-b5bf-69efe2f4be60" name="UnfoldCustomCode" displayName="Unfold Custom Code" description="" codeIdentifier="UnfoldCustomCode" automationType="Command">
+                      <automationSettings Id="b84763e6-e0f0-4d3c-b5bf-69efe2f4be60" name="UnfoldCustomAuthenticationCode" displayName="Unfold Custom Authentication Code" description="" codeIdentifier="UnfoldCustomAuthenticationCode" automationType="Command">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
@@ -9701,6 +9770,24 @@
                         </customizationPolicy>
                       </automationSettings>
                       <automationSettings Id="56bfa0a5-d26d-46d7-adcd-e65a4fb0dfb2" name="OpenCode" displayName="Open Code" description="" codeIdentifier="OpenCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                        <customizationPolicy name="CustomizationPolicySchema1">
+                          <settings>
+                            <setting propertyId="DisplayName" />
+                            <setting propertyId="Description" />
+                            <setting propertyId="Settings" />
+                          </settings>
+                        </customizationPolicy>
+                      </automationSettings>
+                      <automationSettings Id="11c3e972-8ba3-4487-88ef-87aee694061e" name="GenerateCodeAuthorizeOutgoingMessages" displayName="Generate Code Authorize Outgoing Messages" description="" codeIdentifier="GenerateCodeAuthorizeOutgoingMessages" automationType="Command">
+                        <customizationPolicy name="CustomizationPolicySchema1">
+                          <settings>
+                            <setting propertyId="DisplayName" />
+                            <setting propertyId="Description" />
+                            <setting propertyId="Settings" />
+                          </settings>
+                        </customizationPolicy>
+                      </automationSettings>
+                      <automationSettings Id="b0647941-6aae-45bc-8eeb-e859ebf758ba" name="UnfoldCustomAuthorizeOutgoingMessagesCode" displayName="Unfold Custom Authorize Outgoing Messages Code" description="" codeIdentifier="UnfoldCustomAuthorizeOutgoingMessagesCode" automationType="Command">
                         <customizationPolicy name="CustomizationPolicySchema1">
                           <settings>
                             <setting propertyId="DisplayName" />
