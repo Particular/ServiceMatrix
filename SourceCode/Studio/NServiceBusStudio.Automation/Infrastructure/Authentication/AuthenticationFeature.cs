@@ -108,7 +108,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                     + ".Infrastructure";
                 application.Design.Infrastructure.Security.Authentication.As<IProductElement>()
                     // We are using Temp as we don't want the generation run on each build
-                    .CreateTempGenerateCodeCommand(sp, "AuthenticationEndpointCode.cs"
+                    .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                     , endpoint.Project.Name + @"\Infrastructure"
                     , @"t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.tt")
                 .Execute();
