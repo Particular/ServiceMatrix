@@ -100,6 +100,19 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                     .Open(EnvDTE.Constants.vsViewKindCode)
                     .Visible = true;
             }
+
+            // If the custom file doesn't exist... we will generate it
+            if (!solution.Find(endpoint.Project.Name + @"\Infrastructure\AuthenticationEndpointCode.cs").Any())
+            {
+                application.Design.Infrastructure.Security.Authentication.LocalNamespace = endpoint.Project.Data.RootNamespace
+                    + ".Infrastructure";
+                application.Design.Infrastructure.Security.Authentication.As<IProductElement>()
+                    // We are using Temp as we don't want the generation run on each build
+                    .CreateTempGenerateCodeCommand(sp, "AuthenticationEndpointCode.cs"
+                    , endpoint.Project.Name + @"\Infrastructure"
+                    , @"t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.tt")
+                .Execute();
+            }
         }
 
 

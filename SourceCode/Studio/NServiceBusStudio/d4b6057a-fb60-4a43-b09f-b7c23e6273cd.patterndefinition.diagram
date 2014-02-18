@@ -206,7 +206,7 @@
         <elementShapeMoniker Id="ce2a9fa6-c755-4f0d-b6a5-18e875067892" />
       </nodes>
     </elementHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(9.375 : 99.2563045247396); (8.875 : 99.2563045247396); (8.875 : 103.19868733724); (12.6100000003353 : 103.19868733724)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(9.375 : 99.2563045247396); (8.875 : 99.2563045247396); (8.875 : 103.19868733724); (8.91666666666667 : 103.19868733724 : JumpStart); (9.08333333333333 : 103.19868733724 : JumpEnd); (12.6100000003353 : 103.19868733724)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <elementShapeMoniker Id="ce2a9fa6-c755-4f0d-b6a5-18e875067892" />

@@ -517,27 +517,27 @@
     </Content>
     <Content Include="T\T4\Security\Authentication.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>3b28bc6d-ba79-4cfe-88c8-03e14fd09ef0</ItemGuid>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="T\T4\Security\CustomAuthentication.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>3b08d283-53e3-42d3-a7dd-7de310c4a82e</ItemGuid>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="T\T4\Security\EndpointAuthentication.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>58fd7d97-d739-49e5-bd14-1fd4d3fe3784</ItemGuid>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="T\T4\Security\EndpointCustomAuthentication.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>f3534dfa-86bd-4a10-a25f-0908f668bfca</ItemGuid>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="T\T4\CustomCommandDefinition.tt">
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
@@ -902,6 +902,11 @@
     <Content Include="T\T4\CustomCommandSender.tt">
       <LastGenOutput>CustomCommandSender.cs</LastGenOutput>
       <ItemGuid>506dda71-1e63-4b68-b639-d83ed965aa96</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="VSPackage.tt">
