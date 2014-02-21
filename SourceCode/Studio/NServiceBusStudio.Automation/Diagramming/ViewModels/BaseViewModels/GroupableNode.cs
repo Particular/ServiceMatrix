@@ -58,6 +58,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
             {
                 this.OnPropertyChanged("Name");
             }
+            else if (e.PropertyName == "IsSaga")
+            {
+                this.OnPropertyChanged("IsSaga");
+            }
         }
 
         public void Activate()

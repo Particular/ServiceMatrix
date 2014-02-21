@@ -222,6 +222,22 @@ namespace AbstractEndpoint
             {
                 get { throw new NotImplementedException(); }
             }
+
+
+            public event EventHandler AutoPublishMessagesChanged;
+
+
+            public string InterfaceBody
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
         }
     }
 }

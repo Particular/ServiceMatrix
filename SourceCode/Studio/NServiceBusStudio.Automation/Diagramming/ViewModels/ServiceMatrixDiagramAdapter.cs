@@ -90,11 +90,21 @@ namespace ServiceMatrix.Diagramming.ViewModels
             // Add Event
             AddElementOf(allNodes, new[] { "Event" });
 
+            // Add Message
+            AddElementOf(allNodes, new[] { "Message" });
+
             // Add ComponentLink
             AddElementOf(allNodes, new[] { "ComponentLink" });
 
             // Add Send/Receive Commands/Events
             AddElementOf(allNodes, new[] { "CommandLink", "EventLink", "ProcessedCommandLink", "SubscribedEventLink" });
+
+            // Add Send/Receive ProcessedCommandLinkReply
+            AddElementOf(allNodes, new[] { "ProcessedCommandLinkReply" });
+
+            // Add Send/Receive HandleMessageLink
+            AddElementOf(allNodes, new[] { "HandleMessageLink" });
+            
         }
 
         private void HandleChanges(ObservableCollection<IProductElementViewModel> observableCollection)
@@ -172,6 +182,9 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 case "Event":
                     this.ViewModel.GetOrCreateEventNode(newElement);
                     break;
+                case "Message":
+                    this.ViewModel.GetOrCreateMessageNode(newElement);
+                    break;
                 case "ComponentLink":
                     CreateComponentLink(newElement);
                     break;
@@ -193,7 +206,16 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     var subscribedEventLink = newElement.Data.As<ISubscribedEventLink>();
                     CreateSubscribedEventLink(subscribedEventLink);
                     break;
-                
+
+                case "ProcessedCommandLinkReply": // Component -> Mesage
+                    var processedCommandLinkReply = newElement.Data.As<IProcessedCommandLinkReply>();
+                    CreateProcessedCommandLinkReply(processedCommandLinkReply);
+                    break;
+
+                case "HandledMessageLink": // Message -> Component
+                    var handledMessageLink = newElement.Data.As<IHandledMessageLink>();
+                    CreateHandledMessageLink(handledMessageLink);
+                    break;
             }
         }
 
@@ -224,8 +246,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             component.Publishes.CommandLinks.ForEach(x => CreateCommandLink(x));
             component.Publishes.EventLinks.ForEach(x => CreateEventLink(x));
+            component.Subscribes.ProcessedCommandLinks.ForEach(x => { if (x.ProcessedCommandLinkReply != null) CreateProcessedCommandLinkReply(x.ProcessedCommandLinkReply); });
             component.Subscribes.ProcessedCommandLinks.ForEach(x => CreateProcessedCommandLink(x));
             component.Subscribes.SubscribedEventLinks.ForEach(x => CreateSubscribedEventLink(x));
+            component.Subscribes.HandledMessageLinks.ForEach(x => CreateHandledMessageLink(x));
         }
 
 
@@ -270,6 +294,25 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
         }
 
+        private void CreateProcessedCommandLinkReply(IProcessedCommandLinkReply processedCommandLinkReply)
+        {
+            var messageNode = this.ViewModel.GetOrCreateMessageNode(this.FindViewModel(processedCommandLinkReply.MessageReference.Value.AsElement().Id));
+            
+            foreach (var component in this.ViewModel.GetAllComponentsNode(processedCommandLinkReply.Parent.Parent.Parent.AsElement().Id))
+            {
+                this.ViewModel.GetOrCreateMessageConnection(component, messageNode);
+            }
+        }
+
+        private void CreateHandledMessageLink(IHandledMessageLink handledMessageLink)
+        {
+            var messageNode = this.ViewModel.GetOrCreateMessageNode(this.FindViewModel(handledMessageLink.MessageReference.Value.AsElement().Id));
+            
+            foreach (var component in this.ViewModel.GetAllComponentsNode(handledMessageLink.Parent.Parent.AsElement().Id))
+            {
+                this.ViewModel.GetOrCreateMessageConnection(messageNode, component);
+            }
+        }
 
         private IProductElementViewModel FindViewModel(Guid elementId)
         {

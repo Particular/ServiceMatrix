@@ -16,21 +16,6 @@ namespace NServiceBusStudio.Automation.Extensions
             {
                 var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
 
-                /*
-                 namespace <#= namespace #>
-                {
-                    public class MessageConventions : IWantToRunBeforeConfiguration
-                    {
-                        public void Init()
-                        {
-                            Configure.Instance
-                                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("<#= app.InternalMessagesProjectNamespace #>"))
-                                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("<#= app.ContractsProjectNamespace #>"));
-                        }
-                    }
-                }
-
-                 * */
                 var project = endpoint.As<IAbstractEndpoint>().As<IProductElement>().GetProject();
                 if (project != null)
                 {
@@ -44,9 +29,11 @@ namespace NServiceBusStudio.Automation.Extensions
             Configure.Instance");
                 sb.AppendLine();
                 sb.AppendLine("            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.CodeIdentifier + "." + app.ProjectNameInternalMessages + "\"))");
+                    app.CodeIdentifier + "." + app.ProjectNameInternalMessages + ".Commands\"))");
                 sb.AppendLine("            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.CodeIdentifier + "." + app.ProjectNameContracts + "\"));");
+                    app.CodeIdentifier + "." + app.ProjectNameContracts + "\"))");
+                sb.AppendLine("            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
+                    app.CodeIdentifier + "." + app.ProjectNameInternalMessages + "\"));");
                 sb.Append(@"        }
     }
 }

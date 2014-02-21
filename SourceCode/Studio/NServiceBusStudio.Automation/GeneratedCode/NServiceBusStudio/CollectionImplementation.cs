@@ -294,6 +294,14 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Gets the <see cref="IMessages"/> contained in this element.
+		/// </summary>
+		public virtual IMessages Messages
+		{
+			get { return proxy.GetElement(() => this.Messages, element => new Messages(element)); }
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="IEvents"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -311,6 +319,16 @@ namespace NServiceBusStudio
 		public virtual ICommands CreateCommands(string name, Action<ICommands> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateCollection<ICommands>(name, initializer, raiseInstantiateEvents);
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="IMessages"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual IMessages CreateMessages(string name, Action<IMessages> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateCollection<IMessages>(name, initializer, raiseInstantiateEvents);
 		}
 
 		/// <summary>
@@ -649,6 +667,175 @@ namespace NServiceBusStudio
 		public virtual ICommand CreateCommand(string name, Action<ICommand> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateElement<ICommand>(name, initializer, raiseInstantiateEvents);
+		}
+
+		/// <summary>
+		/// Deletes this element.
+		/// </summary>
+		public virtual void Delete()
+		{
+			this.target.Delete();
+		}
+
+		/// <summary>
+		/// Gets the generalized interface (<see cref="Runtime.ICollection"/>) of this element.
+		/// </summary>
+		public virtual Runtime.ICollection AsCollection()
+		{
+			return this.As<Runtime.ICollection>();
+		}
+
+		/// <summary>
+		/// Gets the specified generalized interface of this element, if possible.
+		/// </summary>
+		public virtual TGeneralizedInterface As<TGeneralizedInterface>() where TGeneralizedInterface : class
+		{
+			return this.target as TGeneralizedInterface;
+		}
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::NuPattern.Runtime;
+	using global::NuPattern.Runtime.Bindings;
+	using global::NuPattern.Runtime.ToolkitInterface;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Composition;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::NuPattern.Runtime;
+
+	/// <summary>
+	/// Description for Application.Design.Services.Service.Contract.Messages
+	/// </summary>
+	[Description("Description for Application.Design.Services.Service.Contract.Messages")]
+	[ToolkitInterfaceProxy(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "70cc6b8d-e54b-45a0-a7af-9ecf3dee7b5d", ProxyType = typeof(Messages))]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
+	internal partial class Messages : IMessages
+	{
+
+		private Runtime.IAbstractElement target;
+		private IAbstractElementProxy<IMessages> proxy;
+
+		/// <summary>
+		/// Creates a new instance of the <see cref="Messages"/> class.
+		/// </summary>
+		[ImportingConstructor]
+		private Messages() { }
+
+		/// <summary>
+		/// Creates a new instance of the <see cref="Messages"/> class.
+		/// </summary>
+		public Messages(Runtime.IAbstractElement target)
+		{
+			this.target = target;
+			this.proxy = target.ProxyFor<IMessages>();
+			OnCreated();
+		}
+
+		/// <summary>
+		/// When overridden, initializes the class.
+		/// </summary>
+		partial void OnCreated();
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Contract.Messages.Namespace
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Contract.Messages.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		public virtual String Namespace
+		{
+			get { return this.proxy.GetValue(() => this.Namespace); }
+			set { this.proxy.SetValue(() => this.Namespace, value); }
+		}
+
+		/// <summary>
+		/// The name of this element instance.
+		/// </summary>
+		[Description("The name of this element instance.")]
+		[ParenthesizePropertyName(true)]
+		public virtual String InstanceName
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceName); }
+			set { this.proxy.SetValue(() => this.InstanceName, value); }
+		}
+
+		/// <summary>
+		/// The order of this element relative to its siblings.
+		/// </summary>
+		[Description("The order of this element relative to its siblings.")]
+		[ReadOnly(true)]
+		public virtual Double InstanceOrder
+		{ 
+			get { return this.proxy.GetValue(() => this.InstanceOrder); }
+			set { this.proxy.SetValue(() => this.InstanceOrder, value); }
+		}
+
+		/// <summary>
+		/// The references of this element.
+		/// </summary>
+		[Description("The references of this element.")]
+		public virtual IEnumerable<IReference> References
+		{ 
+			get { return this.proxy.GetValue(() => this.References); }
+		}
+
+		/// <summary>
+		/// Notes for this element.
+		/// </summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		public virtual String Notes
+		{ 
+			get { return this.proxy.GetValue(() => this.Notes); }
+			set { this.proxy.SetValue(() => this.Notes, value); }
+		}
+
+		/// <summary>
+		/// Gets or sets the InTransaction property.
+		/// </summary>
+		public virtual Boolean InTransaction
+		{ 
+			get { return this.proxy.GetValue(() => this.InTransaction); }
+		}
+
+		/// <summary>
+		/// Gets or sets the IsSerializing property.
+		/// </summary>
+		public virtual Boolean IsSerializing
+		{ 
+			get { return this.proxy.GetValue(() => this.IsSerializing); }
+		}
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		public virtual IContract Parent
+		{
+			get { return this.target.Parent.As<IContract>(); }
+		}
+
+		/// <summary>
+		/// Gets all instances of <see cref="IMessage"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<IMessage> Message
+		{ 
+			get { return proxy.GetElements(() => this.Message, element => new Message(element)); }
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="IMessage"/>  and adds it to the <see cref="Message"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual IMessage CreateMessage(string name, Action<IMessage> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<IMessage>(name, initializer, raiseInstantiateEvents);
 		}
 
 		/// <summary>
@@ -1139,6 +1326,14 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Gets all instances of <see cref="IHandledMessageLink"/> contained in this element.
+		/// </summary>
+		public virtual IEnumerable<IHandledMessageLink> HandledMessageLinks
+		{ 
+			get { return proxy.GetElements(() => this.HandledMessageLinks, element => new HandledMessageLink(element)); }
+		}
+
+		/// <summary>
 		/// Creates a new <see cref="ISubscribedEventLink"/>  and adds it to the <see cref="SubscribedEventLinks"/> collection,  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -1156,6 +1351,16 @@ namespace NServiceBusStudio
 		public virtual IProcessedCommandLink CreateProcessedCommandLink(string name, Action<IProcessedCommandLink> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateElement<IProcessedCommandLink>(name, initializer, raiseInstantiateEvents);
+		}
+
+		/// <summary>
+		/// Creates a new <see cref="IHandledMessageLink"/>  and adds it to the <see cref="HandledMessageLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		public virtual IHandledMessageLink CreateHandledMessageLink(string name, Action<IHandledMessageLink> initializer = null, bool raiseInstantiateEvents = true)
+		{
+			return proxy.CreateElement<IHandledMessageLink>(name, initializer, raiseInstantiateEvents);
 		}
 
 		/// <summary>

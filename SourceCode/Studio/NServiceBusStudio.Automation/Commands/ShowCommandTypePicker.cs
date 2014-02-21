@@ -60,9 +60,12 @@ namespace NServiceBusStudio.Automation.Commands
         public override void Execute()
         {
             this.CurrentComponent = this.CurrentElement.As<IComponent>();
+            var createSenderComponent = false; // At Component Level, do not create sender
+
             if (this.CurrentComponent == null)
             {
                 this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
+                createSenderComponent = true;
             }
 
             // Verify all [Required] and [Import]ed properties have valid values.
@@ -89,7 +92,7 @@ namespace NServiceBusStudio.Automation.Commands
                     }
                     else
                     {
-                        selectedCommand = CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement);
+                        selectedCommand = CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement, (c) => c.DoNotAutogenerateSenderComponent = !createSenderComponent);
                     }
 
                     CurrentComponent.Publishes.CreateLink(selectedCommand);

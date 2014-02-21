@@ -150,7 +150,11 @@ namespace NServiceBusStudio
                     binFolder = Path.Combine(binFolder, "Debug");
                 }
 
-                File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
+                try
+                {
+                    File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
+                }
+                catch { }
             }
 
             // If ServiceInsight is installed and invocation URI registerd

@@ -23,5 +23,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 
             this.SetParent(parent);
         }
+
+        public virtual bool IsSaga
+        {
+            get { return (bool)this.InnerViewModel.Data.Properties.First(x => x.DefinitionName == "IsSaga").Value; }
+        }
     }
 }

@@ -22,8 +22,11 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            CreateComponent(String.Format("{0}Sender", this.Command.InstanceName),
-                           (c) => c.Publishes.CreateLink(this.Command));
+            if (!this.Command.DoNotAutogenerateSenderComponent)
+            {
+                CreateComponent(String.Format("{0}Sender", this.Command.InstanceName),
+                            (c) => c.Publishes.CreateLink(this.Command));
+            }
             CreateComponent(String.Format("{0}Processor", this.Command.InstanceName),
                             (c) => c.Subscribes.CreateLink(this.Command));
         }

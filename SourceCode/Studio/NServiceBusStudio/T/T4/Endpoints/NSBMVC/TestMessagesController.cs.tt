@@ -36,7 +36,7 @@ using NServiceBus;
 <#
     foreach (var serviceName in commands.Select(s => s.Parent.Parent.Parent.CodeIdentifier).Distinct())
 	{
-#>using <#=root.CodeIdentifier#>.InternalMessages.<#= serviceName #>;
+#>using <#=root.CodeIdentifier#>.InternalMessages.Commands.<#= serviceName #>;
 <#
     }
 

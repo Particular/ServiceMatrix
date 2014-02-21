@@ -123,6 +123,7 @@
     <Content Include="Libs\ExceptionReporter.WinForms.xml" />
     <Content Include="Resources\NServiceBusIcon.ico" />
     <Content Include="Resources\NServiceBusIcon.png" />
+    <Resource Include="Resources\ReplyCommand.png" />
     <Content Include="ServiceControlEndpointPluginVersion.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -920,6 +921,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>f6bfe406-6a36-47dd-b00a-6302381ecb36</ItemGuid>
+    </Content>
+    <Content Include="T\T4\MessageDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>763f7314-340f-4f5a-bc21-92397b1a489a</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

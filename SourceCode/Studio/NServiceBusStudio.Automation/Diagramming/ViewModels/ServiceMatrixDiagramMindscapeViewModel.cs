@@ -116,6 +116,21 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return @event;
         }
 
+        public MessageNode GetOrCreateMessageNode(IProductElementViewModel viewModel)
+        {
+            var message = this.FindNode<MessageNode>(viewModel.Data.Id);
+
+            if (message == null)
+            {
+                message = new MessageNode(viewModel);
+                this.LayoutAlgorithm.SetElementPosition(message);
+
+                AddNode(message);
+            }
+
+            return message;
+        }
+
         public ComponentNode GetOrCreateComponentNode(IProductElementViewModel viewModel)
         {
             var component = this.FindNode<ComponentNode>(viewModel.Data.Id);
@@ -208,6 +223,19 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
 
             return eventConnection;
+        }
+
+        public MessageConnection GetOrCreateMessageConnection(GroupableNode sourceNode, GroupableNode targetNode)
+        {
+            var messageConnection = this.FindConnection(sourceNode, targetNode) as MessageConnection;
+
+            if (messageConnection == null)
+            {
+                messageConnection = new MessageConnection(sourceNode, targetNode);
+                this.Connections.Add(messageConnection);
+            }
+
+            return messageConnection;
         }
 
         
@@ -397,6 +425,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             nodesId.AddRange(service.Components.Component.Select(x => x.AsElement().Id)); // Related Components Id
             nodesId.AddRange(service.Contract.Commands.Command.Select(x => x.AsElement().Id)); // Related Commands Id
             nodesId.AddRange(service.Contract.Events.Event.Select(x => x.AsElement().Id)); // Related Events Id
+            nodesId.AddRange(service.Contract.Messages.Message.Select(x => x.AsElement().Id)); // Related Messages Id
 
             var allNodes = this.Nodes.Cast<GroupableNode>()
                                      .Where(x => nodesId.Contains(x.Id))

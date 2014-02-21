@@ -144,6 +144,7 @@
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
+    <Compile Include="Commands\ShowReplyWithPicker.cs" />
     <Compile Include="Commands\GenerateProductCodeCommandCustom.cs" />
     <Compile Include="Commands\ShowCommandTypePickerFromService.cs" />
     <Compile Include="Commands\ShowEventTypePickerFromService.cs" />
@@ -184,6 +185,17 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="HandledMessageLink.Design.cs">
+      <DependentUpon>HandledMessageLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandledMessageLink.cs" />
+    <Compile Include="ProcessedCommandLinkReply.cs" />
+    <Compile Include="ProcessedCommandLinkReply.Design.cs">
+      <DependentUpon>ProcessedCommandLinkReply.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomSolutionBuilder\Converters\ItemIconWithDefaultConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\MenuGroupingEnumerableConverter.cs" />
     <Compile Include="CustomSolutionBuilder\Converters\TreeViewItemOrderingConverter.cs" />
@@ -705,6 +717,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\SolutionBuilder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MenuItems\ReplyCommand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MessageIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\SagaComponentIcon.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

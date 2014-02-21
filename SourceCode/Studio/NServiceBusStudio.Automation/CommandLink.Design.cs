@@ -107,6 +107,19 @@ namespace NServiceBusStudio
             public bool DoNotAutogenerateComponents { get; set; }
 
             public event EventHandler DoNotAutogenerateComponentsChanged;
+
+
+            public bool DoNotAutogenerateSenderComponent
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
         }
     }
 

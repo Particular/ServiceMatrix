@@ -21,6 +21,7 @@ namespace NServiceBusStudio
     }
     partial interface IProcessedCommandLink : IMessageLink { }
     partial interface ISubscribedEventLink : IMessageLink { }
+    partial interface IHandledMessageLink : IMessageLink { }
 
     // Extension Methods
     public static class INServiceBusMessageExtensions
@@ -48,6 +49,10 @@ namespace NServiceBusStudio
                 var el = messagelink as ISubscribedEventLink;
                 return (el == null || el.EventReference == null || el.EventReference.Value == null) ? "object" : el.EventReference.Value.CodeIdentifier;
             }
+            else if (messagelink is IHandledMessageLink)
+            {
+                return (messagelink as IHandledMessageLink).MessageReference.Value.CodeIdentifier;
+            }
             else return null;
         }
 
@@ -59,6 +64,16 @@ namespace NServiceBusStudio
         public static string GetMessageTypeFullName(this ICommandLink commandlink)
         {
             return commandlink.CommandReference.Value.Parent.Namespace + "." + commandlink.CommandReference.Value.CodeIdentifier;
+        }
+
+        public static string GetMessageTypeFullName(this IProcessedCommandLinkReply processedCommandLinkReply)
+        {
+            return processedCommandLinkReply.MessageReference.Value.Parent.Namespace + "." + processedCommandLinkReply.MessageReference.Value.CodeIdentifier;
+        }
+
+        public static string GetMessageTypeFullName(this IHandledMessageLink handledMessageLinkReply)
+        {
+            return handledMessageLinkReply.MessageReference.Value.Parent.Namespace + "." + handledMessageLinkReply.MessageReference.Value.CodeIdentifier;
         }
     }
 

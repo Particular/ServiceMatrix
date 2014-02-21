@@ -104,11 +104,11 @@ namespace AbstractEndpoint.Automation.Commands
                             });
                             app.OnInstantiatedEndpoint += handler;
 
-                            if (selectedType == "NService Bus MVC")
+                            if (selectedType == "NServiceBus ASP.NET MVC")
                             {
                                 selectedEndpoint = app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
                             }
-                            else if (selectedType == "NService Bus Web")
+                            else if (selectedType == "NServiceBus ASP.NET Web Forms")
                             {
                                 selectedEndpoint = app.Design.Endpoints.CreateNServiceBusWeb(selectedName);
                             }

@@ -37,6 +37,12 @@
         <Setter Property="StrokeDashArray" Value="1, 1" />
     </Style>
 
+    <Style x:Key="MessageConnectionPathStyle" TargetType="Path">
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="StrokeThickness" Value="3" />
+        <Setter Property="StrokeDashArray" Value="5, 2" />
+    </Style>
+
     <!-- Visual styles for connection lines -->
     <!-- These styles are set on the DiagramConnectionElement and cascade down, hence the need to qualify the dependency property names -->
 
@@ -278,10 +284,21 @@
         <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
     </Style>
 
+    <Style x:Key="MessageConnectionStyle" TargetType="ms:DiagramConnectionElement">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="PathStyle" Value="{StaticResource MessageConnectionPathStyle}" />
+        <Setter Property="PathBuilder" Value="{StaticResource PathBuilder}" />
+        <Setter Property="EndArrowTemplate" Value="{StaticResource CommandEndArrowTemplate}" />
+        <Setter Property="StartArrowTemplate" Value="{StaticResource HighlightedCommandEndArrowTemplate}" />
+        <Setter Property="ContentTemplate" Value="{StaticResource ShadowedCommandEndArrowTemplate}" />
+        <Setter Property="Template" Value="{StaticResource ConnectionStyleTemplate}" />
+    </Style>
+
 
     <ms:ShapeNodeStyleSelector x:Key="ConnectionStyleSelector">
         <ms:TypeStyle DataType="connections:CommandConnection" Style="{StaticResource CommandConnectionStyle}" />
         <ms:TypeStyle DataType="connections:EventConnection" Style="{StaticResource EventConnectionStyle}" />
+        <ms:TypeStyle DataType="connections:MessageConnection" Style="{StaticResource MessageConnectionStyle}" />
     </ms:ShapeNodeStyleSelector>
 
 

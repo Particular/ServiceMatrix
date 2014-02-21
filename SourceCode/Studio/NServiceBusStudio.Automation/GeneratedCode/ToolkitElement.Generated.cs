@@ -33,6 +33,16 @@ namespace NServiceBusStudio
 		event EventHandler ProjectNameContractsChanged;
 		event EventHandler ProjectNameCodeChanged;
 		event EventHandler LicensedVersionChanged;
+		event EventHandler ServiceControlEndpointPluginVersionChanged;
+		event EventHandler ServiceControlInstanceURIChanged;
+		event EventHandler LaunchServiceInsightOnDebugChanged;
+		event EventHandler NuGetPackageVersionNServiceBusChanged;
+		event EventHandler NuGetPackageVersionServiceControlPluginsChanged;
+		event EventHandler NuGetPackageVersionNServiceBusActiveMQChanged;
+		event EventHandler NuGetPackageVersionNServiceBusRabbitMQChanged;
+		event EventHandler NuGetPackageVersionNServiceBusSqlServerChanged;
+		event EventHandler NuGetPackageVersionNServiceBusAzureQueuesChanged;
+		event EventHandler NuGetPackageVersionNServiceBusAzureServiceBusChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -55,6 +65,12 @@ namespace NServiceBusStudio
 		event EventHandler DoNotAutogenerateComponentsChanged;
 	}
 
+	partial interface IMessage : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+	}
+
 	partial interface IComponent : IToolkitElement
 	{
 		string CodeIdentifier { get; }
@@ -65,7 +81,7 @@ namespace NServiceBusStudio
 		event EventHandler ClassBodyChanged;
 		event EventHandler CustomClassBodyChanged;
 		event EventHandler IsSagaChanged;
-		event EventHandler AutoPublishEventsChanged;
+		event EventHandler AutoPublishMessagesChanged;
 	}
 
 	partial interface IEventLink : IToolkitElement
@@ -87,6 +103,7 @@ namespace NServiceBusStudio
 		event EventHandler NamespaceChanged;
 		event EventHandler ComponentNameChanged;
 		event EventHandler ComponentBaseTypeChanged;
+		event EventHandler SenderNeedsRegistrationChanged;
 	}
 
 	partial interface ISubscribedEventLink : IToolkitElement
@@ -112,6 +129,24 @@ namespace NServiceBusStudio
 		event EventHandler PublishesAnEventChanged;
 		event EventHandler CommandCodeIdentifierChanged;
 		event EventHandler StartsSagaChanged;
+	}
+
+	partial interface IProcessedCommandLinkReply : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler MessageIdChanged;
+		event EventHandler MessageNameChanged;
+		event EventHandler MessageCodeIdentifierChanged;
+	}
+
+	partial interface IHandledMessageLink : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler MessageCodeIdentifierChanged;
+		event EventHandler MessageIdChanged;
+		event EventHandler MessageNameChanged;
 	}
 
 	partial interface ILibraryReference : IToolkitElement
@@ -145,6 +180,7 @@ namespace NServiceBusStudio
 		event EventHandler SLEnabledChanged;
 		event EventHandler SLNumberOfRetriesChanged;
 		event EventHandler SLTimeIncreaseChanged;
+		event EventHandler CommandSenderNeedsRegistrationChanged;
 	}
 
 	partial interface INServiceBusHostComponentLink : IToolkitElement
@@ -171,6 +207,7 @@ namespace NServiceBusStudio
 		event EventHandler SenderBaseTypeChanged;
 		event EventHandler SLAChanged;
 		event EventHandler SendOnlyChanged;
+		event EventHandler CommandSenderNeedsRegistrationChanged;
 	}
 
 	partial interface INServiceBusWebComponentLink : IToolkitElement
@@ -196,6 +233,7 @@ namespace NServiceBusStudio
 		event EventHandler NumberOfWorkerThreadsChanged;
 		event EventHandler SLAChanged;
 		event EventHandler SendOnlyChanged;
+		event EventHandler CommandSenderNeedsRegistrationChanged;
 	}
 
 	partial interface INServiceBusMVCComponentLink : IToolkitElement
@@ -284,6 +322,13 @@ namespace NServiceBusStudio
 	}
 
 	partial interface ICommands : IToolkitElement
+	{
+		string CodeIdentifier { get; }
+
+		event EventHandler NamespaceChanged;
+	}
+
+	partial interface IMessages : IToolkitElement
 	{
 		string CodeIdentifier { get; }
 
@@ -469,6 +514,16 @@ namespace NServiceBusStudio
 		public event EventHandler ProjectNameContractsChanged = (sender, args) => { };
 		public event EventHandler ProjectNameCodeChanged = (sender, args) => { };
 		public event EventHandler LicensedVersionChanged = (sender, args) => { };
+		public event EventHandler ServiceControlEndpointPluginVersionChanged = (sender, args) => { };
+		public event EventHandler ServiceControlInstanceURIChanged = (sender, args) => { };
+		public event EventHandler LaunchServiceInsightOnDebugChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionNServiceBusChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionServiceControlPluginsChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionNServiceBusActiveMQChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionNServiceBusRabbitMQChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionNServiceBusSqlServerChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionNServiceBusAzureQueuesChanged = (sender, args) => { };
+		public event EventHandler NuGetPackageVersionNServiceBusAzureServiceBusChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -533,6 +588,36 @@ namespace NServiceBusStudio
 					break;
 				case "LicensedVersion":
 					LicensedVersionChanged(sender, args);
+					break;
+				case "ServiceControlEndpointPluginVersion":
+					ServiceControlEndpointPluginVersionChanged(sender, args);
+					break;
+				case "ServiceControlInstanceURI":
+					ServiceControlInstanceURIChanged(sender, args);
+					break;
+				case "LaunchServiceInsightOnDebug":
+					LaunchServiceInsightOnDebugChanged(sender, args);
+					break;
+				case "NuGetPackageVersionNServiceBus":
+					NuGetPackageVersionNServiceBusChanged(sender, args);
+					break;
+				case "NuGetPackageVersionServiceControlPlugins":
+					NuGetPackageVersionServiceControlPluginsChanged(sender, args);
+					break;
+				case "NuGetPackageVersionNServiceBusActiveMQ":
+					NuGetPackageVersionNServiceBusActiveMQChanged(sender, args);
+					break;
+				case "NuGetPackageVersionNServiceBusRabbitMQ":
+					NuGetPackageVersionNServiceBusRabbitMQChanged(sender, args);
+					break;
+				case "NuGetPackageVersionNServiceBusSqlServer":
+					NuGetPackageVersionNServiceBusSqlServerChanged(sender, args);
+					break;
+				case "NuGetPackageVersionNServiceBusAzureQueues":
+					NuGetPackageVersionNServiceBusAzureQueuesChanged(sender, args);
+					break;
+				case "NuGetPackageVersionNServiceBusAzureServiceBus":
+					NuGetPackageVersionNServiceBusAzureServiceBusChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -925,6 +1010,127 @@ namespace NServiceBusStudio
 		}
 	}
 
+	partial class Message : ISupportInitialize
+	{
+		private static readonly ITracer tracer = Tracer.Get<Message>();
+
+		static Message()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Message)), typeof(Message));
+			Message.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public INuPatternCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IMessage).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+//					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(IMessage).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Message", property.Value.ToString());
+			}
+
+			switch (args.PropertyName)
+			{
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
 	partial class Component : ISupportInitialize
 	{
 		private static readonly ITracer tracer = Tracer.Get<Component>();
@@ -1006,7 +1212,7 @@ namespace NServiceBusStudio
 		public event EventHandler ClassBodyChanged = (sender, args) => { };
 		public event EventHandler CustomClassBodyChanged = (sender, args) => { };
 		public event EventHandler IsSagaChanged = (sender, args) => { };
-		public event EventHandler AutoPublishEventsChanged = (sender, args) => { };
+		public event EventHandler AutoPublishMessagesChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -1051,8 +1257,8 @@ namespace NServiceBusStudio
 				case "IsSaga":
 					IsSagaChanged(sender, args);
 					break;
-				case "AutoPublishEvents":
-					AutoPublishEventsChanged(sender, args);
+				case "AutoPublishMessages":
+					AutoPublishMessagesChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -1291,6 +1497,7 @@ namespace NServiceBusStudio
 		public event EventHandler NamespaceChanged = (sender, args) => { };
 		public event EventHandler ComponentNameChanged = (sender, args) => { };
 		public event EventHandler ComponentBaseTypeChanged = (sender, args) => { };
+		public event EventHandler SenderNeedsRegistrationChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -1331,6 +1538,9 @@ namespace NServiceBusStudio
 					break;
 				case "ComponentBaseType":
 					ComponentBaseTypeChanged(sender, args);
+					break;
+				case "SenderNeedsRegistration":
+					SenderNeedsRegistrationChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -1625,6 +1835,272 @@ namespace NServiceBusStudio
 					break;
 				case "StartsSaga":
 					StartsSagaChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class ProcessedCommandLinkReply : ISupportInitialize
+	{
+		private static readonly ITracer tracer = Tracer.Get<ProcessedCommandLinkReply>();
+
+		static ProcessedCommandLinkReply()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLinkReply)), typeof(ProcessedCommandLinkReply));
+			ProcessedCommandLinkReply.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public INuPatternCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IProcessedCommandLinkReply).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+//					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(IProcessedCommandLinkReply).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler MessageIdChanged = (sender, args) => { };
+		public event EventHandler MessageNameChanged = (sender, args) => { };
+		public event EventHandler MessageCodeIdentifierChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "ProcessedCommandLinkReply", property.Value.ToString());
+			}
+
+			switch (args.PropertyName)
+			{
+				case "MessageId":
+					MessageIdChanged(sender, args);
+					break;
+				case "MessageName":
+					MessageNameChanged(sender, args);
+					break;
+				case "MessageCodeIdentifier":
+					MessageCodeIdentifierChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class HandledMessageLink : ISupportInitialize
+	{
+		private static readonly ITracer tracer = Tracer.Get<HandledMessageLink>();
+
+		static HandledMessageLink()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(HandledMessageLink)), typeof(HandledMessageLink));
+			HandledMessageLink.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public INuPatternCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsElement();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IHandledMessageLink).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+//					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(IHandledMessageLink).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler MessageCodeIdentifierChanged = (sender, args) => { };
+		public event EventHandler MessageIdChanged = (sender, args) => { };
+		public event EventHandler MessageNameChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsElement().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+
+			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "HandledMessageLink", property.Value.ToString());
+			}
+
+			switch (args.PropertyName)
+			{
+				case "MessageCodeIdentifier":
+					MessageCodeIdentifierChanged(sender, args);
+					break;
+				case "MessageId":
+					MessageIdChanged(sender, args);
+					break;
+				case "MessageName":
+					MessageNameChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -1984,6 +2460,7 @@ namespace NServiceBusStudio
 		public event EventHandler SLEnabledChanged = (sender, args) => { };
 		public event EventHandler SLNumberOfRetriesChanged = (sender, args) => { };
 		public event EventHandler SLTimeIncreaseChanged = (sender, args) => { };
+		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2005,11 +2482,7 @@ namespace NServiceBusStudio
 			var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
 			if (property != null && property.Info.IsVisible)
 			{
-                try
-                {
-                    tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
-                }
-                catch { }
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusHost", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)
@@ -2052,6 +2525,9 @@ namespace NServiceBusStudio
 					break;
 				case "SLTimeIncrease":
 					SLTimeIncreaseChanged(sender, args);
+					break;
+				case "CommandSenderNeedsRegistration":
+					CommandSenderNeedsRegistrationChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -2292,6 +2768,7 @@ namespace NServiceBusStudio
 		public event EventHandler SenderBaseTypeChanged = (sender, args) => { };
 		public event EventHandler SLAChanged = (sender, args) => { };
 		public event EventHandler SendOnlyChanged = (sender, args) => { };
+		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2350,6 +2827,9 @@ namespace NServiceBusStudio
 					break;
 				case "SendOnly":
 					SendOnlyChanged(sender, args);
+					break;
+				case "CommandSenderNeedsRegistration":
+					CommandSenderNeedsRegistrationChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -2589,6 +3069,7 @@ namespace NServiceBusStudio
 		public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
 		public event EventHandler SLAChanged = (sender, args) => { };
 		public event EventHandler SendOnlyChanged = (sender, args) => { };
+		public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -2644,6 +3125,9 @@ namespace NServiceBusStudio
 					break;
 				case "SendOnly":
 					SendOnlyChanged(sender, args);
+					break;
+				case "CommandSenderNeedsRegistration":
+					CommandSenderNeedsRegistrationChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -4170,6 +4654,131 @@ namespace NServiceBusStudio
 			if (property != null && property.Info.IsVisible)
 			{
 				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Commands", property.Value.ToString());
+			}
+
+			switch (args.PropertyName)
+			{
+				case "Namespace":
+					NamespaceChanged(sender, args);
+					break;
+				case "InstanceName":
+					if (this.OriginalInstanceName != null) {
+						if (this.InstanceName != this.OriginalInstanceName && 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+						{
+							InstanceNameChanged(sender, args);
+							this.OriginalInstanceName = this.InstanceName;
+						}
+						else
+						{
+							this.InstanceName = this.OriginalInstanceName;
+						}
+					}
+					break;					
+				default:
+					break;
+			}
+		}
+	}
+
+	partial class Messages : ISupportInitialize
+	{
+		private static readonly ITracer tracer = Tracer.Get<Messages>();
+
+		static Messages()
+		{
+			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Messages)), typeof(Messages));
+			Messages.StaticInitialization();
+		}
+
+		static partial void StaticInitialization();
+
+		#region Initialization
+
+		public event EventHandler Initialized = (sender, args) => { };
+
+		public bool IsInitialized { get; private set; }
+		
+		[Import(AllowDefault = true)]
+		public INuPatternCompositionService CompositionService { get; set; }
+
+		[Import]
+        public IUriReferenceService UriService { get; set; }
+
+        [Import]
+        public RefactoringManager RefactoringManager { get; set; }
+
+		public virtual void BeginInit()
+		{
+		}
+
+		public virtual void EndInit()
+		{
+			if (this.CompositionService != null)
+			{
+				var element = this.AsCollection();
+				var automations = this.CompositionService
+//					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IMessages).FullName)
+					.GetExports<IAutomationExtension, IDictionary<string, object>>()
+//					.FromFeaturesCatalog()
+					.Where(x => x.Metadata["ContractName"] == typeof(IMessages).FullName)
+					.Select(x => x.Value);
+
+				foreach (var automation in automations)
+				{
+					// This already calls BeginInit/EndInit and SatisfyImports as needed
+					// on the base ProductElement class in the runtime.
+					element.AddAutomationExtension(automation);
+				}
+			}
+
+			this.OriginalInstanceName = this.InstanceName;
+
+			Initialize();
+			if (ElementInitialized != null)
+			{
+				ElementInitialized(this, EventArgs.Empty);
+			}
+			this.IsInitialized = true;
+			this.Initialized(this, EventArgs.Empty);
+		}
+
+		/// <summary>
+		/// Optional partial method that is invoked when EndInit is called 
+		/// on the element.
+		/// </summary>
+		partial void Initialize();
+
+		public static event EventHandler ElementInitialized;
+
+		#endregion
+
+		public string OriginalInstanceName { get; set; }
+
+		public event EventHandler InstanceNameChanged = (sender, args) => { };
+		public event EventHandler NamespaceChanged = (sender, args) => { };
+
+		public string CodeIdentifier
+		{
+			get { return System.Xml.Serialization.CodeIdentifier.MakeValid(this.target.InstanceName); }
+		}
+
+		partial void OnCreated()
+		{
+			this.AsCollection().PropertyChanged += OnPropertyChanged;
+			Create();
+		}
+
+		partial void Create();
+
+		private void OnPropertyChanged(object sender, PropertyChangedEventArgs args)
+		{
+			Application.ResetIsDirtyFlag();
+
+			var property = this.AsCollection().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
+			if (property != null && property.Info.IsVisible)
+			{
+				tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "Messages", property.Value.ToString());
 			}
 
 			switch (args.PropertyName)

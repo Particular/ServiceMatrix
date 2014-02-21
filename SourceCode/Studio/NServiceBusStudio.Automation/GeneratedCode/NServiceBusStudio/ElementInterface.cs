@@ -231,6 +231,14 @@ namespace NServiceBusStudio
 		Boolean DoNotAutogenerateComponents { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Contract.Commands.Command.DoNotAutogenerateSenderComponent
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Contract.Commands.Command.DoNotAutogenerateSenderComponent")]
+		[DisplayName("Do Not Autogenerate Sender Component")]
+		[Category("General")]
+		Boolean DoNotAutogenerateSenderComponent { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -271,6 +279,81 @@ namespace NServiceBusStudio
 		/// Gets the parent element.
 		/// </summary>
 		ICommands Parent { get; }
+
+		/// <summary>
+		/// Deletes this element.
+		/// </summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generalized interface (<see cref="Runtime.IElement"/>) of this element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::NuPattern.Runtime;
+	using global::NuPattern.Runtime.Bindings;
+	using global::NuPattern.Runtime.ToolkitInterface;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::NuPattern.Runtime;
+
+	/// <summary>
+	/// Description for Application.Design.Services.Service.Contract.Messages.Message
+	/// </summary>
+	[Description("Description for Application.Design.Services.Service.Contract.Messages.Message")]
+	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "4d326ab2-417c-422c-9920-809ef2beec3d", ProxyType = typeof(Message))]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	public partial interface IMessage : IToolkitInterface
+	{
+
+		/// <summary>
+		/// The name of this element instance.
+		/// </summary>
+		[Description("The name of this element instance.")]
+		[ParenthesizePropertyName(true)]
+		String InstanceName { get; set; }
+
+		/// <summary>
+		/// The order of this element relative to its siblings.
+		/// </summary>
+		[Description("The order of this element relative to its siblings.")]
+		[ReadOnly(true)]
+		Double InstanceOrder { get; set; }
+
+		/// <summary>
+		/// The references of this element.
+		/// </summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get; }
+
+		/// <summary>
+		/// Notes for this element.
+		/// </summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+
+		/// <summary>
+		/// Gets or sets the InTransaction property.
+		/// </summary>
+		Boolean InTransaction { get; }
+
+		/// <summary>
+		/// Gets or sets the IsSerializing property.
+		/// </summary>
+		Boolean IsSerializing { get; }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		IMessages Parent { get; }
 
 		/// <summary>
 		/// Deletes this element.
@@ -360,6 +443,14 @@ namespace NServiceBusStudio
 		[DisplayName("Auto Publish Messages")]
 		[Category("General")]
 		Boolean AutoPublishMessages { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.InterfaceBody
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.InterfaceBody")]
+		[DisplayName("Interface Body")]
+		[Category("General")]
+		String InterfaceBody { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.
@@ -886,6 +977,216 @@ namespace NServiceBusStudio
 		[DisplayName("Starts Saga")]
 		[Category("General")]
 		Boolean StartsSaga { get; set; }
+
+		/// <summary>
+		/// The name of this element instance.
+		/// </summary>
+		[Description("The name of this element instance.")]
+		[ParenthesizePropertyName(true)]
+		String InstanceName { get; set; }
+
+		/// <summary>
+		/// The order of this element relative to its siblings.
+		/// </summary>
+		[Description("The order of this element relative to its siblings.")]
+		[ReadOnly(true)]
+		Double InstanceOrder { get; set; }
+
+		/// <summary>
+		/// The references of this element.
+		/// </summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get; }
+
+		/// <summary>
+		/// Notes for this element.
+		/// </summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+
+		/// <summary>
+		/// Gets or sets the InTransaction property.
+		/// </summary>
+		Boolean InTransaction { get; }
+
+		/// <summary>
+		/// Gets or sets the IsSerializing property.
+		/// </summary>
+		Boolean IsSerializing { get; }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		ISubscribes Parent { get; }
+
+		/// <summary>
+		/// Gets the <see cref="IProcessedCommandLinkReply"/> contained in this element.
+		/// </summary>
+		IProcessedCommandLinkReply ProcessedCommandLinkReply { get; }
+
+		/// <summary>
+		/// Creates a new <see cref="IProcessedCommandLinkReply"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		IProcessedCommandLinkReply CreateProcessedCommandLinkReply(string name, Action<IProcessedCommandLinkReply> initializer = null, bool raiseInstantiateEvents = true);
+
+		/// <summary>
+		/// Deletes this element.
+		/// </summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generalized interface (<see cref="Runtime.IElement"/>) of this element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::NuPattern.Runtime;
+	using global::NuPattern.Runtime.Bindings;
+	using global::NuPattern.Runtime.ToolkitInterface;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::NuPattern.Runtime;
+
+	/// <summary>
+	/// Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply
+	/// </summary>
+	[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply")]
+	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "01c627a8-bb25-4fa2-8468-ebd4a419682e", ProxyType = typeof(ProcessedCommandLinkReply))]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	public partial interface IProcessedCommandLinkReply : IToolkitInterface
+	{
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply.MessageId
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply.MessageId")]
+		[DisplayName("Message Id")]
+		[Category("General")]
+		String MessageId { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply.MessageName
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply.MessageName")]
+		[DisplayName("Message Name")]
+		[Category("General")]
+		String MessageName { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply.MessageCodeIdentifier
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.ProcessedCommandLink.ProcessedCommandLinkReply.MessageCodeIdentifier")]
+		[DisplayName("Message Code Identifier")]
+		[Category("General")]
+		String MessageCodeIdentifier { get; set; }
+
+		/// <summary>
+		/// The name of this element instance.
+		/// </summary>
+		[Description("The name of this element instance.")]
+		[ParenthesizePropertyName(true)]
+		String InstanceName { get; set; }
+
+		/// <summary>
+		/// The order of this element relative to its siblings.
+		/// </summary>
+		[Description("The order of this element relative to its siblings.")]
+		[ReadOnly(true)]
+		Double InstanceOrder { get; set; }
+
+		/// <summary>
+		/// The references of this element.
+		/// </summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get; }
+
+		/// <summary>
+		/// Notes for this element.
+		/// </summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+
+		/// <summary>
+		/// Gets or sets the InTransaction property.
+		/// </summary>
+		Boolean InTransaction { get; }
+
+		/// <summary>
+		/// Gets or sets the IsSerializing property.
+		/// </summary>
+		Boolean IsSerializing { get; }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		IProcessedCommandLink Parent { get; }
+
+		/// <summary>
+		/// Deletes this element.
+		/// </summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generalized interface (<see cref="Runtime.IElement"/>) of this element.
+		/// </summary>
+		Runtime.IElement AsElement();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::NuPattern.Runtime;
+	using global::NuPattern.Runtime.Bindings;
+	using global::NuPattern.Runtime.ToolkitInterface;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::NuPattern.Runtime;
+
+	/// <summary>
+	/// Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink
+	/// </summary>
+	[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink")]
+	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "e6841b96-497b-48b1-9f42-d813edfdbb83", ProxyType = typeof(HandledMessageLink))]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	public partial interface IHandledMessageLink : IToolkitInterface
+	{
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink.MessageCodeIdentifier
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink.MessageCodeIdentifier")]
+		[DisplayName("Message Code Identifier")]
+		[Category("General")]
+		String MessageCodeIdentifier { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink.MessageId
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink.MessageId")]
+		[DisplayName("Message Id")]
+		[Category("General")]
+		String MessageId { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink.MessageName
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.Subscribes.HandledMessageLink.MessageName")]
+		[DisplayName("Message Name")]
+		[Category("General")]
+		String MessageName { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.

@@ -168,6 +168,11 @@ namespace NServiceBusStudio
 		ICommands Commands { get; }
 
 		/// <summary>
+		/// Gets the <see cref="IMessages"/> contained in this element.
+		/// </summary>
+		IMessages Messages { get; }
+
+		/// <summary>
 		/// Creates a new <see cref="IEvents"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -180,6 +185,13 @@ namespace NServiceBusStudio
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		ICommands CreateCommands(string name, Action<ICommands> initializer = null, bool raiseInstantiateEvents = true);
+
+		/// <summary>
+		/// Creates a new <see cref="IMessages"/>  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		IMessages CreateMessages(string name, Action<IMessages> initializer = null, bool raiseInstantiateEvents = true);
 
 		/// <summary>
 		/// Deletes this element.
@@ -370,6 +382,101 @@ namespace NServiceBusStudio
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		ICommand CreateCommand(string name, Action<ICommand> initializer = null, bool raiseInstantiateEvents = true);
+
+		/// <summary>
+		/// Deletes this element.
+		/// </summary>
+		void Delete();
+
+		/// <summary>
+		/// Gets the generalized interface (<see cref="Runtime.ICollection"/>) of this element.
+		/// </summary>
+		Runtime.ICollection AsCollection();
+	}
+}
+
+namespace NServiceBusStudio
+{
+	using global::NuPattern.Runtime;
+	using global::NuPattern.Runtime.Bindings;
+	using global::NuPattern.Runtime.ToolkitInterface;
+	using global::System;
+	using global::System.Collections.Generic;
+	using global::System.ComponentModel;
+	using global::System.ComponentModel.Design;
+	using global::System.Drawing.Design;
+	using Runtime = global::NuPattern.Runtime;
+
+	/// <summary>
+	/// Description for Application.Design.Services.Service.Contract.Messages
+	/// </summary>
+	[Description("Description for Application.Design.Services.Service.Contract.Messages")]
+	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "70cc6b8d-e54b-45a0-a7af-9ecf3dee7b5d", ProxyType = typeof(Messages))]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	public partial interface IMessages : IToolkitInterface
+	{
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Contract.Messages.Namespace
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Contract.Messages.Namespace")]
+		[DisplayName("Namespace")]
+		[Category("General")]
+		String Namespace { get; set; }
+
+		/// <summary>
+		/// The name of this element instance.
+		/// </summary>
+		[Description("The name of this element instance.")]
+		[ParenthesizePropertyName(true)]
+		String InstanceName { get; set; }
+
+		/// <summary>
+		/// The order of this element relative to its siblings.
+		/// </summary>
+		[Description("The order of this element relative to its siblings.")]
+		[ReadOnly(true)]
+		Double InstanceOrder { get; set; }
+
+		/// <summary>
+		/// The references of this element.
+		/// </summary>
+		[Description("The references of this element.")]
+		IEnumerable<IReference> References { get; }
+
+		/// <summary>
+		/// Notes for this element.
+		/// </summary>
+		[Description("Notes for this element.")]
+		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
+		String Notes { get; set; }
+
+		/// <summary>
+		/// Gets or sets the InTransaction property.
+		/// </summary>
+		Boolean InTransaction { get; }
+
+		/// <summary>
+		/// Gets or sets the IsSerializing property.
+		/// </summary>
+		Boolean IsSerializing { get; }
+
+		/// <summary>
+		/// Gets the parent element.
+		/// </summary>
+		IContract Parent { get; }
+
+		/// <summary>
+		/// Gets all instances of <see cref="IMessage"/> contained in this element.
+		/// </summary>
+		IEnumerable<IMessage> Message { get; }
+
+		/// <summary>
+		/// Creates a new <see cref="IMessage"/>  and adds it to the <see cref="Message"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		IMessage CreateMessage(string name, Action<IMessage> initializer = null, bool raiseInstantiateEvents = true);
 
 		/// <summary>
 		/// Deletes this element.
@@ -643,6 +750,11 @@ namespace NServiceBusStudio
 		IEnumerable<IProcessedCommandLink> ProcessedCommandLinks { get; }
 
 		/// <summary>
+		/// Gets all instances of <see cref="IHandledMessageLink"/> contained in this element.
+		/// </summary>
+		IEnumerable<IHandledMessageLink> HandledMessageLinks { get; }
+
+		/// <summary>
 		/// Creates a new <see cref="ISubscribedEventLink"/>  and adds it to the <see cref="SubscribedEventLinks"/> collection,  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -655,6 +767,13 @@ namespace NServiceBusStudio
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		IProcessedCommandLink CreateProcessedCommandLink(string name, Action<IProcessedCommandLink> initializer = null, bool raiseInstantiateEvents = true);
+
+		/// <summary>
+		/// Creates a new <see cref="IHandledMessageLink"/>  and adds it to the <see cref="HandledMessageLinks"/> collection,  
+		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
+		/// </summary>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
+		IHandledMessageLink CreateHandledMessageLink(string name, Action<IHandledMessageLink> initializer = null, bool raiseInstantiateEvents = true);
 
 		/// <summary>
 		/// Deletes this element.

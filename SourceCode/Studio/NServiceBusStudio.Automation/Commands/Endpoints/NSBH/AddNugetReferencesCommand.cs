@@ -150,12 +150,18 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 {
                     project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", app.NuGetPackageVersionServiceControlPlugins);
                 }
+
+                if (!project.HasReference("ServiceControl.Plugin.SagaAudit"))
+                {
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.SagaAudit", app.NuGetPackageVersionServiceControlPlugins);
+                }
             }
             else
             {
                 project.RemoveReference("ServiceControl.Plugin.DebugSession");
                 project.RemoveReference("ServiceControl.Plugin.Heartbeat");
                 project.RemoveReference("ServiceControl.Plugin.CustomChecks");
+                project.RemoveReference("ServiceControl.Plugin.SagaAudit");
             }
         }
     }
