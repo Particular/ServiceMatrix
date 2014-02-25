@@ -21,8 +21,7 @@
 *.pdb 	-text -diff
 *.pptx	-text -diff
 *.xap	-text -diff
-*.bmp   -text -diff
-*.ico   -text -diff
+*.ico	-text -diff
 
 *.cs text diff=csharp
 *.config text diff=csharp
@@ -59,8 +58,6 @@
 *.ps1 text
 *.txt text eol=crlf
 *.bat text eol=crlf
-*.resx text eol=crlf
-*.tt text eol=crlf
 
 # Custom for Visual Studio
 *.csproj merge=union
@@ -70,3 +67,5 @@
 *.sln text eol=crlf merge=union
 *.suo 	-text -diff
 *.snk 	-text -diff
+*.cub 	-text -diff
+*.wixlib	-text -diff
