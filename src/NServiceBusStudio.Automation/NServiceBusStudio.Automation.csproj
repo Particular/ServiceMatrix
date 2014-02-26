@@ -512,9 +512,6 @@
       <LastGenOutput>VsVersionStyles.gen.xaml</LastGenOutput>
     </None>
     <None Include="NServiceBus.Tools.snk" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="GeneratedCode\ToolkitElement.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>
@@ -523,6 +520,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Resources.Strings.cs</LastGenOutput>
     </None>
+    <None Include="ripple.dependencies.config" />
     <None Include="ToolkitConstants.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitConstants.cs</LastGenOutput>
@@ -718,5 +716,6 @@
     <StartAction>Program</StartAction>
     <StartArguments>/rootsuffix Exp</StartArguments>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
   <Import Project="$(SolutionDir)..\BuildSupport\GitFlowVersion\Build\GitFlowVersionTask.targets" />
 </Project>
