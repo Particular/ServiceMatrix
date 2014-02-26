@@ -1,2 +1,0 @@
-﻿Install-ChocolateyVsixPackage "ServiceMatrix" https://github.com/Particular/ServiceMatrix/releases/download/2.0.0-Beta3/Particular.ServiceMatrix.10.0.vsix 10
-Install-ChocolateyVsixPackage "ServiceMatrix" https://github.com/Particular/ServiceMatrix/releases/download/2.0.0-Beta3/Particular.ServiceMatrix.10.0.vsix 11
