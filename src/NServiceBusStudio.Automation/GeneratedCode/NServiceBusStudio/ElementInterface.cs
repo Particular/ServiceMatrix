@@ -24,7 +24,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A service.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "4aac6b0a-1178-4761-ac92-d2989a83335b", ProxyType = typeof(Service))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IService : IToolkitInterface
 	{
 
@@ -135,7 +135,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("An event.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "f06eaa91-971c-42ee-a7cb-eaa77a97dbdd", ProxyType = typeof(Event))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IEvent : IToolkitInterface
 	{
 
@@ -218,7 +218,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A command.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "c2f83a83-1117-43d5-b427-3ede53888fa4", ProxyType = typeof(Command))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface ICommand : IToolkitInterface
 	{
 
@@ -384,7 +384,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A component.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "f1e3bdfb-c55d-4600-b1bc-d12c8b27318f", ProxyType = typeof(Component))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IComponent : IToolkitInterface
 	{
 
@@ -560,7 +560,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A published event.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "999b0f01-0b06-4b91-87aa-c8b7fb276c46", ProxyType = typeof(EventLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IEventLink : IToolkitInterface
 	{
 
@@ -669,7 +669,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A send command.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "0d8a0645-22b8-48e8-be8c-774c7fc5442d", ProxyType = typeof(CommandLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface ICommandLink : IToolkitInterface
 	{
 
@@ -793,7 +793,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A subscribed event.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "75f698c0-fb68-4f37-b015-82cd5a1e367c", ProxyType = typeof(SubscribedEventLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface ISubscribedEventLink : IToolkitInterface
 	{
 
@@ -926,7 +926,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A processed command.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "1362e8eb-d279-4f17-82a0-97504b493ab3", ProxyType = typeof(ProcessedCommandLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IProcessedCommandLink : IToolkitInterface
 	{
 
@@ -1259,7 +1259,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A service-specific library.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "c475a3be-99b0-4170-b4d6-2c142440fa9e", ProxyType = typeof(LibraryReference))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface ILibraryReference : IToolkitInterface
 	{
 
@@ -1342,7 +1342,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A service library.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc", ProxyType = typeof(ServiceLibrary))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IServiceLibrary : IToolkitInterface
 	{
 
@@ -1425,7 +1425,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("An endpoint that is deployed as a Windows Service in production, and is debugged as a Console Application.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "d9665948-7e01-4896-9843-c03ca1eedba7", ProxyType = typeof(NServiceBusHost))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface INServiceBusHost : IToolkitInterface
 	{
 
@@ -1624,7 +1624,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A deployed component into the endpoint.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "58bd0df2-5250-472d-a169-4d72726325ae", ProxyType = typeof(NServiceBusHostComponentLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface INServiceBusHostComponentLink : IToolkitInterface
 	{
 
@@ -1723,7 +1723,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A web project that makes use of WebForms.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "19234c17-dbbc-4997-a6f5-5705d013ac01", ProxyType = typeof(NServiceBusWeb))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface INServiceBusWeb : IToolkitInterface
 	{
 
@@ -1906,7 +1906,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A deployed component into the endpoint.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "813d58eb-16cd-4334-9bfb-6ebbc5dc7ee6", ProxyType = typeof(NServiceBusWebComponentLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface INServiceBusWebComponentLink : IToolkitInterface
 	{
 
@@ -2005,7 +2005,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A web project that makes use of ASP MVC.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "55173bde-0618-431e-8b1a-5bb2c312c713", ProxyType = typeof(NServiceBusMVC))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface INServiceBusMVC : IToolkitInterface
 	{
 
@@ -2180,7 +2180,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A deployed component into the endpoint.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "18db2bf8-3414-4c90-9e46-39e0475a018b", ProxyType = typeof(NServiceBusMVCComponentLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface INServiceBusMVCComponentLink : IToolkitInterface
 	{
 
@@ -2279,7 +2279,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("Description for Application.Design.ContractsProject")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "f08604f7-cbcd-4f58-bd9b-ca1b64f72f5d", ProxyType = typeof(ContractsProject))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IContractsProject : IToolkitInterface
 	{
 
@@ -2354,7 +2354,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("Description for Application.Design.InternalMessagesProject")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "640eb378-e12e-4b7d-8362-f384c114dd76", ProxyType = typeof(InternalMessagesProject))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IInternalMessagesProject : IToolkitInterface
 	{
 
@@ -2429,7 +2429,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("System-wide authentication behavior for identifying users.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "85310159-9a70-43c5-8dd8-962edb561550", ProxyType = typeof(Authentication))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IAuthentication : IToolkitInterface
 	{
 
@@ -2536,7 +2536,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A use case.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "bbd42ef5-b751-4193-af5c-42920170710b", ProxyType = typeof(UseCase))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IUseCase : IToolkitInterface
 	{
 
@@ -2635,7 +2635,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A use case step.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "fb0456a6-d44e-4db1-ae24-7d1ad24f7017", ProxyType = typeof(UseCaseStep))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IUseCaseStep : IToolkitInterface
 	{
 
@@ -2766,7 +2766,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A use case link.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "0cf8d37f-d40a-4816-9ec2-ca8009473abe", ProxyType = typeof(UseCaseLink))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IUseCaseLink : IToolkitInterface
 	{
 
@@ -2865,7 +2865,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("A library.")]
 	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "026d2305-4579-472f-a028-27e89b9abc5e", ProxyType = typeof(Library))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface ILibrary : IToolkitInterface
 	{
 
