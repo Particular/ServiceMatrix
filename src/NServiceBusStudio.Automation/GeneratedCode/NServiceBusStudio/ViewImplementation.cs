@@ -24,7 +24,7 @@ namespace NServiceBusStudio
 	/// </summary>
 	[Description("Design view of your application, where you create your services and messages.")]
 	[ToolkitInterfaceProxy(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "6bc9143a-3e32-4dee-b950-2aa11e4c5f5d", ProxyType = typeof(Design))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.3.23.0")]
+	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 	internal partial class Design : IDesign
 	{

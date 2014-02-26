@@ -20,7 +20,7 @@
     <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="4.0" />
   </Identifier>
   <References>
-		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.3.23.0">
+		<Reference Id="93373818-600f-414b-8181-3a0cb79fa785"  MinVersion="1.4.24.0">
 		  <Name>NuPattern Toolkit Manager</Name>
 			<VsixPath>NuPatternToolkitManager.vsix</VsixPath>
 		</Reference>
