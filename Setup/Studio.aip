@@ -27,7 +27,7 @@
     <ROW Property="OPT_PRERELEASE_NAME" Value="OPT_PRERELEASE_NAME"/>
     <ROW Property="ProductCode" Value="1033:{C24E09CF-0927-4547-A22E-6892C80F8829} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Particular Software ServiceMatrix [|ProductVersion]"/>
+    <ROW Property="ProductName" Value="ServiceMatrix [|ProductVersion]"/>
     <ROW Property="ProductVersion" Value="4.0.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND;AI_SETUPEXEPATH;SETUPEXEDIR"/>
     <ROW Property="TRB_INFO_REG_VALUE" Value="0"/>
