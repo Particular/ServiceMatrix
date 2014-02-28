@@ -28,7 +28,7 @@
 	<Content>
 		<Assembly AssemblyName="Particular.ServiceMatrix">|%CurrentProject%|</Assembly>
 		<MefComponent>|%CurrentProject%|</MefComponent>
-		<MefComponent>|NServiceBusStudio.Automation|</MefComponent>
+		<MefComponent>|ServiceMatrix.Automation|</MefComponent>
 		<CustomExtension Type="NuPattern.Toolkit.PatternModel" AssemblyFile="Particular.ServiceMatrix.dll">NServiceBusStudio.PatternModel.patterndefinition</CustomExtension>		
 		<ItemTemplate>T\I</ItemTemplate>
 		<ProjectTemplate>T\P</ProjectTemplate>
