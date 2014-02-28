@@ -961,9 +961,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj">
+    <ProjectReference Include="..\ServiceMatrix.Automation\ServiceMatrix.Automation.csproj">
       <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
-      <Name>NServiceBusStudio.Automation</Name>
+      <Name>ServiceMatrix.Automation</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
