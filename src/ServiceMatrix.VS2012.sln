@@ -1,17 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusStudio", "NServiceBusStudio\NServiceBusStudio.csproj", "{2532FA71-D5E2-426C-AE22-D4316CEC2ABC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix", "ServiceMatrix\ServiceMatrix.csproj", "{2532FA71-D5E2-426C-AE22-D4316CEC2ABC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8706DF98-FE5F-48B4-8D99-2368D512A1AF}"
 	ProjectSection(SolutionItems) = preProject
+		ServiceMatrix.VS2012.guidancestate = ServiceMatrix.VS2012.guidancestate
 		source.version.t4 = source.version.t4
 		Studio.guidancestate = Studio.guidancestate
 		Studio.slnbldr = Studio.slnbldr
 		Studio.VS2012.guidancestate = Studio.VS2012.guidancestate
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBusStudio.Automation", "NServiceBusStudio.Automation\NServiceBusStudio.Automation.csproj", "{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix.Automation", "ServiceMatrix.Automation\ServiceMatrix.Automation.csproj", "{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chocolatey", "Chocolatey\Chocolatey.csproj", "{63786CE5-D899-43DF-AD4E-C2CA3BAC3FC2}"
 EndProject

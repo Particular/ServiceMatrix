@@ -24,7 +24,7 @@
 	//------------------------------------------------------------------------------
 	public const string rootNamespace = @"NServiceBusStudio";
 	public const string assemblyName = @"Particular.ServiceMatrix";
-	public const string libraryProjectName = @"NServiceBusStudio.Automation";
+	public const string libraryProjectName = @"ServiceMatrix.Automation";
 
 	//------------------------------------------------------------------------------
 	// Environment Info
