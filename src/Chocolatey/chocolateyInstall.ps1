@@ -1,6 +1,15 @@
 ﻿
 $packageName = "ServiceMatrix"
-$url = "https://github.com/Particular/ServiceMatrix/releases/download/SemVer/Particular.ServiceMatrix-SemVer.exe"
+
+$url = gci -path "c:\ChocolateyResourceCache" -Filter "Particular.$packageName-*.exe" | select -first 1
+
+if($url){
+	$url = $url | Select -expandProperty FullName
+}
+else{
+	$url = "https://github.com/Particular/$packageName/releases/download/SemVer/Particular.$packageName-SemVer.exe"
+}
+
 
 try {
 
