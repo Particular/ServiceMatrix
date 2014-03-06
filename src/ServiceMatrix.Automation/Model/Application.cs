@@ -13,14 +13,9 @@ using System.Linq;
 using NuPattern.Diagnostics;
 using System.Runtime.Remoting.Messaging;
 using NServiceBusStudio.Automation.Commands;
-<<<<<<< HEAD:src/ServiceMatrix.Automation/Model/Application.cs
 using NuGet.VisualStudio;
 using NuPattern.VisualStudio;
 using NServiceBusStudio.Automation.ValueProviders;
-=======
-using NServiceBusStudio.Automation.ValueProviders;
-using NuPattern.VisualStudio;
->>>>>>> 80a7030415acad3f1e85431f4be5004420a0ea53:src/ServiceMatrix.Automation/Model/Application.cs
 
 namespace NServiceBusStudio
 {
@@ -50,6 +45,9 @@ namespace NServiceBusStudio
 
         [Import]
         public RemoveEmptyAddMenus RemoveEmptyAddMenus { get; set; }
+
+        [Import]
+        public IVsPackageInstaller VsPackageInstaller { get; set; }
 
         [Import]
         public IStatusBar StatusBar { get; set; }
@@ -111,11 +109,8 @@ namespace NServiceBusStudio
             this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
             this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
             this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
-<<<<<<< HEAD:src/ServiceMatrix.Automation/Model/Application.cs
             this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
             this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
-=======
->>>>>>> 80a7030415acad3f1e85431f4be5004420a0ea53:src/ServiceMatrix.Automation/Model/Application.cs
             this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
             this.StatusBar.DisplayMessage(" ");
         }
