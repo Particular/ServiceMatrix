@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20305</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\Binaries\</OutputPath>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NServiceBusStudio.Automation</RootNamespace>
+    <AssemblyName>Particular.ServiceMatrix.Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="..\BuildConfiguration.props" />
+  <Choose>
+    <When Condition="'$(VsxVersion)'=='11.0'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.Shell.Interop.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+  </Choose>
+  <ItemGroup>
+    <Reference Include="ExceptionReporter.WinForms">
+      <HintPath>..\ServiceMatrix\Libs\ExceptionReporter.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Modeling.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mindscape.WpfDiagramming.Foundation">
+      <HintPath>..\ServiceMatrix\Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.VisualStudio">
+      <HintPath>..\packages\NuGet.VisualStudio\lib\net40\NuGet.VisualStudio.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="VSLangProj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Store">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Store.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Shell">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Core">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Schema">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Schema.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Library">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Common">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Authoring.PatternToolkit.Automation">
+      <HintPath>$(PatternToolkitBuilder)\NuPattern.Authoring.PatternToolkit.Automation.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.VisualStudio">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.VisualStudio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime">
+      <HintPath>$(PatternToolkitRuntime)\Microsoft.Practices.EnterpriseLibrary.Configuration.DesignTime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnyMessageSupport.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Commands\AddEndpointProjectReferences.cs" />
+    <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
+    <Compile Include="Commands\ConditionalCommand.cs" />
+    <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowReplyWithPicker.cs" />
+    <Compile Include="Commands\GenerateProductCodeCommandCustom.cs" />
+    <Compile Include="Commands\ShowCommandTypePickerFromService.cs" />
+    <Compile Include="Commands\ShowEventTypePickerFromService.cs" />
+    <Compile Include="Commands\ShowDeployUnhostedComponentsPicker.cs" />
+    <Compile Include="Commands\ShowNewDiagramCommand.cs" />
+    <Compile Include="Commands\ShowEventComponentPicker.cs" />
+    <Compile Include="Commands\ShowCommandComponentPicker.cs" />
+    <Compile Include="Commands\PackageConfigFilesCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\AddEndpointProjectReferences.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\AddNugetReferencesCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\ExecuteUnfoldEndpointDiagram.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\ProcessRootAfterUnfoldedProject.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\RaiseOnInstantiated.cs" />
+    <Compile Include="Commands\Endpoints\NSBH\SaveProject.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBWeb\OpenComponentCodeCommand.cs" />
+    <Compile Include="Commands\RaisesOnInstantiatedComponent.cs" />
+    <Compile Include="Commands\ShowStartedByPicker.cs" />
+    <Compile Include="Commands\CreateLibraryCodeLinkCommand.cs" />
+    <Compile Include="Commands\CreateLibraryCodeLinksCommand.cs" />
+    <Compile Include="Commands\RemoveLibraryCodeLinkCommand.cs" />
+    <Compile Include="Commands\RemoveLibraryCodeLinksCommand.cs" />
+    <Compile Include="Commands\ShowComponentReferencePicker.cs" />
+    <Compile Include="Commands\ShowUseCaseEventPickerCommand.cs" />
+    <Compile Include="Commands\ShowUseCaseCommandPickerCommand.cs" />
+    <Compile Include="Commands\LibraryAddedCommand.cs" />
+    <Compile Include="Commands\AddReferenceToUseCaseCommand.cs" />
+    <Compile Include="Commands\ChildCommandReference.cs" />
+    <Compile Include="Commands\CollapseFoldersCommand.cs" />
+    <Compile Include="Commands\AddInfrastructureProjectReferences.cs" />
+    <Compile Include="Commands\FileRestoreCommand.cs" />
+    <Compile Include="Commands\CreateCommandComponents.cs" />
+    <Compile Include="Commands\CreateServiceFolderOnEndpoints.cs" />
+    <Compile Include="Commands\DoNothing.cs" />
+    <Compile Include="Commands\OnApplicationLoadedCommand.cs" />
+    <Compile Include="Commands\ResetIsDirtyFlagCommand.cs" />
+    <Compile Include="Commands\ShowCommandTypePicker.cs" />
+    <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
+    <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
+    <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="HandledMessageLink.Design.cs">
+      <DependentUpon>HandledMessageLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandledMessageLink.cs" />
+    <Compile Include="ProcessedCommandLinkReply.cs" />
+    <Compile Include="ProcessedCommandLinkReply.Design.cs">
+      <DependentUpon>ProcessedCommandLinkReply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSolutionBuilder\Converters\ItemIconWithDefaultConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\Converters\MenuGroupingEnumerableConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\Converters\TreeViewItemOrderingConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\CustomSolutionBuilder.cs" />
+    <Compile Include="CustomSolutionBuilder\DataTemplates\ContentControlDataTemplate.cs" />
+    <Compile Include="CustomSolutionBuilder\Data\MenuGroupingEnumerableConverter.cs" />
+    <Compile Include="Diagramming\Converters\DiagramUriToCachedImageConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\IDetailsWindowsManager.cs" />
+    <Compile Include="CustomSolutionBuilder\Infrastructure\LogicalViewModelIconConverter.cs" />
+    <Compile Include="CustomSolutionBuilder\Infrastructure\SolutionBuilderViewModelExtensions.cs" />
+    <Compile Include="CustomSolutionBuilder\ViewModels\DetailsPanelViewModel.cs" />
+    <Compile Include="CustomSolutionBuilder\ViewModels\InnerPanelViewModel.cs" />
+    <Compile Include="CustomSolutionBuilder\ViewModels\LabelProductElementViewModel.cs" />
+    <Compile Include="CustomSolutionBuilder\ViewModels\LogicalViewModel.cs" />
+    <Compile Include="CustomSolutionBuilder\Views\ApplicationPropertiesView.xaml.cs">
+      <DependentUpon>ApplicationPropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSolutionBuilder\Views\ComponentsOrderingView.xaml.cs">
+      <DependentUpon>ComponentsOrderingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSolutionBuilder\Views\DetailsPanel.xaml.cs">
+      <DependentUpon>DetailsPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSolutionBuilder\Views\EndpointDetailsView.xaml.cs">
+      <DependentUpon>EndpointDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSolutionBuilder\Views\LogicalView.xaml.cs">
+      <DependentUpon>LogicalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomSolutionBuilder\Views\NServiceBusDetailsToolWindow.cs" />
+    <Compile Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml.cs">
+      <DependentUpon>ToolbarExtension.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Diagramming\Converters\EndSegmentValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\MiddlePointValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\StartSegmentValueConverter.cs" />
+    <Compile Include="Diagramming\Converters\ValueConverterGroup.cs" />
+    <Compile Include="Diagramming\IDiagramsWindowsManager.cs" />
+    <Compile Include="Diagramming\Styles\DiagramConnectionStyle.xaml.cs">
+      <DependentUpon>DiagramConnectionStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Styles\DiagramMenuItemStyle.xaml.cs">
+      <DependentUpon>DiagramMenuItemStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Styles\DiagramNodeStyle.xaml.cs">
+      <DependentUpon>DiagramNodeStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Styles\DiagramSharedStyle.xaml.cs">
+      <DependentUpon>DiagramSharedStyle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\ChildNode.cs" />
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\GroupableNode.cs" />
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\GroupNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\BaseConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\CommandConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\Connections\EventConnection.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixConnectionBuilder.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramAdapter.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramLayoutAlgorithm.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramMindscapeViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\CommandNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\ComponentNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\EmptyEndpointNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\EndpointNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\EventNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\MessageBaseNode.cs" />
+    <Compile Include="Diagramming\ViewModels\Shapes\ServiceNode.cs" />
+    <Compile Include="Diagramming\Views\AddEndpoint.xaml.cs">
+      <DependentUpon>AddEndpoint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Views\AddService.xaml.cs">
+      <DependentUpon>AddService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Views\Diagram.xaml.cs">
+      <DependentUpon>Diagram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Diagramming\Views\ServiceMatrixDiagramToolWindow.cs" />
+    <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
+      <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\IElementHierarchyPicker.cs" />
+    <Compile Include="Dialog\IEndpointPicker.cs" />
+    <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
+      <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Exceptions\ElementAlreadyExistsException.cs" />
+    <Compile Include="Extensions\ApplicationIsDirty.cs" />
+    <Compile Include="Extensions\StatisticsInformation.cs" />
+    <Compile Include="Infrastructure\RemoveEmptyAddMenus.cs" />
+    <Compile Include="Licensing\Registered.xaml.cs">
+      <DependentUpon>Registered.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Licensing\TrialExpired.xaml.cs">
+      <DependentUpon>TrialExpired.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Licensing\License.cs" />
+    <Compile Include="Licensing\LicenseDescriptor.cs" />
+    <Compile Include="Licensing\LicenseManager.cs" />
+    <Compile Include="Licensing\LicenseType.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\AbstractLicenseValidator.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\ILicensingService.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\InvalidationType.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\ISubscriptionLicensingService.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseExpiredException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseFileNotFoundException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseNotFoundException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseType.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\LicenseValidator.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\RhinoLicensingException.cs" />
+    <Compile Include="Licensing\Rhino.Licensing\StringLicenseValidator.cs" />
+    <Compile Include="Licensing\StringLicenseValidator.cs" />
+    <Compile Include="Infrastructure\StatisticsManager.cs" />
+    <Compile Include="Model\Endpoints.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusHost.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusHostComponents.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVC.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVC.VS$(VsxVersion).cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVCComponentLink.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusMVCComponents.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusWeb.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusWebComponentLink.cs" />
+    <Compile Include="Model\Endpoints\NServiceBusWebComponents.cs" />
+    <Compile Include="Model\IRenameRefactoringNamespace.cs" />
+    <Compile Include="Model\IRenameRefactoringNotSupported.cs" />
+    <Compile Include="Model\IRenameRefactoring.cs" />
+    <Compile Include="IContentViewer.cs" />
+    <Compile Include="Infrastructure\Authentication\AddAuthenticationCommand.cs" />
+    <Compile Include="Infrastructure\Authentication\Application.cs" />
+    <Compile Include="Infrastructure\Authentication\AuthenticationAddedCommand.cs" />
+    <Compile Include="Infrastructure\Authentication\AuthenticationFeature.cs" />
+    <Compile Include="Infrastructure\EmptySettings.cs" />
+    <Compile Include="Infrastructure\Helpers.cs" />
+    <Compile Include="Infrastructure\IInfrastructureFeature.cs" />
+    <Compile Include="Infrastructure\InfrastructureManager.cs" />
+    <Compile Include="Infrastructure\InnerCommandAutomation.cs" />
+    <Compile Include="Infrastructure\MenuCommand.cs" />
+    <Compile Include="Commands\SetStartUpProjects.cs" />
+    <Compile Include="Commands\ShowComponentLinkPicker.cs" />
+    <Compile Include="Commands\ShowComponentLinkPicker.Validation.cs" />
+    <Compile Include="Commands\ShowDeployToPicker.cs" />
+    <Compile Include="Commands\ShowEventSubscriptionPicker.cs">
+      <ItemGuid>99af3b27-5b41-4f2f-bc36-bf304bd10291</ItemGuid>
+    </Compile>
+    <Compile Include="Commands\ShowEventSubscriptionPicker.Validation.cs" />
+    <Compile Include="Commands\ShowEventTypePicker.cs">
+      <ItemGuid>11f5d6f8-979e-4942-8ed2-a6248186b44b</ItemGuid>
+    </Compile>
+    <Compile Include="Commands\ShowEventTypePicker.Validation.cs" />
+    <Compile Include="Commands\ShowSubscriberPicker.cs">
+      <ItemGuid>82028af7-b1d9-4bb5-8546-7781f3eda218</ItemGuid>
+    </Compile>
+    <Compile Include="Commands\ShowSubscriberPicker.Validation.cs" />
+    <Compile Include="Commands\VerifyElementIsValid.cs" />
+    <Compile Include="CommandLink.cs" />
+    <Compile Include="CommandLink.Design.cs">
+      <DependentUpon>CommandLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComponentLink\ComponentLink.Design.cs" />
+    <Compile Include="ComponentLink\IAbstractComponentLink.cs" />
+    <Compile Include="ComponentLink\IAbstractEndpoint.cs" />
+    <Compile Include="ComponentLink\IAbstractEndpointComponents.cs" />
+    <Compile Include="Conditions\HasEndpointDefinedCondition.cs" />
+    <Compile Include="Dialog\EndpointPicker.xaml.cs">
+      <DependentUpon>EndpointPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\GenerateComponentsHandlerOrder.cs" />
+    <Compile Include="Extensions\GenerateMessageConventions.cs" />
+    <Compile Include="Extensions\GenerateUnicastBusConfig.cs" />
+    <Compile Include="Infrastructure\UseCaseFeature.cs" />
+    <Compile Include="INServiceBusMessage.cs" />
+    <Compile Include="Model\Application.cs" />
+    <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\Helpers.cs" />
+    <Compile Include="Model\LibraryReference.cs" />
+    <Compile Include="Infrastructure\RefactoringManager.cs" />
+    <Compile Include="Model\Library.cs" />
+    <Compile Include="Model\Publishes.cs" />
+    <Compile Include="Model\Service.cs" />
+    <Compile Include="Model\Subscribes.cs" />
+    <Compile Include="Model\UseCase.cs" />
+    <Compile Include="Model\UseCaseLink.cs" />
+    <Compile Include="Model\UseCaseStep.cs" />
+    <Compile Include="netfx\System\Dynamic\DynamicReflection.cs" />
+    <Compile Include="netfx\System\Dynamic\OutValue.cs" />
+    <Compile Include="netfx\System\Dynamic\RefValue.cs" />
+    <Compile Include="netfx\System\Dynamic\TypeParameter.cs" />
+    <Compile Include="ProcessedCommandLink.cs" />
+    <Compile Include="ProcessedCommandLink.Design.cs">
+      <DependentUpon>ProcessedCommandLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Design\ElementReferenceConverter.cs" />
+    <Compile Include="Core\Design\ElementReferenceEditor.cs" />
+    <Compile Include="Core\Design\IElementReferenceStrategy.cs" />
+    <Compile Include="Core\ElementReference.cs" />
+    <Compile Include="Core\Extensions\VsShellExtensions.cs" />
+    <Compile Include="DialogWindowFactory.cs" />
+    <Compile Include="Dialog\ComponentPicker.xaml.cs">
+      <DependentUpon>ComponentPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ElementPicker.xaml.cs">
+      <DependentUpon>ElementPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\EventReadOnlyPicker.xaml.cs">
+      <DependentUpon>EventReadOnlyPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\IElementPicker.cs" />
+    <Compile Include="Dialog\IServicePicker.cs" />
+    <Compile Include="Dialog\ServicePicker.xaml.cs">
+      <DependentUpon>ServicePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EventLink.cs" />
+    <Compile Include="EventLink.Design.cs">
+      <DependentUpon>EventLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\SolutionExtensions.cs" />
+    <Compile Include="IDialogWindowFactory.cs" />
+    <Compile Include="INamedInstance.cs" />
+    <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\Commands.cs" />
+    <Compile Include="Model\Events.cs" />
+    <Compile Include="Extensions\ProductElementExtensions.cs" />
+    <Compile Include="Model\IProjectReferenced.cs" />
+    <Compile Include="Model\Component.cs" />
+    <Compile Include="Properties\Resources.Strings.cs">
+      <DependentUpon>Resources.tt</DependentUpon>
+      <SubType>Code</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="SubscribedEventLink.cs" />
+    <Compile Include="SubscribedEventLink.Design.cs">
+      <DependentUpon>SubscribedEventLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolkitConstants.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToolkitConstants.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeConverters\TransportTypeConverter.cs" />
+    <Compile Include="TypeDescriptors\ApplicationFilterPropertiesTypeDescriptionProvider.cs" />
+    <Compile Include="TypeDescriptors\ApplicationFilterPropertiesTypeDescriptor.cs" />
+    <Compile Include="ValidationRules\DeleteMissingArtifactReferences.cs" />
+    <Compile Include="ValueProviders\CodeIdentifierByIdValueProvider.cs" />
+    <Compile Include="ValueProviders\CommandSenderRequiresRegistrationValueProvider.cs" />
+    <Compile Include="ValueProviders\ComponentFromLinkBasedValueProvider.cs" />
+    <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentHandlersCodeProvider.cs" />
+    <Compile Include="ValueProviders\ComponentFuncFromEndpointValueProvider.cs" />
+    <Compile Include="ValueProviders\EndpointHasPublishersValueProvider.cs" />
+    <Compile Include="ValueProviders\Endpoints\ComponentsOrderProvider.cs" />
+    <Compile Include="ValueProviders\Endpoints\MessageConventionsProvider.cs" />
+    <Compile Include="ValueProviders\Endpoints\MessageEndpointMappingsConfigProvider.cs" />
+    <Compile Include="ValueProviders\LatestNuGetPackageVersionValueProvider.cs" />
+    <Compile Include="ValueProviders\NamespaceForEndpointProjectValueProvider.cs" />
+    <Compile Include="ValueProviders\ParentComponentPublishesAnEventValueProvider.cs" />
+    <Compile Include="ValueProviders\ProcessedEventLinkHandlerNameProvider.cs" />
+    <Compile Include="ValueProviders\ServiceControlInstanceURIValueProvider.cs" />
+    <Compile Include="ValueProviders\ToolkitVersionValueProvider.cs" />
+    <Compile Include="VersionHelper.cs" />
+    <Compile Include="GeneratedCode\ServiceMatrix\CollectionImplementation.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>5aadc4e7-1ac5-420e-ab3d-21a6584e3d89</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\CollectionInterface.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>7e26cfea-8908-45d7-be31-c3683e27407c</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ElementImplementation.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>e7506f7d-3226-4ea2-9f29-9e722731eed2</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ElementInterface.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>b9213604-e0de-42ec-b4a7-f135976ff072</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ExtensionPointImplementation.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>73c36e63-ee7a-4413-80df-6b1574f10e7f</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ExtensionPointInterface.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>1d96ad4a-4ce5-4032-94e4-e96766c094d2</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ProductImplementation.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>d519e1d0-d519-45dc-811e-b130499b42b2</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ProductInterface.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>1664b587-b114-45c4-984f-9f693654aa87</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ViewImplementation.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>7b629b7f-f695-41f8-89c9-71db1a0a14d9</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\ServiceMatrix\ViewInterface.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <ItemGuid>9a04038f-53ef-422c-9979-9fdd13acf327</ItemGuid>
+    </Compile>
+    <Compile Include="Core\IElementReference.cs" />
+    <Compile Include="IToolkitElement.cs" />
+    <Compile Include="netfx\System\StringFormatWith.cs" />
+    <Compile Include="ObjectExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\PropertyReference.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedCode\ToolkitElement.Generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ToolkitElement.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CustomSolutionBuilder\Views\VsVersionStyles.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VsVersionStyles.gen.xaml</LastGenOutput>
+    </None>
+    <None Include="NServiceBus.Tools.snk" />
+    <None Include="GeneratedCode\ToolkitElement.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Resources.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Resources.Strings.cs</LastGenOutput>
+    </None>
+    <None Include="ripple.dependencies.config" />
+    <None Include="ToolkitConstants.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ToolkitConstants.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="CustomSolutionBuilder\Views\ApplicationPropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\ComponentsOrderingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\DetailsPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\EndpointDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\LogicalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\ToolbarExtension.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomSolutionBuilder\Views\VsVersionStyles.gen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VsVersionStyles.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramConnectionStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramMenuItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramNodeStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Styles\DiagramSharedStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Diagramming\Views\AddEndpoint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagramming\Views\AddService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Diagramming\Views\Diagram.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\ComponentPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\ElementHierarchyPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\UseCaseComponentPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\EndpointPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\ElementPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\EventReadOnlyPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\ServicePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Licensing\Registered.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Licensing\TrialExpired.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Events\" />
+    <Folder Include="WizardExtensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddProduct.png" />
+    <Resource Include="Resources\CollapseAll.png" />
+    <Resource Include="Resources\Collection.png" />
+    <Resource Include="Resources\Element.png" />
+    <Resource Include="Resources\ExpandAll.png" />
+    <Resource Include="Resources\Guidance.png" />
+    <Resource Include="Resources\Installed.png" />
+    <Resource Include="Resources\Product.png" />
+    <Resource Include="Resources\ProductLarge.png" />
+    <Resource Include="Resources\ProductUninstalled.png" />
+    <Resource Include="Resources\Properties.png" />
+    <Resource Include="Resources\Remove.png" />
+    <Resource Include="Resources\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NServiceBusView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Hierarchy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ServiceMatrixBanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlackArrowIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\CommandIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\ComponentIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\EmptyEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\EndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\EventIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\ServiceIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\WhiteArrowIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\ZoomIn.png" />
+    <Resource Include="Diagramming\Styles\Images\ZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlueEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\BlueServiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\GrayEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\GrayServiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MenuItems\CommandProperties.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MenuItems\PublishEvent.png" />
+    <Resource Include="Diagramming\Styles\Images\MenuItems\SendCommand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\BlackEndpointIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\BlackServiceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\WhiteEndpointIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CanvasView.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\SolutionBuilder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MenuItems\ReplyCommand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\MessageIcon.png" />
+    <Resource Include="Diagramming\Styles\Images\SagaComponentIcon.png" />
+  </ItemGroup>
+  <!-- Properties for Toolkit Targets -->
+  <PropertyGroup>
+    <CopyVsixDebuggingDependencies>false</CopyVsixDebuggingDependencies>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\BuildConfiguration.targets" />
+  <PropertyGroup>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartAction>Program</StartAction>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
+  <Import Project="$(SolutionDir)..\BuildSupport\GitFlowVersion\Build\GitFlowVersionTask.targets" />
+</Project>
