@@ -4504,7 +4504,7 @@
   }
 ]</conditions>
     </menuSettings>
-    <menuSettings Id="f532af10-b1e4-4267-9209-8c3a7536137d" text="Open Code" commandId="db0a6380-180b-410f-982b-f3d1589111f3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="5">
+    <menuSettings Id="f532af10-b1e4-4267-9209-8c3a7536137d" text="View Code" commandId="db0a6380-180b-410f-982b-f3d1589111f3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="5">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ca932548-0b1d-4164-a041-d5ae011cfb3e" />
       </extendedElement>
@@ -4515,7 +4515,7 @@
   }
 ]</conditions>
     </menuSettings>
-    <menuSettings Id="3abde7cb-1a33-445d-9919-959174e5e5a3" text="Open Code" commandId="83bf9ff8-7b4c-4a1c-b46d-46c568aeb158" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="105">
+    <menuSettings Id="3abde7cb-1a33-445d-9919-959174e5e5a3" text="View Code" commandId="83bf9ff8-7b4c-4a1c-b46d-46c568aeb158" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="105">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="56bfa0a5-d26d-46d7-adcd-e65a4fb0dfb2" />
       </extendedElement>
