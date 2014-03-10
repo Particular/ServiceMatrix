@@ -41,7 +41,7 @@ namespace NServiceBusStudio.Automation.Extensions
                         {
                             foreach (var endpointHost in FindComponentHostEndpoints(endpoints, componentProcessingCommand))
                             {
-                                if (endpointHost != null && endpoint.InstanceName != endpointHost.InstanceName)
+                                if (endpointHost != null)
                                 {
                                     sb.AppendLine(String.Format("<add Messages=\"{0}\" Endpoint=\"{1}\" />",
                                         command.Parent.Namespace + "." + command.CodeIdentifier + ", " + app.InternalMessagesProjectName,
