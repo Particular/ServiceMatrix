@@ -174,24 +174,20 @@ namespace NServiceBusStudio
         {
             var project = endpoint.Project;
 
-            if (this.IsProcessor || this.IsSender)
-            {
+            // 1. Add Links for Custom Code
+            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
+            AddLinkToProject(project, this.As<IProductElement>(), customCodePath,
+                items => items.First(i =>
+                    Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) != "Infrastructure"
+                ));
 
-                // 1. Add Links for Custom Code
-                var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
-                AddLinkToProject(project, this.As<IProductElement>(), customCodePath,
-                    items => items.First(i =>
-                        Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) != "Infrastructure"
-                    ));
+            //2. Add Links for Infrastructure Code
+            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", true);
+            AddLinkToProject(project, this.As<IProductElement>(), infraCodePath,
+                items => items.First(i =>
+                    Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) == "Infrastructure"
+                ));
 
-                //2. Add Links for Infrastructure Code
-                var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", true);
-                AddLinkToProject(project, this.As<IProductElement>(), infraCodePath,
-                    items => items.First(i =>
-                        Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) == "Infrastructure"
-                    ));
-
-            }
 
             // 3. Add Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
@@ -226,18 +222,14 @@ namespace NServiceBusStudio
             if (project == null)
                 return;
 
-            if (this.IsProcessor || this.IsSender)
-            {
-                
-                // 1. Remove Links for Custom Code
-                var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
-                RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", customCodePath);
+            // 1. Remove Links for Custom Code
+            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
+            RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", customCodePath);
 
-                //2. Remove Links for Infrastructure Code
-                var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", false);
-                RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", infraCodePath);
+            //2. Remove Links for Infrastructure Code
+            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", false);
+            RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", infraCodePath);
 
-            }
 
             // 3. Remove Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
