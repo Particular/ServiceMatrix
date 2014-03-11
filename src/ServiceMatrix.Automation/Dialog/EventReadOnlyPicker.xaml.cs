@@ -14,18 +14,18 @@ using System.Windows.Shapes;
 using NuPattern.Runtime;
 using System.Windows.Markup;
 using NuPattern.Presentation;
+using System.Collections.ObjectModel;
 
 namespace NServiceBusStudio.Automation.Dialog
 {
     /// <summary>
     /// Interaction logic for EventReadOnlyPicker.xaml
     /// </summary>
-    public partial class EventReadOnlyPicker : CommonDialogWindow, IDialogWindow, IElementPicker, IComponentConnector
+    public partial class EventReadOnlyPicker : CommonDialogWindow, IDialogWindow, IEventPicker, IComponentConnector
     {
         public EventReadOnlyPicker()
         {
             InitializeComponent();
-            this.SelectedItem = "";
         }
 
         protected override void OnActivated(EventArgs e)
@@ -40,20 +40,21 @@ namespace NServiceBusStudio.Automation.Dialog
             set;
         }
 
-        public ICollection<string> Elements
+        public ObservableCollection<string> Elements
         {
             get;
             set;
         }
 
-        public string SelectedItem
+        public ICollection<string> SelectedItems
         {
             get;
-            set;
+            private set;
         }
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
+            this.SelectedItems = this.EventList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
             this.DialogResult = true;
             this.Close();
         }

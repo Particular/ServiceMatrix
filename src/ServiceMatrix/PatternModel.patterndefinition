@@ -445,11 +445,6 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="142936e0-8548-4b8d-a8b1-5cfb2c92a56e" typeId="NServiceBusStudio.Automation.Commands.ShowEventSubscriptionPicker">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="cd9a1b1d-2eee-4cc0-8222-e852dc126e49" />
-      </extendedElement>
-    </commandSettings>
     <commandSettings Id="75d3d1f8-ab84-48a5-aabe-bef2ff81d693" typeId="NServiceBusStudio.Automation.Commands.CollapseFoldersCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="5bb20741-cddc-4f21-aa21-c5deae208c2a" />
@@ -4510,11 +4505,6 @@
         <automationSettingsSchemaMoniker Id="e3ea3a92-6c74-4192-b127-db1db151eea3" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="7e7b9963-a6bf-4ff4-9dc1-82f12aecc679" text="Process Messages…" commandId="142936e0-8548-4b8d-a8b1-5cfb2c92a56e" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="ca079ca9-3b29-4ab8-9921-cdf575be22d2" />
-      </extendedElement>
-    </menuSettings>
     <menuSettings Id="2c1c62df-1ee5-42e8-90e2-bcb3c21eaa6c" text="Deploy Component..." commandId="ccd80bf1-1638-4cb5-ae70-a1539dbaf6de" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d6cc507d-ea29-493a-82be-29644608715c" />
@@ -6750,6 +6740,24 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
+                          <automationSettings Id="73dbeed0-cf15-4938-bfb1-a0238f2980dd" name="SubscribeMenu" displayName="Subscribe Menu" description="" codeIdentifier="SubscribeMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="ac39fe29-d99f-49ce-b52f-8299ff1ab0f9" name="SubscribeCommand" displayName="Subscribe Command" description="" codeIdentifier="SubscribeCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
                         </automationSettings>
                         <childElement>
                           <collection Id="318cc384-e8ba-465f-8469-1235fce91ef0" name="Publishes" displayName="Publishes / Sends" description="Publishes / Sends" codeIdentifier="Publishes">
@@ -7103,26 +7111,6 @@
                                 <setting propertyId="IsVisible" />
                               </settings>
                             </customizationPolicy>
-                            <automationSettings>
-                              <automationSettings Id="ca079ca9-3b29-4ab8-9921-cdf575be22d2" name="SubscriptionPickerMenu" displayName="Subscription Picker Menu" description="" codeIdentifier="SubscriptionPickerMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                                <customizationPolicy name="CustomizationPolicySchema1">
-                                  <settings>
-                                    <setting propertyId="DisplayName" />
-                                    <setting propertyId="Description" />
-                                    <setting propertyId="Settings" />
-                                  </settings>
-                                </customizationPolicy>
-                              </automationSettings>
-                              <automationSettings Id="cd9a1b1d-2eee-4cc0-8222-e852dc126e49" name="ShowSubscriptionPicker" displayName="Show Subscription Picker" description="" codeIdentifier="ShowSubscriptionPicker" automationType="Command">
-                                <customizationPolicy name="CustomizationPolicySchema1">
-                                  <settings>
-                                    <setting propertyId="DisplayName" />
-                                    <setting propertyId="Description" />
-                                    <setting propertyId="Settings" />
-                                  </settings>
-                                </customizationPolicy>
-                              </automationSettings>
-                            </automationSettings>
                             <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
                               <element Id="75f698c0-fb68-4f37-b015-82cd5a1e367c" name="SubscribedEventLink" displayName="Subscribed Event Link" description="A subscribed event." codeIdentifier="SubscribedEventLink" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/Link.png">
                                 <customizationPolicy name="CustomizationPolicySchema1">
