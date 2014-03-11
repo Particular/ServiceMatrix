@@ -1,0 +1,18 @@
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var imessage = ((IProductElement)this.Element).As<NServiceBusStudio.IMessage>(); #>
+using System;
+
+namespace <#= imessage.Parent.Namespace #>
+{
+    public class <#= imessage.CodeIdentifier #>
+    {
+    }
+}

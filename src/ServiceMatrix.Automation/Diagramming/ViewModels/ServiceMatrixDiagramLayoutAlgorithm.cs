@@ -100,7 +100,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     x = Endpoint_RightAlignment;
                 }
             }
-            else if (node is CommandNode || node is EventNode)
+            else if (node is CommandNode || node is EventNode || node is MessageNode)
             {
                 x = Message_Alignment;
             }

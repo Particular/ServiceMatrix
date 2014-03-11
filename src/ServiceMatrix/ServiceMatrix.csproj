@@ -928,6 +928,11 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>763f7314-340f-4f5a-bc21-92397b1a489a</ItemGuid>
     </Content>
+    <Content Include="T\T4\CustomMessageDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>
