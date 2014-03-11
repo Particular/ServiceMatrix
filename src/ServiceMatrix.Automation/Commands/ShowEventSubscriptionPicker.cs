@@ -9,6 +9,7 @@ using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
 using NuPattern.Diagnostics;
 using NuPattern.Presentation;
+using System.Collections.ObjectModel;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -39,7 +40,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        public ISubscribes CurrentElement
+        public IComponent CurrentElement
         {
             get;
             set;
@@ -54,27 +55,25 @@ namespace NServiceBusStudio.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var events = CurrentElement.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event);
-            var eventNames = events.Select(e => e.InstanceName);
-            var picker = WindowFactory.CreateDialog<EventReadOnlyPicker>() as IElementPicker;
+            var events = CurrentElement.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event);
 
-            picker.Elements = eventNames.Union(new string[] {AnyMessageSupport.TextForUI}).ToList();
-            picker.Title = "Process Messages…";
+            // Filter those events that already processed by the component
+            events = events.Where(e => !CurrentElement.Subscribes.SubscribedEventLinks.Any(el => el.EventReference.Value == e));
+
+            // Get event names
+            var existingEventNames = events.Select(e => e.InstanceName);
+            var picker = WindowFactory.CreateDialog<EventReadOnlyPicker>() as IEventPicker;
+            picker.Elements = new ObservableCollection<string>(existingEventNames);
+            picker.Title = "Subscribe to Event";
 
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().Value)
                 {
-                    var selectedElement = picker.SelectedItem;
-                    var selectedEvent = default(IEvent);
-                    if (selectedElement == AnyMessageSupport.TextForUI)
+                    foreach (var selectedElement in picker.SelectedItems)
                     {
-                        CurrentElement.CreateSubscribedEventLink(AnyMessageSupport.TextForUI, p => p.EventReference.Value = null);
-                    }
-                    else if (eventNames.Contains(selectedElement))
-                    {
-                        selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                        CurrentElement.CreateLink(selectedEvent);
+                        var selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                        CurrentElement.Subscribes.CreateLink(selectedEvent);
                     }
                 }
             }

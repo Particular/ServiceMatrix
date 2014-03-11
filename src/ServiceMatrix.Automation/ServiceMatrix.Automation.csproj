@@ -190,6 +190,7 @@
     <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="Dialog\IEventPicker.cs" />
     <Compile Include="HandledMessageLink.Design.cs">
       <DependentUpon>HandledMessageLink.cs</DependentUpon>
     </Compile>
