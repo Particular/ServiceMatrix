@@ -44,7 +44,7 @@ namespace AbstractEndpoint.Automation.Dialog
         public ICollection<string> SelectedItems
         {
             get;
-            private set;
+            set;
         }
 
         public string ComponentName

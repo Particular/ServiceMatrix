@@ -43,7 +43,7 @@ namespace NServiceBusStudio.Automation.Dialog
         public ICollection<string> SelectedItems
         {
             get;
-            private set;
+            set;
         }
 
         private void ok_Click(object sender, RoutedEventArgs e)

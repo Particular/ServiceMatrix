@@ -145,6 +145,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />
     <Compile Include="Commands\ShowReplyWithPicker.cs" />
     <Compile Include="Commands\GenerateProductCodeCommandCustom.cs" />
     <Compile Include="Commands\ShowCommandTypePickerFromService.cs" />
@@ -186,10 +187,16 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
+    <Compile Include="Conditions\IsSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
     <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="Dialog\SagaStarterPicker.xaml.cs">
+      <DependentUpon>SagaStarterPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\IEventPicker.cs" />
     <Compile Include="HandledMessageLink.Design.cs">
       <DependentUpon>HandledMessageLink.cs</DependentUpon>
     </Compile>
@@ -606,6 +613,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialog\ComponentPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\SagaStarterPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
