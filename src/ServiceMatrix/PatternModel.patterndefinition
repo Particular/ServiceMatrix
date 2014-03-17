@@ -4490,6 +4490,16 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="3e8f946a-4da7-4322-8a92-83e4ea41ec48" typeId="NServiceBusStudio.Automation.Commands.ShowEventSubscriptionPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="6019e092-02d8-4308-ae0b-3c83f090169a" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" typeId="NServiceBusStudio.Automation.Commands.ShowComponentSagaStarterPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="ca37be2c-21fa-46db-aaa0-1e2e1cce5582" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -4521,7 +4531,7 @@
   }
 ]</conditions>
     </menuSettings>
-    <menuSettings Id="f532af10-b1e4-4267-9209-8c3a7536137d" text="View Code" commandId="db0a6380-180b-410f-982b-f3d1589111f3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="5">
+    <menuSettings Id="f532af10-b1e4-4267-9209-8c3a7536137d" text="View Code" commandId="db0a6380-180b-410f-982b-f3d1589111f3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ca932548-0b1d-4164-a041-d5ae011cfb3e" />
       </extendedElement>
@@ -4562,7 +4572,7 @@
         <automationSettingsSchemaMoniker Id="6eba235c-9265-44ef-a288-85e7bc014a08" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
+    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="300">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" />
       </extendedElement>
@@ -4717,6 +4727,33 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="23fa6c20-9c4f-46e8-9c40-516d0e00320d" />
       </extendedElement>
+    </menuSettings>
+    <menuSettings Id="1a8c66f4-7bfc-4b74-89e5-cd76decd1f97" text="Subscribe to Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="3e8f946a-4da7-4322-8a92-83e4ea41ec48" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="5">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0e0914cd-1f02-49cf-9f10-8d3a3e171baa" />
+      </extendedElement>
+    </menuSettings>
+    <menuSettings Id="8ec6a8a5-d12c-4319-9275-ed7177fe4830" text="Configure Saga..." commandId="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="101">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="320220cd-2094-42c4-9886-c24f0e005daa" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsSagaComponentCondition",
+    "Properties": []
+  }
+]</conditions>
+    </menuSettings>
+    <menuSettings Id="d4d8590d-99b9-46da-8c44-c3ce44573056" text="Convert into Saga..." commandId="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0f80624d-99d5-485a-a410-50925cc7e424" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsNotSagaComponentCondition",
+    "Properties": []
+  }
+]</conditions>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
       <extendedElement>
@@ -6740,7 +6777,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="73dbeed0-cf15-4938-bfb1-a0238f2980dd" name="SubscribeMenu" displayName="Subscribe Menu" description="" codeIdentifier="SubscribeMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                          <automationSettings Id="0e0914cd-1f02-49cf-9f10-8d3a3e171baa" name="SubscribeMenu" displayName="Subscribe Menu" description="" codeIdentifier="SubscribeMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -6749,7 +6786,34 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="ac39fe29-d99f-49ce-b52f-8299ff1ab0f9" name="SubscribeCommand" displayName="Subscribe Command" description="" codeIdentifier="SubscribeCommand" automationType="Command">
+                          <automationSettings Id="6019e092-02d8-4308-ae0b-3c83f090169a" name="SubscribeCommand" displayName="Subscribe Command" description="" codeIdentifier="SubscribeCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="ca37be2c-21fa-46db-aaa0-1e2e1cce5582" name="ConfigureSagaCommand" displayName="Configure Saga Command" description="" codeIdentifier="ConfigureSagaCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="320220cd-2094-42c4-9886-c24f0e005daa" name="ConfigureSagaMenu" displayName="Configure Saga Menu" description="" codeIdentifier="ConfigureSagaMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="0f80624d-99d5-485a-a410-50925cc7e424" name="ConvertIntoSagaMenu" displayName="Convert Into Saga Menu" description="" codeIdentifier="ConvertIntoSagaMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />

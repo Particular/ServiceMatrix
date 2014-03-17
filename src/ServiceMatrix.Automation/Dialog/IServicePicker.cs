@@ -11,7 +11,7 @@ namespace NServiceBusStudio.Automation.Dialog
         bool? ShowDialog();
 
         ObservableCollection<string> Elements { get; set; }
-        ICollection<string> SelectedItems { get; }
+        ICollection<string> SelectedItems { get; set;  }
         string Title { get; set; }
     }
 }
