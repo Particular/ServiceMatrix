@@ -4744,7 +4744,7 @@
   }
 ]</conditions>
     </menuSettings>
-    <menuSettings Id="d4d8590d-99b9-46da-8c44-c3ce44573056" text="Convert into Saga..." commandId="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" wizardId="00000000-0000-0000-0000-000000000000">
+    <menuSettings Id="d4d8590d-99b9-46da-8c44-c3ce44573056" text="Convert to Saga..." commandId="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0f80624d-99d5-485a-a410-50925cc7e424" />
       </extendedElement>
@@ -6813,7 +6813,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="0f80624d-99d5-485a-a410-50925cc7e424" name="ConvertIntoSagaMenu" displayName="Convert Into Saga Menu" description="" codeIdentifier="ConvertIntoSagaMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                          <automationSettings Id="0f80624d-99d5-485a-a410-50925cc7e424" name="ConvertToSagaMenu" displayName="Convert To Saga Menu" description="" codeIdentifier="ConvertToSagaMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
