@@ -145,6 +145,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\LinkComponentSagaCodeFiles.cs" />
     <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />
     <Compile Include="Commands\ShowReplyWithPicker.cs" />
     <Compile Include="Commands\GenerateProductCodeCommandCustom.cs" />
