@@ -24,8 +24,12 @@ namespace NServiceBusStudio
         void DeployTo(IAbstractEndpoint endpoint);
         void Publish(IEvent @event);
         void Subscribe(ICommand command);
-        void RemoveLinks(IAbstractEndpoint endpoint);
+        
         void AddLinks(IAbstractEndpoint endpoint);
+        void AddSagaLinks(IAbstractEndpoint endpoint);
+
+        void RemoveLinks(IAbstractEndpoint endpoint);
+        void RemoveSagaLinks(IAbstractEndpoint endpoint);
 
         bool IsSender { get; }
         bool IsProcessor { get; }
@@ -213,6 +217,34 @@ namespace NServiceBusStudio
 
                 AddLinkToProject(project, element, suggestedPath, i => i.First());
             }
+
+
+            // Continue adding links to Saga Files
+            this.AddSagaLinks(endpoint);
+        }
+
+        public void AddSagaLinks(IAbstractEndpoint endpoint)
+        {
+            var project = endpoint.Project;
+
+            if (project == null)
+                return;
+
+            if (this.IsSaga)
+            {
+                // 4. Add Links for Saga Code
+                var customSagaPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
+                AddLinkToProject(project, this.As<IProductElement>(), customSagaPath,
+                    items => items.First(i =>
+                        Path.GetFileNameWithoutExtension(i.PhysicalPath).EndsWith("SagaData")
+                    ));
+
+                // 5. Add Links for Saga ConfigureHowToFindSaga Code
+                AddLinkToProject(project, this.As<IProductElement>(), customSagaPath,
+                    items => items.First(i =>
+                        Path.GetFileNameWithoutExtension(i.PhysicalPath).EndsWith("ConfigureHowToFindSaga")
+                    ));
+            }
         }
 
         public void RemoveLinks(IAbstractEndpoint endpoint)
@@ -254,6 +286,25 @@ namespace NServiceBusStudio
                 var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
                 RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
             }
+
+            // Continue removing links to Saga Files
+            this.RemoveSagaLinks(endpoint);
+        }
+
+        public void RemoveSagaLinks(IAbstractEndpoint endpoint)
+        {
+            var project = endpoint.Project;
+
+            if (project == null)
+                return;
+
+            var sagaCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
+
+            //4. Remove Links for Saga Code
+            RemoveLinkFromProject(project, this.OriginalInstanceName + "SagaData.cs", sagaCodePath);
+
+            //4. Remove Links for Saga Code
+            RemoveLinkFromProject(project, this.OriginalInstanceName + "ConfigureHowToFindSaga.cs", sagaCodePath);
         }
 
         private static void AddLinkToProject(IProject project, IProductElement element, string suggestedPath, Func<IEnumerable<IItem>, IItem> filter)

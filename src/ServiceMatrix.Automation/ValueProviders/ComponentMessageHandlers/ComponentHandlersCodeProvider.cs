@@ -174,6 +174,13 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                     
                 }
 
+                if (this.Component.IsSaga)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("			// Check if Saga is Completed ");
+                    sb.AppendLine("			CheckIfAllMessagesReceived();");
+                }
+
                 sb.AppendLine("		}");
             }
 
@@ -228,11 +235,28 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             foreach (var typename in this.Component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.CodeIdentifier))
             {
                 sb.AppendLine();
-                sb.AppendLine("		public void Handle(" + typename + " message)");
-                sb.AppendLine("		{");
-                sb.AppendLine("			// Handle message on partial class");
-                sb.AppendLine("			this.HandleImplementation(message);");
-                sb.AppendLine("		}");
+                sb.AppendLine("    public void Handle(" + typename + " message)");
+                sb.AppendLine("    {");
+
+                if (this.Component.IsSaga)
+                {
+                    sb.AppendLine("        // Store message in Saga Data for later use");
+                    sb.AppendLine("        this.Data." + typename + " = message;");
+                }
+
+                sb.AppendLine();
+                sb.AppendLine("        // Handle message on partial class");
+                sb.AppendLine("        this.HandleImplementation(message);");
+                
+
+                if (this.Component.IsSaga)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("        // Check if Saga is Completed ");
+                    sb.AppendLine("        CheckIfAllMessagesReceived();");
+                }
+
+                sb.AppendLine("    }");
             }
 
             foreach (var typename in this.Component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.CodeIdentifier))
@@ -248,18 +272,33 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("        public IBus Bus { get; set; }");
             }
 
-            if (this.Component.Publishes.CommandLinks.Any(cl => true))
+            if (this.Component.IsSaga)
             {
                 sb.AppendLine();
-                sb.AppendLine("        public class " + this.Component.CodeIdentifier + "Registration : INeedInitialization");
+                sb.AppendLine("        public void CheckIfAllMessagesReceived()");
                 sb.AppendLine("        {");
-                sb.AppendLine("            public void Init()");
+                sb.AppendLine("            if (" + String.Join (" && ", this.TypeNames.Select(x => "this.Data." + x + " != null")) + ")");
                 sb.AppendLine("            {");
-                sb.AppendLine("                Configure.Instance.Configurer.ConfigureComponent<" + this.Component.CodeIdentifier + ">(DependencyLifecycle.InstancePerCall);");
+                sb.AppendLine("                AllMessagesReceived();");
                 sb.AppendLine("            }");
                 sb.AppendLine("        }");
+
                 sb.AppendLine();
+                sb.AppendLine("        partial void AllMessagesReceived();");
             }
+
+            //if (this.Component.Publishes.CommandLinks.Any(cl => true))
+            //{
+            //    sb.AppendLine();
+            //    sb.AppendLine("        public class " + this.Component.CodeIdentifier + "Registration : INeedInitialization");
+            //    sb.AppendLine("        {");
+            //    sb.AppendLine("            public void Init()");
+            //    sb.AppendLine("            {");
+            //    sb.AppendLine("                Configure.Instance.Configurer.ConfigureComponent<" + this.Component.CodeIdentifier + ">(DependencyLifecycle.InstancePerCall);");
+            //    sb.AppendLine("            }");
+            //    sb.AppendLine("        }");
+            //    sb.AppendLine();
+            //}
 
 
             if (this.Component.IsSaga)
@@ -274,6 +313,10 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine();
 
                 foreach (var typename in this.TypeNames)
+                {
+                    sb.AppendLine("           public virtual " + typename + " " + typename + " { get; set; }");
+                }
+                foreach (var typename in this.Component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.CodeIdentifier))
                 {
                     sb.AppendLine("           public virtual " + typename + " " + typename + " { get; set; }");
                 }
