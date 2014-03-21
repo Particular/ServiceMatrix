@@ -509,7 +509,6 @@
     </Compile>
     <Compile Include="Core\IElementReference.cs" />
     <Compile Include="IToolkitElement.cs" />
-    <Compile Include="netfx\System\StringFormatWith.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\PropertyReference.cs" />
