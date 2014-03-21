@@ -16,6 +16,7 @@ using NServiceBusStudio.Automation.Commands;
 using NuGet.VisualStudio;
 using NuPattern.VisualStudio;
 using NServiceBusStudio.Automation.ValueProviders;
+using System.Diagnostics;
 
 namespace NServiceBusStudio
 {
@@ -169,7 +170,22 @@ namespace NServiceBusStudio
                                             1);
 
                 // Start ServiceInsight with parameters
-                System.Diagnostics.Process.Start(url);
+                Process ServiceInsightProcess = null;
+
+                if (ServiceInsightProcessId != 0)
+                {
+                    try
+                    {
+                        ServiceInsightProcess = Process.GetProcessById(ServiceInsightProcessId);
+                    }
+                    catch(Exception) { }
+                }
+
+                if (ServiceInsightProcess == null)
+                {
+                    var process = System.Diagnostics.Process.Start(url);
+                    ServiceInsightProcessId = process.Id;
+                }
             }
         }
 
@@ -365,6 +381,8 @@ namespace NServiceBusStudio
 
 
         public EnvDTE.DebuggerEvents DebuggerEvents { get; set; }
+
+        public int ServiceInsightProcessId { get; set; }
     }
 
     public enum TransportType

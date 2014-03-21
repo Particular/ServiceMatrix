@@ -1,0 +1,24 @@
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var icomponent = ((IProductElement)this.Element).As<IComponent>(); #>
+using System;
+using NServiceBus;
+<#= icomponent.AdditionalUsings #>
+
+namespace <#= icomponent.Namespace #>
+{
+    public partial class <#= icomponent.CodeIdentifier #>
+    {
+        public override void ConfigureHowToFindSaga()
+        {
+            // ConfigureMapping</* message class */>(m => /* specify message property */).ToSaga(s =>  /* specify saga property */ );
+        }
+    }
+}

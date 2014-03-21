@@ -102,9 +102,11 @@ namespace NServiceBusStudio.Automation.Commands
                         var result = MessageBox.Show(String.Format("Convert ‘{0}’ to saga to correlate between request and response?", senderComponent.CodeIdentifier), "ServiceMatrix - Saga recommendation", MessageBoxButton.OKCancel);
                         if (result == MessageBoxResult.OK)
                         {
-                            senderComponent.IsSaga = true;
-                            senderComponent.Subscribes.ProcessedCommandLinks.ForEach (x => x.StartsSaga = true);
-                            senderComponent.Subscribes.SubscribedEventLinks.ForEach(x => x.StartsSaga = true);
+                            new ShowComponentSagaStarterPicker()
+                            {
+                                WindowFactory = this.WindowFactory,
+                                CurrentElement = senderComponent
+                            }.Execute();
                         }
                     }
                 }

@@ -20,6 +20,7 @@ using NuPattern.Runtime.UI.ViewModels;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Licensing;
 using NServiceBusStudio.Automation.Commands;
+using System.Diagnostics;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
@@ -195,9 +196,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             var url = String.Format(@"http://particular.net/support?caller=serviceMatrix&smversion={0}&vsversion={1}",
                                     System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetOperatingSystemVersion()),
                                     System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetVisualStudioVersion(this.ServiceProvider.GetService<EnvDTE.DTE>())));
-            var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
-            var frame = default(IVsWindowFrame);
-            vsWebBroserService.Navigate(url, 1, out frame);
+            //var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
+            //var frame = default(IVsWindowFrame);
+            //vsWebBroserService.Navigate(url, 1, out frame);
+
+            Process.Start(new ProcessStartInfo(url));
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
