@@ -19,11 +19,11 @@ using System.Collections.ObjectModel;
 namespace NServiceBusStudio.Automation.Dialog
 {
     /// <summary>
-    /// Interaction logic for EventReadOnlyPicker.xaml
+    /// Interaction logic for SagaStarterPicker.xaml
     /// </summary>
-    public partial class EventReadOnlyPicker : CommonDialogWindow, IDialogWindow, IEventPicker, IComponentConnector
+    public partial class SagaStarterPicker : CommonDialogWindow, IDialogWindow, IEventPicker, IComponentConnector
     {
-        public EventReadOnlyPicker()
+        public SagaStarterPicker()
         {
             InitializeComponent();
         }
@@ -40,6 +40,16 @@ namespace NServiceBusStudio.Automation.Dialog
             set;
         }
 
+        public ObservableCollection<SagaStarter> InternalElements
+        {
+            get
+            {
+                var list = new List<SagaStarter>();
+                this.Elements.ToList().ForEach(x => list.Add(new SagaStarter() { Name = x, IsSelected = this.SelectedItems.Contains(x) }));
+                return new ObservableCollection<SagaStarter>(list);
+            }
+        }
+
         public ObservableCollection<string> Elements
         {
             get;
@@ -54,10 +64,16 @@ namespace NServiceBusStudio.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedItems = this.EventList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            this.SelectedItems = this.MessagesList.Items.OfType<SagaStarter>().Where(x => x.IsSelected).Select(x => x.Name).ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
             this.DialogResult = true;
             this.Close();
         }
+    }
+
+    public class SagaStarter
+    {
+        public string Name { get; set; }
+        public bool IsSelected { get; set; }
     }
 
 }

@@ -238,6 +238,17 @@ namespace AbstractEndpoint
                     throw new NotImplementedException();
                 }
             }
+
+
+            public void AddSagaLinks(IAbstractEndpoint endpoint)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void RemoveSagaLinks(IAbstractEndpoint endpoint)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

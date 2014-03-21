@@ -71,6 +71,7 @@ using NServiceBus;
 			// Send Commands
       foreach (var command in commands)
       {
+          var component = sendercomponents.First(c => c.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == command));
 
       #>
 
@@ -79,13 +80,13 @@ using NServiceBus;
         //
         // POST: /TestMessages/SendMessage<#= command.CodeIdentifier #>
           
-        public I<#= command.CodeIdentifier #>Sender <#= command.CodeIdentifier #>Sender { get; set; }
+        public I<#= component.CodeIdentifier #> <#= component.CodeIdentifier #> { get; set; }
           
         [HttpPost]
         public ActionResult SendMessage<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> <#= command.CodeIdentifier #>)
         {
             Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #>);
-            <#= command.CodeIdentifier #>Sender.Send(<#= command.CodeIdentifier #>);
+            <#= component.CodeIdentifier #>.Send(<#= command.CodeIdentifier #>);
 
             ViewBag.MessageSent = "<#= command.CodeIdentifier #>";
 
@@ -94,15 +95,15 @@ using NServiceBus;
 
 		<#
 
-			}
+		}
 
-			// Send Events
-			foreach (var @event in events)
-			{
-
+		// Send Events
+		foreach (var @event in events)
+		{
+            
 		#>
 
-		    //
+		//
         // POST: /TestMessages/SendMessage<#= @event.CodeIdentifier #>
 		
         [HttpPost]

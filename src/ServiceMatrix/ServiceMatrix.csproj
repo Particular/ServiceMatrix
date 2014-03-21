@@ -552,7 +552,7 @@
       <ItemGuid>a2be8c5d-919e-4788-a2fa-126049ca056f</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\ComponentSagaHandlers.tt">
+    <Content Include="T\T4\CustomComponentSagaHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>6c659607-78bc-4671-8c4a-32065bba3c33</ItemGuid>
@@ -927,6 +927,17 @@
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>763f7314-340f-4f5a-bc21-92397b1a489a</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomMessageDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>1223f865-f461-44eb-911b-caa21b1a8bc8</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
