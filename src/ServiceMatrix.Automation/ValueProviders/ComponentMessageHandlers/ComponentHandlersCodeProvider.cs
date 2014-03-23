@@ -18,11 +18,11 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             this.Component.AdditionalUsings = this.GenerateAddtionalUsings();
             this.Component.Inherits = this.GenerateInherits();
             this.Component.ClassBody = this.GenerateClassBody();
-            this.Component.InterfaceBody = this.GenerateInterfaceBody();
+            this.Component.InterfaceBody = this.GenerateInterfaceBody();           
             return this.GenerateCustomClassBody();
         }
 
-        
+      
 
         private string GenerateAddtionalUsings()
         {

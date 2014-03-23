@@ -451,6 +451,7 @@
     <Compile Include="ValueProviders\CodeIdentifierByIdValueProvider.cs" />
     <Compile Include="ValueProviders\CommandSenderRequiresRegistrationValueProvider.cs" />
     <Compile Include="ValueProviders\ComponentFromLinkBasedValueProvider.cs" />
+    <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentConfigureHowToFindSagaCodeProvider.cs" />
     <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentHandlersCodeProvider.cs" />
     <Compile Include="ValueProviders\ComponentFuncFromEndpointValueProvider.cs" />
     <Compile Include="ValueProviders\EndpointHasPublishersValueProvider.cs" />

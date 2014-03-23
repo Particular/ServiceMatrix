@@ -797,6 +797,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.ConfigureHowToFindSagaBody
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.ConfigureHowToFindSagaBody")]
+		[DisplayName("Configure How To Find Saga Body")]
+		[Category("General")]
+		public virtual String ConfigureHowToFindSagaBody
+		{
+			get { return this.proxy.GetValue(() => this.ConfigureHowToFindSagaBody); }
+			set { this.proxy.SetValue(() => this.ConfigureHowToFindSagaBody, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]

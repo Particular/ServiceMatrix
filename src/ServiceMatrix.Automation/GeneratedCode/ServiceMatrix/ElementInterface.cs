@@ -453,6 +453,14 @@ namespace NServiceBusStudio
 		String InterfaceBody { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.ConfigureHowToFindSagaBody
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.ConfigureHowToFindSagaBody")]
+		[DisplayName("Configure How To Find Saga Body")]
+		[Category("General")]
+		String ConfigureHowToFindSagaBody { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
