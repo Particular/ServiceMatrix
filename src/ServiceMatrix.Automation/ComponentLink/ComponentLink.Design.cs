@@ -249,6 +249,19 @@ namespace AbstractEndpoint
             {
                 throw new NotImplementedException();
             }
+
+
+            public string ConfigureHowToFindSagaBody
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
         }
     }
 }

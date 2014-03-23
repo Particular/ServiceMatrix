@@ -54,12 +54,11 @@ namespace NServiceBusStudio.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            CurrentElement.IsSaga = true;
-
             if (CurrentElement.Subscribes.ProcessedCommandLinks.Count() + CurrentElement.Subscribes.SubscribedEventLinks.Count() <= 1)
             {
                 CurrentElement.Subscribes.ProcessedCommandLinks.ForEach(x => x.StartsSaga = true);
                 CurrentElement.Subscribes.SubscribedEventLinks.ForEach(x => x.StartsSaga = true);
+                CurrentElement.IsSaga = true;
                 return;
             }
 
@@ -92,6 +91,8 @@ namespace NServiceBusStudio.Automation.Commands
                     }
                 }
             }
+
+            CurrentElement.IsSaga = true;
 
             // TODO: Implement command automation code
             //	TODO: Use tracer.Warning() to note expected and recoverable errors
