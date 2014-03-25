@@ -135,11 +135,12 @@ namespace NServiceBusStudio
 
         void DebuggerEvents_OnEnterRunMode(EnvDTE.dbgEventReason Reason)
         {
-            if (String.IsNullOrEmpty(this.ServiceControlInstanceURI))
+            if (String.IsNullOrEmpty(this.ServiceControlInstanceURI) ||
+                Reason != EnvDTE.dbgEventReason.dbgEventReasonLaunchProgram)
             {
                 return;
             }
-
+            
             // Write DebugSessionId on Endpoints Bin folder
             var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, this.InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
             foreach (var endpoint in this.Design.Endpoints.GetAll())
@@ -170,22 +171,7 @@ namespace NServiceBusStudio
                                             1);
 
                 // Start ServiceInsight with parameters
-                Process ServiceInsightProcess = null;
-
-                if (ServiceInsightProcessId != 0)
-                {
-                    try
-                    {
-                        ServiceInsightProcess = Process.GetProcessById(ServiceInsightProcessId);
-                    }
-                    catch(Exception) { }
-                }
-
-                if (ServiceInsightProcess == null)
-                {
-                    var process = System.Diagnostics.Process.Start(url);
-                    ServiceInsightProcessId = process.Id;
-                }
+                System.Diagnostics.Process.Start(url);
             }
         }
 
