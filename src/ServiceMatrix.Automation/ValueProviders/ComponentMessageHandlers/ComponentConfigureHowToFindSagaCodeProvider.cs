@@ -48,7 +48,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             {
                 if (sagaStarters.Any(x => x != hl.MessageReference.Value.InstanceName))
                 {
-                    sb.AppendLine("            ConfigureMapping<" + hl.MessageReference.Value.InstanceName + ">(m => /* specify message property */).ToSaga(s =>  /* specify saga property */ );");
+                    sb.AppendLine("            // ConfigureMapping<" + hl.MessageReference.Value.InstanceName + ">(m => /* specify message property */).ToSaga(s =>  /* specify saga property */ );");
                 }
             }
 
