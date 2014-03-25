@@ -33,9 +33,6 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Reference Include="ExceptionReporter.WinForms">
-      <HintPath>..\ServiceMatrix\Libs\ExceptionReporter.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -454,6 +451,7 @@
     <Compile Include="ValueProviders\CodeIdentifierByIdValueProvider.cs" />
     <Compile Include="ValueProviders\CommandSenderRequiresRegistrationValueProvider.cs" />
     <Compile Include="ValueProviders\ComponentFromLinkBasedValueProvider.cs" />
+    <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentConfigureHowToFindSagaCodeProvider.cs" />
     <Compile Include="ValueProviders\ComponentMessageHandlers\ComponentHandlersCodeProvider.cs" />
     <Compile Include="ValueProviders\ComponentFuncFromEndpointValueProvider.cs" />
     <Compile Include="ValueProviders\EndpointHasPublishersValueProvider.cs" />
@@ -509,7 +507,6 @@
     </Compile>
     <Compile Include="Core\IElementReference.cs" />
     <Compile Include="IToolkitElement.cs" />
-    <Compile Include="netfx\System\StringFormatWith.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\PropertyReference.cs" />

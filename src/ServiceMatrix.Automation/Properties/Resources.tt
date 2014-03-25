@@ -85,17 +85,7 @@ private void RenderArea(ResourceArea area, string visibility)
 	/// </summary>
 	public static string <#=value.Name #>(<#= string.Join(", ", value.FormatNames.Select(s => "object " + s)) #>)
 	{
-		return Resources.<#=area.Prefix #><#=value.Name #>.FormatWith(new 
-		{
-<#+
-for (int i = 0; i < value.FormatNames.Count; i++)
-{
-#>
-			<#=value.FormatNames[i] #> = <#=value.FormatNames[i]#>,
-<#+
-}
-#>
-		});
+		return "";
 	}
 <#+
 		}

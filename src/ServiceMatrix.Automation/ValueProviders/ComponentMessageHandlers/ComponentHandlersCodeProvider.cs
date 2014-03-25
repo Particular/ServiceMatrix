@@ -18,11 +18,11 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             this.Component.AdditionalUsings = this.GenerateAddtionalUsings();
             this.Component.Inherits = this.GenerateInherits();
             this.Component.ClassBody = this.GenerateClassBody();
-            this.Component.InterfaceBody = this.GenerateInterfaceBody();
+            this.Component.InterfaceBody = this.GenerateInterfaceBody();           
             return this.GenerateCustomClassBody();
         }
 
-        
+      
 
         private string GenerateAddtionalUsings()
         {
@@ -274,10 +274,12 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
             if (this.Component.IsSaga)
             {
+                var allMessages = this.TypeNames.Union(this.Component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.CodeIdentifier));
+
                 sb.AppendLine();
                 sb.AppendLine("        public void CheckIfAllMessagesReceived()");
                 sb.AppendLine("        {");
-                sb.AppendLine("            if (" + String.Join (" && ", this.TypeNames.Select(x => "this.Data." + x + " != null")) + ")");
+                sb.AppendLine("            if (" + String.Join(" && ", allMessages.Select(x => "this.Data." + x + " != null")) + ")");
                 sb.AppendLine("            {");
                 sb.AppendLine("                AllMessagesReceived();");
                 sb.AppendLine("            }");
