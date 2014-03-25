@@ -6629,6 +6629,26 @@
                               </settings>
                             </customizationPolicy>
                           </property>
+                          <property Id="3da71921-7816-4280-a945-eaf182cb8ab9" name="ConfigureHowToFindSagaBody" displayName="Configure How To Find Saga Body" description="Description for Application.Design.Services.Service.Components.Component.ConfigureHowToFindSagaBody" codeIdentifier="ConfigureHowToFindSagaBody" isVisible="false">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="RawDefaultValue" />
+                                <setting propertyId="IsVisible" />
+                                <setting propertyId="IsReadOnly" />
+                                <setting propertyId="Category" />
+                                <setting propertyId="TypeConverterTypeName" />
+                                <setting propertyId="EditorTypeName" />
+                                <setting propertyId="RawValidationRules" />
+                                <setting propertyId="RawValueProvider" />
+                              </settings>
+                            </customizationPolicy>
+                            <valueProvider>{
+  "TypeId": "NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers.ComponentConfigureHowToFindSagaCodeProvider",
+  "Properties": []
+}</valueProvider>
+                          </property>
                         </properties>
                         <automationSettings>
                           <automationSettings Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" name="PublishCommand" displayName="Publish Command" description="" codeIdentifier="PublishCommand" automationType="Command">
