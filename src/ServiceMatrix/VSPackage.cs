@@ -53,15 +53,44 @@ namespace NServiceBusStudio
 
         private void TrackUnhandledExceptions()
         {
-            // TODO: Select and implement an Exception Reporter Component (Not under GNU License).
+            var reporter = new ExceptionReporting.ExceptionReporter();
+            reporter.Config.AppName = "ServiceMatrix";
+            reporter.Config.AppVersion = "2.0.0";
+            reporter.Config.CompanyName = "Particular Software";
+            reporter.Config.ContactEmail = "contact@particular.net";
+            reporter.Config.EmailReportAddress = "support@particular.net";
+            reporter.Config.WebUrl = "http://particular.net";
+            reporter.Config.TitleText = "ServiceMatrix - Unexpected error";
+            reporter.Config.ShowFullDetail = false;
+            reporter.Config.ShowLessMoreDetailButton = true;
+            reporter.Config.ContactMessageTop = "[ServiceMatrix] Exception Report";
 
             var type = typeof(TraceSourceExtensions);
             var field = type.GetField("ShowExceptionAction", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
             field.SetValue(null, new Action<string, Exception>((s, e) =>
             {
+                var customMessage = "";
+
+                if (File.Exists(StatisticsManager.LoggingFile))
+                {
+                    using (var fileStream = new FileStream(StatisticsManager.LoggingFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                    using (var textReader = new StreamReader(fileStream))
+                    {
+                        customMessage = textReader.ReadToEnd();
+                    }
+                }
+
                 if (!(e is ElementAlreadyExistsException))
                 {
-                    System.Windows.MessageBox.Show("An unexpected error ocurred during your last operation. Please, try again or report this issue if it persists (support@particular.net).\r\n\r\nException: " + e.Message, "ServiceMatrix - Unexpected Exception", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    if (string.IsNullOrEmpty(customMessage))
+                    {
+                        reporter.Show(e);
+                    }
+                    else
+                    {
+                        reporter.Show(e.Message + Environment.NewLine + Environment.NewLine +
+                                      "Additional Log:" + Environment.NewLine + customMessage, e);
+                    }
                 }
             }));
         }
