@@ -4539,10 +4539,17 @@
         <automationSettingsSchemaMoniker Id="6019e092-02d8-4308-ae0b-3c83f090169a" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" typeId="NServiceBusStudio.Automation.Commands.ShowComponentSagaStarterPicker">
+    <commandSettings Id="d8e4873c-3fa1-44b1-9f53-7579c80f60ac" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ca37be2c-21fa-46db-aaa0-1e2e1cce5582" />
       </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"ef04bcff-4db1-4b31-b84d-dbece3964571\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7e43a8c5-79b3-49e7-a02b-2cf932a45e93\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <commandSettings Id="107dc975-d85b-4685-9f1c-b03cd930cc48" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
@@ -4560,6 +4567,33 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e3e2dc9e-1b9d-43c9-ad6b-75b192755b84" />
       </extendedElement>
+    </commandSettings>
+    <commandSettings Id="ef04bcff-4db1-4b31-b84d-dbece3964571" typeId="NServiceBusStudio.Automation.Commands.ShowComponentSagaStarterPicker">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="101a71f9-a17c-4d9c-9087-47fe6ddf262e" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="7e43a8c5-79b3-49e7-a02b-2cf932a45e93" typeId="NuPattern.Library.Commands.ActivateElementSolutionItemCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="51c02467-9ee9-4033-8d8a-7510fbb76777" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "Open",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "{CodeIdentifier}ConfigureHowToFindSaga.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
@@ -6913,6 +6947,24 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="e3e2dc9e-1b9d-43c9-ad6b-75b192755b84" name="LinkSagaCodeFiles" displayName="Link Saga Code Files" description="" codeIdentifier="LinkSagaCodeFiles" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="101a71f9-a17c-4d9c-9087-47fe6ddf262e" name="SelectSagaStarter" displayName="Select Saga Starter" description="" codeIdentifier="SelectSagaStarter" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="51c02467-9ee9-4033-8d8a-7510fbb76777" name="OpenConfigureHowToFindSaga" displayName="Open Configure How To Find Saga" description="" codeIdentifier="OpenConfigureHowToFindSaga" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
