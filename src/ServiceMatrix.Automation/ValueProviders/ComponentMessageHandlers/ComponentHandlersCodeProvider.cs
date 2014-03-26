@@ -96,12 +96,12 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
             if (isFirst)
             {
-                sb.AppendFormat(": I{0}, NServiceBus.INServiceBusComponent", this.Component.CodeIdentifier);
+                sb.AppendFormat(": I{0}, ServiceMatrix.Shared.INServiceBusComponent", this.Component.CodeIdentifier);
                 isFirst = false;
             }
             else
             {
-                sb.AppendFormat(", I{0}, NServiceBus.INServiceBusComponent", this.Component.CodeIdentifier);
+                sb.AppendFormat(", I{0}, ServiceMatrix.Shared.INServiceBusComponent", this.Component.CodeIdentifier);
             }
 
             foreach (var message in this.Messages)
