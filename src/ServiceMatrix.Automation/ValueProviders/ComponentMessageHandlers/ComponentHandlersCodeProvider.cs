@@ -86,37 +86,29 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
         {
             // Iherits from 
             var sb = new StringBuilder();
-            bool isFirst = true;
+            var inheritance = new List<string>();
 
             if (this.Component.IsSaga)
             {
-                sb.AppendFormat(": Saga<{0}SagaData>", this.Component.CodeIdentifier);
-                isFirst = false;
+                inheritance.Add (String.Format("Saga<{0}SagaData>", this.Component.CodeIdentifier));
             }
 
-            if (isFirst)
+            if (this.Component.Publishes.CommandLinks.Any())
             {
-                sb.AppendFormat(": I{0}, ServiceMatrix.Shared.INServiceBusComponent", this.Component.CodeIdentifier);
-                isFirst = false;
-            }
-            else
-            {
-                sb.AppendFormat(", I{0}, ServiceMatrix.Shared.INServiceBusComponent", this.Component.CodeIdentifier);
+                inheritance.Add(String.Format("I{0}", this.Component.CodeIdentifier));
+                inheritance.Add(String.Format("ServiceMatrix.Shared.INServiceBusComponent"));
             }
 
             foreach (var message in this.Messages)
             {
                 var definition = message.StartsSaga && this.Component.IsSaga ? "IAmStartedByMessages" : "IHandleMessages";
                 definition += "<" + message.GetMessageTypeName() + ">";
-                if (isFirst)
-                {
-                    sb.AppendFormat(": {0}", definition);
-                    isFirst = false;
-                }
-                else
-                {
-                    sb.AppendFormat(", {0}", definition);
-                }
+                inheritance.Add(definition);
+            }
+
+            if (inheritance.Any())
+            {
+                sb.AppendFormat (": " + String.Join(", ", inheritance));
             }
 
             return sb.ToString();
@@ -369,9 +361,10 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
         {
             var sb = new StringBuilder();
 
+            sb.AppendLine();
+            
             foreach (var typename in this.Component.Publishes.CommandLinks.Select(c => c.CommandReference.Value.CodeIdentifier))
             {
-                sb.AppendLine();
                 sb.AppendLine("        void Send(" + typename + " message);");
             }
 

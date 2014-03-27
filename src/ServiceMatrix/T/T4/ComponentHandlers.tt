@@ -27,9 +27,19 @@ namespace <#= icomponent.Namespace #>
     {
 		<#= icomponent.ClassBody #>
     }
-    
-    public partial interface I<#= icomponent.CodeIdentifier #>
+
+	<#
+    if (icomponent.Publishes.CommandLinks.Any()) 
+    { 
+    #>
+
+	public partial interface I<#= icomponent.CodeIdentifier #>
     {
-		<#= icomponent.InterfaceBody #>
+        <#= icomponent.InterfaceBody #>
+	}
+
+	<#
     }
+	#>
+
 }
