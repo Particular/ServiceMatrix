@@ -32,28 +32,20 @@
                 Thank you for using Particular Software ServiceMatrix.
             </TextBlock>
             <StackPanel x:Name="TrialVersionPane" Visibility="Visible">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock>You currently have</TextBlock>
-                    <TextBlock Margin="5,0,0,0" x:Name="TrialVersionDaysLeft">15</TextBlock>
-                    <TextBlock Margin="5,0,0,0">day(s) left from your trial.</TextBlock>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal"/>
             </StackPanel>
-            <StackPanel x:Name="ExpiredTrialVersionPane">
-                <TextBlock Foreground="IndianRed">
-                    The trial period has ended and a license is needed to continue.
-                </TextBlock>
+            <StackPanel x:Name="WarningTextPanel">
+                <TextBlock x:Name="WarningText" Foreground="IndianRed" Text="The trial period is now over."/>
             </StackPanel>
-            <TextBlock Margin="0, 30, 0, 10">
-                Please purchase a license online or browse for a license file.
-            </TextBlock>
+            <TextBlock x:Name="Instructions" Margin="0, 30, 0, 10" Height="77"><Run Text="Instructions"/><LineBreak/><Run/></TextBlock>
             <StackPanel>
                 <Border BorderThickness="1" BorderBrush="LightGray">
                 </Border>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10, 5, -2, 0">
-                <Button x:Name="PurchaseALicense" Click="PurchaseALicense_Click">Purchase</Button>
-                <Button x:Name="Browse" Click="Browse_Click">Browse...</Button>
-                <Button x:Name="Close" Click="Close_Click">Close</Button>
+            <StackPanel x:Name="ButtonPanel" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10, 5, -2, 0">
+                <Button x:Name="GetTrial" Click="GetTrial_OnClick">Get Trial</Button>
+                <Button x:Name="Purchase" Click="Purchase_OnClick">Buy Now</Button>
+                <Button x:Name="Browse" Click="Browse_Click" Content="Browse..."/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center">
                 <StackPanel x:Name="errorPanel" Visibility="Collapsed">

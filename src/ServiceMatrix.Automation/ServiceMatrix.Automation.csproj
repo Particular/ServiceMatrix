@@ -211,6 +211,9 @@
       <DependentUpon>HandledMessageLink.cs</DependentUpon>
     </Compile>
     <Compile Include="HandledMessageLink.cs" />
+    <Compile Include="Licensing\NonLockingFileReader.cs" />
+    <Compile Include="Licensing\StaThreadRunner.cs" />
+    <Compile Include="Licensing\UserSidChecker.cs" />
     <Compile Include="ProcessedCommandLinkReply.cs" />
     <Compile Include="ProcessedCommandLinkReply.Design.cs">
       <DependentUpon>ProcessedCommandLinkReply.cs</DependentUpon>
@@ -312,22 +315,7 @@
     <Compile Include="Licensing\TrialExpired.xaml.cs">
       <DependentUpon>TrialExpired.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Licensing\License.cs" />
-    <Compile Include="Licensing\LicenseDescriptor.cs" />
     <Compile Include="Licensing\LicenseManager.cs" />
-    <Compile Include="Licensing\LicenseType.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\AbstractLicenseValidator.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\ILicensingService.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\InvalidationType.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\ISubscriptionLicensingService.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\LicenseExpiredException.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\LicenseFileNotFoundException.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\LicenseNotFoundException.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\LicenseType.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\LicenseValidator.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\RhinoLicensingException.cs" />
-    <Compile Include="Licensing\Rhino.Licensing\StringLicenseValidator.cs" />
-    <Compile Include="Licensing\StringLicenseValidator.cs" />
     <Compile Include="Infrastructure\StatisticsManager.cs" />
     <Compile Include="Model\Endpoints.cs" />
     <Compile Include="Model\Endpoints\NServiceBusHostComponentLink.cs" />
