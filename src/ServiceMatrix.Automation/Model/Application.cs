@@ -89,13 +89,14 @@ namespace NServiceBusStudio
             this.ServiceControlEndpointPluginVersion = serviceControlEndpointPluginVersion;
             this.ExtensionPath = extensionPath;
 
+            CheckLicense();
             SetNuGetPackagesVersion();
             SetOptionSettings();
             SetPropagationHandlers();
             SetDomainSpecifiLogging();
             SetRemoveEmptyAddMenus();
             SetF5Experience();
-            CheckLicense();
+            
 
             new ShowNewDiagramCommand() { ServiceProvider = this.ServiceProvider }.Execute();
 
@@ -286,21 +287,24 @@ namespace NServiceBusStudio
 
         private void CheckLicense()
         {
-            if (LicenseManager.HasLicenseExpired())
+            if (LicenseManager.Instance.HasLicenseExpired())
             {
-                LicenseManager.PromptUserForLicenseIfTrialHasExpired();
-               //TODO: Set this.LicensedVersion
-                EnableSolutionBuilder();
-            }
-            else
-            {
+                LicensedVersion = LicenseManager.Instance.PromptUserForLicenseIfTrialHasExpired();
+                if (LicensedVersion)
+                {
+                    EnableSolutionBuilder();
+                    return;
+                }
                 DisableSolutionBuilder();
-
                 if (!AsProduct().IsSerializing) // is creating
                 {
                     CustomSolutionBuilder.ShowNoSolutionState();
                     throw new Exception("Trial period for ServiceMatrix has Expired. A new NServiceBus solution cannot be created.");
                 }
+            }
+            else
+            {
+                EnableSolutionBuilder();
             }
         }
 
