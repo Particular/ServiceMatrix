@@ -16,18 +16,32 @@ namespace NServiceBusStudio.Automation.Licensing
         static License license;
         static string licenseText;
         static readonly ITracer tracer = Tracer.Get<LicenseManager>();
+        RegistryLicenseStore licenseStore = new RegistryLicenseStore();
 
-        public static bool HasLicenseExpired()
+        static readonly LicenseManager instance = new LicenseManager();
+
+        private LicenseManager()
+        {
+            if (license == null)
+            {
+                InitializeLicense();
+            }
+        }
+
+        public static LicenseManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        public bool HasLicenseExpired()
         {
             return license == null || LicenseExpirationChecker.HasLicenseExpired(license);
         }
 
-        internal static void InitializeLicenseText(string license)
-        {
-            licenseText = license;
-        }
-
-        public static void PromptUserForLicenseIfTrialHasExpired()
+        public bool PromptUserForLicenseIfTrialHasExpired()
         {
             if (license == null || LicenseExpirationChecker.HasLicenseExpired(license))
             {
@@ -38,15 +52,17 @@ namespace NServiceBusStudio.Automation.Licensing
                 trialExpiredDlg.ShowDialog();
                 if (trialExpiredDlg.ResultingLicenseText == null)
                 {
-                    return;
+                    return false;
                 }
                 new RegistryLicenseStore()
                     .StoreLicense(trialExpiredDlg.ResultingLicenseText);
                 license = LicenseDeserializer.Deserialize(trialExpiredDlg.ResultingLicenseText);
+                return true;
             }
+            return true;
         }
 
-        static License GetTrialLicense()
+        License GetTrialLicense()
         {
             if (UserSidChecker.IsNotSystemSid())
             {
@@ -70,7 +86,7 @@ namespace NServiceBusStudio.Automation.Licensing
             return null;
         }
 
-        internal static void InitializeLicense()
+        void InitializeLicense()
         {
             //only do this if not been configured by the fluent API
             if (licenseText == null)
