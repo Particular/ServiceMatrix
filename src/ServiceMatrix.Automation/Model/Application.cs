@@ -286,18 +286,19 @@ namespace NServiceBusStudio
 
         private void CheckLicense()
         {
-            try
+            if (LicenseManager.HasLicenseExpired())
             {
-                this.LicensedVersion = LicenseManager.PromptUserForLicense();
-                this.EnableSolutionBuilder();
+                LicenseManager.PromptUserForLicenseIfTrialHasExpired();
+               //TODO: Set this.LicensedVersion
+                EnableSolutionBuilder();
             }
-            catch (Rhino.Licensing.LicenseExpiredException)
+            else
             {
-                this.DisableSolutionBuilder();
+                DisableSolutionBuilder();
 
-                if (!this.AsProduct().IsSerializing) // is creating
+                if (!AsProduct().IsSerializing) // is creating
                 {
-                    this.CustomSolutionBuilder.ShowNoSolutionState();
+                    CustomSolutionBuilder.ShowNoSolutionState();
                     throw new Exception("Trial period for ServiceMatrix has Expired. A new NServiceBus solution cannot be created.");
                 }
             }
