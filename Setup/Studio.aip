@@ -382,7 +382,7 @@
     <ROW Action="VSIX_INSTALLER_2012" Condition="VS11_PRO OR VS11_PREMIUM OR VS11_ULTIMATE" Sequence="203"/>
     <ROW Action="VSIX_INSTALLER_2010" Condition="VS10_PRO OR VS10_TD OR VS10_TS" Sequence="202"/>
     <ROW Action="InstallFinalize" Sequence="6598" SeqType="0" MsiKey="InstallFinalize"/>
-    <ROW Action="Launch_URL" Condition="( NOT Installed )" Sequence="6599"/>
+    <ROW Action="Launch_URL" Condition="( NOT Installed ) AND ( UILevel &lt;&gt; &quot;2&quot; )" Sequence="6599"/>
     <ROW Action="InstallVSIX_2010" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VS10_PRO OR VS10_TD OR VS10_TS) AND ((INSTALL_VS_2010=&quot;toInstall&quot;) OR (INSTALL_VS_2010_MTN=&quot;toInstall&quot;)) AND VSIX_INSTALLER )" Sequence="6401"/>
     <ROW Action="InstallVSIX_2012" Condition="( ( NOT Installed ) OR ( Installed AND REMOVE &lt;&gt; &quot;ALL&quot; AND AI_INSTALL_MODE &lt;&gt; &quot;Remove&quot; ) ) AND ( (VS11_PRO OR VS11_PREMIUM OR VS11_ULTIMATE) AND ((INSTALL_VS_2012=&quot;toInstall&quot;) OR (INSTALL_VS_2012_MTN=&quot;toInstall&quot;)) AND VSIX_INSTALLER )" Sequence="6402"/>
     <ROW Action="Uninstall_VSIX" Condition="( Installed AND ( REMOVE = &quot;ALL&quot; OR AI_INSTALL_MODE = &quot;Remove&quot; ) ) AND ( (VS_2010_EXTENSION OR VS_2012_EXTENSION) AND VSIX_INSTALLER )" Sequence="1601"/>
