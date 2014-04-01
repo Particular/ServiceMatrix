@@ -69,7 +69,6 @@
                             MessageBox.Show(this, message, "License expired", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                             return;
                         }
-                        MessageBox.Show(this, "The new license has been verified. It will now be stored in the Registry for future use.", "License applied", MessageBoxButton.OK, MessageBoxImage.Information);
                         ResultingLicenseText = licenseText;
                         Close();
                     }
