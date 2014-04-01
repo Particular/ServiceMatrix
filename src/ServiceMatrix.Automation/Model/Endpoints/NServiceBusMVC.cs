@@ -109,7 +109,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return c => string.Format("I{0}, NServiceBus.INServiceBusComponent", c.CodeIdentifier, this.Project.Data.RootNamespace);
+                return c => string.Format("I{0}, ServiceMatrix.Shared.INServiceBusComponent", c.CodeIdentifier);
             }
         }
 
