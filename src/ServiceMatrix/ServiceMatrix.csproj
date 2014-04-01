@@ -1063,5 +1063,5 @@
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>
-  <Import Project="$(SolutionDir)..\BuildSupport\GitFlowVersion\Build\GitFlowVersionTask.targets" />
+  <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
 </Project>
