@@ -205,7 +205,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            LicenseManager.PromptUserForLicense(true);
+            LicenseManager.Instance.PromptUserForLicenseIfTrialHasExpired();
+            //LicenseManager.PromptUserForLicense(true);
         }
     }
 }
