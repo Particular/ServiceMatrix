@@ -201,6 +201,7 @@
     <Compile Include="Conditions\IsSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
     <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
+    <Compile Include="Diagramming\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
     <Compile Include="Dialog\SagaStarterPicker.xaml.cs">
@@ -214,6 +215,7 @@
     <Compile Include="Licensing\NonLockingFileReader.cs" />
     <Compile Include="Licensing\StaThreadRunner.cs" />
     <Compile Include="Licensing\UserSidChecker.cs" />
+    <Compile Include="Model\GlobalSettings.cs" />
     <Compile Include="ProcessedCommandLinkReply.cs" />
     <Compile Include="ProcessedCommandLinkReply.Design.cs">
       <DependentUpon>ProcessedCommandLinkReply.cs</DependentUpon>

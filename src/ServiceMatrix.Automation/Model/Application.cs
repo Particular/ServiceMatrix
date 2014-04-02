@@ -20,6 +20,8 @@ using System.Diagnostics;
 
 namespace NServiceBusStudio
 {
+    using Automation.Model;
+
     partial interface IApplication
     {
         string ContractsProjectName { get; }
@@ -292,9 +294,12 @@ namespace NServiceBusStudio
                 LicensedVersion = LicenseManager.Instance.PromptUserForLicenseIfTrialHasExpired();
                 if (LicensedVersion)
                 {
+                    GlobalSettings.Instance.IsLicenseValid = true;
                     EnableSolutionBuilder();
                     return;
                 }
+
+                GlobalSettings.Instance.IsLicenseValid = false;
                 DisableSolutionBuilder();
                 if (!AsProduct().IsSerializing) // is creating
                 {
@@ -304,6 +309,7 @@ namespace NServiceBusStudio
             }
             else
             {
+                GlobalSettings.Instance.IsLicenseValid = true;
                 EnableSolutionBuilder();
             }
         }
@@ -319,11 +325,6 @@ namespace NServiceBusStudio
             this.IsValidLicensed = false;
             this.CustomSolutionBuilder.DisableSolutionBuilder();
         }
-
-
-
-
-
 
 
         public InfrastructureManager InfrastructureManager { get; private set; }
