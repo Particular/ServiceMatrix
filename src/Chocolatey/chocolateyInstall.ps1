@@ -46,7 +46,7 @@ try {
 
     Start-ChocolateyProcessAsAdmin "$arguments" "$pathToVsixInstaller" -validExitCodes $validExitCodes
 
-    Write-ChocolateyFailure $packageName
+    Write-ChocolateySuccess $packageName
 } catch {
 	Write-ChocolateyFailure $packageName $($_.Exception.Message)
 	throw
