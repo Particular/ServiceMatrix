@@ -24,7 +24,7 @@ try {
 	}
 
     Get-ChocolateyWebFile $packageName $file $url 
-	$msiArguments  ="/quiet  /L*V `"$logFile`""
+	$msiArguments  ="/quiet  /L*V `"$logFile`" INSTALL_VS_2010=toInstall INSTALL_VS_2012=toInstall"
 	Write-Host "Starting installer with arguments: $msiArguments";
     Start-ChocolateyProcessAsAdmin "$msiArguments" $file -validExitCodes 0
 
