@@ -38,7 +38,7 @@ try {
  	Write-Host "Path to VsixInstaller: $pathToVsixInstaller"
 
 
-	$arguments  ="`"$file`" /quiet"
+	$arguments  ="`"$vsixOnLocalDisk`" /quiet"
 	
 	Write-Host "Invoking vsix installer with arguments: $arguments";
     
