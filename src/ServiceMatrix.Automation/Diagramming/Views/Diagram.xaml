@@ -7,8 +7,11 @@
              xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              xmlns:ms="http://namespaces.mindscape.co.nz/wpf"
              xmlns:styles="clr-namespace:ServiceMatrix.Diagramming.Styles"
+             xmlns:model="clr-namespace:NServiceBusStudio.Automation.Model"
+             xmlns:converters="clr-namespace:NServiceBusStudio.Automation.Diagramming.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
+    
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,6 +28,7 @@
         
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </Grid.Resources>
         
         <!-- Toolbar -->
@@ -43,7 +47,7 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <Button Command="{Binding OnShowAddEndpoint}">
+                <Button Command="{Binding OnShowAddEndpoint}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Styles/Images/BlueEndpointIcon.png" Width="23"></Image>
                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New endpoint</TextBlock>
@@ -53,12 +57,16 @@
                 <Border Width="1" Background="#B1B1B1" Margin="0, 5, 0, 5"></Border>
                 <Border Width="2" Background="#FFFFFF" Margin="0, 5, 0, 5"></Border>
 
-                <Button Command="{Binding OnShowAddService}">
+                <Button Command="{Binding OnShowAddService}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Styles/Images/BlueServiceIcon.png" Width="23"></Image>
                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New service</TextBlock>
                     </StackPanel>
                 </Button>
+
+                <TextBlock Visibility="{Binding IsServiceMatrixLicenseExpired, Converter={StaticResource BooleanToVisibility}}">
+                    The canvas has been disabled as the license has expired
+                </TextBlock>
             </StackPanel>
         </Grid>
 
@@ -66,7 +74,7 @@
 
         <ms:DiagramSurface Grid.Row="1"
                            x:Name="ds"
-                           Diagram="{Binding Diagram}"
+                           Diagram="{Binding Diagram}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}"
                            Formatter="{StaticResource Formatter}" 
                            ZoomMode="MouseWheel"
                            IsSmartScrollingEnabled="True"
@@ -103,14 +111,14 @@
         
         <!-- Empty state buttons -->
 
-        <Grid x:Name="EmptyStateButtons" Grid.RowSpan="2" Visibility="Visible">
+        <Grid x:Name="EmptyStateButtons" Grid.RowSpan="2" Visibility="Visible"> 
             
             <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
                 
                 <Button BorderThickness="0"
-                        Command="{Binding OnShowAddEndpoint}"
+                        Command="{Binding OnShowAddEndpoint}" 
                         Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
