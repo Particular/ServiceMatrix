@@ -40,9 +40,11 @@ try {
 
 	$arguments  ="`"$vsixOnLocalDisk`" /quiet"
 	
-	Write-Host "Invoking vsix installer with arguments: $arguments";
+	Write-Host "Invoking vsix installer with arguments: $arguments"
     
-    Start-ChocolateyProcessAsAdmin "$arguments" "$pathToVsixInstaller" -validExitCodes 0
+	$validExitCodes = @(0,1001)  #1001 means extention already installed
+
+    Start-ChocolateyProcessAsAdmin "$arguments" "$pathToVsixInstaller" -validExitCodes $validExitCodes
 
     Write-ChocolateyFailure $packageName
 } catch {
