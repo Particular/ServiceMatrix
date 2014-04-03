@@ -1,34 +1,50 @@
-﻿
-$packageName = "ServiceMatrix"
+﻿$packageName = "ServiceMatrix.VS2012"
 
-$url = gci -path "c:\ChocolateyResourceCache" -Filter "Particular.$packageName-*.exe" -ErrorAction SilentlyContinue | select -first 1
+$url = gci -path "c:\ChocolateyResourceCache" -Filter "Particular.ServiceMatrix.11.0.vsix" -ErrorAction SilentlyContinue | select -first 1
 
 if($url){
 	$url = $url | Select -expandProperty FullName
 }
 else{
-	$url = "https://github.com/Particular/$packageName/releases/download/{{ReleaseName}}/Particular.$packageName-{{FileVersion}}.exe"
+	$url = "https://github.com/Particular/ServiceMatrix/releases/download/{{ReleaseName}}/Particular.ServiceMatrix.11.0.vsix"
 }
 
 
 try {
 
     $chocTempDir = Join-Path $env:TEMP "chocolatey"
+
     $tempDir = Join-Path $chocTempDir "$packageName"
+    
     if (![System.IO.Directory]::Exists($tempDir)) {[System.IO.Directory]::CreateDirectory($tempDir) | Out-Null}
-    $file = Join-Path $tempDir "$($packageName)Install.exe"
-    $logFile = Join-Path $tempDir "msiexe.log"
+    
+    $vsixOnLocalDisk = Join-Path $tempDir "Particular.ServiceMatrix.11.0.vsix"
 
-	If (Test-Path $logFile){
-		Remove-Item $logFile
-	}
+    Get-ChocolateyWebFile $packageName $vsixOnLocalDisk $url
+  
+    $vs2012ToolsPath = $Env:VS110COMNTOOLS
 
-    Get-ChocolateyWebFile $packageName $file $url 
-	$msiArguments  ="/quiet  /L*V `"$logFile`" INSTALL_VS_2010=toInstall INSTALL_VS_2012=toInstall"
-	Write-Host "Starting installer with arguments: $msiArguments";
-    Start-ChocolateyProcessAsAdmin "$msiArguments" $file -validExitCodes 0
+    Write-Host "VS2012 Tools Path: $vs2012ToolsPath"
 
-    Write-ChocolateySuccess $packageName
+    if($vs2012ToolsPath -eq $null)
+    {
+    	throw "Visual Studio 2012 not found on this machine"
+    }
+
+	$vs2012Dir = New-Object System.IO.DirectoryInfo($vs2012ToolsPath)
+ 	$pathToVsixInstaller = [io.path]::Combine($vs2012Dir.Parent.FullName, "IDE")
+ 	$pathToVsixInstaller = [io.path]::Combine($pathToVsixInstaller, "VSIXInstaller.exe")
+ 	
+ 	Write-Host "Path to VsixInstaller: $pathToVsixInstaller"
+
+
+	$arguments  ="`"$file`" /quiet"
+	
+	Write-Host "Invoking vsix installer with arguments: $arguments";
+    
+    Start-ChocolateyProcessAsAdmin "$arguments" "$pathToVsixInstaller" -validExitCodes 0
+
+    Write-ChocolateyFailure $packageName
 } catch {
 	Write-ChocolateyFailure $packageName $($_.Exception.Message)
 	throw
