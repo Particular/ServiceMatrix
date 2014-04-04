@@ -1,4 +1,4 @@
-﻿<#@ PatternModel processor="PatternModelDirectiveProcessor" requires="fileName='..\..\NServiceBusStudio\PatternModel.patterndefinition'" #>
+﻿<#@ PatternModel processor="PatternModelDirectiveProcessor" requires="fileName='..\..\ServiceMatrix\PatternModel.patterndefinition'" #>
 <#@ ProductStateStore processor="ProductStateStoreDirectiveProcessor" requires="fileName='..\..\Studio.slnbldr'" #>
 <#@ Template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
 <#@ Assembly Name="Microsoft.CSharp.dll" #>

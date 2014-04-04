@@ -110,13 +110,16 @@ namespace NServiceBusStudio
         private void SetNuGetPackagesVersion()
         {
             this.StatusBar.DisplayMessage("Obtaining NuGet packages versions...");
-            this.NuGetPackageVersionNServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus");
-            this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
-            this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
-            this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
-            this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
-            this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
-            this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
+            if (String.IsNullOrEmpty(this.NuGetPackageVersionNServiceBus))
+            {
+                this.NuGetPackageVersionNServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus");
+                this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
+                this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
+                this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
+                this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+                this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+                this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
+            }
             this.StatusBar.DisplayMessage(" ");
         }
 
