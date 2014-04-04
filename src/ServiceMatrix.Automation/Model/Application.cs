@@ -20,6 +20,7 @@ using System.Diagnostics;
 
 namespace NServiceBusStudio
 {
+    using System.Windows;
     using Automation.Model;
 
     partial interface IApplication
@@ -296,6 +297,7 @@ namespace NServiceBusStudio
                 {
                     GlobalSettings.Instance.IsLicenseValid = true;
                     EnableSolutionBuilder();
+                    MessageBox.Show("Your license has been verified. Please restart Visual Studio for the licensing changes to take effect", "Service Matrix - License Verified");
                     return;
                 }
 

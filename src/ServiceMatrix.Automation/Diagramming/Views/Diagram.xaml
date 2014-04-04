@@ -11,7 +11,7 @@
              xmlns:converters="clr-namespace:NServiceBusStudio.Automation.Diagramming.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600">
-    
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -25,12 +25,12 @@
             <RowDefinition Height="28"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </Grid.Resources>
-        
+
         <!-- Toolbar -->
 
         <Grid Grid.Row="0" VerticalAlignment="Top" Height="28" Background="#EEEEF1">
@@ -63,10 +63,6 @@
                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New service</TextBlock>
                     </StackPanel>
                 </Button>
-
-                <TextBlock Visibility="{Binding IsServiceMatrixLicenseExpired, Converter={StaticResource BooleanToVisibility}}">
-                    The canvas has been disabled as the license has expired
-                </TextBlock>
             </StackPanel>
         </Grid>
 
@@ -86,6 +82,21 @@
                            IsVirtualizing="False"
                            />
 
+        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,0,21,0" 
+                        Visibility="{Binding IsServiceMatrixLicenseExpired, Converter={StaticResource BooleanToVisibility}}" Grid.Row="1">
+            <TextBlock Foreground="DarkRed" 
+                                                FontSize="14" 
+                                                FontFamily="Segoe UI Bold" 
+                                                FontWeight="Bold" Margin="5" TextWrapping="Wrap">
+                    The trial period has expired and ServiceMatrix is disabled. 
+You can continue using the solution's generated code using standard Visual Studio tools. 
+To purchase a license or request a trial extension go to: 
+    <Hyperlink Foreground="DarkSlateBlue" RequestNavigate="Hyperlink_OnRequestNavigate" NavigateUri="http://particular.net/licensing">
+                    <TextBlock Text="http://particular.net/licensing"/>
+</Hyperlink>        
+                </TextBlock>
+        </Border>
+        
         <!-- Zoom Slider -->
 
         <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
@@ -108,15 +119,15 @@
             </Button>
         </StackPanel>
 
-        
+
         <!-- Empty state buttons -->
 
-        <Grid x:Name="EmptyStateButtons" Grid.RowSpan="2" Visibility="Visible"> 
-            
+        <Grid x:Name="EmptyStateButtons" Grid.RowSpan="2" Visibility="Visible">
+
             <StackPanel VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                
+
                 <Button BorderThickness="0"
                         Command="{Binding OnShowAddEndpoint}" 
                         Cursor="Hand">
