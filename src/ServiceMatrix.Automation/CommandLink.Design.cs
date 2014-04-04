@@ -120,6 +120,9 @@ namespace NServiceBusStudio
                     throw new NotImplementedException();
                 }
             }
+
+
+            public event EventHandler DoNotAutogenerateSenderComponentChanged;
         }
     }
 

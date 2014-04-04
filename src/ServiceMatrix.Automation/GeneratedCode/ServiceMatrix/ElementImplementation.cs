@@ -773,18 +773,6 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
-		/// If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.
-		/// </summary>
-		[Description("If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.")]
-		[DisplayName("Auto Publish Messages")]
-		[Category("General")]
-		public virtual Boolean AutoPublishMessages
-		{
-			get { return this.proxy.GetValue(() => this.AutoPublishMessages); }
-			set { this.proxy.SetValue(() => this.AutoPublishMessages, value); }
-		}
-
-		/// <summary>
 		/// Description for Application.Design.Services.Service.Components.Component.InterfaceBody
 		/// </summary>
 		[Description("Description for Application.Design.Services.Service.Components.Component.InterfaceBody")]
@@ -806,6 +794,18 @@ namespace NServiceBusStudio
 		{
 			get { return this.proxy.GetValue(() => this.ConfigureHowToFindSagaBody); }
 			set { this.proxy.SetValue(() => this.ConfigureHowToFindSagaBody, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.UnfoldedCustomCode
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.UnfoldedCustomCode")]
+		[DisplayName("Unfolded Custom Code")]
+		[Category("General")]
+		public virtual Boolean UnfoldedCustomCode
+		{
+			get { return this.proxy.GetValue(() => this.UnfoldedCustomCode); }
+			set { this.proxy.SetValue(() => this.UnfoldedCustomCode, value); }
 		}
 
 		/// <summary>
