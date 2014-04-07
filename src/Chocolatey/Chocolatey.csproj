@@ -21,9 +21,7 @@
     <None Include="chocolateyInstall.ps1" />
     <None Include="elevatedUninstall.ps1" />
     <None Include="chocolateyUninstall.ps1" />
-    <None Include="ServiceMatrix.install.nuspec">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="ServiceMatrix.VS2012.install.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
@@ -41,21 +39,18 @@
       <Output TaskParameter="Stability" PropertyName="Stability" />
       <Output TaskParameter="PreReleasePartOne" PropertyName="PreReleasePartOne" />
     </GetVersion>
-
     <PropertyGroup Condition=" '$(Stability)' == 'Final' ">
       <ChocoVersion>$(MajorMinorPatch)</ChocoVersion>
     </PropertyGroup>
-
     <PropertyGroup Condition=" '$(Stability)' != 'Final' ">
       <ChocoVersion>$(MajorMinorPatch)-$(Stability)$(PreReleasePartOne)</ChocoVersion>
     </PropertyGroup>
-
     <ItemGroup>
       <FilesToDelete Include="$(ProjectDir)Build\**\*.*" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
     <MakeDir Directories="$(ProjectDir)Build" />
-    <Copy SourceFiles="$(ProjectDir)ServiceMatrix.install.nuspec" DestinationFolder="$(ProjectDir)Build" />
+    <Copy SourceFiles="$(ProjectDir)ServiceMatrix.VS2012.install.nuspec" DestinationFolder="$(ProjectDir)Build" />
     <Copy SourceFiles="$(ProjectDir)chocolateyInstall.ps1" DestinationFolder="$(ProjectDir)Build\Tools" />
     <Copy SourceFiles="$(ProjectDir)chocolateyUninstall.ps1" DestinationFolder="$(ProjectDir)Build\Tools" />
     <Copy SourceFiles="$(ProjectDir)elevatedUninstall.ps1" DestinationFolder="$(ProjectDir)Build\Tools" />
@@ -66,7 +61,6 @@
     </ItemGroup>
     <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(SemVer)" />
     <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(ChocoVersion)" />
-
-    <CreatePackageTask  NuGetBuildDirectory="$(ProjectDir)Build" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
+    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
   </Target>
 </Project>

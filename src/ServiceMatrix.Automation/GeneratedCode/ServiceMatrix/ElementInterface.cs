@@ -437,14 +437,6 @@ namespace NServiceBusStudio
 		Boolean IsSaga { get; set; }
 
 		/// <summary>
-		/// If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.
-		/// </summary>
-		[Description("If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component.")]
-		[DisplayName("Auto Publish Messages")]
-		[Category("General")]
-		Boolean AutoPublishMessages { get; set; }
-
-		/// <summary>
 		/// Description for Application.Design.Services.Service.Components.Component.InterfaceBody
 		/// </summary>
 		[Description("Description for Application.Design.Services.Service.Components.Component.InterfaceBody")]
@@ -459,6 +451,14 @@ namespace NServiceBusStudio
 		[DisplayName("Configure How To Find Saga Body")]
 		[Category("General")]
 		String ConfigureHowToFindSagaBody { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.UnfoldedCustomCode
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.UnfoldedCustomCode")]
+		[DisplayName("Unfolded Custom Code")]
+		[Category("General")]
+		Boolean UnfoldedCustomCode { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.

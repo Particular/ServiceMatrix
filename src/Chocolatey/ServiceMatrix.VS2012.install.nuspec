@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>ServiceMatrix.install</id>
+    <id>ServiceMatrix.VS2012.install</id>
     <version>$version$</version>
-    <title>ServiceMatrix.install (Install)</title>
+    <title>ServiceMatrix.2012.Install (Install)</title>
     <authors>Particular Software</authors>
     <owners>Particular Software</owners>
     <projectUrl>http://particular.net/servicematrix</projectUrl>
     <iconUrl>http://s3.amazonaws.com/nuget.images/ServiceMatrix_128.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Visual Studio extension for NServiceBus</description>
+    <description>Visual Studio 2012 extension for NServiceBus</description>
     <summary></summary>
     <tags>nservicebus particular chocolatey servicematrix</tags>
     <dependencies>

@@ -10,15 +10,20 @@ using System.Windows;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using NServiceBusStudio.Automation.Model;
+
     public class ServiceMatrixDiagramViewModel : INotifyPropertyChanged
     {
         public ServiceMatrixDiagramAdapter Adapter { get; set; }
         public ServiceMatrixDiagramMindscapeViewModel Diagram { get; set; }
 
+        public bool IsServiceMatrixLicenseExpired { get; set; }
+
         public ServiceMatrixDiagramViewModel(ServiceMatrixDiagramAdapter adapter)
         {
             this.Adapter = adapter;
             this.Diagram = adapter.ViewModel;
+            IsServiceMatrixLicenseExpired = !GlobalSettings.Instance.IsLicenseValid ;
 
             this.OnShowAddEndpoint = new RelayCommand(() => {
                 var window = new AddEndpoint();

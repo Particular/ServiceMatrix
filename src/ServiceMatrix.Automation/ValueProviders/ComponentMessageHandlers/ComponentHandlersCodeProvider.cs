@@ -86,37 +86,29 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
         {
             // Iherits from 
             var sb = new StringBuilder();
-            bool isFirst = true;
+            var inheritance = new List<string>();
 
             if (this.Component.IsSaga)
             {
-                sb.AppendFormat(": Saga<{0}SagaData>", this.Component.CodeIdentifier);
-                isFirst = false;
+                inheritance.Add (String.Format("Saga<{0}SagaData>", this.Component.CodeIdentifier));
             }
 
-            if (isFirst)
+            if (this.Component.Publishes.CommandLinks.Any())
             {
-                sb.AppendFormat(": I{0}, ServiceMatrix.Shared.INServiceBusComponent", this.Component.CodeIdentifier);
-                isFirst = false;
-            }
-            else
-            {
-                sb.AppendFormat(", I{0}, ServiceMatrix.Shared.INServiceBusComponent", this.Component.CodeIdentifier);
+                inheritance.Add(String.Format("I{0}", this.Component.CodeIdentifier));
+                inheritance.Add(String.Format("ServiceMatrix.Shared.INServiceBusComponent"));
             }
 
             foreach (var message in this.Messages)
             {
                 var definition = message.StartsSaga && this.Component.IsSaga ? "IAmStartedByMessages" : "IHandleMessages";
                 definition += "<" + message.GetMessageTypeName() + ">";
-                if (isFirst)
-                {
-                    sb.AppendFormat(": {0}", definition);
-                    isFirst = false;
-                }
-                else
-                {
-                    sb.AppendFormat(", {0}", definition);
-                }
+                inheritance.Add(definition);
+            }
+
+            if (inheritance.Any())
+            {
+                sb.AppendFormat (": " + String.Join(", ", inheritance));
             }
 
             return sb.ToString();
@@ -141,39 +133,6 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("			// Handle message on partial class");
                 sb.AppendLine("			this.HandleImplementation(message);");
 
-                if (this.Component.AutoPublishMessages)
-                {
-                    foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
-                    {
-                        sb.AppendLine();
-                        sb.AppendLine("			// Auto-publish Command " + publishedCommand.CodeIdentifier);
-                        sb.AppendLine("			var " + publishedCommand.CodeIdentifier + " = new " + publishedCommand.GetMessageTypeFullName() + "();");
-                        sb.AppendLine("			Configure" + publishedCommand.CodeIdentifier + "(message, " + publishedCommand.CodeIdentifier + ");");
-                        sb.AppendLine("			this.Bus.Send(" + publishedCommand.CodeIdentifier + ");");
-                    }
-
-                    foreach (var publishedEvent in this.Component.Publishes.EventLinks)
-                    {
-                        sb.AppendLine();
-                        sb.AppendLine("			// Auto-publish Event " + publishedEvent.CodeIdentifier);
-                        sb.AppendLine("			var " + publishedEvent.CodeIdentifier + " = new " + publishedEvent.GetMessageTypeFullName() + "();");
-                        sb.AppendLine("			Configure" + publishedEvent.CodeIdentifier + "(message, " + publishedEvent.CodeIdentifier + ");");
-                        sb.AppendLine("			this.Bus.Publish(" + publishedEvent.CodeIdentifier + ");");
-                    }
-
-                    foreach (var processedCommandLink in this.Component.Subscribes.ProcessedCommandLinks.Where(cl => cl.CommandReference.Value.CodeIdentifier == typename &&
-                                                                                                                      cl.ProcessedCommandLinkReply != null))
-                    {
-                        sb.AppendLine();
-                        sb.AppendLine("			// Reply message with defined Response");
-                        sb.AppendLine("			var response = new " + processedCommandLink.ProcessedCommandLinkReply.GetMessageTypeFullName() + "();");
-                        sb.AppendLine("			Configure" + processedCommandLink.ProcessedCommandLinkReply.CodeIdentifier + "(message, response);");
-                        sb.AppendLine("			this.Bus.Reply(response);");
-                    }
-
-                    
-                }
-
                 if (this.Component.IsSaga)
                 {
                     sb.AppendLine();
@@ -188,30 +147,6 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             {
                 sb.AppendLine();
                 sb.AppendLine("		partial void HandleImplementation(" + typename + " message);");
-            
-
-                if (this.Component.AutoPublishMessages)
-                {
-                    foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
-                    {
-                        sb.AppendLine();
-                        sb.AppendLine("		partial void Configure" + publishedCommand.CodeIdentifier + "(" + typename + " incomingMessage, " + publishedCommand.GetMessageTypeFullName() + " message);");
-                    }
-
-                    foreach (var publishedEvent in this.Component.Publishes.EventLinks)
-                    {
-                        sb.AppendLine();
-                        sb.AppendLine("		partial void Configure" + publishedEvent.CodeIdentifier + "(" + typename + " incomingMessage, " + publishedEvent.GetMessageTypeFullName() + " message);");
-                    }
-
-                    foreach (var processedCommandLink in this.Component.Subscribes.ProcessedCommandLinks.Where(cl => cl.CommandReference.Value.CodeIdentifier == typename &&
-                                                                                                                      cl.ProcessedCommandLinkReply != null))
-                    {
-                        sb.AppendLine();
-                        sb.AppendLine("		partial void Configure" + processedCommandLink.ProcessedCommandLinkReply.CodeIdentifier + "(" + typename + " incomingMessage, " + processedCommandLink.ProcessedCommandLinkReply.GetMessageTypeFullName() + " response);");
-                    }
-                }
-
             }
 
             foreach (var typename in this.Component.Publishes.CommandLinks.Select(c => c.CommandReference.Value.CodeIdentifier))
@@ -235,34 +170,34 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             foreach (var typename in this.Component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.CodeIdentifier))
             {
                 sb.AppendLine();
-                sb.AppendLine("    public void Handle(" + typename + " message)");
-                sb.AppendLine("    {");
+                sb.AppendLine("        public void Handle(" + typename + " message)");
+                sb.AppendLine("        {");
 
                 if (this.Component.IsSaga)
                 {
-                    sb.AppendLine("        // Store message in Saga Data for later use");
-                    sb.AppendLine("        this.Data." + typename + " = message;");
+                    sb.AppendLine("            // Store message in Saga Data for later use");
+                    sb.AppendLine("            this.Data." + typename + " = message;");
                 }
 
                 sb.AppendLine();
-                sb.AppendLine("        // Handle message on partial class");
-                sb.AppendLine("        this.HandleImplementation(message);");
+                sb.AppendLine("            // Handle message on partial class");
+                sb.AppendLine("            this.HandleImplementation(message);");
                 
 
                 if (this.Component.IsSaga)
                 {
                     sb.AppendLine();
-                    sb.AppendLine("        // Check if Saga is Completed ");
-                    sb.AppendLine("        CheckIfAllMessagesReceived();");
+                    sb.AppendLine("            // Check if Saga is Completed ");
+                    sb.AppendLine("            CheckIfAllMessagesReceived();");
                 }
 
-                sb.AppendLine("    }");
+                sb.AppendLine("        }");
             }
 
             foreach (var typename in this.Component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.CodeIdentifier))
             {
                 sb.AppendLine();
-                sb.AppendLine("		partial void HandleImplementation(" + typename + " message);");
+                sb.AppendLine("        partial void HandleImplementation(" + typename + " message);");
             }
 
             // Check to avoid collision with Saga Bus
@@ -288,20 +223,6 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine();
                 sb.AppendLine("        partial void AllMessagesReceived();");
             }
-
-            //if (this.Component.Publishes.CommandLinks.Any(cl => true))
-            //{
-            //    sb.AppendLine();
-            //    sb.AppendLine("        public class " + this.Component.CodeIdentifier + "Registration : INeedInitialization");
-            //    sb.AppendLine("        {");
-            //    sb.AppendLine("            public void Init()");
-            //    sb.AppendLine("            {");
-            //    sb.AppendLine("                Configure.Instance.Configurer.ConfigureComponent<" + this.Component.CodeIdentifier + ">(DependencyLifecycle.InstancePerCall);");
-            //    sb.AppendLine("            }");
-            //    sb.AppendLine("        }");
-            //    sb.AppendLine();
-            //}
-
 
             if (this.Component.IsSaga)
             {
@@ -337,29 +258,33 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine("        {");
                 sb.AppendLine("            // TODO: " + this.Component.CodeIdentifier + ": Add code to handle the " + typename + " message.");
                 sb.AppendLine("            Console.WriteLine(\"" + this.Component.Parent.Parent.InstanceName + " received \" + message.GetType().Name);");
+
+                foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("            // Auto-publish Command " + publishedCommand.CodeIdentifier);
+                    sb.AppendLine("            var " + publishedCommand.CodeIdentifier + " = new " + publishedCommand.GetMessageTypeFullName() + "();");
+                    sb.AppendLine("            this.Bus.Send(" + publishedCommand.CodeIdentifier + ");");
+                }
+
+                foreach (var publishedEvent in this.Component.Publishes.EventLinks)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("            // Auto-publish Event " + publishedEvent.CodeIdentifier);
+                    sb.AppendLine("            var " + publishedEvent.CodeIdentifier + " = new " + publishedEvent.GetMessageTypeFullName() + "();");
+                    sb.AppendLine("            this.Bus.Publish(" + publishedEvent.CodeIdentifier + ");");
+                }
+
+                foreach (var processedCommandLink in this.Component.Subscribes.ProcessedCommandLinks.Where(cl => cl.CommandReference.Value.CodeIdentifier == typename &&
+                                                                                                                  cl.ProcessedCommandLinkReply != null))
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("            // Reply message with defined Response");
+                    sb.AppendLine("            var response = new " + processedCommandLink.ProcessedCommandLinkReply.GetMessageTypeFullName() + "();");
+                    sb.AppendLine("            this.Bus.Reply(response);");
+                }
+
                 sb.AppendLine("        }");
-            }
-
-            foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
-            {
-                sb.AppendLine();
-                if (publishedCommand.CommandReference.Value != null)
-                {
-                    sb.AppendLine("        partial void Configure" + publishedCommand.CommandName + "(" + publishedCommand.CommandName + " message)");
-                    sb.AppendLine("        {");
-                    sb.AppendLine("            // TODO: " + this.Component.CodeIdentifier + ": Add code to configure the " + publishedCommand.CommandName + " message.");
-                    sb.AppendLine("        }");
-                }
-
-            }
-
-            foreach (var publishedEvent in this.Component.Publishes.EventLinks)
-            {
-                sb.AppendLine();
-                if (publishedEvent.EventReference.Value != null)
-                {
-                    sb.AppendLine("        // call Bus.Publish<" + publishedEvent.GetMessageTypeFullName() + ">(m => { /* set properties on m in here */ });");
-                }
             }
 
             return sb.ToString();
@@ -369,9 +294,10 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
         {
             var sb = new StringBuilder();
 
+            sb.AppendLine();
+            
             foreach (var typename in this.Component.Publishes.CommandLinks.Select(c => c.CommandReference.Value.CodeIdentifier))
             {
-                sb.AppendLine();
                 sb.AppendLine("        void Send(" + typename + " message);");
             }
 

@@ -63,6 +63,7 @@ namespace NServiceBusStudio
 		string CodeIdentifier { get; }
 
 		event EventHandler DoNotAutogenerateComponentsChanged;
+		event EventHandler DoNotAutogenerateSenderComponentChanged;
 	}
 
 	partial interface IMessage : IToolkitElement
@@ -81,7 +82,8 @@ namespace NServiceBusStudio
 		event EventHandler ClassBodyChanged;
 		event EventHandler CustomClassBodyChanged;
 		event EventHandler IsSagaChanged;
-		event EventHandler AutoPublishMessagesChanged;
+		event EventHandler InterfaceBodyChanged;
+		event EventHandler ConfigureHowToFindSagaBodyChanged;
 	}
 
 	partial interface IEventLink : IToolkitElement
@@ -961,6 +963,7 @@ namespace NServiceBusStudio
 
 		public event EventHandler InstanceNameChanged = (sender, args) => { };
 		public event EventHandler DoNotAutogenerateComponentsChanged = (sender, args) => { };
+		public event EventHandler DoNotAutogenerateSenderComponentChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -989,6 +992,9 @@ namespace NServiceBusStudio
 			{
 				case "DoNotAutogenerateComponents":
 					DoNotAutogenerateComponentsChanged(sender, args);
+					break;
+				case "DoNotAutogenerateSenderComponent":
+					DoNotAutogenerateSenderComponentChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
@@ -1212,7 +1218,8 @@ namespace NServiceBusStudio
 		public event EventHandler ClassBodyChanged = (sender, args) => { };
 		public event EventHandler CustomClassBodyChanged = (sender, args) => { };
 		public event EventHandler IsSagaChanged = (sender, args) => { };
-		public event EventHandler AutoPublishMessagesChanged = (sender, args) => { };
+		public event EventHandler InterfaceBodyChanged = (sender, args) => { };
+		public event EventHandler ConfigureHowToFindSagaBodyChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -1257,8 +1264,11 @@ namespace NServiceBusStudio
 				case "IsSaga":
 					IsSagaChanged(sender, args);
 					break;
-				case "AutoPublishMessages":
-					AutoPublishMessagesChanged(sender, args);
+				case "InterfaceBody":
+					InterfaceBodyChanged(sender, args);
+					break;
+				case "ConfigureHowToFindSagaBody":
+					ConfigureHowToFindSagaBodyChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {

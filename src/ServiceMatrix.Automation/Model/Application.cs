@@ -20,6 +20,9 @@ using System.Diagnostics;
 
 namespace NServiceBusStudio
 {
+    using System.Windows;
+    using Automation.Model;
+
     partial interface IApplication
     {
         string ContractsProjectName { get; }
@@ -107,13 +110,16 @@ namespace NServiceBusStudio
         private void SetNuGetPackagesVersion()
         {
             this.StatusBar.DisplayMessage("Obtaining NuGet packages versions...");
-            this.NuGetPackageVersionNServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus");
-            this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
-            this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
-            this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
-            this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
-            this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
-            this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
+            if (String.IsNullOrEmpty(this.NuGetPackageVersionNServiceBus))
+            {
+                this.NuGetPackageVersionNServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus");
+                this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
+                this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
+                this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
+                this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+                this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+                this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
+            }
             this.StatusBar.DisplayMessage(" ");
         }
 
@@ -292,9 +298,13 @@ namespace NServiceBusStudio
                 LicensedVersion = LicenseManager.Instance.PromptUserForLicenseIfTrialHasExpired();
                 if (LicensedVersion)
                 {
+                    GlobalSettings.Instance.IsLicenseValid = true;
                     EnableSolutionBuilder();
+                    MessageBox.Show("Your license has been verified. Please restart Visual Studio for the licensing changes to take effect", "Service Matrix - License Verified");
                     return;
                 }
+
+                GlobalSettings.Instance.IsLicenseValid = false;
                 DisableSolutionBuilder();
                 if (!AsProduct().IsSerializing) // is creating
                 {
@@ -304,6 +314,7 @@ namespace NServiceBusStudio
             }
             else
             {
+                GlobalSettings.Instance.IsLicenseValid = true;
                 EnableSolutionBuilder();
             }
         }
@@ -319,11 +330,6 @@ namespace NServiceBusStudio
             this.IsValidLicensed = false;
             this.CustomSolutionBuilder.DisableSolutionBuilder();
         }
-
-
-
-
-
 
 
         public InfrastructureManager InfrastructureManager { get; private set; }

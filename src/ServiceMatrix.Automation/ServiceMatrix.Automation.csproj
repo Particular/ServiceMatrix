@@ -154,6 +154,8 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\GenerateProductCodeCommandCustomConditional.cs" />
+    <Compile Include="Commands\LinkComponentCodeFiles.cs" />
     <Compile Include="Commands\LinkComponentSagaCodeFiles.cs" />
     <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />
     <Compile Include="Commands\ShowReplyWithPicker.cs" />
@@ -201,8 +203,12 @@
     <Compile Include="Conditions\IsSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
     <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
+    <Compile Include="Diagramming\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="Dialog\UserCodeChangeRequired.xaml.cs">
+      <DependentUpon>UserCodeChangeRequired.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\SagaStarterPicker.xaml.cs">
       <DependentUpon>SagaStarterPicker.xaml</DependentUpon>
     </Compile>
@@ -214,6 +220,7 @@
     <Compile Include="Licensing\NonLockingFileReader.cs" />
     <Compile Include="Licensing\StaThreadRunner.cs" />
     <Compile Include="Licensing\UserSidChecker.cs" />
+    <Compile Include="Model\GlobalSettings.cs" />
     <Compile Include="ProcessedCommandLinkReply.cs" />
     <Compile Include="ProcessedCommandLinkReply.Design.cs">
       <DependentUpon>ProcessedCommandLinkReply.cs</DependentUpon>
@@ -533,6 +540,7 @@
     <None Include="GeneratedCode\ToolkitElement.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Resources.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -611,6 +619,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialog\ComponentPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialog\UserCodeChangeRequired.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -733,6 +745,9 @@
   <ItemGroup>
     <Resource Include="Diagramming\Styles\Images\MessageIcon.png" />
     <Resource Include="Diagramming\Styles\Images\SagaComponentIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Diagramming\Styles\Images\Edit.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

@@ -24,6 +24,8 @@ using ServiceMatrix.Diagramming.Converters;
 
 namespace ServiceMatrix.Diagramming.Views
 {
+    using System.Diagnostics;
+
     /// <summary>
     /// Interaction logic for Diagram.xaml
     /// </summary>
@@ -154,6 +156,11 @@ namespace ServiceMatrix.Diagramming.Views
             }
         }
 
-        
+
+        void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
+        }
     }
 }

@@ -157,7 +157,6 @@ namespace AbstractEndpoint
             public string ClassBody { get; set; }
             public string CustomClassBody { get; set; }
             public bool IsSaga { get; set; }
-            public bool AutoPublishMessages { get; set; }
 
 
             public event EventHandler AdditionalUsingsChanged;
@@ -224,8 +223,6 @@ namespace AbstractEndpoint
             }
 
 
-            public event EventHandler AutoPublishMessagesChanged;
-
 
             public string InterfaceBody
             {
@@ -252,6 +249,24 @@ namespace AbstractEndpoint
 
 
             public string ConfigureHowToFindSagaBody
+            {
+                get
+                {
+                    throw new NotImplementedException();
+                }
+                set
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+
+            public event EventHandler InterfaceBodyChanged;
+
+            public event EventHandler ConfigureHowToFindSagaBodyChanged;
+
+
+            public bool UnfoldedCustomCode
             {
                 get
                 {

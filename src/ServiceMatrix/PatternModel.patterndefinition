@@ -762,12 +762,22 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+    <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustomConditional">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="595d4410-6d15-4702-b530-b14ca88605e6" />
       </extendedElement>
       <properties>
         [
+        {
+        "Name": "PropertyName",
+        "Value": "UnfoldedCustomCode",
+        "ValueProvider": null
+        },
+        {
+        "Name": "Value",
+        "Value": "False",
+        "ValueProvider": null
+        },
         {
         "Name": "SanitizeName",
         "Value": "False",
@@ -1601,7 +1611,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"280dba83-d002-44b2-ad3d-ef392191f153\"\r\n  },\r\n  {\r\n    \"CommandId\": \"36939d09-f7c3-45f5-881c-3908f1476ab4\"\r\n  },\r\n  {\r\n    \"CommandId\": \"6f1b5010-ce08-4cf5-81c6-711922944ed5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"47f2a720-e7a1-4568-addc-9cae1c53a38b\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"280dba83-d002-44b2-ad3d-ef392191f153\"\r\n  },\r\n  {\r\n    \"CommandId\": \"47f2a720-e7a1-4568-addc-9cae1c53a38b\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3796,7 +3806,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"0fa0f1e3-2a8d-4e12-b629-9012e20354ad\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"0fa0f1e3-2a8d-4e12-b629-9012e20354ad\"\r\n  },\r\n  {\r\n    \"CommandId\": \"36939d09-f7c3-45f5-881c-3908f1476ab4\"\r\n  },\r\n  {\r\n    \"CommandId\": \"1d23a731-f23d-4cc1-a028-7d1e640d9a39\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4594,6 +4604,11 @@
     "ValueProvider": null
   }
 ]</properties>
+    </commandSettings>
+    <commandSettings Id="1d23a731-f23d-4cc1-a028-7d1e640d9a39" typeId="NServiceBusStudio.Automation.Commands.LinkComponentCodeFiles">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0271c962-a984-4a86-97ed-e634216c43c0" />
+      </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
@@ -6626,27 +6641,6 @@
                               </settings>
                             </customizationPolicy>
                           </property>
-                          <property Id="5a315359-d13e-4eed-902a-6abf54b02014" name="AutoPublishMessages" displayName="Auto Publish Messages" description="If it is True, Code will be generated to Send/Publish Commands and Events when a Command is received by the Component." codeIdentifier="AutoPublishMessages" type="System.Boolean">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="RawDefaultValue" />
-                                <setting propertyId="IsVisible" />
-                                <setting propertyId="IsReadOnly" />
-                                <setting propertyId="Category" />
-                                <setting propertyId="TypeConverterTypeName" />
-                                <setting propertyId="EditorTypeName" />
-                                <setting propertyId="RawValidationRules" />
-                                <setting propertyId="RawValueProvider" />
-                              </settings>
-                            </customizationPolicy>
-                            <defaultValue>{
-  "Name": "DefaultValue",
-  "Value": "True",
-  "ValueProvider": null
-}</defaultValue>
-                          </property>
                           <property Id="5b80c9f7-44e6-4acc-a9db-1be527d89f81" name="InterfaceBody" displayName="Interface Body" description="Description for Application.Design.Services.Service.Components.Component.InterfaceBody" codeIdentifier="InterfaceBody">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
@@ -6682,6 +6676,27 @@
   "TypeId": "NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers.ComponentConfigureHowToFindSagaCodeProvider",
   "Properties": []
 }</valueProvider>
+                          </property>
+                          <property Id="640126ae-7c81-42e4-bbe6-d685270cae55" name="UnfoldedCustomCode" displayName="Unfolded Custom Code" description="Description for Application.Design.Services.Service.Components.Component.UnfoldedCustomCode" codeIdentifier="UnfoldedCustomCode" type="System.Boolean">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="RawDefaultValue" />
+                                <setting propertyId="IsVisible" />
+                                <setting propertyId="IsReadOnly" />
+                                <setting propertyId="Category" />
+                                <setting propertyId="TypeConverterTypeName" />
+                                <setting propertyId="EditorTypeName" />
+                                <setting propertyId="RawValidationRules" />
+                                <setting propertyId="RawValueProvider" />
+                              </settings>
+                            </customizationPolicy>
+                            <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "False",
+  "ValueProvider": null
+}</defaultValue>
                           </property>
                         </properties>
                         <automationSettings>
@@ -6965,6 +6980,15 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="51c02467-9ee9-4033-8d8a-7510fbb76777" name="OpenConfigureHowToFindSaga" displayName="Open Configure How To Find Saga" description="" codeIdentifier="OpenConfigureHowToFindSaga" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="0271c962-a984-4a86-97ed-e634216c43c0" name="LinkCodeFiles" displayName="Link Code Files" description="" codeIdentifier="LinkCodeFiles" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
