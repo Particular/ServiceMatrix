@@ -228,11 +228,8 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             {
                 sb.AppendLine("     }");
                 sb.AppendLine();
-                sb.AppendLine("     public partial class " + this.Component.CodeIdentifier + "SagaData : IContainSagaData");
+                sb.AppendLine("     public partial class " + this.Component.CodeIdentifier + "SagaData : ContainSagaData");
                 sb.AppendLine("     {");
-                sb.AppendLine("           public virtual Guid Id { get; set; }");
-                sb.AppendLine("           public virtual string Originator { get; set; }");
-                sb.AppendLine("           public virtual string OriginalMessageId { get; set; }");
                 sb.AppendLine();
 
                 foreach (var typename in this.TypeNames)
