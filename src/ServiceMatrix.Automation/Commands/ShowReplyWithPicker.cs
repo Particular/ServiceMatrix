@@ -12,6 +12,7 @@ using System.Windows.Input;
 using NuPattern.Diagnostics;
 using NuPattern.Presentation;
 using System.Windows;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -31,11 +32,15 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        private IDialogWindowFactory WindowFactory
-        {
-            get;
-            set;
-        }
+        private IDialogWindowFactory WindowFactory { get; set; }
+
+        [Required]
+        [Import(AllowDefault = true)]
+        private IUriReferenceService UriService { get; set; }
+
+        [Required]
+        [Import(AllowDefault = true)]
+        private ISolution Solution { get; set; }
 
         /// <summary>
         /// Gets or sets the current element.
@@ -108,6 +113,18 @@ namespace NServiceBusStudio.Automation.Commands
                                 CurrentElement = senderComponent
                             }.Execute();
                         }
+                    }
+
+                    // Code Generation Guidance
+                    if (CurrentComponent.UnfoldedCustomCode)
+                    {
+                        var userCode = WindowFactory.CreateDialog<UserCodeChangeRequired>() as UserCodeChangeRequired;
+                        userCode.UriService = this.UriService;
+                        userCode.Solution = this.Solution;
+                        userCode.Component = CurrentComponent;
+                        userCode.Code = String.Format("var response = new {1}.{0}();\r\nthis.Bus.Reply(response);", message.CodeIdentifier, message.Parent.Namespace);
+
+                        userCode.ShowDialog();
                     }
                 }
             }
