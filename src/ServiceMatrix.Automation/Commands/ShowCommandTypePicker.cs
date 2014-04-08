@@ -5,8 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using NuPattern;
 using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
 using NuPattern.Diagnostics;
@@ -109,8 +107,7 @@ namespace NServiceBusStudio.Automation.Commands
                         userCode.UriService = this.UriService;
                         userCode.Solution = this.Solution;
                         userCode.Component = CurrentComponent;
-                        userCode.Code = String.Format("var {0} = new {1}.{0}();\r\nthis.Bus.Send({0});", selectedCommand.CodeIdentifier, selectedCommand.Parent.Namespace);
-
+                        userCode.Code = string.Format("Bus.Send<{0}.{1}>(m => {{ }});", selectedCommand.Parent.Namespace, selectedCommand.CodeIdentifier);
                         userCode.ShowDialog();
                     }
                 }
