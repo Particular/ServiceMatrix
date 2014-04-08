@@ -78,7 +78,7 @@ namespace NServiceBusStudio.Automation.Commands
                             selectedService = CurrentElement.Parent.Parent.Parent.Parent.CreateService(selectedElement);
                         }
 
-                        var component = selectedService.Components.CreateComponent(string.Format("{0}Processor", CurrentElement.InstanceName));
+                        var component = selectedService.Components.CreateComponent(string.Format("{0}Handler", CurrentElement.InstanceName));
                         component.Subscribes.CreateLink(CurrentElement);
                     }
                 }

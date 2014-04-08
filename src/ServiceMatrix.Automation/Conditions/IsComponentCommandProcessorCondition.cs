@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace NServiceBusStudio.Automation.Conditions
 {
     [CLSCompliant(false)]
-    [DisplayName("Component Is Command Processor")]
+    [DisplayName("Component Is Command Handler")]
     [Category("General")]
     [Description("True if the component is processing a command.")]
     public class IsComponentCommandProcessorCondition : Condition
