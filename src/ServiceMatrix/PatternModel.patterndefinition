@@ -704,135 +704,133 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b5805c93-096e-4655-947f-a13bc19eac63" />
       </extendedElement>
-      <properties>
-        [
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "{CodeIdentifier}.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
         {
-        "Name": "SanitizeName",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "SyncName",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "Tag",
-        "Value": null,
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetBuildAction",
-        "Value": null,
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetCopyToOutput",
-        "Value": "DoNotCopy",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetFileName",
-        "Value": "{CodeIdentifier}.cs",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetPath",
-        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\Infrastructure\\{Parent.Parent.CodeIdentifier}",
-        "ValueProvider": {
-        "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
-        "Properties": [
-        {
-        "Name": "SubPath",
-        "Value": "GeneratedCode",
-        "ValueProvider": null
+          "Name": "AddInfrastructureFolder",
+          "Value": "True",
+          "ValueProvider": null
         }
-        ]
-        }
-        },
-        {
-        "Name": "TemplateUri",
-        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentHandlers.tt",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TemplateAuthoringUri",
-        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/009202b9-d8d1-4877-bcbf-ff75c983dcd3",
-        "ValueProvider": null
-        }
-        ]</properties>
+      ]
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentHandlers.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/009202b9-d8d1-4877-bcbf-ff75c983dcd3",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustomConditional">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="595d4410-6d15-4702-b530-b14ca88605e6" />
       </extendedElement>
-      <properties>
-        [
+      <properties>[
+  {
+    "Name": "PropertyName",
+    "Value": "UnfoldedCustomCode",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Value",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "{CodeIdentifier}.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
         {
-        "Name": "PropertyName",
-        "Value": "UnfoldedCustomCode",
-        "ValueProvider": null
-        },
-        {
-        "Name": "Value",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "SanitizeName",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "SyncName",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "Tag",
-        "Value": null,
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetBuildAction",
-        "Value": null,
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetCopyToOutput",
-        "Value": "DoNotCopy",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetFileName",
-        "Value": "{CodeIdentifier}.cs",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetPath",
-        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
-        "ValueProvider": {
-        "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
-        "Properties": [
-        {
-        "Name": "SubPath",
-        "Value": null,
-        "ValueProvider": null
+          "Name": "AddInfrastructureFolder",
+          "Value": "False",
+          "ValueProvider": null
         }
-        ]
-        }
-        },
-        {
-        "Name": "TemplateUri",
-        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentHandlers.tt",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TemplateAuthoringUri",
-        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f63539d8-7392-445a-b2a1-1454caecb2df",
-        "ValueProvider": null
-        }
-        ]</properties>
+      ]
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentHandlers.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f63539d8-7392-445a-b2a1-1454caecb2df",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <commandSettings Id="48b725fa-ffcc-46a9-8324-75f7d6e87c7e" typeId="NServiceBusStudio.Automation.Infrastructure.Authentication.AddAuthenticationCommand">
       <extendedElement>
@@ -1047,8 +1045,17 @@
         },
         {
         "Name": "TargetPath",
-        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
-        "ValueProvider": null
+        "Value": "",
+        "ValueProvider": {
+          "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+          "Properties": [
+            {
+              "Name": "AddInfrastructureFolder",
+              "Value": "False",
+              "ValueProvider": null
+            }
+          ]
+        }
         }
         ]</properties>
     </commandSettings>
@@ -1180,63 +1187,62 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="02e255e6-52f7-4f3c-8253-74ec1a3c2a6d" />
       </extendedElement>
-      <properties>
-        [
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "{CodeIdentifier}SagaData.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
         {
-        "Name": "SanitizeName",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "SyncName",
-        "Value": "False",
-        "ValueProvider": null
-        },
-        {
-        "Name": "Tag",
-        "Value": null,
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetBuildAction",
-        "Value": "Compile",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetCopyToOutput",
-        "Value": "DoNotCopy",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetFileName",
-        "Value": "{CodeIdentifier}SagaData.cs",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TargetPath",
-        "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
-        "ValueProvider": {
-        "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
-        "Properties": [
-        {
-        "Name": "SubPath",
-        "Value": null,
-        "ValueProvider": null
+          "Name": "AddInfrastructureFolder",
+          "Value": "False",
+          "ValueProvider": null
         }
-        ]
-        }
-        },
-        {
-        "Name": "TemplateUri",
-        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentSagaHandlers.tt",
-        "ValueProvider": null
-        },
-        {
-        "Name": "TemplateAuthoringUri",
-        "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6c659607-78bc-4671-8c4a-32065bba3c33",
-        "ValueProvider": null
-        }
-        ]</properties>
+      ]
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentSagaHandlers.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6c659607-78bc-4671-8c4a-32065bba3c33",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <commandSettings Id="2f72fa6d-0d5e-4793-bd63-e6731ca60a9c" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
       <extendedElement>
@@ -1611,14 +1617,14 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"280dba83-d002-44b2-ad3d-ef392191f153\"\r\n  },\r\n  {\r\n    \"CommandId\": \"47f2a720-e7a1-4568-addc-9cae1c53a38b\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"47f2a720-e7a1-4568-addc-9cae1c53a38b\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="280dba83-d002-44b2-ad3d-ef392191f153" typeId="NServiceBusStudio.Automation.Commands.LibraryAddedCommand">
+    <commandSettings Id="2705891b-8aa1-4a03-b335-5d83c3c2693a" typeId="NServiceBusStudio.Automation.Commands.SetUnfoldedCustomCode">
       <extendedElement>
-        <automationSettingsSchemaMoniker Id="6bcae1ba-a55b-460b-934b-299b17407f67" />
+        <automationSettingsSchemaMoniker Id="c3f625dd-5136-414e-afd9-272fd4f1f6de" />
       </extendedElement>
     </commandSettings>
     <commandSettings Id="7538aca2-1e1c-48e7-97d0-f106ad715a10" typeId="AbstractEndpoint.Automation.Commands.ShowStartedByPicker">
@@ -3806,7 +3812,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"0fa0f1e3-2a8d-4e12-b629-9012e20354ad\"\r\n  },\r\n  {\r\n    \"CommandId\": \"36939d09-f7c3-45f5-881c-3908f1476ab4\"\r\n  },\r\n  {\r\n    \"CommandId\": \"1d23a731-f23d-4cc1-a028-7d1e640d9a39\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"0fa0f1e3-2a8d-4e12-b629-9012e20354ad\"\r\n  },\r\n  {\r\n    \"CommandId\": \"36939d09-f7c3-45f5-881c-3908f1476ab4\"\r\n  },\r\n  {\r\n    \"CommandId\": \"2705891b-8aa1-4a03-b335-5d83c3c2693a\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3848,13 +3854,13 @@
   },
   {
     "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
+    "Value": "",
     "ValueProvider": {
-      "TypeId": "NServiceBusStudio.Automation.ValueProviders.PathOnEndpointProjectValueProvider",
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
       "Properties": [
         {
-          "Name": "SubPath",
-          "Value": null,
+          "Name": "AddInfrastructureFolder",
+          "Value": "False",
           "ValueProvider": null
         }
       ]
@@ -4568,15 +4574,10 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"b2adde29-7d8c-4c77-9640-3aaa7ba96752\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8938e043-f81d-49a7-8c9b-35c02b437c67\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7d7a3682-83a3-4e74-b85f-df2827067417\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"b2adde29-7d8c-4c77-9640-3aaa7ba96752\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8938e043-f81d-49a7-8c9b-35c02b437c67\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
-    </commandSettings>
-    <commandSettings Id="7d7a3682-83a3-4e74-b85f-df2827067417" typeId="NServiceBusStudio.Automation.Commands.LinkComponentSagaCodeFiles">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="e3e2dc9e-1b9d-43c9-ad6b-75b192755b84" />
-      </extendedElement>
     </commandSettings>
     <commandSettings Id="ef04bcff-4db1-4b31-b84d-dbece3964571" typeId="NServiceBusStudio.Automation.Commands.ShowComponentSagaStarterPicker">
       <extendedElement>
@@ -4600,15 +4601,19 @@
   },
   {
     "Name": "TargetPath",
-    "Value": "\\{Parent.Parent.Parent.Parent.Parent.InstanceName}.{Root.ProjectNameCode}\\{Parent.Parent.CodeIdentifier}",
-    "ValueProvider": null
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
+        {
+          "Name": "AddInfrastructureFolder",
+          "Value": "False",
+          "ValueProvider": null
+        }
+      ]
+    }
   }
 ]</properties>
-    </commandSettings>
-    <commandSettings Id="1d23a731-f23d-4cc1-a028-7d1e640d9a39" typeId="NServiceBusStudio.Automation.Commands.LinkComponentCodeFiles">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="0271c962-a984-4a86-97ed-e634216c43c0" />
-      </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
@@ -6844,15 +6849,6 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="6bcae1ba-a55b-460b-934b-299b17407f67" name="CheckForCodeProject" displayName="Check For Code Project" description="" codeIdentifier="CheckForCodeProject" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
                           <automationSettings Id="148a4209-5996-4f57-a9a1-1bcf9a3fb301" name="RaiseOnInstantiated" displayName="Raise On Instantiated" description="" codeIdentifier="RaiseOnInstantiated" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
@@ -6961,15 +6957,6 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="e3e2dc9e-1b9d-43c9-ad6b-75b192755b84" name="LinkSagaCodeFiles" displayName="Link Saga Code Files" description="" codeIdentifier="LinkSagaCodeFiles" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
                           <automationSettings Id="101a71f9-a17c-4d9c-9087-47fe6ddf262e" name="SelectSagaStarter" displayName="Select Saga Starter" description="" codeIdentifier="SelectSagaStarter" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
@@ -6988,7 +6975,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="0271c962-a984-4a86-97ed-e634216c43c0" name="LinkCodeFiles" displayName="Link Code Files" description="" codeIdentifier="LinkCodeFiles" automationType="Command">
+                          <automationSettings Id="c3f625dd-5136-414e-afd9-272fd4f1f6de" name="SetUnfoldedCustomCode" displayName="Set Unfolded Custom Code" description="" codeIdentifier="SetUnfoldedCustomCode" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
