@@ -12,7 +12,7 @@ using AbstractEndpoint;
 namespace NServiceBusStudio.Automation.Conditions
 {
     [CLSCompliant(false)]
-    [DisplayName("Component Is Defined as Command/Event Processor")]
+    [DisplayName("Component Is Defined as Command/Event Handler")]
     [Category("General")]
     [Description("True if the component is already defined as a processor.")]
     public class IsProcessorComponentCondition : Condition
