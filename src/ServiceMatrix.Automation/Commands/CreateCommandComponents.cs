@@ -10,7 +10,7 @@ using NuPattern.Diagnostics;
 namespace NServiceBusStudio.Automation.Commands
 {
     [DisplayName("Create Command's Components")]
-    [Description("Creates the Command's Sender component and Command's Processor component.")]
+    [Description("Creates the Command's Sender component and Command's handler component.")]
     [CLSCompliant(false)]
     public class CreateCommandComponents : NuPattern.Runtime.Command
     {
@@ -27,7 +27,7 @@ namespace NServiceBusStudio.Automation.Commands
                 CreateComponent(String.Format("{0}Sender", this.Command.InstanceName),
                             (c) => c.Publishes.CreateLink(this.Command));
             }
-            CreateComponent(String.Format("{0}Processor", this.Command.InstanceName),
+            CreateComponent(String.Format("{0}Handler", this.Command.InstanceName),
                             (c) => c.Subscribes.CreateLink(this.Command));
         }
 
