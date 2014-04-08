@@ -34,7 +34,7 @@ namespace NServiceBusStudio
                 if (result == MessageBoxResult.Yes)
                 {
                     DeleteComponent(String.Format("{0}Sender", this.InstanceName));
-                    DeleteComponent(String.Format("{0}Processor", this.InstanceName));
+                    DeleteComponent(String.Format("{0}Handler", this.InstanceName));
                 }
             };
         }
