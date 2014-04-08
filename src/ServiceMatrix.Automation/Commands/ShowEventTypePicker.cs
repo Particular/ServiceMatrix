@@ -106,8 +106,7 @@ namespace NServiceBusStudio.Automation.Commands
                         userCode.UriService = this.UriService;
                         userCode.Solution = this.Solution;
                         userCode.Component = CurrentComponent;
-                        userCode.Code = String.Format("var {0} = new {1}.{0}();\r\nthis.Bus.Publish({0});", selectedEvent.CodeIdentifier, selectedEvent.Parent.Namespace);
-
+                        userCode.Code = string.Format("Bus.Publish<{0}.{1}>(m => {{ }});", selectedEvent.Parent.Namespace, selectedEvent.CodeIdentifier);
                         userCode.ShowDialog();
                     }
                 }

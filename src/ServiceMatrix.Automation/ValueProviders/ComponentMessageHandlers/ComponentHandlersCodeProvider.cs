@@ -261,27 +261,27 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
                 foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
                 {
-                    sb.AppendLine();
-                    sb.AppendLine("            // Auto-publish Command " + publishedCommand.CodeIdentifier);
-                    sb.AppendLine("            var " + publishedCommand.CodeIdentifier + " = new " + publishedCommand.GetMessageTypeFullName() + "();");
-                    sb.AppendLine("            this.Bus.Send(" + publishedCommand.CodeIdentifier + ");");
+                     sb.AppendLine();
+                     sb.AppendLine("            // TODO: Add code inside the lambda to fill in the message properties.");
+                     sb.AppendFormat("            Bus.Send<{0}>(m => {{ }});", publishedCommand.GetMessageTypeFullName());
+                     sb.AppendLine();
                 }
 
                 foreach (var publishedEvent in this.Component.Publishes.EventLinks)
                 {
                     sb.AppendLine();
-                    sb.AppendLine("            // Auto-publish Event " + publishedEvent.CodeIdentifier);
-                    sb.AppendLine("            var " + publishedEvent.CodeIdentifier + " = new " + publishedEvent.GetMessageTypeFullName() + "();");
-                    sb.AppendLine("            this.Bus.Publish(" + publishedEvent.CodeIdentifier + ");");
+                    sb.AppendLine("            // TODO: Add code inside the lambda to fill in the message properties.");
+                    sb.AppendFormat("            Bus.Publish<{0}>(m => {{ }});", publishedEvent.GetMessageTypeFullName());
+                    sb.AppendLine();
                 }
 
                 foreach (var processedCommandLink in this.Component.Subscribes.ProcessedCommandLinks.Where(cl => cl.CommandReference.Value.CodeIdentifier == typename &&
                                                                                                                   cl.ProcessedCommandLinkReply != null))
                 {
                     sb.AppendLine();
-                    sb.AppendLine("            // Reply message with defined Response");
-                    sb.AppendLine("            var response = new " + processedCommandLink.ProcessedCommandLinkReply.GetMessageTypeFullName() + "();");
-                    sb.AppendLine("            this.Bus.Reply(response);");
+                    sb.AppendLine("            // TODO: Add code inside the lambda to fill in the message properties.");
+                    sb.AppendFormat("            Bus.Reply<{0}>(m => {{ }});", processedCommandLink.ProcessedCommandLinkReply.GetMessageTypeFullName());
+                    sb.AppendLine();
                 }
 
                 sb.AppendLine("        }");
