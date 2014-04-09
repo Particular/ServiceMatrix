@@ -7,6 +7,8 @@ using System.ComponentModel;
 
 namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 {
+    using Extensions;
+
     [CLSCompliant(false)]
     [Category("General")]
     [Description("Generate CustomClassBody value and Set Code properties.")]
@@ -261,27 +263,30 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
                 foreach (var publishedCommand in this.Component.Publishes.CommandLinks)
                 {
+                    var variableName = publishedCommand.CodeIdentifier.LowerCaseFirstCharacter();
                     sb.AppendLine();
-                    sb.AppendLine("            // Auto-publish Command " + publishedCommand.CodeIdentifier);
-                    sb.AppendLine("            var " + publishedCommand.CodeIdentifier + " = new " + publishedCommand.GetMessageTypeFullName() + "();");
-                    sb.AppendLine("            this.Bus.Send(" + publishedCommand.CodeIdentifier + ");");
+                    sb.AppendFormat("            var {0} = new {1}();", variableName, publishedCommand.GetMessageTypeFullName());
+                    sb.AppendLine();
+                    sb.AppendFormat("            Bus.Send({0});", variableName);
+                    sb.AppendLine();
                 }
 
                 foreach (var publishedEvent in this.Component.Publishes.EventLinks)
                 {
+                    var variableName = publishedEvent.CodeIdentifier.LowerCaseFirstCharacter();
                     sb.AppendLine();
-                    sb.AppendLine("            // Auto-publish Event " + publishedEvent.CodeIdentifier);
-                    sb.AppendLine("            var " + publishedEvent.CodeIdentifier + " = new " + publishedEvent.GetMessageTypeFullName() + "();");
-                    sb.AppendLine("            this.Bus.Publish(" + publishedEvent.CodeIdentifier + ");");
+                    sb.AppendFormat("            var {0} = new {1}();", variableName, publishedEvent.GetMessageTypeFullName());
+                    sb.AppendLine();
+                    sb.AppendFormat("            Bus.Publish({0});", variableName);
+                    sb.AppendLine();
                 }
 
                 foreach (var processedCommandLink in this.Component.Subscribes.ProcessedCommandLinks.Where(cl => cl.CommandReference.Value.CodeIdentifier == typename &&
                                                                                                                   cl.ProcessedCommandLinkReply != null))
                 {
                     sb.AppendLine();
-                    sb.AppendLine("            // Reply message with defined Response");
                     sb.AppendLine("            var response = new " + processedCommandLink.ProcessedCommandLinkReply.GetMessageTypeFullName() + "();");
-                    sb.AppendLine("            this.Bus.Reply(response);");
+                    sb.AppendLine("            Bus.Reply(response);");
                 }
 
                 sb.AppendLine("        }");

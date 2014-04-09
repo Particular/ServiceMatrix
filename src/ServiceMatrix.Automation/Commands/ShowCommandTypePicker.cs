@@ -15,6 +15,8 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using Extensions;
+
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -109,7 +111,10 @@ namespace NServiceBusStudio.Automation.Commands
                         userCode.UriService = this.UriService;
                         userCode.Solution = this.Solution;
                         userCode.Component = CurrentComponent;
-                        userCode.Code = String.Format("var {0} = new {1}.{0}();\r\nthis.Bus.Send({0});", selectedCommand.CodeIdentifier, selectedCommand.Parent.Namespace);
+                        userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Send({0});", 
+                            selectedCommand.CodeIdentifier.LowerCaseFirstCharacter(), 
+                            selectedCommand.Parent.Namespace,
+                            selectedCommand.CodeIdentifier);
 
                         userCode.ShowDialog();
                     }
