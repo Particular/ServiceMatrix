@@ -122,7 +122,7 @@ namespace NServiceBusStudio.Automation.Commands
                         userCode.UriService = this.UriService;
                         userCode.Solution = this.Solution;
                         userCode.Component = CurrentComponent;
-                        userCode.Code = String.Format("var response = new {1}.{0}();\r\nthis.Bus.Reply(response);", message.CodeIdentifier, message.Parent.Namespace);
+                        userCode.Code = String.Format("var response = new {1}.{0}();\r\nBus.Reply(response);", message.CodeIdentifier, message.Parent.Namespace);
 
                         userCode.ShowDialog();
                     }
