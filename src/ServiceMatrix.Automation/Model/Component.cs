@@ -158,6 +158,12 @@ namespace NServiceBusStudio
                     i.AsElement().AutomationExtensions.First(x => x.Name == "OnInstantiateCommand").Execute();
                 }
 
+                if (this.IsSaga)
+                {
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaConfigureHowToFindCode").Execute();
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
+                }
+
                 // Add Links for Referenced Libraries
                 this.AddLinks(endpoint);
             }

@@ -32,7 +32,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
                 var app = this.CurrentElement.Root.As<IApplication>();
                 var component = this.CurrentElement.As<IComponent>();
 
-                var endpoint = component.Parent.Parent.Parent.Parent.Endpoints.GetAll()
+                var endpoint = app.Design.Endpoints.GetAll()
                     .FirstOrDefault(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
 
                 if (endpoint != null)

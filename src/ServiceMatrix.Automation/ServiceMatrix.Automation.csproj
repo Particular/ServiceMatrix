@@ -154,7 +154,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
-    <Compile Include="Commands\GenerateProductCodeCommandCustomConditional.cs" />
+    <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
     <Compile Include="Commands\SetUnfoldedCustomCode.cs" />
     <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />
     <Compile Include="Commands\ShowReplyWithPicker.cs" />
@@ -198,6 +198,7 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />
     <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
