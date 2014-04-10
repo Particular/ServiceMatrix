@@ -1,19 +1,21 @@
-﻿using NuPattern.Runtime;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace NServiceBusStudio.Automation.Commands
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Composition;
+using NuPattern.Runtime;
+using AbstractEndpoint;
+
+namespace NServiceBusStudio.Automation.Conditions
 {
-    [DisplayName("SetUnfoldedCustomCode")]
-    [Description("SetUnfoldedCustomCode")]
     [CLSCompliant(false)]
-    public class SetUnfoldedCustomCode : NuPattern.Runtime.Command
+    [DisplayName("Component Is Not Deployed into an Endpoint")]
+    [Category("General")]
+    [Description("True if the component is not deployed into an Endpoint.")]
+    public class IsNotComponentDeployedCondition : Condition
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -26,21 +28,14 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
-        public override void Execute()
+        public override bool Evaluate()
         {
             var app = this.CurrentElement.Root.As<IApplication>();
             var component = this.CurrentElement.As<IComponent>();
 
-            var isDeployed = app.Design.Endpoints.GetAll()
+            return !app.Design.Endpoints.GetAll()
                     .Any(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
-
-            if (!isDeployed)
-            {
-                return;
-            }
-            
-            component.UnfoldedCustomCode = true;
         }
-    
     }
 }
+

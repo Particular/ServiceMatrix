@@ -700,11 +700,21 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="0fa0f1e3-2a8d-4e12-b629-9012e20354ad" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+    <commandSettings Id="0fa0f1e3-2a8d-4e12-b629-9012e20354ad" typeId="NuPattern.Library.Commands.GenerateComponentCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b5805c93-096e-4655-947f-a13bc19eac63" />
       </extendedElement>
       <properties>[
+  {
+    "Name": "CheckIsDeployed",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": "False",
+    "ValueProvider": null
+  },
   {
     "Name": "SanitizeName",
     "Value": "False",
@@ -761,19 +771,19 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustomConditional">
+    <commandSettings Id="36939d09-f7c3-45f5-881c-3908f1476ab4" typeId="NuPattern.Library.Commands.GenerateComponentCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="595d4410-6d15-4702-b530-b14ca88605e6" />
       </extendedElement>
       <properties>[
   {
-    "Name": "PropertyName",
-    "Value": "UnfoldedCustomCode",
+    "Name": "CheckIsDeployed",
+    "Value": "True",
     "ValueProvider": null
   },
   {
-    "Name": "Value",
-    "Value": "False",
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": "True",
     "ValueProvider": null
   },
   {
@@ -1183,11 +1193,21 @@
         }
         ]</properties>
     </commandSettings>
-    <commandSettings Id="b2adde29-7d8c-4c77-9640-3aaa7ba96752" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+    <commandSettings Id="b2adde29-7d8c-4c77-9640-3aaa7ba96752" typeId="NuPattern.Library.Commands.GenerateComponentCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="02e255e6-52f7-4f3c-8253-74ec1a3c2a6d" />
       </extendedElement>
       <properties>[
+  {
+    "Name": "CheckIsDeployed",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": "False",
+    "ValueProvider": null
+  },
   {
     "Name": "SanitizeName",
     "Value": "False",
@@ -3817,11 +3837,21 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="8938e043-f81d-49a7-8c9b-35c02b437c67" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+    <commandSettings Id="8938e043-f81d-49a7-8c9b-35c02b437c67" typeId="NuPattern.Library.Commands.GenerateComponentCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="4922b8dd-e4c0-4df0-96a0-6b8e53ef24cd" />
       </extendedElement>
       <properties>[
+  {
+    "Name": "CheckIsDeployed",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": "False",
+    "ValueProvider": null
+  },
   {
     "Name": "SanitizeName",
     "Value": "False",
@@ -4615,6 +4645,18 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="57203a32-9409-428c-aeff-3c9192baa201" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e3e85661-7e5f-4d98-aab1-2a38082fea08" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"6f1b5010-ce08-4cf5-81c6-711922944ed5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"db0a6380-180b-410f-982b-f3d1589111f3\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -4646,7 +4688,7 @@
   }
 ]</conditions>
     </menuSettings>
-    <menuSettings Id="f532af10-b1e4-4267-9209-8c3a7536137d" text="View Code" commandId="db0a6380-180b-410f-982b-f3d1589111f3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
+    <menuSettings Id="f532af10-b1e4-4267-9209-8c3a7536137d" text="View Code" commandId="57203a32-9409-428c-aeff-3c9192baa201" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ca932548-0b1d-4164-a041-d5ae011cfb3e" />
       </extendedElement>
@@ -6976,6 +7018,15 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="c3f625dd-5136-414e-afd9-272fd4f1f6de" name="SetUnfoldedCustomCode" displayName="Set Unfolded Custom Code" description="" codeIdentifier="SetUnfoldedCustomCode" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="e3e85661-7e5f-4d98-aab1-2a38082fea08" name="OpenCommand" displayName="Open Command" description="" codeIdentifier="OpenCommand" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
