@@ -9,13 +9,12 @@
         [Test]
         public void GetMessageConventionsTest_WhenRootNamespaceHasAValue()
         {
-            string rootNamespace = "MyNServiceBusSystem";
-            string applicationName = "MyNServiceBusSystem";
-            string projectNameForInternal = "InternalMessages";
-            string projectNameForContracts = "ContractEvents";
+            var rootNamespace = "MyNServiceBusSystem";
+            var applicationName = "MyNServiceBusSystem";
+            var projectNameForInternal = "InternalMessages";
+            var projectNameForContracts = "ContractEvents";
 
             var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
-
             var expectedConventions = @"namespace MyNServiceBusSystem
 {
     public class MessageConventions : IWantToRunBeforeConfiguration
@@ -37,9 +36,9 @@
         public void GetMessageConventionsTest_WhenRootNamespaceIsNull()
         {
             string rootNamespace = null;
-            string applicationName = "MyNServiceBusSystem";
-            string projectNameForInternal = "InternalMessages";
-            string projectNameForContracts = "ContractEvents";
+            var applicationName = "System";
+            var projectNameForInternal = "Internal";
+            var projectNameForContracts = "Events";
 
             var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
 
@@ -49,9 +48,9 @@
         public void Init()
         {
             Configure.Instance
-            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(""MyNServiceBusSystem.InternalMessages.Commands""))
-            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(""MyNServiceBusSystem.ContractEvents""))
-            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith(""MyNServiceBusSystem.InternalMessages.Messages""));
+            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(""System.Internal.Commands""))
+            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(""System.Events""))
+            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith(""System.Internal.Messages""));
         }
     }
 }
