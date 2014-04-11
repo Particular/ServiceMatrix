@@ -79,8 +79,11 @@ namespace NServiceBusStudio
 
         private void DeleteComponentLink(IAbstractEndpoint endpoint)
         {
-            var componentLink = endpoint.EndpointComponents.AbstractComponentLinks.FirstOrDefault(cl => cl.ComponentReference.Value == this);
-            componentLink.As<IProductElement>().Delete();
+            if (endpoint.EndpointComponents != null)
+            {
+                var componentLink = endpoint.EndpointComponents.AbstractComponentLinks.FirstOrDefault(cl => cl.ComponentReference.Value == this);
+                componentLink.As<IProductElement>().Delete();
+            }
         }
 
         private List<IAbstractEndpoint> deployedTo = new List<IAbstractEndpoint>();
@@ -136,6 +139,13 @@ namespace NServiceBusStudio
             foreach (var endpoint in this.DeployedTo)
             {
                 var service = this.Parent.Parent;
+                var endpointProject = endpoint.Project;
+
+                if (endpointProject == null)
+                {
+                    continue;
+                }
+
                 if (!endpoint.Project.Folders.Any(f => f.Name == service.CodeIdentifier))
                 {
                     endpoint.Project.CreateFolder(service.CodeIdentifier);

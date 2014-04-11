@@ -34,12 +34,16 @@ namespace NServiceBusStudio.Automation.Extensions
             if (element == null)
                 return null;
 
-            var references = element.Product.ProductState.GetService<IUriReferenceService>();
+            try
+            {
+                var references = element.Product.ProductState.GetService<IUriReferenceService>();
 
-            return SolutionArtifactLinkReference
-                .GetResolvedReferences(element, references)
-                .OfType<IProject>()
-                .FirstOrDefault();
+                return SolutionArtifactLinkReference
+                    .GetResolvedReferences(element, references)
+                    .OfType<IProject>()
+                    .FirstOrDefault();
+            }
+            catch { return null; }
         }
 
         public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager)
