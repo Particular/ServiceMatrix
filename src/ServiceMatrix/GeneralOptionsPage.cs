@@ -1,11 +1,7 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NServiceBusStudio
@@ -14,7 +10,7 @@ namespace NServiceBusStudio
     [CLSCompliant(false), ComVisible(true)]
     public class GeneralOptionsPage : DialogPage
     {
-        private string projectNameInternalMessages = "InternalMessages";
+        private string projectNameInternalMessages = "Internal";
 
         public string ProjectNameInternalMessages 
         {
