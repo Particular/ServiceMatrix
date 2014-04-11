@@ -34,7 +34,6 @@
                 <ComboBox Height="25" Padding="3, 3, 0, 3" x:Name="EndpointHostType" SelectedValuePath="Tag">
                     <ComboBoxItem Tag="NServiceBusHost" IsSelected="True">NServiceBus Host</ComboBoxItem>
                     <ComboBoxItem Tag="NServiceBusMVC">NServiceBus ASP.NET MVC</ComboBoxItem>
-                    <ComboBoxItem Tag="NServiceBusWeb">NServiceBus ASP.NET Web Forms</ComboBoxItem>
                 </ComboBox>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
