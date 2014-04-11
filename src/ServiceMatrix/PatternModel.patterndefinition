@@ -4676,6 +4676,12 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="d6cc507d-ea29-493a-82be-29644608715c" />
       </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsNotComponentDeployedCondition",
+    "Properties": []
+  }
+]</conditions>
     </menuSettings>
     <menuSettings Id="29fd2238-1a5b-4f38-b686-6d10267d1bf1" text="Add Authentication" commandId="48b725fa-ffcc-46a9-8324-75f7d6e87c7e" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
