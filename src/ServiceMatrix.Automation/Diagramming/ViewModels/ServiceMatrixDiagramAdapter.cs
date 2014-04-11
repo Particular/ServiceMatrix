@@ -221,14 +221,23 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         private void RemoveElement(IProductElementViewModel removedElement)
         {
-            this.ViewModel.DeleteNodesById(removedElement.Data.Id);
-
             switch (removedElement.Data.Info.Name)
             {
-                case "ComponentLink":
-                    this.ViewModel.DeleteComponentLinkNode(removedElement);
+                case "NServiceBusHost":
+                case "NServiceBusMVC":
+                case "NServiceBusWeb":
+                    foreach (var cl in removedElement.ChildNodes.First().ChildNodes)
+                    {
+                        RemoveComponentLink(cl);
+                    }
                     break;
+                case "ComponentLink":
+                    RemoveComponentLink(removedElement);
+                    break;
+                
             }
+
+            this.ViewModel.DeleteNodesById(removedElement.Data.Id);
         }
 
         private void CreateComponentLink(IProductElementViewModel viewModel)
@@ -244,6 +253,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
                                                     componentViewModel,
                                                     viewModel);
 
+            CreateComponentLinks(component);
+        }
+
+        private void CreateComponentLinks(IComponent component)
+        {
             component.Publishes.CommandLinks.ForEach(x => CreateCommandLink(x));
             component.Publishes.EventLinks.ForEach(x => CreateEventLink(x));
             component.Subscribes.ProcessedCommandLinks.ForEach(x => { if (x.ProcessedCommandLinkReply != null) CreateProcessedCommandLinkReply(x.ProcessedCommandLinkReply); });
@@ -313,6 +327,19 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 this.ViewModel.GetOrCreateMessageConnection(messageNode, component);
             }
         }
+
+        private void RemoveComponentLink(IProductElementViewModel removedElement)
+        {
+            var componentViewModel = this.ViewModel.DeleteComponentLinkNode(removedElement);
+            if (componentViewModel != null && componentViewModel.Data.Product != null)
+            {
+                this.ViewModel.GetOrCreateComponentNode(componentViewModel);
+
+                var component = componentViewModel.Data.As<IComponent>();
+                this.CreateComponentLinks(component);
+            }
+        }
+
 
         private IProductElementViewModel FindViewModel(Guid elementId)
         {

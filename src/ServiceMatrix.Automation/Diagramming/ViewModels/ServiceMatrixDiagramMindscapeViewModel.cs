@@ -178,7 +178,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return componentNode;
         }
 
-        public void DeleteComponentLinkNode(IProductElementViewModel removedElement)
+        public IProductElementViewModel DeleteComponentLinkNode(IProductElementViewModel removedElement)
         {
             var component = this.Nodes.FirstOrDefault(x => x is ComponentNode && ((ComponentNode)x).ComponentLinkViewModel == removedElement) as ComponentNode;
 
@@ -193,8 +193,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 {
                     this.DeleteNode(serviceNode);
                 }
+
+                return component.InnerViewModel;
             }
-            
+
+            return null;
         }
 
         // ================ CONNECTIONS ==========================

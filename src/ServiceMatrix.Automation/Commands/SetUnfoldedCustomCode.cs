@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    [DisplayName("Links Component Files when necessary")]
-    [Description("Links Component Files when necessary")]
+    [DisplayName("SetUnfoldedCustomCode")]
+    [Description("SetUnfoldedCustomCode")]
     [CLSCompliant(false)]
-    public class LinkComponentCodeFiles : NuPattern.Runtime.Command
+    public class SetUnfoldedCustomCode : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -28,15 +28,17 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var component = this.CurrentElement.As<IComponent>();
             var app = this.CurrentElement.Root.As<IApplication>();
-            var endpoints = app.Design.Endpoints.GetAll().Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
+            var component = this.CurrentElement.As<IComponent>();
 
-            foreach (var e in endpoints)
+            var isDeployed = app.Design.Endpoints.GetAll()
+                    .Any(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
+
+            if (!isDeployed)
             {
-                component.AddLinks(e);
+                return;
             }
-
+            
             component.UnfoldedCustomCode = true;
         }
     
