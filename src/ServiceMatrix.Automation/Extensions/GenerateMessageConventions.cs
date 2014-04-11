@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using AbstractEndpoint;
 using NuPattern.Runtime;
@@ -11,15 +9,36 @@ namespace NServiceBusStudio.Automation.Extensions
     {
         public static string GetMessageConventions(this IProductElement endpoint)
         {
-            var sb = new StringBuilder();
+            var generatedConventions = string.Empty;
             try
             {
                 var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
 
+                var rootNameSpace = string.Empty;
+                var applicationName = app.CodeIdentifier;
+                var projectNameForInternal = app.ProjectNameInternalMessages;
+                var projectNameForContracts = app.ProjectNameContracts;
+
                 var project = endpoint.As<IAbstractEndpoint>().As<IProductElement>().GetProject();
                 if (project != null)
                 {
-                    sb.AppendLine("namespace " + project.Data.RootNamespace);
+                    rootNameSpace = project.Data.RootNamespace;
+                }
+                generatedConventions = GetMessageConventions(rootNameSpace, applicationName, projectNameForInternal, projectNameForContracts);
+            }
+            catch (Exception ex)
+            {
+                //TODO: Why are we catching the exception here??
+            }
+            return generatedConventions;
+        }
+
+        public static string GetMessageConventions(string rootNamespace, string applicationName, string projectNameForInternal, string projectNameForContracts)
+        {
+            var sb = new StringBuilder();
+            if (!String.IsNullOrEmpty(rootNamespace))
+                {
+                    sb.AppendLine("namespace " + rootNamespace);
                 }
                 sb.Append(@"{
     public class MessageConventions : IWantToRunBeforeConfiguration
@@ -29,21 +48,16 @@ namespace NServiceBusStudio.Automation.Extensions
             Configure.Instance");
                 sb.AppendLine();
                 sb.AppendLine("            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.CodeIdentifier + "." + app.ProjectNameInternalMessages + ".Commands\"))");
+                    applicationName + "." + projectNameForInternal + ".Commands\"))");
                 sb.AppendLine("            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.CodeIdentifier + "." + app.ProjectNameContracts + "\"))");
+                    applicationName + "." + projectNameForContracts + "\"))");
                 sb.AppendLine("            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
-                    app.CodeIdentifier + "." + app.ProjectNameInternalMessages + "\"));");
+                    applicationName + "." + projectNameForInternal + ".Messages\"));");
                 sb.Append(@"        }
     }
 }
 ");
-            }
-            catch (Exception ex)
-            {
-            }
             return sb.ToString();
         }
-
     }
 }
