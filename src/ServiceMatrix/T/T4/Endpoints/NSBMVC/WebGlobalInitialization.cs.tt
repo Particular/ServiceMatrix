@@ -23,6 +23,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NServiceBus;
+using Autofac;
+using Autofac.Integration.Mvc;
+using System.Reflection;
 
 namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 {
@@ -30,6 +33,11 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
     {
         public static IBus InitializeNServiceBus()
         {
+		    var builder = new ContainerBuilder();
+			 builder.RegisterControllers(Assembly.GetExecutingAssembly())
+                .PropertiesAutowired(); //this is needed to get property injection working
+			var container = builder.Build();
+
 			Configure.Serialization.Xml();
 <#
 if (!nserviceBusHost.SendOnly)
@@ -38,8 +46,7 @@ if (!nserviceBusHost.SendOnly)
 			Configure.Transactions.Disable();
 
             return NServiceBus.Configure.With()
-                .DefaultBuilder()
-                .ForMvc()
+                .AutofacBuilder(container) //pass the container in so NSB will use it
                 .PurgeOnStartup(false)
                 .UnicastBus()
                 .RunHandlersUnderIncomingPrincipal(false)
@@ -51,8 +58,7 @@ else
 {
 #> 
             return NServiceBus.Configure.With()
-                .DefaultBuilder()
-                .ForMvc()
+                .AutofacBuilder(container) //pass the container in so NSB will use it
                 .UnicastBus()
                 .SendOnly();
 <#

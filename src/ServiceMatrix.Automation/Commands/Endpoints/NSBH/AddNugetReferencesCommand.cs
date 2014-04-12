@@ -57,9 +57,14 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.NuGetPackageVersionNServiceBus);
                 project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", app.NuGetPackageVersionNServiceBus);
 
-                if (!this.IgnoreHost)
+                if (!IgnoreHost)
                 {
                     project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Host", app.NuGetPackageVersionNServiceBus);
+                }
+                else
+                {
+                    // This is needed for AspNet MVC Integration for the time being. 
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Autofac", app.NuGetPackageVersionNServiceBus);
                 }
             }
 
