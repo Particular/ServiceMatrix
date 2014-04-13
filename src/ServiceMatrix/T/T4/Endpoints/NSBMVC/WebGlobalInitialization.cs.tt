@@ -26,6 +26,8 @@ using NServiceBus;
 using Autofac;
 using Autofac.Integration.Mvc;
 using System.Reflection;
+using ServiceMatrix.Shared;
+using System.Web.Mvc;
 
 namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 {
@@ -34,8 +36,16 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
         public static IBus InitializeNServiceBus()
         {
 		    var builder = new ContainerBuilder();
-			 builder.RegisterControllers(Assembly.GetExecutingAssembly())
+			builder.RegisterControllers(Assembly.GetExecutingAssembly())
                 .PropertiesAutowired(); //this is needed to get property injection working
+			
+			// Register the sender components 
+			builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                  .Where(t => t.Name.EndsWith("Sender"))
+                  .AsImplementedInterfaces()
+				  .PropertiesAutowired();
+           
+            
 			var container = builder.Build();
 
 			Configure.Serialization.Xml();
@@ -45,7 +55,7 @@ if (!nserviceBusHost.SendOnly)
 #>
 			Configure.Transactions.Disable();
 
-            return NServiceBus.Configure.With()
+            var bus = NServiceBus.Configure.With()
                 .AutofacBuilder(container) //pass the container in so NSB will use it
                 .PurgeOnStartup(false)
                 .UnicastBus()
@@ -57,13 +67,18 @@ if (!nserviceBusHost.SendOnly)
 else 
 {
 #> 
-            return NServiceBus.Configure.With()
+            var bus = NServiceBus.Configure.With()
                 .AutofacBuilder(container) //pass the container in so NSB will use it
                 .UnicastBus()
                 .SendOnly();
 <#
 }
 #>
+			//tell MVC to resolve via autofac
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            return bus;
+
         }
     }
 }
