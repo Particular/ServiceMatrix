@@ -57,7 +57,7 @@ if (!nserviceBusHost.SendOnly)
 
             var bus = NServiceBus.Configure.With()
                 .AutofacBuilder(container) //pass the container in so NSB will use it
-                .PurgeOnStartup(false)
+                .PurgeOnStartup(true)
                 .UnicastBus()
                 .RunHandlersUnderIncomingPrincipal(false)
                 .CreateBus()
