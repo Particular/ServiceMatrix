@@ -222,6 +222,7 @@
     <Compile Include="Licensing\StaThreadRunner.cs" />
     <Compile Include="Licensing\UserSidChecker.cs" />
     <Compile Include="Model\GlobalSettings.cs" />
+    <Compile Include="Model\Message.cs" />
     <Compile Include="ProcessedCommandLinkReply.cs" />
     <Compile Include="ProcessedCommandLinkReply.Design.cs">
       <DependentUpon>ProcessedCommandLinkReply.cs</DependentUpon>
