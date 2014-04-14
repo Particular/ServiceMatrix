@@ -31,14 +31,8 @@ namespace <#= endpoint.Namespace #>
 <#
 	if (application.Transport == TransportType.Msmq.ToString())
   {
-  #>
-			// Tranport: Msmq (Default) - No configuration needed
-  <#
-	}
-	else if (application.Transport == TransportType.ActiveMQ.ToString())
-	{	
 #>
-			Configure.Instance.UseTransport<ActiveMQ>();
+			// Tranport: Msmq (Default) - No configuration needed
 <#
 	}
 	else if (application.Transport == TransportType.RabbitMQ.ToString())
