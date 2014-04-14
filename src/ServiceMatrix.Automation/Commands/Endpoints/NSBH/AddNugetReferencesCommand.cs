@@ -68,21 +68,6 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 }
             }
 
-            //<Reference Include="NServiceBus.ActiveMQ" />
-            if (app.Transport == TransportType.ActiveMQ.ToString())
-            {
-                if (!project.HasReference("NServiceBus.ActiveMQ"))
-                {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", app.NuGetPackageVersionNServiceBusActiveMQ);
-                }
-            }
-            else
-            {
-                project.RemoveReference("Apache.NMS");
-                project.RemoveReference("Apache.NMS.ActiveMQ");
-                project.RemoveReference("NServiceBus.ActiveMQ");
-            }
-
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />
             if (app.Transport == TransportType.RabbitMQ.ToString())
             {
