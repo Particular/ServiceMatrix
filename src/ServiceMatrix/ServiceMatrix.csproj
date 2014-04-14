@@ -781,6 +781,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>186f6ae9-49fd-4f9f-969d-034848f06541</ItemGuid>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\UnicastBusConfig.config.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
