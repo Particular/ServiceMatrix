@@ -32,7 +32,7 @@ namespace NServiceBusStudio
         bool IsProcessor { get; }
     }
 
-    partial class Component : IValidatableObject, IRenameRefactoring
+    partial class Component : IValidatableObject, IRenameRefactoring, IAdditionalRenameRefactorings
     {
         public bool IsSender
         {
@@ -339,6 +339,16 @@ namespace NServiceBusStudio
         public void Subscribe(ICommand command)
         {
             this.Subscribes.CreateLink(command);
+        }
+
+        public List<string> AdditionalOriginalInstanceNames
+        {
+            get { return new List<string>() { String.Format("{0}SagaData", this.OriginalInstanceName) }; }
+        }
+
+        public List<string> AdditionalInstanceNames
+        {
+            get { return new List<string>() { String.Format("{0}SagaData", this.InstanceName) }; }
         }
     }
 }

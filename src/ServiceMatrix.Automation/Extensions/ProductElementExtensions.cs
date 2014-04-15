@@ -55,6 +55,17 @@ namespace NServiceBusStudio.Automation.Extensions
                 {
                     refactoringManager.RenameClass(renameRefactoring.Namespace, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
                     element.RenameArtifactLinks(uriService, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
+
+                    var additionalRenameRefactorings = toolkitElement as IAdditionalRenameRefactorings;
+                    if (additionalRenameRefactorings != null)
+                    {
+                        for (int i = 0; i < additionalRenameRefactorings.AdditionalInstanceNames.Count; i++)
+                        {
+                            refactoringManager.RenameClass(renameRefactoring.Namespace, additionalRenameRefactorings.AdditionalOriginalInstanceNames[i], additionalRenameRefactorings.AdditionalInstanceNames[i]);
+                            element.RenameArtifactLinks(uriService, additionalRenameRefactorings.AdditionalOriginalInstanceNames[i], additionalRenameRefactorings.AdditionalInstanceNames[i]);
+                        }   
+                    }
+
                     return true;
                 }
 
