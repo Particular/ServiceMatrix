@@ -37,7 +37,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
 
                 if (endpoint != null)
                 {
-                    var path = String.Format ("\\{0}.{1}", app.CodeIdentifier, endpoint.InstanceName);
+                    var path = String.Format ("\\{0}.{1}", app.InstanceName, endpoint.InstanceName);
                     if (this.AddInfrastructureFolder)
                     {
                         path += "\\Infrastructure";                        
