@@ -25,6 +25,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         {
             this.DefaultConnectionBuilder = new ServiceMatrixConnectionBuilder();
             this.LayoutAlgorithm = new ServiceMatrixDiagramLayoutAlgorithm(this);
+            this.NodeRemover = new ServiceMatrixDiagramRemover();
 
             this.PatternWindows = patternWindows;
             this.ServiceProvider = serviceProvider;
