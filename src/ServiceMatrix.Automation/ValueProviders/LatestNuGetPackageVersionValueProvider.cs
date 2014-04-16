@@ -24,7 +24,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
 
         public static string GetVersion(string packageName)
         {
-            var uri = String.Format("https://nuget.org/api/v2/package-versions/{0}?includePrerelease=true", packageName);
+            var uri = String.Format("https://nuget.org/api/v2/package-versions/{0}", packageName);
 
             return GetHTTPGetLatestPackageVersion(uri);
         }
