@@ -8788,8 +8788,8 @@
                 </childElement>
               </element>
             </childElement>
-            <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NServiceBus ASP.NET Web Forms" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png">
+            <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
+              <element Id="19234c17-dbbc-4997-a6f5-5705d013ac01" name="NServiceBusWeb" displayName="NServiceBus ASP.NET Web Forms" description="A web project that makes use of WebForms." codeIdentifier="NServiceBusWeb" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/EndpointIcon.png" isVisible="false">
                 <customizationPolicy name="CustomizationPolicySchema1">
                   <settings>
                     <setting propertyId="DisplayName" />
