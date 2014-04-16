@@ -277,6 +277,9 @@ namespace AbstractEndpoint
                     throw new NotImplementedException();
                 }
             }
+
+
+            public event EventHandler UnfoldedCustomCodeChanged;
         }
     }
 }

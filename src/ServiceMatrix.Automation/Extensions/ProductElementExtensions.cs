@@ -46,13 +46,14 @@ namespace NServiceBusStudio.Automation.Extensions
             catch { return null; }
         }
 
-        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager)
+        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager, EnvDTE.Documents EnvDTEDocuments = null)
         {
             using (new MouseCursor(System.Windows.Input.Cursors.Wait))
             {
                 var renameRefactoring = toolkitElement as IRenameRefactoring;
                 if (renameRefactoring != null)
                 {
+                    element.CloseDocuments(uriService, EnvDTEDocuments);
                     refactoringManager.RenameClass(renameRefactoring.Namespace, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
                     element.RenameArtifactLinks(uriService, renameRefactoring.OriginalInstanceName, renameRefactoring.InstanceName);
 
@@ -141,6 +142,29 @@ namespace NServiceBusStudio.Automation.Extensions
                     }
                 }
             }
+        }
+
+        public static void CloseDocuments(this IProductElement element, IUriReferenceService uriService, EnvDTE.Documents EnvDTEDocuments)
+        {
+            var documents = EnvDTEDocuments.OfType<EnvDTE.Document>();
+
+            foreach (var referenceLink in element.References)
+            {
+                var item = default(IItemContainer);
+                try
+                {
+                    item = uriService.ResolveUri<IItemContainer>(new Uri(referenceLink.Value));
+                }
+                catch { }
+
+                if (item != null &&
+                    item.Kind == ItemKind.Item &&
+                    documents.Any (x => x.FullName == item.PhysicalPath))
+                {
+                    documents.First(x => x.FullName == item.PhysicalPath).Close(vsSaveChanges.vsSaveChangesYes);
+                }
+            }
+
         }
     }
 }
