@@ -1,0 +1,1059 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug-VS2010</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20305</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{2532FA71-D5E2-426C-AE22-D4316CEC2ABC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\Binaries\</OutputPath>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NServiceBusStudio</RootNamespace>
+    <AssemblyName>Particular.ServiceMatrix</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-VS2012|AnyCPU'">
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="..\BuildConfiguration.props" />
+  <Choose>
+    <When Condition="'$(VsxVersion)'=='11.0'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.Shell.Interop.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+  </Choose>
+  <ItemGroup>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="ExceptionReporter.WinForms, Version=2.1.1.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\ExceptionReporter.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Settings, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
+    <Reference Include="Microsoft.VisualStudio.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mindscape.WpfDiagramming.Foundation, Version=3.0.1315.22118, Culture=neutral, PublicKeyToken=c2e9c4ef235fd77f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="NuPattern.Common">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.VisualStudio">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.VisualStudio.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Core">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Shell">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Shell.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="NuPattern.Library">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Library.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Presentation">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Run.png" />
+    <Content Include="BindingPath.pkgdef" />
+    <Content Include="Libs\ExceptionReporter.WinForms.dll" />
+    <Content Include="Libs\ExceptionReporter.WinForms.xml" />
+    <Content Include="Resources\NServiceBusIcon.ico" />
+    <Content Include="Resources\NServiceBusIcon.png" />
+    <Resource Include="Resources\ReplyCommand.png" />
+    <Content Include="ServiceControlEndpointPluginVersion.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\ICSharpCode.NRefactory.CSharp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\ICSharpCode.NRefactory.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\Mindscape.WpfDiagramming.FlowDiagrams.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.FlowDiagrams.xml" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.Design.10.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.Design.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.Foundation.xml" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.StarDiagrams.dll" />
+    <Content Include="Libs\Mindscape.WpfDiagramming.StarDiagrams.xml" />
+    <Content Include="Libs\Mono.Cecil.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\NRefactory.RenameClass.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Libs\wpfdgmrtl.exe" />
+    <Content Include="NServiceBusVersion.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\LibraryFile.png" />
+    <Resource Include="Resources\Gear.png" />
+    <Resource Include="Resources\EndpointIcon.png" />
+    <Content Include="Resources\ProductPreview.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\PublishEvent.png" />
+    <Resource Include="Resources\SendCommand.png" />
+    <Content Include="ServiceMatrixVersion.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\App\App.vstemplate">
+      <ItemGuid>51449dee-c5c5-4531-a2e4-ecbac39b7cde</ItemGuid>
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
+    <ProjectTemplate Include="T\P\App\InternalMessages\InternalMessages.vstemplate">
+      <ItemGuid>e70814b1-e3a9-43b9-82b2-0d30aa558ffc</ItemGuid>
+    </ProjectTemplate>
+    <ProjectTemplate Include="T\P\App\Contract\Contract.vstemplate">
+      <ItemGuid>5aa4908c-b198-47de-bf7d-8c918075e218</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\P\App\Contract\Contract.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Contract\Contract.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Infrastructure\Infrastructure.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Infrastructure\Infrastructure.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\App\Infrastructure\Infrastructure.vstemplate">
+      <ItemGuid>2832d54f-ceb3-46fe-96dc-e585d10fce9d</ItemGuid>
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
+    <Content Include="T\P\App\InternalMessages\InternalMessages.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\InternalMessages\InternalMessages.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Compile Include="GeneralOptionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralOptionsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GeneralOptionsUserControl.Designer.cs">
+      <DependentUpon>GeneralOptionsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneratedCode\Guidance\GuidanceWorkflow.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\Studio\SourceCode\Studio\Studio.slnbldr%252fc883d430-4912-4c10-91e9-f38110aa7c7c</SourceModelReference>
+      <ItemGuid>60f176d8-4e9b-4313-8e18-5d61da1edf57</ItemGuid>
+    </Compile>
+    <Compile Include="GeneratedCode\Guidance\GuidanceWorkflowScrapping.cs" />
+    <Compile Include="GuidList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="T\P\App\InternalMessages\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Contract\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Infrastructure\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Compile Include="ToolWindowContent.cs" />
+    <Compile Include="ToolWindowContentViewer.cs" />
+    <Content Include="T\P\App\Libraries\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\App.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\Content.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\Css.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\Site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Content\TestMessages.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Global.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\HostWebMvc.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\ns-step4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <ProjectTemplate Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.vstemplate">
+      <ItemGuid>fc54c8b3-2bb8-4b67-b512-303294cd2082</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\Content.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\Css.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\Site.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Content\TestMessages.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Global.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\HostWeb.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\HostWeb.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\Endpoints\NSBHWeb\HostWeb.vstemplate">
+      <ItemGuid>ebbe43bd-bb7e-4d6c-a74e-7ebcbf768bbe</ItemGuid>
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Images\search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Controllers\HomeController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Properties\AssemblyInfo.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\FilterConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\RouteConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\App_Start\WebApiConfig.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Controllers\TestMessagesController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx.cs">
+      <DependentUpon>TestMessages.aspx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx.designer.cs">
+      <DependentUpon>TestMessages.aspx.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\INServiceBusComponent.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="VSPackage.cs" />
+    <Content Include="$(PatternToolkitRuntime)\GeneratedCode\LibrarySchema.xsd">
+      <Visible>true</Visible>
+      <Link>Properties\Schemas\LibrarySchema.xsd</Link>
+      <FixedLink>
+      </FixedLink>
+    </Content>
+    <Content Include="$(PatternToolkitRuntime)\GeneratedCode\SchemaModelSchema.xsd">
+      <Visible>true</Visible>
+      <Link>Properties\Schemas\SchemaModelSchema.xsd</Link>
+      <FixedLink>
+      </FixedLink>
+    </Content>
+    <Content Include="$(PatternToolkitBuilder)\GeneratedCode\WorkflowDesignSchema.xsd">
+      <Visible>true</Visible>
+      <Link>Properties\Schemas\WorkflowDesignSchema.xsd</Link>
+      <FixedLink>
+      </FixedLink>
+    </Content>
+    <Resource Include="Resources\Link.png" />
+    <Resource Include="Resources\Event.png" />
+    <Resource Include="Resources\Component.png" />
+    <Content Include="Resources\Package.ico">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\Page.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Resource Include="Resources\SingleMessage.ico" />
+    <Resource Include="Resources\ToolkitIcon.png">
+      <IncludeInVSIX>True</IncludeInVSIX>
+    </Resource>
+    <Content Include="Resources\VSPackageIcons.bmp">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Libraries\Libraries.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\App\Libraries\Libraries.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\App\Libraries\Libraries.vstemplate">
+      <SubType>Designer</SubType>
+      <ItemGuid>fa3ec177-8dd1-4106-9e3b-eba7f3743860</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\P\Endpoints\NSBH\Host.csproj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\Host.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <ProjectTemplate Include="T\P\Endpoints\NSBH\Host.vstemplate">
+      <ItemGuid>a969556e-c993-49ae-a3e2-59b6266a5dec</ItemGuid>
+    </ProjectTemplate>
+    <Content Include="T\T4\EventDefinition.tt">
+      <LastGenOutput>EventDefinition.cs</LastGenOutput>
+      <ItemGuid>cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\CommandDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="..\source.version.t4">
+      <Link>source.version.t4</Link>
+    </None>
+    <None Include="598ff0ef-28a9-4ca2-b431-269f67a9694b.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <None Include="d2aa9317-385b-462a-a31b-14c1be5908ad.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <None Include="d4b6057a-fb60-4a43-b09f-b7c23e6273cd.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <Content Include="T\T4\ComponentHandlers.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>009202b9-d8d1-4877-bcbf-ff75c983dcd3</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\CustomComponentHandlers.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>f63539d8-7392-445a-b2a1-1454caecb2df</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Security\Authentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <ItemGuid>3b28bc6d-ba79-4cfe-88c8-03e14fd09ef0</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\CustomAuthentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <ItemGuid>3b08d283-53e3-42d3-a7dd-7de310c4a82e</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\EndpointAuthentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <ItemGuid>58fd7d97-d739-49e5-bd14-1fd4d3fe3784</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\EndpointCustomAuthentication.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <ItemGuid>f3534dfa-86bd-4a10-a25f-0908f668bfca</ItemGuid>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\CustomCommandDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>600e8610-9915-48b1-a338-2cd0a7c4931e</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\CustomEventDefinition.tt">
+      <LastGenOutput>EventDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a2be8c5d-919e-4788-a2fa-126049ca056f</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\CustomComponentSagaHandlers.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>6c659607-78bc-4671-8c4a-32065bba3c33</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="e1a3e420-bdf8-4ce6-b918-0ca0a7febaf3.patterndefinition.diagram">
+      <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+    </None>
+    <Content Include="T\T4\Library.tt">
+      <LastGenOutput>EventDefinition.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>cd272c9f-4911-480c-a762-59810b294f94</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBH\App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\packages.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Home\Index.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Views\Web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Web.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Web.Debug.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHMVC\Web.Release.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>false</IncludeInVSIX>
+    </Content>
+    <None Include="Libs\Mindscape.WpfDiagramming.DiagramSurface.lic" />
+    <Content Include="Mindscape.WpfDiagramming.DiagramSurface.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <None Include="NServiceBus.Tools.snk" />
+    <None Include="source.extension.gen.ttinclude">
+      <DependentUpon>source.extension.tt</DependentUpon>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
+    </None>
+    <None Include="source.extension.VSVersion.gen.ttinclude">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.VSVersion.tt</DependentUpon>
+    </None>
+    <None Include="source.extension.VSVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>source.extension.VSVersion.gen.ttinclude</LastGenOutput>
+      <DependentUpon>source.extension.tt</DependentUpon>
+    </None>
+    <Content Include="T\T4\Endpoints\NSBH\DefaultApp.config.tt">
+      <LastGenOutput>DefaultApp.config.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>895bc0b9-2336-4ac7-baae-cb2f2e5b1346</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.generated.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>51c08094-9e68-4abe-a168-4e1962888e9b</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\Logging.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>432735b4-8fd4-4736-807c-ca517cd047d3</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MasterNodeConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>5a29e248-5612-4ff6-821b-cc77b955c498</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MessageForwardingInCaseOfFaultConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>e8d4c471-2fd7-4520-aa61-7e504df71414</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\SecondLevelRetriesConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>569640cf-1926-4a30-8987-c2a7e202eeca</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>eb0d81fd-c72f-4f5b-b41e-8e43ce182e60</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>49afd489-a5ff-4743-bfd0-2c4d33e0d6de</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\UnicastBusConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>dc84c026-5203-4165-9f99-d6e9042ef012</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointDiagram.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>7bc9d684-b67e-4d26-a55d-ad64c57f6fc1</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.cs.tt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>d07e0f86-d73b-4dea-a249-17c701cbb03c</ItemGuid>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\EndpointDiagram.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>39328419-7fe9-4bd1-9755-1bb3129036f2</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\GeneratedWebInitialization.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>22880e7e-edce-4a2f-ae1f-40eeb52cd83a</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Logging.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>af40d2eb-0aa2-44f6-bba5-7f5878253d89</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\MessageConventions.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>310e4bcc-ee54-469a-8fff-baa627551632</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\MessageForwardingInCaseOfFaultConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>2cb98bc0-0a56-45dc-94c1-681f343fc9a4</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>8f7bac69-c9e9-47ba-b44e-15ceb283e250</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>850114f6-382e-4477-aa77-edfd35447c20</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\UnicastBusConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>27f96a66-2fe6-43ea-888e-5c0388cdbf3c</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Web.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b32ab3ba-7497-4525-b5f4-c7ec037c8b6b</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Web.Debug.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>7647802b-b2e7-4777-a4d4-fd4e950abbda</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\Web.Release.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>82c48685-b62c-4e0a-acde-308747faf663</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\EndpointDiagram.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>063e34ac-21e5-44df-a41a-0f2bbf6c23a7</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>fc90b58e-fc11-4d3a-a94e-c4142a74e46f</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\Logging.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>41fbe97e-b6ed-4f2d-b28c-bd10a3d84269</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>102d67f5-2fc5-4b31-b42e-0f74f60abf25</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageForwardingInCaseOfFaultConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>9985b0ec-a356-44dc-922d-22d9840df107</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>068ce3e7-5e66-4996-9477-523e4167bc2c</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>186f6ae9-49fd-4f9f-969d-034848f06541</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\UnicastBusConfig.config.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b132847c-7244-4a53-8070-ce47aad324f7</ItemGuid>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>695e0ead-1d04-49a4-bce4-2eb707a06bcc</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>eb58c194-dddf-4e22-8e2b-a1b76ddb1990</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TransportConnectionString.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>5290a37d-dd77-46b3-91a7-6ef79b3cd82a</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\WebGlobalInitialization.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>50af6eba-4205-4aed-ad99-910a10d2be0a</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TestMessagesController.cs.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>34f22950-2004-4a24-8d73-70611291a87e</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TestMessagesView.cshtml.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>6f950f0a-8b5d-4ef3-afcd-e6046fcff516</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>23a83f8e-6d63-4cbe-a965-c73e279f72c4</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.cs.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>92008bd9-7d4f-4aa2-828b-0f4578a4b365</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.designer.cs.tt">
+      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>5ddee7e0-7cd1-4713-ab12-8d59d622a228</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>9665ea51-8bf4-4a28-b0a5-37cdf5148f39</ItemGuid>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Web.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Web.Debug.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\P\Endpoints\NSBHWeb\Web.Release.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\AuditConfig.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>515382fd-e45b-442d-83fa-c4e7096b3581</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\AuditConfig.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>21cb8031-2d8f-417f-89fb-f5a5e94a49f0</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBWeb\AuditConfig.config.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>92514fe6-6836-445c-910b-53407046c60d</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CommandSender.tt">
+      <LastGenOutput>CommandSender.cs</LastGenOutput>
+      <ItemGuid>da4e9946-83cb-4f6c-9b9c-681f5c3e23b9</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\CustomCommandSender.tt">
+      <LastGenOutput>CustomCommandSender.cs</LastGenOutput>
+      <ItemGuid>506dda71-1e63-4b68-b639-d83ed965aa96</ItemGuid>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>2a3c2931-a8f9-4464-a458-c33d2731eff1</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>f6bfe406-6a36-47dd-b00a-6302381ecb36</ItemGuid>
+    </Content>
+    <Content Include="T\T4\MessageDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>763f7314-340f-4f5a-bc21-92397b1a489a</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomMessageDefinition.tt">
+      <LastGenOutput>CommandDefinition.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>1223f865-f461-44eb-911b-caa21b1a8bc8</ItemGuid>
+    </Content>
+    <None Include="VSPackage.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VSPackage.cs</DependentUpon>
+      <LastGenOutput>VSPackage1.resx</LastGenOutput>
+    </None>
+    <None Include="Assets\Guidance\ToolkitGuidance.doc">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252fc883d430-4912-4c10-91e9-f38110aa7c7c</SourceModelReference>
+      <ItemGuid>9f48d2ea-7bf9-4a4a-8db8-56415d180740</ItemGuid>
+    </None>
+    <None Include="NServiceBus.ToolkitVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>NServiceBus.ToolkitVersion.targets</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="NServiceBus.ToolkitVersion.targets">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NServiceBus.ToolkitVersion.tt</DependentUpon>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="PatternTooling.toolingdesign">
+      <ItemGuid>b1981f48-7c32-4fdf-8f0f-727807b8aa39</ItemGuid>
+    </None>
+    <None Include="source.extension.vsixmanifest">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.tt</DependentUpon>
+      <IsToolkitManifest>True</IsToolkitManifest>
+    </None>
+    <Resource Include="Resources\PatternIcon.png" />
+    <Content Include="$(PatternToolkitBuilder)\NuPatternToolkitManager.vsix">
+      <Visible>false</Visible>
+      <Link>NuPatternToolkitManager.vsix</Link>
+      <FixedLink>
+      </FixedLink>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Templates\Projects\" />
+    <Folder Include="GeneratedCode\Guidance\Content\" />
+    <Folder Include="T\I\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GeneralOptionsUserControl.resx">
+      <DependentUpon>GeneralOptionsUserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternModel.patterndefinition">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252ff8a514df-bea8-4098-8e0d-aa1154ec8331</SourceModelReference>
+      <ItemGuid>ec5ef507-1412-4c0e-88fa-efaad8078bac</ItemGuid>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <ManifestResourceName>VSPackage</ManifestResourceName>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VSPackage1.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.tt</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source.extension.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>source.extension.vsixmanifest</LastGenOutput>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\Code\clarius\nservicebus\Studio\Studio.patternstate%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <ItemGuid>27ac5630-dc35-4694-8173-6def684bc14c</ItemGuid>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceMatrix.Automation\ServiceMatrix.Automation.csproj">
+      <Project>{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}</Project>
+      <Name>ServiceMatrix.Automation</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
+  </ItemGroup>
+  <!-- Properties for Toolkit Targets -->
+  <PropertyGroup>
+    <CopyVsixDebuggingDependencies>true</CopyVsixDebuggingDependencies>
+    <CopyVsixToFolder Condition=" '$(TeamBuildConstants)' == '' ">$(SolutionDir)Binaries</CopyVsixToFolder>
+    <!-- <CopyVsixToFolder Condition=" '$(TeamBuildConstants)' != '' ">$(SolutionRoot)\TeamProjectRoot\Projects\BranchPath\Binaries</CopyVsixToFolder> -->
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" />
+  <Import Project="..\BuildConfiguration.targets" />
+  <!-- Properties for VSSDK/DSL Targets -->
+  <PropertyGroup>
+    <RegisterOutputPackage>true</RegisterOutputPackage>
+    <RegisterWithCodebase>true</RegisterWithCodebase>
+    <GacTargetOutput>false</GacTargetOutput>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
+    <TransformFile>source.extension.tt</TransformFile>
+    <TransformOnBuild>true</TransformOnBuild>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartAction>Program</StartAction>
+    <StartArguments>/rootsuffix Exp</StartArguments>
+  </PropertyGroup>
+  <!-- Target for Binaries & VSIXs -->
+  <PropertyGroup>
+    <BinariesDirectory>..\Binaries</BinariesDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <SourceEmptyFile Include="emptyfile.txt" />
+  </ItemGroup>
+  <Target Name="EnsureVsixInPlace">
+    <Makedir Condition="!Exists('..\Binaries')" Directories="$(BinariesDirectory)" />
+  </Target>
+  <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
+  </Target>
+  <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
+</Project>

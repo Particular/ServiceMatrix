@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="ServiceMatrix.Diagramming.Views.Diagram"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
+             xmlns:ms="http://namespaces.mindscape.co.nz/wpf"
+             xmlns:styles="clr-namespace:ServiceMatrix.Diagramming.Styles"
+             xmlns:model="clr-namespace:NServiceBusStudio.Automation.Model"
+             xmlns:converters="clr-namespace:NServiceBusStudio.Automation.Diagramming.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ms:DiagramShapes />
+                <styles:DiagramNodeStyle />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </Grid.Resources>
+
+        <!-- Toolbar -->
+
+        <Grid Grid.Row="0" VerticalAlignment="Top" Height="28" Background="#EEEEF1">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="Width" Value="128" />
+                        <Setter Property="Height" Value="28" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button Command="{Binding OnShowAddEndpoint}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Styles/Images/BlueEndpointIcon.png" Width="23"></Image>
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New endpoint</TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Border Width="1" Background="#B1B1B1" Margin="0, 5, 0, 5"></Border>
+                <Border Width="2" Background="#FFFFFF" Margin="0, 5, 0, 5"></Border>
+
+                <Button Command="{Binding OnShowAddService}" Visibility="Hidden" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Styles/Images/BlueServiceIcon.png" Width="23"></Image>
+                        <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New service</TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- Diagram Surface -->
+
+        <ms:DiagramSurface Grid.Row="1"
+                           x:Name="ds"
+                           Diagram="{Binding Diagram}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}"
+                           Formatter="{StaticResource Formatter}" 
+                           ZoomMode="MouseWheel"
+                           IsSmartScrollingEnabled="True"
+                           DragAction="Pan"
+                           Cursor="Hand"
+                           Background="White"
+                           HorizontalSnapSpecifier="{ms:SnapToInterval 10}"
+                           VerticalSnapSpecifier="{ms:SnapToInterval 10}"
+                           IsVirtualizing="False"
+                           />
+
+        <Border HorizontalAlignment="Center" VerticalAlignment="Top" Background="GhostWhite" BorderBrush="Silver" BorderThickness="1" CornerRadius="8,8,3,3" Margin="0,0,21,0" 
+                        Visibility="{Binding IsServiceMatrixLicenseExpired, Converter={StaticResource BooleanToVisibility}}" Grid.Row="1">
+            <TextBlock Foreground="DarkRed" 
+                                                FontSize="14" 
+                                                FontFamily="Segoe UI Bold" 
+                                                FontWeight="Bold" Margin="5" TextWrapping="Wrap">
+                    The trial period has expired and ServiceMatrix is disabled. 
+You can continue using the solution's generated code using standard Visual Studio tools. 
+To purchase a license or request a trial extension go to: 
+    <Hyperlink Foreground="DarkSlateBlue" RequestNavigate="Hyperlink_OnRequestNavigate" NavigateUri="http://particular.net/licensing">
+                    <TextBlock Text="http://particular.net/licensing"/>
+</Hyperlink>        
+                </TextBlock>
+        </Border>
+        
+        <!-- Zoom Slider -->
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+            </StackPanel.Resources>
+            <Button Click="ZoomIn_Click">
+                <Image Source="../Styles/Images/ZoomIn.png" Width="25"></Image>
+            </Button>
+            <Slider Value="{Binding ElementName=ds, Path=Zoom, Mode=TwoWay}" 
+                    Maximum="3" Minimum="0.25"
+                    Orientation="Vertical"
+                    Height="100" HorizontalAlignment="Center"></Slider>
+            <Button Click="ZoomOut_Click">
+                <Image Source="../Styles/Images/ZoomOut.png" Width="25"></Image>
+            </Button>
+        </StackPanel>
+
+
+        <!-- Empty state buttons -->
+
+        <Grid x:Name="EmptyStateButtons" Grid.RowSpan="2" Visibility="Visible">
+
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+
+                <Button BorderThickness="0"
+                        Command="{Binding OnShowAddEndpoint}" 
+                        Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Width="248" Height="125">
+                                <Rectangle x:Name="Border" StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Image x:Name="Image" Source="../Styles/Images/GrayEndpointIcon.png" Width="55"></Image>
+                                    <TextBlock x:Name="Text"  
+                                                Margin="5,0,0,0" 
+                                                Foreground="#CCCCCC" 
+                                                FontSize="20" 
+                                                FontFamily="Segoe UI Bold" 
+                                                FontWeight="Bold"
+                                                VerticalAlignment="Center">New endpoint</TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Fill" Value="Transparent" TargetName="Border" />
+                                    <Setter Property="Stroke" Value="#237EC7" TargetName="Border" />
+                                    <Setter Property="Foreground" Value="#237EC7" TargetName="Text" />
+                                    <Setter Property="Source" Value="../Styles/Images/BlueEndpointIcon.png" TargetName="Image" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Margin="10, 0, 0, 0"
+                        BorderThickness="0"
+                        Command="{Binding OnShowAddService}"
+                        Visibility="Collapsed"
+                        Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Width="248" Height="125">
+                                <Rectangle x:Name="Border" StrokeDashArray="3 3 3" Stroke="#CCCCCC"  StrokeThickness="4" Fill="Transparent" />
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Image x:Name="Image" Source="../Styles/Images/GrayServiceIcon.png" Width="55"></Image>
+                                    <TextBlock x:Name="Text"  
+                                                Margin="5,0,0,0" 
+                                                Foreground="#CCCCCC" 
+                                                FontSize="20" 
+                                                FontFamily="Segoe UI Bold" 
+                                                FontWeight="Bold"
+                                                VerticalAlignment="Center">New service</TextBlock>
+                                </StackPanel>
+                            </Grid>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Fill" Value="Transparent" TargetName="Border" />
+                                    <Setter Property="Stroke" Value="#237EC7" TargetName="Border" />
+                                    <Setter Property="Foreground" Value="#237EC7" TargetName="Text" />
+                                    <Setter Property="Source" Value="../Styles/Images/BlueServiceIcon.png" TargetName="Image" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

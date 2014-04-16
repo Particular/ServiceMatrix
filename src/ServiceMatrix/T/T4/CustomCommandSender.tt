@@ -1,0 +1,23 @@
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var icommandlink = ((IProductElement)this.Element).As<ICommandLink>(); 
+	  var icommandCodeIdentifier = icommandlink.CommandReference.Value.CodeIdentifier;
+#>
+using System;
+using NServiceBus;
+using <#= icommandlink.CommandReference.Value.Parent.Namespace #>;
+
+namespace <#= icommandlink.Namespace #>
+{
+    public partial class <#= icommandlink.ComponentName #>
+    {
+		// call Send(message) as needed
+    }
+}
