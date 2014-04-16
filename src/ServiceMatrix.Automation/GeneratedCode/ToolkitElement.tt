@@ -26,12 +26,14 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Microsoft.VisualStudio.Shell;
 using NuPattern;
 using NuPattern.Diagnostics;
 using NuPattern.Runtime;
 using NuPattern.Runtime.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
+
 
 namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRootNamespace #>
 {
@@ -101,34 +103,37 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(<#= element.CodeIdentifier #>)), typeof(<#= element.CodeIdentifier #>));
 			<#= element.CodeIdentifier #>.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.<#= asRuntimeMethod #>();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.<#= asRuntimeMethod #>();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(I<#= element.CodeIdentifier #>).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -215,7 +220,7 @@ namespace <#= this.ProductState.Products.First().As<IPatternToolkit>().ProjectRo
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.<#= asRuntimeMethod #>().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.<#= asRuntimeMethod #>().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
