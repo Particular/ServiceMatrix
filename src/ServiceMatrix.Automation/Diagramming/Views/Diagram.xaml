@@ -57,7 +57,7 @@
                 <Border Width="1" Background="#B1B1B1" Margin="0, 5, 0, 5"></Border>
                 <Border Width="2" Background="#FFFFFF" Margin="0, 5, 0, 5"></Border>
 
-                <Button Command="{Binding OnShowAddService}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
+                <Button Command="{Binding OnShowAddService}" Visibility="Hidden" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Styles/Images/BlueServiceIcon.png" Width="23"></Image>
                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New service</TextBlock>
@@ -162,6 +162,7 @@ To purchase a license or request a trial extension go to:
                 <Button Margin="10, 0, 0, 0"
                         BorderThickness="0"
                         Command="{Binding OnShowAddService}"
+                        Visibility="Collapsed"
                         Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">

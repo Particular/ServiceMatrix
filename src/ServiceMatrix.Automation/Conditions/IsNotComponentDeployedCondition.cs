@@ -12,10 +12,10 @@ using AbstractEndpoint;
 namespace NServiceBusStudio.Automation.Conditions
 {
     [CLSCompliant(false)]
-    [DisplayName("Component Is Defined as Command/Event Handler")]
+    [DisplayName("Component Is Not Deployed into an Endpoint")]
     [Category("General")]
-    [Description("True if the component is already defined as a processor.")]
-    public class IsProcessorComponentCondition : Condition
+    [Description("True if the component is not deployed into an Endpoint.")]
+    public class IsNotComponentDeployedCondition : Condition
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -30,8 +30,11 @@ namespace NServiceBusStudio.Automation.Conditions
 
         public override bool Evaluate()
         {
+            var app = this.CurrentElement.Root.As<IApplication>();
             var component = this.CurrentElement.As<IComponent>();
-            return component.IsProcessor;
+
+            return !app.Design.Endpoints.GetAll()
+                    .Any(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
         }
     }
 }

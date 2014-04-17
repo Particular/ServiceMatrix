@@ -51,17 +51,23 @@ namespace NServiceBusStudio.Automation.Dialog
             // Copy code into Clipboard
             Clipboard.SetText(this.Code);
 
-            // Open Component Handler
-            var filepath = String.Format("{0}.{1}\\{2}\\{3}.cs",
-                this.Component.Parent.Parent.Parent.Parent.Parent.InstanceName,
-                this.Component.Parent.Parent.Parent.Parent.Parent.ProjectNameCode,
-                this.Component.Parent.Parent.CodeIdentifier,
-                this.Component.CodeIdentifier);
+            var endpoint = this.Component.Parent.Parent.Parent.Parent.Endpoints.GetAll()
+                   .FirstOrDefault(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this.Component));
 
-            var item = this.Solution.Find(filepath).FirstOrDefault();
-            if (item != null)
+            if (endpoint != null)
             {
-                this.UriService.Open(item);
+                // Open Component Handler
+                var filepath = String.Format("{0}.{1}\\{2}\\{3}.cs",
+                    this.Component.Parent.Parent.Parent.Parent.Parent.CodeIdentifier,
+                    endpoint.InstanceName,
+                    this.Component.Parent.Parent.CodeIdentifier,
+                    this.Component.CodeIdentifier);
+
+                var item = this.Solution.Find(filepath).FirstOrDefault();
+                if (item != null)
+                {
+                    this.UriService.Open(item);
+                }
             }
             
 

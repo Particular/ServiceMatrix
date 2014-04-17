@@ -71,7 +71,7 @@ namespace NServiceBusStudio.Automation.Commands
                             cmd => cmd.DoNotAutogenerateComponents = true,
                             true);
 
-                        var processorName = Component.TryGetComponentName(command.InstanceName + "Processor", svc);
+                        var processorName = Component.TryGetComponentName(command.InstanceName + "Handler", svc);
                         var processorComponent = svc.Components.CreateComponent(processorName);
                         
                         processorComponent.Subscribe(command);

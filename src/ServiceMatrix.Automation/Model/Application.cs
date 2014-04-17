@@ -219,11 +219,6 @@ namespace NServiceBusStudio
                 {
                     this.TransportConnectionString = @"";
                 }
-                else if (this.Transport == TransportType.ActiveMQ.ToString())
-                {
-                    this.TransportConnectionString = @"ServerUrl=activemq:tcp://localhost:61616";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", "1.0.5"));
-                }
                 else if (this.Transport == TransportType.RabbitMQ.ToString())
                 {
                     this.TransportConnectionString = @"host=localhost";
@@ -385,7 +380,6 @@ namespace NServiceBusStudio
     public enum TransportType
     {
         Msmq,
-        ActiveMQ,
         RabbitMQ,
         SqlServer,
         AzureQueues,

@@ -5,12 +5,14 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Microsoft.VisualStudio.Shell;
 using NuPattern;
 using NuPattern.Diagnostics;
 using NuPattern.Runtime;
 using NuPattern.Runtime.Composition;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Extensions;
+
 
 namespace NServiceBusStudio
 {
@@ -84,6 +86,7 @@ namespace NServiceBusStudio
 		event EventHandler IsSagaChanged;
 		event EventHandler InterfaceBodyChanged;
 		event EventHandler ConfigureHowToFindSagaBodyChanged;
+		event EventHandler UnfoldedCustomCodeChanged;
 	}
 
 	partial interface IEventLink : IToolkitElement
@@ -436,34 +439,34 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Application)), typeof(Application));
 			Application.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        public virtual void BeginInit()
+        {
+        }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsProduct();
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsProduct();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IApplication).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -624,7 +627,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsProduct().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsProduct().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -649,34 +652,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Service)), typeof(Service));
 			Service.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IService).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -745,7 +751,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -770,34 +776,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Event)), typeof(Event));
 			Event.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEvent).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -870,7 +879,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -895,34 +904,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Command)), typeof(Command));
 			Command.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommand).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -999,7 +1011,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1024,34 +1036,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Message)), typeof(Message));
 			Message.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IMessage).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1120,7 +1135,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1145,34 +1160,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Component)), typeof(Component));
 			Component.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IComponent).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1220,6 +1238,7 @@ namespace NServiceBusStudio
 		public event EventHandler IsSagaChanged = (sender, args) => { };
 		public event EventHandler InterfaceBodyChanged = (sender, args) => { };
 		public event EventHandler ConfigureHowToFindSagaBodyChanged = (sender, args) => { };
+		public event EventHandler UnfoldedCustomCodeChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -1270,10 +1289,13 @@ namespace NServiceBusStudio
 				case "ConfigureHowToFindSagaBody":
 					ConfigureHowToFindSagaBodyChanged(sender, args);
 					break;
+				case "UnfoldedCustomCode":
+					UnfoldedCustomCodeChanged(sender, args);
+					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1298,34 +1320,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(EventLink)), typeof(EventLink));
 			EventLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEventLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1410,7 +1435,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1435,34 +1460,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(CommandLink)), typeof(CommandLink));
 			CommandLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommandLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1555,7 +1583,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1580,34 +1608,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(SubscribedEventLink)), typeof(SubscribedEventLink));
 			SubscribedEventLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISubscribedEventLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1704,7 +1735,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1729,34 +1760,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLink)), typeof(ProcessedCommandLink));
 			ProcessedCommandLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IProcessedCommandLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1849,7 +1883,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -1874,34 +1908,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ProcessedCommandLinkReply)), typeof(ProcessedCommandLinkReply));
 			ProcessedCommandLinkReply.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IProcessedCommandLinkReply).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -1982,7 +2019,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2007,34 +2044,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(HandledMessageLink)), typeof(HandledMessageLink));
 			HandledMessageLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IHandledMessageLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2115,7 +2155,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2140,34 +2180,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReference)), typeof(LibraryReference));
 			LibraryReference.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraryReference).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2240,7 +2283,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2265,34 +2308,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibrary)), typeof(ServiceLibrary));
 			ServiceLibrary.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServiceLibrary).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2365,7 +2411,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2390,34 +2436,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHost)), typeof(NServiceBusHost));
 			NServiceBusHost.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHost).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2542,7 +2591,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2567,34 +2616,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponentLink)), typeof(NServiceBusHostComponentLink));
 			NServiceBusHostComponentLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2675,7 +2727,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2700,34 +2752,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWeb)), typeof(NServiceBusWeb));
 			NServiceBusWeb.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWeb).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2844,7 +2899,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -2869,34 +2924,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponentLink)), typeof(NServiceBusWebComponentLink));
 			NServiceBusWebComponentLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -2977,7 +3035,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3002,34 +3060,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVC)), typeof(NServiceBusMVC));
 			NServiceBusMVC.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVC).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3142,7 +3203,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3167,34 +3228,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponentLink)), typeof(NServiceBusMVCComponentLink));
 			NServiceBusMVCComponentLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponentLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3275,7 +3339,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3300,34 +3364,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ContractsProject)), typeof(ContractsProject));
 			ContractsProject.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IContractsProject).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3396,7 +3463,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3421,34 +3488,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(InternalMessagesProject)), typeof(InternalMessagesProject));
 			InternalMessagesProject.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IInternalMessagesProject).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3517,7 +3587,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3542,34 +3612,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Authentication)), typeof(Authentication));
 			Authentication.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IAuthentication).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3654,7 +3727,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3679,34 +3752,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCase)), typeof(UseCase));
 			UseCase.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCase).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3775,7 +3851,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3800,34 +3876,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseStep)), typeof(UseCaseStep));
 			UseCaseStep.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCaseStep).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -3924,7 +4003,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -3949,34 +4028,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCaseLink)), typeof(UseCaseLink));
 			UseCaseLink.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCaseLink).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4057,7 +4139,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4082,34 +4164,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Library)), typeof(Library));
 			Library.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsElement();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsElement();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibrary).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4182,7 +4267,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsElement().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4207,34 +4292,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Services)), typeof(Services));
 			Services.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServices).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4303,7 +4391,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4328,34 +4416,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Contract)), typeof(Contract));
 			Contract.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IContract).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4424,7 +4515,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4449,34 +4540,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Events)), typeof(Events));
 			Events.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEvents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4549,7 +4643,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4574,34 +4668,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Commands)), typeof(Commands));
 			Commands.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ICommands).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4674,7 +4771,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4699,34 +4796,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Messages)), typeof(Messages));
 			Messages.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IMessages).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4799,7 +4899,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4824,34 +4924,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Components)), typeof(Components));
 			Components.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -4920,7 +5023,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -4945,34 +5048,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Publishes)), typeof(Publishes));
 			Publishes.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IPublishes).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5041,7 +5147,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5066,34 +5172,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Subscribes)), typeof(Subscribes));
 			Subscribes.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISubscribes).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5162,7 +5271,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5187,34 +5296,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(LibraryReferences)), typeof(LibraryReferences));
 			LibraryReferences.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraryReferences).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5283,7 +5395,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5308,34 +5420,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(ServiceLibraries)), typeof(ServiceLibraries));
 			ServiceLibraries.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IServiceLibraries).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5408,7 +5523,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5433,34 +5548,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Endpoints)), typeof(Endpoints));
 			Endpoints.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IEndpoints).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5529,7 +5647,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5554,34 +5672,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusHostComponents)), typeof(NServiceBusHostComponents));
 			NServiceBusHostComponents.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusHostComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5650,7 +5771,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5675,34 +5796,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusWebComponents)), typeof(NServiceBusWebComponents));
 			NServiceBusWebComponents.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusWebComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5771,7 +5895,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5796,34 +5920,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(NServiceBusMVCComponents)), typeof(NServiceBusMVCComponents));
 			NServiceBusMVCComponents.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(INServiceBusMVCComponents).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -5892,7 +6019,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -5917,34 +6044,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Infrastructure)), typeof(Infrastructure));
 			Infrastructure.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IInfrastructure).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -6013,7 +6143,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -6038,34 +6168,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Security)), typeof(Security));
 			Security.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ISecurity).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -6134,7 +6267,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -6159,34 +6292,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(DummyCollection)), typeof(DummyCollection));
 			DummyCollection.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IDummyCollection).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -6255,7 +6391,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -6280,34 +6416,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(UseCases)), typeof(UseCases));
 			UseCases.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(IUseCases).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -6376,7 +6515,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;
@@ -6401,34 +6540,37 @@ namespace NServiceBusStudio
 		{
 			TypeDescriptor.AddProvider(new AssociatedMetadataTypeTypeDescriptionProvider(typeof(Libraries)), typeof(Libraries));
 			Libraries.StaticInitialization();
-		}
+        }
 
-		static partial void StaticInitialization();
+        static partial void StaticInitialization();
 
-		#region Initialization
+        #region Initialization
 
-		public event EventHandler Initialized = (sender, args) => { };
+        public event EventHandler Initialized = (sender, args) => { };
 
-		public bool IsInitialized { get; private set; }
-		
-		[Import(AllowDefault = true)]
-		public INuPatternCompositionService CompositionService { get; set; }
+        public bool IsInitialized { get; private set; }
 
-		[Import]
+        [Import(AllowDefault = true)]
+        public INuPatternCompositionService CompositionService { get; set; }
+
+        [Import]
         public IUriReferenceService UriService { get; set; }
 
         [Import]
         public RefactoringManager RefactoringManager { get; set; }
 
-		public virtual void BeginInit()
-		{
-		}
+        [Import(typeof(SVsServiceProvider))]
+        public IServiceProvider ServiceProvider { get; set; }
 
-		public virtual void EndInit()
-		{
-			if (this.CompositionService != null)
-			{
-				var element = this.AsCollection();
+        public virtual void BeginInit()
+        {
+        }
+
+        public virtual void EndInit()
+        {
+        if (this.CompositionService != null)
+        {
+        var element = this.AsCollection();
 				var automations = this.CompositionService
 //					.GetExports<IAutomationExtension, IFeatureComponentMetadata>(typeof(ILibraries).FullName)
 					.GetExports<IAutomationExtension, IDictionary<string, object>>()
@@ -6501,7 +6643,7 @@ namespace NServiceBusStudio
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {
 						if (this.InstanceName != this.OriginalInstanceName && 
-							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager)) 
+							this.AsCollection().RenameElement(this, this.UriService, this.RefactoringManager, this.ServiceProvider.GetService<EnvDTE.DTE>().Documents)) 
 						{
 							InstanceNameChanged(sender, args);
 							this.OriginalInstanceName = this.InstanceName;

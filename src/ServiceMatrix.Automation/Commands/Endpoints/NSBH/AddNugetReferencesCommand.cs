@@ -57,25 +57,15 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.NuGetPackageVersionNServiceBus);
                 project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", app.NuGetPackageVersionNServiceBus);
 
-                if (!this.IgnoreHost)
+                if (!IgnoreHost)
                 {
                     project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Host", app.NuGetPackageVersionNServiceBus);
                 }
-            }
-
-            //<Reference Include="NServiceBus.ActiveMQ" />
-            if (app.Transport == TransportType.ActiveMQ.ToString())
-            {
-                if (!project.HasReference("NServiceBus.ActiveMQ"))
+                else
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.ActiveMQ", app.NuGetPackageVersionNServiceBusActiveMQ);
+                    // This is needed for AspNet MVC Integration for the time being. 
+                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Autofac", app.NuGetPackageVersionNServiceBus);
                 }
-            }
-            else
-            {
-                project.RemoveReference("Apache.NMS");
-                project.RemoveReference("Apache.NMS.ActiveMQ");
-                project.RemoveReference("NServiceBus.ActiveMQ");
             }
 
             //<Reference Include="NServiceBus.Transports.RabbitMQ" />

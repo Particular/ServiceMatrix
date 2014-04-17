@@ -26,16 +26,13 @@ namespace NServiceBusStudio
         void Subscribe(ICommand command);
         
         void AddLinks(IAbstractEndpoint endpoint);
-        void AddSagaLinks(IAbstractEndpoint endpoint);
-
         void RemoveLinks(IAbstractEndpoint endpoint);
-        void RemoveSagaLinks(IAbstractEndpoint endpoint);
-
+        
         bool IsSender { get; }
         bool IsProcessor { get; }
     }
 
-    partial class Component : IValidatableObject, IRenameRefactoring
+    partial class Component : IValidatableObject, IRenameRefactoring, IAdditionalRenameRefactorings
     {
         public bool IsSender
         {
@@ -82,8 +79,11 @@ namespace NServiceBusStudio
 
         private void DeleteComponentLink(IAbstractEndpoint endpoint)
         {
-            var componentLink = endpoint.EndpointComponents.AbstractComponentLinks.FirstOrDefault(cl => cl.ComponentReference.Value == this);
-            componentLink.As<IProductElement>().Delete();
+            if (endpoint.EndpointComponents != null)
+            {
+                var componentLink = endpoint.EndpointComponents.AbstractComponentLinks.FirstOrDefault(cl => cl.ComponentReference.Value == this);
+                componentLink.As<IProductElement>().Delete();
+            }
         }
 
         private List<IAbstractEndpoint> deployedTo = new List<IAbstractEndpoint>();
@@ -139,6 +139,13 @@ namespace NServiceBusStudio
             foreach (var endpoint in this.DeployedTo)
             {
                 var service = this.Parent.Parent;
+                var endpointProject = endpoint.Project;
+
+                if (endpointProject == null)
+                {
+                    continue;
+                }
+
                 if (!endpoint.Project.Folders.Any(f => f.Name == service.CodeIdentifier))
                 {
                     endpoint.Project.CreateFolder(service.CodeIdentifier);
@@ -161,16 +168,14 @@ namespace NServiceBusStudio
                     i.AsElement().AutomationExtensions.First(x => x.Name == "OnInstantiateCommand").Execute();
                 }
 
-                // Generate Code for Component Handlers
-                //this.AsElement().AutomationExtensions.First(x => x.Name == "GenerateCodeHandlers").Execute();
-                //this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldCustomHandlers").Execute();
-                //if (this.IsSaga)
-                //{
-                //    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
-                //}
+                if (this.IsSaga)
+                {
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaConfigureHowToFindCode").Execute();
+                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
+                }
 
                 // Add Links for Referenced Libraries
-                //this.AddLinks(endpoint);
+                this.AddLinks(endpoint);
             }
         }
 
@@ -178,22 +183,7 @@ namespace NServiceBusStudio
         {
             var project = endpoint.Project;
 
-            // 1. Add Links for Custom Code
-            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
-            AddLinkToProject(project, this.As<IProductElement>(), customCodePath,
-                items => items.First(i =>
-                    Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) != "Infrastructure"
-                ));
-
-            //2. Add Links for Infrastructure Code
-            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", true);
-            AddLinkToProject(project, this.As<IProductElement>(), infraCodePath,
-                items => items.First(i =>
-                    Path.GetFileName(Path.GetDirectoryName(Path.GetDirectoryName(i.PhysicalPath))) == "Infrastructure"
-                ));
-
-
-            // 3. Add Links for References
+            // 1. Add Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
             {
                 IProductElement element = null;
@@ -217,35 +207,9 @@ namespace NServiceBusStudio
 
                 AddLinkToProject(project, element, suggestedPath, i => i.First());
             }
-
-
-            // Continue adding links to Saga Files
-            this.AddSagaLinks(endpoint);
         }
 
-        public void AddSagaLinks(IAbstractEndpoint endpoint)
-        {
-            var project = endpoint.Project;
 
-            if (project == null)
-                return;
-
-            if (this.IsSaga)
-            {
-                // 4. Add Links for Saga Code
-                var customSagaPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
-                AddLinkToProject(project, this.As<IProductElement>(), customSagaPath,
-                    items => items.First(i =>
-                        Path.GetFileNameWithoutExtension(i.PhysicalPath).EndsWith("SagaData")
-                    ));
-
-                // 5. Add Links for Saga ConfigureHowToFindSaga Code
-                AddLinkToProject(project, this.As<IProductElement>(), customSagaPath,
-                    items => items.First(i =>
-                        Path.GetFileNameWithoutExtension(i.PhysicalPath).EndsWith("ConfigureHowToFindSaga")
-                    ));
-            }
-        }
 
         public void RemoveLinks(IAbstractEndpoint endpoint)
         {
@@ -254,16 +218,7 @@ namespace NServiceBusStudio
             if (project == null)
                 return;
 
-            // 1. Remove Links for Custom Code
-            var customCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
-            RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", customCodePath);
-
-            //2. Remove Links for Infrastructure Code
-            var infraCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, "Infrastructure", false);
-            RemoveLinkFromProject(project, this.OriginalInstanceName + ".cs", infraCodePath);
-
-
-            // 3. Remove Links for References
+            // 1. Remove Links for References
             foreach (var libraryLink in this.LibraryReferences.LibraryReference)
             {
                 IProductElement element = null;
@@ -286,25 +241,6 @@ namespace NServiceBusStudio
                 var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
                 RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
             }
-
-            // Continue removing links to Saga Files
-            this.RemoveSagaLinks(endpoint);
-        }
-
-        public void RemoveSagaLinks(IAbstractEndpoint endpoint)
-        {
-            var project = endpoint.Project;
-
-            if (project == null)
-                return;
-
-            var sagaCodePath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
-
-            //4. Remove Links for Saga Code
-            RemoveLinkFromProject(project, this.OriginalInstanceName + "SagaData.cs", sagaCodePath);
-
-            //4. Remove Links for Saga Code
-            RemoveLinkFromProject(project, this.OriginalInstanceName + "ConfigureHowToFindSaga.cs", sagaCodePath);
         }
 
         private static void AddLinkToProject(IProject project, IProductElement element, string suggestedPath, Func<IEnumerable<IItem>, IItem> filter)
@@ -403,6 +339,16 @@ namespace NServiceBusStudio
         public void Subscribe(ICommand command)
         {
             this.Subscribes.CreateLink(command);
+        }
+
+        public List<string> AdditionalOriginalInstanceNames
+        {
+            get { return new List<string>() { String.Format("{0}SagaData", this.OriginalInstanceName) }; }
+        }
+
+        public List<string> AdditionalInstanceNames
+        {
+            get { return new List<string>() { String.Format("{0}SagaData", this.InstanceName) }; }
         }
     }
 }
