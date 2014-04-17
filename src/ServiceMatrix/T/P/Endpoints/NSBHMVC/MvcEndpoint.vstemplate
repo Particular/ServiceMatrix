@@ -45,9 +45,6 @@
         <ProjectItem ReplaceParameters="false" TargetFileName="search.png">search.png</ProjectItem>
       </Folder>
       <Folder Name="Infrastructure" TargetFolderName="Infrastructure">
-        <ProjectItem ReplaceParameters="true" TargetFileName="ConfigureMvcDependencyInjection.cs">ConfigureMvcDependencyInjection.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="NServiceBusControllerActivator.cs">NServiceBusControllerActivator.cs</ProjectItem>
-        <ProjectItem ReplaceParameters="true" TargetFileName="NServiceBusDependencyResolverAdapter.cs">NServiceBusDependencyResolverAdapter.cs</ProjectItem>
         <ProjectItem ReplaceParameters="true" TargetFileName="INServiceBusComponent.cs">INServiceBusComponent.cs</ProjectItem>
       </Folder>
       <Folder Name="Properties" TargetFolderName="Properties">

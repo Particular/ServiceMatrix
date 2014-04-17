@@ -34,9 +34,10 @@
         </Style>
 
         <DataTemplate x:Key="ItemDataTemplate">
-            <CheckBox
-			    x:Name="checkbox"
+            <RadioButton
+			    x:Name="radiobutton"
 			    Content="{Binding}"
+                GroupName="radiobutton"
 			    IsChecked="{Binding	RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
         </DataTemplate>
     </src:CommonDialogWindow.Resources>
@@ -95,7 +96,6 @@
                                   x:Name="AddEndpointType">
                     <ComboBoxItem Tag="NServiceBusHost" IsSelected="True">NServiceBus Host</ComboBoxItem>
                     <ComboBoxItem Tag="NServiceBusMVC">NServiceBus ASP.NET MVC</ComboBoxItem>
-                    <ComboBoxItem Tag="NServiceBusWeb">NServiceBus ASP.NET Web Forms</ComboBoxItem>
                 </ComboBox>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
