@@ -35,6 +35,9 @@ namespace NServiceBusStudio.Automation.Commands
         public IVsPackageInstaller VsPackageInstaller { get; set; }
 
         [Import]
+        public IVsPackageInstallerServices VsPackageInstallerServices { get; set; }
+
+        [Import]
         public IStatusBar StatusBar { get; set; }
 
         public override void Execute()
@@ -46,8 +49,8 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 if (!infraproject.HasReference("NServiceBus"))
                 {
-                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.NuGetPackageVersionNServiceBus);
-                    infraproject.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", app.NuGetPackageVersionNServiceBus);
+                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces");
+                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus");
                 }
             }
         }
