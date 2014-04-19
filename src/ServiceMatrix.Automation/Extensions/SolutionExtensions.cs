@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Runtime.InteropServices;
-using System.IO;
-using NuPattern.VisualStudio.Solution;
-using NuPattern;
-using NuGet.VisualStudio;
-using NuPattern.VisualStudio;
-
-namespace NServiceBusStudio.Automation.Extensions
+﻿namespace NServiceBusStudio.Automation.Extensions
 {
+    using System;
+    using System.Runtime.InteropServices;
+    using NuPattern.VisualStudio.Solution;
+    using NuPattern;
+    using NuGet.VisualStudio;
+    using NuPattern.VisualStudio;
+    using System.Linq;
+
     /// <summary>
     /// Extensions to <see cref="ISolution"/> APIs.
     /// </summary>
     public static class SolutionExtensions
     {
+
         /// <summary>
         /// Adds the given <paramref name="reference"/> project as a 
         /// project reference to <paramref name="project"/>.
@@ -120,22 +118,31 @@ namespace NServiceBusStudio.Automation.Extensions
             return false;
         }
 
-
-
-        public static void InstallNuGetPackage(this IProject project, IVsPackageInstaller VsPackageInstaller, IStatusBar StatusBar, string packageName, string version)
+        public static void InstallNuGetPackage(this IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, IStatusBar StatusBar, string packageName)
         {
-
-
             try
             {
-                StatusBar.DisplayMessage(String.Format("Installing Package: {0} {1}...", packageName, version));
-
-                VsPackageInstaller.InstallPackage("All",
-                                                  project.As<EnvDTE.Project>(),
-                                                  packageName,
-                                                  version,
-                                                  false);
-
+                var version = NugetPackageVersionManager.GetVersionFromCacheForPackage(packageName); 
+                
+                if (!String.IsNullOrEmpty(version))
+                {
+                    StatusBar.DisplayMessage(String.Format("Installing Package: {0} {1}...", packageName, version));
+                    try
+                    {
+                        InstallNugetPackageForSpecifiedVersion(project, vsPackageInstaller, packageName, version);
+                    }
+                    catch (Exception installException)
+                    {
+                        StatusBar.DisplayMessage(String.Format("When attempting to install version {0} of the package {1}, the following error occured: {2}.. Going to now try installing the latest version of Package ...", version, packageName, installException.Message));
+                        // There was a problem installing the specified version of the package. Try the installing the latest available package from the source.
+                        InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, packageName);
+                    }
+                }
+                else
+                {
+                    StatusBar.DisplayMessage(String.Format("Installing the latest version of Package: {0}...", packageName));
+                    InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, packageName);
+                }
                 StatusBar.DisplayMessage("");
             }
             catch (Exception ex)
@@ -143,6 +150,30 @@ namespace NServiceBusStudio.Automation.Extensions
                 throw new Exception(String.Format("NuGet Package {0} cannot be installed ({1}).", packageName, ex.Message), ex);
             }
         }
+
+        private static void InstallLatestNugetPackage(IProject project,IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, string packageName)
+        {
+            vsPackageInstaller.InstallPackage("All",
+                 project.As<EnvDTE.Project>(),
+                 packageName,
+                 (Version)null,
+                 false);
+
+            // Call the installed packages to get the version that was just installed and cache the version.
+            var installedPackages = vsPackageInstallerServices.GetInstalledPackages();
+            NugetPackageVersionManager.UpdateCache(packageName, installedPackages);
+           
+        }
+
+        private static void InstallNugetPackageForSpecifiedVersion(IProject project, IVsPackageInstaller vsPackageInstaller, string packageName, string version)
+        {
+            vsPackageInstaller.InstallPackage("All",
+                 project.As<EnvDTE.Project>(),
+                 packageName,
+                 version,
+                 false);
+        }
+
 
         
         private static object Log(string type, string log)

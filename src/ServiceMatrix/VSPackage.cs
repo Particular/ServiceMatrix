@@ -55,7 +55,7 @@ namespace NServiceBusStudio
         {
             var reporter = new ExceptionReporting.ExceptionReporter();
             reporter.Config.AppName = "ServiceMatrix";
-            reporter.Config.AppVersion = "2.0.0";
+            reporter.Config.AppVersion = "2.0.1";
             reporter.Config.CompanyName = "Particular Software";
             reporter.Config.ContactEmail = "contact@particular.net";
             reporter.Config.EmailReportAddress = "support@particular.net";
