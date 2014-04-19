@@ -35,6 +35,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
         public IVsPackageInstaller VsPackageInstaller { get; set; }
 
         [Import]
+        public IVsPackageInstallerServices VsPackageInstallerServices { get; set; }
+
+
+        [Import]
         public IStatusBar StatusBar { get; set; }
 
         public bool IgnoreHost { get; set; }
@@ -54,17 +58,17 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
             if (!project.HasReference("NServiceBus"))
             {
-                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.NuGetPackageVersionNServiceBus);
-                project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus", app.NuGetPackageVersionNServiceBus);
+                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces");
+                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus");
 
                 if (!IgnoreHost)
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Host", app.NuGetPackageVersionNServiceBus);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Host");
                 }
                 else
                 {
                     // This is needed for AspNet MVC Integration for the time being. 
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Autofac", app.NuGetPackageVersionNServiceBus);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Autofac");
                 }
             }
 
@@ -73,7 +77,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.RabbitMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", app.NuGetPackageVersionNServiceBusRabbitMQ);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ");
                 }
             }
             else
@@ -87,7 +91,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.SqlServer"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", app.NuGetPackageVersionNServiceBusSqlServer);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer");
                 }
             }
             else
@@ -100,7 +104,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", app.NuGetPackageVersionNServiceBusAzureQueues);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
                 }
             }
             else
@@ -113,7 +117,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", app.NuGetPackageVersionNServiceBusAzureServiceBus);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus");
                 }
             }
             else
@@ -128,22 +132,22 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession", app.NuGetPackageVersionServiceControlPlugins);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession");
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.Heartbeat"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat", app.NuGetPackageVersionServiceControlPlugins);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat");
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.CustomChecks"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", app.NuGetPackageVersionServiceControlPlugins);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks");
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.SagaAudit"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "ServiceControl.Plugin.SagaAudit", app.NuGetPackageVersionServiceControlPlugins);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.SagaAudit");
                 }
             }
             else
