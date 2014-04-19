@@ -214,6 +214,7 @@
       <DependentUpon>SagaStarterPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\IEventPicker.cs" />
+    <Compile Include="Extensions\NugetPackageVersionManager.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="HandledMessageLink.Design.cs">
       <DependentUpon>HandledMessageLink.cs</DependentUpon>
