@@ -54,6 +54,9 @@ namespace NServiceBusStudio
         public IVsPackageInstaller VsPackageInstaller { get; set; }
 
         [Import]
+        public IVsPackageInstallerServices VsPackageInstallerServices { get; set; }
+
+        [Import]
         public IStatusBar StatusBar { get; set; }
 
         partial void Initialize()
@@ -110,15 +113,19 @@ namespace NServiceBusStudio
         private void SetNuGetPackagesVersion()
         {
             this.StatusBar.DisplayMessage("Obtaining NuGet packages versions...");
+            // Clear the cached versions, so for every new solution we create, we'll check Nuget for latest versions and then use that version
+            // for all projects in the solution.
+            NugetPackageVersionManager.ClearCache();
+            
             if (String.IsNullOrEmpty(this.NuGetPackageVersionNServiceBus))
             {
-                this.NuGetPackageVersionNServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus");
-                this.NuGetPackageVersionNServiceBusActiveMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.ActiveMQ");
-                this.NuGetPackageVersionNServiceBusRabbitMQ = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.RabbitMQ");
-                this.NuGetPackageVersionNServiceBusSqlServer = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.SQLServer");
-                this.NuGetPackageVersionNServiceBusAzureQueues = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
-                this.NuGetPackageVersionNServiceBusAzureServiceBus = LatestNuGetPackageVersionValueProvider.GetVersion("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
-                this.NuGetPackageVersionServiceControlPlugins = LatestNuGetPackageVersionValueProvider.GetVersion("ServiceControl.Plugin.DebugSession");
+                this.NuGetPackageVersionNServiceBus = null;
+                this.NuGetPackageVersionNServiceBusActiveMQ = null;
+                this.NuGetPackageVersionNServiceBusRabbitMQ = null;
+                this.NuGetPackageVersionNServiceBusSqlServer = null;
+                this.NuGetPackageVersionNServiceBusAzureQueues = null;
+                this.NuGetPackageVersionNServiceBusAzureServiceBus = null;
+                this.NuGetPackageVersionServiceControlPlugins = null;
             }
             this.StatusBar.DisplayMessage(" ");
         }
@@ -222,22 +229,22 @@ namespace NServiceBusStudio
                 else if (this.Transport == TransportType.RabbitMQ.ToString())
                 {
                     this.TransportConnectionString = @"host=localhost";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", "1.1.0"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ"));
                 }
                 else if (this.Transport == TransportType.SqlServer.ToString())
                 {
                     this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", "1.1.0"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer"));
                 }
                 else if (this.Transport == TransportType.AzureQueues.ToString())
                 {
                     this.TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", "5.0.0"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues"));
                 }
                 else if (this.Transport == TransportType.AzureServiceBus.ToString())
                 {
                     this.TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", "5.0.0"));
+                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus"));
                 }
             };
         }
