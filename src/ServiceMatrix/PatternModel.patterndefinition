@@ -378,7 +378,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomCommandDefinition.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomCommandDefinition.tt",
     "ValueProvider": null
   },
   {
@@ -452,7 +452,7 @@
         },
         {
         "Name": "TemplateUri",
-        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomEventDefinition.tt",
+        "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomEventDefinition.tt",
         "ValueProvider": null
         },
         {
@@ -761,7 +761,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/ComponentHandlers.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/ComponentHandlers.tt",
     "ValueProvider": null
   },
   {
@@ -832,7 +832,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentHandlers.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentHandlers.tt",
     "ValueProvider": null
   },
   {
@@ -931,7 +931,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/Authentication.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/Authentication.tt",
     "ValueProvider": null
   },
   {
@@ -983,7 +983,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/CustomAuthentication.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthentication.tt",
     "ValueProvider": null
   },
   {
@@ -1121,7 +1121,7 @@
         },
         {
         "Name": "TemplateUri",
-        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/EventDefinition.tt",
+        "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/EventDefinition.tt",
         "ValueProvider": null
         },
         {
@@ -1183,7 +1183,7 @@
         },
         {
         "Name": "TemplateUri",
-        "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CommandDefinition.tt",
+        "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CommandDefinition.tt",
         "ValueProvider": null
         },
         {
@@ -1254,7 +1254,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentSagaHandlers.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaHandlers.tt",
     "ValueProvider": null
   },
   {
@@ -1306,7 +1306,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/AuthorizeOutgoingMessages.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/AuthorizeOutgoingMessages.tt",
     "ValueProvider": null
   },
   {
@@ -1460,7 +1460,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Library.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt",
     "ValueProvider": null
   },
   {
@@ -1568,7 +1568,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Library.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt",
     "ValueProvider": null
   },
   {
@@ -1842,7 +1842,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/MessageConventions.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageConventions.cs.tt",
     "ValueProvider": null
   },
   {
@@ -1894,7 +1894,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/Logging.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/Logging.config.tt",
     "ValueProvider": null
   },
   {
@@ -1985,7 +1985,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/DefaultApp.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/DefaultApp.config.tt",
     "ValueProvider": null
   },
   {
@@ -2037,7 +2037,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/EndpointConfig.generated.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.generated.cs.tt",
     "ValueProvider": null
   },
   {
@@ -2089,7 +2089,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/MasterNodeConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MasterNodeConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2141,7 +2141,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/MessageForwardingInCaseOfFaultConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageForwardingInCaseOfFaultConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2193,7 +2193,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/SecondLevelRetriesConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/SecondLevelRetriesConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2245,7 +2245,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/TransportConfig.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.tt",
     "ValueProvider": null
   },
   {
@@ -2297,7 +2297,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/TransportConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2349,7 +2349,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/UnicastBusConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/UnicastBusConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2457,7 +2457,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/MessageForwardingInCaseOfFaultConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/MessageForwardingInCaseOfFaultConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2509,7 +2509,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TransportConfig.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConfig.tt",
     "ValueProvider": null
   },
   {
@@ -2561,7 +2561,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TransportConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2613,7 +2613,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/UnicastBusConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/UnicastBusConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -2665,7 +2665,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/Web.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.config.tt",
     "ValueProvider": null
   },
   {
@@ -2717,7 +2717,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/Web.Debug.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.Debug.config.tt",
     "ValueProvider": null
   },
   {
@@ -2769,7 +2769,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/GeneratedWebInitialization.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/GeneratedWebInitialization.cs.tt",
     "ValueProvider": null
   },
   {
@@ -2821,7 +2821,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/Web.Release.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.Release.config.tt",
     "ValueProvider": null
   },
   {
@@ -2895,7 +2895,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/Logging.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Logging.config.tt",
     "ValueProvider": null
   },
   {
@@ -2947,7 +2947,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/MessageConventions.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/MessageConventions.cs.tt",
     "ValueProvider": null
   },
   {
@@ -3085,7 +3085,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/MessageForwardingInCaseOfFaultConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageForwardingInCaseOfFaultConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -3137,7 +3137,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TransportConfig.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.tt",
     "ValueProvider": null
   },
   {
@@ -3189,7 +3189,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TransportConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -3241,7 +3241,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/UnicastBusConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/UnicastBusConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -3293,7 +3293,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.cs.tt",
     "ValueProvider": null
   },
   {
@@ -3367,7 +3367,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/Logging.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/Logging.config.tt",
     "ValueProvider": null
   },
   {
@@ -3419,7 +3419,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/MessageConventions.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageConventions.cs.tt",
     "ValueProvider": null
   },
   {
@@ -3528,7 +3528,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/TransportConnectionString.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConnectionString.config.tt",
     "ValueProvider": null
   },
   {
@@ -3580,7 +3580,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TransportConnectionString.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConnectionString.config.tt",
     "ValueProvider": null
   },
   {
@@ -3632,7 +3632,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TransportConnectionString.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConnectionString.config.tt",
     "ValueProvider": null
   },
   {
@@ -3684,7 +3684,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.cs.tt",
     "ValueProvider": null
   },
   {
@@ -3736,7 +3736,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/WebGlobalInitialization.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/WebGlobalInitialization.cs.tt",
     "ValueProvider": null
   },
   {
@@ -3753,7 +3753,7 @@
       <properties>[
   {
     "Name": "ExtensionId",
-    "Value": "a5e9f15b-ad7f-4201-851e-186dd8db3bc9",
+    "Value": "23795EC3-3DEA-4F04-9044-4056CF91A2ED",
     "ValueProvider": null
   },
   {
@@ -3898,7 +3898,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomComponentSagaConfigureHowToFind.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaConfigureHowToFind.tt",
     "ValueProvider": null
   },
   {
@@ -3960,7 +3960,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TestMessagesController.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TestMessagesController.cs.tt",
     "ValueProvider": null
   },
   {
@@ -4012,7 +4012,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/TestMessagesView.cshtml.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TestMessagesView.cshtml.tt",
     "ValueProvider": null
   },
   {
@@ -4064,7 +4064,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TestMessages.aspx.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.tt",
     "ValueProvider": null
   },
   {
@@ -4116,7 +4116,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TestMessages.aspx.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.cs.tt",
     "ValueProvider": null
   },
   {
@@ -4168,7 +4168,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/TestMessages.aspx.designer.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.designer.cs.tt",
     "ValueProvider": null
   },
   {
@@ -4250,7 +4250,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/EndpointConfig.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.cs.tt",
     "ValueProvider": null
   },
   {
@@ -4314,7 +4314,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBH/AuditConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/AuditConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -4366,7 +4366,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBMVC/AuditConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/AuditConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -4418,7 +4418,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Endpoints/NSBWeb/AuditConfig.config.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/AuditConfig.config.tt",
     "ValueProvider": null
   },
   {
@@ -4470,7 +4470,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/Security/CustomAuthorizeOutgoingMessages.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthorizeOutgoingMessages.tt",
     "ValueProvider": null
   },
   {
@@ -4548,7 +4548,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/a5e9f15b-ad7f-4201-851e-186dd8db3bc9/T/T4/CustomMessageDefinition.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomMessageDefinition.tt",
     "ValueProvider": null
   },
   {
@@ -4918,7 +4918,7 @@
   }
 ]</conditions>
     </menuSettings>
-    <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="a5e9f15b-ad7f-4201-851e-186dd8db3bc9" guidanceSharedInstance="true">
+    <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="23795EC3-3DEA-4F04-9044-4056CF91A2ED" guidanceSharedInstance="true">
       <extendedElement>
         <patternSchemaMoniker Id="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" />
       </extendedElement>

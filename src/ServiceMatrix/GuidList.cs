@@ -7,6 +7,6 @@ namespace NServiceBusStudio
 {
     public static class GuidList
     {
-        public const string guidNServiceBusStudioPkgString = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9";
+        public const string guidNServiceBusStudioPkgString = "23795EC3-3DEA-4F04-9044-4056CF91A2ED";
     };
 }
