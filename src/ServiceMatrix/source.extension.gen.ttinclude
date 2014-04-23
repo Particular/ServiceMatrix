@@ -16,7 +16,7 @@
 	public const string author = @"Particular Software";
 	public const string version = @"2.0.0";
 	public const string description = @"A set of Visual Studio integrated tools to author NServiceBus applications";
-	public const string eula = @"";
+	public const string eula = @"Resources\LicenseAgreement.rtf";
 	public const string icon = @"Resources\ToolkitIcon.png";
 
 	//------------------------------------------------------------------------------
