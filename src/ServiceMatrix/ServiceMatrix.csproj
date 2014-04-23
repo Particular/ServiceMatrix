@@ -451,9 +451,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\SingleMessage.ico" />
-    <Resource Include="Resources\ToolkitIcon.png">
-      <IncludeInVSIX>True</IncludeInVSIX>
-    </Resource>
+    <Content Include="Resources\ToolkitIcon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\VSPackageIcons.bmp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
@@ -603,6 +603,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="NServiceBus.Tools.snk" />
+    <Content Include="Resources\LicenseAgreement.rtf">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Users\Ezequiel\Documents\GitHub\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
@@ -615,7 +618,6 @@
     </None>
     <None Include="source.extension.VSVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>source.extension.VSVersion.gen.ttinclude</LastGenOutput>
       <DependentUpon>source.extension.tt</DependentUpon>
     </None>
     <Content Include="T\T4\Endpoints\NSBH\DefaultApp.config.tt">

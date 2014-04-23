@@ -25,7 +25,7 @@ namespace NServiceBusStudio
 	/// The root of your design.
 	/// </summary>
 	[Description("The root of your design.")]
-	[ToolkitInterface(ExtensionId = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9", DefinitionId = "2c52bbfe-442d-4f40-8f6f-7df75dd99cac", ProxyType = typeof(Application))]
+	[ToolkitInterface(ExtensionId = "23795EC3-3DEA-4F04-9044-4056CF91A2ED", DefinitionId = "2c52bbfe-442d-4f40-8f6f-7df75dd99cac", ProxyType = typeof(Application))]
 	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IApplication : IToolkitInterface
 	{
