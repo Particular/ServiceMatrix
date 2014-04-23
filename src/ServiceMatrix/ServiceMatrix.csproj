@@ -444,9 +444,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Resource Include="Resources\SingleMessage.ico" />
-    <Resource Include="Resources\ToolkitIcon.png">
-      <IncludeInVSIX>True</IncludeInVSIX>
-    </Resource>
+    <Content Include="Resources\ToolkitIcon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\VSPackageIcons.bmp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
