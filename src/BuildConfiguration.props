@@ -16,6 +16,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
 	<DSLToolsPath Condition="'$(VisualStudioVersion)' == '10.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\DSLTools\v10.0</DSLToolsPath>
 	<DSLToolsPath Condition="'$(VisualStudioVersion)' == '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v11.0\DSLTools\</DSLToolsPath>
+	<DSLToolsPath Condition="'$(VisualStudioVersion)' == '12.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\DSLTools\</DSLToolsPath>
   </PropertyGroup>
 
   <!-- Targets for References -->
@@ -23,10 +24,12 @@
     <TargetVsVersion>$(VisualStudioVersion)</TargetVsVersion>
     <TargetFrameworkVersion Condition="'$(VisualStudioVersion)' == '10.0'">v4.0</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(VisualStudioVersion)' == '11.0'">v4.5</TargetFrameworkVersion>
+	<TargetFrameworkVersion Condition="'$(VisualStudioVersion)' == '12.0'">v4.5</TargetFrameworkVersion>
     <VsxVersion>$(TargetVsVersion)</VsxVersion>
     <VsxVersionSuffix Condition="'$(VsxVersionSuffix)' == ''">.$(VsxVersion)</VsxVersionSuffix>
     <T4TargetsPath Condition="'$(VisualStudioVersion)' == '10.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\TextTemplating\v$(TargetVsVersion)</T4TargetsPath>
     <T4TargetsPath Condition="'$(VisualStudioVersion)' == '11.0'">$(VSToolsPath)\TextTemplating</T4TargetsPath>
+	<T4TargetsPath Condition="'$(VisualStudioVersion)' == '12.0'">$(VSToolsPath)\TextTemplating</T4TargetsPath>
     <OutputPath>..\Binaries\</OutputPath>
   </PropertyGroup>
 
@@ -47,9 +50,16 @@
     <VsxVersionSuffix>.$(VsxVersion)</VsxVersionSuffix>
     <T4TargetsPath>$(VSToolsPath)\TextTemplating</T4TargetsPath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '12.0' ">
+    <TargetVsVersion>12.0</TargetVsVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <VsxVersion>$(TargetVsVersion)</VsxVersion>
+    <VsxVersionSuffix>.$(VsxVersion)</VsxVersionSuffix>
+    <T4TargetsPath>$(VSToolsPath)\TextTemplating</T4TargetsPath>
+  </PropertyGroup>
 
   <!-- Build Configurations -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-VS2010|AnyCPU' or '$(Configuration)|$(Platform)' == 'Debug-VS2012|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-VS2010|AnyCPU' or '$(Configuration)|$(Platform)' == 'Debug-VS2012|AnyCPU' or '$(Configuration)|$(Platform)' == 'Debug-VS2013|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -57,7 +67,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-VS2010|AnyCPU' or '$(Configuration)|$(Platform)' == 'Release-VS2012|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-VS2010|AnyCPU' or '$(Configuration)|$(Platform)' == 'Release-VS2012|AnyCPU' or '$(Configuration)|$(Platform)' == 'Release-VS2013|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -76,6 +86,12 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release-VS2012' ">
     <DefineConstants>VSVER11</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug-VS2013' ">
+    <DefineConstants>DEBUG;TRACE;VSVER12</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release-VS2013' ">
+    <DefineConstants>VSVER12</DefineConstants>
   </PropertyGroup>
  
   <!-- Properties for VSIXes -->
