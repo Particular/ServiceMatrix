@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
-  <Identifier Id="a5e9f15b-ad7f-4201-851e-186dd8db3bc9">
+  <Identifier Id="Particular.ServiceMatrix.23795EC3-3DEA-4F04-9044-4056CF91A2ED">
 	  <Name>ServiceMatrix</Name>
 	  <Author>Particular Software</Author>
 	  <Version>2.0.2</Version>
