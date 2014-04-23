@@ -18,7 +18,7 @@ try {
  	Write-Host "Path to VsixInstaller: $pathToVsixInstaller"
 
 
-	$arguments  ="/uninstall:a5e9f15b-ad7f-4201-851e-186dd8db3bc9 /quiet"
+	$arguments  ="/uninstall:23795EC3-3DEA-4F04-9044-4056CF91A2ED /quiet"
 	
 	Write-Host "Invoking vsix installer with arguments: $arguments";
     
