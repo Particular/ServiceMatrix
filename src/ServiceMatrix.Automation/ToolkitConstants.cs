@@ -23,9 +23,9 @@ namespace NServiceBusStudio
 		public const string Author = "Particular Software";
 
 		/// <summary>
-		/// 2.0.1
+		/// 2.0.2
 		/// </summary>
-		public const string Version = "2.0.1";
+		public const string Version = "2.0.2";
 
 		/// <summary>
 		/// A set of Visual Studio integrated tools to author NServiceBus applications
