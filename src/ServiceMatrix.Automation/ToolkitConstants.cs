@@ -8,9 +8,9 @@ namespace NServiceBusStudio
 	internal static class ToolkitConstants
 	{
 		/// <summary>
-		/// a5e9f15b-ad7f-4201-851e-186dd8db3bc9
+        /// 23795EC3-3DEA-4F04-9044-4056CF91A2ED
 		/// </summary>
-		public const string VsixIdentifier = "a5e9f15b-ad7f-4201-851e-186dd8db3bc9";
+        public const string VsixIdentifier = "23795EC3-3DEA-4F04-9044-4056CF91A2ED";
 
 		/// <summary>
 		/// ServiceMatrix
@@ -23,9 +23,9 @@ namespace NServiceBusStudio
 		public const string Author = "Particular Software";
 
 		/// <summary>
-		/// 2.0.1
+		/// 2.0.2
 		/// </summary>
-		public const string Version = "2.0.1";
+		public const string Version = "2.0.2";
 
 		/// <summary>
 		/// A set of Visual Studio integrated tools to author NServiceBus applications

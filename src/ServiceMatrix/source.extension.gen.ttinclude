@@ -11,12 +11,12 @@
 	//------------------------------------------------------------------------------
 	// Toolkit Info
 	//------------------------------------------------------------------------------
-	public const string identifier = @"a5e9f15b-ad7f-4201-851e-186dd8db3bc9";
+	public const string identifier = @"23795EC3-3DEA-4F04-9044-4056CF91A2ED";
 	public const string toolkitName = @"ServiceMatrix";
 	public const string author = @"Particular Software";
 	public const string version = @"2.0.0";
 	public const string description = @"A set of Visual Studio integrated tools to author NServiceBus applications";
-	public const string eula = @"";
+	public const string eula = @"Resources\LicenseAgreement.rtf";
 	public const string icon = @"Resources\ToolkitIcon.png";
 
 	//------------------------------------------------------------------------------
