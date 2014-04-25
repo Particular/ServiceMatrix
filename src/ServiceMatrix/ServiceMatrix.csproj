@@ -619,6 +619,8 @@
     <None Include="source.extension.VSVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>source.extension.tt</DependentUpon>
+      <LastGenOutput>source.extension.VSVersion.gen.ttinclude</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="T\T4\Endpoints\NSBH\DefaultApp.config.tt">
       <LastGenOutput>DefaultApp.config.cs</LastGenOutput>
