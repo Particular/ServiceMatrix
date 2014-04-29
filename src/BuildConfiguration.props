@@ -96,7 +96,7 @@
  
   <!-- Properties for VSIXes -->
   <PropertyGroup>
-    <TargetVsixContainerName>$(AssemblyName).$(TargetVsVersion).vsix</TargetVsixContainerName>
+    <TargetVsixContainerName>$(AssemblyName).Runtime.$(TargetVsVersion).vsix</TargetVsixContainerName>
   </PropertyGroup>
 
 </Project>

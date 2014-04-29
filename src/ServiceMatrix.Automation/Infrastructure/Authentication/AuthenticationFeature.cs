@@ -89,7 +89,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                     // We are using Temp as we don't want the generation run on each build
                     .CreateTempGenerateCodeCommand(sp, "Authentication.cs"
                     , endpoint.Project.Name + @"\Infrastructure"
-                    , @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAuthentication.tt")
+                    , @"t4://extension/E5387BC7-B3B0-4B1C-8307-6A86494FCCCF/T/T4/Security/EndpointCustomAuthentication.tt")
                 .Execute();
             }
             var item = solution.Find(endpoint.Project.Name + @"\Infrastructure\Authentication.cs").FirstOrDefault();
@@ -110,7 +110,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                     // We are using Temp as we don't want the generation run on each build
                     .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                     , endpoint.Project.Name + @"\Infrastructure"
-                    , @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.tt")
+                    , @"t4://extension/E5387BC7-B3B0-4B1C-8307-6A86494FCCCF/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.tt")
                 .Execute();
             }
         }
@@ -130,7 +130,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                         app.Design.Infrastructure.Security.Authentication.As<IProductElement>()
                             .CreateTempGenerateCodeCommand(sp, "Authentication.cs"
                             , endpoint.Project.Name + @"\Infrastructure\GeneratedCode"
-                            , @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthentication.tt"
+                            , @"t4://extension/E5387BC7-B3B0-4B1C-8307-6A86494FCCCF/T/T4/Security/EndpointAuthentication.tt"
                             , prefixAuthentication)
                         .Execute();
                     }
@@ -143,7 +143,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                         app.Design.Infrastructure.Security.Authentication.As<IProductElement>()
                             .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                             , endpoint.Project.Name + @"\Infrastructure\GeneratedCode"
-                            , @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.tt"
+                            , @"t4://extension/E5387BC7-B3B0-4B1C-8307-6A86494FCCCF/T/T4/Security/EndpointAuthorizeOutgoingMessages.tt"
                             , prefixAuthorize)
                         .Execute();
                     }

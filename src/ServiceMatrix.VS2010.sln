@@ -5,13 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix", "ServiceMat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8706DF98-FE5F-48B4-8D99-2368D512A1AF}"
 	ProjectSection(SolutionItems) = preProject
+		ServiceMatrix.VS2010.guidancestate = ServiceMatrix.VS2010.guidancestate
 		source.version.t4 = source.version.t4
-		Studio.guidancestate = Studio.guidancestate
 		Studio.slnbldr = Studio.slnbldr
-		Studio.VS2010.guidancestate = Studio.VS2010.guidancestate
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix.Automation", "ServiceMatrix.Automation\ServiceMatrix.Automation.csproj", "{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix.VSGallery", "ServiceMatrix.VSGallery\ServiceMatrix.VSGallery.csproj", "{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,11 +50,23 @@ Global
 		{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}.Release-VS2012|Any CPU.ActiveCfg = Release-VS2012|Any CPU
 		{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}.Release-VS2012|Any CPU.Build.0 = Release-VS2012|Any CPU
 		{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}.Release-VS2012|x86.ActiveCfg = Release-VS2012|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2010|Any CPU.ActiveCfg = Debug|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2010|Any CPU.Build.0 = Debug|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2010|x86.ActiveCfg = Debug|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2012|Any CPU.ActiveCfg = Debug|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2012|Any CPU.Build.0 = Debug|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2012|x86.ActiveCfg = Debug|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2010|Any CPU.ActiveCfg = Release|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2010|Any CPU.Build.0 = Release|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2010|x86.ActiveCfg = Release|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2012|Any CPU.ActiveCfg = Release|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2012|Any CPU.Build.0 = Release|Any CPU
+		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2012|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		GuidanceWorkflows = 9f6dc301-6f66-4d21-9f9c-b37412b162f6:Creating Pattern Toolkits:1.3.23.0
+		GuidanceWorkflows = 9f6dc301-6f66-4d21-9f9c-b37412b162f6:Creating Pattern Toolkits:1.4.24.0
 	EndGlobalSection
 EndGlobal
