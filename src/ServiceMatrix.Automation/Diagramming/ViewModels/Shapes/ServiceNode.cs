@@ -14,10 +14,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
         public ServiceNode(IProductElementViewModel innerViewModel, EndpointNode parent)
             : base(innerViewModel)
         {
-            this.SHAPE_MIN_HEIGHT = 130;
-            this.Bounds = new Rect(12, 40, 296, this.SHAPE_MIN_HEIGHT);
+            SHAPE_MIN_HEIGHT = 130;
+            Bounds = new Rect(12, 40, 296, SHAPE_MIN_HEIGHT);
 
-            this.SetParent(parent);
+            SetParent(parent);
         }
     }
 }

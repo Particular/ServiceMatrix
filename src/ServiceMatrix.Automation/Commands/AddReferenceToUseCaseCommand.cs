@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using Microsoft.VisualStudio;
-using System.Windows.Interop;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Windows.Input;
+    using NuPattern.Presentation;
+    using System.Windows;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Show a Use Case Picker for adding an element reference")]
     [Category("General")]
     [Description("Show a Use Case Picker for adding an element reference")]
     [CLSCompliant(false)]
-    public class AddReferenceToUseCaseCommand : NuPattern.Runtime.Command
+    public class AddReferenceToUseCaseCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -34,17 +32,17 @@ namespace NServiceBusStudio.Automation.Commands
         public override void Execute()
         {
             //var events = CurrentElement.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event);
-            var usecases = this.CurrentElement.Root.As<IApplication>().Design.UseCases.UseCase;
+            var usecases = CurrentElement.Root.As<IApplication>().Design.UseCases.UseCase;
             var picker = new ElementPicker() as IElementPicker;
             if (picker != null)
             {
                 (picker as ElementPicker).SetDropdownEditable(false);
-                (picker as ElementPicker).Owner = System.Windows.Application.Current.MainWindow;
-                (picker as ElementPicker).WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
+                (picker as ElementPicker).Owner = Application.Current.MainWindow;
+                (picker as ElementPicker).WindowStartupLocation = WindowStartupLocation.CenterOwner;
             }
 
             picker.Elements = usecases
-                                .Where(uc => !uc.UseCaseLinks.Any(l => l.LinkedElementId == this.CurrentElement.Id))
+                                .Where(uc => !uc.UseCaseLinks.Any(l => l.LinkedElementId == CurrentElement.Id))
                                 .Select(uc => uc.InstanceName).ToList();
 
             using (new MouseCursor(Cursors.Arrow))
@@ -52,7 +50,7 @@ namespace NServiceBusStudio.Automation.Commands
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    usecases.FirstOrDefault(uc => uc.InstanceName == selectedElement).AddRelatedElement(this.CurrentElement);
+                    usecases.FirstOrDefault(uc => uc.InstanceName == selectedElement).AddRelatedElement(CurrentElement);
                 }
             }
 

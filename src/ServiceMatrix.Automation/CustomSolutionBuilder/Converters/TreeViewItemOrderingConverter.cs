@@ -5,6 +5,8 @@ using System.Windows.Data;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
 {
+    using System.Globalization;
+
     /// <summary>
     /// Returns the sort descriptions for the treeview.
     /// </summary>
@@ -13,9 +15,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
         /// <summary>
         /// Converts a value.
         /// </summary>
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            IList collection = value as System.Collections.IList;
+            IList collection = value as IList;
             ListCollectionView view = new ListCollectionView(collection);
             SortDescription sort = new SortDescription(parameter.ToString(), ListSortDirection.Ascending);
             view.SortDescriptions.Add(sort);
@@ -26,7 +28,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
         /// <summary>
         /// Converts a value.
         /// </summary>
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

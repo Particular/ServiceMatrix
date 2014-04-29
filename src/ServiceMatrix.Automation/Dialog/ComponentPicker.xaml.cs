@@ -31,7 +31,7 @@ namespace AbstractEndpoint.Automation.Dialog
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
         }
 
@@ -49,9 +49,9 @@ namespace AbstractEndpoint.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedItems = this.ServicesList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
-            this.DialogResult = true;
-            this.Close();
+            SelectedItems = ServicesList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            DialogResult = true;
+            Close();
         }
     }
 

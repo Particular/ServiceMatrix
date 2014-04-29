@@ -1,16 +1,13 @@
-﻿using System;
-using System.Globalization;
-using Microsoft.VisualStudio.Modeling;
-
-using NuPattern.Library;
-using NuPattern.Library.Automation;
-using NuPattern.Library.Commands;
-using NuPattern.Runtime;
-using NuPattern.Diagnostics;
-
-
+﻿
 namespace AbstractEndpoint.Automation.Commands
 {
+    using System;
+    using NuPattern.Library;
+    using NuPattern.Library.Automation;
+    using NuPattern.Runtime;
+    using NuPattern.Diagnostics;
+    using Microsoft.VisualStudio.Modeling.Validation;
+
     /// <summary>
     /// A custom command design-time validation rule for the <see cref="ShowComponentLinkPicker"/> command.
     /// </summary>
@@ -26,7 +23,7 @@ namespace AbstractEndpoint.Automation.Commands
         /// <param name="context">Validation context to be assigned errors and warnings.</param>
         /// <param name="settingsElement">The settings element in the model being validated</param>
         /// <param name="settings">Settings for the command</param>
-        public void Validate(Microsoft.VisualStudio.Modeling.Validation.ValidationContext context, IAutomationSettingsSchema settingsElement, ICommandSettings settings)
+        public void Validate(ValidationContext context, IAutomationSettingsSchema settingsElement, ICommandSettings settings)
         {
             try
             {

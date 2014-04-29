@@ -18,8 +18,8 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
             ConnectionPoints.Add(new DiagramConnectionPoint(this, Edge.Left));
             ConnectionPoints.Add(new DiagramConnectionPoint(this, Edge.Right));
 
-            this.IsResizable = false;
-            this.Bounds = new Rect(0, 0, 320, 52);
+            IsResizable = false;
+            Bounds = new Rect(0, 0, 320, 52);
         }
     }
 }

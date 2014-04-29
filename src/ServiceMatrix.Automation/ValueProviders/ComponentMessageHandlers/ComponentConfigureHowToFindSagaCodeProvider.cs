@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
+﻿namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Text;
+
     [CLSCompliant(false)]
     [Category("General")]
     [Description("Generate ConfigureHowToFindSagaBody value and Set Code properties.")]
@@ -15,7 +14,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
     {
         public override object Evaluate()
         {
-            return this.GenerateConfigureHowToFindSagaBody();
+            return GenerateConfigureHowToFindSagaBody();
         }
 
         private string GenerateConfigureHowToFindSagaBody()
@@ -24,11 +23,11 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             sb.AppendLine();
 
             var sagaStarters = new List<string>();
-            sagaStarters.AddRange(this.Component.Subscribes.ProcessedCommandLinks.Where(x => x.StartsSaga).Select(x => x.CommandReference.Value.InstanceName));
-            sagaStarters.AddRange(this.Component.Subscribes.SubscribedEventLinks.Where(x => x.StartsSaga).Select(x => x.EventReference.Value.InstanceName));
-            sagaStarters.AddRange(this.Component.Subscribes.HandledMessageLinks.Where(x => x.StartsSaga).Select(x => x.MessageReference.Value.InstanceName));
+            sagaStarters.AddRange(Component.Subscribes.ProcessedCommandLinks.Where(x => x.StartsSaga).Select(x => x.CommandReference.Value.InstanceName));
+            sagaStarters.AddRange(Component.Subscribes.SubscribedEventLinks.Where(x => x.StartsSaga).Select(x => x.EventReference.Value.InstanceName));
+            sagaStarters.AddRange(Component.Subscribes.HandledMessageLinks.Where(x => x.StartsSaga).Select(x => x.MessageReference.Value.InstanceName));
 
-            foreach (var cl in this.Component.Subscribes.ProcessedCommandLinks)
+            foreach (var cl in Component.Subscribes.ProcessedCommandLinks)
             {
                 if (sagaStarters.Any(x => x != cl.CommandReference.Value.InstanceName))
                 {
@@ -36,7 +35,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 }
             }
 
-            foreach (var el in this.Component.Subscribes.SubscribedEventLinks)
+            foreach (var el in Component.Subscribes.SubscribedEventLinks)
             {
                 if (sagaStarters.Any(x => x != el.EventReference.Value.InstanceName))
                 {
@@ -44,7 +43,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 }
             }
 
-            foreach (var hl in this.Component.Subscribes.HandledMessageLinks)
+            foreach (var hl in Component.Subscribes.HandledMessageLinks)
             {
                 if (sagaStarters.Any(x => x != hl.MessageReference.Value.InstanceName))
                 {

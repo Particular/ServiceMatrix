@@ -18,6 +18,8 @@ using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using ICommand = System.Windows.Input.ICommand;
+
     /// <summary>
     /// Interaction logic for ComponentsOrderingView.xaml
     /// </summary>
@@ -30,10 +32,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public void SetComponentsView(UserControl view)
         {
-            this.ComponentsHolder.Children.Add(view);
+            ComponentsHolder.Children.Add(view);
         }
 
-        internal void SetComponentLinks(IEnumerable<AbstractEndpoint.IAbstractComponentLink> componentLinks)
+        internal void SetComponentLinks(IEnumerable<IAbstractComponentLink> componentLinks)
         {
             var links = new List<ComponentsOrderingViewModel>();
             
@@ -59,9 +61,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                         var prevIndex = links.IndexOf(vm);
                         links.Remove(vm);
                         links.Insert(prevIndex - 1, vm);
-                        this.ComponentList.ItemsSource = null;
-                        this.ComponentList.ItemsSource = links;
-                        this.ComponentList.SelectedItem = vm;
+                        ComponentList.ItemsSource = null;
+                        ComponentList.ItemsSource = links;
+                        ComponentList.SelectedItem = vm;
                         setOrder();
                     }, () => links.IndexOf(vm) > 0);
                 vm.DownCommand = new RelayCommand(
@@ -70,13 +72,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                         var prevIndex = links.IndexOf(vm);
                         links.Remove(vm);
                         links.Insert(prevIndex + 1, vm);
-                        this.ComponentList.ItemsSource = null;
-                        this.ComponentList.ItemsSource = links;
-                        this.ComponentList.SelectedItem = vm;
+                        ComponentList.ItemsSource = null;
+                        ComponentList.ItemsSource = links;
+                        ComponentList.SelectedItem = vm;
                         setOrder();
                     }, () => links.IndexOf(vm) < links.Count - 1);
             }
-            this.ComponentList.ItemsSource = links;
+            ComponentList.ItemsSource = links;
         }
     }
 
@@ -84,8 +86,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public System.Windows.Input.ICommand UpCommand { get; set; }
-        public System.Windows.Input.ICommand DownCommand { get; set; }
+        public ICommand UpCommand { get; set; }
+        public ICommand DownCommand { get; set; }
 
         public IAbstractComponentLink Link { get; set; }
 
@@ -93,8 +95,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         {
             get
             {
-                return this.Link.ComponentReference.Value.Parent.Parent.InstanceName
-                    + "." + this.Link.ComponentReference.Value.InstanceName;
+                return Link.ComponentReference.Value.Parent.Parent.InstanceName
+                    + "." + Link.ComponentReference.Value.InstanceName;
             }
         }
     }

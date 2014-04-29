@@ -1,15 +1,11 @@
-﻿using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class RaisesOnInstantiatedComponent : NuPattern.Runtime.Command
+    using NuPattern.Runtime;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using Command = NuPattern.Runtime.Command;
+
+    public class RaisesOnInstantiatedComponent : Command
     {
         [Required]
         [Import(AllowDefault = true)]
@@ -17,8 +13,8 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var app = this.CurrentElement.Root.As<IApplication>();
-            app.RaiseOnInstantiatedComponent(this.CurrentElement.As<IComponent>());
+            var app = CurrentElement.Root.As<IApplication>();
+            app.RaiseOnInstantiatedComponent(CurrentElement.As<IComponent>());
         }
     }
 }

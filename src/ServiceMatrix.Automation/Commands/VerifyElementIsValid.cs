@@ -13,9 +13,11 @@ using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-	[CLSCompliant(false)]
+    using Command = NuPattern.Runtime.Command;
+
+    [CLSCompliant(false)]
 	[Category("Pattern Automation")]
-    public class VerifyElementIsValid : NuPattern.Runtime.Command
+    public class VerifyElementIsValid : Command
 	{
 		private static readonly ITracer tracer = Tracer.Get<VerifyElementIsValid>();
         private const bool DefaultValidateAscendants = false;
@@ -52,25 +54,25 @@ namespace NServiceBusStudio.Automation.Commands
 			Validator.ValidateObject(this, new ValidationContext(this, null, null));
 
 			tracer.Info(
-				Resources.VerifyElementIsValid_TraceInitial, this.CurrentElement.InstanceName, this.ValidateDescendants);
+				Resources.VerifyElementIsValid_TraceInitial, CurrentElement.InstanceName, ValidateDescendants);
 
-			var instances = this.ValidateDescendants ? this.CurrentElement.Traverse().OfType<IInstanceBase>() : new[] { this.CurrentElement };
-            instances = instances.Concat(this.ValidateAscendants ? RecursiveElementParent (this.CurrentElement.Parent) : Enumerable.Empty<IInstanceBase>());
+			var instances = ValidateDescendants ? CurrentElement.Traverse().OfType<IInstanceBase>() : new[] { CurrentElement };
+            instances = instances.Concat(ValidateAscendants ? RecursiveElementParent (CurrentElement.Parent) : Enumerable.Empty<IInstanceBase>());
 
 			var elements = instances.Concat(instances.OfType<IProductElement>().SelectMany(e => e.Properties));
 
-			var result = this.ProductManager.Validate(elements);
+			var result = ProductManager.Validate(elements);
 
 			tracer.Info(
-				Resources.VerifyElementIsValid_TraceEvaluation, this.CurrentElement.InstanceName, this.ValidateDescendants, result);
+				Resources.VerifyElementIsValid_TraceEvaluation, CurrentElement.InstanceName, ValidateDescendants, result);
 
 			if (!result)
 			{
-				var format = this.ValidateDescendants ?
+				var format = ValidateDescendants ?
 					Resources.VerifyElementIsValid_ElementOrDescendentNotValid :
 					Resources.VerifyElementIsValid_ElementNotValid;
 
-				var message = String.Format(CultureInfo.CurrentCulture, format, this.CurrentElement.InstanceName);
+				var message = String.Format(CultureInfo.CurrentCulture, format, CurrentElement.InstanceName);
 
 				throw new OperationCanceledException(message);
 			}

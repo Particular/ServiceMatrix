@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NuPattern.Runtime;
+    using AbstractEndpoint;
+
     partial interface IUseCaseStep
     {
         UseCaseStepPattern Pattern { get; set; }
@@ -22,13 +21,13 @@ namespace NServiceBusStudio
         private UseCaseStepPattern pattern;
         public UseCaseStepPattern Pattern
         {
-            get { return this.pattern; }
+            get { return pattern; }
             set
             {
-                if (this.pattern != value)
+                if (pattern != value)
                 {
-                    this.pattern = value;
-                    this.PatternValue = this.pattern.ToString();
+                    pattern = value;
+                    PatternValue = pattern.ToString();
                 }
             }
         }
@@ -36,13 +35,13 @@ namespace NServiceBusStudio
 
         partial void Initialize()
         {
-            this.PatternValueChanged += (s, e) =>
+            PatternValueChanged += (s, e) =>
                 {
-                    this.Pattern = (UseCaseStepPattern) Enum.Parse(typeof(UseCaseStepPattern), PatternValue);
+                    Pattern = (UseCaseStepPattern) Enum.Parse(typeof(UseCaseStepPattern), PatternValue);
                 };
-            if (this.PatternValue != null && this.PatternValue.Length > 0)
+            if (PatternValue != null && PatternValue.Length > 0)
             {
-                this.pattern = (UseCaseStepPattern)Enum.Parse(typeof(UseCaseStepPattern), PatternValue);
+                pattern = (UseCaseStepPattern)Enum.Parse(typeof(UseCaseStepPattern), PatternValue);
             }
         }
 
@@ -51,19 +50,19 @@ namespace NServiceBusStudio
         {
             get
             {
-                if (this.relatedEndpoints == null)
+                if (relatedEndpoints == null)
                 {
-                    this.relatedEndpoints = new List<IAbstractEndpoint>();
+                    relatedEndpoints = new List<IAbstractEndpoint>();
 
-                    this.relatedEndpoints.AddRange(
-                        this.TheApplication.Design.Endpoints.GetAll()
-                        .Where(a => a.InstanceName == this.SourceEndpointName || a.InstanceName == this.TargetEndpointName));
+                    relatedEndpoints.AddRange(
+                        TheApplication.Design.Endpoints.GetAll()
+                        .Where(a => a.InstanceName == SourceEndpointName || a.InstanceName == TargetEndpointName));
                 }
-                return this.relatedEndpoints;
+                return relatedEndpoints;
             }
         }
 
-        public IApplication TheApplication { get { return this.As<IProductElement>().Root.As<IApplication>(); } }
+        public IApplication TheApplication { get { return As<IProductElement>().Root.As<IApplication>(); } }
 
 
         private List<IComponent> relatedComponents;
@@ -71,15 +70,15 @@ namespace NServiceBusStudio
         {
             get
             {
-                if (this.relatedComponents == null)
+                if (relatedComponents == null)
                 {
-                    this.relatedComponents = new List<IComponent>();
+                    relatedComponents = new List<IComponent>();
                     
                     //this.relatedComponents.AddRange(
                     //    this.TheApplication.Design.
                     //    );
                 }
-                return this.relatedComponents;
+                return relatedComponents;
 
             }
         }

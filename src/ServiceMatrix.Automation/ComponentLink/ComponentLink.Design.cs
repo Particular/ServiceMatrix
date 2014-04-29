@@ -13,6 +13,8 @@ using NuPattern.VisualStudio.Solution;
 
 namespace AbstractEndpoint
 {
+    using ICommand = NServiceBusStudio.ICommand;
+
     public class ComponentReferenceConverter : ElementReferenceConverter<IAbstractComponentLink, IComponent, ComponentReferenceStrategy> { }
 
     public class ComponentReferenceEditor : ElementReferenceEditor<IAbstractComponentLink, IComponent, ComponentReferenceStrategy> { }
@@ -26,7 +28,7 @@ namespace AbstractEndpoint
 
         public IEnumerable<StandardValue> GetStandardValues(IAbstractComponentLink owner)
         {
-            var components = owner.As<IProductElement>().Root.As<NServiceBusStudio.IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component);
+            var components = owner.As<IProductElement>().Root.As<IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component);
 
             return components
                 .Except(owner.Siblings.Select(link => link.ComponentReference.Value)
@@ -66,7 +68,7 @@ namespace AbstractEndpoint
 
             public string InstanceName { get; set; }
 
-            public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
+            public IEnumerable<IReference> References { get; private set; }
 
             public string Notes { get; set; }
 
@@ -80,7 +82,7 @@ namespace AbstractEndpoint
             {
             }
 
-            public NuPattern.Runtime.IElement AsElement()
+            public IElement AsElement()
             {
                 return null;
             }
@@ -182,7 +184,7 @@ namespace AbstractEndpoint
             {
             }
 
-            public void Subscribe(NServiceBusStudio.ICommand command)
+            public void Subscribe(ICommand command)
             {
             }
 

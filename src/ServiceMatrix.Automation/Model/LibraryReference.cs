@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Linq;
+    using NuPattern.Runtime;
+
     partial interface ILibraryReference
     {
         ILibrary Library { get; set; }
@@ -16,11 +13,11 @@ namespace NServiceBusStudio
     {
         partial void Initialize()
         {
-            var linked = this.As<IProductElement>().Root.Traverse().FirstOrDefault(i => i.Id == this.LibraryId);
+            var linked = As<IProductElement>().Root.Traverse().FirstOrDefault(i => i.Id == LibraryId);
             if (linked != null)
             {
-                this.ServiceLibrary = linked.As<IServiceLibrary>();
-                this.Library = linked.As<ILibrary>();
+                ServiceLibrary = linked.As<IServiceLibrary>();
+                Library = linked.As<ILibrary>();
             }
         }
 

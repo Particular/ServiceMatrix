@@ -5,10 +5,6 @@
         static GlobalSettings instance = new GlobalSettings();
         bool isLicenseValid = true;
 
-        public GlobalSettings()
-        {
-        }
-
         public bool IsLicenseValid
         {
             get { return isLicenseValid; }

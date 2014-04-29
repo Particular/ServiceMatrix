@@ -40,8 +40,10 @@ namespace NServiceBusStudio
         {
             get
             {
-                GeneralOptionsUserControl page = new GeneralOptionsUserControl();
-                page.GeneralOptionsPage = this;
+                var page = new GeneralOptionsUserControl()
+                {
+                    GeneralOptionsPage = this
+                };
                 page.Initialize();
                 return page;
             }

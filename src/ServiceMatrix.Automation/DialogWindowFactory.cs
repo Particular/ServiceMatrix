@@ -29,8 +29,8 @@ namespace NServiceBusStudio
 		[ImportingConstructor]
 		public DialogWindowFactory([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
 		{
-			this.uiShell = serviceProvider.GetService<SVsUIShell, IVsUIShell>();
-			this.CreateDialogCallBack = dialog => dialog;
+			uiShell = serviceProvider.GetService<SVsUIShell, IVsUIShell>();
+			CreateDialogCallBack = dialog => dialog;
 		}
 
 		public IDialogWindow CreateDialog<TView>() where TView : IDialogWindow, new()
@@ -42,7 +42,7 @@ namespace NServiceBusStudio
 				if (dialogWindow != null)
 				{
 					IntPtr owner;
-					ErrorHandler.ThrowOnFailure(this.uiShell.GetDialogOwnerHwnd(out owner));
+					ErrorHandler.ThrowOnFailure(uiShell.GetDialogOwnerHwnd(out owner));
 					new WindowInteropHelper(dialogWindow).Owner = owner;
 					dialogWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 					dialogWindow.ShowInTaskbar = false;
@@ -50,7 +50,7 @@ namespace NServiceBusStudio
 					//dialogWindow.Owner = Application.Current.MainWindow;
 				}
 
-				return this.CreateDialogCallBack(dialog);
+				return CreateDialogCallBack(dialog);
 			});
 		}
 	}

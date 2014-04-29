@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Linq;
+    using NServiceBusStudio.Core;
+    using NServiceBusStudio.Automation;
+
     partial interface ISubscribedEventLink
     {
         IElementReference<IEvent> EventReference { get; }
@@ -22,21 +17,21 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.eventReference ??
-                    (this.eventReference = new ElementReference<IEvent>(
-                        () => this.Parent.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event),
-                        new PropertyReference<string>(() => this.EventId, value => this.EventId = value),
-                        new PropertyReference<string>(() => this.EventName, value => this.EventName = value)));
+                return eventReference ??
+                    (eventReference = new ElementReference<IEvent>(
+                        () => Parent.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event),
+                        new PropertyReference<string>(() => EventId, value => EventId = value),
+                        new PropertyReference<string>(() => EventName, value => EventName = value)));
             }
         }
 
         partial void Initialize()
         {
-            this.EventIdChanged += (sender, args) => this.InstanceName = this.EventReference.Value == null ? AnyMessageSupport.TextForUI : this.EventReference.Value.InstanceName;
-            if (this.EventReference.Value == null)
-                this.InstanceName = AnyMessageSupport.TextForUI;
+            EventIdChanged += (sender, args) => InstanceName = EventReference.Value == null ? AnyMessageSupport.TextForUI : EventReference.Value.InstanceName;
+            if (EventReference.Value == null)
+                InstanceName = AnyMessageSupport.TextForUI;
             else
-                this.EventReference.Value.InstanceNameChanged += (sender, args) => this.EventIdChanged(sender, args);
+                EventReference.Value.InstanceNameChanged += (sender, args) => EventIdChanged(sender, args);
         }
     }
 }

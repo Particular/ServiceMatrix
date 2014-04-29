@@ -14,6 +14,8 @@ using System.Windows.Controls;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 {
+    using System.Windows.Threading;
+
     [Export]
     public class CustomSolutionBuilder
     {
@@ -33,24 +35,24 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
         {
             if (HasBeenAlreadyInitialized)
             {
-                if (this.ToolBarExtension != null)
+                if (ToolBarExtension != null)
                 {
-                    this.ToolBarExtension.CheckForEnablingSolution();
+                    ToolBarExtension.CheckForEnablingSolution();
                 }
                 return;
             }
             HasBeenAlreadyInitialized = true;
 
-            this.WireSolutionEvents();
+            WireSolutionEvents();
 
-            this.DetailsWindowManager = serviceProvider.TryGetService<IDetailsWindowsManager>();
-            if (this.DetailsWindowManager != null)
+            DetailsWindowManager = serviceProvider.TryGetService<IDetailsWindowsManager>();
+            if (DetailsWindowManager != null)
             {
-                this.DetailsWindowManager.Show();
+                DetailsWindowManager.Show();
             }
             
-            this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
-            var toolWindow = this.PatternWindows.ShowSolutionBuilder(serviceProvider);
+            SolutionBuilderViewModel = PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
+            var toolWindow = PatternWindows.ShowSolutionBuilder(serviceProvider);
 
             if (toolWindow != null)
             {
@@ -62,7 +64,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                 {
                     if (theitem is ScrollViewer)
                     {
-                        this.Scrollviewer = (theitem as ScrollViewer);
+                        Scrollviewer = (theitem as ScrollViewer);
                     }
                 }
 
@@ -77,13 +79,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                             {
                                 var toolbarSP = subitem as StackPanel;
 
-                                this.ToolBarExtension = new ToolbarExtension
+                                ToolBarExtension = new ToolbarExtension
                                 {
                                     ContentScrollViewer = Scrollviewer,
                                     ServiceProvider = serviceProvider
                                 }; 
 
-                                toolbarSP.Children.Add(this.ToolBarExtension);
+                                toolbarSP.Children.Add(ToolBarExtension);
                             }
                         }
 
@@ -94,41 +96,41 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
         public void EnableSolutionBuilder()
         {
-            this.Scrollviewer.IsEnabled = true;
-            this.DetailsWindowManager.Enable();
-            this.ToolBarExtension.Enable();
+            Scrollviewer.IsEnabled = true;
+            DetailsWindowManager.Enable();
+            ToolBarExtension.Enable();
         }
 
         public void DisableSolutionBuilder()
         {
-            this.Scrollviewer.IsEnabled = false;
-            this.DetailsWindowManager.Disable();
-            this.ToolBarExtension.Disable();
+            Scrollviewer.IsEnabled = false;
+            DetailsWindowManager.Disable();
+            ToolBarExtension.Disable();
         }
 
         public void ShowNoSolutionState()
         {
-            if (this.ToolBarExtension != null)
+            if (ToolBarExtension != null)
             {
-                this.ToolBarExtension.ShowNoSolutionState();
+                ToolBarExtension.ShowNoSolutionState();
                 //NServiceBusStudio.Automation.Tasks.NServiceBusTaskProgressToolWindow.ShowNoSolutionState();
             }
         }
 
         private void WireSolutionEvents()
         {
-            this.SolutionEvents.SolutionClosed += (s, e) => 
+            SolutionEvents.SolutionClosed += (s, e) => 
             {
-                this.ShowNoSolutionState();
+                ShowNoSolutionState();
             };
-            this.SolutionEvents.SolutionOpened += (s, e) => 
+            SolutionEvents.SolutionOpened += (s, e) => 
             {
-                if (this.ToolBarExtension != null)
+                if (ToolBarExtension != null)
                 {
-                    var first = this.PatternManager.Store.Products.FirstOrDefault();
+                    var first = PatternManager.Store.Products.FirstOrDefault();
                     if (first != null && first.As<IApplication>() != null)
                     {
-                        this.ToolBarExtension.CheckForEnablingSolution();
+                        ToolBarExtension.CheckForEnablingSolution();
                     }
                 }
             };
@@ -142,13 +144,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
             };
 
 
-            this.PatternManager.ElementInstantiated += (s, e) => refreshViews();
-            this.PatternManager.ElementDeleted += (s, e) => refreshViews();
+            PatternManager.ElementInstantiated += (s, e) => refreshViews();
+            PatternManager.ElementDeleted += (s, e) => refreshViews();
 
-            this.PatternManager.ElementCreated += (s, e) => Application.ResetIsDirtyFlag();
-            this.PatternManager.ElementDeleted += (s, e) => Application.ResetIsDirtyFlag();
-            this.PatternManager.ElementInstantiated += (s, e) => Application.ResetIsDirtyFlag();
-            this.PatternManager.PropertyChanged += (s, e) => Application.ResetIsDirtyFlag();
+            PatternManager.ElementCreated += (s, e) => Application.ResetIsDirtyFlag();
+            PatternManager.ElementDeleted += (s, e) => Application.ResetIsDirtyFlag();
+            PatternManager.ElementInstantiated += (s, e) => Application.ResetIsDirtyFlag();
+            PatternManager.PropertyChanged += (s, e) => Application.ResetIsDirtyFlag();
         }
 
         [Import]
@@ -161,7 +163,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
         public void WaitForComponentsCreated(Action OnceCreatedAction, IService service, params string [] componentNames)
         {
-            var dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
+            var dispatcher = Dispatcher.CurrentDispatcher;
             new Thread(() =>
                 {
                     while (componentNames.Any(componentName => !service.Components.Component.Any(c => c.InstanceName == componentName)))
@@ -174,7 +176,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 
         public void WaitForEventCreated(Action OnceCreatedAction, IService service, string eventName)
         {
-            var dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
+            var dispatcher = Dispatcher.CurrentDispatcher;
             new Thread(() =>
             {
                 while (!service.Contract.Events.Event.Any(e => e.InstanceName == eventName))

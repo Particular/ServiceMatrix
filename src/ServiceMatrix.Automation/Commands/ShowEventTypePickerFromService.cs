@@ -14,6 +14,8 @@ using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using Command = NuPattern.Runtime.Command;
+
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -21,7 +23,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a dialog where the user can choose or create an event, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowEventTypePickerFromService : NuPattern.Runtime.Command
+    public class ShowEventTypePickerFromService : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowEventTypePickerFromService>();
 
@@ -59,7 +61,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentService = this.CurrentElement.As<IService>();
+            CurrentService = CurrentElement.As<IService>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();

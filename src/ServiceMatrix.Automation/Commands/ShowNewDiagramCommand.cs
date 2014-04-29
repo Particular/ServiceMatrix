@@ -17,7 +17,9 @@ using ServiceMatrix.Diagramming;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    public class ShowNewDiagramCommand : NuPattern.Runtime.Command
+    using Command = NuPattern.Runtime.Command;
+
+    public class ShowNewDiagramCommand : Command
     {
         [Import(typeof(SVsServiceProvider))]
         public IServiceProvider ServiceProvider { get; set; }
@@ -27,7 +29,7 @@ namespace NServiceBusStudio.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var diagramsWindowManager = this.ServiceProvider.TryGetService<IDiagramsWindowsManager>();
+            var diagramsWindowManager = ServiceProvider.TryGetService<IDiagramsWindowsManager>();
             if (diagramsWindowManager != null)
             {
                 using (new MouseCursor(Cursors.Arrow))

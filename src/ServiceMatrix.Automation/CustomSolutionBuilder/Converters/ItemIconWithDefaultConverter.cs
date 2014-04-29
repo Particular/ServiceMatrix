@@ -5,6 +5,8 @@ using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
 {
+    using System.Globalization;
+
     /// <summary>
     /// Returns the element icon from NamedElementSchema or the default IconPath if the Icon doesn't exist
     /// </summary>
@@ -15,7 +17,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
         /// <summary>
         /// Converts a value.
         /// </summary>
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var model = value as LogicalViewModel.LogicalViewModelNode;
             var iconPath = default(string);
@@ -47,7 +49,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
         /// <summary>
         /// Converts a value.
         /// </summary>
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

@@ -10,6 +10,8 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
+    using EnvDTE;
+
     public class AuthenticationFeature : IInfrastructureFeature
     {
         // This feature requires:
@@ -96,8 +98,8 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
             if (item != null)
             {
                 // Open the file on the IDE Editor
-                item.As<EnvDTE.ProjectItem>()
-                    .Open(EnvDTE.Constants.vsViewKindCode)
+                item.As<ProjectItem>()
+                    .Open(Constants.vsViewKindCode)
                     .Visible = true;
             }
 

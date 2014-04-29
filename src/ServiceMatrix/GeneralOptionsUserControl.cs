@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Windows.Forms;
     public partial class GeneralOptionsUserControl : UserControl
     {
         public GeneralOptionsPage GeneralOptionsPage { get; set; }
@@ -21,9 +12,9 @@ namespace NServiceBusStudio
 
         public void Initialize()
         {
-            txtInternalMessages.Text = this.GeneralOptionsPage.ProjectNameInternalMessages;
-            txtContracts.Text = this.GeneralOptionsPage.ProjectNameContracts;
-            txtCode.Text = this.GeneralOptionsPage.ProjectNameCode;
+            txtInternalMessages.Text = GeneralOptionsPage.ProjectNameInternalMessages;
+            txtContracts.Text = GeneralOptionsPage.ProjectNameContracts;
+            txtCode.Text = GeneralOptionsPage.ProjectNameCode;
         }
 
         private void txtProjectName_KeyPress(object sender, KeyPressEventArgs e)
@@ -45,17 +36,17 @@ namespace NServiceBusStudio
 
         private void txtInternalMessages_KeyUp(object sender, KeyEventArgs e)
         {
-            this.GeneralOptionsPage.ProjectNameInternalMessages = txtInternalMessages.Text;
+            GeneralOptionsPage.ProjectNameInternalMessages = txtInternalMessages.Text;
         }
 
         private void txtContracts_KeyUp(object sender, KeyEventArgs e)
         {
-            this.GeneralOptionsPage.ProjectNameContracts = txtContracts.Text;
+            GeneralOptionsPage.ProjectNameContracts = txtContracts.Text;
         }
 
         private void txtCode_KeyUp(object sender, KeyEventArgs e)
         {
-            this.GeneralOptionsPage.ProjectNameCode = txtCode.Text;
+            GeneralOptionsPage.ProjectNameCode = txtCode.Text;
         }
         
     }

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-
+﻿
 namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Execute Command If Boolean Property Has Expected Value")]
     [Category("General")]
     [Description("Execute Command If Boolean Property Has Expected Value.")]
     [CLSCompliant(false)]
-    public class ConditionalCommand : NuPattern.Runtime.Command
+    public class ConditionalCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -41,11 +41,11 @@ namespace NServiceBusStudio.Automation.Commands
         {
             Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
 
-            bool currentValue = (bool)(this.CurrentElement.Properties.FirstOrDefault(p => p.DefinitionName == this.PropertyName).Value);
+            var currentValue = (bool)(CurrentElement.Properties.FirstOrDefault(p => p.DefinitionName == PropertyName).Value);
 
-            if (currentValue == this.ExpectedValue)
+            if (currentValue == ExpectedValue)
             {
-                var command = this.CurrentElement.AutomationExtensions.First(a => a.Name == this.CommandName);
+                var command = CurrentElement.AutomationExtensions.First(a => a.Name == CommandName);
                 command.Execute();
             }
         }

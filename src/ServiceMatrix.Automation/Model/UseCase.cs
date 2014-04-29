@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AbstractEndpoint;
-using System.Collections.ObjectModel;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using AbstractEndpoint;
+    using NuPattern.Runtime;
+
     partial interface IUseCase
     {
         IEnumerable<IAbstractEndpoint> RelatedEndpoints { get; }
@@ -25,50 +22,50 @@ namespace NServiceBusStudio
     {
         partial void Initialize()
         {
-            this.EnsureRelatedElementListsExist();
-            this.PopulateRelatedElements();
+            EnsureRelatedElementListsExist();
+            PopulateRelatedElements();
         }
 
         private void PopulateRelatedElements()
         {
-            foreach (var related in this.UseCaseLinks)
+            foreach (var related in UseCaseLinks)
             {
-                var linked = this.As<IProductElement>().Root.Traverse().FirstOrDefault(i => i.Id == related.LinkedElementId);
+                var linked = As<IProductElement>().Root.Traverse().FirstOrDefault(i => i.Id == related.LinkedElementId);
                 if (linked != null)
                 {
-                    this.InternalAddRelatedElement(linked.As<IProductElement>(), related.StartsUseCase);
+                    InternalAddRelatedElement(linked.As<IProductElement>(), related.StartsUseCase);
                 }
             }
         }
 
         public void AddRelatedElement(IProductElement element)
         {
-            this.EnsureRelatedElementListsExist();
-            if (!this.UseCaseLinks.Any(l => l.LinkedElementId == element.Id))
+            EnsureRelatedElementListsExist();
+            if (UseCaseLinks.All(l => l.LinkedElementId != element.Id))
             {
-                this.InternalAddRelatedElement(element, false, true);
+                InternalAddRelatedElement(element, false, true);
             }
         }
 
         public void AddEndpointStartingUseCase(IAbstractEndpoint endpoint)
         {
             var element = endpoint.As<IProductElement>();
-            this.EnsureRelatedElementListsExist();
-            if (!this.UseCaseLinks.Any(l => l.LinkedElementId == element.Id))
+            EnsureRelatedElementListsExist();
+            if (UseCaseLinks.All(l => l.LinkedElementId != element.Id))
             {
-                this.InternalAddRelatedElement(element, true, true);
+                InternalAddRelatedElement(element, true, true);
             }
         }
 
         private void EnsureRelatedElementListsExist()
         {
-            if (this.relatedEndpoints == null)
+            if (relatedEndpoints == null)
             {
-                this.endpointsStartingUseCases = new List<IAbstractEndpoint>();
-                this.relatedEndpoints = new List<IAbstractEndpoint>();
-                this.relatedComponents = new List<IComponent>();
-                this.relatedCommands = new List<ICommand>();
-                this.relatedEvents = new List<IEvent>();
+                endpointsStartingUseCases = new List<IAbstractEndpoint>();
+                relatedEndpoints = new List<IAbstractEndpoint>();
+                relatedComponents = new List<IComponent>();
+                relatedCommands = new List<ICommand>();
+                relatedEvents = new List<IEvent>();
             }
         }
 
@@ -81,11 +78,9 @@ namespace NServiceBusStudio
                 var endpoint = element.As<IAbstractEndpoint>();
                 var component = element.As<IComponent>();
 
-                IUseCaseLink link = null;
-
                 if (createLink)
                 {
-                    link = this.CreateUseCaseLink(element.Id.ToString());
+                    var link = CreateUseCaseLink(element.Id.ToString());
                     link.LinkedElementId = element.Id;
                     if (command != null)
                     {
@@ -107,28 +102,28 @@ namespace NServiceBusStudio
                     link.StartsUseCase = isStarting;
                 }
 
-                if (command != null && !this.relatedCommands.Contains(command))
+                if (command != null && !relatedCommands.Contains(command))
                 {
-                    this.relatedCommands.Add(command);
+                    relatedCommands.Add(command);
                 }
-                else if (@event != null && !this.relatedEvents.Contains(@event))
+                else if (@event != null && !relatedEvents.Contains(@event))
                 {
-                    this.relatedEvents.Add(@event);
+                    relatedEvents.Add(@event);
                 }
                 else if (endpoint != null)
                 {
-                    if (isStarting && !this.endpointsStartingUseCases.Contains(endpoint))
+                    if (isStarting && !endpointsStartingUseCases.Contains(endpoint))
                     {
-                        this.endpointsStartingUseCases.Add(endpoint);
+                        endpointsStartingUseCases.Add(endpoint);
                     }
-                    else if (!this.relatedEndpoints.Contains(endpoint) && !this.endpointsStartingUseCases.Contains(endpoint))
+                    else if (!relatedEndpoints.Contains(endpoint) && !endpointsStartingUseCases.Contains(endpoint))
                     {
-                        this.relatedEndpoints.Add(endpoint);
+                        relatedEndpoints.Add(endpoint);
                     }
                 }
-                else if (component != null && !this.relatedComponents.Contains(component))
+                else if (component != null && !relatedComponents.Contains(component))
                 {
-                    this.relatedComponents.Add(component);
+                    relatedComponents.Add(component);
                 }
             }
         }
@@ -139,7 +134,7 @@ namespace NServiceBusStudio
             var @event = element.As<IEvent>();
             var endpoint = element.As<IAbstractEndpoint>();
             var component = element.As<IComponent>();
-            var link = this.UseCaseLinks.FirstOrDefault(l => l.LinkedElementId == element.Id);
+            var link = UseCaseLinks.FirstOrDefault(l => l.LinkedElementId == element.Id);
             if (link != null)
             {
                 link.Delete();
@@ -147,19 +142,19 @@ namespace NServiceBusStudio
 
             if (command != null && relatedCommands.Contains(command))
             {
-                this.relatedCommands.Remove(command);
+                relatedCommands.Remove(command);
             }
-            else if (@event != null && this.relatedEvents.Contains(@event))
+            else if (@event != null && relatedEvents.Contains(@event))
             {
-                this.relatedEvents.Remove(@event);
+                relatedEvents.Remove(@event);
             }
-            else if (endpoint != null && this.relatedEndpoints.Contains(endpoint))
+            else if (endpoint != null && relatedEndpoints.Contains(endpoint))
             {
-                this.relatedEndpoints.Remove(endpoint);
+                relatedEndpoints.Remove(endpoint);
             }
-            else if (component != null && this.relatedComponents.Contains(component))
+            else if (component != null && relatedComponents.Contains(component))
             {
-                this.relatedComponents.Remove(component);
+                relatedComponents.Remove(component);
             }
         }
 
@@ -168,8 +163,8 @@ namespace NServiceBusStudio
         {
             get 
             {
-                return this.RelatedComponents.SelectMany(c => c.DeployedTo)
-                    .Except(this.EndpointsStartingUseCases)
+                return RelatedComponents.SelectMany(c => c.DeployedTo)
+                    .Except(EndpointsStartingUseCases)
                     .Distinct();
             }
         }
@@ -179,7 +174,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.relatedComponents;
+                return relatedComponents;
             }
         }
 
@@ -188,7 +183,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.relatedCommands;
+                return relatedCommands;
             }
         }
 
@@ -197,14 +192,14 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.relatedEvents;
+                return relatedEvents;
             }
         }
 
         private List<IAbstractEndpoint> endpointsStartingUseCases;
         public IEnumerable<IAbstractEndpoint> EndpointsStartingUseCases
         {
-            get { return this.endpointsStartingUseCases; }
+            get { return endpointsStartingUseCases; }
         }
 
 

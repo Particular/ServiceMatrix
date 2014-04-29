@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Collections.Generic;
+    using AbstractEndpoint;
+
     partial interface IEndpoints
     {
         IEnumerable<IAbstractEndpoint> GetAll();
@@ -17,9 +14,9 @@ namespace NServiceBusStudio
         {
             var endpoints = new List<IAbstractEndpoint>();
 
-            endpoints.AddRange(this.NServiceBusHosts);
-            endpoints.AddRange(this.NServiceBusWebs);
-            endpoints.AddRange(this.NServiceBusMVCs);
+            endpoints.AddRange(NServiceBusHosts);
+            endpoints.AddRange(NServiceBusWebs);
+            endpoints.AddRange(NServiceBusMVCs);
 
             return endpoints;
         }

@@ -38,8 +38,8 @@ namespace ServiceMatrix.Diagramming.Views
         {
             InitializeComponent();
 
-            this.Adapter = adapter;
-            this.DataContext = new ServiceMatrixDiagramViewModel (this.Adapter);
+            Adapter = adapter;
+            DataContext = new ServiceMatrixDiagramViewModel (Adapter);
 
             // Visible elements on DiagramSurface (only elements rendered by Virtualization)
             var diagramElementsCollection = ds.DiagramElements as INotifyCollectionChanged;
@@ -58,8 +58,8 @@ namespace ServiceMatrix.Diagramming.Views
 
         void nodesCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.ItemHasBeenAdded = true;
-            EmptyStateButtons.Visibility = (this.Adapter.ViewModel.Nodes.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
+            ItemHasBeenAdded = true;
+            EmptyStateButtons.Visibility = (Adapter.ViewModel.Nodes.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void diagramElementsCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -86,10 +86,10 @@ namespace ServiceMatrix.Diagramming.Views
 
             try
             {
-                if (this.ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
+                if (ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
                 {
                     ds.SizeToFit();
-                    this.ItemHasBeenAdded = false;
+                    ItemHasBeenAdded = false;
                 }
             }
             catch { }
@@ -104,12 +104,12 @@ namespace ServiceMatrix.Diagramming.Views
             if (diagramNodeElement != null)
             {
                 var context = diagramNodeElement.Content as GroupableNode;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightNode(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.HighlightNode(context);
             }
             else if (diagramConnectionElement != null)
             {
                 var context = diagramConnectionElement.Content as BaseConnection;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightConnection(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.HighlightConnection(context);
             }
 
             
@@ -123,12 +123,12 @@ namespace ServiceMatrix.Diagramming.Views
             if (diagramNodeElement != null)
             {
                 var context = diagramNodeElement.Content as GroupableNode;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightNode(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.UnhighlightNode(context);
             }
             else if (diagramConnectionElement != null)
             {
                 var context = diagramConnectionElement.Content as BaseConnection;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightConnection(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.UnhighlightConnection(context);
             }
         }
 

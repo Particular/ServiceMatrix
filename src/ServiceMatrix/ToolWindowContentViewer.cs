@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.Shell;
-using System.Globalization;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio;
-using NServiceBusStudio.Automation;
-using NuPattern.Runtime;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using Microsoft.VisualStudio.Shell;
+    using System.Globalization;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using Microsoft.VisualStudio;
+    using NServiceBusStudio.Automation;
+    using NuPattern.VisualStudio.Solution;
+    using System.Windows;
+
     internal class ToolWindowContentViewer : IContentViewer
     {
         private Func<Type, int, bool, ToolWindowPane> findToolWindow;
@@ -25,14 +23,14 @@ namespace NServiceBusStudio
             this.findToolWindow = findToolWindow;
         }
 
-        public void ShowContent(Guid guid, string title, System.Windows.FrameworkElement content)
+        public void ShowContent(Guid guid, string title, FrameworkElement content)
         {
-            var id = default(int);
-            if (!this.idMap.TryGetValue(guid, out id))
-                this.idMap.Add(guid, (id = this.idMap.Count));
+            int id;
+            if (!idMap.TryGetValue(guid, out id))
+                idMap.Add(guid, (id = idMap.Count));
 
             // We get the hashcode of the guid. Should be pretty safe as an integer identifier.
-            var window = (ToolWindowContent)this.findToolWindow(typeof(ToolWindowContent), id, true);
+            var window = (ToolWindowContent)findToolWindow(typeof(ToolWindowContent), id, true);
             if (window == null || window.Frame == null)
             {
                 throw new InvalidOperationException(string.Format(
@@ -49,9 +47,9 @@ namespace NServiceBusStudio
 
         private void ClearWindows()
         {
-            foreach (var id in this.idMap.Values)
+            foreach (var id in idMap.Values)
             {
-                var window = (ToolWindowContent)this.findToolWindow(typeof(ToolWindowContent), id, false);
+                var window = (ToolWindowContent)findToolWindow(typeof(ToolWindowContent), id, false);
                 if (window != null && window.Frame != null)
                 {
                     var frame = (IVsWindowFrame)window.Frame;
@@ -59,7 +57,7 @@ namespace NServiceBusStudio
                 }
             }
 
-            this.idMap.Clear();
+            idMap.Clear();
         }
     }
 }

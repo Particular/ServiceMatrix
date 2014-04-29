@@ -1,20 +1,19 @@
-﻿using AbstractEndpoint;
-using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern.Presentation;
-using NuPattern;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class ShowCommandComponentPicker : NuPattern.Runtime.Command
+    using AbstractEndpoint;
+    using NuPattern.Runtime;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Windows.Input;
+    using NuPattern.Presentation;
+    using NuPattern;
+    using Command = NuPattern.Runtime.Command;
+
+    public class ShowCommandComponentPicker : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -40,12 +39,12 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.As<IAbstractEndpoint>();
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var app = this.CurrentElement.Root.As<IApplication>();
+            var app = CurrentElement.Root.As<IApplication>();
             
             // Get available commands
             var elements = new Dictionary<string, ICollection<string>>();

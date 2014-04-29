@@ -1,19 +1,18 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Windows.Input;
+    using NuPattern.Diagnostics;
+    using NuPattern.Presentation;
+    using Command = NuPattern.Runtime.Command;
+
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -21,7 +20,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a dialog where the user can choose or create a command, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowCommandTypePickerFromService : NuPattern.Runtime.Command
+    public class ShowCommandTypePickerFromService : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowCommandTypePickerFromService>();
 
@@ -59,7 +58,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentService = this.CurrentElement.As<IService>();
+            CurrentService = CurrentElement.As<IService>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
@@ -78,7 +77,7 @@ namespace NServiceBusStudio.Automation.Commands
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    var selectedCommand = default(ICommand);
+                    var selectedCommand = default(NServiceBusStudio.ICommand);
                     if (commandNames.Contains(selectedElement))
                     {
                         selectedCommand = commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));

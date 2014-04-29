@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
-using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Model;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Create Service Folder On Endpoints")]
     [Description("Add folder for service components code on Endpoint Projects")]
     [CLSCompliant(false)]
-    public class CreateServiceFolderOnEndpoints : NuPattern.Runtime.Command
+    public class CreateServiceFolderOnEndpoints : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -29,14 +27,14 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var component = Model.Helpers.GetComponentFromLinkedElement(this.CurrentElement);
+            var component = Helpers.GetComponentFromLinkedElement(CurrentElement);
             var service = component.Parent.Parent;
 
             foreach (var endpoint in service.Parent.Parent.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component)))
             {
 
-                if (!endpoint.Project.Folders.Any(f => f.Name == service.CodeIdentifier))
+                if (endpoint.Project.Folders.All(f => f.Name != service.CodeIdentifier))
                 {
                     try
                     {

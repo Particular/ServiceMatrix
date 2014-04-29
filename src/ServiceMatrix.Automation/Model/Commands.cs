@@ -15,7 +15,7 @@ namespace NServiceBusStudio
     {
         public IProject Project
         {
-            get { return this.AsCollection().GetProject(); }
+            get { return AsCollection().GetProject(); }
         }
     }
 }

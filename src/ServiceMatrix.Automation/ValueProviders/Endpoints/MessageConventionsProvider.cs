@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Extensions;
-
-namespace NServiceBusStudio.Automation.ValueProviders.Endpoints
+﻿namespace NServiceBusStudio.Automation.ValueProviders.Endpoints
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Extensions;
+
     [CLSCompliant(false)]
     [DisplayName("Gets Message Conventions")]
     [Category("General")]
@@ -30,7 +26,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.Endpoints
 
         public override object Evaluate()
         {
-            return this.CurrentElement.GetMessageConventions();
+            return CurrentElement.GetMessageConventions();
         }
     }
 }

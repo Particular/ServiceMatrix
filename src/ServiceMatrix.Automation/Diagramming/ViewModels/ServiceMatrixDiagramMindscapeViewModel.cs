@@ -23,22 +23,22 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceMatrixDiagramMindscapeViewModel(IPatternWindows patternWindows, IServiceProvider serviceProvider)
         {
-            this.DefaultConnectionBuilder = new ServiceMatrixConnectionBuilder();
-            this.LayoutAlgorithm = new ServiceMatrixDiagramLayoutAlgorithm(this);
-            this.NodeRemover = new ServiceMatrixDiagramRemover();
+            DefaultConnectionBuilder = new ServiceMatrixConnectionBuilder();
+            LayoutAlgorithm = new ServiceMatrixDiagramLayoutAlgorithm(this);
+            NodeRemover = new ServiceMatrixDiagramRemover();
 
-            this.PatternWindows = patternWindows;
-            this.ServiceProvider = serviceProvider;
+            PatternWindows = patternWindows;
+            ServiceProvider = serviceProvider;
         }
 
         public EndpointNode GetOrCreateEndpointNode(IProductElementViewModel viewModel)
         {
-            var endpoint = this.FindNode<EndpointNode>(viewModel.Data.Id);
+            var endpoint = FindNode<EndpointNode>(viewModel.Data.Id);
 
             if (endpoint == null)
             {
                 endpoint = new EndpointNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(endpoint);
+                LayoutAlgorithm.SetElementPosition(endpoint);
 
                 AddNode(endpoint);
             }
@@ -50,12 +50,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         private EmptyEndpointNode GetOrCreateEmptyEndpointNode(IProductElementViewModel endpointsViewModel)
         {
-            var emptyEndpoint = this.FindNode<EmptyEndpointNode>(EmptyEndpointNode.NodeId);
+            var emptyEndpoint = FindNode<EmptyEndpointNode>(EmptyEndpointNode.NodeId);
 
             if (emptyEndpoint == null)
             {
                 emptyEndpoint = new EmptyEndpointNode(endpointsViewModel.MenuOptions.FirstOrDefault( x=> x.Caption == "Deploy Unhosted Components..."));
-                this.LayoutAlgorithm.SetElementPosition(emptyEndpoint);
+                LayoutAlgorithm.SetElementPosition(emptyEndpoint);
 
                 AddNode(emptyEndpoint);
             }
@@ -65,12 +65,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceNode GetOrCreateServiceNode(Guid endpointId, IProductElementViewModel viewModel)
         {
-            var service = this.FindNode<ServiceNode>((x) => x.Id == viewModel.Data.Id &&
+            var service = FindNode<ServiceNode>((x) => x.Id == viewModel.Data.Id &&
                                                             x.ParentNode.Id == endpointId);
 
             if (service == null)
             {
-                var endpoint = this.FindNode<EndpointNode>(endpointId);
+                var endpoint = FindNode<EndpointNode>(endpointId);
 
                 if (endpoint == null &&
                     endpointId == EmptyEndpointNode.NodeId)
@@ -89,12 +89,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public CommandNode GetOrCreateCommandNode(IProductElementViewModel viewModel)
         {
-            var command = this.FindNode<CommandNode>(viewModel.Data.Id);
+            var command = FindNode<CommandNode>(viewModel.Data.Id);
 
             if (command == null)
             {
                 command = new CommandNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(command);
+                LayoutAlgorithm.SetElementPosition(command);
 
                 AddNode(command);
             }
@@ -104,12 +104,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public EventNode GetOrCreateEventNode(IProductElementViewModel viewModel)
         {
-            var @event = this.FindNode<EventNode>(viewModel.Data.Id);
+            var @event = FindNode<EventNode>(viewModel.Data.Id);
 
             if (@event == null)
             {
                 @event = new EventNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(@event);
+                LayoutAlgorithm.SetElementPosition(@event);
 
                 AddNode(@event);
             }
@@ -119,12 +119,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public MessageNode GetOrCreateMessageNode(IProductElementViewModel viewModel)
         {
-            var message = this.FindNode<MessageNode>(viewModel.Data.Id);
+            var message = FindNode<MessageNode>(viewModel.Data.Id);
 
             if (message == null)
             {
                 message = new MessageNode(viewModel);
-                this.LayoutAlgorithm.SetElementPosition(message);
+                LayoutAlgorithm.SetElementPosition(message);
 
                 AddNode(message);
             }
@@ -134,7 +134,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ComponentNode GetOrCreateComponentNode(IProductElementViewModel viewModel)
         {
-            var component = this.FindNode<ComponentNode>(viewModel.Data.Id);
+            var component = FindNode<ComponentNode>(viewModel.Data.Id);
 
             if (component == null)
             {
@@ -157,7 +157,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             
             if (undeployedComponentNode != null)
             {
-                this.DeleteNode(undeployedComponentNode);
+                DeleteNode(undeployedComponentNode);
             }
 
             // Create New Component Link
@@ -181,18 +181,18 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public IProductElementViewModel DeleteComponentLinkNode(IProductElementViewModel removedElement)
         {
-            var component = this.Nodes.FirstOrDefault(x => x is ComponentNode && ((ComponentNode)x).ComponentLinkViewModel == removedElement) as ComponentNode;
+            var component = Nodes.FirstOrDefault(x => x is ComponentNode && ((ComponentNode)x).ComponentLinkViewModel == removedElement) as ComponentNode;
 
             if (component != null)
             {
-                this.DeleteNode(component);
+                DeleteNode(component);
 
                 // Remove service if it's empty
                 var serviceNode = component.ParentNode;
                 if (serviceNode != null &&
                     !serviceNode.ChildNodes.Any())
                 {
-                    this.DeleteNode(serviceNode);
+                    DeleteNode(serviceNode);
                 }
 
                 return component.InnerViewModel;
@@ -205,12 +205,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public CommandConnection GetOrCreateCommandConnection(GroupableNode sourceNode, GroupableNode targetNode)
         {
-            var commandConnection = this.FindConnection(sourceNode, targetNode) as CommandConnection;
+            var commandConnection = FindConnection(sourceNode, targetNode) as CommandConnection;
 
             if (commandConnection == null)
             {
                 commandConnection = new CommandConnection(sourceNode, targetNode);
-                this.Connections.Add(commandConnection);
+                Connections.Add(commandConnection);
             }
 
             return commandConnection;
@@ -218,12 +218,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public EventConnection GetOrCreateEventConnection(GroupableNode sourceNode, GroupableNode targetNode)
         {
-            var eventConnection = this.FindConnection(sourceNode, targetNode) as EventConnection;
+            var eventConnection = FindConnection(sourceNode, targetNode) as EventConnection;
 
             if (eventConnection == null)
             {
                 eventConnection = new EventConnection(sourceNode, targetNode);
-                this.Connections.Add(eventConnection);
+                Connections.Add(eventConnection);
             }
 
             return eventConnection;
@@ -231,12 +231,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public MessageConnection GetOrCreateMessageConnection(GroupableNode sourceNode, GroupableNode targetNode)
         {
-            var messageConnection = this.FindConnection(sourceNode, targetNode) as MessageConnection;
+            var messageConnection = FindConnection(sourceNode, targetNode) as MessageConnection;
 
             if (messageConnection == null)
             {
                 messageConnection = new MessageConnection(sourceNode, targetNode);
-                this.Connections.Add(messageConnection);
+                Connections.Add(messageConnection);
             }
 
             return messageConnection;
@@ -245,7 +245,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         
         private DiagramConnection FindConnection(GroupableNode source, GroupableNode target)
         {
-            return this.Connections.FirstOrDefault(x => source.ConnectionPoints.Any(y => y == x.FromConnectionPoint) &&
+            return Connections.FirstOrDefault(x => source.ConnectionPoints.Any(y => y == x.FromConnectionPoint) &&
                                                         target.ConnectionPoints.Any(y => y == x.ToConnectionPoint));
         }
 
@@ -254,22 +254,22 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public IEnumerable<ComponentNode> GetAllComponentsNode(Guid componentId)
         {
-            return this.Nodes.Where(x => x is ComponentNode && ((ComponentNode)x).Id == componentId).Cast<ComponentNode>().ToList();
+            return Nodes.Where(x => x is ComponentNode && ((ComponentNode)x).Id == componentId).Cast<ComponentNode>().ToList();
         }
 
         private T FindNode<T>(Guid elementId) where T : GroupableNode
         {
-            return this.Nodes.FirstOrDefault(x => x is T && ((T)x).Id == elementId) as T;
+            return Nodes.FirstOrDefault(x => x is T && ((T)x).Id == elementId) as T;
         }
 
         private T FindNode<T>(Func<T, bool> filter) where T : GroupableNode
         {
-            return this.Nodes.FirstOrDefault(x => x is T && filter((T)x)) as T;
+            return Nodes.FirstOrDefault(x => x is T && filter((T)x)) as T;
         }
 
         private ComponentNode FindComponent(Guid endpointId, Guid serviceId, Guid componentId)
         {
-            return this.Nodes.FirstOrDefault(x => x is ComponentNode &&
+            return Nodes.FirstOrDefault(x => x is ComponentNode &&
                                                 ((ComponentNode)x).Id == componentId &&
                                                 ((ComponentNode)x).ParentNode.Id == serviceId &&
                                                 ((ComponentNode)x).ParentNode.ParentNode.Id == endpointId) as ComponentNode;
@@ -277,7 +277,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void DeleteNodesById(Guid id)
         {
-            var nodes = this.Nodes.Where(x => x is GroupableNode && ((GroupableNode)x).Id == id).Cast<GroupableNode>().ToList();
+            var nodes = Nodes.Where(x => x is GroupableNode && ((GroupableNode)x).Id == id).Cast<GroupableNode>().ToList();
             nodes.ForEach(x => DeleteNode(x));
         }
 
@@ -301,7 +301,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 node.ParentNode is ServiceNode &&
                 node.ParentNode.ChildNodes.Count == 0)
             {
-                this.DeleteNode(node.ParentNode);
+                DeleteNode(node.ParentNode);
             }
 
             // If It's a Service, Remove Empty Undeployed Endpoint
@@ -309,14 +309,14 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 node.ParentNode is EmptyEndpointNode &&
                 node.ParentNode.ChildNodes.Count == 0)
             {
-                this.DeleteNode(node.ParentNode);
+                DeleteNode(node.ParentNode);
             }
 
             // Remove Layout information
-            this.LayoutAlgorithm.RemoveElementPosition(node);
+            LayoutAlgorithm.RemoveElementPosition(node);
 
             // Remove node
-            this.Nodes.Remove(node);
+            Nodes.Remove(node);
 
             // Unhandle events
             node.ActivateElement -= Node_ActivateElement;
@@ -326,20 +326,20 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void CleanAll()
         {
-            this.Nodes.ToList().ForEach(x => this.Nodes.Remove(x));
-            this.Connections.ToList().ForEach(x => this.Connections.Remove(x));
-            this.LayoutAlgorithm.UnloadShapePositiions();
+            Nodes.ToList().ForEach(x => Nodes.Remove(x));
+            Connections.ToList().ForEach(x => Connections.Remove(x));
+            LayoutAlgorithm.UnloadShapePositiions();
         }
 
         private void AddNode(GroupableNode node)
         {
-            this.Nodes.Add(node);
+            Nodes.Add(node);
             node.ActivateElement += Node_ActivateElement;
         }
 
         void Node_ActivateElement(object sender, EventArgs e)
         {
-            var toolWindow = this.PatternWindows.ShowSolutionBuilder(this.ServiceProvider);
+            var toolWindow = PatternWindows.ShowSolutionBuilder(ServiceProvider);
 
             var content = toolWindow.Content as UserControl;
             var contentGrid = content.Content as Grid;
@@ -401,7 +401,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             var relatedNodes = new List<GroupableNode>();
             relatedNodes.Add(node);
 
-            var nodeConnections = this.Connections.Cast<BaseConnection>()
+            var nodeConnections = Connections.Cast<BaseConnection>()
                                                   .Where(x => x.Source == node ||
                                                               x.Target == node)
                                                   .ToList();
@@ -410,9 +410,9 @@ namespace ServiceMatrix.Diagramming.ViewModels
             {
                 var nodeElement = default(GroupableNode);
                 if (nodeConnection.Source == node)
-                    nodeElement = this.Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Target);
+                    nodeElement = Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Target);
                 else
-                    nodeElement = this.Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Source);
+                    nodeElement = Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Source);
 
                 relatedNodes.Add(nodeElement);
             }
@@ -431,7 +431,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             nodesId.AddRange(service.Contract.Events.Event.Select(x => x.AsElement().Id)); // Related Events Id
             nodesId.AddRange(service.Contract.Messages.Message.Select(x => x.AsElement().Id)); // Related Messages Id
 
-            var allNodes = this.Nodes.Cast<GroupableNode>()
+            var allNodes = Nodes.Cast<GroupableNode>()
                                      .Where(x => nodesId.Contains(x.Id))
                                      .ToList();
             return allNodes;
@@ -443,30 +443,30 @@ namespace ServiceMatrix.Diagramming.ViewModels
         public void HighlightConnection(BaseConnection context)
         {
             context.IsHighlighted = true;
-            this.SetConnectionsIsShadowed(context, true);
+            SetConnectionsIsShadowed(context, true);
         }
 
         public void UnhighlightConnection(BaseConnection context)
         {
             context.IsHighlighted = false;
-            this.SetConnectionsIsShadowed(context, false);
+            SetConnectionsIsShadowed(context, false);
         }
         
         public void HighlightConnection(List<GroupableNode> context)
         {
-            this.SetConnectionsIsHighlighted(context, true);
-            this.SetConnectionsIsShadowed(context, true);
+            SetConnectionsIsHighlighted(context, true);
+            SetConnectionsIsShadowed(context, true);
         }
 
         public void UnhighlightConnection(List<GroupableNode> context)
         {
-            this.SetConnectionsIsHighlighted(context, false);
-            this.SetConnectionsIsShadowed(context, false);
+            SetConnectionsIsHighlighted(context, false);
+            SetConnectionsIsShadowed(context, false);
         }
 
         public void SetConnectionsIsShadowed(BaseConnection context, bool value)
         {
-            var otherNodeConnections = this.Connections.Cast<BaseConnection>()
+            var otherNodeConnections = Connections.Cast<BaseConnection>()
                                                        .Where(x => x != context)
                                                        .ToList();
 
@@ -475,7 +475,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void SetConnectionsIsShadowed(List<GroupableNode> context, bool value)
         {
-            var otherNodeConnections = this.Connections.Cast<BaseConnection>()
+            var otherNodeConnections = Connections.Cast<BaseConnection>()
                                                        .Where(x => !(context.Contains (x.Source) && context.Contains(x.Target)))
                                                        .ToList();
 
@@ -484,7 +484,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         private void SetConnectionsIsHighlighted(List<GroupableNode> context, bool value)
         {
-            var otherNodeConnections = this.Connections.Cast<BaseConnection>()
+            var otherNodeConnections = Connections.Cast<BaseConnection>()
                                                        .Where(x => context.Contains(x.Source) && context.Contains(x.Target))
                                                        .ToList();
 

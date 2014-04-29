@@ -30,7 +30,7 @@ namespace NServiceBusStudio.Automation.Dialog
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
         }
 
@@ -48,19 +48,19 @@ namespace NServiceBusStudio.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.AddServiceText.Text))
+            if (!string.IsNullOrEmpty(AddServiceText.Text))
             {
                 AddTextItem();
             }
-            this.SelectedItems = this.ServicesList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
-            this.DialogResult = true;
-            this.Close();
+            SelectedItems = ServicesList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            DialogResult = true;
+            Close();
         }
 
         private void AddService_Click(object sender, RoutedEventArgs e)
         {
-            this.AddServiceText.Text = this.AddServiceText.Text.Trim();
-            if (this.AddServiceText.Text.Length > 0)
+            AddServiceText.Text = AddServiceText.Text.Trim();
+            if (AddServiceText.Text.Length > 0)
             {
                 AddTextItem();
             }
@@ -70,9 +70,9 @@ namespace NServiceBusStudio.Automation.Dialog
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                Elements.Add(this.AddServiceText.Text);
-                this.ServicesList.SelectedItems.Add(this.AddServiceText.Text);
-                this.AddServiceText.Text = string.Empty;
+                Elements.Add(AddServiceText.Text);
+                ServicesList.SelectedItems.Add(AddServiceText.Text);
+                AddServiceText.Text = string.Empty;
             }));
         }
     }

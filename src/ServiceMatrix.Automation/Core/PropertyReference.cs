@@ -43,14 +43,14 @@ namespace NServiceBusStudio.Core
 			{
 				try
 				{
-					return this.getter();
+					return getter();
 				}
 				catch (Exception)
 				{
 					return default(T);
 				}
 			}
-			set { this.setter(value); }
+			set { setter(value); }
 		}
 	}
 }

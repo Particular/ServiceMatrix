@@ -14,11 +14,14 @@ using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using Command = NuPattern.Runtime.Command;
+    using CustomSolutionBuilder = NServiceBusStudio.Automation.CustomSolutionBuilder.CustomSolutionBuilder;
+
     [DisplayName("Show the UseCase Command Picker dialog")]
     [Category("General")]
     [Description("Show the UseCase Command Picker dialog.")]
     [CLSCompliant(false)]
-    public class ShowUseCaseCommandPickerCommand : NuPattern.Runtime.Command
+    public class ShowUseCaseCommandPickerCommand : Command
     {
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -43,14 +46,14 @@ namespace NServiceBusStudio.Automation.Commands
         }
 
         [Import(AllowDefault = true)]
-        public CustomSolutionBuilder.CustomSolutionBuilder CustomSolutionBuilderInstance { get; set; }
+        public CustomSolutionBuilder CustomSolutionBuilderInstance { get; set; }
 
         public override void Execute()
         {
             using (new MouseCursor(Cursors.Arrow))
             {
                 var picker = WindowFactory.CreateDialog<UseCaseComponentPicker>();
-                var usecase = this.CurrentElement.As<IUseCase>();
+                var usecase = CurrentElement.As<IUseCase>();
                 var dialog = picker as UseCaseComponentPicker;
                 dialog.Title = "Add Command to Use Case";
                 dialog.SetComponentLabel("Command Name:");
@@ -75,10 +78,10 @@ namespace NServiceBusStudio.Automation.Commands
                         var processorComponent = svc.Components.CreateComponent(processorName);
                         
                         processorComponent.Subscribe(command);
-                        this.CurrentElement.As<IUseCase>().AddRelatedElement(processorComponent.As<IProductElement>());
+                        CurrentElement.As<IUseCase>().AddRelatedElement(processorComponent.As<IProductElement>());
                     }
 
-                    this.CurrentElement.As<IUseCase>().AddRelatedElement(command.As<IProductElement>());
+                    CurrentElement.As<IUseCase>().AddRelatedElement(command.As<IProductElement>());
                 }
             }
         }

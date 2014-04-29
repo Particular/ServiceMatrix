@@ -20,11 +20,12 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Microsoft.CSharp.RuntimeBinder;
-using System.Runtime.CompilerServices;
 
 namespace System.Dynamic
 {
-	/// <summary>
+    using Binder = Microsoft.CSharp.RuntimeBinder.Binder;
+
+    /// <summary>
 	/// Provides reflection-based dynamic syntax for objects and types. 
 	/// This class provides the extension methods <see cref="AsDynamicReflection(object)"/> 
 	/// and <see cref="AsDynamicReflection(Type)"/> as entry points.
@@ -80,13 +81,13 @@ namespace System.Dynamic
 			public DynamicReflectionObject(object target)
 			{
 				this.target = target;
-				this.targetType = target.GetType();
+				targetType = target.GetType();
 			}
 
 			public DynamicReflectionObject(Type type)
 			{
-				this.target = null;
-				this.targetType = type;
+				target = null;
+				targetType = type;
 			}
 
 			public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
@@ -99,16 +100,16 @@ namespace System.Dynamic
 					{
 						if (binder.Name == "ctor")
 						{
-							var instance = this.target;
+							var instance = target;
 							if (instance == null)
-								instance = FormatterServices.GetSafeUninitializedObject(this.targetType);
+								instance = FormatterServices.GetSafeUninitializedObject(targetType);
 
 							result = Invoke(method, instance, args);
 							result = instance.AsDynamicReflection();
 						}
 						else
 						{
-							result = AsDynamicIfNecessary(Invoke(method, this.target, args));
+							result = AsDynamicIfNecessary(Invoke(method, target, args));
 						}
 
 						return true;
@@ -140,7 +141,7 @@ namespace System.Dynamic
 					var getter = FindBestMatch(binder, "get_" + binder.Name, new object[0]);
 					if (getter != null)
 					{
-						result = AsDynamicIfNecessary(getter.Invoke(this.target, null));
+						result = AsDynamicIfNecessary(getter.Invoke(target, null));
 						return true;
 					}
 				}
@@ -148,7 +149,7 @@ namespace System.Dynamic
                 // \o/ If nothing else works, and the member is "target", return our target.
                 if (binder.Name == "target")
                 {
-                    result = this.target;
+                    result = target;
                     return true;
                 }
 
@@ -177,7 +178,7 @@ namespace System.Dynamic
 					var setter = FindBestMatch(binder, "set_" + binder.Name, new[] { value });
 					if (setter != null)
 					{
-						setter.Invoke(this.target, new[] { value });
+						setter.Invoke(target, new[] { value });
 						return true;
 					}
 				}
@@ -192,7 +193,7 @@ namespace System.Dynamic
 					var indexer = FindBestMatch(binder, "get_Item", indexes);
 					if (indexer != null)
 					{
-						result = AsDynamicIfNecessary(indexer.Invoke(this.target, indexes));
+						result = AsDynamicIfNecessary(indexer.Invoke(target, indexes));
 						return true;
 					}
 				}
@@ -209,7 +210,7 @@ namespace System.Dynamic
 					var indexer = FindBestMatch(binder, "set_Item", args);
 					if (indexer != null)
 					{
-						indexer.Invoke(this.target, args);
+						indexer.Invoke(target, args);
 						return true;
 					}
 				}
@@ -221,12 +222,12 @@ namespace System.Dynamic
 			{
 				try
 				{
-					result = castMethod.MakeGenericMethod(binder.Type).Invoke(null, new[] { this.target });
+					result = castMethod.MakeGenericMethod(binder.Type).Invoke(null, new[] { target });
 					return true;
 				}
 				catch (Exception) { }
 
-				var convertible = this.target as IConvertible;
+				var convertible = target as IConvertible;
 				if (convertible != null)
 				{
 					try
@@ -293,7 +294,7 @@ namespace System.Dynamic
                 if (dyn == null)
                     return maybeDynamic;
 
-                var binder = (ConvertBinder)Microsoft.CSharp.RuntimeBinder.Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof(object), typeof(DynamicReflectionObject));
+                var binder = (ConvertBinder)Binder.Convert(CSharpBinderFlags.ConvertExplicit, typeof(object), typeof(DynamicReflectionObject));
                 //var site = CallSite<Func<CallSite, object, object>>.Create(binder);
                 object result;
                 dyn.TryConvert(binder, out result);
@@ -313,7 +314,7 @@ namespace System.Dynamic
 					genericTypeArgs.AddRange(args.OfType<TypeParameter>().Select(x => x.Type));
 				}
 
-				var method = FindBestMatch(binder, finalArgs, genericTypeArgs.Count, this.targetType
+				var method = FindBestMatch(binder, finalArgs, genericTypeArgs.Count, targetType
 					.GetMethods(flags)
 					.Where(x => x.Name == memberName && x.GetParameters().Length == finalArgs.Length)
 					.Select(x => new MethodInvocable(x)));
@@ -321,17 +322,17 @@ namespace System.Dynamic
 				if (method == null)
 				{
 					// Fallback to explicitly implemented members.
-					method = FindBestMatch(binder, finalArgs, genericTypeArgs.Count, this.targetType
+					method = FindBestMatch(binder, finalArgs, genericTypeArgs.Count, targetType
 						.GetInterfaces()
 						.SelectMany(
-							iface => this.targetType
+							iface => targetType
 								.GetInterfaceMap(iface)
 								.TargetMethods.Select(x => new { Interface = iface, Method = x }))
 						.Where(x =>
 							x.Method.GetParameters().Length == finalArgs.Length &&
 							x.Method.Name.Replace(x.Interface.FullName.Replace('+', '.') + ".", "") == memberName)
 						.Select(x => (IInvocable)new MethodInvocable(x.Method))
-						.Concat(this.targetType.GetConstructors(flags)
+						.Concat(targetType.GetConstructors(flags)
 							.Where(x => x.Name == memberName && x.GetParameters().Length == finalArgs.Length)
 							.Select(x => new ConstructorInvocable(x)))
 						.Distinct());
@@ -432,24 +433,24 @@ namespace System.Dynamic
 				public MethodInvocable(MethodInfo method)
 				{
 					this.method = method;
-					this.parameters = new Lazy<IList<ParameterInfo>>(() => this.method.GetParameters());
+					parameters = new Lazy<IList<ParameterInfo>>(() => this.method.GetParameters());
 				}
 
 				public object Invoke(object obj, object[] parameters)
 				{
-					return this.method.Invoke(obj, parameters);
+					return method.Invoke(obj, parameters);
 				}
 
 				public IList<ParameterInfo> Parameters
 				{
-					get { return this.parameters.Value; }
+					get { return parameters.Value; }
 				}
 
-				public MethodInfo Method { get { return this.method; } }
+				public MethodInfo Method { get { return method; } }
 
-				public bool IsGeneric { get { return this.method.IsGenericMethodDefinition; } }
+				public bool IsGeneric { get { return method.IsGenericMethodDefinition; } }
 
-				public int GenericParameters { get { return this.method.GetGenericArguments().Length; } }
+				public int GenericParameters { get { return method.GetGenericArguments().Length; } }
 			}
 
 			private class ConstructorInvocable : IInvocable
@@ -460,17 +461,17 @@ namespace System.Dynamic
 				public ConstructorInvocable(ConstructorInfo ctor)
 				{
 					this.ctor = ctor;
-					this.parameters = new Lazy<IList<ParameterInfo>>(() => this.ctor.GetParameters());
+					parameters = new Lazy<IList<ParameterInfo>>(() => this.ctor.GetParameters());
 				}
 
 				public object Invoke(object obj, object[] parameters)
 				{
-					return this.ctor.Invoke(obj, parameters);
+					return ctor.Invoke(obj, parameters);
 				}
 
 				public IList<ParameterInfo> Parameters
 				{
-					get { return this.parameters.Value; }
+					get { return parameters.Value; }
 				}
 
 				public bool IsGeneric { get { return false; } }

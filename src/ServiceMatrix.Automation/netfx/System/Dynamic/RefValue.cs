@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace System.Dynamic
 {
 	/// <summary>
@@ -52,8 +47,8 @@ namespace System.Dynamic
 		/// </summary>
 		internal override object Value
 		{
-			get { return this.getter(); }
-			set { this.setter((T)value); }
+			get { return getter(); }
+			set { setter((T)value); }
 		}
 	}
 }

@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
-using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using NServiceBusStudio;
-using NuGet.VisualStudio;
-using NuPattern.VisualStudio.Solution;
-using NuPattern.VisualStudio;
-
-namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
+﻿namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using NServiceBusStudio.Automation.Extensions;
+    using System.ComponentModel.DataAnnotations;
+    using NuPattern.Runtime;
+    using NuGet.VisualStudio;
+    using NuPattern.VisualStudio;
+
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Add Nuget Project References")]
     [Description("Add references in the Endpoint Project to the required nuget projects")]
     [CLSCompliant(false)]
-    public class AddNugetReferencesCommand : NuPattern.Runtime.Command
+    public class AddNugetReferencesCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -45,8 +41,8 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
         public override void Execute()
         {
-            var app = this.CurrentElement.Root.As<IApplication>();
-            var project = this.CurrentElement.GetProject();
+            var app = CurrentElement.Root.As<IApplication>();
+            var project = CurrentElement.GetProject();
             if (project == null)
             {
                 return;

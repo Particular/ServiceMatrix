@@ -30,9 +30,9 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
             : base(innerViewModel)
         {
             RotationChanged += new EventHandler(GroupNode_RotationChanged);
-            this.IsResizable = false;
+            IsResizable = false;
 
-            this.ChildNodes = new List<GroupableNode>();
+            ChildNodes = new List<GroupableNode>();
         }
 
         private void GroupNode_RotationChanged(object sender, EventArgs e)
@@ -197,40 +197,40 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         public void AddChild(GroupableNode child)
         {
-            this.ChildNodes.Add(child);
-            this.RecalculateHeight();
+            ChildNodes.Add(child);
+            RecalculateHeight();
         }
 
         public void RemoveChild(GroupableNode child)
         {
-            this.ChildNodes.Remove(child);
+            ChildNodes.Remove(child);
             RecalculateHeight();
         }
 
         public void RecalculateHeight()
         {
             // Set Shape Height based on Child's Height
-            var childNodesHeight = this.ChildNodes.Sum(x => x.Bounds.Height + SHAPE_VERTICAL_MARGIN);
+            var childNodesHeight = ChildNodes.Sum(x => x.Bounds.Height + SHAPE_VERTICAL_MARGIN);
             childNodesHeight += SHAPE_HEADER_HEIGHT;
             if (childNodesHeight < SHAPE_MIN_HEIGHT)
             {
                 childNodesHeight = SHAPE_MIN_HEIGHT;
             }
-            this.Bounds = new Rect(this.Bounds.X, this.Bounds.Y, this.Bounds.Width, childNodesHeight);
+            Bounds = new Rect(Bounds.X, Bounds.Y, Bounds.Width, childNodesHeight);
 
             // Define new Child position
             var childPosition = SHAPE_HEADER_HEIGHT;
-            foreach (var item in this.ChildNodes)
+            foreach (var item in ChildNodes)
             {
                 item.SetPosition(childPosition);
                 childPosition += item.Bounds.Height + SHAPE_VERTICAL_MARGIN;
             }
 
             // Recalculate Parent Height based on new Node Height
-            if (this.Parent != null &&
-                this.Parent is GroupNode)
+            if (Parent != null &&
+                Parent is GroupNode)
             {
-                ((GroupNode)this.Parent).RecalculateHeight();
+                ((GroupNode)Parent).RecalculateHeight();
             }
         }
 

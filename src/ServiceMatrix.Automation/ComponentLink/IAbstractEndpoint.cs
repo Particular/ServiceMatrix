@@ -9,6 +9,8 @@ using NServiceBusStudio.Automation.Exceptions;
 
 namespace AbstractEndpoint
 {
+    using System.Windows;
+
     public interface IAbstractEndpoint : IToolkitInterface, IProjectReferenced
     {
         string Namespace { get; }
@@ -41,7 +43,7 @@ namespace AbstractEndpoint
             if (endpoints.Any(x => String.Compare(x.InstanceName, endpoint.InstanceName, true) == 0 && x != endpoint))
             {
                 var error = "There is already an endpoint with the same name. Please, select a new name for your endpoint.";
-                System.Windows.MessageBox.Show(error, "ServiceMatrix - New Endpoint Name Uniqueness", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                MessageBox.Show(error, "ServiceMatrix - New Endpoint Name Uniqueness", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw new ElementAlreadyExistsException(error, endpoint.As<IProductElement>().DefinitionName, endpoint.InstanceName);
             }
         }

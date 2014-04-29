@@ -1,19 +1,19 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using System.Windows.Input;
-using NServiceBusStudio.Automation.Dialog;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-using System.Collections.ObjectModel;
-using System.Windows;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System.Linq;
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using NuPattern;
+    using System.Windows.Input;
+    using NServiceBusStudio.Automation.Dialog;
+    using NuPattern.Diagnostics;
+    using NuPattern.Presentation;
+    using System.Collections.ObjectModel;
+    using System.Windows;
+    using Command = NuPattern.Runtime.Command;
+
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -21,7 +21,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a dialog where the user can choose an Event and adds a Subscribe link to it.")]
     [CLSCompliant(false)]
-    public class ShowEventSubscriptionPicker : NuPattern.Runtime.Command
+    public class ShowEventSubscriptionPicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowEventSubscriptionPicker>();
 
@@ -41,7 +41,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        public IComponent CurrentElement
+        public NServiceBusStudio.IComponent CurrentElement
         {
             get;
             set;
@@ -59,7 +59,7 @@ namespace NServiceBusStudio.Automation.Commands
             var events = CurrentElement.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event);
 
             // Filter those events that already processed by the component
-            events = events.Where(e => !CurrentElement.Subscribes.SubscribedEventLinks.Any(el => el.EventReference.Value == e));
+            events = events.Where(e => CurrentElement.Subscribes.SubscribedEventLinks.All(el => el.EventReference.Value != e));
 
             // Get event names
             var existingEventNames = events.Select(e => e.InstanceName);
@@ -83,7 +83,7 @@ namespace NServiceBusStudio.Automation.Commands
                         {
                             new ShowComponentSagaStarterPicker()
                             {
-                                WindowFactory = this.WindowFactory,
+                                WindowFactory = WindowFactory,
                                 CurrentElement = CurrentElement
                             }.Execute();
                         }

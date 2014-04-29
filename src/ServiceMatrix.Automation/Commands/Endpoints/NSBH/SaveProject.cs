@@ -1,16 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.Extensions;
-
-namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
+﻿namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using AbstractEndpoint;
+    using EnvDTE;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Save associated Project")]
     [Description("Saves the project")]
     [CLSCompliant(false)]
-    public class SaveProject : NuPattern.Runtime.Command
+    public class SaveProject : Command
     {
         [Required]
         [Import(AllowDefault = true)]
@@ -18,7 +19,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
         public override void Execute()
         {
-            var prj = this.Endpoint.Project.As<EnvDTE.Project>();
+            var prj = Endpoint.Project.As<Project>();
             prj.Save();
         }
     }

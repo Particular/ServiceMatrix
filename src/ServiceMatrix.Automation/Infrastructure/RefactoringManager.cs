@@ -14,6 +14,10 @@ using System.Collections.Generic;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System.Windows.Threading;
+    using EnvDTE;
+    using Process = System.Diagnostics.Process;
+
     [Export]
     public class RefactoringManager
     {
@@ -22,7 +26,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public ISolution Solution { get; set; }
 
-        public System.Windows.Threading.Dispatcher Dispatcher { get; set; }
+        public Dispatcher Dispatcher { get; set; }
         
         [Import]
         public IStatusBar StatusBar { get; set; }
@@ -36,8 +40,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
         [ImportingConstructor]
         public RefactoringManager([Import] ISolution solution, [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            this.Solution = solution;
-            this.Dispatcher = System.Windows.Threading.Dispatcher.CurrentDispatcher;
+            Solution = solution;
+            Dispatcher = Dispatcher.CurrentDispatcher;
             StartListening(serviceProvider);
         }
 
@@ -50,14 +54,14 @@ namespace NServiceBusStudio.Automation.Infrastructure
             };
             
             events.SolutionClosed += (s, e) => {
-                if (this.Watcher != null)
+                if (Watcher != null)
                 {
-                    this.Watcher.EnableRaisingEvents = false;
-                    this.Watcher = null;
+                    Watcher.EnableRaisingEvents = false;
+                    Watcher = null;
                 }
             };
 
-            if (this.Solution.IsOpen)
+            if (Solution.IsOpen)
             {
                 InitializeWatcher();
             }
@@ -65,26 +69,26 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void InitializeWatcher()
         {
-            this.Watcher = new FileSystemWatcher(Path.GetDirectoryName(this.Solution.PhysicalPath), "*.cs");
-            this.Watcher.IncludeSubdirectories = true;
+            Watcher = new FileSystemWatcher(Path.GetDirectoryName(Solution.PhysicalPath), "*.cs");
+            Watcher.IncludeSubdirectories = true;
 
-            this.Watcher.Renamed += new RenamedEventHandler(Watcher_Renamed);
-            this.Watcher.EnableRaisingEvents = true;
+            Watcher.Renamed += new RenamedEventHandler(Watcher_Renamed);
+            Watcher.EnableRaisingEvents = true;
         }
 
         private void Watcher_Renamed(object sender, RenamedEventArgs renamedFile)
         {
             // Get Reference Uri for renamed File
-            var item = this.Solution.Find(renamedFile.Name).FirstOrDefault();
+            var item = Solution.Find(renamedFile.Name).FirstOrDefault();
             if (item == null)
             {
                 return;
             }
 
-            var referenceUri = this.UriService.CreateUri(item);
+            var referenceUri = UriService.CreateUri(item);
 
             // Get Root Pattern Elements 
-            var rootElements = this.PatternManager.Products.SelectMany(x => x.Views.SelectMany(v => v.AllElements));
+            var rootElements = PatternManager.Products.SelectMany(x => x.Views.SelectMany(v => v.AllElements));
             // Get all Pattern Elements 
             var allElements = rootElements.Traverse<IProductElement>((e) => e.GetChildren()); 
 
@@ -93,7 +97,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
                                                          e.InstanceName == Path.GetFileNameWithoutExtension(renamedFile.OldName))
                                              .ToList();
             
-            this.Dispatcher.BeginInvoke(new Action(() =>
+            Dispatcher.BeginInvoke(new Action(() =>
                 // Rename related elements with new name
                 relatedElements.ForEach(x => x.InstanceName = Path.GetFileNameWithoutExtension(renamedFile.Name))
             ));
@@ -103,10 +107,10 @@ namespace NServiceBusStudio.Automation.Infrastructure
         {
             SaveSolution();
 
-            var currentDirectory = System.IO.Path.GetDirectoryName(this.GetType().Assembly.Location);
-            var ps = System.IO.Path.Combine (currentDirectory, @"Libs\NRefactory.RenameClass.exe");
+            var currentDirectory = Path.GetDirectoryName(GetType().Assembly.Location);
+            var ps = Path.Combine (currentDirectory, @"Libs\NRefactory.RenameClass.exe");
             
-            var args = String.Format("\"{0}\" {1} {2} {3}", this.Solution.PhysicalPath, classNamespace, classCurrentName, classNewName);
+            var args = String.Format("\"{0}\" {1} {2} {3}", Solution.PhysicalPath, classNamespace, classCurrentName, classNewName);
 
             var start = new ProcessStartInfo(ps, args)
             {
@@ -141,7 +145,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             Log(LogType.Output, "Loading solution...");
             Log(LogType.Output, "Finding references...");
 
-            var projects = this.Solution.Find(x => x.Kind == ItemKind.Project);
+            var projects = Solution.Find(x => x.Kind == ItemKind.Project);
             foreach (var project in projects)
             {
                 foreach (var item in project.Items)
@@ -172,7 +176,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             else
             {
                 // File exists?
-                if (!System.IO.File.Exists(itemContainer.PhysicalPath))
+                if (!File.Exists(itemContainer.PhysicalPath))
                 {
                     return;
                 }
@@ -189,12 +193,12 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void SaveSolution()
         {
-            this.Solution.As<EnvDTE.Solution>().SaveAs(this.Solution.PhysicalPath);
+            Solution.As<Solution>().SaveAs(Solution.PhysicalPath);
 
-            var projects = this.Solution.Find(x => x.Kind == ItemKind.Project);
+            var projects = Solution.Find(x => x.Kind == ItemKind.Project);
             foreach (var project in projects)
             {
-                project.As<EnvDTE.Project>().Save();
+                project.As<Project>().Save();
             }
         }
 
@@ -216,7 +220,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             }
 
             tracer.Info(logTypeDesc + data);
-            this.StatusBar.DisplayMessage(logTypeDesc + data);
+            StatusBar.DisplayMessage(logTypeDesc + data);
         }
 
 

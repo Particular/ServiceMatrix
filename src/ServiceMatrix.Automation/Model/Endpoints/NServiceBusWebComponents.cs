@@ -19,13 +19,13 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.NServiceBusWebComponentLinks.Cast<IAbstractComponentLink>();
+                return NServiceBusWebComponentLinks.Cast<IAbstractComponentLink>();
             }
         }
 
         public IAbstractEndpoint ParentEndpoint
         {
-            get { return this.Parent as IAbstractEndpoint; }
+            get { return Parent as IAbstractEndpoint; }
         }
     }
 }

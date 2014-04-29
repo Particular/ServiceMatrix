@@ -38,8 +38,8 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.Publishes.CommandLinks.Any() ||
-                       this.Publishes.EventLinks.Any();
+                return Publishes.CommandLinks.Any() ||
+                       Publishes.EventLinks.Any();
             }
         }
 
@@ -47,32 +47,32 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.Subscribes.ProcessedCommandLinks.Any() ||
-                       this.Subscribes.SubscribedEventLinks.Any();
+                return Subscribes.ProcessedCommandLinks.Any() ||
+                       Subscribes.SubscribedEventLinks.Any();
             }
         }
 
         public IProject Project
         {
-            get { return this.AsElement().GetProject(); }
+            get { return AsElement().GetProject(); }
         }
 
         partial void Initialize()
         {
-            this.AsElement().Deleting += (s, e) =>
+            AsElement().Deleting += (s, e) =>
             {
-                foreach (var endpoint in this.DeployedTo)
+                foreach (var endpoint in DeployedTo)
                 {
                     DeleteComponentLink(endpoint);   
                 }
             };
 
-            this.InstanceNameChanged += (s, e) =>
+            InstanceNameChanged += (s, e) =>
             {
-                foreach (var endpoint in this.DeployedTo)
+                foreach (var endpoint in DeployedTo)
                 {
-                    this.RemoveLinks(endpoint);
-                    this.AddLinks(endpoint);
+                    RemoveLinks(endpoint);
+                    AddLinks(endpoint);
                 }
             };
         }
@@ -94,7 +94,7 @@ namespace NServiceBusStudio
                 try
                 {
                     return deployedTo ??
-                        this.As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll()
+                        As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll()
                         .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this));
                 }
                 catch
@@ -107,23 +107,23 @@ namespace NServiceBusStudio
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var result = new List<ValidationResult>();
-            var root = this.As<IProductElement>().Root;
-            if (!(root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll()
+            var root = As<IProductElement>().Root;
+            if (!(root.As<IApplication>().Design.Endpoints.GetAll()
                 .Any(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this))))
             {
-                result.Add(new ValidationResult(string.Format("{0}.{1} should be allocated to an endpoint.", this.Parent.Parent.InstanceName, this.InstanceName)));
+                result.Add(new ValidationResult(string.Format("{0}.{1} should be allocated to an endpoint.", Parent.Parent.InstanceName, InstanceName)));
             }
 
-            if (this.IsSaga && !(this.Subscribes.ProcessedCommandLinks.Any (c => c.StartsSaga) || this.Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
+            if (IsSaga && !(Subscribes.ProcessedCommandLinks.Any (c => c.StartsSaga) || Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
             {
-                result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", this.Parent.Parent.InstanceName, this.InstanceName)));
+                result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", Parent.Parent.InstanceName, InstanceName)));
             }
 
-            if (this.Subscribes.ProcessedCommandLinks.Any() &&
-                root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll()
+            if (Subscribes.ProcessedCommandLinks.Any() &&
+                root.As<IApplication>().Design.Endpoints.GetAll()
                 .Count(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this)) > 1)
             {
-                result.Add(new ValidationResult(string.Format("{0}.{1} is a command-processing component, and it's deployed on more than one Endpoint. This scenario is not supported, undeploy the component from one of the endpoints.", this.Parent.Parent.InstanceName, this.InstanceName)));
+                result.Add(new ValidationResult(string.Format("{0}.{1} is a command-processing component, and it's deployed on more than one Endpoint. This scenario is not supported, undeploy the component from one of the endpoints.", Parent.Parent.InstanceName, InstanceName)));
             }
 
             return result;
@@ -131,14 +131,14 @@ namespace NServiceBusStudio
 
         public void EndpointDefined(IAbstractEndpoint newEndpoint)
         {
-            if (newEndpoint != null && !this.deployedTo.Contains(newEndpoint))
+            if (newEndpoint != null && !deployedTo.Contains(newEndpoint))
             {
-                this.deployedTo.Add(newEndpoint);
+                deployedTo.Add(newEndpoint);
             }
 
-            foreach (var endpoint in this.DeployedTo)
+            foreach (var endpoint in DeployedTo)
             {
-                var service = this.Parent.Parent;
+                var service = Parent.Parent;
                 var endpointProject = endpoint.Project;
 
                 if (endpointProject == null)
@@ -151,31 +151,31 @@ namespace NServiceBusStudio
                     endpoint.Project.CreateFolder(service.CodeIdentifier);
                 }
 
-                foreach (var i in this.Subscribes.SubscribedEventLinks)
+                foreach (var i in Subscribes.SubscribedEventLinks)
                 {
                     i.AsElement().AutomationExtensions.First(x => x.Name == "OnInstantiateCommand").Execute();
                 }
-                foreach (var i in this.Subscribes.ProcessedCommandLinks)
+                foreach (var i in Subscribes.ProcessedCommandLinks)
                 {
                     i.AsElement().AutomationExtensions.First(x => x.Name == "OnInstantiateCommand").Execute();
                 }
-                foreach (var i in this.Publishes.CommandLinks)
+                foreach (var i in Publishes.CommandLinks)
                 {
                     i.AsElement().AutomationExtensions.First(x => x.Name == "OnInstantiateCommand").Execute();
                 }
-                foreach (var i in this.Publishes.EventLinks)
+                foreach (var i in Publishes.EventLinks)
                 {
                     i.AsElement().AutomationExtensions.First(x => x.Name == "OnInstantiateCommand").Execute();
                 }
 
-                if (this.IsSaga)
+                if (IsSaga)
                 {
-                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaConfigureHowToFindCode").Execute();
-                    this.AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
+                    AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaConfigureHowToFindCode").Execute();
+                    AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
                 }
 
                 // Add Links for Referenced Libraries
-                this.AddLinks(endpoint);
+                AddLinks(endpoint);
             }
         }
 
@@ -184,7 +184,7 @@ namespace NServiceBusStudio
             var project = endpoint.Project;
 
             // 1. Add Links for References
-            foreach (var libraryLink in this.LibraryReferences.LibraryReference)
+            foreach (var libraryLink in LibraryReferences.LibraryReference)
             {
                 IProductElement element = null;
 
@@ -203,7 +203,7 @@ namespace NServiceBusStudio
                     }
                 }
 
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, true);
+                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, true);
 
                 AddLinkToProject(project, element, suggestedPath, i => i.First());
             }
@@ -219,7 +219,7 @@ namespace NServiceBusStudio
                 return;
 
             // 1. Remove Links for References
-            foreach (var libraryLink in this.LibraryReferences.LibraryReference)
+            foreach (var libraryLink in LibraryReferences.LibraryReference)
             {
                 IProductElement element = null;
 
@@ -238,7 +238,7 @@ namespace NServiceBusStudio
                     }
                 }
 
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, this.Parent.Parent, null, false);
+                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, false);
                 RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
             }
         }
@@ -246,7 +246,7 @@ namespace NServiceBusStudio
         private static void AddLinkToProject(IProject project, IProductElement element, string suggestedPath, Func<IEnumerable<IItem>, IItem> filter)
         {
             var sourceFile = FindSourceItemForElement(element, filter);
-            var container = project.As<EnvDTE.Project>().ProjectItems;
+            var container = project.As<Project>().ProjectItems;
             container = FindProjectFolder(container, suggestedPath);
 
             if (container != null)
@@ -261,14 +261,14 @@ namespace NServiceBusStudio
 
         private void RemoveLinkFromProject(IProject project, string fileName, string suggestedPath)
         {
-            var container = project.As<EnvDTE.Project>().ProjectItems;
+            var container = project.As<Project>().ProjectItems;
             container = FindProjectFolder(container, suggestedPath);
 
             if (container != null)
             {
                 foreach (var file in container)
                 {
-                    if (file != null && file.As<EnvDTE.ProjectItem>().Name == fileName)
+                    if (file != null && file.As<ProjectItem>().Name == fileName)
                     {
                         file.As<ProjectItem>().Delete();
                         break;
@@ -287,7 +287,7 @@ namespace NServiceBusStudio
             return sourceFile;
         }
 
-        private static EnvDTE.ProjectItems FindProjectFolder(EnvDTE.ProjectItems container, string suggestedPath)
+        private static ProjectItems FindProjectFolder(ProjectItems container, string suggestedPath)
         {
             var path = suggestedPath.Split('\\').Skip(1);
 
@@ -295,9 +295,9 @@ namespace NServiceBusStudio
             {
                 foreach (var folder in container)
                 {
-                    if (folder != null && folder.As<EnvDTE.ProjectItem>().Name == stepName)
+                    if (folder != null && folder.As<ProjectItem>().Name == stepName)
                     {
-                        container = folder.As<EnvDTE.ProjectItem>().ProjectItems;
+                        container = folder.As<ProjectItem>().ProjectItems;
                         break;
                     }
                 }
@@ -326,29 +326,29 @@ namespace NServiceBusStudio
         {
             if (!endpoint.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this))
             {
-                var linkSource = endpoint.EndpointComponents.CreateComponentLink(String.Format("{0}.{1}", this.Parent.Parent.InstanceName, this.InstanceName), e => e.ComponentReference.Value = this);
+                var linkSource = endpoint.EndpointComponents.CreateComponentLink(String.Format("{0}.{1}", Parent.Parent.InstanceName, InstanceName), e => e.ComponentReference.Value = this);
                 linkSource.ComponentReference.Value.EndpointDefined(endpoint);
             }
         }
        
         public void Publish(IEvent @event)
         {
-            this.Publishes.CreateLink(@event);
+            Publishes.CreateLink(@event);
         }
 
         public void Subscribe(ICommand command)
         {
-            this.Subscribes.CreateLink(command);
+            Subscribes.CreateLink(command);
         }
 
         public List<string> AdditionalOriginalInstanceNames
         {
-            get { return new List<string>() { String.Format("{0}SagaData", this.OriginalInstanceName) }; }
+            get { return new List<string>() { String.Format("{0}SagaData", OriginalInstanceName) }; }
         }
 
         public List<string> AdditionalInstanceNames
         {
-            get { return new List<string>() { String.Format("{0}SagaData", this.InstanceName) }; }
+            get { return new List<string>() { String.Format("{0}SagaData", InstanceName) }; }
         }
     }
 }

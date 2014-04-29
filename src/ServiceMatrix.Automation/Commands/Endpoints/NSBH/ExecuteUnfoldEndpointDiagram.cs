@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
+﻿namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.ToolkitInterface;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("ExecuteUnfoldEndpointDiagram")]
     [Description("ExecuteUnfoldEndpointDiagram")]
     [CLSCompliant(false)]
-    public class ExecuteUnfoldEndpointDiagram : NuPattern.Runtime.Command
+    public class ExecuteUnfoldEndpointDiagram : Command
     {
         [Required]
         [Import(AllowDefault = true)]
@@ -21,7 +20,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.Parent.Parent.Parent;
+            var endpoint = CurrentElement.Parent.Parent.Parent;
             var product = endpoint.As<IToolkitInterface>().As<IProductElement>();
             var automation = product.AutomationExtensions.FirstOrDefault(x => x.Name == "UnfoldDiagramFile");
             if (automation != null)

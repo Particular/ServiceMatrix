@@ -11,6 +11,8 @@ using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using Microsoft.VisualStudio.Modeling.Validation;
+
     /// <summary>
     /// A custom command design-time validation rule for the <see cref="ShowEventSubscriptionPicker"/> command.
     /// </summary>
@@ -26,7 +28,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// <param name="context">Validation context to be assigned errors and warnings.</param>
         /// <param name="settingsElement">The settings element in the model being validated</param>
         /// <param name="settings">Settings for the command</param>
-        public void Validate(Microsoft.VisualStudio.Modeling.Validation.ValidationContext context, IAutomationSettingsSchema settingsElement, ICommandSettings settings)
+        public void Validate(ValidationContext context, IAutomationSettingsSchema settingsElement, ICommandSettings settings)
         {
             try
             {

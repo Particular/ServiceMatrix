@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 using System.Runtime.InteropServices;
 using System.Windows.Controls;
 using System.Windows;
@@ -16,16 +12,16 @@ namespace NServiceBusStudio
 
         public ToolWindowContent()
         {
-            this.BitmapResourceID = 300;
-            this.BitmapIndex = 1;
+            BitmapResourceID = 300;
+            BitmapIndex = 1;
 
-            this.Content = this.panel;
+            Content = panel;
         }
 
         public void SetContent(FrameworkElement content)
         {
-            this.panel.Children.Clear();
-            this.panel.Children.Add(content);
+            panel.Children.Clear();
+            panel.Children.Add(content);
         }
     }
 }

@@ -10,20 +10,22 @@ using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-	/// <summary>
+    using Command = NuPattern.Runtime.Command;
+
+    /// <summary>
 	/// A custom command that performs some automation.
 	/// </summary>
 	[DisplayName("Execute Child Command Starting With")]
 	[Category("Pattern Automation")]
 	[Description("Executes a command on a child element.")]
 	[CLSCompliant(false)]
-    public class ChildCommandReference : NuPattern.Runtime.Command
+    public class ChildCommandReference : Command
 	{
 		private static readonly ITracer tracer = Tracer.Get<ChildCommandReference>();
 
 		public ChildCommandReference()
 		{
-			this.Recursive = false;
+			Recursive = false;
 		}
 
 		/// <summary>
@@ -58,23 +60,23 @@ namespace NServiceBusStudio.Automation.Commands
 		{
 			Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
 
-            if (this.CurrentElement.As<IApplication>().IsDirty &&
-                this.CurrentElement.As<IApplication>().IsValidLicensed)
+            if (CurrentElement.As<IApplication>().IsDirty &&
+                CurrentElement.As<IApplication>().IsValidLicensed)
             {
-                var children = default(IEnumerable<IProductElement>);
+                IEnumerable<IProductElement> children;
 
-                if (this.Recursive)
+                if (Recursive)
                 {
-                    children = this.CurrentElement.GetChildren()
+                    children = CurrentElement.GetChildren()
                         .Traverse(element => element.GetChildren().Concat((element is IProduct) ? new IProduct[] { } : element.As<IAbstractElement>().Extensions));
                 }
                 else
                 {
-                    children = this.CurrentElement.GetChildren();
+                    children = CurrentElement.GetChildren();
                 }
 
                 var commands = children.SelectMany(c =>
-                    c.AutomationExtensions.Where(a => a.Name.StartsWith(this.CommandNameStartsWidth)).OrderBy (a => a.Name));
+                    c.AutomationExtensions.Where(a => a.Name.StartsWith(CommandNameStartsWidth)).OrderBy (a => a.Name));
 
                 foreach (var command in commands)
                 {

@@ -29,7 +29,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         public DetailsPanel()
         {
             InitializeComponent();
-            this.ViewModel = new DetailsPanelViewModel
+            ViewModel = new DetailsPanelViewModel
             {
                  CleanDetails = CleanDetails,
                  SetPanel = SetPanel
@@ -40,10 +40,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public void SetView(IServiceProvider serviceProvider, IProductElementViewModel selectedElementViewModel, object logicalViewDataContext)
         {
-            this.Caption = "ServiceMatrix Details - " + selectedElementViewModel.Data.InstanceName;
-            if (this.CaptionHasChanged != null)
+            Caption = "ServiceMatrix Details - " + selectedElementViewModel.Data.InstanceName;
+            if (CaptionHasChanged != null)
             {
-                this.CaptionHasChanged(this, EventArgs.Empty);
+                CaptionHasChanged(this, EventArgs.Empty);
             }
 
             var model = selectedElementViewModel.Data;
@@ -51,42 +51,42 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             switch (definitionName)
             {
                 case "Application":
-                    this.ViewModel.BuildDetailsForApplication(model.As<IApplication>(), logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForApplication(model.As<IApplication>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "NServiceBusHost":
                 case "NServiceBusMVC":
                 case "NServiceBusWeb":
-                    this.ViewModel.BuildDetailsForEndpoint(model.As<IToolkitInterface>() as IAbstractEndpoint, logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForEndpoint(model.As<IToolkitInterface>() as IAbstractEndpoint, logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Component":
-                    this.ViewModel.BuildDetailsForComponent(model.As<IComponent>(), logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForComponent(model.As<IComponent>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Command":
-                    this.ViewModel.BuildDetailsForCommand(model.As<ICommand>(), logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForCommand(model.As<ICommand>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Event":
-                    this.ViewModel.BuildDetailsForEvent(model.As<IEvent>(), logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForEvent(model.As<IEvent>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "UseCase":
-                    this.ViewModel.BuildDetailsForUseCase(model.As<IUseCase>(), logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForUseCase(model.As<IUseCase>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 case "Library":
                 case "ServiceLibrary":
-                    this.ViewModel.BuildDetailsForLibrary(model, logicalViewDataContext as ISolutionBuilderViewModel);
+                    ViewModel.BuildDetailsForLibrary(model, logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
                 default:
-                    this.CleanDetails();
+                    CleanDetails();
                     break;
             }
         }
 
         public void CleanDetails()
         {
-            this.SetPanel(0, null);
-            this.SetPanel(1, null);
-            this.SetPanel(2, null);
-            this.SetPanel(3, null);
-            this.SetPanel(4, null);
+            SetPanel(0, null);
+            SetPanel(1, null);
+            SetPanel(2, null);
+            SetPanel(3, null);
+            SetPanel(4, null);
         }
 
         public void SetPanel(int pos, FrameworkElement content)
@@ -98,48 +98,48 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             switch (pos)
             {
                 case 0:
-                    innerPanel = this.Panel1;
-                    border = this.Border1;
+                    innerPanel = Panel1;
+                    border = Border1;
                     break;
                 case 1:
-                    innerPanel = this.Panel2;
-                    border = this.Border2;
+                    innerPanel = Panel2;
+                    border = Border2;
                     splitter = Splitter1;
                     break;
                 case 2:
-                    innerPanel = this.Panel3;
-                    border = this.Border3;
+                    innerPanel = Panel3;
+                    border = Border3;
                     splitter = Splitter2;
                     break;
                 case 3:
-                    innerPanel = this.Panel4;
-                    border = this.Border4;
+                    innerPanel = Panel4;
+                    border = Border4;
                     splitter = Splitter3;
                     break;
                 case 4:
-                    innerPanel = this.Panel5;
-                    border = this.Border5;
+                    innerPanel = Panel5;
+                    border = Border5;
                     splitter = Splitter4;
                     break;
             }
             innerPanel.Children.Clear();
             if (content != null)
             {
-                this.PanelsGrid.ColumnDefinitions[pos].Width = new GridLength(1, GridUnitType.Star);
+                PanelsGrid.ColumnDefinitions[pos].Width = new GridLength(1, GridUnitType.Star);
                 innerPanel.Children.Add(content);
-                border.Visibility = System.Windows.Visibility.Visible;
+                border.Visibility = Visibility.Visible;
                 if (splitter != null)
                 {
-                    splitter.Visibility = System.Windows.Visibility.Visible;
+                    splitter.Visibility = Visibility.Visible;
                 }
             }
             else
             {
-                this.PanelsGrid.ColumnDefinitions[pos].Width = new GridLength(0);
-                border.Visibility = System.Windows.Visibility.Collapsed;
+                PanelsGrid.ColumnDefinitions[pos].Width = new GridLength(0);
+                border.Visibility = Visibility.Collapsed;
                 if (splitter != null)
                 {
-                    splitter.Visibility = System.Windows.Visibility.Collapsed;
+                    splitter.Visibility = Visibility.Collapsed;
                 }
             }
         }
@@ -149,11 +149,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public void CleanAll()
         {
-            this.Caption = "ServiceMatrix Details";
-            this.CleanDetails();
-            if (this.CaptionHasChanged != null)
+            Caption = "ServiceMatrix Details";
+            CleanDetails();
+            if (CaptionHasChanged != null)
             {
-                this.CaptionHasChanged(this, EventArgs.Empty);
+                CaptionHasChanged(this, EventArgs.Empty);
             }
         }
     }

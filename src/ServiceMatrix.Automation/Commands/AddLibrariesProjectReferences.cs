@@ -1,21 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
-using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.IO;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using NServiceBusStudio.Automation.Extensions;
+    using System.ComponentModel.DataAnnotations;
+    using NuPattern.Runtime;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Add Library Project References")]
     [Description("Add references in the Library Project to the required projects")]
     [CLSCompliant(false)]
-    public class AddLibraryProjectReferences : NuPattern.Runtime.Command
+    public class AddLibraryProjectReferences : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -30,8 +26,8 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var libraryproject = this.CurrentElement.GetProject();
-            var app = this.CurrentElement.Product.As<Application>();
+            var libraryproject = CurrentElement.GetProject();
+            var app = CurrentElement.Product.As<Application>();
 
             if (libraryproject != null)
             {

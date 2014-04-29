@@ -9,7 +9,9 @@ using NuPattern.ComponentModel;
 
 namespace NServiceBusStudio
 {
-	public class EventReferenceConverter : ElementReferenceConverter<IEventLink, IEvent, EventReferenceStrategy> { }
+    using NuPattern.Runtime;
+
+    public class EventReferenceConverter : ElementReferenceConverter<IEventLink, IEvent, EventReferenceStrategy> { }
 
 	public class EventReferenceEditor : ElementReferenceEditor<IEventLink, IEvent, EventReferenceStrategy> { }
 
@@ -60,7 +62,7 @@ namespace NServiceBusStudio
 
 			public string InstanceName { get; set; }
 
-			public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
+			public IEnumerable<IReference> References { get; private set; }
 
 			public string Notes { get; set; }
 
@@ -78,7 +80,7 @@ namespace NServiceBusStudio
 				throw new NotImplementedException();
 			}
 
-			public NuPattern.Runtime.IElement AsElement()
+			public IElement AsElement()
 			{
 				throw new NotImplementedException();
 			}

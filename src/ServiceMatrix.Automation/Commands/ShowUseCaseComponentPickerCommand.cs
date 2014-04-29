@@ -14,11 +14,14 @@ using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using Command = NuPattern.Runtime.Command;
+    using CustomSolutionBuilder = NServiceBusStudio.Automation.CustomSolutionBuilder.CustomSolutionBuilder;
+
     [DisplayName("Show the UseCase Component Picker dialog")]
     [Category("General")]
     [Description("Show the UseCase Component Picker dialog.")]
     [CLSCompliant(false)]
-    public class ShowUseCaseComponentPickerCommand : NuPattern.Runtime.Command
+    public class ShowUseCaseComponentPickerCommand : Command
     {
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -43,14 +46,14 @@ namespace NServiceBusStudio.Automation.Commands
         }
 
         [Import(AllowDefault = true)]
-        public CustomSolutionBuilder.CustomSolutionBuilder CustomSolutionBuilderInstance { get; set; }
+        public CustomSolutionBuilder CustomSolutionBuilderInstance { get; set; }
 
         public override void Execute()
         {
             using (new MouseCursor(Cursors.Arrow))
             {
                 var picker = WindowFactory.CreateDialog<UseCaseComponentPicker>();
-                var usecase = this.CurrentElement.As<IUseCase>();
+                var usecase = CurrentElement.As<IUseCase>();
                 var dialog = picker as UseCaseComponentPicker;
                 var app = usecase.As<IProductElement>().Root.As<IApplication>();
                 dialog.SetServices(app.Design.Services.Service);
@@ -68,7 +71,7 @@ namespace NServiceBusStudio.Automation.Commands
                         component = svc.Components.CreateComponent(dialog.SelectedComponent);
                     }
 
-                    this.CurrentElement.As<IUseCase>().AddRelatedElement(component.As<IProductElement>());
+                    CurrentElement.As<IUseCase>().AddRelatedElement(component.As<IProductElement>());
                 }
             }
         }

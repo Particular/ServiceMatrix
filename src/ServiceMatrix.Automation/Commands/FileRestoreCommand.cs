@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Library.Commands;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NuPattern.VisualStudio.Solution;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("File Restore Command")]
     [Description("If the file doesn't exist, it runs the command.")]
-    public class FileRestoreCommand : NuPattern.Runtime.Command
+    public class FileRestoreCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -38,13 +35,13 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var component = this.CurrentElement.As<IComponent>();
+            var component = CurrentElement.As<NServiceBusStudio.IComponent>();
 
             if (component == null || component.IsSaga)
             {
-                if (!this.Solution.Find(this.FilePath + "\\" + this.FileName).Any())
+                if (!Solution.Find(FilePath + "\\" + FileName).Any())
                 {
-                    var command = this.CurrentElement.AutomationExtensions.FirstOrDefault(e => e.Name == CommandName);
+                    var command = CurrentElement.AutomationExtensions.FirstOrDefault(e => e.Name == CommandName);
                     if (command != null)
                     {
                         command.Execute();

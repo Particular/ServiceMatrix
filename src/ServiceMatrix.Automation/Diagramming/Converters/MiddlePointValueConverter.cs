@@ -9,9 +9,11 @@ using System.Windows.Data;
 
 namespace ServiceMatrix.Diagramming.Converters
 {
+    using System.Globalization;
+
     public class MiddlePointValueConverter : IMultiValueConverter
     {
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             if (values.Length != 2)
             {
@@ -32,7 +34,7 @@ namespace ServiceMatrix.Diagramming.Converters
             }
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             return null;
         }

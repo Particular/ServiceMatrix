@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core.Design;
-using NServiceBusStudio.Core;
-using NuPattern.ComponentModel;
-
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio.Core.Design;
+    using NServiceBusStudio.Core;
+    using NuPattern.ComponentModel;
+
+    using NuPattern.Runtime;
+
     public class SubscribedEventReferenceConverter : ElementReferenceConverter<ISubscribedEventLink, IEvent, SubscribedEventReferenceStrategy> { }
 
     public class SubscribedEventReferenceEditor : ElementReferenceEditor<ISubscribedEventLink, IEvent, SubscribedEventReferenceStrategy> { }
@@ -22,8 +22,6 @@ namespace NServiceBusStudio
 
         public IEnumerable<StandardValue> GetStandardValues(ISubscribedEventLink owner)
         {
-            var thisService = owner.Parent.Parent;
-
             return owner.Parent.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event)
                 .Except(owner.Parent.SubscribedEventLinks.Select(link => link.EventReference.Value)
                     .Except(new[] { owner.EventReference.Value }))
@@ -60,7 +58,7 @@ namespace NServiceBusStudio
 
             public string InstanceName { get; set; }
 
-            public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
+            public IEnumerable<IReference> References { get; private set; }
 
             public string Notes { get; set; }
 
@@ -78,7 +76,7 @@ namespace NServiceBusStudio
                 throw new NotImplementedException();
             }
 
-            public NuPattern.Runtime.IElement AsElement()
+            public IElement AsElement()
             {
                 throw new NotImplementedException();
             }

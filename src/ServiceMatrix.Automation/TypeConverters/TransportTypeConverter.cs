@@ -1,13 +1,10 @@
-﻿using NuPattern.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-
-
-
-namespace NServiceBusStudio.Automation.TypeConverters
+﻿namespace NServiceBusStudio.Automation.TypeConverters
 {
+    using NuPattern.Diagnostics;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+
     /// <summary>
     /// A custom type converter for returning Transport values.
     /// </summary>

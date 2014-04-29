@@ -1,29 +1,28 @@
-﻿using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
-using NServiceBusStudio.Automation.Infrastructure;
-using System;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Linq;
-using NuPattern;
-using NuPattern.Diagnostics;
-using NuPattern.Runtime;
-using NuPattern.VisualStudio;
-using NuPattern.Runtime.Diagnostics;
-using ServiceMatrix.Diagramming.Views;
-using ServiceMatrix.Diagramming;
-using System.ComponentModel.Composition.Hosting;
-using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
-using NServiceBusStudio.Automation.Exceptions;
-using System.IO;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using Microsoft.VisualStudio.ComponentModelHost;
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
+    using NServiceBusStudio.Automation.Infrastructure;
+    using System;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.Design;
+    using System.Diagnostics;
+    using System.Runtime.InteropServices;
+    using NuPattern;
+    using NuPattern.Diagnostics;
+    using NuPattern.VisualStudio;
+    using NuPattern.Runtime.Diagnostics;
+    using ServiceMatrix.Diagramming.Views;
+    using ServiceMatrix.Diagramming;
+    using DslShell = Microsoft.VisualStudio.Modeling.Shell;
+    using NServiceBusStudio.Automation.Exceptions;
+    using System.IO;
+    using System.Reflection;
+    using ExceptionReporting;
+
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
@@ -36,7 +35,7 @@ namespace NServiceBusStudio
     [ProvideService(typeof(IDiagramsWindowsManager), ServiceName = "IDiagramsWindowsManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
     [ProvideService(typeof(ServiceMatrixDiagramToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
-    [DslShell::ProvideBindingPath]
+    [DslShell.ProvideBindingPathAttribute]
     public sealed class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
     {
         [Import]
@@ -46,14 +45,14 @@ namespace NServiceBusStudio
         {
             base.Initialize();
 
-            this.AddServices();
-            this.EnsureCreateTraceOutput();
-            this.TrackUnhandledExceptions();
+            AddServices();
+            EnsureCreateTraceOutput();
+            TrackUnhandledExceptions();
         }
 
         private void TrackUnhandledExceptions()
         {
-            var reporter = new ExceptionReporting.ExceptionReporter();
+            var reporter = new ExceptionReporter();
             reporter.Config.AppName = "ServiceMatrix";
             reporter.Config.AppVersion = "2.0.2";
             reporter.Config.CompanyName = "Particular Software";
@@ -66,7 +65,7 @@ namespace NServiceBusStudio
             reporter.Config.ContactMessageTop = "[ServiceMatrix] Exception Report";
 
             var type = typeof(TraceSourceExtensions);
-            var field = type.GetField("ShowExceptionAction", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+            var field = type.GetField("ShowExceptionAction", BindingFlags.Static | BindingFlags.NonPublic);
             field.SetValue(null, new Action<string, Exception>((s, e) =>
             {
                 var customMessage = "";
@@ -109,7 +108,7 @@ namespace NServiceBusStudio
                 traceManager.SetTracingLevel(StatisticsManager.StatisticsListenerNamespace, SourceLevels.All);
             }
 
-            this.TraceOutputWindowManager.CreateTracePane(new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new[] { StatisticsManager.StatisticsListenerNamespace });
+            TraceOutputWindowManager.CreateTracePane(new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new[] { StatisticsManager.StatisticsListenerNamespace });
         }
 
         private void AddServices()
@@ -121,7 +120,7 @@ namespace NServiceBusStudio
 
         void IDetailsWindowsManager.Show()
         {
-            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            var window = EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var frame = (IVsWindowFrame)window.Frame;
@@ -141,7 +140,7 @@ namespace NServiceBusStudio
 
         void IDiagramsWindowsManager.Show()
         {
-            var window = this.EnsureCreateToolWindow<ServiceMatrixDiagramToolWindow>();
+            var window = EnsureCreateToolWindow<ServiceMatrixDiagramToolWindow>();
             if (window != null)
             {
                 var frame = (IVsWindowFrame)window.Frame;
@@ -151,7 +150,7 @@ namespace NServiceBusStudio
 
         private void EnableDisableDetailsPanel(bool enable)
         {
-            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            var window = EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var content = (DetailsPanel)window.Content;
@@ -161,20 +160,12 @@ namespace NServiceBusStudio
 
         T EnsureCreateToolWindow<T>() where T : class
         {
-            var window = this.FindToolWindow(typeof(T), 0, false);
+            var window = FindToolWindow(typeof(T), 0, false);
             if (window == null)
             {
-                try
-                {
-                    window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
-                    var serviceContainer = (IServiceContainer)this;
-                    serviceContainer.AddService(typeof(T), window.As<T>(), true);
-                }
-                catch (Exception ex)
-                {
-                    var s = ex.Message;
-                    throw;
-                }
+                window = CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
+                var serviceContainer = (IServiceContainer)this;
+                serviceContainer.AddService(typeof(T), window.As<T>(), true);
             }
 
             return window as T;

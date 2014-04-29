@@ -14,6 +14,9 @@ using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System.Windows.Input;
+    using NServiceBusStudio.Automation.Commands;
+
     public class UseCaseFeature :  IInfrastructureFeature
     {
         private IPatternManager PatternManager { get; set; }
@@ -21,7 +24,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         // Initialization
         public void Initialize(IApplication app, IProductElement infrastructure, IServiceProvider serviceProvider, IPatternManager patternManager)
         {
-            this.PatternManager = patternManager;
+            PatternManager = patternManager;
             UpdateElementsForUseCase(app, serviceProvider.TryGetService<ISolution>(), serviceProvider);
 
             var handler = new EventHandler((s, e) =>
@@ -55,7 +58,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             var instanceName = vm.AddNewElement(a.Design.UseCases.AsCollection().Info);
             if (!String.IsNullOrEmpty(instanceName))
             {
-                using (new MouseCursor(System.Windows.Input.Cursors.Wait))
+                using (new MouseCursor(Cursors.Wait))
                 {
                     var useCase = a.Design.UseCases.CreateUseCase(instanceName);
                     useCase.AddEndpointStartingUseCase(e);
@@ -66,7 +69,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public void AddEndpointToUseCase(IAbstractEndpoint endpoint, IApplication application, IServiceProvider sp)
         {
-            var command = new Commands.AddReferenceToUseCaseCommand { CurrentElement = endpoint.As<IProductElement>()};
+            var command = new AddReferenceToUseCaseCommand { CurrentElement = endpoint.As<IProductElement>()};
             command.Execute();
         }
     }

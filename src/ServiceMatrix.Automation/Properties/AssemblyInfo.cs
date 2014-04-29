@@ -7,6 +7,8 @@ using Microsoft.VisualStudio.ExtensibilityHosting;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+using NuPattern.ComponentModel.Composition;
+
 [assembly: AssemblyTitle("NServiceBusStudio.Automation")]
 [assembly: AssemblyCompany("Particular")]
 [assembly: AssemblyProduct("ServiceMatrix.Automation")]
@@ -23,5 +25,5 @@ using Microsoft.VisualStudio.ExtensibilityHosting;
 
 [assembly: NeutralResourcesLanguage("en")]
 
-[assembly: VsCatalogName(NuPattern.ComponentModel.Composition.Catalog.DefaultCatalogName)]
+[assembly: VsCatalogName(Catalog.DefaultCatalogName)]
 [assembly: VsCatalogName("Microsoft.VisualStudio.Default")]

@@ -1,37 +1,34 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.Linq;
-using System.IO;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Shell;
-using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
-using NuPattern;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.Linq;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using Microsoft.VisualStudio.Shell;
+    using System.Runtime.InteropServices;
+    using Microsoft.VisualStudio;
+    using NuPattern;
+    using Command = NuPattern.Runtime.Command;
+
     [Category("General")]
     [DisplayName("Collapse Solution Explorer Folders")]
     [Description("Collapse solution explorer folders matching names.")]
     [CLSCompliant(false)]
-    public class CollapseFoldersCommand : NuPattern.Runtime.Command
+    public class CollapseFoldersCommand : Command
     {
         [Import(typeof(SVsServiceProvider))]
         private IServiceProvider ServiceProvider { get; set; }
 
         public override void Execute()
         {
-            var solutionExplorerWindow = this.GetSolutionExplorerToolWindow();
-            var hierarchy = this.ServiceProvider.GetService<SVsSolution>() as IVsUIHierarchy;
+            var solutionExplorerWindow = GetSolutionExplorerToolWindow();
+            var hierarchy = ServiceProvider.GetService<SVsSolution>() as IVsUIHierarchy;
 
-            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new string[] { "GeneratedCode", "References" });
-            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new string[] { "GeneratedCode", "References" });
-            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new string[] { "Infrastructure", "GeneratedCode", "References" });
-            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new string[] { "Infrastructure", "GeneratedCode", "References" });
+            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new[] { "GeneratedCode", "References" });
+            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new[] { "GeneratedCode", "References" });
+            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new[] { "Infrastructure", "GeneratedCode", "References" });
+            CollapseHierarchyItems(solutionExplorerWindow, hierarchy, 0xfffffffe, false, new[] { "Infrastructure", "GeneratedCode", "References" });
         }
 
         private void CollapseHierarchyItems(IVsUIHierarchyWindow toolWindow, IVsHierarchy hierarchy, uint itemid, bool hierIsSolution
@@ -39,14 +36,14 @@ namespace NServiceBusStudio.Automation.Commands
         {
             IntPtr ptr;
             uint num2;
-            Guid gUID = typeof(IVsHierarchy).GUID;
+            var gUID = typeof(IVsHierarchy).GUID;
             if ((hierarchy.GetNestedHierarchy(itemid, ref gUID, out ptr, out num2) == 0) && (IntPtr.Zero != ptr))
             {
-                IVsHierarchy objectForIUnknown = Marshal.GetObjectForIUnknown(ptr) as IVsHierarchy;
+                var objectForIUnknown = Marshal.GetObjectForIUnknown(ptr) as IVsHierarchy;
                 Marshal.Release(ptr);
                 if (objectForIUnknown != null)
                 {
-                    this.CollapseHierarchyItems(toolWindow, objectForIUnknown, num2, false, captions);
+                    CollapseHierarchyItems(toolWindow, objectForIUnknown, num2, false, captions);
                 }
             }
             else
@@ -54,26 +51,26 @@ namespace NServiceBusStudio.Automation.Commands
                 object obj2;
                 if (!hierIsSolution)
                 {
-                    string canonicalname;
                     object captionobj;
                     hierarchy.GetProperty(itemid, (int)__VSHPROPID.VSHPROPID_Caption, out captionobj);
                     var caption = (string)captionobj;
                     if (captions.Contains(caption))
                     {
+                        string canonicalname;
                         hierarchy.GetCanonicalName(itemid, out canonicalname);
                         ErrorHandler.ThrowOnFailure(toolWindow.ExpandItem(hierarchy as IVsUIHierarchy, itemid, EXPANDFLAGS.EXPF_CollapseFolder));
                     }
                 }
                 if (hierarchy.GetProperty(itemid, (int)__VSHPROPID.VSHPROPID_FirstVisibleChild, out obj2) == 0)
                 {
-                    uint itemId = this.GetItemId(obj2);
+                    var itemId = GetItemId(obj2);
                     while (itemId != uint.MaxValue)
                     {
-                        this.CollapseHierarchyItems(toolWindow, hierarchy, itemId, false, captions);
-                        int hr = hierarchy.GetProperty(itemId, (int)__VSHPROPID.VSHPROPID_NextVisibleSibling, out obj2);
+                        CollapseHierarchyItems(toolWindow, hierarchy, itemId, false, captions);
+                        var hr = hierarchy.GetProperty(itemId, (int)__VSHPROPID.VSHPROPID_NextVisibleSibling, out obj2);
                         if (hr == 0)
                         {
-                            itemId = this.GetItemId(obj2);
+                            itemId = GetItemId(obj2);
                         }
                         else
                         {
@@ -117,16 +114,16 @@ namespace NServiceBusStudio.Automation.Commands
         private IVsUIHierarchyWindow GetSolutionExplorerToolWindow()
         {
             IVsUIHierarchyWindow window = null;
-            IVsUIShell service = this.ServiceProvider.GetService<SVsUIShell>() as IVsUIShell;
+            var service = ServiceProvider.GetService<SVsUIShell>() as IVsUIShell;
             if (service != null)
             {
                 uint grfFTW = 0;
-                Guid rguidPersistenceSlot = new Guid("{3AE79031-E1BC-11D0-8F78-00A0C9110057}");
-                IVsWindowFrame ppWindowFrame = null;
+                var rguidPersistenceSlot = new Guid("{3AE79031-E1BC-11D0-8F78-00A0C9110057}");
+                IVsWindowFrame ppWindowFrame;
                 service.FindToolWindow(grfFTW, ref rguidPersistenceSlot, out ppWindowFrame);
                 if (ppWindowFrame != null)
                 {
-                    object pvar = null;
+                    object pvar;
                     ppWindowFrame.GetProperty((int)__VSFPROPID.VSFPROPID_DocView, out pvar);
                     if (pvar != null)
                     {

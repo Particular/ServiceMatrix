@@ -12,7 +12,7 @@ namespace NServiceBusStudio.Automation.Extensions
             var generatedConventions = string.Empty;
             try
             {
-                var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
+                var app = endpoint.Root.As<IApplication>();
 
                 var rootNameSpace = string.Empty;
                 var applicationName = app.CodeIdentifier;

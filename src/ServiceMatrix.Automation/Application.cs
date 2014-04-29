@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime;
-using Microsoft.VisualStudio.Shell.Interop;
-using NServiceBusStudio.Core;
-using NuPattern;
-
-using AbstractEndpoint;
-using NuPattern.Diagnostics;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.ComponentModel.Composition;
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using NServiceBusStudio.Core;
+    using NuPattern;
+    using AbstractEndpoint;
+    using NuPattern.Diagnostics;
+
 	partial class Application
 	{
 		private static bool versionInitialized;
@@ -56,11 +51,6 @@ namespace NServiceBusStudio
             get { return serviceProvider; }
 		}
 
-        partial void Create()
-        {
-            var bag = this.AsProduct().ProductState.PropertyBag;
-        }
-
         public event EventHandler OnApplicationLoaded;
 
         public void RaiseOnApplicationLoaded()
@@ -71,10 +61,10 @@ namespace NServiceBusStudio
             }
 
             // IsDirty should be initialized to true
-            this.IsDirty = true;
+            IsDirty = true;
 
             // IsValidLicensed should be initialized to true
-            this.IsValidLicensed = true;
+            IsValidLicensed = true;
         }
 
         // This event is raised even initializing after deserializing the endpoint
@@ -112,7 +102,7 @@ namespace NServiceBusStudio
             }
         }
 
-        private bool firstBuild = false;
+        bool firstBuild;
         public void CheckForFirstBuild()
         {
             if (!firstBuild)
@@ -124,9 +114,9 @@ namespace NServiceBusStudio
 
         public static void ResetIsDirtyFlag()
         {
-            if (Application.currentApplication != null)
+            if (currentApplication != null)
             {
-                Application.currentApplication.IsDirty = true;
+                currentApplication.IsDirty = true;
             }
         }
     }

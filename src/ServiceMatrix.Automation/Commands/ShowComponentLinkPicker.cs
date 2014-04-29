@@ -15,6 +15,9 @@ using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Commands
 {
+    using Command = NuPattern.Runtime.Command;
+    using IComponent = NServiceBusStudio.IComponent;
+
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -22,7 +25,7 @@ namespace AbstractEndpoint.Automation.Commands
     [Category("General")]
     [Description("Shows a Component Picker dialog where components may chosen, and then linked to the endpoint.")]
     [CLSCompliant(false)]
-    public class ShowComponentLinkPicker : NuPattern.Runtime.Command
+    public class ShowComponentLinkPicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowComponentLinkPicker>();
 
@@ -58,7 +61,7 @@ namespace AbstractEndpoint.Automation.Commands
             this.ValidateObject();
 
             var element = CurrentElement.As<IAbstractEndpointComponents>();
-            var components = CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component)
+            var components = CurrentElement.Root.As<IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component)
                 .Except(element.AbstractComponentLinks.Select(cl => cl.ComponentReference.Value));
             var existingServiceNames = components.Select(e => String.Format ("{0}.{1}", e.Parent.Parent.InstanceName, e.InstanceName));
             var picker = WindowFactory.CreateDialog<ComponentPicker>() as IServicePicker;
@@ -67,14 +70,14 @@ namespace AbstractEndpoint.Automation.Commands
 
             picker.Title = "Deploy components...";
 
-            var currentEndpoint = this.CurrentElement.Parent.As<IAbstractEndpoint>();
+            var currentEndpoint = CurrentElement.Parent.As<IAbstractEndpoint>();
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().Value)
                 {
                     foreach (var selectedElement in picker.SelectedItems)
                     {
-                        var selectedCompoenent = default(NServiceBusStudio.IComponent);
+                        var selectedCompoenent = default(IComponent);
                         if (existingServiceNames.Contains(selectedElement))
                         {
                             selectedCompoenent = components.FirstOrDefault(e => String.Equals(String.Format ("{0}.{1}", e.Parent.Parent.InstanceName, e.InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));

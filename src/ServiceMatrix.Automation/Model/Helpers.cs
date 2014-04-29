@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.Model
+﻿namespace NServiceBusStudio.Automation.Model
 {
+    using NuPattern.Runtime;
+
     public static class Helpers
     {
         public static IComponent GetComponentFromLinkedElement(IProductElement currentElement)

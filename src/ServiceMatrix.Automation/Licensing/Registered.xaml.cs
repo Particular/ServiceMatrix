@@ -28,7 +28,7 @@ namespace NServiceBusStudio.Automation.Licensing
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         public void Dispose()

@@ -32,7 +32,7 @@ namespace NServiceBusStudio.Automation.Dialog
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
         }
 
@@ -49,30 +49,30 @@ namespace NServiceBusStudio.Automation.Dialog
         private void ok_Click(object sender, RoutedEventArgs e)
         {
             // Copy code into Clipboard
-            Clipboard.SetText(this.Code);
+            Clipboard.SetText(Code);
 
-            var endpoint = this.Component.Parent.Parent.Parent.Parent.Endpoints.GetAll()
-                   .FirstOrDefault(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this.Component));
+            var endpoint = Component.Parent.Parent.Parent.Parent.Endpoints.GetAll()
+                   .FirstOrDefault(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == Component));
 
             if (endpoint != null)
             {
                 // Open Component Handler
                 var filepath = String.Format("{0}.{1}\\{2}\\{3}.cs",
-                    this.Component.Parent.Parent.Parent.Parent.Parent.CodeIdentifier,
+                    Component.Parent.Parent.Parent.Parent.Parent.CodeIdentifier,
                     endpoint.InstanceName,
-                    this.Component.Parent.Parent.CodeIdentifier,
-                    this.Component.CodeIdentifier);
+                    Component.Parent.Parent.CodeIdentifier,
+                    Component.CodeIdentifier);
 
-                var item = this.Solution.Find(filepath).FirstOrDefault();
+                var item = Solution.Find(filepath).FirstOrDefault();
                 if (item != null)
                 {
-                    this.UriService.Open(item);
+                    UriService.Open(item);
                 }
             }
             
 
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
     }
 }

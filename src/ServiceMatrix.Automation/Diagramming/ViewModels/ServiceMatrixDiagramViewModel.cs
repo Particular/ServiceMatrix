@@ -10,6 +10,7 @@ using System.Windows;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using System.Windows.Input;
     using NServiceBusStudio.Automation.Model;
 
     public class ServiceMatrixDiagramViewModel : INotifyPropertyChanged
@@ -21,11 +22,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceMatrixDiagramViewModel(ServiceMatrixDiagramAdapter adapter)
         {
-            this.Adapter = adapter;
-            this.Diagram = adapter.ViewModel;
+            Adapter = adapter;
+            Diagram = adapter.ViewModel;
             IsServiceMatrixLicenseExpired = !GlobalSettings.Instance.IsLicenseValid ;
 
-            this.OnShowAddEndpoint = new RelayCommand(() => {
+            OnShowAddEndpoint = new RelayCommand(() => {
                 var window = new AddEndpoint();
                 var result = window.ShowDialog();
 
@@ -33,13 +34,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 {
                     try
                     {
-                        this.Adapter.AddEndpoint(window.EndpointName.Text, window.EndpointHostType.SelectedValue.ToString());
+                        Adapter.AddEndpoint(window.EndpointName.Text, window.EndpointHostType.SelectedValue.ToString());
                     }
                     catch (OperationCanceledException) { }
                 }
             });
 
-            this.OnShowAddService = new RelayCommand(() =>
+            OnShowAddService = new RelayCommand(() =>
             {
                 var window = new AddService();
                 var result = window.ShowDialog();
@@ -48,7 +49,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 {
                     try
                     {
-                        this.Adapter.AddService(window.ServiceName.Text);
+                        Adapter.AddService(window.ServiceName.Text);
                     }
                     catch (OperationCanceledException) { }
                 }
@@ -56,16 +57,16 @@ namespace ServiceMatrix.Diagramming.ViewModels
         }
 
         
-        public System.Windows.Input.ICommand OnShowAddService { get; set; }
-        public System.Windows.Input.ICommand OnShowAddEndpoint { get; set; }
+        public ICommand OnShowAddService { get; set; }
+        public ICommand OnShowAddEndpoint { get; set; }
        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChange(string property)
         {
-            if (this.PropertyChanged != null)
+            if (PropertyChanged != null)
             {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(property));
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
             }
         }
     }

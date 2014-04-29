@@ -1,15 +1,11 @@
-﻿using Microsoft.Win32;
-using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using Microsoft.Win32;
+    using NuPattern.Runtime;
+    using System;
+    using System.ComponentModel;
+    using System.Net.Http;
+
     [CLSCompliant(false)]
     [Category("General")]
     [Description("Get ServiceControlUri based on current configuration")]

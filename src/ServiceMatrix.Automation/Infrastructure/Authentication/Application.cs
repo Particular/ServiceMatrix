@@ -16,7 +16,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return (this.Design.Infrastructure != null && this.Design.Infrastructure.Security != null && this.Design.Infrastructure.Security.Authentication != null);
+                return (Design.Infrastructure != null && Design.Infrastructure.Security != null && Design.Infrastructure.Security.Authentication != null);
             }
         }
     }

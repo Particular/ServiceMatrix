@@ -1,16 +1,9 @@
-﻿using NServiceBusStudio;
-using NuPattern.Diagnostics;
-using NuPattern.Library.Commands;
-using ServiceMatrix.Diagramming.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NuPattern.Library.Commands
+﻿namespace NuPattern.Library.Commands
 {
+    using NServiceBusStudio;
+    using NuPattern.Diagnostics;
+    using System.Linq;
+
     public class GenerateComponentCodeCommand : GenerateProductCodeCommandCustom
     {
         private static readonly ITracer tracer = Tracer.Get<GenerateComponentCodeCommand>();
@@ -21,8 +14,8 @@ namespace NuPattern.Library.Commands
 
         public override void Execute()
         {
-            var app = this.CurrentElement.Root.As<IApplication>();
-            var component = this.CurrentElement.As<IComponent>();
+            var app = CurrentElement.Root.As<IApplication>();
+            var component = CurrentElement.As<IComponent>();
 
             if (CheckIsDeployed)
             {

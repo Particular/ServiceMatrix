@@ -31,7 +31,7 @@ namespace AbstractEndpoint.Automation.Dialog
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
         }
 
@@ -55,19 +55,19 @@ namespace AbstractEndpoint.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.AddEndpointText.Text))
+            if (!string.IsNullOrEmpty(AddEndpointText.Text))
             {
                 AddEndpointItem();
             }
-            this.SelectedItems = this.EndpointsList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
-            this.DialogResult = true;
-            this.Close();
+            SelectedItems = EndpointsList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            DialogResult = true;
+            Close();
         }
 
         private void AddEndpoint_Click(object sender, RoutedEventArgs e)
         {
-            this.AddEndpointText.Text = this.AddEndpointText.Text.Trim();
-            if (this.AddEndpointText.Text.Length > 0)
+            AddEndpointText.Text = AddEndpointText.Text.Trim();
+            if (AddEndpointText.Text.Length > 0)
             {
                 AddEndpointItem();
                 AddEndpointCancel_Click(null, null);
@@ -78,23 +78,23 @@ namespace AbstractEndpoint.Automation.Dialog
         {
             Dispatcher.Invoke(new Action(() =>
             {
-                var endpoint = String.Format ("{0} [{1}]", this.AddEndpointText.Text, this.AddEndpointType.Text);
+                var endpoint = String.Format ("{0} [{1}]", AddEndpointText.Text, AddEndpointType.Text);
                 Elements.Add(endpoint);
-                this.EndpointsList.SelectedItems.Add(endpoint);
-                this.AddEndpointText.Text = string.Empty;
+                EndpointsList.SelectedItems.Add(endpoint);
+                AddEndpointText.Text = string.Empty;
             }));
         }
 
         private void NewEndpoint_Click(object sender, RoutedEventArgs e)
         {
-            this.NewEndpoint.Visibility = System.Windows.Visibility.Visible;
-            this.AddEndpointText.Text = "";
-            this.AddEndpointText.Focus();
+            NewEndpoint.Visibility = Visibility.Visible;
+            AddEndpointText.Text = "";
+            AddEndpointText.Focus();
         }
 
         private void AddEndpointCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.NewEndpoint.Visibility = System.Windows.Visibility.Collapsed;
+            NewEndpoint.Visibility = Visibility.Collapsed;
         }
         
     }

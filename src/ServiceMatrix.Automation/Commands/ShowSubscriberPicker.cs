@@ -13,6 +13,8 @@ using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using Command = NuPattern.Runtime.Command;
+
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -20,7 +22,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a Service Picker dialog where new services may be created and chosen, and then adds the current event to those services.")]
     [CLSCompliant(false)]
-    public class ShowSubscriberPicker : NuPattern.Runtime.Command
+    public class ShowSubscriberPicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowSubscriberPicker>();
 

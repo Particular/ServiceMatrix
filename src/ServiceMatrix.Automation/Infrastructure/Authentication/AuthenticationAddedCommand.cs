@@ -11,11 +11,13 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Add authentication code for all the endpoints")]
     [Category("General")]
     [Description("Add authentication code for all the endpoints.")]
     [CLSCompliant(false)]
-    public class AuthenticationAddedCommand : NuPattern.Runtime.Command
+    public class AuthenticationAddedCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -45,7 +47,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         public override void Execute()
         {
-            AuthenticationFeature.GenerateAuthenticationCodeOnEndpoints(this.CurrentElement.Root.As<IApplication>(), this.ServiceProvider);
+            AuthenticationFeature.GenerateAuthenticationCodeOnEndpoints(CurrentElement.Root.As<IApplication>(), ServiceProvider);
         }
     }
 }

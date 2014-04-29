@@ -1,15 +1,12 @@
-﻿using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using NuPattern.Runtime;
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+
     [CLSCompliant(false)]
     [DisplayName("GetEndpointPathValueProvider")]
     [Category("General")]
@@ -29,8 +26,8 @@ namespace NServiceBusStudio.Automation.ValueProviders
         {
             try
             {
-                var app = this.CurrentElement.Root.As<IApplication>();
-                var component = this.CurrentElement.As<IComponent>();
+                var app = CurrentElement.Root.As<IApplication>();
+                var component = CurrentElement.As<NServiceBusStudio.IComponent>();
 
                 var endpoint = app.Design.Endpoints.GetAll()
                     .FirstOrDefault(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
@@ -38,7 +35,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
                 if (endpoint != null)
                 {
                     var path = String.Format ("\\{0}.{1}", app.InstanceName, endpoint.InstanceName);
-                    if (this.AddInfrastructureFolder)
+                    if (AddInfrastructureFolder)
                     {
                         path += "\\Infrastructure";                        
                     }

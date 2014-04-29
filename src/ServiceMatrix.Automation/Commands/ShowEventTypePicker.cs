@@ -15,7 +15,8 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    using Extensions;
+    using NServiceBusStudio.Automation.Extensions;
+    using Command = NuPattern.Runtime.Command;
 
     /// <summary>
     /// A custom command that performs some automation.
@@ -24,7 +25,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a dialog where the user can choose or create an event, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowEventTypePicker : NuPattern.Runtime.Command
+    public class ShowEventTypePicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowEventTypePicker>();
 
@@ -66,10 +67,10 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentComponent = this.CurrentElement.As<IComponent>();
-            if (this.CurrentComponent == null)
+            CurrentComponent = CurrentElement.As<IComponent>();
+            if (CurrentComponent == null)
             {
-                this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
+                CurrentComponent = CurrentElement.Parent.As<IComponent>();
             }
 
             // Verify all [Required] and [Import]ed properties have valid values.
@@ -105,8 +106,8 @@ namespace NServiceBusStudio.Automation.Commands
                     if (CurrentComponent.UnfoldedCustomCode)
                     {
                         var userCode = WindowFactory.CreateDialog<UserCodeChangeRequired>() as UserCodeChangeRequired;
-                        userCode.UriService = this.UriService;
-                        userCode.Solution = this.Solution;
+                        userCode.UriService = UriService;
+                        userCode.Solution = Solution;
                         userCode.Component = CurrentComponent;
                         userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Publish({0});", 
                             selectedEvent.CodeIdentifier.LowerCaseFirstCharacter(), 

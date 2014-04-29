@@ -8,23 +8,26 @@ using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using NuPattern.Runtime.Bindings;
+    using Command = NuPattern.Runtime.Command;
+
     public class InnerCommandAutomation : IAutomationExtension
     {
-        NuPattern.Runtime.Command command;
+        Command command;
 
-        public InnerCommandAutomation(NuPattern.Runtime.Command command)
+        public InnerCommandAutomation(Command command)
         {
             this.command = command;
         }
 
-        public void Execute(NuPattern.Runtime.Bindings.IDynamicBindingContext context)
+        public void Execute(IDynamicBindingContext context)
         {
             Execute();
         }
 
         public void Execute()
         {
-            this.command.Execute();
+            command.Execute();
         }
 
         public string Name { get; set; }

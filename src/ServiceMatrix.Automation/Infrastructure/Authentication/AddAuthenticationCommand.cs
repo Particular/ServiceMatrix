@@ -12,11 +12,13 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Add Authentication Elements")]
     [Category("General")]
     [Description("Generates an Authentication element on Infrastructure-Security.")]
     [CLSCompliant(false)]
-    public class AddAuthenticationCommand : NuPattern.Runtime.Command
+    public class AddAuthenticationCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -39,10 +41,10 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         public override void Execute()
         {
-            var infrastructure = this.CurrentElement.Root.As<IApplication>().Design.Infrastructure;
+            var infrastructure = CurrentElement.Root.As<IApplication>().Design.Infrastructure;
             var security = infrastructure.Security?? infrastructure.CreateSecurity("Security");
             var authentication = security.CreateAuthentication("Authentication");
-            AuthenticationFeature.InitializeAuthenticationValues(this.CurrentElement.Root.As<IApplication>(), Solution, this.ServiceProvider);
+            AuthenticationFeature.InitializeAuthenticationValues(CurrentElement.Root.As<IApplication>(), Solution, ServiceProvider);
         }
     }
 
@@ -65,8 +67,8 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         public override bool  Evaluate()
         {
- 	        return (this.CurrentElement.Root.As<IApplication>().Design.Infrastructure.Security == null
-                    || this.CurrentElement.Root.As<IApplication>().Design.Infrastructure.Security.Authentication == null);
+ 	        return (CurrentElement.Root.As<IApplication>().Design.Infrastructure.Security == null
+                    || CurrentElement.Root.As<IApplication>().Design.Infrastructure.Security.Authentication == null);
 
         }
     }

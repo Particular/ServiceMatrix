@@ -24,16 +24,16 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             var allcomponents = application.Design.Services.Service.SelectMany(s => s.Components.Component);
             var components = allcomponents.Where(c => endpoint.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference != null && cl.ComponentReference.Value == c));
 
-            this.CleanDetails();
+            CleanDetails();
 
             // Components
-            this.CreateComponentsPanelForEndpoint(solutionBuilderModel, components, endpoint.EndpointComponents.AbstractComponentLinks, 0);
+            CreateComponentsPanelForEndpoint(solutionBuilderModel, components, endpoint.EndpointComponents.AbstractComponentLinks, 0);
 
             // Commands
-            this.CreateCommandsPanel(solutionBuilderModel, components, 1);
+            CreateCommandsPanel(solutionBuilderModel, components, 1);
 
             // Events
-            this.CreateEventsPanel(solutionBuilderModel, components, 2);
+            CreateEventsPanel(solutionBuilderModel, components, 2);
 
             // UseCases
             //this.CreateUseCasesPanel(solutionBuilderModel, endpoint.As<IProductElement>(), application, 3);
@@ -49,14 +49,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => componentsPublishing.Contains(cl.ComponentReference.Value) || componentsSubscribing.Contains(cl.ComponentReference.Value)));
 
-            this.CleanDetails();
+            CleanDetails();
 
             // Endpoints
-            this.CreateEndpointsPanel(application, solutionBuilderModel, endpoints, 0);
+            CreateEndpointsPanel(application, solutionBuilderModel, endpoints, 0);
 
             // Components
-            this.CreateComponentsPanel(solutionBuilderModel, componentsPublishing, 1, "Published by ");
-            this.CreateComponentsPanel(solutionBuilderModel, componentsSubscribing, 2, "Subscribed by ");
+            CreateComponentsPanel(solutionBuilderModel, componentsPublishing, 1, "Published by ");
+            CreateComponentsPanel(solutionBuilderModel, componentsSubscribing, 2, "Subscribed by ");
 
             // UseCases
             //this.CreateUseCasesPanel(solutionBuilderModel, iEvent.As<IProductElement>(), application, 3);
@@ -72,14 +72,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => componentsSending.Contains(cl.ComponentReference.Value) || componentsReceiving.Contains(cl.ComponentReference.Value)));
 
-            this.CleanDetails();
+            CleanDetails();
 
             // Endpoints
-            this.CreateEndpointsPanel(application, solutionBuilderModel, endpoints, 0);
+            CreateEndpointsPanel(application, solutionBuilderModel, endpoints, 0);
 
             // Components
-            this.CreateComponentsPanel(solutionBuilderModel, componentsSending, 1, "Sent by ");
-            this.CreateComponentsPanel(solutionBuilderModel, componentsReceiving, 2, "Received by ");
+            CreateComponentsPanel(solutionBuilderModel, componentsSending, 1, "Sent by ");
+            CreateComponentsPanel(solutionBuilderModel, componentsReceiving, 2, "Received by ");
 
             // UseCases
             //this.CreateUseCasesPanel(solutionBuilderModel, command.As<IProductElement>(), application, 3);
@@ -92,24 +92,24 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             var endpoints = application.Design.Endpoints.GetAll()
                 .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == component));
 
-            this.CleanDetails();
+            CleanDetails();
 
             // Endpoints
-            this.CreateEndpointsPanel(application, solutionBuilderModel, endpoints, 0);
+            CreateEndpointsPanel(application, solutionBuilderModel, endpoints, 0);
 
             // Commands
-            this.CreateCommandsPanel(solutionBuilderModel, components, 1
+            CreateCommandsPanel(solutionBuilderModel, components, 1
                 , component.Publishes.As<IProductElement>());
 
             // Events
-            this.CreateEventsPanel(solutionBuilderModel, components, 2
+            CreateEventsPanel(solutionBuilderModel, components, 2
                 , component.Publishes.As<IProductElement>(), component.Subscribes.As<IProductElement>());
 
             // UseCases
             //this.CreateUseCasesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 3);
 
             // Libraries
-            this.CreateLibrariesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 4);
+            CreateLibrariesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 4);
         }
 
         private void CreateEndpointsPanel(IApplication application, ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IAbstractEndpoint> endpoints, int position)
@@ -121,7 +121,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 endpointsVM.Items.Add(new InnerPanelItem { Product = endpoint.As<IProductElement>(), Text = endpoint.As<IProductElement>().InstanceName });
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, endpointsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, endpointsVM)));
         }
 
         private void CreateEventsPanel(ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position
@@ -146,7 +146,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                     eventsVM.Items.Add(new InnerPanelItem { Product = null, Text = "[All the messages]" });
                 }
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, eventsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, eventsVM)));
         }
 
         private void CreateCommandsPanel(ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position
@@ -164,7 +164,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 commandsVM.Items.Add(new InnerPanelItem { Product = subscribe.As<IProductElement>(), Text = subscribe.InstanceName });
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
         }
 
 
@@ -181,7 +181,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 commandsVM.Items.Add(new InnerPanelItem { Product = usecase.As<IProductElement>(), Text = usecase.InstanceName });
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
         }
 
         private void CreateLibrariesPanel(ISolutionBuilderViewModel solutionBuilderModel, IProductElement product, IApplication application, int position)
@@ -206,7 +206,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 commandsVM.Items.Add(new InnerPanelItem { Product = sl, Text = sl.InstanceName });
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
         }
 
         private void CreateComponentsPanelForEndpoint(ISolutionBuilderViewModel solutionBuilderModel, 
@@ -229,7 +229,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             var view = new ComponentsOrderingView();
             view.SetComponentsView(new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
             view.SetComponentLinks(componentLinks);
-            this.SetPanel(position, view);
+            SetPanel(position, view);
         }
 
         private void CreateComponentsPanel(ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position, string Preffix = "")
@@ -244,7 +244,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                     componentsVM.Items.Add(new InnerPanelItem { Product = component.As<IProductElement>(), Text = component.InstanceName });
                 }
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
         }
 
 
@@ -270,7 +270,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
             }
 
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
         }
 
         private void CreateCommandsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
@@ -295,7 +295,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                     commandsVM.Items.Add(new InnerPanelItem { Product = command.As<IProductElement>(), Text = command.InstanceName });
                 }
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
         }
 
         private void CreateEventsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
@@ -320,7 +320,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                     eventsVM.Items.Add(new InnerPanelItem { Product = @event.As<IProductElement>(), Text = @event.InstanceName });
                 }
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, eventsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, eventsVM)));
         }
 
         private void CreateInfrastructurePanel(ISolutionBuilderViewModel solutionBuilderModel, IInfrastructure infrastructure, int position)
@@ -339,22 +339,22 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
             }
 
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, infrastructureVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, infrastructureVM)));
         }
 
         public void BuildDetailsForApplication(IApplication application, ISolutionBuilderViewModel solutionBuilderViewModel)
         {
             var allcomponents = application.Design.Services.Service.SelectMany(s => s.Components.Component);
 
-            this.CleanDetails();
+            CleanDetails();
 
-            this.SetPanel(0, new ApplicationPropertiesView { DataContext = application });
+            SetPanel(0, new ApplicationPropertiesView { DataContext = application });
 
             //Infrastructure
-            this.CreateInfrastructurePanel(solutionBuilderViewModel, application.Design.Infrastructure, 1);
+            CreateInfrastructurePanel(solutionBuilderViewModel, application.Design.Infrastructure, 1);
 
             //// Components
-            this.CreateComponentsPanel(solutionBuilderViewModel, allcomponents, 2);
+            CreateComponentsPanel(solutionBuilderViewModel, allcomponents, 2);
 
             //// Commands
             //this.CreateCommandsPanel(solutionBuilderModel, components, 1);
@@ -367,29 +367,29 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             var application = useCase.As<IProductElement>().Root.As<IApplication>();
 
-            this.CleanDetails();
+            CleanDetails();
 
             // Endpoints
-            this.CreateEndpointsUseCasePanel(application, solutionBuilderModel, useCase, 0);
+            CreateEndpointsUseCasePanel(application, solutionBuilderModel, useCase, 0);
 
             // Components
-            this.CreateComponentsForUseCasePanel(solutionBuilderModel, useCase, 1);
+            CreateComponentsForUseCasePanel(solutionBuilderModel, useCase, 1);
 
             // Commands
-            this.CreateCommandsForUseCasePanel(solutionBuilderModel, useCase, 2);
+            CreateCommandsForUseCasePanel(solutionBuilderModel, useCase, 2);
 
             // Events
-            this.CreateEventsForUseCasePanel(solutionBuilderModel, useCase, 3);
+            CreateEventsForUseCasePanel(solutionBuilderModel, useCase, 3);
         }
 
         internal void BuildDetailsForLibrary(IProductElement library, ISolutionBuilderViewModel solutionBuilderModel)
         {
             var application = library.Root.As<IApplication>();
 
-            this.CleanDetails();
+            CleanDetails();
 
             // Components
-            this.CreateComponentsForLibrary(solutionBuilderModel, application, library, 1);
+            CreateComponentsForLibrary(solutionBuilderModel, application, library, 1);
         }
 
         private void CreateComponentsForLibrary(ISolutionBuilderViewModel solutionBuilderModel, IApplication application, IProductElement library, int position)
@@ -422,7 +422,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
             }
 
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
         }
 
         private void CreateEndpointsUseCasePanel(IApplication application, ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
@@ -453,7 +453,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 endpointsVM.Items.Add(new InnerPanelItem { Product = endpoint.As<IProductElement>(), Text = endpoint.As<IProductElement>().InstanceName });
             }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, endpointsVM)));
+            SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, endpointsVM)));
         }
 
     }

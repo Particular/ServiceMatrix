@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace System.Dynamic
+﻿namespace System.Dynamic
 {
 	/// <summary>
 	/// Represents a runtime type parameter to use to 
@@ -16,7 +11,7 @@ namespace System.Dynamic
 		/// </summary>
 		public TypeParameter(Type type)
 		{
-			this.Type = type;
+			Type = type;
 		}
 
 		/// <summary>

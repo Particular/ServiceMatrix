@@ -26,19 +26,19 @@ namespace NServiceBusStudio.Automation.Dialog
         public ElementHierarchyPicker()
         {
             InitializeComponent();
-            this.SelectedMasterItem = "";
-            this.SelectedSlaveItem = "";
+            SelectedMasterItem = "";
+            SelectedSlaveItem = "";
         }
 
         public new string Title 
         {
             get 
             {
-                return this.lblTitle.Content.ToString();
+                return lblTitle.Content.ToString();
             }
             set
             {
-                this.lblTitle.Content = value;
+                lblTitle.Content = value;
 
                 var uriSource = default(Uri);
 
@@ -51,16 +51,16 @@ namespace NServiceBusStudio.Automation.Dialog
                     uriSource = new Uri("../Diagramming/Styles/Images/CommandIcon.png", UriKind.Relative);
                 }
 
-                this.imgTitle.Source = new BitmapImage(uriSource);
+                imgTitle.Source = new BitmapImage(uriSource);
             }
         }
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
 
-            var textBox = (this.MasterDropDown.Template.FindName("PART_EditableTextBox", MasterDropDown) as TextBox);
+            var textBox = (MasterDropDown.Template.FindName("PART_EditableTextBox", MasterDropDown) as TextBox);
             if (textBox != null)
             {
                 textBox.Focus();
@@ -72,11 +72,11 @@ namespace NServiceBusStudio.Automation.Dialog
         {
             get
             {
-                return this.SlaveLabel.Content.ToString();
+                return SlaveLabel.Content.ToString();
             }
             set
             {
-                this.SlaveLabel.Content = value;
+                SlaveLabel.Content = value;
             }
         }
 
@@ -88,7 +88,7 @@ namespace NServiceBusStudio.Automation.Dialog
 
         public ICollection<string> MasterElements
         {
-            get { return this.Elements.Keys; }
+            get { return Elements.Keys; }
         }
 
         private string _selectedMasterItem;
@@ -98,7 +98,7 @@ namespace NServiceBusStudio.Automation.Dialog
             set
             {
                 _selectedMasterItem = value;
-                this.OnPropertyChange("SlaveElements");
+                OnPropertyChange("SlaveElements");
             }
         }
 
@@ -106,7 +106,7 @@ namespace NServiceBusStudio.Automation.Dialog
         {
             get
             {
-                var master = this.Elements.FirstOrDefault(x => x.Key == this.SelectedMasterItem);
+                var master = Elements.FirstOrDefault(x => x.Key == SelectedMasterItem);
                 if (master.Value == null)
                 {
                     return new List<string>();
@@ -123,23 +123,23 @@ namespace NServiceBusStudio.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
 
         public void SetDropdownEditable(bool isEditable)
         {
-            this.MasterDropDown.IsEditable = isEditable;
-            this.SlaveDropDown.IsEditable = isEditable;
+            MasterDropDown.IsEditable = isEditable;
+            SlaveDropDown.IsEditable = isEditable;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChange(string property)
         {
-            if (this.PropertyChanged != null)
+            if (PropertyChanged != null)
             {
-                this.PropertyChanged (this, new PropertyChangedEventArgs (property));
+                PropertyChanged (this, new PropertyChangedEventArgs (property));
             }
         }
     }

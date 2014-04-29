@@ -19,7 +19,7 @@ namespace ServiceMatrix.Diagramming.Styles
 
         private void OnClickShowMenu(object sender, RoutedEventArgs e)
         {
-            var button = sender as System.Windows.Controls.Button;
+            var button = sender as Button;
 
             // Select clicked element on Solution Builder tree view
             var viewModel = button.DataContext as GroupableNode;

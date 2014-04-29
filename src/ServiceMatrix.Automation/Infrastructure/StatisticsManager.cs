@@ -20,6 +20,8 @@ using NuPattern;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using EnvDTE;
+
     [Export]
     public class StatisticsManager
     {
@@ -45,7 +47,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         {
             get
             {
-                return Path.Combine(Path.GetDirectoryName(typeof(StatisticsManager).Assembly.Location), String.Format("{0}-{1}.{2}", Environment.MachineName, Environment.UserName, StatisticsManager.StatisticsFileExtension));
+                return Path.Combine(Path.GetDirectoryName(typeof(StatisticsManager).Assembly.Location), String.Format("{0}-{1}.{2}", Environment.MachineName, Environment.UserName, StatisticsFileExtension));
             }
         }
 
@@ -57,65 +59,65 @@ namespace NServiceBusStudio.Automation.Infrastructure
         // Registry Getters/Setters
         public RegistryKey StatisticsKey
         {
-            get { return RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(StatisticsManager.StatisticsRegistryKey); }
+            get { return RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(StatisticsRegistryKey); }
         }
 
         public bool ShouldUpload
         {
-            get { return this.StatisticsKey != null && (string)this.StatisticsKey.GetValue(StatisticsManager.UsageDataCollectionApprovedValueName, null) == "1"; }
+            get { return StatisticsKey != null && (string)StatisticsKey.GetValue(UsageDataCollectionApprovedValueName, null) == "1"; }
         }
 
         public DateTime? LastUpload
         {
-            get { return File.Exists(this.LastUploadFile) ? (DateTime?)DateTime.Parse(File.ReadAllText(this.LastUploadFile)) : null; }
-            set { File.WriteAllText(this.LastUploadFile, value.ToString()); }
+            get { return File.Exists(LastUploadFile) ? (DateTime?)DateTime.Parse(File.ReadAllText(LastUploadFile)) : null; }
+            set { File.WriteAllText(LastUploadFile, value.ToString()); }
         }
 
         public string UploadEndpointURL
         {
-            get { return (string)this.StatisticsKey.GetValue(StatisticsManager.UploadEndpointURLValueName, null); }
+            get { return (string)StatisticsKey.GetValue(UploadEndpointURLValueName, null); }
         }
 
         [ImportingConstructor]
         public StatisticsManager([Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            this.ServiceProvider = serviceProvider;
-            this.StartListening();
+            ServiceProvider = serviceProvider;
+            StartListening();
         }
 
         private void StartListening()
         {
-            this.StartCollectingStatistics();
-            this.ConfigureStatisticsUpload();
+            StartCollectingStatistics();
+            ConfigureStatisticsUpload();
         }
 
         private void ConfigureStatisticsUpload()
         {
             // Configure Statistics send
-            if (!this.ShouldUpload)
+            if (!ShouldUpload)
             {
                 return;
             }
 
             TimeSpan nextUpload = default(TimeSpan);
-            if (!this.LastUpload.HasValue)
+            if (!LastUpload.HasValue)
             {
                 // New Solution - Upload in UploadStatisticsInterval
-                this.LastUpload = DateTime.Now;
-                nextUpload = StatisticsManager.UploadStatisticsInterval;
+                LastUpload = DateTime.Now;
+                nextUpload = UploadStatisticsInterval;
             }
-            else if (this.LastUpload.Value.Add(StatisticsManager.CleanStatisticsInterval) < DateTime.Now)
+            else if (LastUpload.Value.Add(CleanStatisticsInterval) < DateTime.Now)
             {
                 // Clean statistics
-                this.StopCollectingStatistics();
+                StopCollectingStatistics();
                 File.Delete(LoggingFile);
-                this.StartCollectingStatistics();
+                StartCollectingStatistics();
 
                 // Upload in UploadStatisticsInterval
-                this.LastUpload = DateTime.Now;
-                nextUpload = StatisticsManager.UploadStatisticsInterval;
+                LastUpload = DateTime.Now;
+                nextUpload = UploadStatisticsInterval;
             }
-            else if (this.LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) < DateTime.Now)
+            else if (LastUpload.Value.Add(UploadStatisticsInterval) < DateTime.Now)
             {
                 // Upload in 10 minutes - To avoid do it now!
                 nextUpload = new TimeSpan(0, 10, 0);
@@ -123,56 +125,56 @@ namespace NServiceBusStudio.Automation.Infrastructure
             else
             {
                 // Upload when LastUpload + UploadStatisticsInterval is achieved
-                nextUpload = LastUpload.Value.Add(StatisticsManager.UploadStatisticsInterval) - DateTime.Now;
+                nextUpload = LastUpload.Value.Add(UploadStatisticsInterval) - DateTime.Now;
             }
 
             TimerUploadStatistics = new Timer();
             TimerUploadStatistics.Interval = nextUpload.TotalMilliseconds;
             TimerUploadStatistics.Start();
-            TimerUploadStatistics.Elapsed += (s, e) => this.UploadStatistics();
+            TimerUploadStatistics.Elapsed += (s, e) => UploadStatistics();
         }
 
         public void StartCollectingStatistics()
         {
-            if (this.TextWriterListener == null && this.ShouldUpload)
+            if (TextWriterListener == null && ShouldUpload)
             {
                 var shouldInitializeFile = !File.Exists(LoggingFile);
 
-                this.TextWriterListener = new StatisticsTextWriterTraceListener(LoggingFile, StatisticsManager.TextWriterListenerName);
-                Tracer.Manager.AddListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
+                TextWriterListener = new StatisticsTextWriterTraceListener(LoggingFile, TextWriterListenerName);
+                Tracer.Manager.AddListener(StatisticsListenerNamespace, TextWriterListener);
 
                 if (shouldInitializeFile)
                 {
-                    tracer.TraceStatisticsHeader(this.ServiceProvider.GetService<EnvDTE.DTE, EnvDTE.DTE>(), this.ServiceProvider.GetService<SVsExtensionManager, IVsExtensionManager>());
+                    tracer.TraceStatisticsHeader(ServiceProvider.GetService<DTE, DTE>(), ServiceProvider.GetService<SVsExtensionManager, IVsExtensionManager>());
                 }
             }
         }
 
         public void StopCollectingStatistics()
         {
-            if (this.TextWriterListener != null && this.ShouldUpload)
+            if (TextWriterListener != null && ShouldUpload)
             {
-                this.TextWriterListener.Flush();
-                this.TextWriterListener.Dispose();
-                Tracer.Manager.RemoveListener(StatisticsManager.StatisticsListenerNamespace, this.TextWriterListener);
-                this.TextWriterListener = null;
+                TextWriterListener.Flush();
+                TextWriterListener.Dispose();
+                Tracer.Manager.RemoveListener(StatisticsListenerNamespace, TextWriterListener);
+                TextWriterListener = null;
             }
         }
 
         private void UploadStatistics()
         {
-            if (!File.Exists(LoggingFile) || !this.ShouldUpload || String.IsNullOrEmpty(this.UploadEndpointURL))
+            if (!File.Exists(LoggingFile) || !ShouldUpload || String.IsNullOrEmpty(UploadEndpointURL))
             {
                 return;
             }
 
-            this.StopCollectingStatistics();
+            StopCollectingStatistics();
 
             try
             {
-                using (var wc = new System.Net.WebClient())
+                using (var wc = new WebClient())
                 {
-                    var resp = wc.UploadFile(this.UploadEndpointURL, "POST", LoggingFile);
+                    var resp = wc.UploadFile(UploadEndpointURL, "POST", LoggingFile);
 
                     if (Encoding.ASCII.GetString(resp) != "\"ok\"")
                         return;
@@ -180,11 +182,11 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
                 File.Delete(LoggingFile);
                 TimerUploadStatistics.Stop();
-                this.LastUpload = DateTime.Now;
+                LastUpload = DateTime.Now;
             }
             finally
             {
-                this.StartCollectingStatistics();
+                StartCollectingStatistics();
             }
         }
 

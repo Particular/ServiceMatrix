@@ -26,20 +26,20 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceMatrixDiagramLayoutAlgorithm(ServiceMatrixDiagramMindscapeViewModel viewModel)
         {
-            this.ViewModel = viewModel;
+            ViewModel = viewModel;
         }
 
         public void LoadShapePositions (string solutionFolder)
         {
-            this.FilePath = Path.Combine(solutionFolder, "DiagramShapePositions.json");
+            FilePath = Path.Combine(solutionFolder, "DiagramShapePositions.json");
 
             // Load shape positions from file
             try
             {
-                if (File.Exists(this.FilePath))
+                if (File.Exists(FilePath))
                 {
-                    var fileContent = File.ReadAllText(this.FilePath);
-                    this.ShapePositions = JsonConvert.DeserializeObject<Dictionary<Guid, Point>>(fileContent);
+                    var fileContent = File.ReadAllText(FilePath);
+                    ShapePositions = JsonConvert.DeserializeObject<Dictionary<Guid, Point>>(fileContent);
                 }
             }
             catch (Exception ex)
@@ -48,36 +48,36 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
 
             // If File not exists or an error ocurred
-            if (this.ShapePositions == null)
+            if (ShapePositions == null)
             {
-                this.ShapePositions = new Dictionary<Guid, Point>();
+                ShapePositions = new Dictionary<Guid, Point>();
             }
         }
 
         public void UnloadShapePositiions ()
         {
-            this.FilePath = null;
-            this.ShapePositions = null;
+            FilePath = null;
+            ShapePositions = null;
         }
 
 
         public void SetElementPosition(GroupableNode node)
         {
-            var position = this.LoadElementPosition(node);
+            var position = LoadElementPosition(node);
 
             if (!position.HasValue)
             {
-                position = this.CalculateElementPosition(node);
-                this.SaveElementPosition(node, position.Value);
+                position = CalculateElementPosition(node);
+                SaveElementPosition(node, position.Value);
             }
 
-            node.BoundsChanged += (s, e) => this.SaveElementPosition(node, node.Bounds.Location);
+            node.BoundsChanged += (s, e) => SaveElementPosition(node, node.Bounds.Location);
             node.Bounds = new Rect (position.Value, node.Bounds.Size);
         }
 
         public void RemoveElementPosition(GroupableNode node)
         {
-            this.SaveElementPosition(node, null);
+            SaveElementPosition(node, null);
         }
 
         private Point CalculateElementPosition(GroupableNode node)
@@ -115,7 +115,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             const int ShapeWidth = 350;
             double y = 100.0;
 
-            var shapesOnSimilarXPosition = this.ViewModel.Nodes.Cast<GroupableNode>().Where(n => n.ParentNode == null &&
+            var shapesOnSimilarXPosition = ViewModel.Nodes.Cast<GroupableNode>().Where(n => n.ParentNode == null &&
                                                                                             ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||
                                                                                             (n.Bounds.X + n.Bounds.Width >= x && n.Bounds.X + n.Bounds.Width <= x + ShapeWidth)));
             if (shapesOnSimilarXPosition.Any())
@@ -149,12 +149,12 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
 
             // Saving into file
-            if (this.FilePath != null)
+            if (FilePath != null)
             {
                 try
                 {
-                    var fileContent = JsonConvert.SerializeObject(this.ShapePositions);
-                    File.WriteAllText(this.FilePath, fileContent);
+                    var fileContent = JsonConvert.SerializeObject(ShapePositions);
+                    File.WriteAllText(FilePath, fileContent);
                 }
                 catch (Exception ex) 
                 {

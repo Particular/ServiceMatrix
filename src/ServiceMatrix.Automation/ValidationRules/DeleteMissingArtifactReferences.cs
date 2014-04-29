@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Linq;
-using NuPattern.Runtime;
-using System.Diagnostics;
-using NuPattern.Runtime.Validation;
-using NuPattern.Diagnostics;
-using NuPattern;
-using NuPattern.Runtime.References;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio.Automation.ValidationRules
+﻿namespace NServiceBusStudio.Automation.ValidationRules
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.Validation;
+    using NuPattern.Diagnostics;
+    using NuPattern;
+    using NuPattern.Runtime.References;
+    using NuPattern.VisualStudio.Solution;
+
     /// <summary>
     /// Deletes missing artifact references.
     /// </summary>
@@ -42,51 +40,43 @@ namespace NServiceBusStudio.Automation.ValidationRules
         {
             Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
 
-            var references = SolutionArtifactLinkReference.GetReferences(this.Element).ToArray();
+            var references = SolutionArtifactLinkReference.GetReferences(Element).ToArray();
 
-            using (var tx = this.Element.BeginTransaction())
+            using (var tx = Element.BeginTransaction())
             {
-
-                try
+                for (var i = 0; i < references.Length; i++)
                 {
-                    for (int i = 0; i < references.Length; i++)
+                    var reference = references[i];
+
+                    //tracer.TraceData(TraceEventType.Verbose, Resources.EventTracing_StatusEventId,
+                    //    Strings.DeleteMissingArtifactReferences.VerifyingLinks(
+                    //        this.Element.Info != null ? this.Element.Info.DisplayName : "",
+                    //        this.Element.InstanceName,
+                    //        i + 1, references.Length));
+
+                    if (UriService.TryResolveUri<IItemContainer>(reference) == null)
                     {
-                        var reference = references[i];
+                        var instance = Element.References.FirstOrDefault(x =>
+                            x.Kind == ReferenceKindConstants.ArtifactLink &&
+                            x.Value == reference.OriginalString);
 
-                        //tracer.TraceData(TraceEventType.Verbose, Resources.EventTracing_StatusEventId,
-                        //    Strings.DeleteMissingArtifactReferences.VerifyingLinks(
-                        //        this.Element.Info != null ? this.Element.Info.DisplayName : "",
-                        //        this.Element.InstanceName,
-                        //        i + 1, references.Length));
-
-                        if (UriService.TryResolveUri<IItemContainer>(reference) == null)
+                        if (instance != null)
                         {
-                            var instance = this.Element.References.FirstOrDefault(x =>
-                                x.Kind == ReferenceKindConstants.ArtifactLink &&
-                                x.Value == reference.OriginalString);
-
-                            if (instance != null)
+                            try
                             {
-                                try
-                                {
-                                    instance.Delete();
-                                }
-                                catch (Exception ex)
-                                {
-                                    tracer.Error(ex.Message);
-                                }
+                                instance.Delete();
                             }
-
+                            catch (Exception ex)
+                            {
+                                tracer.Error(ex.Message);
+                            }
                         }
-                    }
-                    if (tx != null)
-                    {
-                        tx.Commit();
+
                     }
                 }
-                finally
+                if (tx != null)
                 {
-                    //tracer.TraceData(TraceEventType.Verbose, Resources.EventTracing_StatusEventId, Strings.EventTracing.Ready);
+                    tx.Commit();
                 }
             }
             return Enumerable.Empty<ValidationResult>();

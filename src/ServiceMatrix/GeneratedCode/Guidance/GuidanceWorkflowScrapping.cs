@@ -1,13 +1,11 @@
 
-using NuPattern.Runtime.Guidance.Workflow;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace NServiceBusStudio.Guidance
 {
+    using NuPattern.Runtime.Guidance.Workflow;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class GuidanceWorkflowScrapping
     {
         private List<Tuple<string, string, string>> Items
@@ -123,7 +121,7 @@ namespace NServiceBusStudio.Guidance
                 Name = "ServiceMatrix Guidance",
             };
 
-            foreach (var topic in this.Items.GroupBy(x => x.Item1))
+            foreach (var topic in Items.GroupBy(x => x.Item1))
             {
                 var fork = new Fork
                 {
@@ -134,7 +132,7 @@ namespace NServiceBusStudio.Guidance
                 else
                     previousJoin.ConnectTo(fork);
 
-                var lastItem = this.GenerateItems(topic, fork);
+                var lastItem = GenerateItems(topic, fork);
 
 
                 var join = new Join

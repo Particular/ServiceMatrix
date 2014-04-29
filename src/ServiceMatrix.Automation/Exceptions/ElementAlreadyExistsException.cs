@@ -13,8 +13,8 @@ namespace NServiceBusStudio.Automation.Exceptions
 
         public ElementAlreadyExistsException(string message, string elementType, string elementName) : base (message)
         {
-            this.ElementType = elementType;
-            this.ElementName = elementName;
+            ElementType = elementType;
+            ElementName = elementName;
         }
     }
 }

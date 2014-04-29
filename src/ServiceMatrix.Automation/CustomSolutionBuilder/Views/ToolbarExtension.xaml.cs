@@ -24,6 +24,10 @@ using System.Diagnostics;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using System.Web;
+    using EnvDTE;
+    using Process = System.Diagnostics.Process;
+
     /// <summary>
     /// Interaction logic for ToolbarExtension.xaml
     /// </summary>
@@ -56,38 +60,38 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         private void EnableDisableNServiceBusView(bool enable)
         {
-            if (this.NServiceBusView != null)
+            if (NServiceBusView != null)
             {
-                this.NServiceBusView.IsEnabled = enable;
+                NServiceBusView.IsEnabled = enable;
             }
-            this.IsEnabledNServiceBusView = enable;
+            IsEnabledNServiceBusView = enable;
         }
 
         private void Canvas_Click(object sender, RoutedEventArgs e)
         {
-            new ShowNewDiagramCommand() { ServiceProvider = this.ServiceProvider }.Execute();
+            new ShowNewDiagramCommand() { ServiceProvider = ServiceProvider }.Execute();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DefaultSolutionBuilderView == null)
+            if (DefaultSolutionBuilderView == null)
             {
-                this.DefaultSolutionBuilderView = this.ContentScrollViewer.Content;
+                DefaultSolutionBuilderView = ContentScrollViewer.Content;
             }
 
             if (NServiceBusView == null)
             {
-                var SBdataContext = this.DataContext;
+                var SBdataContext = DataContext;
                 LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as ISolutionBuilderViewModel);
 
                 NServiceBusView = new LogicalView(LogicalViewModel.NServiceBusViewModel)
                     {
-                        VerticalAlignment = System.Windows.VerticalAlignment.Stretch
+                        VerticalAlignment = VerticalAlignment.Stretch
                     };
 
                 NServiceBusView.InitializeViewSelector();
 
-                EnableDisableNServiceBusView(this.IsEnabledNServiceBusView);
+                EnableDisableNServiceBusView(IsEnabledNServiceBusView);
 
                 NServiceBusView.SelectedItemChanged += (s, f) =>
                 {
@@ -97,13 +101,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                         if (selected != null)
                         {
                             var fe = selected.InnerViewModel;
-                            var window = (NServiceBusDetailsToolWindow)this.ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
+                            var window = (NServiceBusDetailsToolWindow)ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
                             if (window != null)
                             {
                                 Dispatcher.BeginInvoke(new Action(() =>
                                     {
-                                        (window.Content as DetailsPanel).SetView(this.ServiceProvider, fe, SBdataContext);
-                                        ((Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame).Show();
+                                        (window.Content as DetailsPanel).SetView(ServiceProvider, fe, SBdataContext);
+                                        ((IVsWindowFrame)window.Frame).Show();
                                     }));
                             }
                         }
@@ -115,41 +119,41 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                 NServiceBusView.DataContext = LogicalViewModel.NServiceBusViewModel;
             }
 
-            this.ShowNServiceBusStudioView(true);
+            ShowNServiceBusStudioView(true);
         }
 
         private void ShowNServiceBusStudioView(bool show = true)
         {
-            var grid = this.ContentScrollViewer.Parent as Grid;
-            var window = (NServiceBusDetailsToolWindow)this.ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
+            var grid = ContentScrollViewer.Parent as Grid;
+            var window = (NServiceBusDetailsToolWindow)ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
 
             if (show)
             {
-                this.ContentScrollViewer.Visibility = System.Windows.Visibility.Collapsed;
-                if (!grid.Children.Contains(this.NServiceBusView))
+                ContentScrollViewer.Visibility = Visibility.Collapsed;
+                if (!grid.Children.Contains(NServiceBusView))
                 {
-                    grid.Children.Add(this.NServiceBusView);
-                    this.NServiceBusView.SetValue(Grid.RowProperty, 1);
+                    grid.Children.Add(NServiceBusView);
+                    NServiceBusView.SetValue(Grid.RowProperty, 1);
                     if (window != null &&
-                        (this.DataContext as ISolutionBuilderViewModel) != null &&
-                        NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels.LogicalViewModel.NServiceBusViewModel.CurrentNode != null)
+                        (DataContext as ISolutionBuilderViewModel) != null &&
+                        LogicalViewModel.NServiceBusViewModel.CurrentNode != null)
                     {
                         Dispatcher.BeginInvoke(new Action(() =>
                         {
-                            (window.Content as DetailsPanel).SetView(this.ServiceProvider,
-                            NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels.LogicalViewModel.NServiceBusViewModel.CurrentNode.InnerViewModel, this.DataContext);
-                            ((Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame)window.Frame).Show();
+                            (window.Content as DetailsPanel).SetView(ServiceProvider,
+                            LogicalViewModel.NServiceBusViewModel.CurrentNode.InnerViewModel, DataContext);
+                            ((IVsWindowFrame)window.Frame).Show();
                         }));
                     }
                 }
             }
             else
             {
-                if (grid.Children.Contains(this.NServiceBusView))
+                if (grid.Children.Contains(NServiceBusView))
                 {
-                    grid.Children.Remove(this.NServiceBusView);
+                    grid.Children.Remove(NServiceBusView);
                 }
-                this.ContentScrollViewer.Visibility = System.Windows.Visibility.Visible;
+                ContentScrollViewer.Visibility = Visibility.Visible;
 
                 // Clear Details View
                 if (window != null)
@@ -161,21 +165,21 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (this.DefaultSolutionBuilderView == null)
+            if (DefaultSolutionBuilderView == null)
             {
-                this.DefaultSolutionBuilderView = this.ContentScrollViewer.Content;
+                DefaultSolutionBuilderView = ContentScrollViewer.Content;
             }
             else
             {
-                this.ShowNServiceBusStudioView(false);
+                ShowNServiceBusStudioView(false);
             }
         }
 
         internal void ShowNoSolutionState()
         {
-            this.ShowNServiceBusStudioView(false);
-            this.NServiceBusViewButton.IsEnabled = false;
-            var window = (NServiceBusDetailsToolWindow)this.ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
+            ShowNServiceBusStudioView(false);
+            NServiceBusViewButton.IsEnabled = false;
+            var window = (NServiceBusDetailsToolWindow)ServiceProvider.GetService(typeof(NServiceBusDetailsToolWindow));
             if (window != null)
             {
                 (window.Content as DetailsPanel).CleanAll();
@@ -184,18 +188,18 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         internal void CheckForEnablingSolution()
         {
-            this.NServiceBusViewButton.IsEnabled = true;
+            NServiceBusViewButton.IsEnabled = true;
             
             // Refresh Solution Builder View Model
-            var SBdataContext = this.DataContext;
+            var SBdataContext = DataContext;
             LogicalViewModel.NServiceBusViewModel = new LogicalViewModel(SBdataContext as ISolutionBuilderViewModel);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             var url = String.Format(@"http://particular.net/support?caller=serviceMatrix&smversion={0}&vsversion={1}",
-                                    System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetOperatingSystemVersion()),
-                                    System.Web.HttpUtility.UrlEncode(StatisticsInformation.GetVisualStudioVersion(this.ServiceProvider.GetService<EnvDTE.DTE>())));
+                                    HttpUtility.UrlEncode(StatisticsInformation.GetOperatingSystemVersion()),
+                                    HttpUtility.UrlEncode(StatisticsInformation.GetVisualStudioVersion(ServiceProvider.GetService<DTE>())));
             //var vsWebBroserService = this.ServiceProvider.GetService<SVsWebBrowsingService, IVsWebBrowsingService>();
             //var frame = default(IVsWindowFrame);
             //vsWebBroserService.Navigate(url, 1, out frame);

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Collections.Generic;
+    using AbstractEndpoint;
+
     partial interface IUseCaseLink
     {
         IEnumerable<IAbstractEndpoint> Endpoints { get; set; }

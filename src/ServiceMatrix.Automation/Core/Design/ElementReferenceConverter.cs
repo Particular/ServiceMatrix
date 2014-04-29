@@ -27,13 +27,13 @@ namespace NServiceBusStudio.Core.Design
                     var owner = context.Instance.As<TOwner>();
                     if (owner != null)
                     {
-                        var reference = this.strategy.GetReference(owner);
+                        var reference = strategy.GetReference(owner);
                         // Force sync the display name with the current message name.
                         // This is only important for UEX, the APIs will always 
                         // use the referenced message by id.
                         reference.Refresh();
 
-                        return reference.Value == null ? reference.NoneText : reference.Value.As<NuPattern.Runtime.IElement>().InstanceName;
+                        return reference.Value == null ? reference.NoneText : reference.Value.As<IElement>().InstanceName;
                     }
                 }
                 catch (NotSupportedException)
@@ -61,12 +61,12 @@ namespace NServiceBusStudio.Core.Design
                 var owner = context.Instance.As<TOwner>();
                 if (owner != null)
                 {
-                    var reference = this.strategy.GetReference(owner);
-                    var standardValues = this.strategy.GetStandardValues(owner).ToList();
+                    var reference = strategy.GetReference(owner);
+                    var standardValues = strategy.GetStandardValues(owner).ToList();
 
                     standardValues.Insert(0, new StandardValue(
                         reference.NoneText,
-                        this.strategy.NullValue,
+                        strategy.NullValue,
                         reference.NoneDescription));
 
                     return new StandardValuesCollection(standardValues);

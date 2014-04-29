@@ -8,6 +8,10 @@ using NuPattern.Runtime.Bindings;
 
 namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System.ComponentModel;
+    using System.Linq.Expressions;
+    using Microsoft.VisualStudio.Modeling;
+
     public class EmptySettings : ICommandSettings
     {
         public IPropertyBindingSettings CreatePropertySettings(Action<IPropertyBindingSettings> initializer = null)
@@ -20,7 +24,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             get { return new IPropertyBindingSettings[] { }; }
         }
 
-        public IDisposable SubscribeChanged(System.Linq.Expressions.Expression<Func<ICommandSettings, object>> propertyExpression, Action<ICommandSettings> callbackAction)
+        public IDisposable SubscribeChanged(Expression<Func<ICommandSettings, object>> propertyExpression, Action<ICommandSettings> callbackAction)
         {
             return null;
         }
@@ -32,7 +36,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             get { throw new NotImplementedException(); }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public AutomationSettingsClassification Classification
         {
@@ -48,7 +52,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public string Name { get; set; }
         public IPatternElementSchema Owner { get; set; }
 
-        public Microsoft.VisualStudio.Modeling.Store Store
+        public Store Store
         {
             get { throw new NotImplementedException(); }
         }

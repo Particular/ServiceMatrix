@@ -18,9 +18,9 @@ namespace ServiceMatrix.Diagramming.Views
         public ServiceMatrixDiagramToolWindow() :
             base(null)
         {
-            this.Caption = "ServiceMatrix - NServiceBus Canvas";
-            this.BitmapResourceID = 301;
-            this.BitmapIndex = 0;
+            Caption = "ServiceMatrix - NServiceBus Canvas";
+            BitmapResourceID = 301;
+            BitmapIndex = 0;
         }
 
         protected override void Initialize()
@@ -30,14 +30,14 @@ namespace ServiceMatrix.Diagramming.Views
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
-            this.NServiceBusDiagramAdapter.CloseWindow = () =>
+            NServiceBusDiagramAdapter.CloseWindow = () =>
             {
-                IVsWindowFrame windowFrame = (IVsWindowFrame)this.Frame;
+                IVsWindowFrame windowFrame = (IVsWindowFrame)Frame;
                 windowFrame.Hide();
             };
 
-            var pane = new Diagram(this.NServiceBusDiagramAdapter);
-            this.Content = pane;
+            var pane = new Diagram(NServiceBusDiagramAdapter);
+            Content = pane;
             
             //pane.CaptionHasChanged += (s, e) =>
             //{

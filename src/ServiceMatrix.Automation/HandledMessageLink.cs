@@ -21,21 +21,21 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.messageReference ??
-                    (this.messageReference = new ElementReference<IMessage>(
-                        () => this.Parent.Parent.Parent.Parent.Contract.Messages.Message,
-                        new PropertyReference<string>(() => this.MessageId, value => this.MessageId = value),
-                        new PropertyReference<string>(() => this.MessageName, value => this.MessageName = value)));
+                return messageReference ??
+                    (messageReference = new ElementReference<IMessage>(
+                        () => Parent.Parent.Parent.Parent.Contract.Messages.Message,
+                        new PropertyReference<string>(() => MessageId, value => MessageId = value),
+                        new PropertyReference<string>(() => MessageName, value => MessageName = value)));
             }
         }
 
         partial void Initialize()
         {
-            this.MessageIdChanged += (sender, args) => this.InstanceName = this.MessageReference.Value == null ? "(None)" : this.MessageReference.Value.InstanceName;
-            if (this.MessageReference.Value == null)
-                this.InstanceName = "(None)";
+            MessageIdChanged += (sender, args) => InstanceName = MessageReference.Value == null ? "(None)" : MessageReference.Value.InstanceName;
+            if (MessageReference.Value == null)
+                InstanceName = "(None)";
             else
-                this.MessageReference.Value.InstanceNameChanged += (sender, args) => this.MessageIdChanged(sender, args);
+                MessageReference.Value.InstanceNameChanged += (sender, args) => MessageIdChanged(sender, args);
         }
 
         public Boolean StartsSaga

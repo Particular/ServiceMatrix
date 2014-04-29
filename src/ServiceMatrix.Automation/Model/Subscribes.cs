@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Linq;
+
     partial interface ISubscribes
     {
         IProcessedCommandLink CreateLink(ICommand command);
@@ -16,9 +12,9 @@ namespace NServiceBusStudio
     {
         public IProcessedCommandLink CreateLink(ICommand command)
         {
-            if (!this.ProcessedCommandLinks.Any(x => x.CommandReference.Value == command))
+            if (ProcessedCommandLinks.All(x => x.CommandReference.Value != command))
             {
-                return this.CreateProcessedCommandLink(command.InstanceName, p => p.CommandReference.Value = command);
+                return CreateProcessedCommandLink(command.InstanceName, p => p.CommandReference.Value = command);
             }
 
             return null;
@@ -26,9 +22,9 @@ namespace NServiceBusStudio
 
         public ISubscribedEventLink CreateLink(IEvent @event)
         {
-            if (!this.SubscribedEventLinks.Any(x => x.EventReference.Value == @event))
+            if (SubscribedEventLinks.All(x => x.EventReference.Value != @event))
             {
-                return this.CreateSubscribedEventLink(@event.InstanceName, p => p.EventReference.Value = @event);
+                return CreateSubscribedEventLink(@event.InstanceName, p => p.EventReference.Value = @event);
             }
 
             return null;

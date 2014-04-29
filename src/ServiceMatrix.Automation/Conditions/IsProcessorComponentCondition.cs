@@ -30,7 +30,7 @@ namespace NServiceBusStudio.Automation.Conditions
 
         public override bool Evaluate()
         {
-            var component = this.CurrentElement.As<IComponent>();
+            var component = CurrentElement.As<IComponent>();
             return component.IsProcessor;
         }
     }

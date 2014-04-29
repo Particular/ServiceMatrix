@@ -2,11 +2,13 @@
 {
     using System;
     using System.Runtime.InteropServices;
+    using EnvDTE;
     using NuPattern.VisualStudio.Solution;
     using NuPattern;
     using NuGet.VisualStudio;
     using NuPattern.VisualStudio;
     using System.Linq;
+    using VSLangProj;
 
     /// <summary>
     /// Extensions to <see cref="ISolution"/> APIs.
@@ -23,13 +25,13 @@
             if (project == null || reference == null)
                 return;
 
-            var dteProject = project.As<EnvDTE.Project>();
+            var dteProject = project.As<Project>();
 
             if (dteProject == null)
                 return;
 
-            var vsProject = dteProject.Object as VSLangProj.VSProject;
-            var dteReference = reference.As<EnvDTE.Project>();
+            var vsProject = dteProject.Object as VSProject;
+            var dteReference = reference.As<Project>();
 
             try
             {
@@ -60,12 +62,12 @@
             Guard.NotNull(() => project, project);
             Guard.NotNull(() => referenceToRemove, referenceToRemove);
 
-            var dteProject = project.As<EnvDTE.Project>();
+            var dteProject = project.As<Project>();
 
             if (dteProject == null)
                 return;
 
-            var vsProject = dteProject.Object as VSLangProj.VSProject;
+            var vsProject = dteProject.Object as VSProject;
 
             if (vsProject != null)
             {
@@ -85,12 +87,12 @@
             if (project == null || referenceLibraryPath == null)
                 return;
 
-            var dteProject = project.As<EnvDTE.Project>();
+            var dteProject = project.As<Project>();
 
             if (dteProject == null)
                 return;
 
-            var vsProject = dteProject.Object as VSLangProj.VSProject;
+            var vsProject = dteProject.Object as VSProject;
 
             try
             {
@@ -106,13 +108,13 @@
 
         public static bool HasReference(this IProject project, string name)
         {
-            var dteProject = project.As<EnvDTE.Project>();
+            var dteProject = project.As<Project>();
 
-            var vsProject = dteProject.Object as VSLangProj.VSProject;
+            var vsProject = dteProject.Object as VSProject;
 
             foreach (var reference in vsProject.References)
             {
-                if ((reference as VSLangProj.Reference).Name == name)
+                if ((reference as Reference).Name == name)
                     return true;
             }
             return false;
@@ -154,7 +156,7 @@
         private static void InstallLatestNugetPackage(IProject project,IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, string packageName)
         {
             vsPackageInstaller.InstallPackage("All",
-                 project.As<EnvDTE.Project>(),
+                 project.As<Project>(),
                  packageName,
                  (Version)null,
                  false);
@@ -168,7 +170,7 @@
         private static void InstallNugetPackageForSpecifiedVersion(IProject project, IVsPackageInstaller vsPackageInstaller, string packageName, string version)
         {
             vsPackageInstaller.InstallPackage("All",
-                 project.As<EnvDTE.Project>(),
+                 project.As<Project>(),
                  packageName,
                  version,
                  false);

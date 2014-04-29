@@ -1,25 +1,24 @@
-﻿using NServiceBusStudio.Automation.Dialog;
-using NuPattern;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System.Linq;
+    using NServiceBusStudio.Automation.Dialog;
+    using NuPattern;
+    using NuPattern.Diagnostics;
+    using NuPattern.Presentation;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Windows.Input;
+    using NuPattern.Runtime;
+
     [DisplayName("Show a Messages Picker Dialog to select which is a Saga Starter in a Component")]
     [Category("General")]
     [Description("Show a Messages Picker Dialog to select which is a Saga Starter in a Component")]
     [CLSCompliant(false)]
-    public class ShowComponentSagaStarterPicker : NuPattern.Runtime.Command
+    public class ShowComponentSagaStarterPicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowComponentSagaStarterPicker>();
 
@@ -39,7 +38,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        public IComponent CurrentElement
+        public NServiceBusStudio.IComponent CurrentElement
         {
             get;
             set;

@@ -8,6 +8,8 @@ using NuPattern.Runtime.ToolkitInterface;
 
 namespace NServiceBusStudio.Core.Design
 {
+    using NuPattern.Runtime;
+
     public class ElementReferenceEditor<TOwner, TReference, TStrategy> : StandardValuesEditor
         where TOwner : class, IToolkitInterface
         where TReference : class, IToolkitInterface
@@ -27,8 +29,8 @@ namespace NServiceBusStudio.Core.Design
                     var owner = context.Instance.As<TOwner>();
                     if (owner != null)
                     {
-                        var reference = this.strategy.GetReference(owner);
-                        reference.Value = (referencedValue == this.strategy.NullValue) ? null : referencedValue;
+                        var reference = strategy.GetReference(owner);
+                        reference.Value = (referencedValue == strategy.NullValue) ? null : referencedValue;
 
                         return context.PropertyDescriptor.Converter.ConvertToString(context, reference);
                     }
@@ -37,7 +39,7 @@ namespace NServiceBusStudio.Core.Design
                 {
                 }
 
-                return referencedValue.As<NuPattern.Runtime.IElement>().InstanceName;
+                return referencedValue.As<IElement>().InstanceName;
             }
 
             return selectedValue;

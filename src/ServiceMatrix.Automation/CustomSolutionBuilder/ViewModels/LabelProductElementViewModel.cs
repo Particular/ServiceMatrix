@@ -9,6 +9,9 @@ using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 {
+    using System.ComponentModel;
+    using System.Windows.Input;
+
     public class LabelElementViewModel : IProductElementViewModel
     {
         public ObservableCollection<IMenuOptionViewModel> MenuOptions { get; set; }
@@ -16,9 +19,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         // Methods
         public LabelElementViewModel(IAbstractElement element, ISolutionBuilderContext ctx)
         {
-            this.Data = element;
-            this.Context = ctx;
-            this.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
+            Data = element;
+            Context = ctx;
+            MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
         }
 
         // Properties
@@ -26,14 +29,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         public void AddMenuOption(IMenuOptionViewModel menuOption)
         {
-            this.MenuOptions.Add(menuOption);
+            MenuOptions.Add(menuOption);
         }
 
         public string IconPath { get; set;  }
 
         public bool IsSelected { get; set; }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool IsEditing
         {
@@ -58,7 +61,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         public IProductElement Data { get; private set; }
 
-        public System.Windows.Input.ICommand DeleteCommand
+        public ICommand DeleteCommand
         {
             get { return null; }
         }

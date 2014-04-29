@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NuPattern.Runtime.References;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.References;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Handles a New Library Element added")]
     [Description("Checks if the project exists and adds all the needed artifacts")]
     [CLSCompliant(false)]
-    public class LibraryAddedCommand : NuPattern.Runtime.Command
+    public class LibraryAddedCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -29,17 +28,17 @@ namespace NServiceBusStudio.Automation.Commands
         public override void Execute()
         {
             // Initialize Project
-            var libraries = this.CurrentElement.Root.As<IApplication>().Design.Libraries;
+            var libraries = CurrentElement.Root.As<IApplication>().Design.Libraries;
             libraries.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().CodeIdentifier;
-            if (!libraries.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
+            if (libraries.As<IProductElement>().References.All(r => r.Kind != ReferenceKindConstants.ArtifactLink))
             {
                 Application.SelectSolution();
                 libraries.As<IProductElement>().AutomationExtensions.First(x => x.Name == "UnfoldLibrariesProject").Execute();
-                this.CurrentElement.Root.AutomationExtensions.First(x => x.Name == "SetStartUpProjects").Execute();
+                CurrentElement.Root.AutomationExtensions.First(x => x.Name == "SetStartUpProjects").Execute();
             }
 
             // Try to set parameters for Service Library unfolding
-            var serviceLibrary = this.CurrentElement.As<IServiceLibrary>();
+            var serviceLibrary = CurrentElement.As<IServiceLibrary>();
             if (serviceLibrary != null)
             {
                 serviceLibrary.Parent.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName
@@ -50,7 +49,7 @@ namespace NServiceBusStudio.Automation.Commands
             else
             {
                 // Try to set parameters for Infrastructure Library Unfolding
-                var infrastructureLibrary = this.CurrentElement.As<ILibrary>();
+                var infrastructureLibrary = CurrentElement.As<ILibrary>();
                 if (infrastructureLibrary != null)
                 {
                     infrastructureLibrary.Parent.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName;

@@ -18,7 +18,7 @@ namespace NServiceBusStudio.Automation.Extensions
         public static string GetMessageEndpointMappingsConfig(this IProductElement endpoint)
         {
             var sb = new StringBuilder();
-            var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
+            var app = endpoint.Root.As<IApplication>();
             var endpoints = app.Design.Endpoints.GetAll();
 
             try
@@ -81,13 +81,13 @@ namespace NServiceBusStudio.Automation.Extensions
             return sb.ToString();
         }
 
-        private static NServiceBusStudio.IComponent FindProcessorComponent(NServiceBusStudio.ICommand command)
+        private static IComponent FindProcessorComponent(ICommand command)
         {
             var service = command.Parent.Parent.Parent;
             return service.Components.Component.FirstOrDefault(c => c.Subscribes.ProcessedCommandLinks.Any(i => i.CommandReference.Value == command));
         }
 
-        private static IEnumerable<IProductElement> FindProcessorEndpoints(IEnumerable<IProductElement> endpoints, NServiceBusStudio.IEvent eventt)
+        private static IEnumerable<IProductElement> FindProcessorEndpoints(IEnumerable<IProductElement> endpoints, IEvent eventt)
         {
             var service = eventt.Parent.Parent.Parent;
             var components = service.Components.Component.Where(c => c.Subscribes.SubscribedEventLinks.Any(i => i.EventReference.Value == eventt));
@@ -96,7 +96,7 @@ namespace NServiceBusStudio.Automation.Extensions
                                         .Any(l => l.ComponentReference != null && components.Contains(l.ComponentReference.Value)));
         }
 
-        private static IEnumerable<IAbstractEndpoint> FindComponentHostEndpoints(IEnumerable<IAbstractEndpoint> endpoints, NServiceBusStudio.IComponent component)
+        private static IEnumerable<IAbstractEndpoint> FindComponentHostEndpoints(IEnumerable<IAbstractEndpoint> endpoints, IComponent component)
         {
             return endpoints
                 .Where(ep =>

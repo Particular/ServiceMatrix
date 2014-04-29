@@ -6,11 +6,13 @@ using Mindscape.WpfDiagramming.Foundation;
 
 namespace ServiceMatrix.Diagramming.Converters
 {
+    using System.Globalization;
+
     public class EndSegmentValueConverter : IValueConverter
     {
         private const double arrowSize = 20;
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var segments = (ObservableCollection<DiagramConnectionSegment>)value;
 
@@ -35,7 +37,7 @@ namespace ServiceMatrix.Diagramming.Converters
             return Math.Atan2(segments.Last().EndPoint.X - segments.First().StartPoint.X, segments.Last().EndPoint.Y - segments.First().StartPoint.Y);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

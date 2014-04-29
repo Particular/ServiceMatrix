@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using AbstractEndpoint;
+
     [CLSCompliant(false)]
     [DisplayName("ComponentFuncFromEndpointValueProvider")]
     [Category("General")]
@@ -23,16 +17,16 @@ namespace NServiceBusStudio.Automation.ValueProviders
         {
             try
             {
-                var endpoints = this.Service.Parent.Parent.Endpoints.GetAll()
-                    .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this.Component));
+                var endpoints = Service.Parent.Parent.Endpoints.GetAll()
+                    .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == Component));
 
                 return endpoints.Select(endpoint =>
                     {
-                        var func = typeof(EndpointCustomizationFuncs).GetProperty(this.FuncName).GetValue(endpoint.CustomizationFuncs(), null) as Func<IComponent, string>;
+                        var func = typeof(EndpointCustomizationFuncs).GetProperty(FuncName).GetValue(endpoint.CustomizationFuncs(), null) as Func<NServiceBusStudio.IComponent, string>;
 
                         if (func != null)
                         {
-                            return func(this.Component);
+                            return func(Component);
                         }
                         return string.Empty;
                     })

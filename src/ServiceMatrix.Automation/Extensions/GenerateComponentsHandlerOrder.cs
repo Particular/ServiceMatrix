@@ -13,7 +13,7 @@ namespace NServiceBusStudio.Automation.Extensions
         public static string GetComponentsHandlerOrder(this IProductElement endpoint)
         {
             var sb = new StringBuilder();
-            var app = endpoint.Root.As<NServiceBusStudio.IApplication>();
+            var app = endpoint.Root.As<IApplication>();
             var endpoints = app.Design.Endpoints.GetAll();
             var sourceComponents = (endpoint.As<IToolkitInterface>() as IAbstractEndpoint).EndpointComponents.AbstractComponentLinks.OrderBy(o => o.Order);
             var components = sourceComponents.Select(ac => ac.ComponentReference.Value)

@@ -28,8 +28,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
                                    [Import] IPatternWindows patternWindows,
                                    [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            this.Solution = solution;
-            this.PatternWindows = patternWindows;
+            Solution = solution;
+            PatternWindows = patternWindows;
 
             StartListening(serviceProvider);
         }
@@ -45,11 +45,11 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
             events.SolutionClosed += (s, e) =>
             {
-                UnhandleChanges(this.SolutionBuilderViewModel.TopLevelNodes);
-                this.SolutionBuilderViewModel = null;
+                UnhandleChanges(SolutionBuilderViewModel.TopLevelNodes);
+                SolutionBuilderViewModel = null;
             };
 
-            if (this.Solution.IsOpen)
+            if (Solution.IsOpen)
             {
                 WireSolution(serviceProvider);
             }
@@ -57,11 +57,11 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public void WireSolution(IServiceProvider serviceProvider)
         {
-            if (this.SolutionBuilderViewModel == null)
+            if (SolutionBuilderViewModel == null)
             {
-                this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
-                HandleChanges(this.SolutionBuilderViewModel.TopLevelNodes);
-                RemoveEmptyAddMenuItems(this.SolutionBuilderViewModel.TopLevelNodes);
+                SolutionBuilderViewModel = PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
+                HandleChanges(SolutionBuilderViewModel.TopLevelNodes);
+                RemoveEmptyAddMenuItems(SolutionBuilderViewModel.TopLevelNodes);
             }
         }
 

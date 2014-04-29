@@ -9,9 +9,11 @@ using System.Windows.Data;
 
 namespace ServiceMatrix.Diagramming.Converters
 {
+    using System.Globalization;
+
     public class StartSegmentValueConverter: IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var segments = (ObservableCollection<DiagramConnectionSegment>)value;
 
@@ -29,7 +31,7 @@ namespace ServiceMatrix.Diagramming.Converters
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

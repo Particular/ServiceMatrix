@@ -11,6 +11,8 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {
+    using System.Windows;
+
     partial interface INServiceBusMVC : IAbstractEndpoint
     {
 
@@ -20,35 +22,35 @@ namespace NServiceBusStudio
     {
         public IProject Project
         {
-            get { return this.AsElement().GetProject(); }
+            get { return AsElement().GetProject(); }
         }
 
-        public abs.IAbstractEndpointComponents EndpointComponents
+        public IAbstractEndpointComponents EndpointComponents
         {
-            get { return (NServiceBusMVCComponents)this.NServiceBusMVCComponents; }
+            get { return (NServiceBusMVCComponents)NServiceBusMVCComponents; }
         }
 
         partial void Initialize()
         {
             CheckMVCIsInstalled();
 
-            abs.AbstractEndpointExtensions.CheckNameUniqueness(this);
+            AbstractEndpointExtensions.CheckNameUniqueness(this);
 
-            abs.AbstractEndpointExtensions.RaiseOnInitializing(this);
+            AbstractEndpointExtensions.RaiseOnInitializing(this);
 
-            this.ErrorQueueChanged += (s, e) =>
+            ErrorQueueChanged += (s, e) =>
             {
-                this.SetOverridenProperties("ErrorQueue", this.ErrorQueue != this.AsElement().Root.As<IApplication>().ErrorQueue);
+                SetOverridenProperties("ErrorQueue", ErrorQueue != AsElement().Root.As<IApplication>().ErrorQueue);
             };
-            this.ForwardReceivedMessagesToChanged += (s, e) =>
+            ForwardReceivedMessagesToChanged += (s, e) =>
             {
-                this.SetOverridenProperties("ForwardReceivedMessagesTo", this.ForwardReceivedMessagesTo != this.AsElement().Root.As<IApplication>().ForwardReceivedMessagesTo);
+                SetOverridenProperties("ForwardReceivedMessagesTo", ForwardReceivedMessagesTo != AsElement().Root.As<IApplication>().ForwardReceivedMessagesTo);
             };
         }
 
         private void CheckMVCIsInstalled()
         {
-            if (!this.AsElement().IsSerializing)
+            if (!AsElement().IsSerializing)
             {
                 var programFiles = Environment.ExpandEnvironmentVariables(@"%ProgramFiles%\Microsoft ASP.NET\ASP.NET MVC 4\" + VSVersion);
                 var programFilesX86 = Environment.ExpandEnvironmentVariables(@"%ProgramFiles(x86)%\Microsoft ASP.NET\ASP.NET MVC 4\" + VSVersion);
@@ -57,7 +59,7 @@ namespace NServiceBusStudio
                     !Directory.Exists(programFilesX86))
                 {
                     var error = "You cannot create this endpoint because ASP.NET MVC 4 is not installed. Install ASP.NET MVC 4 and try again.";
-                    System.Windows.MessageBox.Show(error, "ServiceMatrix - ASP.NET MVC 4 not installed", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+                    MessageBox.Show(error, "ServiceMatrix - ASP.NET MVC 4 not installed", MessageBoxButton.OK, MessageBoxImage.Error);
                     throw new OperationCanceledException(error);
                 }
             }
@@ -67,41 +69,41 @@ namespace NServiceBusStudio
 
         public IEnumerable<string> OverridenProperties
         {
-            get { return this.overridenProperties; }
+            get { return overridenProperties; }
         }
 
         private void SetOverridenProperties(string propertyName, bool doOverride)
         {
             if (!doOverride)
             {
-                if (this.overridenProperties.Contains(propertyName))
+                if (overridenProperties.Contains(propertyName))
                 {
-                    this.overridenProperties.Remove(propertyName);
+                    overridenProperties.Remove(propertyName);
                 }
             }
             else
             {
-                if (!this.overridenProperties.Contains(propertyName))
+                if (!overridenProperties.Contains(propertyName))
                 {
-                    this.overridenProperties.Add(propertyName);
+                    overridenProperties.Add(propertyName);
                 }
             }
         }
 
-        private abs.EndpointCustomizationFuncs customization;
+        private EndpointCustomizationFuncs customization;
 
-        public abs.EndpointCustomizationFuncs Customization
+        public EndpointCustomizationFuncs Customization
         {
             get
             {
-                if (this.customization == null)
+                if (customization == null)
                 {
-                    this.customization = abs.EndpointCustomizationFuncs.CreateDefault();
-                    this.customization.GetBaseSenderType = GetBaseSenderType;
-                    this.customization.BuildPathForComponentCode = CustomBuildPathForComponentCode;
-                    this.customization.BuildNamespaceForComponentCode = CustomBuildNamespaceForComponentCode;
+                    customization = EndpointCustomizationFuncs.CreateDefault();
+                    customization.GetBaseSenderType = GetBaseSenderType;
+                    customization.BuildPathForComponentCode = CustomBuildPathForComponentCode;
+                    customization.BuildNamespaceForComponentCode = CustomBuildNamespaceForComponentCode;
                 }
-                return this.customization;
+                return customization;
             }
         }
 
@@ -113,12 +115,12 @@ namespace NServiceBusStudio
             }
         }
 
-        private static string CustomBuildNamespaceForComponentCode(abs.IAbstractEndpoint endpoint, IService service)
+        private static string CustomBuildNamespaceForComponentCode(IAbstractEndpoint endpoint, IService service)
         {
             return endpoint == null ? string.Empty : string.Format(@"{0}.Components.{1}", endpoint.Project.Data.RootNamespace, service.CodeIdentifier);
         }
 
-        private static string CustomBuildPathForComponentCode(abs.IAbstractEndpoint endpoint, IService service, string subPath, bool useNewServiceName)
+        private static string CustomBuildPathForComponentCode(IAbstractEndpoint endpoint, IService service, string subPath, bool useNewServiceName)
         {
             var result = string.Format(@"{0}\Components\{1}", endpoint.Project.Name, (useNewServiceName) ? service.InstanceName : service.OriginalInstanceName);
             if (subPath != string.Empty && subPath != null)

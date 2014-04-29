@@ -81,10 +81,10 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
         public BaseConnection(DiagramNode from, DiagramNode to)
             : base(null, null)
         {
-            this.Source = from;
-            this.Target = to;
-            this.LineType = null;
-            this.ZOrder = ++GroupableNode.ZOrderCounter;
+            Source = from;
+            Target = to;
+            LineType = null;
+            ZOrder = ++GroupableNode.ZOrderCounter;
 
             RecalculateConnectionPosition(null, null);
         }
@@ -95,9 +95,9 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
             var distances = new List<Tuple<double, DiagramConnectionPoint, DiagramConnectionPoint>>();
 
 
-            foreach (var sourceConnectionPoint in this.Source.ConnectionPoints)
+            foreach (var sourceConnectionPoint in Source.ConnectionPoints)
             {
-                foreach (var targetConnectionPoint in this.Target.ConnectionPoints)
+                foreach (var targetConnectionPoint in Target.ConnectionPoints)
                 {
                     distances.Add(new Tuple<double, DiagramConnectionPoint, DiagramConnectionPoint>(
                         PointDistance(sourceConnectionPoint.Position, targetConnectionPoint.Position),
@@ -109,14 +109,14 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
 
             var minDistance = distances.OrderBy(x => x.Item1).First();
 
-            if (this.FromConnectionPoint != minDistance.Item2)
+            if (FromConnectionPoint != minDistance.Item2)
             {
-                this.FromConnectionPoint = minDistance.Item2;
+                FromConnectionPoint = minDistance.Item2;
             }
 
-            if (this.ToConnectionPoint != minDistance.Item3)
+            if (ToConnectionPoint != minDistance.Item3)
             {
-                this.ToConnectionPoint = minDistance.Item3;
+                ToConnectionPoint = minDistance.Item3;
             }
             
         }

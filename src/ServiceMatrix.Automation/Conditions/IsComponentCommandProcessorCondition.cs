@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace NServiceBusStudio.Automation.Conditions
 {
+    using NServiceBusStudio.Automation.Model;
+
     [CLSCompliant(false)]
     [DisplayName("Component Is Command Handler")]
     [Category("General")]
@@ -29,7 +31,7 @@ namespace NServiceBusStudio.Automation.Conditions
 
         public override bool Evaluate()
         {
-            var component = Model.Helpers.GetComponentFromLinkedElement(this.CurrentElement);
+            var component = Helpers.GetComponentFromLinkedElement(CurrentElement);
 
             if (component != null)
             {

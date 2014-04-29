@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using NuPattern.Runtime;
     public class ToolkitVersionValueProvider : ValueProvider
     {
         public override object Evaluate()

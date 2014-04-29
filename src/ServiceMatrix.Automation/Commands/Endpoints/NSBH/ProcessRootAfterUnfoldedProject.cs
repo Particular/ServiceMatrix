@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
+﻿namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Process After Unfold On Root")]
     [Description("Process After Unfold On Root Application")]
     [CLSCompliant(false)]
-    public class ProcessRootAfterUnfoldedProject : NuPattern.Runtime.Command
+    public class ProcessRootAfterUnfoldedProject : Command
     {
         [Required]
         [Import(AllowDefault = true)]
@@ -20,9 +19,9 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
         public override void Execute()
         {
-            var automation = this.CurrentElement.Root.AutomationExtensions.First(x => x.Name == "SetStartUpProjects");
+            var automation = CurrentElement.Root.AutomationExtensions.First(x => x.Name == "SetStartUpProjects");
             automation.Execute();
-            automation = this.CurrentElement.Root.AutomationExtensions.First(x => x.Name == "CollapseFolders");
+            automation = CurrentElement.Root.AutomationExtensions.First(x => x.Name == "CollapseFolders");
             automation.Execute();
         }
     }

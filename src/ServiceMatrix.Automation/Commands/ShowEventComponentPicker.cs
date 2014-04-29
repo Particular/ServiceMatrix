@@ -1,20 +1,19 @@
-﻿using AbstractEndpoint;
-using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class ShowEventComponentPicker : NuPattern.Runtime.Command
+    using AbstractEndpoint;
+    using NuPattern.Runtime;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Windows.Input;
+    using NuPattern;
+    using NuPattern.Presentation;
+    using Command = NuPattern.Runtime.Command;
+
+    public class ShowEventComponentPicker : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -40,12 +39,12 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.As<IAbstractEndpoint>();
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var app = this.CurrentElement.Root.As<IApplication>();
+            var app = CurrentElement.Root.As<IApplication>();
             
             // Get available events
             var elements = new Dictionary<string, ICollection<string>>();
@@ -81,7 +80,7 @@ namespace NServiceBusStudio.Automation.Commands
                     var component = service.Components.Component.FirstOrDefault(x => x.Publishes.EventLinks.Any(y => y.EventReference.Value == @event));
                     if (component == null)
                     {
-                        component = service.Components.CreateComponent(@event.InstanceName + "Sender", x => x.Publishes.CreateLink(@event));
+                        service.Components.CreateComponent(@event.InstanceName + "Sender", x => x.Publishes.CreateLink(@event));
 
                         var deployToEndpoint = default(EventHandler);
 

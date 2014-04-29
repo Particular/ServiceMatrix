@@ -14,6 +14,8 @@ using System.Collections.Generic;
 
 namespace NServiceBusStudio.Automation.Extensions
 {
+    using System.Windows.Input;
+
     public static class ProductElementExtensions
     {
         public static void ShowHideProperty(this IProductElement element, string propertyName, bool isVisible)
@@ -46,9 +48,9 @@ namespace NServiceBusStudio.Automation.Extensions
             catch { return null; }
         }
 
-        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager, EnvDTE.Documents EnvDTEDocuments = null)
+        public static bool RenameElement(this IProductElement element, IToolkitElement toolkitElement, IUriReferenceService uriService, RefactoringManager refactoringManager, Documents EnvDTEDocuments = null)
         {
-            using (new MouseCursor(System.Windows.Input.Cursors.Wait))
+            using (new MouseCursor(Cursors.Wait))
             {
                 var renameRefactoring = toolkitElement as IRenameRefactoring;
                 if (renameRefactoring != null)
@@ -114,7 +116,7 @@ namespace NServiceBusStudio.Automation.Extensions
 
         public static void RemoveArtifactLinks(this IProductElement element, IUriReferenceService uriService, ISolution solution)
         {
-            using (new MouseCursor(System.Windows.Input.Cursors.Wait))
+            using (new MouseCursor(Cursors.Wait))
             {
                 foreach (var referenceLink in element.References)
                 {
@@ -132,21 +134,21 @@ namespace NServiceBusStudio.Automation.Extensions
                         if (item.Kind == ItemKind.Project)
                         {
                             solution.As<Solution>().Remove(item.As<Project>());
-                            System.IO.Directory.Delete(Path.GetDirectoryName(physicalPath), true);
+                            Directory.Delete(Path.GetDirectoryName(physicalPath), true);
                         }
                         else if (item.Kind == ItemKind.Item)
                         {
                             item.As<ProjectItem>().Delete();
-                            System.IO.File.Delete(physicalPath);
+                            File.Delete(physicalPath);
                         }
                     }
                 }
             }
         }
 
-        public static void CloseDocuments(this IProductElement element, IUriReferenceService uriService, EnvDTE.Documents EnvDTEDocuments)
+        public static void CloseDocuments(this IProductElement element, IUriReferenceService uriService, Documents EnvDTEDocuments)
         {
-            var documents = EnvDTEDocuments.OfType<EnvDTE.Document>();
+            var documents = EnvDTEDocuments.OfType<Document>();
 
             foreach (var referenceLink in element.References)
             {

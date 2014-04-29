@@ -20,15 +20,15 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.DataTemplates
         {
             if (item is LabelElementViewModel)
             {
-                return this.LabelElementViewModelDataTemplate;
+                return LabelElementViewModelDataTemplate;
             } 
             else if (item is IProductViewModel)
             {
-                return this.ProductViewModelDataTemplate;
+                return ProductViewModelDataTemplate;
             }
             else if (item is IProductElementViewModel)
             {
-                return this.ProductElementViewModelDataTemplate;
+                return ProductElementViewModelDataTemplate;
             }
 
             return null;

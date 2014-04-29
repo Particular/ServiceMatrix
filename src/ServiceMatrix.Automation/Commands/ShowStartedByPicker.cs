@@ -18,11 +18,13 @@ using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Commands
 {
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Show an Starting Endpoint Picker Dialog")]
     [Category("General")]
     [Description("Shows starting Endpoint Picker dialog.")]
     [CLSCompliant(false)]
-    public class ShowStartedByPicker : NuPattern.Runtime.Command
+    public class ShowStartedByPicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowComponentLinkPicker>();
 
@@ -53,8 +55,8 @@ namespace AbstractEndpoint.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var element = CurrentElement.As<NServiceBusStudio.IUseCase>();
-            var endpoints = CurrentElement.Root.As<NServiceBusStudio.IApplication>()
+            var element = CurrentElement.As<IUseCase>();
+            var endpoints = CurrentElement.Root.As<IApplication>()
                 .Design.Endpoints.GetAll()
                 .Where(e => !element.EndpointsStartingUseCases.Contains(e.As<IToolkitInterface>() as IAbstractEndpoint));
 

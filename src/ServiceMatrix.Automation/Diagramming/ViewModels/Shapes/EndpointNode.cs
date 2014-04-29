@@ -15,15 +15,15 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
     {
         public EndpointNode(IProductElementViewModel innerViewModel) : base (innerViewModel)
         {
-            this.SHAPE_MIN_HEIGHT = 190;
-            this.Bounds = new System.Windows.Rect(0, 0, 320, this.SHAPE_MIN_HEIGHT);
+            SHAPE_MIN_HEIGHT = 190;
+            Bounds = new Rect(0, 0, 320, SHAPE_MIN_HEIGHT);
         }
 
         public string Type 
         {
             get
             {
-                switch (this.InnerViewModel.Data.Info.Name)
+                switch (InnerViewModel.Data.Info.Name)
                 {
                     case "NServiceBusHost":
                         return "(NSB Host)";

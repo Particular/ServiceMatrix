@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using AbstractEndpoint;
+    using NuPattern.Runtime.ToolkitInterface;
+
     [CLSCompliant(false)]
     [DisplayName("Endpoint Has Component that Publishes an Event")]
     [Category("General")]
@@ -31,8 +28,8 @@ namespace NServiceBusStudio.Automation.ValueProviders
 
         public override object Evaluate()
         {
-            var endpoint = this.CurrentElement.As<IToolkitInterface>() as IAbstractEndpoint;
-            return (object)(endpoint.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value.Publishes.EventLinks.Any()));
+            var endpoint = CurrentElement.As<IToolkitInterface>() as IAbstractEndpoint;
+            return endpoint.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value.Publishes.EventLinks.Any());
         }
     }
 }

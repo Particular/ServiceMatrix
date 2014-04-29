@@ -14,6 +14,8 @@ using System.Linq;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using System.IO;
+
     [Export]
     public class ServiceMatrixDiagramAdapter
     {
@@ -32,9 +34,9 @@ namespace ServiceMatrix.Diagramming.ViewModels
                                            [Import] IPatternWindows patternWindows,
                                            [Import(typeof(SVsServiceProvider))] IServiceProvider serviceProvider)
         {
-            this.ViewModel = new ServiceMatrixDiagramMindscapeViewModel(patternWindows, serviceProvider);
-            this.Solution = solution;
-            this.PatternWindows = patternWindows;
+            ViewModel = new ServiceMatrixDiagramMindscapeViewModel(patternWindows, serviceProvider);
+            Solution = solution;
+            PatternWindows = patternWindows;
             
             StartListening(serviceProvider);
         }
@@ -50,13 +52,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             events.SolutionClosed += (s, e) =>
             {
-                this.ViewModel.CleanAll();
-                UnhandleChanges(this.SolutionBuilderViewModel.TopLevelNodes);
-                this.SolutionBuilderViewModel = null;
-                this.CloseWindow();
+                ViewModel.CleanAll();
+                UnhandleChanges(SolutionBuilderViewModel.TopLevelNodes);
+                SolutionBuilderViewModel = null;
+                CloseWindow();
             };
 
-            if (this.Solution.IsOpen)
+            if (Solution.IsOpen)
             {
                 WireSolution(serviceProvider);
             }
@@ -64,11 +66,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void WireSolution(IServiceProvider serviceProvider)
         {
-            this.ViewModel.LayoutAlgorithm.LoadShapePositions(System.IO.Path.GetDirectoryName(this.Solution.PhysicalPath));
-            this.SolutionBuilderViewModel = this.PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
+            ViewModel.LayoutAlgorithm.LoadShapePositions(Path.GetDirectoryName(Solution.PhysicalPath));
+            SolutionBuilderViewModel = PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
 
-            GenerateCurrentDiagram(this.SolutionBuilderViewModel.TopLevelNodes);
-            HandleChanges(this.SolutionBuilderViewModel.TopLevelNodes);
+            GenerateCurrentDiagram(SolutionBuilderViewModel.TopLevelNodes);
+            HandleChanges(SolutionBuilderViewModel.TopLevelNodes);
         }
 
         private void GenerateCurrentDiagram(ObservableCollection<IProductElementViewModel> observableCollection)
@@ -168,22 +170,22 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 case "NServiceBusHost":
                 case "NServiceBusMVC":
                 case "NServiceBusWeb":
-                    this.ViewModel.GetOrCreateEndpointNode(newElement);
+                    ViewModel.GetOrCreateEndpointNode(newElement);
                     break;
                 case "Service":
-                    this.ViewModel.GetOrCreateServiceNode(Guid.Empty, newElement);
+                    ViewModel.GetOrCreateServiceNode(Guid.Empty, newElement);
                     break;
                 case "Component":
-                    this.ViewModel.GetOrCreateComponentNode(newElement);
+                    ViewModel.GetOrCreateComponentNode(newElement);
                     break;
                 case "Command":
-                    this.ViewModel.GetOrCreateCommandNode(newElement);
+                    ViewModel.GetOrCreateCommandNode(newElement);
                     break;
                 case "Event":
-                    this.ViewModel.GetOrCreateEventNode(newElement);
+                    ViewModel.GetOrCreateEventNode(newElement);
                     break;
                 case "Message":
-                    this.ViewModel.GetOrCreateMessageNode(newElement);
+                    ViewModel.GetOrCreateMessageNode(newElement);
                     break;
                 case "ComponentLink":
                     CreateComponentLink(newElement);
@@ -237,7 +239,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 
             }
 
-            this.ViewModel.DeleteNodesById(removedElement.Data.Id);
+            ViewModel.DeleteNodesById(removedElement.Data.Id);
         }
 
         private void CreateComponentLink(IProductElementViewModel viewModel)
@@ -248,7 +250,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             var serviceViewModel = FindViewModel(service.AsElement().Id);
             var componentViewModel = FindViewModel(component.AsElement().Id);
 
-            this.ViewModel.GetOrCreateComponentLink(componentLink.ParentEndpointComponents.ParentEndpoint.As<NuPattern.Runtime.IProductElement>().Id,
+            ViewModel.GetOrCreateComponentLink(componentLink.ParentEndpointComponents.ParentEndpoint.As<IProductElement>().Id,
                                                     serviceViewModel,
                                                     componentViewModel,
                                                     viewModel);
@@ -269,81 +271,81 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         private void CreateCommandLink(ICommandLink commandLink)
         {
-            var commandNode = this.ViewModel.GetOrCreateCommandNode(this.FindViewModel(commandLink.CommandReference.Value.AsElement().Id));
+            var commandNode = ViewModel.GetOrCreateCommandNode(FindViewModel(commandLink.CommandReference.Value.AsElement().Id));
 
-            foreach (var component in this.ViewModel.GetAllComponentsNode(commandLink.Parent.Parent.AsElement().Id))
+            foreach (var component in ViewModel.GetAllComponentsNode(commandLink.Parent.Parent.AsElement().Id))
             {
-                this.ViewModel.GetOrCreateCommandConnection(component, commandNode);
+                ViewModel.GetOrCreateCommandConnection(component, commandNode);
             }
         }
 
         private void CreateEventLink(IEventLink eventLink)
         {
-            var eventNode = this.ViewModel.GetOrCreateEventNode(this.FindViewModel(eventLink.EventReference.Value.AsElement().Id));
+            var eventNode = ViewModel.GetOrCreateEventNode(FindViewModel(eventLink.EventReference.Value.AsElement().Id));
 
-            foreach (var component in this.ViewModel.GetAllComponentsNode(eventLink.Parent.Parent.AsElement().Id))
+            foreach (var component in ViewModel.GetAllComponentsNode(eventLink.Parent.Parent.AsElement().Id))
             {
-                this.ViewModel.GetOrCreateEventConnection(component, eventNode);
+                ViewModel.GetOrCreateEventConnection(component, eventNode);
             }
         }
 
         private void CreateProcessedCommandLink(IProcessedCommandLink processedCommandLink)
         {
-            var commandNode = this.ViewModel.GetOrCreateCommandNode(this.FindViewModel(processedCommandLink.CommandReference.Value.AsElement().Id));
+            var commandNode = ViewModel.GetOrCreateCommandNode(FindViewModel(processedCommandLink.CommandReference.Value.AsElement().Id));
 
-            foreach (var component in this.ViewModel.GetAllComponentsNode(processedCommandLink.Parent.Parent.AsElement().Id))
+            foreach (var component in ViewModel.GetAllComponentsNode(processedCommandLink.Parent.Parent.AsElement().Id))
             {
-                this.ViewModel.GetOrCreateCommandConnection(commandNode, component);
+                ViewModel.GetOrCreateCommandConnection(commandNode, component);
             }
         }
 
 
         private void CreateSubscribedEventLink(ISubscribedEventLink subscribedEventLink)
         {
-            var eventNode = this.ViewModel.GetOrCreateEventNode(this.FindViewModel(subscribedEventLink.EventReference.Value.AsElement().Id));
+            var eventNode = ViewModel.GetOrCreateEventNode(FindViewModel(subscribedEventLink.EventReference.Value.AsElement().Id));
 
-            foreach (var component in this.ViewModel.GetAllComponentsNode(subscribedEventLink.Parent.Parent.AsElement().Id))
+            foreach (var component in ViewModel.GetAllComponentsNode(subscribedEventLink.Parent.Parent.AsElement().Id))
             {
-                this.ViewModel.GetOrCreateEventConnection(eventNode, component);
+                ViewModel.GetOrCreateEventConnection(eventNode, component);
             }
         }
 
         private void CreateProcessedCommandLinkReply(IProcessedCommandLinkReply processedCommandLinkReply)
         {
-            var messageNode = this.ViewModel.GetOrCreateMessageNode(this.FindViewModel(processedCommandLinkReply.MessageReference.Value.AsElement().Id));
+            var messageNode = ViewModel.GetOrCreateMessageNode(FindViewModel(processedCommandLinkReply.MessageReference.Value.AsElement().Id));
             
-            foreach (var component in this.ViewModel.GetAllComponentsNode(processedCommandLinkReply.Parent.Parent.Parent.AsElement().Id))
+            foreach (var component in ViewModel.GetAllComponentsNode(processedCommandLinkReply.Parent.Parent.Parent.AsElement().Id))
             {
-                this.ViewModel.GetOrCreateMessageConnection(component, messageNode);
+                ViewModel.GetOrCreateMessageConnection(component, messageNode);
             }
         }
 
         private void CreateHandledMessageLink(IHandledMessageLink handledMessageLink)
         {
-            var messageNode = this.ViewModel.GetOrCreateMessageNode(this.FindViewModel(handledMessageLink.MessageReference.Value.AsElement().Id));
+            var messageNode = ViewModel.GetOrCreateMessageNode(FindViewModel(handledMessageLink.MessageReference.Value.AsElement().Id));
             
-            foreach (var component in this.ViewModel.GetAllComponentsNode(handledMessageLink.Parent.Parent.AsElement().Id))
+            foreach (var component in ViewModel.GetAllComponentsNode(handledMessageLink.Parent.Parent.AsElement().Id))
             {
-                this.ViewModel.GetOrCreateMessageConnection(messageNode, component);
+                ViewModel.GetOrCreateMessageConnection(messageNode, component);
             }
         }
 
         private void RemoveComponentLink(IProductElementViewModel removedElement)
         {
-            var componentViewModel = this.ViewModel.DeleteComponentLinkNode(removedElement);
+            var componentViewModel = ViewModel.DeleteComponentLinkNode(removedElement);
             if (componentViewModel != null && componentViewModel.Data.Product != null)
             {
-                this.ViewModel.GetOrCreateComponentNode(componentViewModel);
+                ViewModel.GetOrCreateComponentNode(componentViewModel);
 
                 var component = componentViewModel.Data.As<IComponent>();
-                this.CreateComponentLinks(component);
+                CreateComponentLinks(component);
             }
         }
 
 
         private IProductElementViewModel FindViewModel(Guid elementId)
         {
-            var allNodes = this.SolutionBuilderViewModel.TopLevelNodes.Traverse(x => x.ChildNodes);
+            var allNodes = SolutionBuilderViewModel.TopLevelNodes.Traverse(x => x.ChildNodes);
             return allNodes.FirstOrDefault(x => x.Data.Id == elementId);
         }
 
@@ -351,7 +353,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void AddEndpoint(string endpointName, string hostType)
         {
-            var app = this.SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
+            var app = SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
 
             switch (hostType)
             {
@@ -371,7 +373,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void AddService(string serviceName)
         {
-            var app = this.SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
+            var app = SolutionBuilderViewModel.TopLevelNodes.First().Data.As<IApplication>();
 
             app.Design.Services.CreateService(serviceName);
         }

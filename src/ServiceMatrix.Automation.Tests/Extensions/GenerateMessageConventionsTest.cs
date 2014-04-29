@@ -9,13 +9,8 @@
         [Test]
         public void GetMessageConventionsTest_WhenRootNamespaceHasAValue()
         {
-            var rootNamespace = "MyNServiceBusSystem";
-            var applicationName = "MyNServiceBusSystem";
-            var projectNameForInternal = "InternalMessages";
-            var projectNameForContracts = "ContractEvents";
-
-            var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
-            var expectedConventions = @"namespace MyNServiceBusSystem
+            var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace: "MyNServiceBusSystem", applicationName: "MyNServiceBusSystem", projectNameForInternal: "InternalMessages", projectNameForContracts: "ContractEvents");
+            const string expectedConventions = @"namespace MyNServiceBusSystem
 {
     public class MessageConventions : IWantToRunBeforeConfiguration
     {
@@ -35,14 +30,8 @@
         [Test]
         public void GetMessageConventionsTest_WhenRootNamespaceIsNull()
         {
-            string rootNamespace = null;
-            var applicationName = "System";
-            var projectNameForInternal = "Internal";
-            var projectNameForContracts = "Events";
-
-            var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
-
-            var expectedConventions = @"{
+            var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace: null, applicationName: "System", projectNameForInternal: "Internal", projectNameForContracts: "Events");
+            const string expectedConventions = @"{
     public class MessageConventions : IWantToRunBeforeConfiguration
     {
         public void Init()

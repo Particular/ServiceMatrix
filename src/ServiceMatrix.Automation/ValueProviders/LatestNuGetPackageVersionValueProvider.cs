@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using NuPattern.Runtime;
-using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using NuPattern.Runtime;
+    using System;
+    using System.ComponentModel;
+
     [CLSCompliant(false)]
     [Category("General")]
     [Description("Get Latest NuGet package version for a package")]

@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+
     [CLSCompliant(false)]
     [DisplayName("Parent Component Publishes An Event")]
     [Category("General")]
@@ -19,7 +12,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
     {
         public override object Evaluate()
         {
-            return this.Component.Publishes.EventLinks.Any();
+            return Component.Publishes.EventLinks.Any();
         }
     }
 }

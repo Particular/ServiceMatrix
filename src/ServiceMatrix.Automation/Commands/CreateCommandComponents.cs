@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Diagnostics;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Diagnostics;
+    using NuPattern.Runtime;
+    using ICommand = NServiceBusStudio.ICommand;
+
     [DisplayName("Create Command's Components")]
     [Description("Creates the Command's Sender component and Command's handler component.")]
     [CLSCompliant(false)]
-    public class CreateCommandComponents : NuPattern.Runtime.Command
+    public class CreateCommandComponents : Command
     {
         private static readonly ITracer tracer = Tracer.Get<CreateCommandComponents>();
 
@@ -22,18 +21,18 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            if (!this.Command.DoNotAutogenerateSenderComponent)
+            if (!Command.DoNotAutogenerateSenderComponent)
             {
-                CreateComponent(String.Format("{0}Sender", this.Command.InstanceName),
-                            (c) => c.Publishes.CreateLink(this.Command));
+                CreateComponent(String.Format("{0}Sender", Command.InstanceName),
+                            c => c.Publishes.CreateLink(Command));
             }
-            CreateComponent(String.Format("{0}Handler", this.Command.InstanceName),
-                            (c) => c.Subscribes.CreateLink(this.Command));
+            CreateComponent(String.Format("{0}Handler", Command.InstanceName),
+                            c => c.Subscribes.CreateLink(Command));
         }
 
-        private void CreateComponent(string componentName, Action<IComponent> componentInitializer)
+        private void CreateComponent(string componentName, Action<NServiceBusStudio.IComponent> componentInitializer)
         {
-            this.Command.Parent.Parent.Parent.Components.CreateComponent(componentName, componentInitializer);
+            Command.Parent.Parent.Parent.Components.CreateComponent(componentName, componentInitializer);
         }
     }
 }

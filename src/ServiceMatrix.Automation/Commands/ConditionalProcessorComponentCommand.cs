@@ -1,16 +1,14 @@
-﻿using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class ConditionalProcessorComponentCommand : NuPattern.Runtime.Command
+    using NuPattern.Runtime;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+
+    using Command = NuPattern.Runtime.Command;
+
+    public class ConditionalProcessorComponentCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -28,11 +26,11 @@ namespace NServiceBusStudio.Automation.Commands
         {
             Validator.ValidateObject(this, new ValidationContext(this, null, null), true);
 
-            var component = this.CurrentElement.As<IComponent>();
+            var component = CurrentElement.As<NServiceBusStudio.IComponent>();
 
             if (component.IsProcessor)
             {
-                var command = this.CurrentElement.AutomationExtensions.First(a => a.Name == this.CommandName);
+                var command = CurrentElement.AutomationExtensions.First(a => a.Name == CommandName);
                 command.Execute();
             }
         }

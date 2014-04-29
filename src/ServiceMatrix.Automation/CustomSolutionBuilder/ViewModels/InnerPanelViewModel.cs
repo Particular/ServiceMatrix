@@ -15,7 +15,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         public InnerPanelViewModel()
         {
-            this.Items = new List<InnerPanelItem>();
+            Items = new List<InnerPanelItem>();
         }
     }
 

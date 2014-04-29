@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
 using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.Xml.Serialization;
 
 namespace NServiceBusStudio.Automation.ValueProviders
 {
@@ -39,7 +33,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
     {
         public override object Evaluate()
         {
-            var icommandLink = this.CurrentElement.As<IProcessedCommandLink>();
+            var icommandLink = CurrentElement.As<IProcessedCommandLink>();
             return icommandLink.CommandReference.Value.CodeIdentifier;
         }
     }
@@ -49,7 +43,7 @@ namespace NServiceBusStudio.Automation.ValueProviders
     {
         public override object Evaluate()
         {
-            var ieventLink = this.CurrentElement.As<ISubscribedEventLink>();
+            var ieventLink = CurrentElement.As<ISubscribedEventLink>();
             return ieventLink.EventReference.Value == null? ieventLink.Parent.Parent.CodeIdentifier : ieventLink.EventReference.Value.CodeIdentifier;
         }
     }

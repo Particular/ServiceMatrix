@@ -30,7 +30,7 @@ namespace NServiceBusStudio.Automation.Dialog
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
         }
 
@@ -54,9 +54,9 @@ namespace NServiceBusStudio.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedItems = this.EventList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
-            this.DialogResult = true;
-            this.Close();
+            SelectedItems = EventList.SelectedItems.OfType<string>().ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            DialogResult = true;
+            Close();
         }
     }
 

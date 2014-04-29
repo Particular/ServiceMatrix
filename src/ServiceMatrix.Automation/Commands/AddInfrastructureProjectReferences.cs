@@ -1,24 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
-using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.IO;
-using NuPattern.VisualStudio.Solution;
-using NuGet.VisualStudio;
-using NuPattern.VisualStudio;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using NServiceBusStudio.Automation.Extensions;
+    using System.ComponentModel.DataAnnotations;
+    using NuPattern.Runtime;
+    using NuGet.VisualStudio;
+    using NuPattern.VisualStudio;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Add Infrastructure Project References")]
     [Description("Add references in the Infrastructure Project to the required projects")]
     [CLSCompliant(false)]
-    public class AddInfrastructureProjectReferences : NuPattern.Runtime.Command
+    public class AddInfrastructureProjectReferences : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -42,8 +37,7 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var app = this.CurrentElement.Root.As<IApplication>();
-            var infraproject = this.CurrentElement.GetProject();
+            var infraproject = CurrentElement.GetProject();
 
             if (infraproject != null)
             {

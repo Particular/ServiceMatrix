@@ -9,6 +9,8 @@ using NuPattern.ComponentModel;
 
 namespace NServiceBusStudio
 {
+    using NuPattern.Runtime;
+
     public class HandledMessageReferenceConverter : ElementReferenceConverter<IHandledMessageLink, IMessage, HandledMessageReferenceStrategy> { }
 
     public class HandledMessageReferenceEditor : ElementReferenceEditor<IHandledMessageLink, IMessage, HandledMessageReferenceStrategy> { }
@@ -84,7 +86,7 @@ namespace NServiceBusStudio
                 }
             }
 
-            public IEnumerable<NuPattern.Runtime.IReference> References
+            public IEnumerable<IReference> References
             {
                 get { throw new NotImplementedException(); }
             }
@@ -121,7 +123,7 @@ namespace NServiceBusStudio
                 throw new NotImplementedException();
             }
 
-            public NuPattern.Runtime.IElement AsElement()
+            public IElement AsElement()
             {
                 throw new NotImplementedException();
             }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Model;
+
     public abstract class ComponentFromLinkBasedValueProvider : ValueProvider
     {
         /// <summary>
@@ -29,11 +25,11 @@ namespace NServiceBusStudio.Automation.ValueProviders
         {
             get
             {
-                if (this.component == null)
+                if (component == null)
                 {
-                    this.ProvideValues();
+                    ProvideValues();
                 }
-                return this.component;
+                return component;
             }
         }
 
@@ -41,18 +37,18 @@ namespace NServiceBusStudio.Automation.ValueProviders
         {
             get
             {
-                if (this.service == null)
+                if (service == null)
                 {
-                    this.ProvideValues();
+                    ProvideValues();
                 }
-                return this.service;
+                return service;
             }
         }
 
         private void ProvideValues()
         {
-            this.component = Model.Helpers.GetComponentFromLinkedElement(this.CurrentElement);
-            this.service = component.Parent.Parent;
+            component = Helpers.GetComponentFromLinkedElement(CurrentElement);
+            service = component.Parent.Parent;
         }
 
     }

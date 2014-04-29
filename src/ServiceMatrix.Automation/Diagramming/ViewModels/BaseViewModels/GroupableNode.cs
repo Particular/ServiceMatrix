@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 
 namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 {
+    using System.ComponentModel;
+
     // A node that can be added to a group node. Both GroupNode and ChildNode extends this.
     public abstract class GroupableNode : DiagramNode
     {
@@ -24,53 +26,53 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         public virtual Guid Id 
         { 
-            get { return this.InnerViewModel.Data.Id; } 
+            get { return InnerViewModel.Data.Id; } 
         }
 
         public virtual string Name 
         {
-            get { return this.InnerViewModel.Data.InstanceName; } 
+            get { return InnerViewModel.Data.InstanceName; } 
         }
 
         public virtual ObservableCollection<IMenuOptionViewModel> MenuOptions
         {
-            get { return this.InnerViewModel.MenuOptions; }
+            get { return InnerViewModel.MenuOptions; }
         }
 
         public GroupableNode(IProductElementViewModel innerViewModel)
         {
-            this.InnerViewModel = innerViewModel;
-            if (this.InnerViewModel != null)
+            InnerViewModel = innerViewModel;
+            if (InnerViewModel != null)
             {
-                this.InnerViewModel.Data.PropertyChanged += InnerViewModelData_PropertyChanged;
+                InnerViewModel.Data.PropertyChanged += InnerViewModelData_PropertyChanged;
             }
 
-            this.ZOrder = ++ZOrderCounter;
+            ZOrder = ++ZOrderCounter;
         }
 
-        void InnerViewModelData_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        void InnerViewModelData_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Id")
             {
-                this.OnPropertyChanged("Id");
+                OnPropertyChanged("Id");
             } 
             else if (e.PropertyName == "InstanceName")
             {
-                this.OnPropertyChanged("Name");
+                OnPropertyChanged("Name");
             }
             else if (e.PropertyName == "IsSaga")
             {
-                this.OnPropertyChanged("IsSaga");
+                OnPropertyChanged("IsSaga");
             }
         }
 
         public void Activate()
         {
-            this.InnerViewModel.IsSelected = true;
+            InnerViewModel.IsSelected = true;
 
-            if (this.ActivateElement != null)
+            if (ActivateElement != null)
             {
-                this.ActivateElement(this, new EventArgs() { });
+                ActivateElement(this, new EventArgs() { });
             }
         }
     
@@ -187,7 +189,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         public override IDiagramPositionable Parent
         {
-            get { return this.ParentNode; }
+            get { return ParentNode; }
         }
 
         public GroupNode ParentNode { get; set; }
@@ -204,14 +206,14 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 }
                 node = node.Parent;
             }
-            if (this.ParentNode != parent)
+            if (ParentNode != parent)
             {
                 // Detach event handlers.
-                if (this.ParentNode != null)
+                if (ParentNode != null)
                 {
-                    this.ParentNode.BoundsChanged -= new EventHandler(Parent_BoundsChanged);
+                    ParentNode.BoundsChanged -= new EventHandler(Parent_BoundsChanged);
 
-                    GroupNode group = this.ParentNode as GroupNode;
+                    GroupNode group = ParentNode as GroupNode;
                     if (group != null)
                     {
                         group.IsExpandedChanged -= new EventHandler(Group_IsExpandedChanged);
@@ -219,14 +221,14 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                     }
                 }
 
-                this.ParentNode = parent; // Set the parent.
+                ParentNode = parent; // Set the parent.
 
                 // Attach event handlers.
-                if (this.ParentNode != null)
+                if (ParentNode != null)
                 {
-                    this.ParentNode.BoundsChanged += new EventHandler(Parent_BoundsChanged);
+                    ParentNode.BoundsChanged += new EventHandler(Parent_BoundsChanged);
 
-                    GroupNode group = this.ParentNode as GroupNode;
+                    GroupNode group = ParentNode as GroupNode;
                     if (group != null)
                     {
                         group.IsExpandedChanged += new EventHandler(Group_IsExpandedChanged);
@@ -235,7 +237,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 }
             }
 
-            this.ParentNode.AddChild(this);
+            ParentNode.AddChild(this);
         }
 
         // This node is only visibile if its parent is also visible and an expanded group node.
@@ -288,7 +290,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         public void SetPosition(double Y)
         {
-            this.Bounds = new Rect(this.Bounds.X, Y, this.Bounds.Width, this.Bounds.Height);
+            Bounds = new Rect(Bounds.X, Y, Bounds.Width, Bounds.Height);
         }
 
         #endregion

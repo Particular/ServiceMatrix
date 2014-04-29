@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core.Design;
-using NServiceBusStudio.Core;
-using NuPattern.ComponentModel;
-
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio.Core.Design;
+    using NServiceBusStudio.Core;
+    using NuPattern.ComponentModel;
+
+    using NuPattern.Runtime;
+
     public class ProcessedCommandReferenceConverter : ElementReferenceConverter<IProcessedCommandLink, ICommand, ProcessedCommandReferenceStrategy> { }
 
     public class ProcessedCommandReferenceEditor : ElementReferenceEditor<IProcessedCommandLink, ICommand, ProcessedCommandReferenceStrategy> { }
@@ -22,8 +22,6 @@ namespace NServiceBusStudio
 
         public IEnumerable<StandardValue> GetStandardValues(IProcessedCommandLink owner)
         {
-            var thisService = owner.Parent.Parent;
-
             return owner.Parent.Parent.Parent.Parent.Contract.Commands.Command
                 .Except(owner.Parent.ProcessedCommandLinks.Select(link => link.CommandReference.Value)
                     .Except(new[] { owner.CommandReference.Value }))
@@ -60,7 +58,7 @@ namespace NServiceBusStudio
 
             public string InstanceName { get; set; }
 
-            public IEnumerable<NuPattern.Runtime.IReference> References { get; private set; }
+            public IEnumerable<IReference> References { get; private set; }
 
             public string Notes { get; set; }
 
@@ -78,7 +76,7 @@ namespace NServiceBusStudio
                 throw new NotImplementedException();
             }
 
-            public NuPattern.Runtime.IElement AsElement()
+            public IElement AsElement()
             {
                 throw new NotImplementedException();
             }

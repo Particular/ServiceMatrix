@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio.Automation.ValueProviders
+﻿namespace NServiceBusStudio.Automation.ValueProviders
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+
     [CLSCompliant(false)]
     [DisplayName("CommandSenderRequiresRegistrationValueProvider")]
     [Category("General")]
@@ -21,8 +14,8 @@ namespace NServiceBusStudio.Automation.ValueProviders
         {
             try
             {
-                var endpoints = this.Service.Parent.Parent.Endpoints.GetAll()
-                    .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this.Component));
+                var endpoints = Service.Parent.Parent.Endpoints.GetAll()
+                    .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == Component));
 
                 return endpoints.Any(ep => ep.CommandSenderNeedsRegistration);
             }

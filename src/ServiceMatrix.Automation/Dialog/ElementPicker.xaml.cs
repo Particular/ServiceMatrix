@@ -26,18 +26,18 @@ namespace NServiceBusStudio.Automation.Dialog
         public ElementPicker()
         {
             InitializeComponent();
-            this.SelectedItem = "";
+            SelectedItem = "";
         }
 
         public new string Title
         {
             get
             {
-                return this.lblTitle.Content.ToString();
+                return lblTitle.Content.ToString();
             }
             set
             {
-                this.lblTitle.Content = value;
+                lblTitle.Content = value;
 
                 var uriSource = default(Uri);
 
@@ -50,16 +50,16 @@ namespace NServiceBusStudio.Automation.Dialog
                     uriSource = new Uri("../Diagramming/Styles/Images/CommandIcon.png", UriKind.Relative);
                 }
 
-                this.imgTitle.Source = new BitmapImage(uriSource);
+                imgTitle.Source = new BitmapImage(uriSource);
             }
         }
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
 
-            var textBox = (this.DropDown.Template.FindName("PART_EditableTextBox", DropDown) as TextBox);
+            var textBox = (DropDown.Template.FindName("PART_EditableTextBox", DropDown) as TextBox);
             if (textBox != null)
             {
                 textBox.Focus();
@@ -71,11 +71,11 @@ namespace NServiceBusStudio.Automation.Dialog
         {
             get
             {
-                return this.MasterLabel.Content.ToString();
+                return MasterLabel.Content.ToString();
             }
             set
             {
-                this.MasterLabel.Content = value;
+                MasterLabel.Content = value;
             }
         }
 
@@ -93,13 +93,13 @@ namespace NServiceBusStudio.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
 
         public void SetDropdownEditable(bool isEditable)
         {
-            this.DropDown.IsEditable = isEditable;
+            DropDown.IsEditable = isEditable;
         }
     }
 }

@@ -14,23 +14,23 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         public MenuCommand(IProductElement owner, string text, Action execute)
         {
-            this.Owner = owner;
-            this.Name = "MenuAutomation-" + Guid.NewGuid().ToString();
-            this.Visible = this.Enabled = true;
-            this.Text = text;
+            Owner = owner;
+            Name = "MenuAutomation-" + Guid.NewGuid().ToString();
+            Visible = Enabled = true;
+            Text = text;
             this.execute = execute;
         }
 
         public void Execute(IDynamicBindingContext context)
         {
-            this.Execute();
+            Execute();
         }
 
         public void Execute()
         {
-            using (var tx = this.Owner.BeginTransaction())
+            using (var tx = Owner.BeginTransaction())
             {
-                this.execute.Invoke();
+                execute.Invoke();
                 // Only commits the tx if the invoke succeeded.
                 tx.Commit();
             }

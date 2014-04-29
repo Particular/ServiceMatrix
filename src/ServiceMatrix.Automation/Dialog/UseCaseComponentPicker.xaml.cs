@@ -40,14 +40,14 @@ namespace AbstractEndpoint.Automation.Dialog
                 {
                     focusTimer.Stop();
                     focusTimer.IsEnabled = false;
-                    var textBox = (this.ServiceNameSelector.Template.FindName("PART_EditableTextBox", this.ServiceNameSelector) as TextBox);
+                    var textBox = (ServiceNameSelector.Template.FindName("PART_EditableTextBox", ServiceNameSelector) as TextBox);
                         if (textBox != null)
                         {
                             textBox.Focus();
                             textBox.SelectionStart = textBox.Text.Length;
                         }
                 },
-                this.Dispatcher);
+                Dispatcher);
             focusTimer.IsEnabled = true;
             focusTimer.Start();
         }
@@ -56,8 +56,8 @@ namespace AbstractEndpoint.Automation.Dialog
 
         public void SetServices(IEnumerable<IService> services)
         {
-            this.Services = services;
-            this.ServiceNameSelector.ItemsSource = services.Select(s => s.InstanceName);
+            Services = services;
+            ServiceNameSelector.ItemsSource = services.Select(s => s.InstanceName);
         }
 
         public string SelectedComponent { get; set; }
@@ -65,25 +65,25 @@ namespace AbstractEndpoint.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.SelectedComponent))
+            if (!string.IsNullOrEmpty(SelectedComponent))
             {
-                this.DialogResult = true;
-                this.Close();
+                DialogResult = true;
+                Close();
             }
         }
 
         public void SetComponentLabel(string value)
         {
-            this.ComponentLabel.Content = value;
+            ComponentLabel.Content = value;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName)
         {
-            if (this.PropertyChanged != null)
+            if (PropertyChanged != null)
             {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 
@@ -91,21 +91,21 @@ namespace AbstractEndpoint.Automation.Dialog
 
         private void ServiceName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            this.SelectedService = this.ServiceNameSelector.Text;
-            var selectedSvc = this.Services.FirstOrDefault(s => s.InstanceName == this.SelectedService);
+            SelectedService = ServiceNameSelector.Text;
+            var selectedSvc = Services.FirstOrDefault(s => s.InstanceName == SelectedService);
             if (selectedSvc != null)
             {
-                this.ComponentNameSelector.ItemsSource = this.ServiceItemsFillFunction(selectedSvc);
+                ComponentNameSelector.ItemsSource = ServiceItemsFillFunction(selectedSvc);
             }
             else
             {
-                this.ComponentNameSelector.ItemsSource = new string[] {};
+                ComponentNameSelector.ItemsSource = new string[] {};
             }
         }
 
         private void ComponentName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            this.SelectedComponent = this.ComponentNameSelector.Text;
+            SelectedComponent = ComponentNameSelector.Text;
         }
     }
 

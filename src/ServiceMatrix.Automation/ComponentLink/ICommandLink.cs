@@ -16,7 +16,7 @@ namespace NServiceBusStudio
     {
         public string GetBaseTypeCodeDefinition()
         {
-            var c = this.ComponentBaseType;
+            var c = ComponentBaseType;
 
             if (c != null && c != string.Empty)
             {
@@ -28,8 +28,8 @@ namespace NServiceBusStudio
 
         public string GetClassNameSuffix()
         {
-            var result = (this.Parent.Parent.DeployedTo != null) ?
-                this.Parent.Parent.DeployedTo.Select(ep => ep.CustomizationFuncs().GetClassNameSuffix(this.Parent.Parent))
+            var result = (Parent.Parent.DeployedTo != null) ?
+                Parent.Parent.DeployedTo.Select(ep => ep.CustomizationFuncs().GetClassNameSuffix(Parent.Parent))
                 .FirstOrDefault(s => s != null && s != string.Empty)?? string.Empty
                 : string.Empty;
             return result;

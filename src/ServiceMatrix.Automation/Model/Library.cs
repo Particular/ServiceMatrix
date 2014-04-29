@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
     partial class ServiceLibrary : ICodeLibrary, IRenameRefactoringNotSupported
     {
         public ICodeLibraries ParentLibraries
         {
-            get { return this.Parent as ICodeLibraries; }
+            get { return Parent as ICodeLibraries; }
         }
     }
 
@@ -23,7 +18,7 @@ namespace NServiceBusStudio
     {
         public ICodeLibraries ParentLibraries
         {
-            get { return this.Parent as ICodeLibraries; }
+            get { return Parent as ICodeLibraries; }
         }
     }
 

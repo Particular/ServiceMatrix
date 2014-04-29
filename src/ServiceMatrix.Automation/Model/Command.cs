@@ -13,15 +13,15 @@ namespace NServiceBusStudio
     {
         public string Namespace
         {
-            get { return this.Parent.Namespace; }
+            get { return Parent.Namespace; }
         }
 
         partial void Initialize()
         {
-            this.AsElement().Deleting += (sender, eventargs) =>
+            AsElement().Deleting += (sender, eventargs) =>
             {
                 // Find Component Links to the deleted Component
-                var root = this.AsElement().Root.As<IApplication>();
+                var root = AsElement().Root.As<IApplication>();
                 
                 var commandLinks = root.Design.Services.Service.SelectMany(s => s.Components.Component.SelectMany (c => c.Publishes.CommandLinks.Where (cl => cl.CommandReference.Value == this))).ToList();
                 commandLinks.ForEach(cl => cl.Delete());
@@ -33,15 +33,15 @@ namespace NServiceBusStudio
                 var result = MessageBox.Show("Do you want to delete the related Components?", "ServiceMatrix - Delete related Components", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    DeleteComponent(String.Format("{0}Sender", this.InstanceName));
-                    DeleteComponent(String.Format("{0}Handler", this.InstanceName));
+                    DeleteComponent(String.Format("{0}Sender", InstanceName));
+                    DeleteComponent(String.Format("{0}Handler", InstanceName));
                 }
             };
         }
 
         private void DeleteComponent(string componentName)
         {
-            var component = this.Parent.Parent.Parent.
+            var component = Parent.Parent.Parent.
                                  Components.
                                  Component.
                                  FirstOrDefault(x => x.InstanceName == componentName);

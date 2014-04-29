@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class CreateLibraryCodeLinkCommand : NuPattern.Runtime.Command
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using Command = NuPattern.Runtime.Command;
+
+    public class CreateLibraryCodeLinkCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -19,7 +16,7 @@ namespace NServiceBusStudio.Automation.Commands
         
         public override void Execute()
         {
-            var lr = this.CurrentElement.As<ILibraryReference>();
+            var lr = CurrentElement.As<ILibraryReference>();
             if (lr != null)
             {
                 var component = lr.Parent.Parent;

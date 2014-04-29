@@ -18,7 +18,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.Parent.NServiceBusMVCComponentLinks;
+                return Parent.NServiceBusMVCComponentLinks;
             }
         }
 
@@ -28,34 +28,34 @@ namespace NServiceBusStudio
         {
             get
             {
-                var components = this.As<IProductElement>().Root.As<NServiceBusStudio.IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component);
+                var components = As<IProductElement>().Root.As<IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component);
 
-                return this.componentReference ??
-                    (this.componentReference = new ElementReference<IComponent>(
+                return componentReference ??
+                    (componentReference = new ElementReference<IComponent>(
                         () => components,
-                        new PropertyReference<string>(() => this.ComponentId, value => this.ComponentId = value),
-                        new PropertyReference<string>(() => this.ComponentName, value => this.ComponentName = value)));
+                        new PropertyReference<string>(() => ComponentId, value => ComponentId = value),
+                        new PropertyReference<string>(() => ComponentName, value => ComponentName = value)));
             }
         }
 
         partial void Initialize()
         {
-            Action<object, EventArgs> nameChange = (sender, args) => this.InstanceName = this.ComponentReference.Value == null ? "(None)" : string.Format("{0:D2}. {1}.{2}", this.Order, this.ComponentReference.Value.Parent.Parent.InstanceName, this.ComponentReference.Value.InstanceName);
+            Action<object, EventArgs> nameChange = (sender, args) => InstanceName = ComponentReference.Value == null ? "(None)" : string.Format("{0:D2}. {1}.{2}", Order, ComponentReference.Value.Parent.Parent.InstanceName, ComponentReference.Value.InstanceName);
 
-            this.ComponentIdChanged += new EventHandler(nameChange);
-            this.ComponentNameChanged += new EventHandler(nameChange);
-            this.OrderChanged += (sender, args) => { reorderNext(this); nameChange(sender, args); };
-            if (this.ComponentReference.Value == null)
-                this.InstanceName = "(None)";
+            ComponentIdChanged += new EventHandler(nameChange);
+            ComponentNameChanged += new EventHandler(nameChange);
+            OrderChanged += (sender, args) => { reorderNext(this); nameChange(sender, args); };
+            if (ComponentReference.Value == null)
+                InstanceName = "(None)";
             else
                 nameChange(null, null);
         }
 
         public void SetNextOrderNumber()
         {
-            var allOrders = this.Parent.NServiceBusMVCComponentLinks.Select(cl => cl.Order);
+            var allOrders = Parent.NServiceBusMVCComponentLinks.Select(cl => cl.Order);
 
-            this.Order = allOrders.Where(p => !allOrders.Any(s => s == (p + 1))).Min() + 1;
+            Order = allOrders.Where(p => !allOrders.Any(s => s == (p + 1))).Min() + 1;
         }
 
         private void reorderNext(INServiceBusMVCComponentLink componentLink)
@@ -69,7 +69,7 @@ namespace NServiceBusStudio
 
         public IAbstractEndpointComponents ParentEndpointComponents
         {
-            get { return this.Parent as IAbstractEndpointComponents; }
+            get { return Parent as IAbstractEndpointComponents; }
         }
     }
 }

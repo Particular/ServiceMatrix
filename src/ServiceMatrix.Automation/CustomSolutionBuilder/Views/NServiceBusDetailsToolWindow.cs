@@ -17,9 +17,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         public NServiceBusDetailsToolWindow() :
             base(null)
         {
-            this.Caption = "ServiceMatrix Details";
-            this.BitmapResourceID = 301;
-            this.BitmapIndex = 0;
+            Caption = "ServiceMatrix Details";
+            BitmapResourceID = 301;
+            BitmapIndex = 0;
         }
 
         protected override void Initialize()
@@ -27,11 +27,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             base.Initialize();
 
             var pane = new DetailsPanel();
-            this.Content = pane;
+            Content = pane;
 
             pane.CaptionHasChanged += (s, e) =>
             {
-                this.Caption = pane.Caption;
+                Caption = pane.Caption;
             };
         }
     }

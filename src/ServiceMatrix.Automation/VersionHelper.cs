@@ -1,14 +1,11 @@
-﻿using NuPattern.Diagnostics;
-using System;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
-
-
-namespace NServiceBusStudio.Core
+﻿namespace NServiceBusStudio.Core
 {
+    using NuPattern.Diagnostics;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Xml.Linq;
+
 	/// <summary>
 	/// Helper for toolkit versioning.
 	/// </summary>
@@ -70,7 +67,7 @@ namespace NServiceBusStudio.Core
 			var versionElement = document.Descendants(ns + "NServiceBusStudioVersion").FirstOrDefault();
 			if (versionElement != null)
 			{
-				return new Version((string)versionElement.Value);
+				return new Version(versionElement.Value);
 			}
 
 			return null;

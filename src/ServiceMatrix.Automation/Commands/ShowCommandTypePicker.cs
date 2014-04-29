@@ -5,8 +5,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using NuPattern;
 using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
 using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
 using NuPattern.Diagnostics;
@@ -15,7 +13,8 @@ using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    using Extensions;
+    using NServiceBusStudio.Automation.Extensions;
+    using Command = NuPattern.Runtime.Command;
 
     /// <summary>
     /// A custom command that performs some automation.
@@ -24,7 +23,7 @@ namespace NServiceBusStudio.Automation.Commands
     [Category("General")]
     [Description("Shows a dialog where the user can choose or create a command, and adds a publish link to it.")]
     [CLSCompliant(false)]
-    public class ShowCommandTypePicker : NuPattern.Runtime.Command
+    public class ShowCommandTypePicker : Command
     {
         private static readonly ITracer tracer = Tracer.Get<ShowCommandTypePicker>();
 
@@ -66,12 +65,12 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentComponent = this.CurrentElement.As<IComponent>();
+            CurrentComponent = CurrentElement.As<IComponent>();
             var createSenderComponent = false; // At Component Level, do not create sender
 
-            if (this.CurrentComponent == null)
+            if (CurrentComponent == null)
             {
-                this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
+                CurrentComponent = CurrentElement.Parent.As<IComponent>();
                 createSenderComponent = true;
             }
 
@@ -92,14 +91,14 @@ namespace NServiceBusStudio.Automation.Commands
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    var selectedCommand = default(ICommand);
+                    ICommand selectedCommand;
                     if (commandNames.Contains(selectedElement))
                     {
                         selectedCommand = commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
                     }
                     else
                     {
-                        selectedCommand = CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement, (c) => c.DoNotAutogenerateSenderComponent = !createSenderComponent);
+                        selectedCommand = CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement, c => c.DoNotAutogenerateSenderComponent = !createSenderComponent);
                     }
 
                     CurrentComponent.Publishes.CreateLink(selectedCommand);
@@ -108,8 +107,8 @@ namespace NServiceBusStudio.Automation.Commands
                     if (CurrentComponent.UnfoldedCustomCode)
                     {
                         var userCode = WindowFactory.CreateDialog<UserCodeChangeRequired>() as UserCodeChangeRequired;
-                        userCode.UriService = this.UriService;
-                        userCode.Solution = this.Solution;
+                        userCode.UriService = UriService;
+                        userCode.Solution = Solution;
                         userCode.Component = CurrentComponent;
                         userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Send({0});", 
                             selectedCommand.CodeIdentifier.LowerCaseFirstCharacter(), 

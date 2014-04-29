@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime.Shell.ToolWindows;
-using NuPattern.Runtime;
-using ServiceMatrix.Diagramming.ViewModels;
-using NServiceBusStudio.Automation.Infrastructure;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using Microsoft.VisualStudio.Shell;
+    using NuPattern.Runtime;
+    using ServiceMatrix.Diagramming.ViewModels;
+    using NServiceBusStudio.Automation.Infrastructure;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("On Application Loaded")]
-    public class OnApplicationLoadedCommand : NuPattern.Runtime.Command
+    public class OnApplicationLoadedCommand : Command
     {
         [Import(typeof(SVsServiceProvider))]
         public IServiceProvider ServiceProvider { get; set; }
@@ -31,12 +27,12 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            this.PatternWindows.ShowSolutionBuilder(this.ServiceProvider);
+            PatternWindows.ShowSolutionBuilder(ServiceProvider);
 
-            new ShowNewDiagramCommand () { ServiceProvider = this.ServiceProvider }.Execute();
+            new ShowNewDiagramCommand () { ServiceProvider = ServiceProvider }.Execute();
 
-            this.ServiceMatrixDiagramAdapter.WireSolution(this.ServiceProvider);
-            this.RemoveEmptyAddMenus.WireSolution(this.ServiceProvider);
+            ServiceMatrixDiagramAdapter.WireSolution(ServiceProvider);
+            RemoveEmptyAddMenus.WireSolution(ServiceProvider);
         }
     }
 }

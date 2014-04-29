@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.Dialog;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using NuPattern;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class ShowComponentReferencePicker : NuPattern.Runtime.Command
+    using System.Linq;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using AbstractEndpoint.Automation.Dialog;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
+    using NuPattern;
+    using NuPattern.Presentation;
+    using Command = NuPattern.Runtime.Command;
+
+    public class ShowComponentReferencePicker : Command
     {
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
@@ -44,7 +42,7 @@ namespace NServiceBusStudio.Automation.Commands
             this.ValidateObject();
 
             var element = CurrentElement.As<IComponent>();
-            var app = CurrentElement.Root.As<NServiceBusStudio.IApplication>();
+            var app = CurrentElement.Root.As<IApplication>();
 
             var infrastructureLibraries = app.Design.Libraries.Library
                 .Except(element.LibraryReferences.LibraryReference.Select(l => l.Library));

@@ -26,6 +26,8 @@ using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using System.Threading;
+
     /// <summary>
     /// Interaction logic for LogicalView.xaml
     /// </summary>
@@ -34,8 +36,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         public LogicalView(IServiceProvider serviceProvider, object myContext)
         {
             var myDataContext = new LogicalViewModel(myContext as ISolutionBuilderViewModel);
-            this.DataContext = myDataContext;
-            this.InitializeComponent();
+            DataContext = myDataContext;
+            InitializeComponent();
             //this.DataContext = myContext;
             //var componentModel = ServiceProvider.GlobalProvider.GetService<SComponentModel, IComponentModel>();
             //var container = componentModel.DefaultExportProvider as CompositionContainer;
@@ -49,33 +51,33 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
         {
             get
             {
-                return (LogicalViewModel)this.DataContext;
+                return (LogicalViewModel)DataContext;
             }
         }
 
         public LogicalView(LogicalViewModel myContext)
         {
-            this.DataContext = myContext;
+            DataContext = myContext;
             myContext.FocusOnViewRequested += (s, e) => 
             {
-                new System.Threading.Thread(() =>
+                new Thread(() =>
                     {
                         Dispatcher.Invoke(new Action(() =>
                             {
-                                var selectedNode = this.explorer.Focus();
-                                this.explorer.Focus();
+                                var selectedNode = explorer.Focus();
+                                explorer.Focus();
                             }));
                     }).Start();
             };
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
 
         public void InitializeViewSelector()
         {
-            this.ViewSelector.SelectedIndex = 0;
-            this.ViewSelectorBorder.Visibility = System.Windows.Visibility.Visible;
-            this.TitleGrid.Visibility = System.Windows.Visibility.Collapsed;
+            ViewSelector.SelectedIndex = 0;
+            ViewSelectorBorder.Visibility = Visibility.Visible;
+            TitleGrid.Visibility = Visibility.Collapsed;
         }
 
         private static IEditableCollectionView GetEditableView(DependencyObject reference)
@@ -254,9 +256,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         private void explorer_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            if (this.SelectedItemChanged != null)
+            if (SelectedItemChanged != null)
             {
-                this.SelectedItemChanged(e.NewValue, EventArgs.Empty);
+                SelectedItemChanged(e.NewValue, EventArgs.Empty);
             }
 
         }

@@ -27,8 +27,8 @@ namespace NServiceBusStudio.Automation.Diagramming.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
     }
 }

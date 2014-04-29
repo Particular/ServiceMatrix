@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class RemoveLibraryCodeLinksCommand : NuPattern.Runtime.Command
+    using NuPattern.Runtime;
+
+    public class RemoveLibraryCodeLinksCommand : Command
     {
         public override void Execute()
         {

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EnvDTE;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using NuPattern.VisualStudio.Solution;
+
     public interface IProjectReferenced
     {
         IProject Project { get; }

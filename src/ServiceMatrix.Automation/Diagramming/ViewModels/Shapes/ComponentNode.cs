@@ -16,17 +16,17 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
         public ComponentNode(IProductElementViewModel innerViewModel, ServiceNode parent, IProductElementViewModel componentLinkViewModel)
             : base(innerViewModel)
         {
-            this.ComponentLinkViewModel = componentLinkViewModel;
-            this.IsResizable = false;
+            ComponentLinkViewModel = componentLinkViewModel;
+            IsResizable = false;
             
-            this.Bounds = new Rect(12, 40, 276, 38);
+            Bounds = new Rect(12, 40, 276, 38);
 
-            this.SetParent(parent);
+            SetParent(parent);
         }
 
         public virtual bool IsSaga
         {
-            get { return (bool)this.InnerViewModel.Data.Properties.First(x => x.DefinitionName == "IsSaga").Value; }
+            get { return (bool)InnerViewModel.Data.Properties.First(x => x.DefinitionName == "IsSaga").Value; }
         }
     }
 }

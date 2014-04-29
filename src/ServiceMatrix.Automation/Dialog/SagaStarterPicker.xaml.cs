@@ -30,7 +30,7 @@ namespace NServiceBusStudio.Automation.Dialog
 
         protected override void OnActivated(EventArgs e)
         {
-            this.DataContext = this;
+            DataContext = this;
             base.OnActivated(e);
         }
 
@@ -45,7 +45,7 @@ namespace NServiceBusStudio.Automation.Dialog
             get
             {
                 var list = new List<SagaStarter>();
-                this.Elements.ToList().ForEach(x => list.Add(new SagaStarter() { Name = x, IsSelected = this.SelectedItems.Contains(x) }));
+                Elements.ToList().ForEach(x => list.Add(new SagaStarter() { Name = x, IsSelected = SelectedItems.Contains(x) }));
                 return new ObservableCollection<SagaStarter>(list);
             }
         }
@@ -64,9 +64,9 @@ namespace NServiceBusStudio.Automation.Dialog
 
         private void ok_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedItems = this.MessagesList.Items.OfType<SagaStarter>().Where(x => x.IsSelected).Select(x => x.Name).ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
-            this.DialogResult = true;
-            this.Close();
+            SelectedItems = MessagesList.Items.OfType<SagaStarter>().Where(x => x.IsSelected).Select(x => x.Name).ToList(); //selecteditems is not a dependencyproperty and there are known bugs with binding //may be fixed properly
+            DialogResult = true;
+            Close();
         }
     }
 

@@ -26,8 +26,8 @@ namespace NServiceBusStudio.Core
 			this.allValidValues = allValidValues;
 			this.idProperty = idProperty;
 			this.nameProperty = nameProperty;
-			this.NoneText = Strings.ElementReference.DefaultNone;
-			this.NoneDescription = Strings.ElementReference.DefaultNoneDescription;
+			NoneText = Strings.ElementReference.DefaultNone;
+			NoneDescription = Strings.ElementReference.DefaultNoneDescription;
 		}
 
 		/// <summary>
@@ -46,29 +46,29 @@ namespace NServiceBusStudio.Core
 		/// </summary>
 		public void Refresh()
 		{
-			if (string.IsNullOrEmpty(this.idProperty.Value))
+			if (string.IsNullOrEmpty(idProperty.Value))
 			{
-				if (!string.IsNullOrEmpty(this.nameProperty.Value))
-					this.nameProperty.Value = string.Empty;
+				if (!string.IsNullOrEmpty(nameProperty.Value))
+					nameProperty.Value = string.Empty;
 
 				return;
 			}
 
-			var id = new Guid(this.idProperty.Value);
-			var referencedElement = this.allValidValues()
+			var id = new Guid(idProperty.Value);
+			var referencedElement = allValidValues()
 				.Select(x => x.As<IProductElement>())
 				.FirstOrDefault(x => x.Id == id);
 
 			if (referencedElement == null)
 			{
-				this.idProperty.Value = string.Empty;
-				this.nameProperty.Value = string.Empty;
+				idProperty.Value = string.Empty;
+				nameProperty.Value = string.Empty;
 
 				return;
 			}
 
-			if (this.nameProperty.Value != referencedElement.InstanceName)
-				this.nameProperty.Value = referencedElement.InstanceName;
+			if (nameProperty.Value != referencedElement.InstanceName)
+				nameProperty.Value = referencedElement.InstanceName;
 		}
 
 		/// <summary>
@@ -78,28 +78,28 @@ namespace NServiceBusStudio.Core
 		{
 			get
 			{
-				if (string.IsNullOrEmpty(this.idProperty.Value))
+				if (string.IsNullOrEmpty(idProperty.Value))
 					return default(T);
 
-				var id = new Guid(this.idProperty.Value);
-				return this.allValidValues()
+				var id = new Guid(idProperty.Value);
+				return allValidValues()
 					.FirstOrDefault(x => x.As<IProductElement>().Id == id);
 			}
 			set
 			{
 				if (value == null)
 				{
-					this.idProperty.Value = string.Empty;
-					this.nameProperty.Value = string.Empty;
+					idProperty.Value = string.Empty;
+					nameProperty.Value = string.Empty;
 				}
 				else
 				{
 					var element = value.As<IProductElement>();
-					this.idProperty.Value = element.Id.ToString();
-					this.nameProperty.Value = value.InstanceName;
+					idProperty.Value = element.Id.ToString();
+					nameProperty.Value = value.InstanceName;
                     value.InstanceNameChanged += (s, e) =>
                     {
-                        this.Refresh();
+                        Refresh();
                     };
 				}
 			}
@@ -109,12 +109,12 @@ namespace NServiceBusStudio.Core
 
 		public bool Equals(ElementReference<T> other)
 		{
-			return ElementReference<T>.Equals(this, other);
+			return Equals(this, other);
 		}
 
 		public override bool Equals(object obj)
 		{
-			return ElementReference<T>.Equals(this, obj as ElementReference<T>);
+			return Equals(this, obj as ElementReference<T>);
 		}
 
 		public static bool Equals(ElementReference<T> obj1, ElementReference<T> obj2)
@@ -122,17 +122,17 @@ namespace NServiceBusStudio.Core
 			if (Object.Equals(null, obj1) ||
 				Object.Equals(null, obj2) ||
 				obj1.GetType() != obj2.GetType() ||
-				Object.Equals(null, obj1.Value) ||
-				Object.Equals(null, obj2.Value))
+				Equals(null, obj1.Value) ||
+				Equals(null, obj2.Value))
 				return false;
 
-			if (Object.ReferenceEquals(obj1, obj2)) return true;
+			if (ReferenceEquals(obj1, obj2)) return true;
 
 			var element1 = obj1.Value.As<IProductElement>();
 			var element2 = obj2.Value.As<IProductElement>();
 
-			if (Object.Equals(null, element1) ||
-				Object.Equals(null, element2))
+			if (Equals(null, element1) ||
+				Equals(null, element2))
 				return false;
 
 			return element1.Id == element2.Id;
@@ -140,10 +140,10 @@ namespace NServiceBusStudio.Core
 
 		public override int GetHashCode()
 		{
-			if (Object.Equals(default(T), this.Value))
+			if (Equals(default(T), Value))
 				return base.GetHashCode();
 			else
-				return this.Value.As<IProductElement>().Id.GetHashCode();
+				return Value.As<IProductElement>().Id.GetHashCode();
 		}
 
 		#endregion

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
-    public class ResetIsDirtyFlagCommand : NuPattern.Runtime.Command
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using NuPattern.Runtime;
+    using Command = NuPattern.Runtime.Command;
+
+    public class ResetIsDirtyFlagCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -23,7 +20,7 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            this.CurrentElement.As<IApplication>().IsDirty = false;
+            CurrentElement.As<IApplication>().IsDirty = false;
         }
     }
 }
