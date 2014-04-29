@@ -1,32 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Markup;
-using System.Collections.ObjectModel;
-using NServiceBusStudio;
-using System.ComponentModel;
-using System.Windows.Threading;
-using NuPattern.Presentation;
-
-namespace AbstractEndpoint.Automation.Dialog
+﻿namespace AbstractEndpoint.Automation.Dialog
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows;
+    using System.Windows.Controls;
+    using NServiceBusStudio;
+    using System.ComponentModel;
+    using System.Windows.Threading;
+    using NuPattern.Presentation;
+
 
     /// <summary>
     /// Interaction logic for ComponentPicker.xaml
     /// </summary>
-    public partial class UseCaseComponentPicker : CommonDialogWindow, IDialogWindow, INotifyPropertyChanged
+    public partial class UseCaseComponentPicker : IDialogWindow, INotifyPropertyChanged
     {
 
         public UseCaseComponentPicker()
@@ -47,8 +35,10 @@ namespace AbstractEndpoint.Automation.Dialog
                             textBox.SelectionStart = textBox.Text.Length;
                         }
                 },
-                Dispatcher);
-            focusTimer.IsEnabled = true;
+                Dispatcher)
+            {
+                IsEnabled = true
+            };
             focusTimer.Start();
         }
 

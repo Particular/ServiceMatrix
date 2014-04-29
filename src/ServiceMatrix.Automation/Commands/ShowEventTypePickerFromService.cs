@@ -1,19 +1,16 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Windows.Input;
+    using NuPattern.Diagnostics;
+    using NuPattern.Presentation;
     using Command = NuPattern.Runtime.Command;
 
     /// <summary>
@@ -80,7 +77,7 @@ namespace NServiceBusStudio.Automation.Commands
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    var selectedEvent = default(IEvent);
+                    IEvent selectedEvent;
                     if (eventNames.Contains(selectedElement))
                     {
                         selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
@@ -93,7 +90,7 @@ namespace NServiceBusStudio.Automation.Commands
                     var component = CurrentService.Components.Component.FirstOrDefault(x => x.InstanceName == selectedElement + "Sender");
                     if (component == null)
                     {
-                        component = CurrentService.Components.CreateComponent(selectedElement + "Sender", (c) => c.Publishes.CreateLink(selectedEvent));
+                        CurrentService.Components.CreateComponent(selectedElement + "Sender", c => c.Publishes.CreateLink(selectedEvent));
                     }
                     else
                     {

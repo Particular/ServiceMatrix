@@ -17,9 +17,9 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            IList collection = value as IList;
-            ListCollectionView view = new ListCollectionView(collection);
-            SortDescription sort = new SortDescription(parameter.ToString(), ListSortDirection.Ascending);
+            var collection = value as IList;
+            var view = new ListCollectionView(collection);
+            var sort = new SortDescription(parameter.ToString(), ListSortDirection.Ascending);
             view.SortDescriptions.Add(sort);
 
             return view;

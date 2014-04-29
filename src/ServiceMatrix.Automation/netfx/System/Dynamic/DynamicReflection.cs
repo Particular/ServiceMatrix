@@ -248,7 +248,7 @@ namespace System.Dynamic
                 var finalArgs = args.Where(x => !(x is TypeParameter)).Select(UnboxDynamic).ToArray();
                 var refArgs = new Dictionary<int, RefValue>();
                 var outArgs = new Dictionary<int, OutValue>();
-                for (int i = 0; i < method.Parameters.Count; i++)
+                for (var i = 0; i < method.Parameters.Count; i++)
                 {
                     if (method.Parameters[i].ParameterType.IsByRef)
                     {
@@ -366,8 +366,8 @@ namespace System.Dynamic
 			/// <param name="assignableFrom">if set to <c>true</c>, uses a more lax matching approach for arguments, with IsAssignableFrom instead of == for arg type.</param>
 			private IInvocable FindBestMatchImpl(DynamicMetaObjectBinder binder, object[] args, int genericArgs, IEnumerable<IInvocable> candidates, bool assignableFrom)
 			{
-				dynamic dynamicBinder = binder.AsDynamicReflection();
-				for (int i = 0; i < args.Length; i++)
+				var dynamicBinder = binder.AsDynamicReflection();
+				for (var i = 0; i < args.Length; i++)
 				{
 					var index = i;
 					if (args[index] != null)
@@ -403,7 +403,7 @@ namespace System.Dynamic
 			private object AsDynamicIfNecessary(object value)
 			{
 				if (value == null)
-					return value;
+					return null;
 
 				var type = value.GetType();
 				if (type.IsClass && type != typeof(string))

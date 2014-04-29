@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Markup;
-using NuPattern.Runtime;
-using System.ComponentModel;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Dialog
+﻿namespace NServiceBusStudio.Automation.Dialog
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Media.Imaging;
+    using NuPattern.Presentation;
+
     /// <summary>
     /// Interaction logic for ElementPicker.xaml
     /// </summary>
-    public partial class ElementPicker : CommonDialogWindow, IDialogWindow, IElementPicker, IComponentConnector
+    public partial class ElementPicker : IDialogWindow, IElementPicker
     {
         public ElementPicker()
         {

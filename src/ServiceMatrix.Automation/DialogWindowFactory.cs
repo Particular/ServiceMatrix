@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using System.ComponentModel.Composition;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System.Windows;
-using Microsoft.VisualStudio;
-using System.Windows.Interop;
-using NuPattern;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.ComponentModel.Composition;
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using System.Windows;
+    using Microsoft.VisualStudio;
+    using System.Windows.Interop;
+    using NuPattern;
+    using NuPattern.Presentation;
+
 	/// <summary>
 	/// Implements dialog creation in Visual Studio.
 	/// </summary>

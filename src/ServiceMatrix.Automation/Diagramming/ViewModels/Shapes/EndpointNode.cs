@@ -1,16 +1,9 @@
-﻿using Mindscape.WpfDiagramming;
-using Mindscape.WpfDiagramming.Foundation;
-using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
-using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace ServiceMatrix.Diagramming.ViewModels.Shapes
+﻿namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 {
+    using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+    using NuPattern.Runtime.UI.ViewModels;
+    using System.Windows;
+
     public class EndpointNode: GroupNode
     {
         public EndpointNode(IProductElementViewModel innerViewModel) : base (innerViewModel)

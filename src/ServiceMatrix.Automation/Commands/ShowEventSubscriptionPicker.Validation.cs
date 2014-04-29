@@ -1,16 +1,11 @@
-﻿using System;
-using System.Globalization;
-using Microsoft.VisualStudio.Modeling;
-
-using NuPattern.Library;
-using NuPattern.Library.Automation;
-using NuPattern.Library.Commands;
-using NuPattern.Runtime;
-using NuPattern.Diagnostics;
-
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using NuPattern.Library;
+    using NuPattern.Library.Automation;
+    using NuPattern.Runtime;
+    using NuPattern.Diagnostics;
+
     using Microsoft.VisualStudio.Modeling.Validation;
 
     /// <summary>

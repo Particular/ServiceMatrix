@@ -1,20 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Windows.Input;
+    using NuPattern.Diagnostics;
+    using NuPattern.Presentation;
+    using NuPattern.VisualStudio.Solution;
     using NServiceBusStudio.Automation.Extensions;
     using Command = NuPattern.Runtime.Command;
 
@@ -55,7 +52,7 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
-        public IComponent CurrentComponent
+        public NServiceBusStudio.IComponent CurrentComponent
         {
             get;
             set;
@@ -67,10 +64,10 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            CurrentComponent = CurrentElement.As<IComponent>();
+            CurrentComponent = CurrentElement.As<NServiceBusStudio.IComponent>();
             if (CurrentComponent == null)
             {
-                CurrentComponent = CurrentElement.Parent.As<IComponent>();
+                CurrentComponent = CurrentElement.Parent.As<NServiceBusStudio.IComponent>();
             }
 
             // Verify all [Required] and [Import]ed properties have valid values.
@@ -90,7 +87,7 @@ namespace NServiceBusStudio.Automation.Commands
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    var selectedEvent = default(IEvent);
+                    IEvent selectedEvent;
                     if (eventNames.Contains(selectedElement))
                     {
                         selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));

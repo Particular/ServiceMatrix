@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mindscape.WpfDiagramming;
-using Mindscape.WpfDiagramming.Foundation;
-using System.Windows;
-using NuPattern.Runtime.UI.ViewModels;
-using System.Collections.ObjectModel;
-
-namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
+﻿namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 {
+    using System;
+    using Mindscape.WpfDiagramming;
+    using Mindscape.WpfDiagramming.Foundation;
+    using System.Windows;
+    using NuPattern.Runtime.UI.ViewModels;
+    using System.Collections.ObjectModel;
+
     using System.ComponentModel;
 
     // A node that can be added to a group node. Both GroupNode and ChildNode extends this.
@@ -18,7 +15,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
         public static int ZOrderCounter = 0;
 
         private bool _isVisible = true;
-        private bool _isHighlighted = false;
+        private bool _isHighlighted;
         public IProductElementViewModel InnerViewModel { get; set; }
 
         public delegate void ActivateElementHandler(object sender, EventArgs e);
@@ -72,7 +69,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
             if (ActivateElement != null)
             {
-                ActivateElement(this, new EventArgs() { });
+                ActivateElement(this, new EventArgs());
             }
         }
     
@@ -99,7 +96,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                     // Loop through each of the connections attached to this node to set their visibility.
                     foreach (IDiagramConnectionPoint point in ConnectionPoints)
                     {
-                        foreach (IDiagramConnection connection in point.Connections)
+                        foreach (var connection in point.Connections)
                         {
                             //CollapsableConnection collapsable = connection as CollapsableConnection;
                             //if (collapsable != null)
@@ -164,7 +161,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
         internal GroupNode GetCollapsedParent()
         {
             GroupNode collapsedParent = null;
-            GroupNode parent = Parent as GroupNode;
+            var parent = Parent as GroupNode;
             while (parent != null)
             {
                 if (!parent.IsExpanded)
@@ -180,7 +177,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         protected virtual void OnIsVisibleChanged()
         {
-            EventHandler handler = IsVisibleChanged;
+            var handler = IsVisibleChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
@@ -213,7 +210,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 {
                     ParentNode.BoundsChanged -= new EventHandler(Parent_BoundsChanged);
 
-                    GroupNode group = ParentNode as GroupNode;
+                    var group = ParentNode;
                     if (group != null)
                     {
                         group.IsExpandedChanged -= new EventHandler(Group_IsExpandedChanged);
@@ -228,7 +225,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 {
                     ParentNode.BoundsChanged += new EventHandler(Parent_BoundsChanged);
 
-                    GroupNode group = ParentNode as GroupNode;
+                    var group = ParentNode;
                     if (group != null)
                     {
                         group.IsExpandedChanged += new EventHandler(Group_IsExpandedChanged);
@@ -244,13 +241,13 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         private void Group_IsVisibleChanged(object sender, EventArgs e)
         {
-            GroupNode group = sender as GroupNode;
+            var group = sender as GroupNode;
             IsVisible = group.IsVisible && group.IsExpanded;
         }
 
         private void Group_IsExpandedChanged(object sender, EventArgs e)
         {
-            GroupNode group = sender as GroupNode;
+            var group = sender as GroupNode;
             IsVisible = group.IsVisible && group.IsExpanded;
         }
 

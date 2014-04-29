@@ -1,14 +1,13 @@
-﻿using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Shell;
-using ServiceMatrix.Diagramming.ViewModels;
-using NuPattern;
-using System;
-using System.ComponentModel.Composition;
-using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.Shell.Interop;
-
-namespace ServiceMatrix.Diagramming.Views
+﻿namespace ServiceMatrix.Diagramming.Views
 {
+    using Microsoft.VisualStudio.ComponentModelHost;
+    using Microsoft.VisualStudio.Shell;
+    using ServiceMatrix.Diagramming.ViewModels;
+    using NuPattern;
+    using System.ComponentModel.Composition;
+    using System.Runtime.InteropServices;
+    using Microsoft.VisualStudio.Shell.Interop;
+
     [Guid("CB34A2CF-1CD7-46DA-B452-C4C9D75D6CE8")]
     public class ServiceMatrixDiagramToolWindow : ToolWindowPane
     {
@@ -32,7 +31,7 @@ namespace ServiceMatrix.Diagramming.Views
 
             NServiceBusDiagramAdapter.CloseWindow = () =>
             {
-                IVsWindowFrame windowFrame = (IVsWindowFrame)Frame;
+                var windowFrame = (IVsWindowFrame)Frame;
                 windowFrame.Hide();
             };
 

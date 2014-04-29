@@ -85,10 +85,9 @@
                     // Add new endpoint
                     foreach (var selectedElement in picker.SelectedItems)
                     {
-                        IAbstractEndpoint selectedEndpoint;
                         if (existingEndpointNames.Contains(selectedElement))
                         {
-                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", e.As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                            var selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", e.As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             element.DeployTo(selectedEndpoint);
                         }
                         else

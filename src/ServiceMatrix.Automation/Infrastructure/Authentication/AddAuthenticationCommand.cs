@@ -38,7 +38,7 @@
         {
             var infrastructure = CurrentElement.Root.As<IApplication>().Design.Infrastructure;
             var security = infrastructure.Security?? infrastructure.CreateSecurity("Security");
-            var authentication = security.CreateAuthentication("Authentication");
+            security.CreateAuthentication("Authentication");
             AuthenticationFeature.InitializeAuthenticationValues(CurrentElement.Root.As<IApplication>(), Solution, ServiceProvider);
         }
     }

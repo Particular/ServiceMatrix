@@ -1,14 +1,9 @@
-﻿using Microsoft.VisualStudio.ExtensionManager;
-using Microsoft.VisualStudio.Shell.Interop;
-using NuPattern.Diagnostics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.Extensions
+﻿namespace NServiceBusStudio.Automation.Extensions
 {
+    using Microsoft.VisualStudio.ExtensionManager;
+    using NuPattern.Diagnostics;
+    using System;
+    using System.Linq;
     using EnvDTE;
     using NuPattern;
 
@@ -43,12 +38,12 @@ namespace NServiceBusStudio.Automation.Extensions
         public static string getOSInfo()
         {
             //Get Operating system information.
-            OperatingSystem os = Environment.OSVersion;
+            var os = Environment.OSVersion;
             //Get version information about the os.
-            Version vs = os.Version;
+            var vs = os.Version;
 
             //Variable to hold our return value
-            string operatingSystem = "";
+            var operatingSystem = "";
 
             if (os.Platform == PlatformID.Win32Windows)
             {

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AbstractEndpoint;
-using NuPattern.Runtime.UI;
 using NuPattern.Runtime;
 using System.Windows;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
@@ -12,6 +10,7 @@ using NuPattern.Runtime.UI.ViewModels;
 
 namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 {
+    
     public class DetailsPanelViewModel
     {
         public Action CleanDetails { get; set; }
@@ -114,8 +113,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateEndpointsPanel(IApplication application, ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IAbstractEndpoint> endpoints, int position)
         {
-            var endpointsVM = new InnerPanelViewModel();
-            endpointsVM.Title = "Deployed to the following Endpoints";
+            var endpointsVM = new InnerPanelViewModel
+            {
+                Title = "Deployed to the following Endpoints"
+            };
             endpointsVM.Items.Add(new InnerPanelTitle { Product = application.As<IProductElement>(), Text = application.InstanceName });
             foreach (var endpoint in endpoints)
             {
@@ -127,14 +128,16 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         private void CreateEventsPanel(ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position
                                         , IProductElement published = null, IProductElement subscribed = null)
         {
-            var eventsVM = new InnerPanelViewModel();
-            eventsVM.Title = "Events";
-            eventsVM.Items.Add(new InnerPanelTitle { Text = "Published", Product = published, MenuFilters = new string[] { "Publish Event" }, ForceText = true });
+            var eventsVM = new InnerPanelViewModel
+            {
+                Title = "Events"
+            };
+            eventsVM.Items.Add(new InnerPanelTitle { Text = "Published", Product = published, MenuFilters = new[] { "Publish Event" }, ForceText = true });
             foreach (var publish in components.SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value)).Distinct())
             {
                 eventsVM.Items.Add(new InnerPanelItem { Product = publish.As<IProductElement>(), Text = publish.InstanceName });
             }
-            eventsVM.Items.Add(new InnerPanelTitle { Text = "Subscribed", Product = subscribed, MenuFilters = new string[] { "Process Messages…" }, ForceText = true });
+            eventsVM.Items.Add(new InnerPanelTitle { Text = "Subscribed", Product = subscribed, MenuFilters = new[] { "Process Messages…" }, ForceText = true });
             foreach (var subscribe in components.SelectMany(c => c.Subscribes.SubscribedEventLinks.Select(cl => cl.EventReference.Value)).Distinct())
             {
                 if (subscribe != null)
@@ -152,9 +155,11 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         private void CreateCommandsPanel(ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position
                                         , IProductElement sent = null, IProductElement received = null)
         {
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Commands";
-            commandsVM.Items.Add(new InnerPanelTitle { Text = "Sent", Product = sent, MenuFilters = new string[] { "Send Command" }, ForceText = true });
+            var commandsVM = new InnerPanelViewModel
+            {
+                Title = "Commands"
+            };
+            commandsVM.Items.Add(new InnerPanelTitle { Text = "Sent", Product = sent, MenuFilters = new[] { "Send Command" }, ForceText = true });
             foreach (var publish in components.SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value)).Distinct())
             {
                 commandsVM.Items.Add(new InnerPanelItem { Product = publish.As<IProductElement>(), Text = publish.InstanceName });
@@ -170,8 +175,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateUseCasesPanel(ISolutionBuilderViewModel solutionBuilderModel, IProductElement product, IApplication application, int position)
         {
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Use Cases";
+            var commandsVM = new InnerPanelViewModel
+            {
+                Title = "Use Cases"
+            };
             var useCases = application.Design.UseCases.UseCase.Where(uc => uc.UseCaseLinks.Any(ul => ul.LinkedElementId == product.Id))
                 .Union(application.Design.UseCases.UseCase.Where(uc => uc.RelatedEndpoints.Any(ep => ep.As<IProductElement>().Id == product.Id)))
                 .Distinct();
@@ -186,8 +193,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateLibrariesPanel(ISolutionBuilderViewModel solutionBuilderModel, IProductElement product, IApplication application, int position)
         {
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Libraries";
+            var commandsVM = new InnerPanelViewModel
+            {
+                Title = "Libraries"
+            };
             var globalLibraries = application.Design.Libraries.Library.Where(l => 
                                             product.As<IComponent>().LibraryReferences.LibraryReference
                                                     .Any(lr => lr.LibraryId == l.As<IProductElement>().Id))
@@ -215,8 +224,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             int position, 
             string Preffix = "")
         {
-            var componentsVM = new InnerPanelViewModel();
-            componentsVM.Title = Preffix + "Components";
+            var componentsVM = new InnerPanelViewModel
+            {
+                Title = Preffix + "Components"
+            };
             foreach (var service in components.Select(c => c.Parent.Parent).Distinct())
             {
                 componentsVM.Items.Add(new InnerPanelTitle { Product = service.As<IProductElement>(), Text = service.InstanceName });
@@ -234,8 +245,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateComponentsPanel(ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IComponent> components, int position, string Preffix = "")
         {
-            var componentsVM = new InnerPanelViewModel();
-            componentsVM.Title = Preffix + "Components";
+            var componentsVM = new InnerPanelViewModel
+            {
+                Title = Preffix + "Components"
+            };
             foreach (var service in components.Select(c => c.Parent.Parent).Distinct())
             {
                 componentsVM.Items.Add(new InnerPanelTitle { Product = service.As<IProductElement>(), Text = service.InstanceName });
@@ -251,13 +264,15 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         private void CreateComponentsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
         {
             var components = useCase.RelatedComponents;
-            var componentsVM = new InnerPanelViewModel();
-            componentsVM.Title = "Components";
+            var componentsVM = new InnerPanelViewModel
+            {
+                Title = "Components"
+            };
             var componentsNode = new InnerPanelTitle { 
                 Product = useCase.As<IProductElement>(), 
                 Text = "Components", 
                 ForceText = true, 
-                MenuFilters = new string[] { "Add Component" },
+                MenuFilters = new[] { "Add Component" },
                 IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
             };
             componentsVM.Items.Add(componentsNode);
@@ -276,14 +291,16 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         private void CreateCommandsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
         {
             var commands = useCase.RelatedCommands;
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Commands";
+            var commandsVM = new InnerPanelViewModel
+            {
+                Title = "Commands"
+            };
             var commandsNode = new InnerPanelTitle
             {
                 Product = useCase.As<IProductElement>(),
                 Text = "Commands",
                 ForceText = true,
-                MenuFilters = new string[] { "Add Command" },
+                MenuFilters = new[] { "Add Command" },
                 IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
             };
             commandsVM.Items.Add(commandsNode);
@@ -301,14 +318,16 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         private void CreateEventsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
         {
             var events = useCase.RelatedEvents;
-            var eventsVM = new InnerPanelViewModel();
-            eventsVM.Title = "Events";
+            var eventsVM = new InnerPanelViewModel
+            {
+                Title = "Events"
+            };
             var eventsNode = new InnerPanelTitle
             {
                 Product = useCase.As<IProductElement>(),
                 Text = "Events",
                 ForceText = true,
-                MenuFilters = new string[] { "Add Event" },
+                MenuFilters = new[] { "Add Event" },
                 IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
             };
             eventsVM.Items.Add(eventsNode);
@@ -325,8 +344,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateInfrastructurePanel(ISolutionBuilderViewModel solutionBuilderModel, IInfrastructure infrastructure, int position)
         {
-            var infrastructureVM = new InnerPanelViewModel();
-            infrastructureVM.Title = "Infrastructure";
+            var infrastructureVM = new InnerPanelViewModel
+            {
+                Title = "Infrastructure"
+            };
 
             infrastructureVM.Items.Add(new InnerPanelTitle { Product = infrastructure.As<IProductElement>(), Text = infrastructure.InstanceName });
 
@@ -394,8 +415,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateComponentsForLibrary(ISolutionBuilderViewModel solutionBuilderModel, IApplication application, IProductElement library, int position)
         {
-            var componentsVM = new InnerPanelViewModel();
-            componentsVM.Title = "Used By Components";
+            var componentsVM = new InnerPanelViewModel
+            {
+                Title = "Used By Components"
+            };
 
             foreach (var service in application.Design.Services.Service
                                         .Where(s => s.Components.Component
@@ -427,14 +450,16 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private void CreateEndpointsUseCasePanel(IApplication application, ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
         {
-            var endpointsVM = new InnerPanelViewModel();
-            endpointsVM.Title = "Deployed to the following Endpoints";
+            var endpointsVM = new InnerPanelViewModel
+            {
+                Title = "Deployed to the following Endpoints"
+            };
             endpointsVM.Items.Add(new InnerPanelTitle
             {
                 Product = useCase.As<IProductElement>(),
                 Text = "Started In",
                 ForceText = true,
-                MenuFilters = new string[] { "Add Started By Endpoint" },
+                MenuFilters = new[] { "Add Started By Endpoint" },
                 IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
             });
             foreach (var endpoint in useCase.EndpointsStartingUseCases)

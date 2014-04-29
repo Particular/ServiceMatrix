@@ -1,18 +1,16 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using System.Windows.Input;
-using NServiceBusStudio.Automation.Dialog;
-using System.Collections.ObjectModel;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NuPattern;
+    using System.Windows.Input;
+    using NServiceBusStudio.Automation.Dialog;
+    using System.Collections.ObjectModel;
+    using NuPattern.Diagnostics;
+    using NuPattern.Presentation;
     using Command = NuPattern.Runtime.Command;
 
     /// <summary>
@@ -70,7 +68,7 @@ namespace NServiceBusStudio.Automation.Commands
                 {
                     foreach (var selectedElement in picker.SelectedItems)
                     {
-                        var selectedService = default(IService);
+                        IService selectedService;
                         if (existingServiceNames.Contains(selectedElement))
                         {
                             selectedService = services.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));

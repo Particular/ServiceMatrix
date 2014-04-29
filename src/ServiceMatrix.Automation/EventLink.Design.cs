@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core.Design;
-using NServiceBusStudio.Core;
-using NuPattern.ComponentModel;
-
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio.Core.Design;
+    using NServiceBusStudio.Core;
+    using NuPattern.ComponentModel;
+
     using NuPattern.Runtime;
 
     public class EventReferenceConverter : ElementReferenceConverter<IEventLink, IEvent, EventReferenceStrategy> { }
@@ -24,9 +22,7 @@ namespace NServiceBusStudio
 
 		public IEnumerable<StandardValue> GetStandardValues(IEventLink owner)
 		{
-			var thisService = owner.Parent.Parent;
-
-			return owner.Parent.Parent.Parent.Parent.Contract.Events.Event
+		    return owner.Parent.Parent.Parent.Parent.Contract.Events.Event
 				.Except(owner.Parent.EventLinks.Select(link => link.EventReference.Value)
 					.Except(new [] { owner.EventReference.Value }))
 				.Select(e => new StandardValue(e.InstanceName, e));

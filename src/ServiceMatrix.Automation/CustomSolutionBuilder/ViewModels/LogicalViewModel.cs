@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Collections.ObjectModel;
-using NuPattern.Runtime.UI;
 using System.ComponentModel;
 using NuPattern.Runtime;
-using System.Collections.Specialized;
 using System.Windows.Threading;
 using NuPattern.Presentation;
 using NuPattern.Runtime.UI.ViewModels;
@@ -44,8 +41,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             IProductElementViewModel root = null;
             IEnumerable<string> menuFilters = null;
             InnerPanelItem rootItem = null;
-            ObservableCollection<IProductElementViewModel> children = new ObservableCollection<IProductElementViewModel>();
-            foreach (InnerPanelItem item in innerView.Items)
+            var children = new ObservableCollection<IProductElementViewModel>();
+            foreach (var item in innerView.Items)
             {
                 if (item is InnerPanelTitle)
                 {
@@ -103,7 +100,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
                 Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
                     {
-                        string definitionName = currentNode.InnerViewModel.Data.DefinitionName.ToString();
+                        var definitionName = currentNode.InnerViewModel.Data.DefinitionName;
                         switch (definitionName)
                         {
                             case "NServiceBusHost":
@@ -154,13 +151,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         private LogicalViewModelNode FindLogicalNode(ObservableCollection<LogicalViewModelNode> observableCollection,
             Func<LogicalViewModelNode, bool> Condition)
         {
-            foreach (LogicalViewModelNode node in observableCollection)
+            foreach (var node in observableCollection)
             {
                 if (Condition(node))
                 {
                     return node;
                 }
-                LogicalViewModelNode node2 = FindLogicalNode(node.LogicalViewNodes, Condition);
+                var node2 = FindLogicalNode(node.LogicalViewNodes, Condition);
                 if (node2 != null)
                 {
                     return node2;
@@ -204,8 +201,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 SelectView("Use Cases");
             }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
-            LogicalViewModelNode usecasesItem = new LogicalViewModelNode(this, SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases"),
+            var observables = new ObservableCollection<LogicalViewModelNode>();
+            var usecasesItem = new LogicalViewModelNode(this, SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases"),
                 SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases").ChildNodes);
             observables.Add(new LogicalViewModelNode(this, SourceViewModel.TopLevelNodes.First<IProductElementViewModel>(), null));
             observables[0].LogicalViewNodes.Add(usecasesItem);
@@ -228,8 +225,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 SelectView("Endpoints");
             }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
-            LogicalViewModelNode endpointsItem = new LogicalViewModelNode(this, SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints"),
+            var observables = new ObservableCollection<LogicalViewModelNode>();
+            var endpointsItem = new LogicalViewModelNode(this, SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints"),
                 SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints").ChildNodes);
             observables.Add(new LogicalViewModelNode(this, SourceViewModel.TopLevelNodes.First<IProductElementViewModel>(), null));
             observables[0].LogicalViewNodes.Add(endpointsItem);
@@ -299,7 +296,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 SelectView("Libraries");
             }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
+            var observables = new ObservableCollection<LogicalViewModelNode>();
 
             var libraries = SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Libraries");
 
@@ -338,7 +335,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 SelectView("Components");
             }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
+            var observables = new ObservableCollection<LogicalViewModelNode>();
 
             var services = SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
             
@@ -371,7 +368,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             {
                 SelectView("Messages");
             }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
+            var observables = new ObservableCollection<LogicalViewModelNode>();
 
             var services = SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
 
@@ -421,14 +418,14 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private IProductElementViewModel GetProductNode(InnerPanelItem item)
         {
-            IProductElement target = item.Product;
-            string label = item.Text;
-            IProductElementViewModel model = SearchInNodes(SourceViewModel.TopLevelNodes, target);
+            var target = item.Product;
+            var label = item.Text;
+            var model = SearchInNodes(SourceViewModel.TopLevelNodes, target);
             if (model == null)
             {
                 var element = SourceViewModel.TopLevelNodes[0].Data.As<IApplication>().Design.DummyCollection.As<IAbstractElement>();
                 var ctx = SourceViewModel.TopLevelNodes[0].Context;
-                LabelElementViewModel model2 = new LabelElementViewModel(element, ctx)
+                var model2 = new LabelElementViewModel(element, ctx)
                 {
                     Label = label
                 };
@@ -439,7 +436,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 var ctx = SourceViewModel.TopLevelNodes[0].Context;
                 if (model.Data is IAbstractElement)
                 {
-                    LabelElementViewModel model2 = new LabelElementViewModel(model.Data.As<IAbstractElement>(), ctx)
+                    var model2 = new LabelElementViewModel(model.Data.As<IAbstractElement>(), ctx)
                     {
                         Label = item.Text
                     };
@@ -467,13 +464,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         private IProductElementViewModel SearchInNodes(ObservableCollection<IProductElementViewModel> observableCollection, IProductElement target)
         {
-            foreach (IProductElementViewModel model in observableCollection)
+            foreach (var model in observableCollection)
             {
                 if (model.Data == target)
                 {
                     return model;
                 }
-                IProductElementViewModel model2 = SearchInNodes(model.ChildNodes, target);
+                var model2 = SearchInNodes(model.ChildNodes, target);
                 if (model2 != null)
                 {
                     return model2;

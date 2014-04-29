@@ -1,10 +1,8 @@
-﻿using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Windows.Data;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Converters
 {
+    using System;
+    using System.Windows.Data;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
     using System.Globalization;
 
     /// <summary>

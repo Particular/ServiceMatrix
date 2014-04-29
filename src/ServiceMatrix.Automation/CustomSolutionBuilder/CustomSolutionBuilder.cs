@@ -1,19 +1,15 @@
-﻿using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
-using NuPattern;
-using NuPattern.Runtime;
-using NuPattern.Runtime.Shell.ToolWindows;
-using NuPattern.Runtime.UI.ViewModels;
-using NuPattern.VisualStudio.Solution;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Threading;
-using System.Windows.Controls;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder
 {
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using NuPattern.VisualStudio.Solution;
+    using System;
+    using System.ComponentModel.Composition;
+    using System.Linq;
+    using System.Threading;
+    using System.Windows.Controls;
     using System.Windows.Threading;
 
     [Export]
@@ -27,7 +23,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
         
         public static bool HasBeenAlreadyInitialized = false;
 
-        private ISolutionBuilderViewModel SolutionBuilderViewModel;
         private ToolbarExtension ToolBarExtension;
         private ScrollViewer Scrollviewer;
 
@@ -51,7 +46,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
                 DetailsWindowManager.Show();
             }
             
-            SolutionBuilderViewModel = PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
+            PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
             var toolWindow = PatternWindows.ShowSolutionBuilder(serviceProvider);
 
             if (toolWindow != null)
@@ -166,7 +161,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
             var dispatcher = Dispatcher.CurrentDispatcher;
             new Thread(() =>
                 {
-                    while (componentNames.Any(componentName => !service.Components.Component.Any(c => c.InstanceName == componentName)))
+                    while (componentNames.Any(componentName => service.Components.Component.All(c => c.InstanceName != componentName)))
                     {
                         Thread.Sleep(1000);
                     }
@@ -179,7 +174,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder
             var dispatcher = Dispatcher.CurrentDispatcher;
             new Thread(() =>
             {
-                while (!service.Contract.Events.Event.Any(e => e.InstanceName == eventName))
+                while (service.Contract.Events.Event.All(e => e.InstanceName != eventName))
                 {
                     Thread.Sleep(1000);
                 }

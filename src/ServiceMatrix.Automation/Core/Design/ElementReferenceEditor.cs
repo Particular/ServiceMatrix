@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using NuPattern.ComponentModel.Design;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace NServiceBusStudio.Core.Design
+﻿namespace NServiceBusStudio.Core.Design
 {
+    using System;
+    using System.ComponentModel;
+    using NuPattern.ComponentModel.Design;
+    using NuPattern.Runtime.ToolkitInterface;
     using NuPattern.Runtime;
 
     public class ElementReferenceEditor<TOwner, TReference, TStrategy> : StandardValuesEditor

@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio;
-using NuPattern.Runtime.ToolkitInterface;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Exceptions;
-
-namespace AbstractEndpoint
+﻿namespace AbstractEndpoint
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio;
+    using NuPattern.Runtime.ToolkitInterface;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Exceptions;
     using System.Windows;
 
     public interface IAbstractEndpoint : IToolkitInterface, IProjectReferenced

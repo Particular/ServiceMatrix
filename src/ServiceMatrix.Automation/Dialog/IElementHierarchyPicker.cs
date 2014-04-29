@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.Dialog
+﻿namespace NServiceBusStudio.Automation.Dialog
 {
+    using System.Collections.Generic;
+
     interface IElementHierarchyPicker
     {
         string SlaveName { get; set; }

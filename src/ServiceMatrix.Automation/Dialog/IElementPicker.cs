@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.Dialog
+﻿namespace NServiceBusStudio.Automation.Dialog
 {
+    using System.Collections.Generic;
+
     interface IElementPicker
     {
         bool? ShowDialog();

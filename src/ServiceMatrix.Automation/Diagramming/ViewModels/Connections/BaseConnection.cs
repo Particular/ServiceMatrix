@@ -3,16 +3,14 @@ using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace ServiceMatrix.Diagramming.ViewModels.Connections
 {
     public abstract class BaseConnection : DiagramConnection
     {
-        private bool _isHighlighted = false;
-        private bool _isShadowed = false;
+        private bool _isHighlighted;
+        private bool _isShadowed;
 
         // This is for highlighting the node if mouse is over.
         public bool IsHighlighted
@@ -34,7 +32,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
             }
         }
 
-        private DiagramNode _source = null;
+        private DiagramNode _source;
         public DiagramNode Source 
         {
             get { return _source; } 
@@ -56,7 +54,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.Connections
             } 
         }
 
-        private DiagramNode _target = null;
+        private DiagramNode _target;
         public DiagramNode Target
         {
             get { return _target; }

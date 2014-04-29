@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core;
-using NServiceBusStudio;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace AbstractEndpoint
+﻿namespace AbstractEndpoint
 {
+    using System;
+    using System.Collections.Generic;
+    using NServiceBusStudio.Core;
+    using NServiceBusStudio;
+    using NuPattern.Runtime.ToolkitInterface;
+
     public interface IAbstractComponentLink : IToolkitInterface
     {
         IAbstractEndpointComponents ParentEndpointComponents { get; }

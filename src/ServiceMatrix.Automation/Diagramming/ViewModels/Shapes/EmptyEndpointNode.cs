@@ -1,22 +1,19 @@
-﻿using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace ServiceMatrix.Diagramming.ViewModels.Shapes
+﻿namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 {
+    using NuPattern.Runtime.UI.ViewModels;
+    using System;
+    using System.Collections.ObjectModel;
+
     public class EmptyEndpointNode: EndpointNode
     {
         public static Guid NodeId = Guid.Empty;
 
         public EmptyEndpointNode(IMenuOptionViewModel deployUnhostedComponents): base(null)
         {
-            _menuOptions = new ObservableCollection<IMenuOptionViewModel>();
-            _menuOptions.Add(deployUnhostedComponents);
+            _menuOptions = new ObservableCollection<IMenuOptionViewModel>
+            {
+                deployUnhostedComponents
+            };
         }
 
         public override Guid Id

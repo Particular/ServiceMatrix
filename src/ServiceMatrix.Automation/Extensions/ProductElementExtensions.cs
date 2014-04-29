@@ -1,19 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Windows;
-using EnvDTE;
-using NuPattern.Runtime;
-using NuPattern.Runtime.Schema;
-using NServiceBusStudio.Automation.Infrastructure;
-using NuPattern.Runtime.References;
-using NuPattern;
-using NuPattern.Presentation;
-using NuPattern.VisualStudio.Solution;
-using System.Collections.Generic;
-
-namespace NServiceBusStudio.Automation.Extensions
+﻿namespace NServiceBusStudio.Automation.Extensions
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Windows;
+    using EnvDTE;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Infrastructure;
+    using NuPattern.Runtime.References;
+    using NuPattern;
+    using NuPattern.Presentation;
+    using NuPattern.VisualStudio.Solution;
     using System.Windows.Input;
 
     public static class ProductElementExtensions
@@ -62,7 +59,7 @@ namespace NServiceBusStudio.Automation.Extensions
                     var additionalRenameRefactorings = toolkitElement as IAdditionalRenameRefactorings;
                     if (additionalRenameRefactorings != null)
                     {
-                        for (int i = 0; i < additionalRenameRefactorings.AdditionalInstanceNames.Count; i++)
+                        for (var i = 0; i < additionalRenameRefactorings.AdditionalInstanceNames.Count; i++)
                         {
                             refactoringManager.RenameClass(renameRefactoring.Namespace, additionalRenameRefactorings.AdditionalOriginalInstanceNames[i], additionalRenameRefactorings.AdditionalInstanceNames[i]);
                             element.RenameArtifactLinks(uriService, additionalRenameRefactorings.AdditionalOriginalInstanceNames[i], additionalRenameRefactorings.AdditionalInstanceNames[i]);

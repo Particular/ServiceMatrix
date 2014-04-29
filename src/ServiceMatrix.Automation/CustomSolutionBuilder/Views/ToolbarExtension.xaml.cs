@@ -1,29 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NuPattern.Runtime;
-using NuPattern.Runtime.UI;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-using Microsoft.VisualStudio.Shell.Interop;
-using NuPattern;
-using NuPattern.Runtime.UI.ViewModels;
-using NServiceBusStudio.Automation.Extensions;
-using NServiceBusStudio.Automation.Licensing;
-using NServiceBusStudio.Automation.Commands;
-using System.Diagnostics;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+    using Microsoft.VisualStudio.Shell.Interop;
+    using NuPattern;
+    using NuPattern.Runtime.UI.ViewModels;
+    using NServiceBusStudio.Automation.Extensions;
+    using NServiceBusStudio.Automation.Licensing;
+    using NServiceBusStudio.Automation.Commands;
+    using System.Diagnostics;
     using System.Web;
     using EnvDTE;
     using Process = System.Diagnostics.Process;
@@ -31,10 +18,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
     /// <summary>
     /// Interaction logic for ToolbarExtension.xaml
     /// </summary>
-    public partial class ToolbarExtension : UserControl
+    public partial class ToolbarExtension
     {
-        private ScrollViewer scrollviewer;
-
         public ToolbarExtension()
         {
             InitializeComponent();
@@ -44,8 +29,8 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 
         public IServiceProvider ServiceProvider { get; set; }
 
-        private object DefaultSolutionBuilderView = null;
-        private LogicalView NServiceBusView = null;
+        private object DefaultSolutionBuilderView;
+        private LogicalView NServiceBusView;
         private bool IsEnabledNServiceBusView;
 
         public void Enable()

@@ -1,21 +1,16 @@
-﻿using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-using System.Windows;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Dialog;
+    using NuPattern.Diagnostics;
+    using System.Windows;
+    using NuPattern.VisualStudio.Solution;
     using Command = NuPattern.Runtime.Command;
 
     /// <summary>
@@ -55,7 +50,7 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
-        private IComponent CurrentComponent
+        private NServiceBusStudio.IComponent CurrentComponent
         {
             get;
             set;
@@ -67,16 +62,16 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            CurrentComponent = CurrentElement.As<IComponent>();
+            CurrentComponent = CurrentElement.As<NServiceBusStudio.IComponent>();
             if (CurrentComponent == null)
             {
-                CurrentComponent = CurrentElement.Parent.As<IComponent>();
+                CurrentComponent = CurrentElement.Parent.As<NServiceBusStudio.IComponent>();
             }
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var processedCommandLink = default(IProcessedCommandLink);
+            IProcessedCommandLink processedCommandLink;
 
             if (CurrentComponent.Subscribes.ProcessedCommandLinks.Count() > 1)
             {
@@ -95,13 +90,13 @@ namespace NServiceBusStudio.Automation.Commands
                 var message = service.Contract.Messages.CreateMessage (processedCommandLink.CommandReference.Value.CodeIdentifier + "Response");
 
                 // Set Message as ReplyWith for the ProcessedCommandLink
-                processedCommandLink.CreateProcessedCommandLinkReply(message.InstanceName, (r) => r.MessageReference.Value = message);
+                processedCommandLink.CreateProcessedCommandLinkReply(message.InstanceName, r => r.MessageReference.Value = message);
 
                 // Set Message as HandleMessage for the SenderComponent
                 var senderComponent = CurrentComponent.Parent.Component.FirstOrDefault(c => c.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == processedCommandLink.CommandReference.Value));
                 if (senderComponent != null)
                 {
-                    senderComponent.Subscribes.CreateHandledMessageLink(message.InstanceName, (h) => h.MessageReference.Value = message);
+                    senderComponent.Subscribes.CreateHandledMessageLink(message.InstanceName, h => h.MessageReference.Value = message);
 
                     if (senderComponent.Subscribes.ProcessedCommandLinks.Any() ||
                         senderComponent.Subscribes.SubscribedEventLinks.Any())

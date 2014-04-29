@@ -1,15 +1,11 @@
-﻿using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
-using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-
-namespace ServiceMatrix.Diagramming.Styles
+﻿namespace ServiceMatrix.Diagramming.Styles
 {
+    using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+    using System;
+    using System.Reflection;
+    using System.Windows;
+    using System.Windows.Controls;
+
     public partial class DiagramSharedStyle
     {
         public DiagramSharedStyle()

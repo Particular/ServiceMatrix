@@ -1,17 +1,15 @@
-﻿using Mindscape.WpfDiagramming;
-using Newtonsoft.Json;
-using NuPattern.Diagnostics;
-using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
-using ServiceMatrix.Diagramming.ViewModels.Shapes;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows;
-
-namespace ServiceMatrix.Diagramming.ViewModels
+﻿namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using Newtonsoft.Json;
+    using NuPattern.Diagnostics;
+    using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+    using ServiceMatrix.Diagramming.ViewModels.Shapes;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Windows;
+
     public class ServiceMatrixDiagramLayoutAlgorithm
     {
         private static readonly ITracer tracer = Tracer.Get<ServiceMatrixDiagramLayoutAlgorithm>();
@@ -84,7 +82,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         {
             
             var x = 50.0;
-            var y = 100.0;
+            double y;
 
             if (node is EndpointNode)
             {
@@ -113,7 +111,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         private double GetYPosition(double x)
         {
             const int ShapeWidth = 350;
-            double y = 100.0;
+            var y = 100.0;
 
             var shapesOnSimilarXPosition = ViewModel.Nodes.Cast<GroupableNode>().Where(n => n.ParentNode == null &&
                                                                                             ((n.Bounds.X >= x && n.Bounds.X <= x + ShapeWidth) ||

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Media.Imaging;
-using System.IO;
-using System.Linq;
-
-namespace ServiceMatrix.Diagramming.Converters
+﻿namespace ServiceMatrix.Diagramming.Converters
 {
+    using System;
+    using System.Globalization;
+    using System.Windows;
+    using System.Windows.Data;
+    using System.Windows.Media.Imaging;
+    using System.Linq;
+
     /// <summary>
     /// Converts a <see cref="string"/> or <see cref="Uri"/> to a cached <see cref="BitmapImage"/>.
     /// </summary>

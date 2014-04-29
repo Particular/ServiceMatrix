@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Data;
-
-namespace ServiceMatrix.Diagramming.Converters
+﻿namespace ServiceMatrix.Diagramming.Converters
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Data;
     using System.Globalization;
 
     public class ValueConverterGroup : List<IValueConverter>, IValueConverter

@@ -7,7 +7,6 @@
     using NuPattern;
     using NuGet.VisualStudio;
     using NuPattern.VisualStudio;
-    using System.Linq;
     using VSLangProj;
 
     /// <summary>

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using NServiceBusStudio.Core;
+
     partial interface IHandledMessageLink
     {
         IElementReference<IMessage> MessageReference { get; }

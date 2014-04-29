@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.Globalization;
-using NuPattern.Runtime;
-using NuPattern.Runtime.ToolkitInterface;
-using NuPattern.ComponentModel;
-
-
-namespace NServiceBusStudio.Core.Design
+﻿namespace NServiceBusStudio.Core.Design
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.Globalization;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.ToolkitInterface;
+    using NuPattern.ComponentModel;
+
     public class ElementReferenceConverter<TOwner, TReference, TStrategy> : StringConverter
         where TOwner : class, IToolkitInterface
         where TReference : class, IToolkitInterface

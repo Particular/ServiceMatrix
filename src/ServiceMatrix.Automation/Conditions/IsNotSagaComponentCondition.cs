@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio.Automation.Conditions
+﻿namespace NServiceBusStudio.Automation.Conditions
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+
     [CLSCompliant(false)]
     [DisplayName("Component Is Not Defined as Saga")]
     [Category("General")]
@@ -30,7 +25,7 @@ namespace NServiceBusStudio.Automation.Conditions
 
         public override bool Evaluate()
         {
-            var component = CurrentElement.As<IComponent>();
+            var component = CurrentElement.As<NServiceBusStudio.IComponent>();
             return !component.IsSaga;
         }
     }

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mindscape.WpfDiagramming;
-using System.ComponentModel;
-using Mindscape.WpfDiagramming.Foundation;
-using System.Windows;
-using System.Collections;
-using System.Collections.ObjectModel;
-using NuPattern.Runtime.UI.ViewModels;
-
-namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
+﻿namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Mindscape.WpfDiagramming;
+    using System.Windows;
+    using NuPattern.Runtime.UI.ViewModels;
+
     // A node that can be the parent of groupable nodes.
     public abstract class GroupNode : GroupableNode
     {
@@ -20,7 +15,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         private bool _isChildDragOver;
         private bool _isExpanded = true;
-        private bool _isChildLeaving = false;
+        private bool _isChildLeaving;
         private Rect _expandedBounds;
 
         // This dictionary is for that logic that evenly distributes multiple connection along the same edge of the collapsed GroupNode if neccessary.
@@ -87,7 +82,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         private void OnIsExpandedChanged()
         {
-            EventHandler handler = IsExpandedChanged;
+            var handler = IsExpandedChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);

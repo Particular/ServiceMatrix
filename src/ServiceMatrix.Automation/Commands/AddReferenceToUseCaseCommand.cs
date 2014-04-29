@@ -42,7 +42,7 @@
             }
 
             picker.Elements = usecases
-                                .Where(uc => !uc.UseCaseLinks.Any(l => l.LinkedElementId == CurrentElement.Id))
+                                .Where(uc => uc.UseCaseLinks.All(l => l.LinkedElementId != CurrentElement.Id))
                                 .Select(uc => uc.InstanceName).ToList();
 
             using (new MouseCursor(Cursors.Arrow))

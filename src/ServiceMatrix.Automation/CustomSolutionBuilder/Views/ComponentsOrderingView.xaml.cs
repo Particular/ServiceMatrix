@@ -1,29 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.ComponentModel;
-using AbstractEndpoint;
-using NuPattern.Presentation;
-
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Controls;
+    using System.ComponentModel;
+    using AbstractEndpoint;
+    using NuPattern.Presentation;
     using ICommand = System.Windows.Input.ICommand;
 
     /// <summary>
     /// Interaction logic for ComponentsOrderingView.xaml
     /// </summary>
-    public partial class ComponentsOrderingView : UserControl
+    public partial class ComponentsOrderingView
     {
         public ComponentsOrderingView()
         {

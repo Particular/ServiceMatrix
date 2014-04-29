@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core;
-using NServiceBusStudio.Automation;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using NServiceBusStudio.Core;
+    using NServiceBusStudio.Automation;
+
 	partial interface IEventLink
 	{
 		IElementReference<IEvent> EventReference { get; }		

@@ -1,15 +1,11 @@
-﻿using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NServiceBusStudio.Automation.Conditions
+﻿namespace NServiceBusStudio.Automation.Conditions
 {
+    using NuPattern.Runtime;
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using NServiceBusStudio.Automation.Model;
 
     [CLSCompliant(false)]

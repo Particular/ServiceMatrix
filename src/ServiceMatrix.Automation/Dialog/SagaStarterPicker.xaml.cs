@@ -1,27 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NuPattern.Runtime;
-using System.Windows.Markup;
-using NuPattern.Presentation;
-using System.Collections.ObjectModel;
-
-namespace NServiceBusStudio.Automation.Dialog
+﻿namespace NServiceBusStudio.Automation.Dialog
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows;
+    using NuPattern.Presentation;
+    using System.Collections.ObjectModel;
+
     /// <summary>
     /// Interaction logic for SagaStarterPicker.xaml
     /// </summary>
-    public partial class SagaStarterPicker : CommonDialogWindow, IDialogWindow, IEventPicker, IComponentConnector
+    public partial class SagaStarterPicker : IDialogWindow, IEventPicker
     {
         public SagaStarterPicker()
         {

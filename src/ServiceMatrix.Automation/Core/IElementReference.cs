@@ -1,9 +1,7 @@
-﻿using System;
-using NuPattern.Runtime;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace NServiceBusStudio.Core
+﻿namespace NServiceBusStudio.Core
 {
+    using NuPattern.Runtime.ToolkitInterface;
+
 	public interface IElementReference<T>
 		where T : IToolkitInterface
 	{

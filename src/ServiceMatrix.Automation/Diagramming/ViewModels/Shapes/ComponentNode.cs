@@ -1,14 +1,10 @@
-﻿using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
-using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace ServiceMatrix.Diagramming.ViewModels.Shapes
+﻿namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 {
+    using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+    using NuPattern.Runtime.UI.ViewModels;
+    using System.Linq;
+    using System.Windows;
+
     public class ComponentNode : ChildNode
     {
         public IProductElementViewModel ComponentLinkViewModel { get; set; }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using System.Windows.Controls;
-using System.Windows;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 {
+    using System.Collections.Generic;
+    using NuPattern.Runtime;
+    using System.Windows.Controls;
+    using System.Windows;
+
     public class InnerPanelViewModel
     {
         public List<InnerPanelItem> Items { get; set; }

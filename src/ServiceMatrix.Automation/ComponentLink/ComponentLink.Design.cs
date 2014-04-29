@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core;
-using NServiceBusStudio.Core.Design;
-using NServiceBusStudio;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NuPattern.ComponentModel;
-using NuPattern.VisualStudio.Solution;
-
-
-namespace AbstractEndpoint
+﻿namespace AbstractEndpoint
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio.Core;
+    using NServiceBusStudio.Core.Design;
+    using NServiceBusStudio;
+    using NuPattern.Runtime;
+    using NuPattern.ComponentModel;
+    using NuPattern.VisualStudio.Solution;
+
     using ICommand = NServiceBusStudio.ICommand;
 
     public class ComponentReferenceConverter : ElementReferenceConverter<IAbstractComponentLink, IComponent, ComponentReferenceStrategy> { }

@@ -1,22 +1,17 @@
-﻿using NuPattern;
-using AbstractEndpoint;
-using Mindscape.WpfDiagramming;
-using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
-using ServiceMatrix.Diagramming.ViewModels.Shapes;
-using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using ServiceMatrix.Diagramming.ViewModels.Connections;
-using NServiceBusStudio;
-using NuPattern.Runtime;
-using System.Windows.Controls;
-
-namespace ServiceMatrix.Diagramming.ViewModels
+﻿namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using Mindscape.WpfDiagramming;
+    using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+    using ServiceMatrix.Diagramming.ViewModels.Shapes;
+    using NuPattern.Runtime.UI.ViewModels;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ServiceMatrix.Diagramming.ViewModels.Connections;
+    using NServiceBusStudio;
+    using NuPattern.Runtime;
+    using System.Windows.Controls;
+
     public class ServiceMatrixDiagramMindscapeViewModel: Diagram
     {
         public ServiceMatrixDiagramLayoutAlgorithm LayoutAlgorithm { get; set; }
@@ -65,7 +60,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceNode GetOrCreateServiceNode(Guid endpointId, IProductElementViewModel viewModel)
         {
-            var service = FindNode<ServiceNode>((x) => x.Id == viewModel.Data.Id &&
+            var service = FindNode<ServiceNode>(x => x.Id == viewModel.Data.Id &&
                                                             x.ParentNode.Id == endpointId);
 
             if (service == null)
@@ -320,8 +315,6 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             // Unhandle events
             node.ActivateElement -= Node_ActivateElement;
-
-            node = null;
         }
 
         public void CleanAll()
@@ -398,8 +391,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         private List<GroupableNode> GetComponentsMessagesRelatedNodes(GroupableNode node)
         {
-            var relatedNodes = new List<GroupableNode>();
-            relatedNodes.Add(node);
+            var relatedNodes = new List<GroupableNode>
+            {
+                node
+            };
 
             var nodeConnections = Connections.Cast<BaseConnection>()
                                                   .Where(x => x.Source == node ||
@@ -408,7 +403,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             foreach (var nodeConnection in nodeConnections)
             {
-                var nodeElement = default(GroupableNode);
+                GroupableNode nodeElement;
                 if (nodeConnection.Source == node)
                     nodeElement = Nodes.Cast<GroupableNode>().FirstOrDefault(x => x == nodeConnection.Target);
                 else
@@ -424,8 +419,10 @@ namespace ServiceMatrix.Diagramming.ViewModels
         {
             var service = node.InnerViewModel.Data.As<IService>();
 
-            var nodesId = new List<Guid>();
-            nodesId.Add(service.AsElement().Id); // Service Id
+            var nodesId = new List<Guid>
+            {
+                service.AsElement().Id
+            };
             nodesId.AddRange(service.Components.Component.Select(x => x.AsElement().Id)); // Related Components Id
             nodesId.AddRange(service.Contract.Commands.Command.Select(x => x.AsElement().Id)); // Related Commands Id
             nodesId.AddRange(service.Contract.Events.Event.Select(x => x.AsElement().Id)); // Related Events Id

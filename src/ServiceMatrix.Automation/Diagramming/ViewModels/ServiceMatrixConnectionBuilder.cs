@@ -1,11 +1,8 @@
-﻿using Mindscape.WpfDiagramming.Foundation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ServiceMatrix.Diagramming.ViewModels
+﻿namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using Mindscape.WpfDiagramming.Foundation;
+    using System;
+
     public class ServiceMatrixConnectionBuilder : IDiagramConnectionBuilder
     {
         public bool CanCreateConnection(IDiagramModel diagram, IDiagramConnectionPoint fromConnectionPoint, ConnectionDropTarget dropTarget)

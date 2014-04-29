@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using System.ComponentModel;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.ToolkitInterface;
+
 	/// <summary>
 	/// Extension methods for working with untyped objects 
 	/// that are toolkit elements.

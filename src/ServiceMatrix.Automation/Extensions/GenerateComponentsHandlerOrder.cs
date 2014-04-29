@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AbstractEndpoint;
-using NuPattern.Runtime;
-using NuPattern.Runtime.ToolkitInterface;
-
-namespace NServiceBusStudio.Automation.Extensions
+﻿namespace NServiceBusStudio.Automation.Extensions
 {
+    using System.Linq;
+    using System.Text;
+    using AbstractEndpoint;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.ToolkitInterface;
+
     public static class GenerateComponentsHandlerOrder
     {
         public static string GetComponentsHandlerOrder(this IProductElement endpoint)
@@ -34,7 +32,7 @@ namespace NServiceBusStudio.Automation.Extensions
 	    {
 	        order.Specify(");
 
-                int pos = 1;
+                var pos = 1;
                 foreach (var c in components)
                 {
                     if (pos == 1)

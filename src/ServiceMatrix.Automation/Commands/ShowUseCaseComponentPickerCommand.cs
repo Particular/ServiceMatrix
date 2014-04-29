@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using System.Windows.Input;
-using NServiceBusStudio.Automation.Dialog;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using System.Windows.Input;
+    using AbstractEndpoint.Automation.Dialog;
+    using NuPattern.Presentation;
     using Command = NuPattern.Runtime.Command;
     using CustomSolutionBuilder = NServiceBusStudio.Automation.CustomSolutionBuilder.CustomSolutionBuilder;
 

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Data;
-using NuPattern.Runtime.UI;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
 {
+    using System;
+    using System.Windows.Data;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
     using System.Globalization;
 
     public class LogicalViewModelIconConverter : IValueConverter

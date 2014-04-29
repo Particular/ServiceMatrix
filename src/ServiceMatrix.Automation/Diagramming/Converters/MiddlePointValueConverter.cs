@@ -1,14 +1,7 @@
-﻿using Mindscape.WpfDiagramming.Foundation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Data;
-
-namespace ServiceMatrix.Diagramming.Converters
+﻿namespace ServiceMatrix.Diagramming.Converters
 {
+    using System;
+    using System.Windows.Data;
     using System.Globalization;
 
     public class MiddlePointValueConverter : IMultiValueConverter

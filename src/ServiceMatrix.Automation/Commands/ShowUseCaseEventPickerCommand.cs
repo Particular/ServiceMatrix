@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using System.Windows.Input;
-using NServiceBusStudio.Automation.Dialog;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using System.Windows.Input;
+    using AbstractEndpoint.Automation.Dialog;
+    using NuPattern.Presentation;
     using Command = NuPattern.Runtime.Command;
     using CustomSolutionBuilder = NServiceBusStudio.Automation.CustomSolutionBuilder.CustomSolutionBuilder;
 
@@ -71,7 +66,7 @@ namespace NServiceBusStudio.Automation.Commands
                     if (@event == null)
                     {
                         @event = svc.Contract.Events.CreateEvent(dialog.SelectedComponent, null, true);
-                        var senderName = Component.TryGetComponentName(@event.InstanceName + "Publisher", svc);
+                        var senderName = NServiceBusStudio.Component.TryGetComponentName(@event.InstanceName + "Publisher", svc);
                         var processorComponent = svc.Components.CreateComponent(senderName);
                         
                         processorComponent.Publish(@event);

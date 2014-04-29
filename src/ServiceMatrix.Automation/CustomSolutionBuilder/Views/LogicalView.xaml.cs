@@ -1,37 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NuPattern.Runtime.UI;
-using System.ComponentModel;
-using NuPattern.Presentation;
-using System.ComponentModel.Composition.Hosting;
-using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime;
-using System.ComponentModel.Composition;
-using System.Reflection;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-using NuPattern;
-using NuPattern.Runtime.UI.ViewModels;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.ComponentModel;
+    using NuPattern.Presentation;
+    using System.Reflection;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+    using NuPattern.Runtime.UI.ViewModels;
     using System.Threading;
 
     /// <summary>
     /// Interaction logic for LogicalView.xaml
     /// </summary>
-    public partial class LogicalView : UserControl
+    public partial class LogicalView
     {
         public LogicalView(IServiceProvider serviceProvider, object myContext)
         {
@@ -87,7 +71,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                 var itemsControl = reference.FindAncestor<TreeViewItem>().FindAncestor<ItemsControl>();
                 if (itemsControl != null)
                 {
-                    return itemsControl.Items as IEditableCollectionView;
+                    return itemsControl.Items;
                 }
             }
 

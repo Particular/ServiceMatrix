@@ -1,30 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using NuPattern.Runtime.UI;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
-using NuPattern.Runtime;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime.ToolkitInterface;
-using NuPattern.Runtime.UI.ViewModels;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using AbstractEndpoint;
+    using NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels;
+    using NuPattern.Runtime.ToolkitInterface;
+    using NuPattern.Runtime.UI.ViewModels;
+
     /// <summary>
     /// Interaction logic for DetailsPanel.xaml
     /// </summary>
-    public partial class DetailsPanel : UserControl
+    public partial class DetailsPanel
     {
         public DetailsPanel()
         {
@@ -47,7 +34,7 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
             }
 
             var model = selectedElementViewModel.Data;
-            string definitionName = model.DefinitionName.ToString();
+            var definitionName = model.DefinitionName;
             switch (definitionName)
             {
                 case "Application":

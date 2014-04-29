@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Properties;
-using System.Globalization;
-using NuPattern.Library.Commands;
-using NuPattern.Diagnostics;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Properties;
+    using System.Globalization;
+    using NuPattern.Diagnostics;
     using Command = NuPattern.Runtime.Command;
 
     [CLSCompliant(false)]

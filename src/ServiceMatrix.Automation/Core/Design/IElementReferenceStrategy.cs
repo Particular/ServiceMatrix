@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using NuPattern.Runtime.ToolkitInterface;
-using NuPattern.ComponentModel;
-
-
-namespace NServiceBusStudio.Core.Design
+﻿namespace NServiceBusStudio.Core.Design
 {
+    using System.Collections.Generic;
+    using NuPattern.Runtime.ToolkitInterface;
+    using NuPattern.ComponentModel;
+
 	public interface IElementReferenceStrategy<in TOwner, TReference>
 		where TOwner : class, IToolkitInterface
 		where TReference : class, IToolkitInterface

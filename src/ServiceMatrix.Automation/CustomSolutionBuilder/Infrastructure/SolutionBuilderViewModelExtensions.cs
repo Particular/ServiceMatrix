@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime.UI;
-using NuPattern.Runtime;
-using NuPattern.Runtime.UI.ViewModels;
-
-namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
+﻿namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Infrastructure
 {
+    using System.Collections.Generic;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.UI.ViewModels;
+
     public static class SolutionBuilderViewModelExtensions
     {
         public static IProductElementViewModel SearchInNodes(IEnumerable<IProductElementViewModel> nodesCollection, IProductElement target)
         {
-            foreach (IProductElementViewModel model in nodesCollection)
+            foreach (var model in nodesCollection)
             {
                 if (model.Data == target)
                 {
                     return model;
                 }
-                IProductElementViewModel model2 = SearchInNodes(model.ChildNodes, target);
+                var model2 = SearchInNodes(model.ChildNodes, target);
                 if (model2 != null)
                 {
                     return model2;

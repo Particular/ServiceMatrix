@@ -1,22 +1,13 @@
-﻿using AbstractEndpoint;
-using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBusStudio.Automation.Dialog;
-using System.Windows.Input;
-using NuPattern.Presentation;
-using NuPattern;
-using ServiceMatrix.Diagramming.Views;
-using Microsoft.VisualStudio.Shell;
-using ServiceMatrix.Diagramming;
-
-namespace NServiceBusStudio.Automation.Commands
+﻿namespace NServiceBusStudio.Automation.Commands
 {
+    using System;
+    using System.ComponentModel.Composition;
+    using System.Windows.Input;
+    using NuPattern.Presentation;
+    using NuPattern;
+    using Microsoft.VisualStudio.Shell;
+    using ServiceMatrix.Diagramming;
+
     using Command = NuPattern.Runtime.Command;
 
     public class ShowNewDiagramCommand : Command

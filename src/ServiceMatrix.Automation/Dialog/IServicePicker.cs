@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-
-namespace NServiceBusStudio.Automation.Dialog
+﻿namespace NServiceBusStudio.Automation.Dialog
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+
     public interface IServicePicker
     {
         bool? ShowDialog();

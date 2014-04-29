@@ -1,15 +1,9 @@
-﻿using NServiceBusStudio.Automation.Diagramming.Views;
-using NuPattern.Presentation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace ServiceMatrix.Diagramming.ViewModels
+﻿namespace ServiceMatrix.Diagramming.ViewModels
 {
+    using NServiceBusStudio.Automation.Diagramming.Views;
+    using NuPattern.Presentation;
+    using System;
+    using System.ComponentModel;
     using System.Windows.Input;
     using NServiceBusStudio.Automation.Model;
 

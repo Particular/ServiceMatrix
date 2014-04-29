@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NServiceBusStudio.Core
+﻿namespace NServiceBusStudio.Core
 {
+    using System;
+
 	/// <summary>
 	/// Provides a static factory for properties.
 	/// </summary>

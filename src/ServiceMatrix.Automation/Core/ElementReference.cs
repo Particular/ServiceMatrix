@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Properties;
-
-namespace NServiceBusStudio.Core
+﻿namespace NServiceBusStudio.Core
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NuPattern.Runtime;
+    using NServiceBusStudio.Automation.Properties;
+
 	/// <summary>
 	/// Encapsulates the behavior for properties that reference other elements 
 	/// within the toolkit.
