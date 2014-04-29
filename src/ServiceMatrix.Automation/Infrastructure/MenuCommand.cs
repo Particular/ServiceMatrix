@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using NuPattern.Runtime.Automation;
-using NuPattern.Runtime.Bindings;
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.Automation;
+    using NuPattern.Runtime.Bindings;
+
     public class MenuCommand : IAutomationExtension, IAutomationMenuCommand
     {
         private Action execute;

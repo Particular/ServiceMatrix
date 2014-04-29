@@ -10,13 +10,9 @@ using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
-using NuPattern.Diagnostics;
-using System.Runtime.Remoting.Messaging;
 using NServiceBusStudio.Automation.Commands;
 using NuGet.VisualStudio;
 using NuPattern.VisualStudio;
-using NServiceBusStudio.Automation.ValueProviders;
-using System.Diagnostics;
 
 namespace NServiceBusStudio
 {
@@ -358,7 +354,7 @@ namespace NServiceBusStudio
             }
         }
 
-        static Application currentApplication = null;
+        static Application currentApplication;
         static string extensionPath;
         static string nserviceBusVersion;
         static string serviceControlEndpointPluginVersion;
@@ -368,7 +364,7 @@ namespace NServiceBusStudio
 
         public void InitializeExtensionDependentData()
         {
-            IVsExtensionManager extensionManager = (IVsExtensionManager)VsServiceProvider.TryGetService<SVsExtensionManager>();
+            var extensionManager = (IVsExtensionManager)VsServiceProvider.TryGetService<SVsExtensionManager>();
             var extension = extensionManager.GetInstalledExtension("23795EC3-3DEA-4F04-9044-4056CF91A2ED");
 
             //var resolver = this.ServiceProvider.TryGetService<IUriReferenceService>();

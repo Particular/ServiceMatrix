@@ -11,7 +11,7 @@
     /// <summary>
     /// Interaction logic for ComponentPicker.xaml
     /// </summary>
-    public partial class TrialExpired : CommonDialogWindow, IDialogWindow, IDisposable
+    public partial class TrialExpired : IDialogWindow, IDisposable
     {
         public License CurrentLicense { get; set; }
 

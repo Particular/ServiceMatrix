@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
 	/// <summary>
 	/// An element that has an instance name.

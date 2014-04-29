@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Core.Design;
-using NServiceBusStudio.Core;
-using NuPattern.ComponentModel;
-
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio.Core.Design;
+    using NServiceBusStudio.Core;
+    using NuPattern.ComponentModel;
     using NuPattern.Runtime;
 
     public class HandledMessageReferenceConverter : ElementReferenceConverter<IHandledMessageLink, IMessage, HandledMessageReferenceStrategy> { }
@@ -24,8 +21,6 @@ namespace NServiceBusStudio
 
         public IEnumerable<StandardValue> GetStandardValues(IHandledMessageLink owner)
         {
-            var thisService = owner.Parent.Parent;
-
             return owner.Parent.Parent.Parent.Parent.Contract.Messages.Message
                 .Except(owner.Parent.HandledMessageLinks.Select(link => link.MessageReference.Value)
                     .Except(new[] { owner.MessageReference.Value }))

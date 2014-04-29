@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using NuPattern;
-using NuPattern.Runtime.UI;
-using NuPattern.VisualStudio.Solution;
-using NuPattern.VisualStudio;
-using NuPattern.Presentation;
-using NuPattern.Runtime.UI.Views;
-using NuPattern.Runtime.UI.ViewModels;
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System;
+    using NuPattern.Runtime;
+    using AbstractEndpoint;
+    using NuPattern;
+    using NuPattern.VisualStudio.Solution;
+    using NuPattern.Presentation;
+    using NuPattern.Runtime.UI.ViewModels;
+
     using System.Windows.Input;
     using NServiceBusStudio.Automation.Commands;
 
@@ -35,8 +29,8 @@ namespace NServiceBusStudio.Automation.Infrastructure
             // Listen for a new endpoint initialization
             // in order to add the required artifacts (typically menu items)
             app.OnInitializingEndpoint += handler;
-            Command.ElementInitialized += handler;
-            Event.ElementInitialized += handler;
+            NServiceBusStudio.Command.ElementInitialized += handler;
+            NServiceBusStudio.Event.ElementInitialized += handler;
             Component.ElementInitialized += handler;
         }
 

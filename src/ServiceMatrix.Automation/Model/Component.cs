@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Automation.Extensions;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using EnvDTE;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Infrastructure;
-using NuPattern.VisualStudio.Solution;
-using NuPattern.Runtime.References;
-using NuPattern;
-
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using NServiceBusStudio.Automation.Extensions;
+    using NuPattern.Runtime;
+    using AbstractEndpoint;
+    using System.ComponentModel.DataAnnotations;
+    using EnvDTE;
+    using NuPattern.VisualStudio.Solution;
+    using NuPattern.Runtime.References;
+    using NuPattern;
+
     partial interface IComponent : IProjectReferenced
     {
         void EndpointDefined(IAbstractEndpoint endpoint);
@@ -146,7 +141,7 @@ namespace NServiceBusStudio
                     continue;
                 }
 
-                if (!endpoint.Project.Folders.Any(f => f.Name == service.CodeIdentifier))
+                if (endpoint.Project.Folders.All(f => f.Name != service.CodeIdentifier))
                 {
                     endpoint.Project.CreateFolder(service.CodeIdentifier);
                 }
@@ -310,9 +305,9 @@ namespace NServiceBusStudio
         public static string TryGetComponentName(string suggested, IService service)
         {
             var candidate = suggested;
-            for (int i = 1; true; i++)
+            for (var i = 1; true; i++)
             {
-                if (!service.Components.Component.Any(c => c.InstanceName == candidate))
+                if (service.Components.Component.All(c => c.InstanceName != candidate))
                 {
                     break;
                 }
@@ -324,7 +319,7 @@ namespace NServiceBusStudio
 
         public void DeployTo(IAbstractEndpoint endpoint)
         {
-            if (!endpoint.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this))
+            if (endpoint.EndpointComponents.AbstractComponentLinks.All(cl => cl.ComponentReference.Value != this))
             {
                 var linkSource = endpoint.EndpointComponents.CreateComponentLink(String.Format("{0}.{1}", Parent.Parent.InstanceName, InstanceName), e => e.ComponentReference.Value = this);
                 linkSource.ComponentReference.Value.EndpointDefined(endpoint);

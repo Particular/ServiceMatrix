@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AbstractEndpoint;
-using NServiceBusStudio.Core;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AbstractEndpoint;
+    using NServiceBusStudio.Core;
+    using NuPattern.Runtime;
+
     partial interface INServiceBusWebComponentLink : IAbstractComponentLink
     {
     }
@@ -55,7 +54,7 @@ namespace NServiceBusStudio
         {
             var allOrders = Parent.NServiceBusWebComponentLinks.Select(cl => cl.Order);
 
-            Order = allOrders.Where(p => !allOrders.Any(s => s == (p + 1))).Min() + 1;
+            Order = allOrders.Where(p => allOrders.All(s => s != (p + 1))).Min() + 1;
         }
 
         private void reorderNext(INServiceBusWebComponentLink componentLink)

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio.Automation.Infrastructure.Authentication
+﻿namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.Composition;
+    using NuPattern.Runtime;
+    using Microsoft.VisualStudio.Shell;
+    using NuPattern.VisualStudio.Solution;
     using Command = NuPattern.Runtime.Command;
 
     [DisplayName("Add authentication code for all the endpoints")]

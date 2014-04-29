@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-
-namespace NServiceBusStudio.Automation
+﻿namespace NServiceBusStudio.Automation
 {
+    using System;
+    using System.Windows;
+
     /// <summary>
     /// Shows arbitrary WPF content in a document window that 
     /// can be referenced by an identifier.

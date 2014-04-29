@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Automation.Extensions;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using NServiceBusStudio.Automation.Extensions;
+    using NuPattern.VisualStudio.Solution;
+
     partial interface ICommands : IProjectReferenced
     {
     }

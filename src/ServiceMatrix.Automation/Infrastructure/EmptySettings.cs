@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Library.Automation;
-using NuPattern.Runtime;
-using NuPattern.Runtime.Bindings;
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System;
+    using System.Collections.Generic;
+    using NuPattern.Library.Automation;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.Bindings;
     using System.ComponentModel;
     using System.Linq.Expressions;
     using Microsoft.VisualStudio.Modeling;

@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
 using NuPattern;
 using NuPattern.Runtime;
 using AbstractEndpoint;
 using NuPattern.Library.Commands;
 using NServiceBusStudio.Automation.Extensions;
-using NuPattern.Library.Automation;
 using NuPattern.VisualStudio.Solution;
 using NuPattern.Runtime.ToolkitInterface;
 
@@ -30,7 +25,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
         public static IProject GenerateInfrastructureProjectIfNeeded(IInfrastructure infrastructure, ISolution solution)
         {
             var projectName = infrastructure.Parent.Parent.InstanceName + ".Infrastructure";
-            if (!solution.Items.Any(i => i.Name == projectName))
+            if (solution.Items.All(i => i.Name != projectName))
             {
                 // Unfold the project
                 infrastructure.As<IProductElement>().Execute("GenerateProjectCommand");
@@ -156,9 +151,9 @@ namespace NServiceBusStudio.Automation.Infrastructure
             , string buildAction = "Compile")
         {
             var guid = Guid.NewGuid();
-            ISolution solution = sp.TryGetService<ISolution>();
-            IPatternManager patternManager = sp.TryGetService<IPatternManager>();
-            IUriReferenceService uriService = sp.TryGetService<IUriReferenceService>();
+            var solution = sp.TryGetService<ISolution>();
+            var patternManager = sp.TryGetService<IPatternManager>();
+            var uriService = sp.TryGetService<IUriReferenceService>();
             var command = new GenerateProductCodeCommand
             {
                 TargetBuildAction = buildAction,

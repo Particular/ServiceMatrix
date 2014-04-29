@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AbstractEndpoint;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Collections.Generic;
+    using AbstractEndpoint;
+
     partial class NServiceBusMVCComponents : IAbstractEndpointComponents
     {
         public IAbstractComponentLink CreateComponentLink(string name, Action<IAbstractComponentLink> initializer = null, bool raiseInstantiateEvents = true)
@@ -19,13 +17,13 @@ namespace NServiceBusStudio
         {
             get
             {
-                return NServiceBusMVCComponentLinks.Cast<IAbstractComponentLink>();
+                return NServiceBusMVCComponentLinks;
             }
         }
 
         public IAbstractEndpoint ParentEndpoint
         {
-            get { return Parent as IAbstractEndpoint; }
+            get { return Parent; }
         }
     }
 }

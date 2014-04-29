@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AbstractEndpoint;
 using NServiceBusStudio.Core;
 using NuPattern.Runtime;
@@ -55,7 +54,7 @@ namespace NServiceBusStudio
         {
             var allOrders = Parent.NServiceBusMVCComponentLinks.Select(cl => cl.Order);
 
-            Order = allOrders.Where(p => !allOrders.Any(s => s == (p + 1))).Min() + 1;
+            Order = allOrders.Where(p => allOrders.All(s => s != (p + 1))).Min() + 1;
         }
 
         private void reorderNext(INServiceBusMVCComponentLink componentLink)

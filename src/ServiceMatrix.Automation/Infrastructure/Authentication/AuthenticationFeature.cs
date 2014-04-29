@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.Extensions;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio.Automation.Infrastructure.Authentication
+﻿namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 {
+    using System;
+    using System.Linq;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using AbstractEndpoint;
+    using NuPattern.VisualStudio.Solution;
     using EnvDTE;
 
     public class AuthenticationFeature : IInfrastructureFeature
@@ -99,7 +95,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
             {
                 // Open the file on the IDE Editor
                 item.As<ProjectItem>()
-                    .Open(Constants.vsViewKindCode)
+                    .Open(EnvDTE.Constants.vsViewKindCode)
                     .Visible = true;
             }
 

@@ -1,25 +1,18 @@
-﻿using Microsoft.VisualStudio.Shell;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NuPattern.Runtime;
-using System.IO;
-using System.Net.Http;
-using System.Diagnostics;
-using Microsoft.Win32;
-using System.Timers;
-using System.Net;
-using System.Collections.Specialized;
-using NServiceBusStudio.Automation.Extensions;
-using Microsoft.VisualStudio.ExtensionManager;
-using NuPattern.Diagnostics;
-using NuPattern;
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using Microsoft.VisualStudio.Shell;
+    using System;
+    using System.ComponentModel.Composition;
+    using System.Text;
+    using System.IO;
+    using System.Diagnostics;
+    using Microsoft.Win32;
+    using System.Timers;
+    using System.Net;
+    using NServiceBusStudio.Automation.Extensions;
+    using Microsoft.VisualStudio.ExtensionManager;
+    using NuPattern.Diagnostics;
+    using NuPattern;
     using EnvDTE;
 
     [Export]
@@ -99,7 +92,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 return;
             }
 
-            TimeSpan nextUpload = default(TimeSpan);
+            TimeSpan nextUpload;
             if (!LastUpload.HasValue)
             {
                 // New Solution - Upload in UploadStatisticsInterval
@@ -128,8 +121,10 @@ namespace NServiceBusStudio.Automation.Infrastructure
                 nextUpload = LastUpload.Value.Add(UploadStatisticsInterval) - DateTime.Now;
             }
 
-            TimerUploadStatistics = new Timer();
-            TimerUploadStatistics.Interval = nextUpload.TotalMilliseconds;
+            TimerUploadStatistics = new Timer
+            {
+                Interval = nextUpload.TotalMilliseconds
+            };
             TimerUploadStatistics.Start();
             TimerUploadStatistics.Elapsed += (s, e) => UploadStatistics();
         }

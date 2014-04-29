@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System;
+    using NuPattern.Runtime;
+
     public interface IInfrastructureFeature
     {
         void Initialize(IApplication application, IProductElement infrastructure, IServiceProvider serviceProvider, IPatternManager patternManager);

@@ -1,19 +1,16 @@
-﻿using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime;
-using NuPattern.Runtime.UI.ViewModels;
-using NuPattern.VisualStudio.Solution;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NuPattern;
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using Microsoft.VisualStudio.Shell;
+    using NuPattern.Runtime;
+    using NuPattern.Runtime.UI.ViewModels;
+    using NuPattern.VisualStudio.Solution;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.ComponentModel.Composition;
+    using System.Linq;
+    using NuPattern;
+
     [Export]
     public class RemoveEmptyAddMenus
     {

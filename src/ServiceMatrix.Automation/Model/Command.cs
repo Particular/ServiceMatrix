@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Infrastructure;
-using NServiceBusStudio.Automation.Extensions;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.Linq;
+    using System.Windows;
+
     partial class Command : IRenameRefactoring
     {
         public string Namespace

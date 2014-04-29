@@ -1,19 +1,17 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using NuPattern.Runtime;
-using Microsoft.VisualStudio.Shell;
-using NuPattern.Diagnostics;
-using NuPattern.VisualStudio.Solution;
-using NuPattern.VisualStudio;
-using NuPattern;
-using System.Collections.Generic;
-
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using System;
+    using System.ComponentModel.Composition;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Linq;
+    using NuPattern.Runtime;
+    using Microsoft.VisualStudio.Shell;
+    using NuPattern.Diagnostics;
+    using NuPattern.VisualStudio.Solution;
+    using NuPattern.VisualStudio;
+    using NuPattern;
+    using System.Collections.Generic;
     using System.Windows.Threading;
     using EnvDTE;
     using Process = System.Diagnostics.Process;
@@ -69,8 +67,10 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void InitializeWatcher()
         {
-            Watcher = new FileSystemWatcher(Path.GetDirectoryName(Solution.PhysicalPath), "*.cs");
-            Watcher.IncludeSubdirectories = true;
+            Watcher = new FileSystemWatcher(Path.GetDirectoryName(Solution.PhysicalPath), "*.cs")
+            {
+                IncludeSubdirectories = true
+            };
 
             Watcher.Renamed += new RenamedEventHandler(Watcher_Renamed);
             Watcher.EnableRaisingEvents = true;
@@ -90,7 +90,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
             // Get Root Pattern Elements 
             var rootElements = PatternManager.Products.SelectMany(x => x.Views.SelectMany(v => v.AllElements));
             // Get all Pattern Elements 
-            var allElements = rootElements.Traverse<IProductElement>((e) => e.GetChildren()); 
+            var allElements = rootElements.Traverse<IProductElement>(e => e.GetChildren()); 
 
             // Get related elements to the Renamed File
             var relatedElements = allElements.Where(e => e.References.Any(r => r.Value == referenceUri.ToString()) &&
@@ -204,7 +204,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
         private void Log(LogType logType, string data)
         {
-            string logTypeDesc = "";
+            var logTypeDesc = "";
 
             if (String.IsNullOrEmpty(data))
                 return;

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Automation.Extensions;
-using AbstractEndpoint;
-using NServiceBusStudio;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System.Collections.Generic;
+    using NServiceBusStudio.Automation.Extensions;
+    using AbstractEndpoint;
+    using NuPattern.VisualStudio.Solution;
+
     partial interface INServiceBusHost : IAbstractEndpoint
     {
 

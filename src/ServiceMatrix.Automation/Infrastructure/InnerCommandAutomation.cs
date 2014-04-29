@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Library.Automation;
-using NuPattern.Runtime;
-
-
-namespace NServiceBusStudio.Automation.Infrastructure
+﻿namespace NServiceBusStudio.Automation.Infrastructure
 {
+    using NuPattern.Runtime;
     using NuPattern.Runtime.Bindings;
     using Command = NuPattern.Runtime.Command;
 

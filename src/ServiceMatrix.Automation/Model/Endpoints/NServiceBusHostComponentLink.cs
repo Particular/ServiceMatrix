@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AbstractEndpoint;
-using NServiceBusStudio;
 using NServiceBusStudio.Core;
-using System.ComponentModel.Composition;
 using NuPattern.Runtime;
 
 namespace NServiceBusStudio
@@ -57,7 +54,7 @@ namespace NServiceBusStudio
         {
             var allOrders = Parent.NServiceBusHostComponentLinks.Select(cl => cl.Order);
 
-            Order = allOrders.Where(p => !allOrders.Any(s => s == (p + 1))).Min() + 1;
+            Order = allOrders.Where(p => allOrders.All(s => s != (p + 1))).Min() + 1;
 
         }
 

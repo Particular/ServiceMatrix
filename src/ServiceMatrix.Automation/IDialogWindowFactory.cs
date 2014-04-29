@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NuPattern.Runtime;
-using NuPattern.Presentation;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using NuPattern.Presentation;
+
 	/// <summary>
 	/// Main factory for dialogs inside automation code.
 	/// </summary>

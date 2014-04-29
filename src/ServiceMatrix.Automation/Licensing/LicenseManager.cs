@@ -1,15 +1,7 @@
-﻿using System;
-using System.Configuration;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Security.Principal;
-using Microsoft.Win32;
-using NuPattern.Diagnostics;
-using Particular.Licensing;
-
-namespace NServiceBusStudio.Automation.Licensing
+﻿namespace NServiceBusStudio.Automation.Licensing
 {
+    using NuPattern.Diagnostics;
+    using Particular.Licensing;
 
     public class LicenseManager
     {
