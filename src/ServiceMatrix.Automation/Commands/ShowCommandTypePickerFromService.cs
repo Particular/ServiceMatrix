@@ -77,7 +77,10 @@
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
+
+
                     var selectedCommand = default(NServiceBusStudio.ICommand);
+
                     if (commandNames.Contains(selectedElement))
                     {
                         selectedCommand = commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));

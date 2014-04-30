@@ -12,7 +12,6 @@
         {
             var sb = new StringBuilder();
             var app = endpoint.Root.As<IApplication>();
-            var endpoints = app.Design.Endpoints.GetAll();
             var sourceComponents = (endpoint.As<IToolkitInterface>() as IAbstractEndpoint).EndpointComponents.AbstractComponentLinks.OrderBy(o => o.Order);
             var components = sourceComponents.Select(ac => ac.ComponentReference.Value)
                                        .Where(c => c.Subscribes.ProcessedCommandLinks.Any() || c.Subscribes.SubscribedEventLinks.Any())

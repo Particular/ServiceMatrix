@@ -405,10 +405,6 @@
     <Compile Include="Model\UseCase.cs" />
     <Compile Include="Model\UseCaseLink.cs" />
     <Compile Include="Model\UseCaseStep.cs" />
-    <Compile Include="netfx\System\Dynamic\DynamicReflection.cs" />
-    <Compile Include="netfx\System\Dynamic\OutValue.cs" />
-    <Compile Include="netfx\System\Dynamic\RefValue.cs" />
-    <Compile Include="netfx\System\Dynamic\TypeParameter.cs" />
     <Compile Include="ProcessedCommandLink.cs" />
     <Compile Include="ProcessedCommandLink.Design.cs">
       <DependentUpon>ProcessedCommandLink.cs</DependentUpon>

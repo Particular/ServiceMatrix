@@ -500,17 +500,13 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             Dispatcher.CurrentDispatcher.BeginInvoke(new Action(() =>
                 {
-                    try
+                    var currentInnerNode = CurrentNode.InnerViewModel;
+                    selectedView.Action();
+                    var nodeToSelect = FindLogicalNode(LogicalViewNodes, n => n.InnerViewModel == currentInnerNode);
+                    if (nodeToSelect != null)
                     {
-                        var currentInnerNode = CurrentNode.InnerViewModel;
-                        selectedView.Action();
-                        var nodeToSelect = FindLogicalNode(LogicalViewNodes, n => n.InnerViewModel == currentInnerNode);
-                        if (nodeToSelect != null)
-                        {
-                            nodeToSelect.IsSelected = true;
-                        }
+                        nodeToSelect.IsSelected = true;
                     }
-                    catch { }
                 }));
         }
 

@@ -36,7 +36,6 @@
         public Boolean StartsSaga
         {
             get { return false; }
-            set { }
         }
     }
 }

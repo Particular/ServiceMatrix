@@ -9,28 +9,20 @@ namespace NServiceBusStudio.Automation.Extensions
     {
         public static string GetMessageConventions(this IProductElement endpoint)
         {
-            var generatedConventions = string.Empty;
-            try
-            {
-                var app = endpoint.Root.As<IApplication>();
+            
+            var app = endpoint.Root.As<IApplication>();
 
-                var rootNameSpace = string.Empty;
-                var applicationName = app.CodeIdentifier;
-                var projectNameForInternal = app.ProjectNameInternalMessages;
-                var projectNameForContracts = app.ProjectNameContracts;
+            var rootNameSpace = string.Empty;
+            var applicationName = app.CodeIdentifier;
+            var projectNameForInternal = app.ProjectNameInternalMessages;
+            var projectNameForContracts = app.ProjectNameContracts;
 
-                var project = endpoint.As<IAbstractEndpoint>().As<IProductElement>().GetProject();
-                if (project != null)
-                {
-                    rootNameSpace = project.Data.RootNamespace;
-                }
-                generatedConventions = GetMessageConventions(rootNameSpace, applicationName, projectNameForInternal, projectNameForContracts);
-            }
-            catch (Exception ex)
+            var project = endpoint.As<IAbstractEndpoint>().As<IProductElement>().GetProject();
+            if (project != null)
             {
-                //TODO: Why are we catching the exception here??
+                rootNameSpace = project.Data.RootNamespace;
             }
-            return generatedConventions;
+            return GetMessageConventions(rootNameSpace, applicationName, projectNameForInternal, projectNameForContracts);    
         }
 
         public static string GetMessageConventions(string rootNamespace, string applicationName, string projectNameForInternal, string projectNameForContracts)

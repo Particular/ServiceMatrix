@@ -44,14 +44,7 @@
             DataContext = myContext;
             myContext.FocusOnViewRequested += (s, e) => 
             {
-                new Thread(() =>
-                    {
-                        Dispatcher.Invoke(new Action(() =>
-                            {
-                                var selectedNode = explorer.Focus();
-                                explorer.Focus();
-                            }));
-                    }).Start();
+                new Thread(() => Dispatcher.Invoke(new Action(() => explorer.Focus()))).Start();
             };
             InitializeComponent();
         }

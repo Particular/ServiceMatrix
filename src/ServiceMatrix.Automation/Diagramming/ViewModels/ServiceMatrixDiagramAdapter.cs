@@ -363,11 +363,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 case "NServiceBusMVC":
                     app.Design.Endpoints.CreateNServiceBusMVC(endpointName);
                     break;
-                case "NServiceBusWeb":
-                    app.Design.Endpoints.CreateNServiceBusWeb(endpointName);
-                    break;
                 default:
-                    break;
+                    throw new Exception(string.Format("The host type specified {0} is not supported in the AddEndpoint method", hostType));
             }
         }
 

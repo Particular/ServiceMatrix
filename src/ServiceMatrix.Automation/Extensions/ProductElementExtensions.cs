@@ -122,7 +122,7 @@
                     {
                         item = uriService.ResolveUri<IItemContainer>(new Uri(referenceLink.Value));
                     }
-                    catch { }
+                    catch { } // TODO: Figure out what specific exception needs to be caught!
 
                     if (item != null)
                     {

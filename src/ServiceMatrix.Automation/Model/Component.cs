@@ -246,11 +246,8 @@
 
             if (container != null)
             {
-                try
-                {
-                    container.AddFromFile(sourceFile.PhysicalPath);
-                }
-                catch { } // If the link is already in place we will ignore the exception
+                // TODO: Only add, if we dont have the item in the container 
+                container.AddFromFile(sourceFile.PhysicalPath);
             }
         }
 

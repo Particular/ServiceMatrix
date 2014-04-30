@@ -21,62 +21,57 @@ namespace NServiceBusStudio.Automation.Extensions
             var app = endpoint.Root.As<IApplication>();
             var endpoints = app.Design.Endpoints.GetAll();
 
-            try
+            foreach (var component in (endpoint.As<IToolkitInterface>() as IAbstractEndpoint).EndpointComponents
+                                        .AbstractComponentLinks.Select(ac => ac.ComponentReference.Value)
+                                        .Where(c => c.Publishes.CommandLinks.Any() || c.Subscribes.SubscribedEventLinks.Any()))
             {
-                foreach (var component in (endpoint.As<IToolkitInterface>() as IAbstractEndpoint).EndpointComponents
-                                           .AbstractComponentLinks.Select(ac => ac.ComponentReference.Value)
-                                           .Where(c => c.Publishes.CommandLinks.Any() || c.Subscribes.SubscribedEventLinks.Any()))
+                // Add mappings from the messages(command types) sent by this endpoint
+                // to the endpoints (root namespace for endpoint projects) processing them.
+                foreach (var command in component.Publishes.CommandLinks.Select(c => c.CommandReference.Value))
                 {
-                    // Add mappings from the messages(command types) sent by this endpoint
-                    // to the endpoints (root namespace for endpoint projects) processing them.
-                    foreach (var command in component.Publishes.CommandLinks.Select(c => c.CommandReference.Value))
+                    var componentProcessingCommand = app.Design.Services.Service
+                                                        .SelectMany(s => s.Components.Component
+                                                                            .Where(c => c.Subscribes.ProcessedCommandLinks
+                                                                                        .Any(cl => cl.CommandReference
+                                                                                                .Value == command)))
+                                                        .FirstOrDefault();
+                    if (componentProcessingCommand != null)
                     {
-                        var componentProcessingCommand = app.Design.Services.Service
-                                                            .SelectMany(s => s.Components.Component
-                                                                                .Where(c => c.Subscribes.ProcessedCommandLinks
-                                                                                            .Any(cl => cl.CommandReference
-                                                                                                    .Value == command)))
-                                                            .FirstOrDefault();
-                        if (componentProcessingCommand != null)
+                        foreach (var endpointHost in FindComponentHostEndpoints(endpoints, componentProcessingCommand))
                         {
-                            foreach (var endpointHost in FindComponentHostEndpoints(endpoints, componentProcessingCommand))
-                            {
-                                if (endpointHost != null)
-                                {
-                                    sb.AppendLine(String.Format("<add Messages=\"{0}\" Endpoint=\"{1}\" />",
-                                        command.Parent.Namespace + "." + command.CodeIdentifier + ", " + app.InternalMessagesProjectName,
-                                        (endpointHost != null) ? endpointHost.Project.Data.RootNamespace : ""));
-                                }
-                            }
-                        }
-                    }
-
-                    // Add mappings from the messages(event types) subscribed by this endpoint
-                    // to the endpoints (root namespace for endpoint projects) publishing them.
-                    foreach (var eventt in component.Subscribes.SubscribedEventLinks.Select(c => c.EventReference.Value)
-                        .Where(e => e != null))
-                    {
-                        var componentPublishingEvent = app.Design.Services.Service
-                                                            .SelectMany(s => s.Components.Component
-                                                                                .Where(c => c.Publishes.EventLinks
-                                                                                            .Any(el => el.EventReference
-                                                                                                    .Value == eventt)))
-                                                            .FirstOrDefault();
-                        if (componentPublishingEvent != null)
-                        {
-                            foreach (var endpointHost in FindComponentHostEndpoints(endpoints, componentPublishingEvent))
+                            if (endpointHost != null)
                             {
                                 sb.AppendLine(String.Format("<add Messages=\"{0}\" Endpoint=\"{1}\" />",
-                                    eventt.Parent.Namespace + "." + eventt.CodeIdentifier + ", " + app.ContractsProjectName,
+                                    command.Parent.Namespace + "." + command.CodeIdentifier + ", " + app.InternalMessagesProjectName,
                                     (endpointHost != null) ? endpointHost.Project.Data.RootNamespace : ""));
                             }
                         }
                     }
                 }
+
+                // Add mappings from the messages(event types) subscribed by this endpoint
+                // to the endpoints (root namespace for endpoint projects) publishing them.
+                foreach (var eventt in component.Subscribes.SubscribedEventLinks.Select(c => c.EventReference.Value)
+                    .Where(e => e != null))
+                {
+                    var componentPublishingEvent = app.Design.Services.Service
+                                                        .SelectMany(s => s.Components.Component
+                                                                            .Where(c => c.Publishes.EventLinks
+                                                                                        .Any(el => el.EventReference
+                                                                                                .Value == eventt)))
+                                                        .FirstOrDefault();
+                    if (componentPublishingEvent != null)
+                    {
+                        foreach (var endpointHost in FindComponentHostEndpoints(endpoints, componentPublishingEvent))
+                        {
+                            sb.AppendLine(String.Format("<add Messages=\"{0}\" Endpoint=\"{1}\" />",
+                                eventt.Parent.Namespace + "." + eventt.CodeIdentifier + ", " + app.ContractsProjectName,
+                                (endpointHost != null) ? endpointHost.Project.Data.RootNamespace : ""));
+                        }
+                    }
+                }
             }
-            catch
-            {
-            }
+            
 
             return sb.ToString();
         }

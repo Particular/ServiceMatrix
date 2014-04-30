@@ -93,69 +93,10 @@
                 if (_isVisible != value)
                 {
                     Set<bool>(ref _isVisible, value, "IsVisible");
-                    // Loop through each of the connections attached to this node to set their visibility.
-                    foreach (IDiagramConnectionPoint point in ConnectionPoints)
-                    {
-                        foreach (var connection in point.Connections)
-                        {
-                            //CollapsableConnection collapsable = connection as CollapsableConnection;
-                            //if (collapsable != null)
-                            //{
-                            //    if (collapsable.FromConnectionPoint != null && collapsable.ToConnectionPoint != null)
-                            //    {
-                            //        GroupableNode fromNode = GetFromNode(collapsable);
-                            //        GroupableNode toNode = GetToNode(collapsable);
-                            //        if (fromNode != null && toNode != null)
-                            //        {
-                            //            // if both ends of the connection have a common collapsed group node ancestor, then hide the connection, otherwise let it be visible.
-                            //            GroupNode fromCollapsedParent = fromNode.GetCollapsedParent();
-                            //            GroupNode toCollapsedParent = toNode.GetCollapsedParent();
-                            //            collapsable.IsVisible = fromCollapsedParent == null || fromCollapsedParent != toCollapsedParent;
-                            //        }
-                            //        else
-                            //        {
-                            //            collapsable.IsVisible = true;
-                            //        }
-                            //    }
-                            //    else
-                            //    {
-                            //        collapsable.IsVisible = true;
-                            //    }
-                            //}
-                        }
-                    }
                     OnIsVisibleChanged();
                 }
             }
         }
-
-        //private GroupableNode GetToNode(CollapsableConnection connection)
-        //{
-        //    GroupableNode node = connection.ToConnectionPoint.Connectable as GroupableNode;
-        //    if (node == null)
-        //    {
-        //        CollapsableConnection toConnection = connection.ToConnectionPoint.Connectable as CollapsableConnection;
-        //        if (toConnection != null)
-        //        {
-        //            node = GetToNode(toConnection);
-        //        }
-        //    }
-        //    return node;
-        //}
-
-        //private GroupableNode GetFromNode(CollapsableConnection connection)
-        //{
-        //    GroupableNode node = connection.FromConnectionPoint.Connectable as GroupableNode;
-        //    if (node == null)
-        //    {
-        //        CollapsableConnection fromConnection = connection.FromConnectionPoint.Connectable as CollapsableConnection;
-        //        if (fromConnection != null)
-        //        {
-        //            node = GetFromNode(fromConnection);
-        //        }
-        //    }
-        //    return node;
-        //}
 
         // Returns the collapsed group node ancestor that is highest up the heirarchy structure.
         internal GroupNode GetCollapsedParent()

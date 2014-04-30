@@ -127,7 +127,7 @@
                     vsVersion = "2008";
                     break;
                 case 10:
-                    vsVersion = "20010";
+                    vsVersion = "2010";
                     break;
                 case 11:
                     vsVersion = "2012";

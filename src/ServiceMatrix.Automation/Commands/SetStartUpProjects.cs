@@ -4,6 +4,7 @@
     using System.ComponentModel;
     using System.ComponentModel.Composition;
     using System.ComponentModel.DataAnnotations;
+    using AbstractEndpoint;
     using NuPattern.Runtime;
     using System.Linq;
     using System.IO;
@@ -33,49 +34,46 @@
 
         public override void Execute()
         {
-            try
+            var app = ProductManager.Products.First().As<IApplication>();
+            app.CheckForFirstBuild();
+            var endpoints = app.Design.Endpoints.GetAll();
+            var abstractEndpoints = endpoints as IAbstractEndpoint[] ?? endpoints.ToArray();
+            var arrayStartUpProjects = new object[abstractEndpoints.Count()];
+
+            var solutionFolder = new Uri(Solution.PhysicalPath);
+
+            for (var i = 0; i < abstractEndpoints.Count(); i++)
             {
-                var app = ProductManager.Products.First().As<IApplication>();
-                app.CheckForFirstBuild();
-                var endpoints = app.Design.Endpoints.GetAll();
-                var arrayStartUpProjects = Array.CreateInstance(typeof(Object), endpoints.Count());
-
-                var solutionFolder = new Uri(Solution.PhysicalPath);
-
-                for (var i = 0; i < endpoints.Count(); i++)
+                var abstractEndpoint = abstractEndpoints.ElementAt(i);
+                if (abstractEndpoint.Project != null)
                 {
-                    var abstractEndpoint = endpoints.ElementAt(i);
-                    if (abstractEndpoint.Project != null)
-                    {
-                        var projectUri = new Uri(abstractEndpoint.Project.PhysicalPath);
+                    var projectUri = new Uri(abstractEndpoint.Project.PhysicalPath);
 
-                        var relativeUri = solutionFolder.MakeRelativeUri(projectUri);
-                        var relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+                    var relativeUri = solutionFolder.MakeRelativeUri(projectUri);
+                    var relativePath = Uri.UnescapeDataString(relativeUri.ToString());
 
-                        arrayStartUpProjects.SetValue(relativePath.Replace('/', Path.DirectorySeparatorChar), i);
-                    }
+                    arrayStartUpProjects.SetValue(relativePath.Replace('/', Path.DirectorySeparatorChar), i);
                 }
+            }
 
-                var envDTESolution = Solution.As<Solution>();
-                envDTESolution.SolutionBuild.StartupProjects = arrayStartUpProjects;
+            var envDTESolution = Solution.As<Solution>();
+            envDTESolution.SolutionBuild.StartupProjects = arrayStartUpProjects;
 
-                // Disable Build Configuration for place holder projects (Libraries and Components)
-                foreach (var sc in envDTESolution.SolutionBuild.SolutionConfigurations)
+            // Disable Build Configuration for place holder projects (Libraries and Components)
+            foreach (var sc in envDTESolution.SolutionBuild.SolutionConfigurations)
+            {
+                var solutionConfiguration = sc as SolutionConfiguration;
+                foreach (var sctx in solutionConfiguration.SolutionContexts)
                 {
-                    var solutionConfiguration = sc as SolutionConfiguration;
-                    foreach (var sctx in solutionConfiguration.SolutionContexts)
+                    var context = sctx as SolutionContext;
+                    //if (projectNamesToDisable.Contains(context.ProjectName))
+                    if (context.ProjectName.EndsWith(String.Format (".{0}.csproj", CurrentElement.Root.As<IApplication>().ProjectNameCode)))
                     {
-                        var context = sctx as SolutionContext;
-                        //if (projectNamesToDisable.Contains(context.ProjectName))
-                        if (context.ProjectName.EndsWith(String.Format (".{0}.csproj", CurrentElement.Root.As<IApplication>().ProjectNameCode)))
-                        {
-                            context.ShouldBuild = false;
-                            context.ShouldDeploy = false;
-                        }
+                        context.ShouldBuild = false;
+                        context.ShouldDeploy = false;
                     }
                 }
             }
-            catch { }
         }
 
     }

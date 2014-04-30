@@ -68,15 +68,11 @@
                 break;
             }
 
-            try
+            if (ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
             {
-                if (ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
-                {
-                    ds.SizeToFit();
-                    ItemHasBeenAdded = false;
-                }
-            }
-            catch { }
+                ds.SizeToFit();
+                ItemHasBeenAdded = false;
+            }            
         }
 
 

@@ -11,7 +11,7 @@
 	/// within the toolkit.
 	/// </summary>
 	public class ElementReference<T> : IElementReference<T>, IEquatable<ElementReference<T>>
-		where T : IToolkitElement
+		where T : class, IToolkitElement
 	{
 		private Func<IEnumerable<T>> allValidValues;
 		private PropertyReference<string> idProperty;

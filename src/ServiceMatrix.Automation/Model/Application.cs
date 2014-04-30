@@ -161,6 +161,7 @@ namespace NServiceBusStudio
             var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
             foreach (var endpoint in Design.Endpoints.GetAll())
             {
+              
                 var binFolder = Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), "Bin");
 
                 if (endpoint is INServiceBusHost)
@@ -265,34 +266,28 @@ namespace NServiceBusStudio
 
         private void AddNugetFiles()
         {
-            try
+            
+            System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
+                                        new Action(delegate { }));
+
+            if (currentApplication.Design.ContractsProject == null)
             {
-                System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
-                                         new Action(delegate { }));
-
-                if (currentApplication.Design.ContractsProject == null)
-                {
-                    currentApplication.Design.CreateContractsProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameContracts));
-                    currentApplication.Design.CreateInternalMessagesProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameInternalMessages));
-                }
-                var solution = currentApplication.ServiceProvider.TryGetService<ISolution>();
-
-                if (!solution.Find(".nuget").Any())
-                {
-                    //var folder = solution.CreateSolutionFolder(".nuget");
-                    //folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.exe"), @".nuget\NuGet.exe");
-                    //folder.Add(Path.Combine(currentApplication.ExtensionPath, @".nuget\NuGet.targets"), @".nuget\NuGet.targets");
-
-                    var solutionItems = solution.SolutionFolders.FirstOrDefault(x => x.Name == "Solution Items");
-                    if (solutionItems == null)
-                    {
-                        solutionItems = solutionItems.CreateSolutionFolder("Solution Items");
-                    }
-                    solutionItems.Add(Path.Combine(currentApplication.ExtensionPath, @"ServiceMatrixVersion.txt"), @"ServiceMatrixVersion.txt");
-                }
-                solution.Select();
+                currentApplication.Design.CreateContractsProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameContracts));
+                currentApplication.Design.CreateInternalMessagesProject(string.Format("{0}.{1}", currentApplication.InstanceName, currentApplication.ProjectNameInternalMessages));
             }
-            catch { }
+            var solution = currentApplication.ServiceProvider.TryGetService<ISolution>();
+
+            if (!solution.Find(".nuget").Any())
+            {
+                var solutionItems = solution.SolutionFolders.FirstOrDefault(x => x.Name == "Solution Items");
+                if (solutionItems == null)
+                {
+                    solutionItems = solutionItems.CreateSolutionFolder("Solution Items");
+                }
+                solutionItems.Add(Path.Combine(currentApplication.ExtensionPath, @"ServiceMatrixVersion.txt"), @"ServiceMatrixVersion.txt");
+            }
+            solution.Select();
+            
         }
 
         private void CheckLicense()
