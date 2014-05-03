@@ -43,7 +43,7 @@
   </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <PropertyGroup>
-	<IntermediateOutputPath>obj\$(Configuration)-$(TargetVsVersion)</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)-$(TargetVsVersion)</IntermediateOutputPath>
     <TargetVsixContainerName>Particular.ServiceMatrix.$(TargetVsVersion).vsix</TargetVsixContainerName>
   </PropertyGroup>
   <ItemGroup>
@@ -78,6 +78,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceMatrix\ServiceMatrix.csproj">
+      <Project>{2532fa71-d5e2-426c-ae22-d4316cec2abc}</Project>
+      <Name>ServiceMatrix</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
