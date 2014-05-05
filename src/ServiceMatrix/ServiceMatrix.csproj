@@ -427,9 +427,9 @@
       <FixedLink>
       </FixedLink>
     </Content>
-    <Content Include="$(PatternToolkitRuntime)\GeneratedCode\SchemaModelSchema.xsd">
+    <Content Include="$(PatternToolkitRuntime)\GeneratedCode\PatternModelSchema.xsd">
       <Visible>true</Visible>
-      <Link>Properties\Schemas\SchemaModelSchema.xsd</Link>
+      <Link>Properties\Schemas\PatternModelSchema.xsd</Link>
       <FixedLink>
       </FixedLink>
     </Content>

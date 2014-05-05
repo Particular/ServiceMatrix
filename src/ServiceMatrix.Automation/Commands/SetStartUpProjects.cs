@@ -67,7 +67,7 @@ namespace NServiceBusStudio.Automation.Commands
                 envDTESolution.SolutionBuild.StartupProjects = arrayStartUpProjects;
 
                 // Disable Build Configuration for place holder projects (Libraries and Components)
-                var projectNamesToDisable = new string [] {};
+                var projectNamesToDisable = new string[] { };
                 foreach (var sc in envDTESolution.SolutionBuild.SolutionConfigurations)
                 {
                     var solutionConfiguration = sc as EnvDTE.SolutionConfiguration;
@@ -75,7 +75,7 @@ namespace NServiceBusStudio.Automation.Commands
                     {
                         var context = sctx as EnvDTE.SolutionContext;
                         //if (projectNamesToDisable.Contains(context.ProjectName))
-                        if (context.ProjectName.EndsWith(String.Format (".{0}.csproj", this.CurrentElement.Root.As<IApplication>().ProjectNameCode)))
+                        if (context.ProjectName.EndsWith(String.Format(".{0}.csproj", this.CurrentElement.Root.As<IApplication>().ProjectNameCode)))
                         {
                             context.ShouldBuild = false;
                             context.ShouldDeploy = false;
@@ -83,7 +83,9 @@ namespace NServiceBusStudio.Automation.Commands
                     }
                 }
             }
-            catch { }
+            catch
+            {
+            }
         }
 
     }

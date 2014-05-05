@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Automation.Extensions;
-using NuPattern.Runtime;
-using AbstractEndpoint;
 using System.ComponentModel.DataAnnotations;
-using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using AbstractEndpoint;
 using EnvDTE;
-using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Infrastructure;
-using NuPattern.VisualStudio.Solution;
-using NuPattern.Runtime.References;
+using Microsoft.VisualStudio;
+using NServiceBusStudio.Automation.Extensions;
 using NuPattern;
-
+using NuPattern.Runtime;
+using NuPattern.Runtime.References;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {
@@ -24,10 +21,10 @@ namespace NServiceBusStudio
         void DeployTo(IAbstractEndpoint endpoint);
         void Publish(IEvent @event);
         void Subscribe(ICommand command);
-        
+
         void AddLinks(IAbstractEndpoint endpoint);
         void RemoveLinks(IAbstractEndpoint endpoint);
-        
+
         bool IsSender { get; }
         bool IsProcessor { get; }
     }
@@ -63,7 +60,7 @@ namespace NServiceBusStudio
             {
                 foreach (var endpoint in this.DeployedTo)
                 {
-                    DeleteComponentLink(endpoint);   
+                    DeleteComponentLink(endpoint);
                 }
             };
 
@@ -114,7 +111,7 @@ namespace NServiceBusStudio
                 result.Add(new ValidationResult(string.Format("{0}.{1} should be allocated to an endpoint.", this.Parent.Parent.InstanceName, this.InstanceName)));
             }
 
-            if (this.IsSaga && !(this.Subscribes.ProcessedCommandLinks.Any (c => c.StartsSaga) || this.Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
+            if (this.IsSaga && !(this.Subscribes.ProcessedCommandLinks.Any(c => c.StartsSaga) || this.Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
             {
                 result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", this.Parent.Parent.InstanceName, this.InstanceName)));
             }
@@ -209,8 +206,6 @@ namespace NServiceBusStudio
             }
         }
 
-
-
         public void RemoveLinks(IAbstractEndpoint endpoint)
         {
             var project = endpoint.Project;
@@ -249,13 +244,20 @@ namespace NServiceBusStudio
             var container = project.As<EnvDTE.Project>().ProjectItems;
             container = FindProjectFolder(container, suggestedPath);
 
-            if (container != null)
+            if (container != null && !CheckIfProjectItemExists(container, suggestedPath))
             {
                 try
                 {
                     container.AddFromFile(sourceFile.PhysicalPath);
                 }
-                catch { } // If the link is already in place we will ignore the exception
+                catch (COMException e)
+                {
+                    // If the link is already in place we will ignore the exception; otherwise, rethrow.
+                    if (e.ErrorCode != VSConstants.E_FAIL)
+                    {
+                        throw;
+                    }
+                }
             }
         }
 
@@ -276,7 +278,6 @@ namespace NServiceBusStudio
                 }
             }
         }
-
 
         private static IItem FindSourceItemForElement(IProductElement element, Func<IEnumerable<IItem>, IItem> filter)
         {
@@ -302,8 +303,15 @@ namespace NServiceBusStudio
                     }
                 }
             }
-            
+
             return container;
+        }
+
+        private static bool CheckIfProjectItemExists(EnvDTE.ProjectItems container, string path)
+        {
+            return container
+                    .Cast<EnvDTE.ProjectItem>()
+                    .Any(pi => pi.Document != null && string.Equals(pi.Document.FullName, path, StringComparison.OrdinalIgnoreCase));
         }
 
         // Looks for an available component name in the service
@@ -330,7 +338,7 @@ namespace NServiceBusStudio
                 linkSource.ComponentReference.Value.EndpointDefined(endpoint);
             }
         }
-       
+
         public void Publish(IEvent @event)
         {
             this.Publishes.CreateLink(@event);

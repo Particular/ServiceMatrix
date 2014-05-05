@@ -163,17 +163,9 @@ namespace NServiceBusStudio
             var window = this.FindToolWindow(typeof(T), 0, false);
             if (window == null)
             {
-                try
-                {
-                    window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
-                    var serviceContainer = (IServiceContainer)this;
-                    serviceContainer.AddService(typeof(T), window.As<T>(), true);
-                }
-                catch (Exception ex)
-                {
-                    var s = ex.Message;
-                    throw;
-                }
+                window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
+                var serviceContainer = (IServiceContainer)this;
+                serviceContainer.AddService(typeof(T), window.As<T>(), true);
             }
 
             return window as T;
