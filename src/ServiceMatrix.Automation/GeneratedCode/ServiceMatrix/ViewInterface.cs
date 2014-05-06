@@ -22,7 +22,7 @@ namespace NServiceBusStudio
 	/// Design view of your application, where you create your services and messages.
 	/// </summary>
 	[Description("Design view of your application, where you create your services and messages.")]
-	[ToolkitInterface(ExtensionId = "E5387BC7-B3B0-4B1C-8307-6A86494FCCCF", DefinitionId = "6bc9143a-3e32-4dee-b950-2aa11e4c5f5d", ProxyType = typeof(Design))]
+	[ToolkitInterface(ExtensionId = "23795EC3-3DEA-4F04-9044-4056CF91A2ED", DefinitionId = "6bc9143a-3e32-4dee-b950-2aa11e4c5f5d", ProxyType = typeof(Design))]
 	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
 	public partial interface IDesign : IToolkitInterface
 	{

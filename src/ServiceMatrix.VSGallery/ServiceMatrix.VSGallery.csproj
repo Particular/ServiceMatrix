@@ -105,6 +105,13 @@
     <TransformOnBuild>true</TransformOnBuild>
   </PropertyGroup>
   <Import Project="$(T4TargetsPath)\Microsoft.TextTemplating.targets" />
+  <Target Name="VerifyTargetBuildConfigurationForGallery" BeforeTargets="BeforeBuild">
+    <Message
+      Importance="normal"
+      Text="Verifying solution build configuration..."/>
+    <Error Condition="'$(Configuration)' == 'Debug-VS2012' or '$(Configuration)' == 'Release-VS2012'"
+           Text="The installer package must not be built for Visual Studio 2012."/>
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

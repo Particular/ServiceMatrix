@@ -4,7 +4,7 @@
   <PropertyGroup>
     <PatternToolkitVersionTargetsPath>$(localappdata)\Microsoft\MSBuild\NuPattern\NuPattern Toolkit Builder</PatternToolkitVersionTargetsPath>
   </PropertyGroup>
-  
+
   <Import Project="$(PatternToolkitVersionTargetsPath)\NuPattern.Authoring.PatternToolkitVersion.targets" />
 
   <!-- Verifies that the correct solution configuration is selected -->
@@ -16,8 +16,8 @@
            Text="The current solution build configuration '$(Configuration)' is not valid for Visual Studio 2010. You must change the solution build configuration to match Visual Studio."/>
     <Error Condition="(('$(Configuration)' == 'Debug-VS2012' or '$(Configuration)' == 'Release-VS2012') and '$(VisualStudioVersion)' != '11.0')"
            Text="The current solution build configuration '$(Configuration)' is not valid for Visual Studio 2012. You must change the solution build configuration to match Visual Studio."/>
-	<Error Condition="(('$(Configuration)' == 'Debug-VS2013' or '$(Configuration)' == 'Release-VS2013') and '$(VisualStudioVersion)' != '12.0')"
-           Text="The current solution build configuration '$(Configuration)' is not valid for Visual Studio 2012. You must change the solution build configuration to match Visual Studio '$(VisualStudioVersion)'."/>
+    <Error Condition="(('$(Configuration)' == 'Debug-VS2013' or '$(Configuration)' == 'Release-VS2013') and '$(VisualStudioVersion)' != '12.0')"
+             Text="The current solution build configuration '$(Configuration)' is not valid for Visual Studio 2012. You must change the solution build configuration to match Visual Studio '$(VisualStudioVersion)'."/>
   </Target>
 
   <!-- Include T4 MSBUILD support for all T4 files -->

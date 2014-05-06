@@ -8,9 +8,9 @@ namespace NServiceBusStudio
 	internal static class ToolkitConstants
 	{
 		/// <summary>
-		/// E5387BC7-B3B0-4B1C-8307-6A86494FCCCF
+		/// 23795EC3-3DEA-4F04-9044-4056CF91A2ED
 		/// </summary>
-		public const string VsixIdentifier = "E5387BC7-B3B0-4B1C-8307-6A86494FCCCF";
+		public const string VsixIdentifier = "23795EC3-3DEA-4F04-9044-4056CF91A2ED";
 
 		/// <summary>
 		/// ServiceMatrix

@@ -45,7 +45,7 @@
                 <property Id="fc9e998a-8968-401b-9a8b-621cecefe66f" definitionId="09a9d6ed-39e6-414d-a8db-b7b381c227ca" definitionName="Author" rawValue="Particular Software" />
                 <property Id="86efbe52-d99b-4d26-a145-6bf76596beb8" definitionId="f28908ca-518f-497b-9b8c-0e3dc47f21dd" definitionName="Description" rawValue="Intuitive modeling and design of distributed systems" />
                 <property Id="8df5988e-c59e-4a04-b63a-4e3650690a0d" definitionId="2058a01f-6a09-4ad4-9e59-10393e0fca87" definitionName="Version" rawValue="2.1.0" />
-                <property Id="009d56d7-f231-461e-8cde-82531cc3d615" definitionId="766e5ae2-80de-4d94-a0be-4b953a40ac46" definitionName="Identifier" rawValue="E5387BC7-B3B0-4B1C-8307-6A86494FCCCF" />
+                <property Id="009d56d7-f231-461e-8cde-82531cc3d615" definitionId="766e5ae2-80de-4d94-a0be-4b953a40ac46" definitionName="Identifier" rawValue="23795EC3-3DEA-4F04-9044-4056CF91A2ED" />
                 <property Id="0d57232c-7c42-4d17-9aca-63afbcfe190e" definitionId="30e4ae03-67bb-4bcb-ac9d-aa71601bfe7e" definitionName="Icon" rawValue="Resources\ToolkitIcon.png" />
                 <property Id="e9420040-f385-4537-a939-96210e6d4eba" definitionId="c9e003d7-cb45-4865-a511-de29c04b5b2d" definitionName="Eula" rawValue="Resources\LicenseAgreement.rtf" />
               </properties>
