@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
   <Identifier Id="EE4496BE-1C92-42DB-B5FA-FB1B3AA306D0">
-    <Name>ServiceMatrix for Visual Studio 2013 (BETA)</Name>
+    <Name>ServiceMatrix for Visual Studio</Name>
     <Author>Particular Software</Author>
     <Version>2.1.0</Version>
     <Description xml:space="preserve">Intuitive modeling and design of distributed systems</Description>

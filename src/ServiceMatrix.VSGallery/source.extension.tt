@@ -18,7 +18,7 @@
 			break;
 		case "12.0":
 			galleryPackageIdentifier = @"EE4496BE-1C92-42DB-B5FA-FB1B3AA306D0";
-			visualStudioVersionNameSuffix = " for Visual Studio 2013 (BETA)";
+			visualStudioVersionNameSuffix = " for Visual Studio 2013";
 			break;
 	}
 #>
