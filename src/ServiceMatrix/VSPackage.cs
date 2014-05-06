@@ -3,24 +3,22 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.CustomSolutionBuilder.Views;
+using NServiceBusStudio.Automation.Exceptions;
 using NServiceBusStudio.Automation.Infrastructure;
+using NuPattern;
+using NuPattern.Diagnostics;
+using NuPattern.Runtime.Diagnostics;
+using NuPattern.VisualStudio;
+using ServiceMatrix.Diagramming;
+using ServiceMatrix.Diagramming.Views;
 using System;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Design;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Linq;
-using NuPattern;
-using NuPattern.Diagnostics;
-using NuPattern.Runtime;
-using NuPattern.VisualStudio;
-using NuPattern.Runtime.Diagnostics;
-using ServiceMatrix.Diagramming.Views;
-using ServiceMatrix.Diagramming;
-using System.ComponentModel.Composition.Hosting;
-using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
-using NServiceBusStudio.Automation.Exceptions;
 using System.IO;
+using System.Runtime.InteropServices;
+using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
 
 namespace NServiceBusStudio
 {
@@ -36,6 +34,7 @@ namespace NServiceBusStudio
     [ProvideService(typeof(IDiagramsWindowsManager), ServiceName = "IDiagramsWindowsManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
     [ProvideService(typeof(ServiceMatrixDiagramToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
+    [Description("ServiceMatrix")]
     [DslShell::ProvideBindingPath]
     public sealed class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
     {
@@ -54,8 +53,8 @@ namespace NServiceBusStudio
         private void TrackUnhandledExceptions()
         {
             var reporter = new ExceptionReporting.ExceptionReporter();
-            reporter.Config.AppName = "ServiceMatrix";
-            reporter.Config.AppVersion = "2.0.2";
+            reporter.Config.AppName = ToolkitConstants.ToolkitName;
+            reporter.Config.AppVersion = ToolkitConstants.Version;
             reporter.Config.CompanyName = "Particular Software";
             reporter.Config.ContactEmail = "contact@particular.net";
             reporter.Config.EmailReportAddress = "support@particular.net";
