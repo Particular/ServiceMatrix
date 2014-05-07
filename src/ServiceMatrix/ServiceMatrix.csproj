@@ -41,9 +41,16 @@
   </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <Choose>
-    <When Condition="'$(VsxVersion)'=='11.0'">
+    <When Condition="'$(VsxVersion)'=='11.0' or '$(VsxVersion)'=='12.0'">
       <ItemGroup>
         <Reference Include="Microsoft.VisualStudio.Shell.Interop.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="'$(VsxVersion)'=='12.0'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.Shell.Interop.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
       </ItemGroup>
     </When>
   </Choose>
@@ -233,6 +240,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
+    <Compile Include="ToolkitConstants.cs">
+      <DependentUpon>ToolkitConstants.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ToolWindowContent.cs" />
     <Compile Include="ToolWindowContentViewer.cs" />
     <Content Include="T\P\App\Libraries\Properties\AssemblyInfo.cs">
@@ -601,7 +613,7 @@
     </Content>
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
     </None>
     <None Include="source.extension.VSVersion.gen.ttinclude">
@@ -611,8 +623,9 @@
     </None>
     <None Include="source.extension.VSVersion.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>source.extension.VSVersion.gen.ttinclude</LastGenOutput>
       <DependentUpon>source.extension.tt</DependentUpon>
+      <LastGenOutput>source.extension.VSVersion.gen.ttinclude</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="T\T4\Endpoints\NSBH\DefaultApp.config.tt">
       <LastGenOutput>DefaultApp.config.cs</LastGenOutput>
@@ -934,6 +947,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>1223f865-f461-44eb-911b-caa21b1a8bc8</ItemGuid>
     </Content>
+    <None Include="ToolkitConstants.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ToolkitConstants.cs</LastGenOutput>
+    </None>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>

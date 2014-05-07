@@ -1,0 +1,65 @@
+﻿<#@ output extension=".vsixmanifest" #>
+<#@ Include File="..\ServiceMatrix\source.extension.gen.ttinclude" #>
+<#@ Include File="..\ServiceMatrix\source.extension.VSVersion.gen.ttinclude" #>
+<#@ Include File="..\source.version.t4" #>
+<#
+	string galleryPackageIdentifier = identifier;
+	string visualStudioVersionNameSuffix = "";
+
+	switch (VersionInfo.TargetVsVersion)
+	{
+		case "10.0":
+			galleryPackageIdentifier = @"1AF247F2-5933-4BC7-B60C-5451760B74A8";
+			visualStudioVersionNameSuffix = " for Visual Studio 2010";
+			break;
+		case "11.0":
+			galleryPackageIdentifier = @"AA4193DC-2A74-428E-885D-5CBB04B380F1";
+			visualStudioVersionNameSuffix = " for Visual Studio 2012";
+			break;
+		case "12.0":
+			galleryPackageIdentifier = @"EE4496BE-1C92-42DB-B5FA-FB1B3AA306D0";
+			visualStudioVersionNameSuffix = " for Visual Studio 2013";
+			break;
+	}
+#>
+<?xml version="1.0" encoding="utf-8"?>
+<Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+  <Identifier Id="<#= galleryPackageIdentifier #>">
+    <Name><#= toolkitName #><#= visualStudioVersionNameSuffix #></Name>
+    <Author><#= author #></Author>
+    <Version><#= globalversion #></Version>
+    <Description xml:space="preserve"><#= description #></Description>
+    <Locale>1033</Locale>
+<#if(HasValue(eula))
+{
+#>
+    <License><#= eula #></License>
+<#
+}
+#>
+<#if(HasValue(icon))
+{
+#>
+    <Icon><#= icon #></Icon>
+<#
+}
+#>
+    <MoreInfoUrl>http://particular.net/ServiceMatrix</MoreInfoUrl>
+    <GettingStartedGuide>http://docs.particular.net/ServiceMatrix/getting-started-with-servicematrix-2.0</GettingStartedGuide>
+    <PreviewImage>Resources\ProductPreview.png</PreviewImage>
+    <SupportedProducts>
+      <VisualStudio Version="<#=VersionInfo.TargetVsVersion#>">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+    </SupportedProducts>
+    <SupportedFrameworkRuntimeEdition MinVersion="<#=VersionInfo.TargetFrxMinVersion#>" MaxVersion="<#=VersionInfo.TargetFrxMaxVersion#>" />
+  </Identifier>
+  <References>
+    <Reference Id="<#= identifier #>" MinVersion="<#= globalversion #>" MaxVersion="<#= globalversion #>">
+      <Name>Particular.ServiceMatrix.Runtime</Name>
+      <VsixPath>Particular.ServiceMatrix.Runtime.<#=VersionInfo.TargetVsVersion#>.vsix</VsixPath>
+    </Reference>
+  </References>
+</Vsix>

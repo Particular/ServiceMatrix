@@ -1,6 +1,6 @@
 ﻿<#@ Template Debug="False" Hostspecific="False" Language="C#" #>
 <#@ Output Extension=".cs" #>
-<#@ Include File="..\ServiceMatrix\source.extension.gen.ttinclude" #>
+<#@ Include File="source.extension.gen.ttinclude" #>
 using System;
 using System.Collections.Generic;
 using System.Linq;
