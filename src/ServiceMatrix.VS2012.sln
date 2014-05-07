@@ -16,8 +16,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chocolatey", "Chocolatey\Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix.Automation.Tests", "ServiceMatrix.Automation.Tests\ServiceMatrix.Automation.Tests.csproj", "{6166E6EA-9F16-4E16-8298-7BABEEA1887E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix.VSGallery", "ServiceMatrix.VSGallery\ServiceMatrix.VSGallery.csproj", "{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug-VS2010|Any CPU = Debug-VS2010|Any CPU
@@ -106,24 +104,6 @@ Global
 		{6166E6EA-9F16-4E16-8298-7BABEEA1887E}.Release-VS2013|Any CPU.ActiveCfg = Release|Any CPU
 		{6166E6EA-9F16-4E16-8298-7BABEEA1887E}.Release-VS2013|Any CPU.Build.0 = Release|Any CPU
 		{6166E6EA-9F16-4E16-8298-7BABEEA1887E}.Release-VS2013|x86.ActiveCfg = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2010|Any CPU.ActiveCfg = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2010|Any CPU.Build.0 = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2010|x86.ActiveCfg = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2012|Any CPU.ActiveCfg = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2012|Any CPU.Build.0 = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2012|x86.ActiveCfg = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2013|Any CPU.ActiveCfg = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2013|Any CPU.Build.0 = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Debug-VS2013|x86.ActiveCfg = Debug|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2010|Any CPU.ActiveCfg = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2010|Any CPU.Build.0 = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2010|x86.ActiveCfg = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2012|Any CPU.ActiveCfg = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2012|Any CPU.Build.0 = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2012|x86.ActiveCfg = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2013|Any CPU.ActiveCfg = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2013|Any CPU.Build.0 = Release|Any CPU
-		{06609F93-76F6-4B7E-BE58-BA02E1F6F7AD}.Release-VS2013|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

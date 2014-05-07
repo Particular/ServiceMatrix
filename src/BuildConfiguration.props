@@ -96,7 +96,8 @@
  
   <!-- Properties for VSIXes -->
   <PropertyGroup>
-    <TargetVsixContainerName>$(AssemblyName).Runtime.$(TargetVsVersion).vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(VisualStudioVersion)' != '11.0'">$(AssemblyName).Runtime.$(TargetVsVersion).vsix</TargetVsixContainerName>
+    <TargetVsixContainerName Condition="'$(VisualStudioVersion)' == '11.0'">$(AssemblyName).$(TargetVsVersion).vsix</TargetVsixContainerName>
   </PropertyGroup>
 
 </Project>

@@ -363,10 +363,10 @@ namespace NServiceBusStudio
         public void InitializeExtensionDependentData()
         {
             Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager extensionManager = (Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager)this.VsServiceProvider.TryGetService<Microsoft.VisualStudio.ExtensionManager.SVsExtensionManager>();
-            var extension = extensionManager.GetInstalledExtension("E5387BC7-B3B0-4B1C-8307-6A86494FCCCF");
+            var extension = extensionManager.GetInstalledExtension("23795EC3-3DEA-4F04-9044-4056CF91A2ED");
 
             //var resolver = this.ServiceProvider.TryGetService<IUriReferenceService>();
-            //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://E5387BC7-B3B0-4B1C-8307-6A86494FCCCF"));
+            //var extension = resolver.ResolveUri<Microsoft.VisualStudio.ExtensionManager.IInstalledExtension>(new Uri(@"vsix://23795EC3-3DEA-4F04-9044-4056CF91A2ED"));
             extensionPath = extension.InstallPath;
             nserviceBusVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "NServiceBusVersion.txt"));
             serviceControlEndpointPluginVersion = File.ReadAllText(Path.Combine(extension.InstallPath, "ServiceControlEndpointPluginVersion.txt"));
