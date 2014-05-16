@@ -73,7 +73,7 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         [Required]
         [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
-        [MaxLength(30)]
+        [StringLength(30)]
         public string SelectedMasterItem
         {
             get { return _selectedMasterItem; }
@@ -102,7 +102,7 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         [Required(ErrorMessage = "This field is required")]
         [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
-        [MaxLength(30)]
+        [StringLength(30)]
         public string SelectedSlaveItem
         {
             get
