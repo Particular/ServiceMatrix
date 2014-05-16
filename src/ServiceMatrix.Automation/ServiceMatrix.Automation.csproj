@@ -208,6 +208,7 @@
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramRemover.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="ViewModels\ElementHierarchyPickerViewModel.cs" />
     <Compile Include="Dialog\UserCodeChangeRequired.xaml.cs">
       <DependentUpon>UserCodeChangeRequired.xaml</DependentUpon>
     </Compile>
@@ -215,6 +216,7 @@
       <DependentUpon>SagaStarterPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\IEventPicker.cs" />
+    <Compile Include="ViewModels\ValidatingViewModel.cs" />
     <Compile Include="Extensions\NugetPackageVersionManager.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="HandledMessageLink.Design.cs">
@@ -754,6 +756,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Diagramming\Styles\Images\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\ElementHierarchyPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

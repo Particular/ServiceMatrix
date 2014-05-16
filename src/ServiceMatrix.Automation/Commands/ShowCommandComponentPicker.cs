@@ -1,16 +1,15 @@
-﻿using AbstractEndpoint;
-using NuPattern.Runtime;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
-using NuPattern.Presentation;
+using AbstractEndpoint;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
+using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -46,7 +45,7 @@ namespace NServiceBusStudio.Automation.Commands
             this.ValidateObject();
 
             var app = this.CurrentElement.Root.As<IApplication>();
-            
+
             // Get available commands
             var elements = new Dictionary<string, ICollection<string>>();
             foreach (var service in app.Design.Services.Service)
@@ -54,19 +53,23 @@ namespace NServiceBusStudio.Automation.Commands
                 elements.Add(service.InstanceName, service.Contract.Commands.Command.Select(x => x.InstanceName).ToList());
             }
 
-            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>() as IElementHierarchyPicker;
-            
-            picker.SlaveName = "Command Name:";
-            picker.Elements = elements;
-            picker.Title = "Send Command";
+            var viewModel = 
+                new ElementHierarchyPickerViewModel
+                {
+                    SlaveName = "Command Name:",
+                    Title = "Send Command",
+                    Elements = elements,
+                };
+
+            var picker = this.WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedService = picker.SelectedMasterItem;
-                    var selectedCommand = picker.SelectedSlaveItem;
-                   
+                    var selectedService = viewModel.SelectedMasterItem;
+                    var selectedCommand = viewModel.SelectedSlaveItem;
+
                     var service = app.Design.Services.Service.FirstOrDefault(x => x.InstanceName == selectedService);
                     if (service == null)
                     {

@@ -967,6 +967,7 @@
     </Content>
     <None Include="PatternTooling.toolingdesign">
       <ItemGuid>b1981f48-7c32-4fdf-8f0f-727807b8aa39</ItemGuid>
+      <SubType>Designer</SubType>
     </None>
     <None Include="source.extension.vsixmanifest">
       <AutoGen>True</AutoGen>

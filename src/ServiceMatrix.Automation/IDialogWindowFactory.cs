@@ -20,5 +20,15 @@ namespace NServiceBusStudio
 		/// The created <see cref="Window"/> dialog.
 		/// </returns>
 		IDialogWindow CreateDialog<T>() where T : IDialogWindow, new();
-	}
+
+        /// <summary>
+        /// Creates a <see cref="Window"/> dialog as child of the main Visual Studio window.
+        /// </summary>
+        /// <typeparam name="TView">The type of the window to create.</typeparam>
+        /// <param name="context">The data context.</param>
+        /// <returns>
+        /// The created <see cref="Window"/> dialog.
+        /// </returns>
+        IDialogWindow CreateDialog<T>(object context) where T : IDialogWindow, new();
+    }
 }
