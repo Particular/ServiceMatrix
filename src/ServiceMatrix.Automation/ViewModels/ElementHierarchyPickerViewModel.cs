@@ -12,8 +12,8 @@ namespace NServiceBusStudio.Automation.ViewModels
     {
         public ElementHierarchyPickerViewModel()
         {
-            this.InitializeCommands();
-            this.DropDownEditable = true;
+            InitializeCommands();
+            DropDownEditable = true;
         }
 
         /// <summary>
@@ -27,11 +27,11 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                return this.title;
+                return title;
             }
             set
             {
-                this.title = value;
+                title = value;
 
                 var uriSource = default(Uri);
 
@@ -44,7 +44,7 @@ namespace NServiceBusStudio.Automation.ViewModels
                     uriSource = new Uri("../Diagramming/Styles/Images/CommandIcon.png", UriKind.Relative);
                 }
 
-                this.TitleImageSource = new BitmapImage(uriSource);
+                TitleImageSource = new BitmapImage(uriSource);
             }
         }
 
@@ -80,8 +80,8 @@ namespace NServiceBusStudio.Automation.ViewModels
             set
             {
                 _selectedMasterItem = value;
-                this.OnPropertyChanged(() => this.SelectedMasterItem);
-                this.OnPropertyChanged(() => this.SlaveElements);
+                OnPropertyChanged(() => SelectedMasterItem);
+                OnPropertyChanged(() => SlaveElements);
             }
         }
 
@@ -89,7 +89,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var master = this.Elements.FirstOrDefault(x => x.Key == this.SelectedMasterItem);
+                var master = Elements.FirstOrDefault(x => x.Key == SelectedMasterItem);
                 if (master.Value == null)
                 {
                     return new List<string>();
@@ -107,14 +107,14 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                return this.selectedSlaveItem;
+                return selectedSlaveItem;
             }
             set
             {
-                if (value != this.selectedSlaveItem)
+                if (value != selectedSlaveItem)
                 {
-                    this.selectedSlaveItem = value;
-                    this.OnPropertyChanged(() => this.SelectedSlaveItem);
+                    selectedSlaveItem = value;
+                    OnPropertyChanged(() => SelectedSlaveItem);
                 }
             }
         }
@@ -127,7 +127,7 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         private void InitializeCommands()
         {
-            this.AcceptCommand = new RelayCommand<dynamic>(dialog => this.CloseDialog(dialog), dialog => this.IsValid);
+            AcceptCommand = new RelayCommand<dynamic>(dialog => this.CloseDialog(dialog), dialog => IsValid);
         }
     }
 }
