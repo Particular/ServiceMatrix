@@ -34,5 +34,5 @@ csx
 _NCrunch_NServiceBus/*
 logs
 run-git.cmd
-src/Chocolatey/Build/*
+src/Chocolatey/Build*/*
 App_Packages
