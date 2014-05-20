@@ -47,7 +47,7 @@ try {
     Start-ChocolateyProcessAsAdmin "$arguments" "$pathToVsixInstaller" -validExitCodes $validExitCodes
 
     Write-ChocolateySuccess $packageName
-    Remove-Item $pathToVsixInstaller -ErrorAction SilentlyContinue 
+    Remove-Item $vsixOnLocalDisk -ErrorAction SilentlyContinue 
 } catch {
 	Write-ChocolateyFailure $packageName $($_.Exception.Message)
 	throw
