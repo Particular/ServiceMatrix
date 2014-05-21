@@ -8,11 +8,12 @@
     <Locale>1033</Locale>
     <License>Resources\LicenseAgreement.rtf</License>
     <Icon>Resources\ToolkitIcon.png</Icon>
-	  <MoreInfoUrl>http://particular.net/ServiceMatrix</MoreInfoUrl>
+	<MoreInfoUrl>http://particular.net/ServiceMatrix</MoreInfoUrl>
     <GettingStartedGuide>http://docs.particular.net/ServiceMatrix/getting-started-with-servicematrix-2.0</GettingStartedGuide>
-	  <PreviewImage>Resources\ProductPreview.png</PreviewImage>
+    <ReleaseNotes>https://github.com/particular/servicematrix/releases/2.1.0</ReleaseNotes>
+	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
-      <VisualStudio Version="12.0">
+      <VisualStudio Version="11.0">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>

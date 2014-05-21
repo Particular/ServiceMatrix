@@ -1,12 +1,12 @@
-﻿$packageName = "ServiceMatrix.VS2012"
+﻿$packageName = "ServiceMatrix.VS2013"
 
-$url = gci -path "c:\ChocolateyResourceCache" -Filter "Particular.ServiceMatrix.11.0.vsix" -ErrorAction SilentlyContinue | select -first 1
+$url = gci -path "c:\ChocolateyResourceCache" -Filter "Particular.ServiceMatrix.12.0.vsix" -ErrorAction SilentlyContinue | select -first 1
 
 if($url){
 	$url = $url | Select -expandProperty FullName
 }
 else{
-	$url = "https://github.com/Particular/ServiceMatrix/releases/download/{{ReleaseName}}/Particular.ServiceMatrix.11.0.vsix"
+	$url = "https://github.com/Particular/ServiceMatrix/releases/download/{{ReleaseName}}/Particular.ServiceMatrix.12.0.vsix"
 }
 
 
@@ -18,21 +18,21 @@ try {
     
     if (![System.IO.Directory]::Exists($tempDir)) {[System.IO.Directory]::CreateDirectory($tempDir) | Out-Null}
     
-    $vsixOnLocalDisk = Join-Path $tempDir "Particular.ServiceMatrix.11.0.vsix"
+    $vsixOnLocalDisk = Join-Path $tempDir "Particular.ServiceMatrix.12.0.vsix"
 
     Get-ChocolateyWebFile $packageName $vsixOnLocalDisk $url
   
-    $vs2012ToolsPath = $Env:VS110COMNTOOLS
+    $vs2013ToolsPath = $Env:VS120COMNTOOLS
 
-    Write-Host "VS2012 Tools Path: $vs2012ToolsPath"
+    Write-Host "VS2013 Tools Path: $vs2013ToolsPath"
 
-    if($vs2012ToolsPath -eq $null)
+    if($vs2013ToolsPath -eq $null)
     {
-    	throw "Visual Studio 2012 not found on this machine"
+    	throw "Visual Studio 2013 not found on this machine"
     }
 
-	$vs2012Dir = New-Object System.IO.DirectoryInfo($vs2012ToolsPath)
- 	$pathToVsixInstaller = [io.path]::Combine($vs2012Dir.Parent.FullName, "IDE")
+	$vs2013Dir = New-Object System.IO.DirectoryInfo($vs2013ToolsPath)
+ 	$pathToVsixInstaller = [io.path]::Combine($vs2013Dir.Parent.FullName, "IDE")
  	$pathToVsixInstaller = [io.path]::Combine($pathToVsixInstaller, "VSIXInstaller.exe")
  	
  	Write-Host "Path to VsixInstaller: $pathToVsixInstaller"
@@ -47,7 +47,7 @@ try {
     Start-ChocolateyProcessAsAdmin "$arguments" "$pathToVsixInstaller" -validExitCodes $validExitCodes
 
     Write-ChocolateySuccess $packageName
-    Remove-Item $pathToVsixInstaller -ErrorAction SilentlyContinue 
+    Remove-Item $vsixOnLocalDisk -ErrorAction SilentlyContinue 
 } catch {
 	Write-ChocolateyFailure $packageName $($_.Exception.Message)
 	throw

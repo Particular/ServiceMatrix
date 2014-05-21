@@ -19,20 +19,30 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="chocolateyInstall.ps1" />
-    <None Include="elevatedUninstall.ps1" />
-    <None Include="chocolateyUninstall.ps1" />
-    <None Include="ServiceMatrix.VS2012.install.nuspec" />
+    <None Include="VS2013\chocolateyInstall.ps1" />
+    <None Include="VS2012\chocolateyInstall.ps1" />
+    <None Include="VS2013\chocolateyUninstall.ps1" />
+    <None Include="VS2013\elevatedUninstall.ps1" />
+    <None Include="VS2012\elevatedUninstall.ps1" />
+    <None Include="VS2012\chocolateyUninstall.ps1" />
+    <None Include="VS2012\ServiceMatrix.VS2012.install.nuspec" />
+    <None Include="VS2013\ServiceMatrix.VS2013.install.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="readme.txt" />
   </ItemGroup>
-  <Target Name="Build" DependsOnTargets="Build" />
   <Target Name="ReBuild" DependsOnTargets="Build" />
   <UsingTask TaskName="GitVersionTask.GetVersion" AssemblyFile="$(SolutionDir)..\buildsupport\GitVersionTask\GitVersionTask.dll" />
   <UsingTask TaskName="PepitaPackage.CreatePackageTask" AssemblyFile="$(ProjectDir)PepitaPackage.dll" />
   <UsingTask TaskName="MSBuild.Community.Tasks.FileUpdate" AssemblyFile="$(ProjectDir)MSBuild.Community.Tasks.dll" />
-  <Target Name="Build">
+  <Target Name="Clean">
+    <ItemGroup>
+      <FilesToDelete Include="$(ProjectDir)Build2012\**\*.*" />
+      <FilesToDelete Include="$(ProjectDir)Build2013\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+  </Target>
+  <Target Name="Build" DependsOnTargets="Clean">
     <GetVersion SolutionDirectory="$(SolutionDir)">
       <Output TaskParameter="SemVer" PropertyName="SemVer" />
       <Output TaskParameter="Stability" PropertyName="Stability" />
@@ -46,22 +56,37 @@
     <PropertyGroup Condition=" '$(Stability)' != 'Final' ">
       <ChocoVersion>$(MajorMinorPatch)-$(Stability)$(PreReleasePartOne)</ChocoVersion>
     </PropertyGroup>
+
+    <!--VS2012 related files-->
+    <MakeDir Directories="$(ProjectDir)Build2012" />
+    <Copy SourceFiles="$(ProjectDir)VS2012\ServiceMatrix.VS2012.install.nuspec" DestinationFolder="$(ProjectDir)Build2012" />
+    <Copy SourceFiles="$(ProjectDir)VS2012\chocolateyInstall.ps1" DestinationFolder="$(ProjectDir)Build2012\Tools" />
+    <Copy SourceFiles="$(ProjectDir)VS2012\chocolateyUninstall.ps1" DestinationFolder="$(ProjectDir)Build2012\Tools" />
+    <Copy SourceFiles="$(ProjectDir)VS2012\elevatedUninstall.ps1" DestinationFolder="$(ProjectDir)Build2012\Tools" />
     <ItemGroup>
-      <FilesToDelete Include="$(ProjectDir)Build\**\*.*" />
-    </ItemGroup>
-    <Delete Files="@(FilesToDelete)" />
-    <MakeDir Directories="$(ProjectDir)Build" />
-    <Copy SourceFiles="$(ProjectDir)ServiceMatrix.VS2012.install.nuspec" DestinationFolder="$(ProjectDir)Build" />
-    <Copy SourceFiles="$(ProjectDir)chocolateyInstall.ps1" DestinationFolder="$(ProjectDir)Build\Tools" />
-    <Copy SourceFiles="$(ProjectDir)chocolateyUninstall.ps1" DestinationFolder="$(ProjectDir)Build\Tools" />
-    <Copy SourceFiles="$(ProjectDir)elevatedUninstall.ps1" DestinationFolder="$(ProjectDir)Build\Tools" />
-    <ItemGroup>
-      <InstallFile Include="$(ProjectDir)Build\Tools\chocolateyInstall.ps1" />
-      <InstallFile Include="$(ProjectDir)Build\Tools\chocolateyUninstall.ps1" />
-      <InstallFile Include="$(ProjectDir)Build\Tools\elevatedUninstall.ps1" />
+      <InstallFile Include="$(ProjectDir)Build2012\Tools\chocolateyInstall.ps1" />
+      <InstallFile Include="$(ProjectDir)Build2012\Tools\chocolateyUninstall.ps1" />
+      <InstallFile Include="$(ProjectDir)Build2012\Tools\elevatedUninstall.ps1" />
     </ItemGroup>
     <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(SemVer)" />
     <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(ChocoVersion)" />
-    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
+    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build2012" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
+
+
+    <!--VS2013 related files-->
+    <MakeDir Directories="$(ProjectDir)Build2013" />
+    <Copy SourceFiles="$(ProjectDir)VS2013\ServiceMatrix.VS2013.install.nuspec" DestinationFolder="$(ProjectDir)Build2013" />
+    <Copy SourceFiles="$(ProjectDir)VS2013\chocolateyInstall.ps1" DestinationFolder="$(ProjectDir)Build2013\Tools" />
+    <Copy SourceFiles="$(ProjectDir)VS2013\chocolateyUninstall.ps1" DestinationFolder="$(ProjectDir)Build2013\Tools" />
+    <Copy SourceFiles="$(ProjectDir)VS2013\elevatedUninstall.ps1" DestinationFolder="$(ProjectDir)Build2013\Tools" />
+    <ItemGroup>
+      <InstallFile Include="$(ProjectDir)Build2013\Tools\chocolateyInstall.ps1" />
+      <InstallFile Include="$(ProjectDir)Build2013\Tools\chocolateyUninstall.ps1" />
+      <InstallFile Include="$(ProjectDir)Build2013\Tools\elevatedUninstall.ps1" />
+    </ItemGroup>
+    <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(SemVer)" />
+    <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(ChocoVersion)" />
+    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build2013" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
+
   </Target>
 </Project>

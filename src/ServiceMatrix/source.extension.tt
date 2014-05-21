@@ -24,9 +24,10 @@
 <#
 }
 #>
-	  <MoreInfoUrl>http://particular.net/ServiceMatrix</MoreInfoUrl>
+	<MoreInfoUrl>http://particular.net/ServiceMatrix</MoreInfoUrl>
     <GettingStartedGuide>http://docs.particular.net/ServiceMatrix/getting-started-with-servicematrix-2.0</GettingStartedGuide>
-	  <PreviewImage>Resources\ProductPreview.png</PreviewImage>
+    <ReleaseNotes>https://github.com/particular/servicematrix/releases/<#= globalversion #></ReleaseNotes>
+	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
       <VisualStudio Version="<#=VersionInfo.TargetVsVersion#>">
         <Edition>Ultimate</Edition>
