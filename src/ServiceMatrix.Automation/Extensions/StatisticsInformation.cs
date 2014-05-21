@@ -14,10 +14,6 @@ namespace NServiceBusStudio.Automation.Extensions
         public static void TraceStatisticsHeader(this ITracer traceSource, EnvDTE.DTE dte, IVsExtensionManager extensionManager)
         {
             traceSource.TraceStatistics("========================= NServiceBusStudio General Information =========================");
-            traceSource.TraceStatistics("Operating System: {0}", StatisticsInformation.GetOperatingSystemVersion());
-            traceSource.TraceStatistics("Machine Name: {0}", Environment.MachineName);
-            traceSource.TraceStatistics("UserName: {0}", Environment.UserName);
-            traceSource.TraceStatistics("VisualStudio Version: {0}", StatisticsInformation.GetVisualStudioVersion(dte));
             traceSource.TraceStatistics("NuPattern Version: {0}", typeof(NuPattern.Guard).AssemblyQualifiedName);
             traceSource.TraceStatistics("NServiceBusStudio Version: {0}", typeof(StatisticsInformation).Assembly.FullName);
             traceSource.TraceStatistics("Installation Directory: {0}", typeof(StatisticsInformation).Assembly.Location);

@@ -1,22 +1,18 @@
-﻿using AbstractEndpoint;
+﻿using System;
+using System.ComponentModel.Composition;
+using System.IO;
+using System.Linq;
+using AbstractEndpoint;
+using NServiceBusStudio.Automation.Commands;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
 using NServiceBusStudio.Automation.Extensions;
 using NServiceBusStudio.Automation.Infrastructure;
 using NServiceBusStudio.Automation.Licensing;
+using NuGet.VisualStudio;
 using NuPattern;
 using NuPattern.Runtime;
-using NuPattern.VisualStudio.Solution;
-using System;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using NuPattern.Diagnostics;
-using System.Runtime.Remoting.Messaging;
-using NServiceBusStudio.Automation.Commands;
-using NuGet.VisualStudio;
 using NuPattern.VisualStudio;
-using NServiceBusStudio.Automation.ValueProviders;
-using System.Diagnostics;
+using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {
@@ -102,7 +98,6 @@ namespace NServiceBusStudio
             SetDomainSpecifiLogging();
             SetRemoveEmptyAddMenus();
             SetF5Experience();
-            
 
             new ShowNewDiagramCommand() { ServiceProvider = this.ServiceProvider }.Execute();
 
@@ -116,7 +111,7 @@ namespace NServiceBusStudio
             // Clear the cached versions, so for every new solution we create, we'll check Nuget for latest versions and then use that version
             // for all projects in the solution.
             NugetPackageVersionManager.ClearCache();
-            
+
             if (String.IsNullOrEmpty(this.NuGetPackageVersionNServiceBus))
             {
                 this.NuGetPackageVersionNServiceBus = null;
@@ -147,30 +142,32 @@ namespace NServiceBusStudio
             this.DebuggerEvents.OnEnterRunMode += DebuggerEvents_OnEnterRunMode;
         }
 
-        void DebuggerEvents_OnEnterRunMode(EnvDTE.dbgEventReason Reason)
+        private void DebuggerEvents_OnEnterRunMode(EnvDTE.dbgEventReason Reason)
         {
             if (String.IsNullOrEmpty(this.ServiceControlInstanceURI) ||
                 Reason != EnvDTE.dbgEventReason.dbgEventReasonLaunchProgram)
             {
                 return;
             }
-            
+
             // Write DebugSessionId on Endpoints Bin folder
             var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, this.InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
             foreach (var endpoint in this.Design.Endpoints.GetAll())
             {
-                var binFolder = Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), "Bin");
+                var activeConfiguration = endpoint.Project.As<EnvDTE.Project>().ConfigurationManager.ActiveConfiguration;
+                var outputPath = activeConfiguration.Properties.Item("OutputPath").Value.ToString();
 
-                if (endpoint is INServiceBusHost)
+                var binFolder =
+                    Path.IsPathRooted(outputPath)
+                        ? outputPath
+                        : Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), outputPath);
+
+                if (!Directory.Exists(binFolder))
                 {
-                    binFolder = Path.Combine(binFolder, "Debug");
+                    Directory.CreateDirectory(binFolder);
                 }
 
-                try
-                {
-                    File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
-                }
-                catch { }
+                File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
             }
 
             // If ServiceInsight is installed and invocation URI registerd
@@ -260,7 +257,6 @@ namespace NServiceBusStudio
             this.RemoveEmptyAddMenus.WireSolution(this.ServiceProvider);
         }
 
-
         private void AddNugetFiles()
         {
             try
@@ -333,7 +329,6 @@ namespace NServiceBusStudio
             this.CustomSolutionBuilder.DisableSolutionBuilder();
         }
 
-
         public InfrastructureManager InfrastructureManager { get; private set; }
 
         public string ContractsProjectName
@@ -376,8 +371,6 @@ namespace NServiceBusStudio
         {
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
-
-
 
         public EnvDTE.DebuggerEvents DebuggerEvents { get; set; }
 

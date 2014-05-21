@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
+using NServiceBusStudio.Automation.Dialog;
+using NuPattern;
 using NuPattern.Diagnostics;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -78,14 +76,9 @@ namespace NServiceBusStudio.Automation.Commands
                 if (picker.ShowDialog().Value)
                 {
                     var selectedElement = picker.SelectedItem;
-                    var selectedCommand = default(ICommand);
-                    if (commandNames.Contains(selectedElement))
+                    if (!commandNames.Contains(selectedElement))
                     {
-                        selectedCommand = commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                    }
-                    else
-                    {
-                        selectedCommand = CurrentService.Contract.Commands.CreateCommand(selectedElement);
+                        CurrentService.Contract.Commands.CreateCommand(selectedElement);
                     }
                 }
             }

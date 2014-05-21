@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel.Composition;
+using AbstractEndpoint;
 using Microsoft.VisualStudio.Shell;
-using NuPattern.Runtime;
 using Microsoft.VisualStudio.Shell.Interop;
 using NServiceBusStudio.Core;
 using NuPattern;
-
-using AbstractEndpoint;
 using NuPattern.Diagnostics;
 
 namespace NServiceBusStudio
 {
-	partial class Application
-	{
-		private static bool versionInitialized;
+    partial class Application
+    {
+        private static bool versionInitialized;
         private IServiceProvider serviceProvider;
 
         /// <summary>
@@ -32,29 +27,29 @@ namespace NServiceBusStudio
         /// </summary>
         public bool IsValidLicensed { get; set; }
 
-		[Import(typeof(SVsServiceProvider))]
-		public virtual IServiceProvider ServiceProvider
-		{
-			set
-			{
-				// We ensure at this very first chance that the MSBuild 
-				// targets file has been initilaized in its proper location 
-				// and version. This is used by extending toolkits to reference 
-				// our binaries.
-				if (!versionInitialized && value != null)
-				{
-					var shell = value.TryGetService<SVsShell, IVsShell>();
-					if (shell != null)
-					{
-						VersionHelper.SyncTargets(Tracer.Get<Application>(), shell.GetHive());
-						versionInitialized = true;
-					}
+        [Import(typeof(SVsServiceProvider))]
+        public virtual IServiceProvider ServiceProvider
+        {
+            set
+            {
+                // We ensure at this very first chance that the MSBuild 
+                // targets file has been initilaized in its proper location 
+                // and version. This is used by extending toolkits to reference 
+                // our binaries.
+                if (!versionInitialized && value != null)
+                {
+                    var shell = value.TryGetService<SVsShell, IVsShell>();
+                    if (shell != null)
+                    {
+                        VersionHelper.SyncTargets(Tracer.Get<Application>(), shell.GetHive());
+                        versionInitialized = true;
+                    }
                 }
                 serviceProvider = value;
-			}
+            }
 
             get { return serviceProvider; }
-		}
+        }
 
         partial void Create()
         {
@@ -145,7 +140,7 @@ namespace NServiceBusStudio
         // This event is raised just when it was explicitly instantiated and not
         // on deserialization
         event EventHandler OnInstantiatedEndpoint;
-        
+
         // This event is raised just when it was explicitly instantiated and not
         // on deserialization
         event EventHandler OnInstantiatedComponent;

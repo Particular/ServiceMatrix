@@ -192,7 +192,6 @@
     <Compile Include="Commands\AddInfrastructureProjectReferences.cs" />
     <Compile Include="Commands\FileRestoreCommand.cs" />
     <Compile Include="Commands\CreateCommandComponents.cs" />
-    <Compile Include="Commands\CreateServiceFolderOnEndpoints.cs" />
     <Compile Include="Commands\DoNothing.cs" />
     <Compile Include="Commands\OnApplicationLoadedCommand.cs" />
     <Compile Include="Commands\ResetIsDirtyFlagCommand.cs" />
