@@ -33,6 +33,9 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>NServiceBus.Tools.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug-VS2013|AnyCPU'">
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
   <Import Project="..\BuildConfiguration.props" />
   <Choose>
     <When Condition="'$(VsxVersion)'=='11.0' or '$(VsxVersion)'=='12.0'">

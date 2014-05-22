@@ -9449,7 +9449,7 @@
   "ValueProvider": null
 }</defaultValue>
                   </property>
-                  <property Id="3ff156ab-2834-463c-a2be-339b0945df20" name="SLA" displayName="SLA" description="Description for Application.Design.Endpoints.NServiceBusHost.SLA" codeIdentifier="SLA">
+                  <property Id="3ff156ab-2834-463c-a2be-339b0945df20" name="SLA" displayName="SLA" description="Description for Application.Design.Endpoints.NServiceBusHost.SLA" codeIdentifier="SLA" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.InvariantCultureTimeSpanStringConverter, Particular.ServiceMatrix.Automation">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -10215,7 +10215,7 @@
                       </settings>
                     </customizationPolicy>
                   </property>
-                  <property Id="af9d695e-2131-40a9-9bee-6518c0ae0f7a" name="SLA" displayName="SLA" description="Description for Application.Design.Endpoints.NServiceBusWeb.SLA" codeIdentifier="SLA">
+                  <property Id="af9d695e-2131-40a9-9bee-6518c0ae0f7a" name="SLA" displayName="SLA" description="Description for Application.Design.Endpoints.NServiceBusWeb.SLA" codeIdentifier="SLA" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.InvariantCultureTimeSpanStringConverter, Particular.ServiceMatrix.Automation">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -10861,7 +10861,7 @@
   "ValueProvider": null
 }</defaultValue>
                   </property>
-                  <property Id="6ae7e4c7-5ef1-470f-8bae-93b4c114fd68" name="SLA" displayName="SLA" description="Description for Application.Design.Endpoints.NServiceBusMVC.SLA" codeIdentifier="SLA">
+                  <property Id="6ae7e4c7-5ef1-470f-8bae-93b4c114fd68" name="SLA" displayName="SLA" description="Description for Application.Design.Endpoints.NServiceBusMVC.SLA" codeIdentifier="SLA" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.InvariantCultureTimeSpanStringConverter, Particular.ServiceMatrix.Automation">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

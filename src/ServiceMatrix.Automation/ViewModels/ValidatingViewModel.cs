@@ -15,21 +15,14 @@ namespace NServiceBusStudio.Automation.ViewModels
         private Dictionary<string, Tuple<PropertyDescriptor, ValidationAttribute[]>> validators;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ValidationViewModel"/> class.
-        /// </summary>
-        protected ValidatingViewModel()
-        {
-        }
-
-        /// <summary>
         /// Gets a value indicating whether this instance is valid.
         /// </summary>
         /// <value>Returns <c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
-        public bool IsValid
+        protected bool IsValid
         {
             get
             {
-                return string.IsNullOrEmpty(this.Error);
+                return string.IsNullOrEmpty(Error);
             }
         }
 
@@ -42,7 +35,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var errors = from info in this.GetValidators()
+                var errors = from info in GetValidators()
                              from validator in info.Item2
                              where !validator.IsValid(info.Item1.GetValue(this))
                              select validator.FormatErrorMessage(info.Item1.Name);
@@ -59,10 +52,10 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var validatorInfo = this.GetValidators(columnName);
+                var validatorInfo = GetValidators(columnName);
                 if (validatorInfo == null)
                 {
-                    this.OnPropertyChanged(() => this.Error);
+                    OnPropertyChanged(() => Error);
                     return string.Empty;
                 }
 
@@ -72,35 +65,36 @@ namespace NServiceBusStudio.Automation.ViewModels
                     .Where(validator => !validator.IsValid(columnValue))
                     .Select(validator => validator.FormatErrorMessage(columnName));
 
-                this.OnPropertyChanged(() => this.Error);
+                OnPropertyChanged(() => Error);
                 return string.Join(Environment.NewLine, errors.ToArray());
             }
         }
 
         private void EnsureValidators()
         {
-            if (this.validators == null)
+            if (validators == null)
             {
-                this.validators = (from property in TypeDescriptor.GetProperties(this).Cast<PropertyDescriptor>()
-                                   let validators = property.Attributes.OfType<ValidationAttribute>().ToArray()
-                                   where validators.Length != 0
-                                   select new Tuple<PropertyDescriptor, ValidationAttribute[]>(property, validators))
+                validators = (from property in TypeDescriptor.GetProperties(this).Cast<PropertyDescriptor>()
+                              let propertyValidators = property.Attributes.OfType<ValidationAttribute>().ToArray()
+                              where propertyValidators.Length != 0
+                              select new Tuple<PropertyDescriptor, ValidationAttribute[]>(property, propertyValidators))
                                   .ToDictionary(propInfo => propInfo.Item1.Name);
             }
         }
 
-        private ICollection<Tuple<PropertyDescriptor, ValidationAttribute[]>> GetValidators()
+        private IEnumerable<Tuple<PropertyDescriptor, ValidationAttribute[]>> GetValidators()
         {
-            this.EnsureValidators();
-            return this.validators.Values;
+            EnsureValidators();
+
+            return validators.Values;
         }
 
         private Tuple<PropertyDescriptor, ValidationAttribute[]> GetValidators(string columnName)
         {
-            this.EnsureValidators();
+            EnsureValidators();
 
             Tuple<PropertyDescriptor, ValidationAttribute[]> info;
-            this.validators.TryGetValue(columnName, out info);
+            validators.TryGetValue(columnName, out info);
             return info;
         }
     }
