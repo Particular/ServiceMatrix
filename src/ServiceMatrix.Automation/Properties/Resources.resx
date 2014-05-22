@@ -123,9 +123,18 @@
   <data name="ElementReference_DefaultNoneDescription" xml:space="preserve">
     <value>Property does not reference any element.</value>
   </data>
+  <data name="NotEqualToAttribute_MustNotMatch" xml:space="preserve">
+    <value>'{0}' and '{1}' must be different.</value>
+  </data>
+  <data name="NotEqualToAttribute_UnknownProperty" xml:space="preserve">
+    <value>Could not find a property named {0}.</value>
+  </data>
   <data name="TimeSpanConverter_InvalidString" xml:space="preserve">
-    <value>The value '{0}' is not a valid TimeStamp.
-The syntax for a TimeStamp value is '[-]{{ d | d.hh:mm[:ss[.ff]] | hh:mm[:ss[.ff]] }}'.</value>
+    <value>The value '{0}' is not the valid representation of a time span.
+The valid syntax is '[-]{{ d | d.hh:mm[:ss[.ff]] | hh:mm[:ss[.ff]] }}'. E.g. '01:30:00' for representing one hour and thirty minutes.</value>
+  </data>
+  <data name="ValidationCommon_PropertyNotFound" xml:space="preserve">
+    <value>The property {0}.{1} could not be found.</value>
   </data>
   <data name="VerifyElementIsValid_ElementNotValid" xml:space="preserve">
     <value>Element '{0}' is not valid and command execution cannot continue. Please verify the validation errors in the Errors List tool window.</value>

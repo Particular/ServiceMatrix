@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
-             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d"
              Name="picker"
              Width="280"
@@ -14,7 +13,15 @@
              FocusManager.FocusedElement="{x:Reference MasterDropDown}">
 
     <Grid d:DataContext="{d:DesignData Source=/Dialog/SampleData/ElementHierarchyPickerViewModelSampleData.xaml}">
-        <StackPanel Width="280" Background="#F1F1F1">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Particular.ServiceMatrix.Automation;component/Resources/SharedStyles.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <StackPanel HorizontalAlignment="Stretch" Background="#F1F1F1">
             <StackPanel.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
             </StackPanel.BitmapEffect>

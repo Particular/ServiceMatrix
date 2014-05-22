@@ -2661,6 +2661,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease")]
 		[DisplayName("Time Increase")]
 		[Category("SecondLevelRetriesConfig")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		public virtual String SLTimeIncrease
 		{
 			get { return this.proxy.GetValue(() => this.SLTimeIncrease); }

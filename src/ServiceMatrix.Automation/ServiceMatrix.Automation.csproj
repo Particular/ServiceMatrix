@@ -552,6 +552,7 @@
     <Compile Include="WizardExtensions\InstantiationTemplateCustomWizard.cs" />
     <Compile Include="WizardExtensions\TargetFrameworkFixupWizard.cs" />
     <Compile Include="WizardExtensions\SetModelPropertiesWizard.cs" />
+    <Compile Include="ViewModels\Validation\NotEqualToAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />
@@ -688,6 +689,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\SharedStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
@@ -778,6 +783,9 @@
     <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\ElementHierarchyPickerViewModelSampleData.xaml">
       <SubType>Designer</SubType>
     </DesignDataWithDesignTimeCreatableTypes>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ValidationError.png" />
   </ItemGroup>
   <!-- Properties for Toolkit Targets -->
   <PropertyGroup>

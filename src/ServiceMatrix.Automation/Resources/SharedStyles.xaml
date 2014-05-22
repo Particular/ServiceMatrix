@@ -1,0 +1,20 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTemplate x:Key="ComboBox.ErrorTemplate">
+        <StackPanel Orientation="Horizontal">
+            <AdornedElementPlaceholder />
+            <Image Margin="2,0,0,0" Source="ValidationError.png" />
+        </StackPanel>
+    </ControlTemplate>
+    <Style TargetType="ComboBox">
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ComboBox.ErrorTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding Path=(Validation.Errors)[0].ErrorContent,RelativeSource={x:Static RelativeSource.Self}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

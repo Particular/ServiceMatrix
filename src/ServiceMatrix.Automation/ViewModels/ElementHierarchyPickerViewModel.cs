@@ -44,7 +44,10 @@ namespace NServiceBusStudio.Automation.ViewModels
                     uriSource = new Uri("../Diagramming/Styles/Images/CommandIcon.png", UriKind.Relative);
                 }
 
-                TitleImageSource = new BitmapImage(uriSource);
+                if (uriSource != null)
+                {
+                    TitleImageSource = new BitmapImage(uriSource);
+                }
             }
         }
 
@@ -66,7 +69,7 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         public ICollection<string> MasterElements
         {
-            get { return this.Elements.Keys; }
+            get { return Elements.Keys; }
         }
 
         private string _selectedMasterItem;
@@ -103,6 +106,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         [Required(ErrorMessage = "This field is required")]
         [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
         [StringLength(30)]
+        //[NotEqualTo("SelectedMasterItem")]
         public string SelectedSlaveItem
         {
             get

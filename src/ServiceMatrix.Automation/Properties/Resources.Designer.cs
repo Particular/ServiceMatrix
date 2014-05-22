@@ -79,12 +79,39 @@ namespace NServiceBusStudio.Automation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not a valid TimeStamp.
-        ///The syntax for a TimeStamp value is &apos;[-]{{ d | d.hh:mm[:ss[.ff]] | hh:mm[:ss[.ff]] }}&apos;..
+        ///   Looks up a localized string similar to &apos;{0}&apos; and &apos;{1}&apos; must be different..
+        /// </summary>
+        internal static string NotEqualToAttribute_MustNotMatch {
+            get {
+                return ResourceManager.GetString("NotEqualToAttribute_MustNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not find a property named {0}..
+        /// </summary>
+        internal static string NotEqualToAttribute_UnknownProperty {
+            get {
+                return ResourceManager.GetString("NotEqualToAttribute_UnknownProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value &apos;{0}&apos; is not the valid representation of a time span.
+        ///The valid syntax is &apos;[-]{{ d | d.hh:mm[:ss[.ff]] | hh:mm[:ss[.ff]] }}&apos;. E.g. &apos;01:30:00&apos; for representing one hour and thirty minutes..
         /// </summary>
         internal static string TimeSpanConverter_InvalidString {
             get {
                 return ResourceManager.GetString("TimeSpanConverter_InvalidString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The property {0}.{1} could not be found..
+        /// </summary>
+        internal static string ValidationCommon_PropertyNotFound {
+            get {
+                return ResourceManager.GetString("ValidationCommon_PropertyNotFound", resourceCulture);
             }
         }
         

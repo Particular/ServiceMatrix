@@ -9507,7 +9507,7 @@
   "ValueProvider": null
 }</defaultValue>
                   </property>
-                  <property Id="caef918a-e61b-4748-98a0-48480a8776f6" name="SLTimeIncrease" displayName="Time Increase" description="Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease" codeIdentifier="SLTimeIncrease" category="SecondLevelRetriesConfig">
+                  <property Id="caef918a-e61b-4748-98a0-48480a8776f6" name="SLTimeIncrease" displayName="Time Increase" description="Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease" codeIdentifier="SLTimeIncrease" category="SecondLevelRetriesConfig" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.InvariantCultureTimeSpanStringConverter, Particular.ServiceMatrix.Automation">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
