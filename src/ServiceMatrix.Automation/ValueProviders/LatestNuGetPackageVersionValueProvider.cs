@@ -1,9 +1,6 @@
-﻿using Newtonsoft.Json;
-using NuPattern.Runtime;
+﻿using NuPattern.Runtime;
 using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
 
 namespace NServiceBusStudio.Automation.ValueProviders
 {
