@@ -1,19 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using FluentValidation;
 using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.ViewModels
 {
     public class ElementHierarchyPickerViewModel : ValidatingViewModel
     {
+        IValidator validator;
+
+        [Obsolete("Only available to support design-time data", true)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ElementHierarchyPickerViewModel()
+        {
+        }
+
+        public ElementHierarchyPickerViewModel(IEnumerable<Tuple<string, ICollection<string>>> elements)
         {
             InitializeCommands();
             DropDownEditable = true;
+            var elementsList = elements as IList<Tuple<string, ICollection<string>>> ?? elements.ToList();
+            Elements = elementsList.ToDictionary(t => t.Item1, t => t.Item2);
+            MasterElements = elementsList.Select(t => t.Item1).ToList();
+            validator = new ElementHierarchyPickerViewModelValidator();
         }
 
         /// <summary>
@@ -53,7 +66,19 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         public ImageSource TitleImageSource { get; set; }
 
+        public string MasterName
+        {
+            get;
+            set;
+        }
+
         public string SlaveName
+        {
+            get;
+            set;
+        }
+
+        IDictionary<string, ICollection<string>> Elements
         {
             get;
             set;
@@ -61,22 +86,10 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         public bool DropDownEditable { get; set; }
 
-        public IDictionary<string, ICollection<string>> Elements
-        {
-            get;
-            set;
-        }
-
-        public ICollection<string> MasterElements
-        {
-            get { return Elements.Keys; }
-        }
+        public ICollection<string> MasterElements { get; private set; }
 
         private string _selectedMasterItem;
 
-        [Required]
-        [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
-        [StringLength(30)]
         public string SelectedMasterItem
         {
             get { return _selectedMasterItem; }
@@ -85,6 +98,7 @@ namespace NServiceBusStudio.Automation.ViewModels
                 _selectedMasterItem = value;
                 OnPropertyChanged(() => SelectedMasterItem);
                 OnPropertyChanged(() => SlaveElements);
+                OnPropertyChanged(() => SelectedSlaveItem);
             }
         }
 
@@ -92,21 +106,18 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var master = Elements.FirstOrDefault(x => x.Key == SelectedMasterItem);
-                if (master.Value == null)
+                ICollection<string> slaveElements;
+                if (!Elements.TryGetValue(SelectedMasterItem, out slaveElements) || slaveElements == null)
                 {
                     return new List<string>();
                 }
-                return master.Value;
+
+                return slaveElements;
             }
         }
 
         private string selectedSlaveItem;
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
-        [StringLength(30)]
-        //[NotEqualTo("SelectedMasterItem")]
         public string SelectedSlaveItem
         {
             get
@@ -132,6 +143,11 @@ namespace NServiceBusStudio.Automation.ViewModels
         private void InitializeCommands()
         {
             AcceptCommand = new RelayCommand<dynamic>(dialog => this.CloseDialog(dialog), dialog => IsValid);
+        }
+
+        protected override IValidator GetValidator()
+        {
+            return validator;
         }
     }
 }

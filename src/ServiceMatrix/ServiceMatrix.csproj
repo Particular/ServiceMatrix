@@ -57,6 +57,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\ExceptionReporter.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=5.2.0.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation-Signed\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -663,6 +667,7 @@
     <Content Include="Resources\LicenseAgreement.rtf">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <None Include="ripple.dependencies.config" />
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
       <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
@@ -1196,5 +1201,6 @@
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>
+  <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
   <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
 </Project>

@@ -22,7 +22,7 @@ namespace NServiceBusStudio.Automation.Commands
         [Import(AllowDefault = true)]
         public IProductElement CurrentElement
         {
-            get;
+            private get;
             set;
         }
 
@@ -39,29 +39,30 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.As<IAbstractEndpoint>();
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var app = this.CurrentElement.Root.As<IApplication>();
+            var app = CurrentElement.Root.As<IApplication>();
 
             // Get available events
-            var elements = new Dictionary<string, ICollection<string>>();
-            foreach (var service in app.Design.Services.Service)
-            {
-                elements.Add(service.InstanceName, service.Contract.Events.Event.Select(x => x.InstanceName).ToList());
-            }
+            var elements = app.Design.Services.Service
+                .Select(s => 
+                    Tuple.Create(
+                        s.InstanceName,
+                        (ICollection<string>)s.Contract.Events.Event.Select(x => x.InstanceName).OrderBy(c => c).ToList()))
+                .OrderBy(t => t.Item1).ToList();
 
             var viewModel =
-                new ElementHierarchyPickerViewModel
+                new ElementHierarchyPickerViewModel(elements)
                 {
-                    SlaveName = "Event Name:",
-                    Title = "Publish Event",
-                    Elements = elements,
+                    MasterName = "Service Name",
+                    SlaveName = "Event Name",
+                    Title = "Publish Event"
                 };
 
-            var picker = this.WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
+            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().GetValueOrDefault())
@@ -88,15 +89,15 @@ namespace NServiceBusStudio.Automation.Commands
 
                         var deployToEndpoint = default(EventHandler);
 
-                        deployToEndpoint = new EventHandler((s, e) =>
+                        deployToEndpoint = (s, e) =>
                         {
                             var c = s as IComponent;
-                            if (c.InstanceName == selectedEvent + "Sender")
+                            if (c != null && c.InstanceName == selectedEvent + "Sender")
                             {
                                 c.DeployTo(endpoint);
                                 app.OnInstantiatedComponent -= deployToEndpoint;
                             }
-                        });
+                        };
 
                         app.OnInstantiatedComponent += deployToEndpoint;
                     }

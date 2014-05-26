@@ -31,7 +31,7 @@
                     <Label FontSize="22" Content="{Binding Title}" />
                 </StackPanel>
 
-                <Label Margin="0, 10, 0, 0" Foreground="#333333">Service name</Label>
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="{Binding MasterName}"/>
                 <ComboBox x:Name="MasterDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="{Binding DropDownEditable}" 
                   ItemsSource="{Binding Path=MasterElements}" 
                   Text="{Binding Path=SelectedMasterItem, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"

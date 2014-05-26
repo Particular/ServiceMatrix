@@ -22,7 +22,7 @@ namespace NServiceBusStudio.Automation.Commands
         [Import(AllowDefault = true)]
         public IProductElement CurrentElement
         {
-            get;
+            private get;
             set;
         }
 
@@ -39,29 +39,30 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.As<IAbstractEndpoint>();
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var app = this.CurrentElement.Root.As<IApplication>();
+            var app = CurrentElement.Root.As<IApplication>();
 
             // Get available commands
-            var elements = new Dictionary<string, ICollection<string>>();
-            foreach (var service in app.Design.Services.Service)
-            {
-                elements.Add(service.InstanceName, service.Contract.Commands.Command.Select(x => x.InstanceName).ToList());
-            }
+            var elements = app.Design.Services.Service
+                .Select(s =>
+                    Tuple.Create(
+                        s.InstanceName,
+                        (ICollection<string>)s.Contract.Commands.Command.Select(x => x.InstanceName).OrderBy(c => c).ToList()))
+                .OrderBy(t => t.Item1).ToList();
 
-            var viewModel = 
-                new ElementHierarchyPickerViewModel
+            var viewModel =
+                new ElementHierarchyPickerViewModel(elements)
                 {
-                    SlaveName = "Command Name:",
+                    MasterName = "Service Name",
+                    SlaveName = "Command Name",
                     Title = "Send Command",
-                    Elements = elements,
                 };
 
-            var picker = this.WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
+            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
@@ -87,15 +88,16 @@ namespace NServiceBusStudio.Automation.Commands
                     {
                         var deployToEndpoint = default(EventHandler);
 
-                        deployToEndpoint = new EventHandler((s, e) =>
-                        {
-                            var c = s as IComponent;
-                            if (c.InstanceName == selectedCommand + "Sender")
+                        deployToEndpoint =
+                            (s, e) =>
                             {
-                                c.DeployTo(endpoint);
-                                app.OnInstantiatedComponent -= deployToEndpoint;
-                            }
-                        });
+                                var c = s as IComponent;
+                                if (c != null && c.InstanceName == selectedCommand + "Sender")
+                                {
+                                    c.DeployTo(endpoint);
+                                    app.OnInstantiatedComponent -= deployToEndpoint;
+                                }
+                            };
 
                         app.OnInstantiatedComponent += deployToEndpoint;
                     }

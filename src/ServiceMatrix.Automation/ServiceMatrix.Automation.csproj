@@ -37,6 +37,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ServiceMatrix\Libs\ExceptionReporter.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation-Signed\lib\Net40\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Diagrams.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -229,6 +232,7 @@
       <DependentUpon>SagaStarterPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialog\IEventPicker.cs" />
+    <Compile Include="ViewModels\ElementHierarchyPickerViewModelValidator.cs" />
     <Compile Include="ViewModels\ValidatingViewModel.cs" />
     <Compile Include="Extensions\NugetPackageVersionManager.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -552,7 +556,6 @@
     <Compile Include="WizardExtensions\InstantiationTemplateCustomWizard.cs" />
     <Compile Include="WizardExtensions\TargetFrameworkFixupWizard.cs" />
     <Compile Include="WizardExtensions\SetModelPropertiesWizard.cs" />
-    <Compile Include="ViewModels\Validation\NotEqualToAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />

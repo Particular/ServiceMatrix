@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using FluentValidation;
+using FluentValidation.Internal;
 using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.ViewModels
@@ -12,6 +12,8 @@ namespace NServiceBusStudio.Automation.ViewModels
     /// </summary>
     public abstract class ValidatingViewModel : ViewModel, IDataErrorInfo
     {
+        protected abstract IValidator GetValidator();
+
         /// <summary>
         /// Gets a value indicating whether this instance is valid.
         /// </summary>
@@ -20,7 +22,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                return Validator.TryValidateObject(this, new ValidationContext(this), new List<ValidationResult>(), true);
+                return GetValidator().Validate(new ValidationContext(this)).IsValid;
             }
         }
 
@@ -33,13 +35,13 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var validationResults = new List<ValidationResult>();
-                if (Validator.TryValidateObject(this, new ValidationContext(this), validationResults, true))
+                var result = GetValidator().Validate(this);
+                if (result.IsValid)
                 {
                     return string.Empty;
                 }
 
-                return string.Join(Environment.NewLine, validationResults.Select(r => r.ErrorMessage));
+                return string.Join(Environment.NewLine, result.Errors.Select(vf => vf.ErrorMessage));
             }
         }
 
@@ -52,22 +54,15 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var property = TypeDescriptor.GetProperties(this)[columnName];
-                if (property == null)
-                {
-                    OnPropertyChanged(() => Error);
-                    return string.Empty;
-                }
-
-                var validationResults = new List<ValidationResult>();
-                if (Validator.TryValidateProperty(property.GetValue(this), new ValidationContext(this) { MemberName = columnName }, validationResults))
-                {
-                    OnPropertyChanged(() => Error);
-                    return string.Empty;
-                }
-
+                var result = GetValidator().Validate(new ValidationContext(this, new PropertyChain(), new MemberNameValidatorSelector(new[] { columnName })));
                 OnPropertyChanged(() => Error);
-                return string.Join(Environment.NewLine, validationResults.Select(r => r.ErrorMessage));
+
+                if (result.IsValid)
+                {
+                    return string.Empty;
+                }
+
+                return string.Join(Environment.NewLine, result.Errors.Select(vf => vf.ErrorMessage));
             }
         }
     }
