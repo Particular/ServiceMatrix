@@ -269,6 +269,23 @@
   }
 ]</conditions>
     </eventSettings>
+    <eventSettings Id="ebc8397c-d182-4491-b316-8c4fec20ea01" commandId="76f194ab-ecb4-45f9-a2d2-70e72147c6af" eventId="NServiceBusStudio.Automation.Events.IOnRootElementPropertyChangedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="5da8e868-c483-4436-a370-a7182ed9f21b" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NuPattern.Library.Conditions.PropertyChangedEventArgsMatchesPropertyNameCondition",
+    "Properties": [
+      {
+        "Name": "PropertyName",
+        "Value": "TargetNsbVersion",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </eventSettings>
     <commandSettings Id="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" />
@@ -4657,6 +4674,11 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="76f194ab-ecb4-45f9-a2d2-70e72147c6af" typeId="NServiceBusStudio.Automation.Commands.DoNothingCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="9182b29d-0289-4246-859f-cf66d20edc79" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -8658,6 +8680,24 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="7fc56b19-87ce-41fb-8595-214a9fe56ee9" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="5da8e868-c483-4436-a370-a7182ed9f21b" name="OnTargetNsbVersionChanged" displayName="OnTargetNsbVersionChanged" description="" codeIdentifier="OnTargetNsbVersionChanged" automationType="Event Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="9182b29d-0289-4246-859f-cf66d20edc79" name="UpdateVersionSpecificArtifacts" displayName="UpdateVersionSpecificArtifacts" description="" codeIdentifier="UpdateVersionSpecificArtifacts" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
