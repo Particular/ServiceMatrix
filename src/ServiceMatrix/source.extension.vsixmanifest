@@ -13,7 +13,7 @@
     <ReleaseNotes>https://github.com/particular/servicematrix/releases/2.1.0</ReleaseNotes>
 	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
-      <VisualStudio Version="11.0">
+      <VisualStudio Version="12.0">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
