@@ -5847,6 +5847,22 @@
   }
 }</defaultValue>
       </property>
+      <property Id="58f462bd-3e26-41e2-81be-43969034fd41" name="TargetFrameworkVersion" displayName="Target Framework Version" description="Description for Application.TargetFrameworkVersion" codeIdentifier="TargetFrameworkVersion" isReadOnly="true">
+        <customizationPolicy name="CustomizationPolicySchema1">
+          <settings>
+            <setting propertyId="DisplayName" />
+            <setting propertyId="Description" />
+            <setting propertyId="RawDefaultValue" />
+            <setting propertyId="IsVisible" />
+            <setting propertyId="IsReadOnly" />
+            <setting propertyId="Category" />
+            <setting propertyId="TypeConverterTypeName" />
+            <setting propertyId="EditorTypeName" />
+            <setting propertyId="RawValidationRules" />
+            <setting propertyId="RawValueProvider" />
+          </settings>
+        </customizationPolicy>
+      </property>
     </properties>
     <automationSettings>
       <automationSettings Id="e3ea3a92-6c74-4192-b127-db1db151eea3" name="GenerateCode" displayName="Set Startup Projects" description="" codeIdentifier="GenerateCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
