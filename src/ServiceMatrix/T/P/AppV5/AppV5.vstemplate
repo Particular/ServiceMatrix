@@ -20,6 +20,10 @@
   </TemplateContent>
   <WizardExtension>
     <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.TargetFrameworkFixupWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
     <FullClassName>NServiceBusStudio.Automation.WizardExtensions.InstantiationTemplateCustomWizard</FullClassName>
   </WizardExtension>
   <WizardExtension>
@@ -28,6 +32,9 @@
   </WizardExtension>
   <WizardExtension>
     <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
-    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.SetV5ModelPropertiesWizard</FullClassName>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.SetModelPropertiesWizard</FullClassName>
   </WizardExtension>
+  <WizardData>
+    <NServiceBus Version="NSB 5.0"/>
+  </WizardData>
 </VSTemplate>

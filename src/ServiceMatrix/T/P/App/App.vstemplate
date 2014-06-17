@@ -29,4 +29,7 @@
     <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
     <FullClassName>NServiceBusStudio.Automation.WizardExtensions.SetModelPropertiesWizard</FullClassName>
   </WizardExtension>
+  <WizardData>
+    <NServiceBus Version="NSB 4.0"/>
+  </WizardData>
 </VSTemplate>

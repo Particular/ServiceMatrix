@@ -548,7 +548,7 @@
     </Compile>
     <Compile Include="WizardExtensions\ApplicationTemplateWorkaroundHelper.cs" />
     <Compile Include="WizardExtensions\InstantiationTemplateCustomWizard.cs" />
-    <Compile Include="WizardExtensions\SetV5ModelPropertiesWizard.cs" />
+    <Compile Include="WizardExtensions\TargetFrameworkFixupWizard.cs" />
     <Compile Include="WizardExtensions\SetModelPropertiesWizard.cs" />
   </ItemGroup>
   <ItemGroup>

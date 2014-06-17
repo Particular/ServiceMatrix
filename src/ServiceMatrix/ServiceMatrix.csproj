@@ -187,6 +187,7 @@
     <Content Include="T\P\App\Contract\Contract.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\P\App\Contract\Contract.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
