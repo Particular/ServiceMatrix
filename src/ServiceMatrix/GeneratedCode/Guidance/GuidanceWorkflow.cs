@@ -16,7 +16,6 @@ using NuPattern.Runtime.Guidance.Extensions;
 using NuPattern.Runtime.Guidance;
 using NuPattern.Runtime.Composition;
 
-
 namespace NServiceBusStudio.Guidance
 {
 	/// <summary>
