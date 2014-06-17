@@ -546,7 +546,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolkitElement.tt</DependentUpon>
     </Compile>
-    <Compile Include="WizardExtensions\SetTargetFrameworkVersionWizard.cs" />
+    <Compile Include="WizardExtensions\ApplicationTemplateWorkaroundHelper.cs" />
+    <Compile Include="WizardExtensions\InstantiationTemplateCustomWizard.cs" />
+    <Compile Include="WizardExtensions\SetV5ModelPropertiesWizard.cs" />
+    <Compile Include="WizardExtensions\SetModelPropertiesWizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />

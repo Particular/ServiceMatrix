@@ -5823,7 +5823,7 @@
           </settings>
         </customizationPolicy>
       </property>
-      <property Id="ede73009-77d7-438f-8a53-cad296db531f" name="TargetNsbVersion" displayName="Target Nsb Version" description="Major version number of NServiceBus that will be used for this solution" codeIdentifier="TargetNsbVersion" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.TargetNsbVersionTypeConverter, Particular.ServiceMatrix.Automation">
+      <property Id="ede73009-77d7-438f-8a53-cad296db531f" name="TargetNsbVersion" displayName="Target Nsb Version" description="Major version number of NServiceBus that will be used for this solution" codeIdentifier="TargetNsbVersion" isReadOnly="true" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.TargetNsbVersionTypeConverter, Particular.ServiceMatrix.Automation">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />
@@ -5862,6 +5862,11 @@
             <setting propertyId="RawValueProvider" />
           </settings>
         </customizationPolicy>
+        <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "4.0",
+  "ValueProvider": null
+}</defaultValue>
       </property>
     </properties>
     <automationSettings>

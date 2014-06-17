@@ -1,22 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
 using NuPattern.Library;
-using NuPattern.Runtime;
 using NuPattern.VisualStudio.TemplateWizards;
 
 namespace NServiceBusStudio.Automation.WizardExtensions
 {
-    public class SetTargetFrameworkWizard : TemplateWizard
+    public class SetModelPropertiesWizard : TemplateWizard
     {
         string targetFrameworkVersion;
-
-        /// <summary>
-        /// Gets the pattern manager.
-        /// </summary>
-        [Import]
-        public IPatternManager PatternManager { get; internal set; }
 
         public override void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
         {

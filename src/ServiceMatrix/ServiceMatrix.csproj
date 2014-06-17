@@ -168,6 +168,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <ProjectTemplate Include="T\P\AppV5\AppV5.vstemplate">
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
     <ProjectTemplate Include="T\P\App\App.vstemplate">
       <ItemGuid>51449dee-c5c5-4531-a2e4-ecbac39b7cde</ItemGuid>
       <SubType>Designer</SubType>
@@ -178,6 +181,9 @@
     <ProjectTemplate Include="T\P\App\Contract\Contract.vstemplate">
       <ItemGuid>5aa4908c-b198-47de-bf7d-8c918075e218</ItemGuid>
     </ProjectTemplate>
+    <Content Include="T\P\AppV5\AppV5.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="T\P\App\Contract\Contract.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>

@@ -23,14 +23,14 @@ namespace NServiceBusStudio
 		public const string Author = "Particular Software";
 
 		/// <summary>
-		/// 2.0.2
+		/// 2.1.0
 		/// </summary>
-		public const string Version = "2.0.2";
+		public const string Version = "2.1.0";
 
 		/// <summary>
-		/// A set of Visual Studio integrated tools to author NServiceBus applications
+		/// Intuitive modeling and design of distributed systems
 		/// </summary>
-		public const string Description = "A set of Visual Studio integrated tools to author NServiceBus applications";
+		public const string Description = "Intuitive modeling and design of distributed systems";
 
 		/// <summary>
 		/// ServiceMatrix
