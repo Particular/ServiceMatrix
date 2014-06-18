@@ -9,6 +9,8 @@ using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands
 {
+    using NServiceBusStudio.Automation.Model;
+
     [DisplayName("Add Infrastructure Project References")]
     [Description("Add references in the Infrastructure Project to the required projects")]
     [CLSCompliant(false)]
@@ -41,9 +43,14 @@ namespace NServiceBusStudio.Automation.Commands
 
             if (infraproject != null)
             {
-                if (!infraproject.HasReference("NServiceBus"))
+                // Get the target Nsb version. NServiceBus.Interfaces in deprecated from v5
+                if (!infraproject.HasReference("NServiceBus") && app.TargetNsbVersion == TargetNsbVersion.Version4)
                 {
                     infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.GetTargetNsbVersion(CurrentElement));
+                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus", app.GetTargetNsbVersion(CurrentElement));
+                }
+                if (!infraproject.HasReference("NServiceBus") && app.TargetNsbVersion == TargetNsbVersion.Version5)
+                {
                     infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus", app.GetTargetNsbVersion(CurrentElement));
                 }
             }

@@ -9,7 +9,9 @@ using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
+    using System.Collections.Generic;
     using Model;
+    using NuPattern;
     using Command = NuPattern.Runtime.Command;
 
     [DisplayName("Add Nuget Project References")]
@@ -60,7 +62,11 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
             if (!project.HasReference("NServiceBus"))
             {
-                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", targetNsbVersion);
+                if (app.TargetNsbVersion == TargetNsbVersion.Version4)
+                {
+                    // NServiceBus.Interfaces is needed only for Major Version 4
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", targetNsbVersion);
+                }
                 project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus", targetNsbVersion);
 
                 if (!IgnoreHost)
@@ -127,37 +133,38 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 project.RemoveReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus");
             }
 
-            //<Reference Include="ServiceControl.Plugin.DebugSession" />
-            //<Reference Include="ServiceControl.Plugin.Heartbeat" />
-            //<Reference Include="ServiceControl.Plugin.CustomChecks" />
+            var availablePlugins = new List<string>();
+            if (app.TargetNsbVersion == TargetNsbVersion.Version5)
+            {
+                availablePlugins.Add("ServiceControl.Plugin.Nsb5.DebugSession");
+                availablePlugins.Add("ServiceControl.Plugin.Nsb5.Heartbeat");
+                availablePlugins.Add("ServiceControl.Plugin.Nsb5.CustomChecks");
+                availablePlugins.Add("ServiceControl.Plugin.Nsb5.SagaAudit");
+            }
+            if (app.TargetNsbVersion == TargetNsbVersion.Version4)
+            {
+                availablePlugins.Add("ServiceControl.Plugin.Nsb4.DebugSession");
+                availablePlugins.Add("ServiceControl.Plugin.Nsb4.Heartbeat");
+                availablePlugins.Add("ServiceControl.Plugin.Nsb4.CustomChecks");
+                availablePlugins.Add("ServiceControl.Plugin.Nsb4.SagaAudit");
+            }
+            
             if (!String.IsNullOrEmpty(app.ServiceControlInstanceURI))
             {
-                if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
+                foreach (var plugin in availablePlugins)
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession", targetNsbVersion);
-                }
-
-                if (!project.HasReference("ServiceControl.Plugin.Heartbeat"))
-                {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat", targetNsbVersion);
-                }
-
-                if (!project.HasReference("ServiceControl.Plugin.CustomChecks"))
-                {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", targetNsbVersion);
-                }
-
-                if (!project.HasReference("ServiceControl.Plugin.SagaAudit"))
-                {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.SagaAudit", targetNsbVersion);
+                    if (!project.HasReference(plugin))
+                    {
+                        project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, plugin, targetNsbVersion);
+                    }   
                 }
             }
             else
             {
-                project.RemoveReference("ServiceControl.Plugin.DebugSession");
-                project.RemoveReference("ServiceControl.Plugin.Heartbeat");
-                project.RemoveReference("ServiceControl.Plugin.CustomChecks");
-                project.RemoveReference("ServiceControl.Plugin.SagaAudit");
+                foreach (var plugin in availablePlugins)
+                {
+                    project.RemoveReference(plugin);
+                }
             }
         }
     }
