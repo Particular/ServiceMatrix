@@ -161,7 +161,7 @@
         Launch: OnInstantiated (Event Launch Point) -> OnInstantiatedCommand
 Element: Endpoints
   Element: NServiceBusHost
-    *Code: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+    xCode: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
       *SanitizeName = False
       *SyncName = False
       *Tag = 
@@ -169,7 +169,7 @@ Element: Endpoints
       *TargetCopyToOutput = DoNotCopy
       *TargetFileName = MessageConventions.cs
       *TargetPath = ~/Infrastructure
-      *TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageConventions.cs.tt
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageConventions.cs.tt
       *TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/d07e0f86-d73b-4dea-a249-17c701cbb03c
     Code: UnfoldLoggingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
       SanitizeName = False
@@ -231,7 +231,7 @@ Element: Endpoints
       TargetPath = ~/Infrastructure/GeneratedCode/Config
       TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/SecondLevelRetriesConfig.config.tt
       TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/569640cf-1926-4a30-8987-c2a7e202eeca
-    *Code: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+    xCode: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
       *SanitizeName = False
       *SyncName = False
       *Tag = 
@@ -239,7 +239,7 @@ Element: Endpoints
       *TargetCopyToOutput = DoNotCopy
       *TargetFileName = TransportConfig.cs
       *TargetPath = ~
-      *TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.tt
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.tt
       +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/49afd489-a5ff-4743-bfd0-2c4d33e0d6de
     Code: GenerateTransportConfigConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
       SanitizeName = False
@@ -291,7 +291,7 @@ Element: Endpoints
       TargetPath = ~/Infrastructure/GeneratedCode/Config/
       TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/AuditConfig.config.tt
       TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/515382fd-e45b-442d-83fa-c4e7096b3581
-    *Aggregate: OnInstantiateCommand
+    xAggregate: OnInstantiateCommand
       *0: UnfoldProject
       *1: InstallNuGetPackages
       x2: UnfoldMessageConventions (*)
@@ -300,12 +300,12 @@ Element: Endpoints
       x5: UnfoldCodeCommand (*)
       *6: RaisesOnInstantiated
       *7: ProcessAfterUnfoldedProject
-    *Aggregate: UnfoldCodeCommand
+    xAggregate: UnfoldCodeCommand
       x0: GenerateCodeV4ConfigSections (*)
       *1: AddProjectReferences
       *2: GenerateEndpointConfig (*)
       *3: GenerateDefaultAppConfig (*)
-    *Aggregate: GenerateCodeV4ConfigSections
+    xAggregate: GenerateCodeV4ConfigSections
       *0: GenerateMasterNodeConfig (*)
       *1: GenerateMessageForwardingInCaseOfFaultConfig (*)
       *2: GenerateTransportConfigConfig (*)
@@ -315,7 +315,7 @@ Element: Endpoints
       *6: GenerateTransportConnectionStringConfig (*)
       *7: GenerateSecondLevelRetriesConfig (*)
       *8: GenerateAuditConfig (*)
-    *Launch: OnInstantiate (Event Launch Point) -> OnInstantiateCommand
+    xLaunch: OnInstantiate (Event Launch Point) -> OnInstantiateCommand
     Element: Components
       Element: ComponentLink
   Element: NServiceBusWeb
@@ -519,16 +519,16 @@ Element: Endpoints
       TargetPath = ~/Infrastructure/GeneratedCode/Config
       TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageForwardingInCaseOfFaultConfig.config.tt
       TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9985b0ec-a356-44dc-922d-22d9840df107
-    Code: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
-      SanitizeName = False
-      SyncName = False
-      Tag = 
-      TargetBuildAction = Compile
-      TargetCopyToOutput = DoNotCopy
-      TargetFileName = TransportConfig.cs
-      TargetPath = ~/Infrastructure/GeneratedCode
-      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.tt
-      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/186f6ae9-49fd-4f9f-969d-034848f06541
+    xCode: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      *SanitizeName = False
+      *SyncName = False
+      *Tag = 
+      *TargetBuildAction = Compile
+      *TargetCopyToOutput = DoNotCopy
+      *TargetFileName = TransportConfig.cs
+      *TargetPath = ~/Infrastructure/GeneratedCode
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.tt
+      +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/186f6ae9-49fd-4f9f-969d-034848f06541
     Code: GenerateTransportConfigConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
       SanitizeName = False
       SyncName = False
@@ -569,16 +569,16 @@ Element: Endpoints
       TargetPath = ~/Infrastructure
       TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/Logging.config.tt
       TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/41fbe97e-b6ed-4f2d-b28c-bd10a3d84269
-    Code: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
-      SanitizeName = False
-      SyncName = False
-      Tag = 
-      TargetBuildAction = 
-      TargetCopyToOutput = DoNotCopy
-      TargetFileName = MessageConventions.cs
-      TargetPath = ~/Infrastructure
-      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageConventions.cs.tt
-      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/102d67f5-2fc5-4b31-b42e-0f74f60abf25
+    xCode: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      *SanitizeName = False
+      *SyncName = False
+      *Tag = 
+      *TargetBuildAction = 
+      *TargetCopyToOutput = DoNotCopy
+      *TargetFileName = MessageConventions.cs
+      *TargetPath = ~/Infrastructure
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageConventions.cs.tt
+      +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/102d67f5-2fc5-4b31-b42e-0f74f60abf25
     Code: GenerateTransportConnectionStringConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
       SanitizeName = False
       SyncName = False
@@ -629,27 +629,27 @@ Element: Endpoints
       TargetPath = ~/Infrastructure/GeneratedCode/Config/
       TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/AuditConfig.config.tt
       TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/21cb8031-2d8f-417f-89fb-f5a5e94a49f0
-    Aggregate: GenerateCodeV4ConfigSection
-      0: GenerateMessageForwardingConfig (*)
-      1: GenerateTransportConfigConfig (*)
-      2: GenerateUnicastBusConfig (*)
-      3: GenerateWebInitialization (*)
-      4: GenerateWebGlobalInitialization (*)
-      5: GenerateTransportConfigCode (*)
-      6: GenerateTransportConnectionStringConfig (*)
-      7: GenerateAuditConfig (*)
-      8: GenerateTestMessagesController (*)
-      9: GenerateTestMessagesView (*)
-    Aggregate: OnInstantiateCommand
-      0: UnfoldProject
-      1: InstallNuGetPackages
-      2: AddProjectReferences
-      3: UnfoldMessageConventions (*)
-      4: UnfoldLoggingConfig (*)
-      5: GenerateCodeV4ConfigSection (*)
-      6: RaiseOnInstantiated
-      7: ProcessAfterUnfoldingProject
-    Launch: OnInstantiated (Event Launch Point) -> OnInstantiateCommand
+    xAggregate: GenerateCodeV4ConfigSection
+      *0: GenerateMessageForwardingConfig (*)
+      *1: GenerateTransportConfigConfig (*)
+      *2: GenerateUnicastBusConfig (*)
+      *3: GenerateWebInitialization (*)
+      *4: GenerateWebGlobalInitialization (*)
+      x5: GenerateTransportConfigCode (*)
+      *6: GenerateTransportConnectionStringConfig (*)
+      *7: GenerateAuditConfig (*)
+      *8: GenerateTestMessagesController (*)
+      *9: GenerateTestMessagesView (*)
+    xAggregate: OnInstantiateCommand
+      *0: UnfoldProject
+      *1: InstallNuGetPackages
+      *2: AddProjectReferences
+      x3: UnfoldMessageConventions (*)
+      *4: UnfoldLoggingConfig (*)
+      x5: GenerateCodeV4ConfigSection (*)
+      *6: RaiseOnInstantiated
+      *7: ProcessAfterUnfoldingProject
+    xLaunch: OnInstantiated (Event Launch Point) -> OnInstantiateCommand
     Element: Components
       Element: ComponentLink
 Element: ContractsProject

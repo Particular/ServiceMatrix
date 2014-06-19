@@ -963,6 +963,18 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>df3b8184-677f-4e33-a920-ea2a23be22d5</ItemGuid>
     </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.cs.v5.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>184a4411-72b7-430a-868c-cb6ed4ac5142</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.v5.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>0b904a14-ee36-446b-8854-a20b66d7d796</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>
