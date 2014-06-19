@@ -165,6 +165,37 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ac7967d9-05f8-4d72-b501-ff3a762d677f" />
       </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NuPattern.Library.Conditions.StringValueEqualsCondition",
+    "Properties": [
+      {
+        "Name": "ComparisonKind",
+        "Value": "Ordinal",
+        "ValueProvider": null
+      },
+      {
+        "Name": "LeftValue",
+        "Value": "NSB 4.0",
+        "ValueProvider": null
+      },
+      {
+        "Name": "RightValue",
+        "Value": null,
+        "ValueProvider": {
+          "TypeId": "NuPattern.Library.ValueProviders.ElementPropertyValueProvider",
+          "Properties": [
+            {
+              "Name": "PropertyName",
+              "Value": "TargetNsbVersion",
+              "ValueProvider": null
+            }
+          ]
+        }
+      }
+    ]
+  }
+]</conditions>
     </eventSettings>
     <eventSettings Id="7808a0b7-859f-480d-8c04-f291c441026b" commandId="6be99fc8-1ae6-4933-b7bd-6ebfe9f9d5aa" eventId="NuPattern.Library.Events.IOnElementActivatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
@@ -264,6 +295,42 @@
         "Name": "PropertyName",
         "Value": "IsSaga",
         "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </eventSettings>
+    <eventSettings Id="f4afe313-aeea-4b56-8bdb-2393c74cc019" commandId="00ea11c7-0fc8-4ccf-95c7-fd9e78f3dbdd" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b51e4843-03b7-4507-b296-d54447cff7f3" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NuPattern.Library.Conditions.StringValueEqualsCondition",
+    "Properties": [
+      {
+        "Name": "ComparisonKind",
+        "Value": "Ordinal",
+        "ValueProvider": null
+      },
+      {
+        "Name": "LeftValue",
+        "Value": "NSB 5.0",
+        "ValueProvider": null
+      },
+      {
+        "Name": "RightValue",
+        "Value": null,
+        "ValueProvider": {
+          "TypeId": "NuPattern.Library.ValueProviders.ElementPropertyValueProvider",
+          "Properties": [
+            {
+              "Name": "PropertyName",
+              "Value": "TargetNsbVersion",
+              "ValueProvider": null
+            }
+          ]
+        }
       }
     ]
   }
@@ -4657,6 +4724,146 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="71831e4b-a551-46ef-8157-f918471210bf" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="72048366-5f80-4670-8b69-fc48763e55c6" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "TransportConfig.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.v5.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/c6ba4012-3810-40e8-9169-a7b52bc4b692",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="2b5f5ade-db16-414f-afe8-0feb0f903e1c" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="fd661699-4c74-400a-b866-97475df1a901" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"0c7a14be-6b82-476d-ac17-a46f8871d884\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a99928a4-309c-4c2f-ab3f-0459aed6a3c6\"\r\n  },\r\n  {\r\n    \"CommandId\": \"24589f3f-059f-4d5a-9b9b-a3897fff2449\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e4f4bcc6-41e9-4237-be6f-7fd91e691ced\"\r\n  },\r\n  {\r\n    \"CommandId\": \"163abd93-cedc-4e41-8a7d-67eedfac41aa\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71831e4b-a551-46ef-8157-f918471210bf\"\r\n  },\r\n  {\r\n    \"CommandId\": \"99be7198-69a8-4174-bb1e-35190f5b6496\"\r\n  },\r\n  {\r\n    \"CommandId\": \"61a98a15-e465-4876-96f9-e3079b9d03f8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"1decf8a2-8fda-4ca0-9410-a54735fde0c9\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="fb3ecdea-45d9-40c7-afa2-508a7a1f65e3" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="839f8e45-092b-4901-a66d-24d2753f18fa" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"2b5f5ade-db16-414f-afe8-0feb0f903e1c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"3e692b85-1fa6-48e5-8883-4247848912af\"\r\n  },\r\n  {\r\n    \"CommandId\": \"163abd93-cedc-4e41-8a7d-67eedfac41aa\"\r\n  },\r\n  {\r\n    \"CommandId\": \"45fca2b9-4ca6-47d5-a720-54ca0239e02a\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="00ea11c7-0fc8-4ccf-95c7-fd9e78f3dbdd" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="42eb988f-e69f-43ce-beac-53eb30cc3ee5" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"6e5255cd-6f4a-4583-a9b1-9be69ef1cbd5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"a2fc8c0a-8aec-4aa2-b67a-d1dfbf662bac\"\r\n  },\r\n  {\r\n    \"CommandId\": \"18bee843-361d-4180-b033-27e4f370aecb\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f640e8f1-1189-43f8-8d95-3bbd26ce574d\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f0d12193-eea0-4677-bd94-cde70b531417\"\r\n  },\r\n  {\r\n    \"CommandId\": \"fb3ecdea-45d9-40c7-afa2-508a7a1f65e3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f11f5ae6-fa07-49e5-b192-6f360ddcf9f8\"\r\n  },\r\n  {\r\n    \"CommandId\": \"66faa173-534b-4ca4-a662-b78085d7fc78\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="18bee843-361d-4180-b033-27e4f370aecb" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="360cac8b-e60a-4ae2-b834-a0127700d9d2" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "MessageConventions.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "~/Infrastructure",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageConventions.cs.v5.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/df3b8184-677f-4e33-a920-ea2a23be22d5",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -8433,6 +8640,32 @@
                       </settings>
                     </customizationPolicy>
                   </property>
+                  <property Id="95a79914-151f-48e5-b0e6-2dcbefdec2a9" name="TargetNsbVersion" displayName="Target Nsb Version" description="Description for Application.Design.Endpoints.NServiceBusHost.TargetNsbVersion" codeIdentifier="TargetNsbVersion" isReadOnly="true">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                    <valueProvider>{
+  "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
+  "Properties": [
+    {
+      "Name": "Expression",
+      "Value": "{Parent.Parent.Parent.TargetNsbVersion}",
+      "ValueProvider": null
+    }
+  ]
+}</valueProvider>
+                  </property>
                 </properties>
                 <automationSettings>
                   <automationSettings Id="ac7967d9-05f8-4d72-b501-ff3a762d677f" name="OnInstantiate" displayName="On Instantiate" description="" codeIdentifier="OnInstantiate" automationType="Event Launch Point" classification="LaunchPoint">
@@ -8525,7 +8758,7 @@
                       </settings>
                     </customizationPolicy>
                   </automationSettings>
-                  <automationSettings Id="9340fce0-aee3-484c-9dfe-17b6e3afa5c9" name="GenerateCodeConfigSections" displayName="Generate Code Config Sections" description="" codeIdentifier="GenerateCodeConfigSections" automationType="Command">
+                  <automationSettings Id="9340fce0-aee3-484c-9dfe-17b6e3afa5c9" name="GenerateCodeV4ConfigSections" displayName="Generate Code V4 Config Sections" description="" codeIdentifier="GenerateCodeV4ConfigSections" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
@@ -8679,6 +8912,60 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="7fc56b19-87ce-41fb-8595-214a9fe56ee9" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="72048366-5f80-4670-8b69-fc48763e55c6" name="GenerateTransportConfigCodeV5" displayName="Generate Transport Config Code V5" description="" codeIdentifier="GenerateTransportConfigCodeV5" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="fd661699-4c74-400a-b866-97475df1a901" name="GenerateCodeV5ConfigSections" displayName="Generate Code V5 Config Sections" description="" codeIdentifier="GenerateCodeV5ConfigSections" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="839f8e45-092b-4901-a66d-24d2753f18fa" name="UnfoldCodeV5Command" displayName="Unfold Code V5 Command" description="" codeIdentifier="UnfoldCodeV5Command" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="42eb988f-e69f-43ce-beac-53eb30cc3ee5" name="OnInstantiateV5Command" displayName="On Instantiate V5 Command" description="" codeIdentifier="OnInstantiateV5Command" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="b51e4843-03b7-4507-b296-d54447cff7f3" name="OnInstantiateV5" displayName="On Instantiate V5" description="" codeIdentifier="OnInstantiateV5" automationType="Event Launch Point" classification="LaunchPoint">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="360cac8b-e60a-4ae2-b834-a0127700d9d2" name="UnfoldMessageConventionsV5" displayName="Unfold Message Conventions V5" description="" codeIdentifier="UnfoldMessageConventionsV5" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

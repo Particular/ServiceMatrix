@@ -2678,6 +2678,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusHost.TargetNsbVersion
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.TargetNsbVersion")]
+		[DisplayName("Target Nsb Version")]
+		[Category("General")]
+		public virtual String TargetNsbVersion
+		{
+			get { return this.proxy.GetValue(() => this.TargetNsbVersion); }
+			set { this.proxy.SetValue(() => this.TargetNsbVersion, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
