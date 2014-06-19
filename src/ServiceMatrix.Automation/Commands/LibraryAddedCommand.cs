@@ -30,7 +30,7 @@ namespace NServiceBusStudio.Automation.Commands
         {
             // Initialize Project
             var libraries = this.CurrentElement.Root.As<IApplication>().Design.Libraries;
-            libraries.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().CodeIdentifier;
+            libraries.Namespace = libraries.As<IProductElement>().Root.As<IApplication>().InstanceName;
             if (!libraries.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
             {
                 Application.SelectSolution();

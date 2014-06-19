@@ -6156,17 +6156,16 @@
                                 <setting propertyId="RawValueProvider" />
                               </settings>
                             </customizationPolicy>
-                            <valueProvider>
-                              {
-                              "Properties": [
-                              {
-                              "Name": "Expression",
-                              "Value": "{Root.CodeIdentifier}.{Root.ProjectNameContracts}.{Parent.Parent.CodeIdentifier}",
-                              "ValueProvider": null
-                              }
-                              ],
-                              "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider"
-                              }</valueProvider>
+                            <valueProvider>{
+  "TypeId": "NuPattern.Library.ValueProviders.ExpressionValueProvider",
+  "Properties": [
+    {
+      "Name": "Expression",
+      "Value": "{Root.InstanceName}.{Root.ProjectNameContracts}.{Parent.Parent.CodeIdentifier}",
+      "ValueProvider": null
+    }
+  ]
+}</valueProvider>
                           </property>
                         </properties>
                         <childElement cardinality="ZeroToMany" autoCreate="false">
@@ -6326,7 +6325,7 @@
   "Properties": [
     {
       "Name": "Expression",
-      "Value": "{Root.CodeIdentifier}.{Root.ProjectNameInternalMessages}.Commands.{Parent.Parent.CodeIdentifier}",
+      "Value": "{Root.InstanceName}.{Root.ProjectNameInternalMessages}.Commands.{Parent.Parent.CodeIdentifier}",
       "ValueProvider": null
     }
   ]
