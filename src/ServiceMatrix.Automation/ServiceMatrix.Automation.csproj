@@ -203,6 +203,7 @@
     <Compile Include="Conditions\IsSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
     <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
+    <Compile Include="Conditions\MatchesApplicationTargetNsbVersion.cs" />
     <Compile Include="Diagramming\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramRemover.cs" />

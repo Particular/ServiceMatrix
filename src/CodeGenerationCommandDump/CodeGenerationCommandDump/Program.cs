@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.Modeling;
 using NuPattern.Library;
 using NuPattern.Library.Automation;
 using NuPattern.Runtime;
+using NuPattern.Runtime.Bindings;
 using NuPattern.Runtime.Composition;
 using NuPattern.Runtime.Schema;
 using JsonConvert = NuPattern.Runtime.Serialization.JsonConvert;
@@ -60,20 +61,34 @@ namespace CodeGenerationCommandDump
 
         private static void DumpPatternModel(IPatternModelSchema patternModel)
         {
+            Console.WriteLine("Pattern: " + patternModel.Pattern.Name);
+
+            DumpAutomation(patternModel.Pattern.AutomationSettings, "");
+
             var designView = patternModel.Pattern.Views.First();
-            foreach (var element in ((IElementInfoContainer)designView).Elements)
+            foreach (var element in ((IElementSchemaContainer)designView).Elements)
             {
-                DumpElement(element, 0);
+                DumpElement(element, 1);
             }
         }
 
-        private static void DumpElement(IAbstractElementInfo element, int indentationLevel)
+        private static void DumpElement(IAbstractElementSchema element, int indentationLevel)
         {
             var indentation = new string(' ', indentationLevel * 2);
             Console.WriteLine(indentation + "Element: " + element.Name);
 
+            DumpAutomation(element.AutomationSettings, indentation);
+
+            foreach (var childElement in element.Elements)
+            {
+                DumpElement(childElement, indentationLevel + 1);
+            }
+        }
+
+        private static void DumpAutomation(IEnumerable<IAutomationSettingsSchema> automationSettings, string indentation)
+        {
             var allCommands =
-                element.AutomationSettings
+                automationSettings
                     .Where(s => s.AutomationType == "Command")
                     .Select(s => s.As<ICommandSettings>())
                     .ToList();
@@ -81,24 +96,23 @@ namespace CodeGenerationCommandDump
 
             var interestingCommands = new HashSet<Guid>();
 
-            // code generation commands
-            var codeGenerationCommands =
-                allCommands
-                    .Where(cs =>
-                        cs.TypeId.Contains("GenerateComponentCodeCommand")
-                        || cs.TypeId.Contains("GenerateProductCodeCommandCustom")
-                        || cs.TypeId.Contains("GenerateProductCodeCommand"))
-                    .ToList();
-
-            foreach (var commandSetting in codeGenerationCommands)
+            foreach (var commandSetting in allCommands.Where(cs => !cs.TypeId.Contains("AggregatorCommand")).OrderBy(cs => cs.Name))
             {
-                Console.WriteLine("{0}  Code: {1} ({2})", indentation, commandSetting.Name, commandSetting.TypeId);
+                var marker = "";
+
+                if (commandSetting.TypeId.Contains("GenerateComponentCodeCommand")
+                        || commandSetting.TypeId.Contains("GenerateProductCodeCommandCustom")
+                        || commandSetting.TypeId.Contains("GenerateProductCodeCommand"))
+                {
+                    interestingCommands.Add(commandSetting.Id);
+                    marker = " (*)";
+                }
+
+                Console.WriteLine("{0}  Command{3}: {1} ({2})", indentation, commandSetting.Name, commandSetting.TypeId, marker);
                 foreach (var property in commandSetting.Properties)
                 {
                     Console.WriteLine("{0}    {1} = {2}", indentation, property.Name, property.Value);
                 }
-
-                interestingCommands.Add(commandSetting.Id);
             }
 
             // aggregates
@@ -110,7 +124,8 @@ namespace CodeGenerationCommandDump
                 foreach (var aggregatorCommand in aggregatorCommands)
                 {
                     var references =
-                        JsonConvert.DeserializeObject<Collection<CommandReference>>(aggregatorCommand.Properties.First(p => p.Name == "CommandReferenceList").Value);
+                        JsonConvert.DeserializeObject<Collection<CommandReference>>(
+                            aggregatorCommand.Properties.First(p => p.Name == "CommandReferenceList").Value);
 
                     if (references.Any(r => interestingCommands.Contains(r.CommandId)))
                     {
@@ -119,13 +134,18 @@ namespace CodeGenerationCommandDump
                 }
             } while (aggregatorAdded);
 
-            foreach (var aggregatorCommand in aggregatorCommands.Where(ac => interestingCommands.Contains(ac.Id)))
+            foreach (var aggregatorCommand in aggregatorCommands.OrderBy(ac => ac.Name))
             {
-                Console.WriteLine("{0}  Aggregate: {1}", indentation, aggregatorCommand.Name);
+                Console.WriteLine(
+                    "{0}  Aggregate{2}: {1}",
+                    indentation,
+                    aggregatorCommand.Name,
+                    interestingCommands.Contains(aggregatorCommand.Id) ? " (*)" : "");
 
                 var i = 0;
                 foreach (var reference in
-                    JsonConvert.DeserializeObject<Collection<CommandReference>>(aggregatorCommand.Properties.First(p => p.Name == "CommandReferenceList").Value))
+                    JsonConvert.DeserializeObject<Collection<CommandReference>>(
+                        aggregatorCommand.Properties.First(p => p.Name == "CommandReferenceList").Value))
                 {
                     var command = allCommandsById[reference.CommandId];
                     Console.WriteLine(
@@ -139,7 +159,10 @@ namespace CodeGenerationCommandDump
 
             // launch points
 
-            foreach (var setting in element.AutomationSettings.Where(s => s.AutomationType != "Command"))
+            foreach (var setting in
+                automationSettings
+                    .Where(s => s.AutomationType != "Command")
+                    .OrderBy(s => s.AutomationType + "|" + s.Name))
             {
                 var automation = setting.As<IAutomationSettings>();
 
@@ -147,22 +170,31 @@ namespace CodeGenerationCommandDump
                 var prop = me.GetDomainClass().FindDomainProperty("CommandId", true);
                 if (prop != null)
                 {
+                    var eventIdProp = me.GetDomainClass().FindDomainProperty("EventId", true);
+
                     var commandId = (Guid)prop.GetValue(me);
-                    if (interestingCommands.Contains(commandId))
+                    Console.WriteLine(
+                        "{0}  Launch{4}: {1} ({2}) -> {3}",
+                        indentation,
+                        automation.Name,
+                        setting.AutomationType + (eventIdProp != null ? " - " + eventIdProp.GetValue(me) : ""),
+                        allCommandsById.ContainsKey(commandId) ? allCommandsById[commandId].Name : "MISSING!",
+                        interestingCommands.Contains(commandId) ? " (*)" : "");
+
+                    var conditionProp = me.GetDomainClass().FindDomainProperty("Conditions", true);
+                    if (conditionProp != null)
                     {
-                        Console.WriteLine(
-                            "{0}  Launch: {1} ({2}) -> {3}",
-                            indentation,
-                            automation.Name,
-                            setting.AutomationType,
-                            allCommandsById[commandId].Name);
+                        var conditions = (string)conditionProp.GetValue(me);
+                        if (!string.IsNullOrEmpty(conditions))
+                        {
+                            Console.WriteLine("{0}    Conditions: ", indentation);
+                            foreach (var conditionLine in conditions.ToString().Split('\n', '\r').Where(s => !string.IsNullOrEmpty(s)))
+                            {
+                                Console.WriteLine("{0}      {1}", indentation, conditionLine);
+                            }
+                        }
                     }
                 }
-            }
-
-            foreach (var childElement in element.Elements)
-            {
-                DumpElement(childElement, indentationLevel + 1);
             }
         }
     }

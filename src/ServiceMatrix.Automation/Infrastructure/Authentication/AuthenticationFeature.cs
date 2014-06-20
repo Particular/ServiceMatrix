@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using AbstractEndpoint;
+using NServiceBusStudio.Automation.Model;
 using NuPattern;
 using NuPattern.Runtime;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.Extensions;
 using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
@@ -50,7 +48,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
         {
             if (app.HasAuthentication)
             {
-            //
+                //
                 var authentication = app.Design.Infrastructure.Security.Authentication;
                 var infrastructure = app.Design.Infrastructure;
                 var project = Helpers.GenerateInfrastructureProjectIfNeeded(infrastructure, solution);
@@ -110,8 +108,10 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                     // We are using Temp as we don't want the generation run on each build
                     .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                     , endpoint.Project.Name + @"\Infrastructure"
-                    , @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.tt")
-                .Execute();
+                    , (application.TargetNsbVersion == TargetNsbVersion.Version4)
+                        ? @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.v4.tt"
+                        : @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.v5.tt")
+                    .Execute();
             }
         }
 
@@ -143,7 +143,9 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                         app.Design.Infrastructure.Security.Authentication.As<IProductElement>()
                             .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                             , endpoint.Project.Name + @"\Infrastructure\GeneratedCode"
-                            , @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.tt"
+                            , (app.TargetNsbVersion == TargetNsbVersion.Version4)
+                                ? @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.v4.tt"
+                                : @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.v5.tt"
                             , prefixAuthorize)
                         .Execute();
                     }

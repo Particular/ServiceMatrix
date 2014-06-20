@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using NuPattern.Runtime;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.VisualStudio.Shell;
+using NuPattern.Runtime;
 using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Infrastructure.Authentication
@@ -45,7 +42,7 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
 
         public override void Execute()
         {
-            AuthenticationFeature.GenerateAuthenticationCodeOnEndpoints(this.CurrentElement.Root.As<IApplication>(), this.ServiceProvider);
+            AuthenticationFeature.GenerateAuthenticationCodeOnEndpoints(CurrentElement.Root.As<IApplication>(), ServiceProvider);
         }
     }
 }

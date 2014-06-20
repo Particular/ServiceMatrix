@@ -835,7 +835,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>50af6eba-4205-4aed-ad99-910a10d2be0a</ItemGuid>
     </Content>
-    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -914,18 +914,18 @@
       <ItemGuid>506dda71-1e63-4b68-b639-d83ed965aa96</ItemGuid>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>2a3c2931-a8f9-4464-a458-c33d2731eff1</ItemGuid>
     </Content>
-    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -974,6 +974,28 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>0b904a14-ee36-446b-8854-a20b66d7d796</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>1f5770c7-b4a0-4a9b-a8d8-0f28db97f4b9</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>75691a56-ea9d-41f8-a38f-99ce2f7743fa</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

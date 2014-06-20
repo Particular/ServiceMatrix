@@ -657,16 +657,16 @@ Element: InternalMessagesProject
 Element: Infrastructure
   Element: Security
     Element: Authentication
-      Code: GenerateCodeV4Authentication (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
-        SanitizeName = False
-        SyncName = False
-        Tag = 
-        TargetBuildAction = Compile
-        TargetCopyToOutput = DoNotCopy
-        TargetFileName = Authentication.cs
-        TargetPath = {CodePath}
-        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/Authentication.tt
-        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/3b28bc6d-ba79-4cfe-88c8-03e14fd09ef0
+      -Code: GenerateCodeV4Authentication (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        *SanitizeName = False
+        *SyncName = False
+        *Tag = 
+        *TargetBuildAction = Compile
+        *TargetCopyToOutput = DoNotCopy
+        *TargetFileName = Authentication.cs
+        *TargetPath = {CodePath}
+        *TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/Authentication.tt
+        *TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/3b28bc6d-ba79-4cfe-88c8-03e14fd09ef0
       Code: UnfoldCustomAuthenticationCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
         SanitizeName = False
         SyncName = False
@@ -677,25 +677,25 @@ Element: Infrastructure
         TargetPath = {CustomCodePath}
         TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthentication.tt
         TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/3b08d283-53e3-42d3-a7dd-7de310c4a82e
-      Code: GenerateCodeV4AuthorizeOutgoingMessages (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
-        SanitizeName = False
-        SyncName = False
-        Tag = 
-        TargetBuildAction = Compile
-        TargetCopyToOutput = DoNotCopy
-        TargetFileName = AuthorizeOutgoingMessages.cs
-        TargetPath = {CodePath}
-        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/AuthorizeOutgoingMessages.tt
-        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/2a3c2931-a8f9-4464-a458-c33d2731eff1
-      Code: UnfoldCustomAuthorizeOutgoingMessagesCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
-        SanitizeName = False
-        SyncName = False
-        Tag = 
-        TargetBuildAction = Compile
-        TargetCopyToOutput = DoNotCopy
-        TargetFileName = AuthorizeOutgoingMessages.cs
-        TargetPath = {CustomCodePath}
-        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthorizeOutgoingMessages.tt
+      -Code: GenerateCodeV4AuthorizeOutgoingMessages (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        *SanitizeName = False
+        *SyncName = False
+        *Tag = 
+        *TargetBuildAction = Compile
+        *TargetCopyToOutput = DoNotCopy
+        *TargetFileName = AuthorizeOutgoingMessages.cs
+        *TargetPath = {CodePath}
+        xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/AuthorizeOutgoingMessages.tt
+        +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/2a3c2931-a8f9-4464-a458-c33d2731eff1
+      -Code: UnfoldCustomAuthorizeOutgoingMessagesCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        *SanitizeName = False
+        *SyncName = False
+        *Tag = 
+        *TargetBuildAction = Compile
+        *TargetCopyToOutput = DoNotCopy
+        *TargetFileName = AuthorizeOutgoingMessages.cs
+        *TargetPath = {CustomCodePath}
+        +xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthorizeOutgoingMessages.tt
         TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f6bfe406-6a36-47dd-b00a-6302381ecb36
       Aggregate: OnInstantiatedCommand
         0: GenerateCodeV4Authentication (*)
