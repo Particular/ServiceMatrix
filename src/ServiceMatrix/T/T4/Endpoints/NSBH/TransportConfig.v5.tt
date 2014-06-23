@@ -26,7 +26,7 @@ namespace <#= endpoint.Namespace #>
 {
 	public class TransportConfig : INeedInitialization
 	{
-		public void Init()
+		public void Init(Configure config)
 		{
 <#
     if (application.Transport == TransportType.Msmq.ToString())
@@ -38,25 +38,25 @@ namespace <#= endpoint.Namespace #>
     else if (application.Transport == TransportType.RabbitMQ.ToString())
     {	
 #>
-			Configure.Instance.UseTransport<NServiceBus.RabbitMQ>();
+			config.UseTransport<NServiceBus.RabbitMQ>();
 <#
     }
     else if (application.Transport == TransportType.SqlServer.ToString())
     {
 #>
-			Configure.Instance.UseTransport<SqlServer>();
+			config.UseTransport<SqlServer>();
 <#
     }
     else if (application.Transport == TransportType.AzureQueues.ToString())
     {
 #>
-			Configure.Instance.UseTransport<AzureStorageQueue>();
+			config.UseTransport<AzureStorageQueue>();
 <#
     }
     else if (application.Transport == TransportType.AzureServiceBus.ToString())
     {
 #>
-			Configure.Instance.UseTransport<AzureServiceBus>();
+			config.UseTransport<AzureServiceBus>();
 <#
     }
 #>

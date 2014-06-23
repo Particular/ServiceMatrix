@@ -671,7 +671,7 @@
       <ItemGuid>eb0d81fd-c72f-4f5b-b41e-8e43ce182e60</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.tt">
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.v4.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>49afd489-a5ff-4743-bfd0-2c4d33e0d6de</ItemGuid>
@@ -687,7 +687,7 @@
       <ItemGuid>7bc9d684-b67e-4d26-a55d-ad64c57f6fc1</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.v4.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>d07e0f86-d73b-4dea-a249-17c701cbb03c</ItemGuid>
       <SubType>Designer</SubType>
@@ -764,7 +764,7 @@
       <ItemGuid>063e34ac-21e5-44df-a41a-0f2bbf6c23a7</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>fc90b58e-fc11-4d3a-a94e-c4142a74e46f</ItemGuid>
@@ -776,7 +776,7 @@
       <ItemGuid>41fbe97e-b6ed-4f2d-b28c-bd10a3d84269</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>102d67f5-2fc5-4b31-b42e-0f74f60abf25</ItemGuid>
@@ -794,7 +794,7 @@
       <ItemGuid>068ce3e7-5e66-4996-9477-523e4167bc2c</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.v4.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>186f6ae9-49fd-4f9f-969d-034848f06541</ItemGuid>
@@ -870,7 +870,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5ddee7e0-7cd1-4713-ab12-8d59d622a228</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.v4.cs.tt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -957,13 +957,13 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>c6ba4012-3810-40e8-9169-a7b52bc4b692</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.cs.v5.tt">
+    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.v5.cs.tt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>df3b8184-677f-4e33-a920-ea2a23be22d5</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.cs.v5.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.v5.cs.tt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -996,6 +996,18 @@
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.v5.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>3c6b815f-f427-4eee-9dec-ccca92e80416</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.v5.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a24d321e-1cb7-4ff0-a6f6-d626410549f4</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
