@@ -574,7 +574,7 @@ Pattern: Application
       Command: PublishEventCommand (NServiceBusStudio.Automation.Commands.ShowEventComponentPicker)
       Command: RaisesOnInstantiated (NServiceBusStudio.Automation.Commands.Endpoints.NSBH.RaiseOnInstantiated)
       Command: SendCommandCommand (NServiceBusStudio.Automation.Commands.ShowCommandComponentPicker)
-      Command (*): UnfoldEndpointConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      Command (*): UnfoldEndpointConfigV4 (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
         SanitizeName = True
         SyncName = False
         Tag = 
@@ -582,8 +582,18 @@ Pattern: Application
         TargetCopyToOutput = DoNotCopy
         TargetFileName = EndpointConfig.cs
         TargetPath = ~
-        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.cs.tt
+        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.v4.cs.tt
         TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9665ea51-8bf4-4a28-b0a5-37cdf5148f39
+      Command (*): UnfoldEndpointConfigV5 (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        SanitizeName = True
+        SyncName = False
+        Tag = 
+        TargetBuildAction = Compile
+        TargetCopyToOutput = DoNotCopy
+        TargetFileName = EndpointConfig.cs
+        TargetPath = ~
+        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.v5.cs.tt
+        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/a24d321e-1cb7-4ff0-a6f6-d626410549f4
       Command (*): UnfoldLoggingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
         SanitizeName = False
         SyncName = False
@@ -647,7 +657,7 @@ Pattern: Application
         1: InstallNuGetPackages
         2: UnfoldMessageConventionsV4 (*)
         3: UnfoldLoggingConfig (*)
-        4: UnfoldEndpointConfig (*)
+        4: UnfoldEndpointConfigV4 (*)
         5: UnfoldCodeV4Command (*)
         6: RaisesOnInstantiated
         7: ProcessAfterUnfoldedProject
@@ -656,7 +666,7 @@ Pattern: Application
         1: InstallNuGetPackages
         2: UnfoldMessageConventionsV5 (*)
         3: UnfoldLoggingConfig (*)
-        4: UnfoldEndpointConfig (*)
+        4: UnfoldEndpointConfigV5 (*)
         5: UnfoldCodeV5Command (*)
         6: RaisesOnInstantiated
         7: ProcessAfterUnfoldedProject
@@ -1071,7 +1081,7 @@ Pattern: Application
         TargetPath = ~/Infrastructure/GeneratedCode/Config
         TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/UnicastBusConfig.config.tt
         TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/b132847c-7244-4a53-8070-ce47aad324f7
-      Command (*): GenerateWebGlobalInitialization (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      Command (*): GenerateWebGlobalInitializationV4 (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
         SanitizeName = False
         SyncName = False
         Tag = 
@@ -1079,9 +1089,19 @@ Pattern: Application
         TargetCopyToOutput = DoNotCopy
         TargetFileName = WebGlobalInitialization.cs
         TargetPath = ~/Infrastructure/
-        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.cs.tt
+        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.v4.cs.tt
         TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/5290a37d-dd77-46b3-91a7-6ef79b3cd82a
-      Command (*): GenerateWebInitialization (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      Command (*): GenerateWebGlobalInitializationV5 (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        SanitizeName = False
+        SyncName = False
+        Tag = 
+        TargetBuildAction = Compile
+        TargetCopyToOutput = DoNotCopy
+        TargetFileName = WebGlobalInitialization.cs
+        TargetPath = ~/Infrastructure/
+        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.v5.cs.tt
+        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/b2baa2d4-07ed-4f87-b66a-5eb71b52ff44
+      Command (*): GenerateWebInitializationV4 (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
         SanitizeName = False
         SyncName = False
         Tag = 
@@ -1091,6 +1111,16 @@ Pattern: Application
         TargetPath = ~/Infrastructure/GeneratedCode
         TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.cs.tt
         TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/fc90b58e-fc11-4d3a-a94e-c4142a74e46f
+      Command (*): GenerateWebInitializationV5 (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        SanitizeName = False
+        SyncName = False
+        Tag = 
+        TargetBuildAction = Compile
+        TargetCopyToOutput = DoNotCopy
+        TargetFileName = WebGlobalInitialization.cs
+        TargetPath = ~/Infrastructure/
+        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.v5.cs.tt
+        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/3c6b815f-f427-4eee-9dec-ccca92e80416
       Command: InstallNuGetPackages (NServiceBusStudio.Automation.Commands.Endpoints.NSBH.AddNugetReferencesCommand)
         IgnoreHost = True
       Command: ProcessAfterUnfoldingProject (NServiceBusStudio.Automation.Commands.Endpoints.NSBH.ProcessRootAfterUnfoldedProject)
@@ -1139,8 +1169,8 @@ Pattern: Application
         0: GenerateMessageForwardingConfig (*)
         1: GenerateTransportConfigConfig (*)
         2: GenerateUnicastBusConfig (*)
-        3: GenerateWebInitialization (*)
-        4: GenerateWebGlobalInitialization (*)
+        3: GenerateWebInitializationV4 (*)
+        4: GenerateWebGlobalInitializationV4 (*)
         5: GenerateTransportConfigCodeV4 (*)
         6: GenerateTransportConnectionStringConfig (*)
         7: GenerateAuditConfig (*)
@@ -1150,8 +1180,8 @@ Pattern: Application
         0: GenerateMessageForwardingConfig (*)
         1: GenerateTransportConfigConfig (*)
         2: GenerateUnicastBusConfig (*)
-        3: GenerateWebInitialization (*)
-        4: GenerateWebGlobalInitialization (*)
+        3: GenerateWebInitializationV5 (*)
+        4: GenerateWebGlobalInitializationV5 (*)
         5: GenerateTransportConfigCodeV5 (*)
         6: GenerateTransportConnectionStringConfig (*)
         7: GenerateAuditConfig (*)

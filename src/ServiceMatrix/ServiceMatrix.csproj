@@ -824,7 +824,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5290a37d-dd77-46b3-91a7-6ef79b3cd82a</ItemGuid>
@@ -1008,6 +1008,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>a24d321e-1cb7-4ff0-a6f6-d626410549f4</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.v5.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b2baa2d4-07ed-4f87-b66a-5eb71b52ff44</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
