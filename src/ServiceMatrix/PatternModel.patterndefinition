@@ -3485,7 +3485,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.cs.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.v4.cs.tt",
     "ValueProvider": null
   },
   {
