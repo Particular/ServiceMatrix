@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGenerationCommandDump",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceMatrix.Automation", "..\ServiceMatrix.Automation\ServiceMatrix.Automation.csproj", "{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V5Checker", "V5Checker\V5Checker.csproj", "{A6C9B849-ACF5-4290-AF60-F830BABBD234}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,22 @@ Global
 		{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}.Release-VS2012|Any CPU.Build.0 = Release-VS2012|Any CPU
 		{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}.Release-VS2013|Any CPU.ActiveCfg = Release-VS2013|Any CPU
 		{E99C1949-F384-4F9E-9EA8-8F020CA9D8A5}.Release-VS2013|Any CPU.Build.0 = Release-VS2013|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug-VS2010|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug-VS2010|Any CPU.Build.0 = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug-VS2012|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug-VS2012|Any CPU.Build.0 = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug-VS2013|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Debug-VS2013|Any CPU.Build.0 = Debug|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release-VS2010|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release-VS2010|Any CPU.Build.0 = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release-VS2012|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release-VS2012|Any CPU.Build.0 = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release-VS2013|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C9B849-ACF5-4290-AF60-F830BABBD234}.Release-VS2013|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
