@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using NServiceBusStudio;
+using NServiceBusStudio.Automation.Extensions;
 using NuGet.VisualStudio;
-using NuPattern.VisualStudio.Solution;
+using NuPattern.Runtime;
 using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
+    using Model;
+    using Command = NuPattern.Runtime.Command;
+
     [DisplayName("Add Nuget Project References")]
     [Description("Add references in the Endpoint Project to the required nuget projects")]
     [CLSCompliant(false)]
-    public class AddNugetReferencesCommand : NuPattern.Runtime.Command
+    public class AddNugetReferencesCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -45,30 +42,35 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 
         public override void Execute()
         {
-            var app = this.CurrentElement.Root.As<IApplication>();
-            var project = this.CurrentElement.GetProject();
+            var app = CurrentElement.Root.As<IApplication>();
+            var project = CurrentElement.GetProject();
             if (project == null)
             {
                 return;
             }
 
+            // NuGet packages are installed explicitly to prevent nuget from resolving dependencies itself.
+            // Packages are not uninstalled to improve performance. Instead, project references are removed.
+
             //<Reference Include="NServiceBus" />
             //<Reference Include="NServiceBus.Core" />
             //<Reference Include="NServiceBus.Host" />
 
+            var targetNsbVersion = app.GetTargetNsbVersion(CurrentElement);
+
             if (!project.HasReference("NServiceBus"))
             {
-                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces");
-                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus");
+                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", targetNsbVersion);
+                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus", targetNsbVersion);
 
                 if (!IgnoreHost)
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Host");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Host", targetNsbVersion);
                 }
                 else
                 {
                     // This is needed for AspNet MVC Integration for the time being. 
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Autofac");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Autofac", targetNsbVersion);
                 }
             }
 
@@ -77,7 +79,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.RabbitMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", targetNsbVersion);
                 }
             }
             else
@@ -91,7 +93,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.SqlServer"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", targetNsbVersion);
                 }
             }
             else
@@ -104,7 +106,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", targetNsbVersion);
                 }
             }
             else
@@ -117,7 +119,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", targetNsbVersion);
                 }
             }
             else
@@ -132,22 +134,22 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("ServiceControl.Plugin.DebugSession"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.DebugSession", targetNsbVersion);
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.Heartbeat"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.Heartbeat", targetNsbVersion);
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.CustomChecks"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.CustomChecks", targetNsbVersion);
                 }
 
                 if (!project.HasReference("ServiceControl.Plugin.SagaAudit"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.SagaAudit");
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "ServiceControl.Plugin.SagaAudit", targetNsbVersion);
                 }
             }
             else
