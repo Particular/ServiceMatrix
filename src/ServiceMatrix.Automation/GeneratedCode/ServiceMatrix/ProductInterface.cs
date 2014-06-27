@@ -217,6 +217,15 @@ namespace NServiceBusStudio
 		String NuGetPackageVersionNServiceBusAzureServiceBus { get; set; }
 
 		/// <summary>
+		/// Major version number of NServiceBus that will be used for this solution
+		/// </summary>
+		[Description("Major version number of NServiceBus that will be used for this solution")]
+		[DisplayName("Target Nsb Version")]
+		[Category("General")]
+		[TypeConverter(typeof(TargetNsbVersionTypeConverter))]
+		String TargetNsbVersion { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }

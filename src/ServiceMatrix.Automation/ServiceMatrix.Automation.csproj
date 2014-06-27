@@ -216,6 +216,18 @@
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramRemover.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
+    <Compile Include="Model\TargetNsbVersion.cs" />
+    <Compile Include="TypeConverters\TargetNsbVersionTypeConverter.cs" />
+    <Compile Include="Util\IniReader.cs" />
+    <Compile Include="Util\LambdaEqualityHelper.cs" />
+    <Compile Include="Util\Logger.cs" />
+    <Compile Include="Util\ReleaseDate.cs" />
+    <Compile Include="Util\SemanticVersion.cs" />
+    <Compile Include="Util\SemanticVersionBuildMetaData.cs" />
+    <Compile Include="Util\SemanticVersionPreReleaseTag.cs" />
+    <Compile Include="Util\ServiceMatrixOverrides.cs" />
+    <Compile Include="Util\WarningException.cs" />
+    <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="Dialog\UserCodeChangeRequired.xaml.cs">
       <DependentUpon>UserCodeChangeRequired.xaml</DependentUpon>
     </Compile>

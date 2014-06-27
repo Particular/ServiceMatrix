@@ -335,6 +335,19 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Major version number of NServiceBus that will be used for this solution
+		/// </summary>
+		[Description("Major version number of NServiceBus that will be used for this solution")]
+		[DisplayName("Target Nsb Version")]
+		[Category("General")]
+		[TypeConverter(typeof(TargetNsbVersionTypeConverter))]
+		public virtual String TargetNsbVersion
+		{
+			get { return this.proxy.GetValue(() => this.TargetNsbVersion); }
+			set { this.proxy.SetValue(() => this.TargetNsbVersion, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo

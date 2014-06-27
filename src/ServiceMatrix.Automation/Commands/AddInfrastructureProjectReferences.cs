@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;
-using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.IO;
-using NuPattern.VisualStudio.Solution;
+using NServiceBusStudio.Automation.Extensions;
 using NuGet.VisualStudio;
+using NuPattern.Runtime;
 using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands
@@ -42,15 +36,15 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var app = this.CurrentElement.Root.As<IApplication>();
-            var infraproject = this.CurrentElement.GetProject();
+            var app = CurrentElement.Root.As<IApplication>();
+            var infraproject = CurrentElement.GetProject();
 
             if (infraproject != null)
             {
                 if (!infraproject.HasReference("NServiceBus"))
                 {
-                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces");
-                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus");
+                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", app.GetTargetNsbVersion(CurrentElement));
+                    infraproject.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus", app.GetTargetNsbVersion(CurrentElement));
                 }
             }
         }
