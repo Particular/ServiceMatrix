@@ -293,7 +293,7 @@
         <elementListCompartment Id="f0ffc448-6cab-4931-8d9c-0d2403a1db4d" absoluteBounds="2.64, 22.346080729166665, 3.0949999999999998, 0.82629394531249978" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </collectionShape>
-    <viewHasElementsConnector edgePoints="[(1.40625 : 10.0798291015625); (1.40625 : 22.1986873372396); (2.625 : 22.1986873372396)]" manuallyRouted="true" fixedFrom="Caller" fixedTo="Algorithm" TargetRelationshipDomainClassId="3bfd2e51-26d4-48dd-89a2-7e7a715b2bfd" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <viewHasElementsConnector edgePoints="[(1.40625 : 10.0798291015625); (1.40625 : 22.1986873372396); (2.625 : 22.1986873372396)]" manuallyRouted="true" fixedFrom="Caller" fixedTo="NotFixed" TargetRelationshipDomainClassId="3bfd2e51-26d4-48dd-89a2-7e7a715b2bfd" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <viewShapeMoniker Id="072fee28-8bbb-4693-bd1e-2efbc592be8b" />

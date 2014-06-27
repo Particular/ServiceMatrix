@@ -236,6 +236,7 @@
                         "ServiceControl.Plugin."
                         + (targetNsbVersion == TargetNsbVersion.Version4 ? "" : "Nsb5.")
                         + packageName.Substring("ServiceControl.Plugin.".Length, packageName.Length - "ServiceControl.Plugin.".Length);
+                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 1 : (int?)null;
                     break;
             }
         }
@@ -262,7 +263,7 @@
                 var query =
                     string.Format(
                         CultureInfo.InvariantCulture,
-                        @"Packages()?$filter=Id eq '{0}' and startswith(Version,'{1}.')&$orderby=Version desc",
+                        @"Packages()?$filter=Id eq '{0}' and startswith(Version,'{1}.') and not IsPrerelease&$orderby=Version desc",
                         packageId,
                         majorVersion.Value);
 
