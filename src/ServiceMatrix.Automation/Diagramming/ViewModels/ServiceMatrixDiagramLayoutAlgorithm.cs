@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -31,6 +32,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
         {
             FilePath = Path.Combine(solutionFolder, "DiagramShapePositions.json");
 
+            tracer.Verbose("Loading shape positions from {0}", FilePath);
+
             // Load shape positions from file
             try
             {
@@ -38,11 +41,16 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 {
                     var fileContent = File.ReadAllText(FilePath);
                     ShapePositions = JsonConvert.DeserializeObject<Dictionary<Guid, Point>>(fileContent);
+                    tracer.Info("Loaded shape positions from {0}", FilePath);
+                }
+                else
+                {
+                    tracer.Info("Could not find shape positions file at {0}", FilePath);
                 }
             }
             catch (Exception ex)
             {
-                tracer.Error(ex, "Cannot load shape positions from DiagramShapePositions.json.");
+                tracer.Error(ex, "Cannot load shape positions from {0}.", FilePath);
             }
 
             // If File not exists or an error ocurred
@@ -52,12 +60,11 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
         }
 
-        public void UnloadShapePositiions()
+        public void UnloadShapePositions()
         {
             FilePath = null;
             ShapePositions = null;
         }
-
 
         public void SetElementPosition(GroupableNode node)
         {
@@ -125,6 +132,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public Point? LoadElementPosition(GroupableNode node)
         {
+            Debug.Assert(ShapePositions != null, "Shape positions not initialized");
+
             if (ShapePositions.Any(x => x.Key == node.Id))
             {
                 return ShapePositions.First(x => x.Key == node.Id).Value;
@@ -135,6 +144,8 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public void SaveElementPosition(GroupableNode node, Point? point)
         {
+            Debug.Assert(ShapePositions != null, "Shape positions not initialized");
+
             if (ShapePositions.Any(x => x.Key == node.Id))
             {
                 ShapePositions.Remove(node.Id);

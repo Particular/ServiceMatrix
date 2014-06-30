@@ -1,23 +1,18 @@
-﻿using NuPattern;
-using AbstractEndpoint;
-using Mindscape.WpfDiagramming;
-using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
-using ServiceMatrix.Diagramming.ViewModels.Shapes;
-using NuPattern.Runtime.UI.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using ServiceMatrix.Diagramming.ViewModels.Connections;
+using System.Windows.Controls;
+using Mindscape.WpfDiagramming;
 using NServiceBusStudio;
 using NuPattern.Runtime;
-using System.Windows.Controls;
+using NuPattern.Runtime.UI.ViewModels;
+using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+using ServiceMatrix.Diagramming.ViewModels.Connections;
+using ServiceMatrix.Diagramming.ViewModels.Shapes;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
-    public class ServiceMatrixDiagramMindscapeViewModel: Diagram
+    public class ServiceMatrixDiagramMindscapeViewModel : Diagram
     {
         public ServiceMatrixDiagramLayoutAlgorithm LayoutAlgorithm { get; set; }
 
@@ -46,15 +41,13 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return endpoint;
         }
 
-        
-
         private EmptyEndpointNode GetOrCreateEmptyEndpointNode(IProductElementViewModel endpointsViewModel)
         {
             var emptyEndpoint = this.FindNode<EmptyEndpointNode>(EmptyEndpointNode.NodeId);
 
             if (emptyEndpoint == null)
             {
-                emptyEndpoint = new EmptyEndpointNode(endpointsViewModel.MenuOptions.FirstOrDefault( x=> x.Caption == "Deploy Unhosted Components..."));
+                emptyEndpoint = new EmptyEndpointNode(endpointsViewModel.MenuOptions.FirstOrDefault(x => x.Caption == "Deploy Unhosted Components..."));
                 this.LayoutAlgorithm.SetElementPosition(emptyEndpoint);
 
                 AddNode(emptyEndpoint);
@@ -152,9 +145,9 @@ namespace ServiceMatrix.Diagramming.ViewModels
         {
             // Find undeployed component
             var undeployedComponentNode = FindComponent(EmptyEndpointNode.NodeId,
-                                                        serviceViewModel.Data.Id, 
+                                                        serviceViewModel.Data.Id,
                                                         componentViewModel.Data.Id);
-            
+
             if (undeployedComponentNode != null)
             {
                 this.DeleteNode(undeployedComponentNode);
@@ -242,7 +235,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             return messageConnection;
         }
 
-        
+
         private DiagramConnection FindConnection(GroupableNode source, GroupableNode target)
         {
             return this.Connections.FirstOrDefault(x => source.ConnectionPoints.Any(y => y == x.FromConnectionPoint) &&
@@ -328,7 +321,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         {
             this.Nodes.ToList().ForEach(x => this.Nodes.Remove(x));
             this.Connections.ToList().ForEach(x => this.Connections.Remove(x));
-            this.LayoutAlgorithm.UnloadShapePositiions();
+            this.LayoutAlgorithm.UnloadShapePositions();
         }
 
         private void AddNode(GroupableNode node)
@@ -451,7 +444,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             context.IsHighlighted = false;
             this.SetConnectionsIsShadowed(context, false);
         }
-        
+
         public void HighlightConnection(List<GroupableNode> context)
         {
             this.SetConnectionsIsHighlighted(context, true);
@@ -476,7 +469,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         public void SetConnectionsIsShadowed(List<GroupableNode> context, bool value)
         {
             var otherNodeConnections = this.Connections.Cast<BaseConnection>()
-                                                       .Where(x => !(context.Contains (x.Source) && context.Contains(x.Target)))
+                                                       .Where(x => !(context.Contains(x.Source) && context.Contains(x.Target)))
                                                        .ToList();
 
             otherNodeConnections.ForEach(x => x.IsShadowed = value);
