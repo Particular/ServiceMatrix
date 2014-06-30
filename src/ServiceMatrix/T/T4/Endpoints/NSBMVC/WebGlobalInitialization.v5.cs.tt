@@ -18,15 +18,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBus;
 using Autofac;
 using Autofac.Integration.Mvc;
+using NServiceBus;
 using System.Reflection;
-using ServiceMatrix.Shared;
 using System.Web.Mvc;
 
 namespace <#= nserviceBusHost.Namespace #>.Infrastructure
@@ -46,36 +41,36 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 				  .PropertiesAutowired();
             
 			var container = builder.Build();
-			Configure.Transactions.Disable();
-
 <#
 if (!nserviceBusHost.SendOnly)
 {
 #>
-			var bus = NServiceBus.Configure.With()
-                .AutofacBuilder(container) //pass the container in so NSB will use it
+            var bus = NServiceBus.Configure
+                .With(b => b
+                    .Conventions(c => MessageConventions.Apply(c))
+                    .UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container)))
                 .PurgeOnStartup(true)
-                .UnicastBus()
-                .RunHandlersUnderIncomingPrincipal(false)
+                .EnableInstallers()
+                .Transactions(t => t.Disable())
                 .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+                .Start();
 <#
 } 
 else 
 {
-#> 
-			var bus = NServiceBus.Configure.With()
-                .AutofacBuilder(container) //pass the container in so NSB will use it
-                .UnicastBus()
+#>
+            var bus = NServiceBus.Configure
+                .With(b => b.UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container)))
+                .Transactions(t => t.Disable())
                 .SendOnly();
 <#
 }
 #>
-			//tell MVC to resolve via autofac
+
+            //tell MVC to resolve via autofac
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             return bus;
-
         }
     }
 }

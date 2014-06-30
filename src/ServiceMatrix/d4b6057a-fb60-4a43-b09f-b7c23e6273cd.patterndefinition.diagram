@@ -623,7 +623,7 @@
         <elementListCompartment Id="1c3c695e-77bb-4faa-b327-fd7c28ffefc3" absoluteBounds="9.265, 58.557587890625, 1.5950000000000002, 0.633992513020833" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </elementShape>
-    <elementHasElementsConnector edgePoints="[(8.1875 : 56.1527718095606); (8.1875 : 57.8332902018229); (9.25 : 57.8332902018229)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(8.1875 : 56.1527718095606); (8.1875 : 57.8332902018229); (9.25 : 57.8332902018229)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <collectionShapeMoniker Id="a62956f1-442d-4227-9eab-515f9f49f3b8" />

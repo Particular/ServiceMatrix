@@ -76,17 +76,17 @@ namespace NServiceBusStudio.Automation.Extensions
             }
 
             sb.Append(@"{
-    public class MessageConventions : IWantToRunBeforeConfiguration
+    public class MessageConventions
     {
-        public void Init(Configure config)
+        public static void Apply(Configure.ConventionsBuilder conventionsBuilder)
         {
-            config");
+            conventionsBuilder");
             sb.AppendLine();
-            sb.AppendLine("            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
+            sb.AppendLine("                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
                 applicationName + "." + projectNameForInternal + ".Commands\"))");
-            sb.AppendLine("            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
+            sb.AppendLine("                .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
                 applicationName + "." + projectNameForContracts + "\"))");
-            sb.AppendLine("            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
+            sb.AppendLine("                .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
                 applicationName + "." + projectNameForInternal + ".Messages\"));");
             sb.Append(@"        }
     }
