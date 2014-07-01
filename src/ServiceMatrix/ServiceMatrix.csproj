@@ -499,6 +499,58 @@
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="..\BundledPackages\Autofac.3.1.0.nupkg">
+      <Link>packages\Autofac.3.1.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Autofac.Mvc4.3.1.0.nupkg">
+      <Link>packages\Autofac.Mvc4.3.1.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.Mvc.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.Mvc.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0.nupkg">
+      <Link>packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.Razor.2.0.20715.0.nupkg">
+      <Link>packages\Microsoft.AspNet.Razor.2.0.20715.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.Client.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.Core.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebPages.2.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebPages.2.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.Net.Http.2.0.20710.0.nupkg">
+      <Link>packages\Microsoft.Net.Http.2.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.Web.Infrastructure.1.0.0.0.nupkg">
+      <Link>packages\Microsoft.Web.Infrastructure.1.0.0.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Newtonsoft.Json.4.5.11.nupkg">
+      <Link>packages\Newtonsoft.Json.4.5.11.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
     </None>
@@ -575,10 +627,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\packages.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
