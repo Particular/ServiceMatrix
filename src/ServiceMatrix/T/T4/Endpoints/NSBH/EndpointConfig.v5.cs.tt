@@ -14,11 +14,11 @@ using NServiceBus;
  
 namespace <#= endpoint.Namespace #>
 {
-  public partial class EndpointConfig    
-  {
-    public void Customize(ConfigurationBuilder builder)
-    {
-      throw new NotImplementedException();
+    public partial class EndpointConfig    
+    {
+        public void Customize(ConfigurationBuilder builder)
+        {
+            builder.Conventions(c => MessageConventions.Apply(c));
+        }
     }
-  }
 }
