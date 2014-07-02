@@ -352,6 +352,16 @@
         "ValueProvider": null
       }
     ]
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.MatchesApplicationTargetNsbVersion",
+    "Properties": [
+      {
+        "Name": "TargetNsbVersion",
+        "Value": "NSB 4.0",
+        "ValueProvider": null
+      }
+    ]
   }
 ]</conditions>
     </eventSettings>
@@ -449,6 +459,33 @@
         <automationSettingsSchemaMoniker Id="6595188c-d954-4ff7-9fa1-3e028aa1b677" />
       </extendedElement>
       <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.MatchesApplicationTargetNsbVersion",
+    "Properties": [
+      {
+        "Name": "TargetNsbVersion",
+        "Value": "NSB 5.0",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </eventSettings>
+    <eventSettings Id="20eb72b3-bacc-4d50-bcb0-794071c0340a" commandId="ac60e61f-8a54-4c4b-99db-05a82065a8d3" eventId="NuPattern.Library.Events.IOnElementPropertyChangedEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="668a1473-b568-44f3-874f-910d4a35f4f5" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NuPattern.Library.Conditions.PropertyChangedEventArgsMatchesPropertyNameCondition",
+    "Properties": [
+      {
+        "Name": "PropertyName",
+        "Value": "IsSaga",
+        "ValueProvider": null
+      }
+    ]
+  },
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.MatchesApplicationTargetNsbVersion",
     "Properties": [
@@ -4090,7 +4127,7 @@
   },
   {
     "Name": "TemplateUri",
-    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaConfigureHowToFind.tt",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaConfigureHowToFind.v4.tt",
     "ValueProvider": null
   },
   {
@@ -5487,6 +5524,101 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="708c7729-43e8-4da2-a9dd-da57d5634b7d" typeId="NuPattern.Library.Commands.GenerateComponentCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="83c86d15-ec12-4895-a1a7-339efa92a312" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CheckIsDeployed",
+    "Value": "True",
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "{CodeIdentifier}ConfigureHowToFindSaga.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
+        {
+          "Name": "AddInfrastructureFolder",
+          "Value": "False",
+          "ValueProvider": null
+        }
+      ]
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaConfigureHowToFind.v5.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/82ea2f3d-f768-46cd-acee-380f6efd5b68",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="ac60e61f-8a54-4c4b-99db-05a82065a8d3" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c9c6b8ef-da6a-4ea6-9b41-4a09589768ea" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"b2adde29-7d8c-4c77-9640-3aaa7ba96752\"\r\n  },\r\n  {\r\n    \"CommandId\": \"708c7729-43e8-4da2-a9dd-da57d5634b7d\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="80f1c950-4ae7-438b-aa2a-ef87d3299aed" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="d8df622e-815f-4431-b2a2-6c22e80a7e3b" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"ac60e61f-8a54-4c4b-99db-05a82065a8d3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"db0a6380-180b-410f-982b-f3d1589111f3\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -5544,6 +5676,16 @@
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.HasEndpointDefinedCondition",
     "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.MatchesApplicationTargetNsbVersion",
+    "Properties": [
+      {
+        "Name": "TargetNsbVersion",
+        "Value": "NSB 4.0",
+        "ValueProvider": null
+      }
+    ]
   }
 ]</conditions>
     </menuSettings>
@@ -5765,6 +5907,27 @@
         <automationSettingsSchemaMoniker Id="a4ccd2fc-91df-41cd-a00c-df9673c7cf03" />
       </extendedElement>
       <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.MatchesApplicationTargetNsbVersion",
+    "Properties": [
+      {
+        "Name": "TargetNsbVersion",
+        "Value": "NSB 5.0",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </menuSettings>
+    <menuSettings Id="37ecaf00-6bb0-4a09-97c4-d9af1fc40f8e" text="View Code" commandId="80f1c950-4ae7-438b-aa2a-ef87d3299aed" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="200">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a6df95ba-94aa-4476-be14-4cfb4ccc9ca3" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.HasEndpointDefinedCondition",
+    "Properties": []
+  },
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.MatchesApplicationTargetNsbVersion",
     "Properties": [
@@ -7765,7 +7928,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="ca932548-0b1d-4164-a041-d5ae011cfb3e" name="OpenCode" displayName="Open Code" description="" codeIdentifier="OpenCode" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                          <automationSettings Id="ca932548-0b1d-4164-a041-d5ae011cfb3e" name="OpenCodeV4" displayName="Open Code V4" description="" codeIdentifier="OpenCodeV4" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7918,7 +8081,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="f1d60d66-427c-434f-80fe-09aba1de7b90" name="OnIsSagaEqualsTrue" displayName="On Is Saga Equals True" description="" codeIdentifier="OnIsSagaEqualsTrue" automationType="Event Launch Point" classification="LaunchPoint">
+                          <automationSettings Id="f1d60d66-427c-434f-80fe-09aba1de7b90" name="OnIsSagaEqualsTrueV4" displayName="On Is Saga Equals True V4" description="" codeIdentifier="OnIsSagaEqualsTrueV4" automationType="Event Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7927,7 +8090,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="157e4b62-d57e-4421-9c78-bb5d61b520f3" name="IsSagaEqualsTrueCommand" displayName="Is Saga Equals True Command" description="" codeIdentifier="IsSagaEqualsTrueCommand" automationType="Command">
+                          <automationSettings Id="157e4b62-d57e-4421-9c78-bb5d61b520f3" name="IsSagaEqualsTrueCommandV4" displayName="Is Saga Equals True Command V4" description="" codeIdentifier="IsSagaEqualsTrueCommandV4" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7936,7 +8099,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="4922b8dd-e4c0-4df0-96a0-6b8e53ef24cd" name="UnfoldSagaConfigureHowToFindCode" displayName="Unfold Saga Configure How To Find Code" description="" codeIdentifier="UnfoldSagaConfigureHowToFindCode" automationType="Command">
+                          <automationSettings Id="4922b8dd-e4c0-4df0-96a0-6b8e53ef24cd" name="UnfoldSagaConfigureHowToFindCodeV4" displayName="Unfold Saga Configure How To Find Code V4" description="" codeIdentifier="UnfoldSagaConfigureHowToFindCodeV4" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7972,7 +8135,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="e3e85661-7e5f-4d98-aab1-2a38082fea08" name="OpenCommand" displayName="Open Command" description="" codeIdentifier="OpenCommand" automationType="Command">
+                          <automationSettings Id="e3e85661-7e5f-4d98-aab1-2a38082fea08" name="OpenCommandV4" displayName="Open Command V4" description="" codeIdentifier="OpenCommandV4" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7982,6 +8145,51 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="a15eb487-0ff8-4da2-a14a-c935c7cbea10" name="GenerateCodeV5Handlers" displayName="Generate Code V5 Handlers" description="" codeIdentifier="GenerateCodeV5Handlers" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="83c86d15-ec12-4895-a1a7-339efa92a312" name="UnfoldSagaConfigureHowToFindCodeV5" displayName="Unfold Saga Configure How To Find Code V5" description="" codeIdentifier="UnfoldSagaConfigureHowToFindCodeV5" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="c9c6b8ef-da6a-4ea6-9b41-4a09589768ea" name="IsSagaEqualsTrueCommandV5" displayName="Is Saga Equals True Command V5" description="" codeIdentifier="IsSagaEqualsTrueCommandV5" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="668a1473-b568-44f3-874f-910d4a35f4f5" name="OnIsSagaEqualsTrueV5" displayName="On Is Saga Equals True V5" description="" codeIdentifier="OnIsSagaEqualsTrueV5" automationType="Event Launch Point" classification="LaunchPoint">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="d8df622e-815f-4431-b2a2-6c22e80a7e3b" name="OpenCommandV5" displayName="Open Command V5" description="" codeIdentifier="OpenCommandV5" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="a6df95ba-94aa-4476-be14-4cfb4ccc9ca3" name="OpenCodeV5" displayName="Open Code V5" description="" codeIdentifier="OpenCodeV5" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />

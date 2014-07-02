@@ -662,7 +662,7 @@
     </Content>
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
     </None>
     <None Include="source.extension.VSVersion.gen.ttinclude">
@@ -990,7 +990,7 @@
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.tt">
+    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.v4.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -1061,6 +1061,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>b2baa2d4-07ed-4f87-b66a-5eb71b52ff44</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.v5.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>82ea2f3d-f768-46cd-acee-380f6efd5b68</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

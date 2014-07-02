@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 {
+    using NuPattern.Runtime;
+
     [CLSCompliant(false)]
     [Category("General")]
     [Description("Generate ConfigureHowToFindSagaBody value and Set Code properties.")]
@@ -20,6 +22,8 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
         private string GenerateConfigureHowToFindSagaBody()
         {
+            var targetNsbVersion = this.Component.As<IProductElement>().Root.As<IApplication>().TargetNsbVersion;
+            //TODO: Generate appropriate mapping for NSB v4 vs NSB v5 .
             var sb = new StringBuilder();
             sb.AppendLine();
 
