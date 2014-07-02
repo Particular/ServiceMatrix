@@ -5475,6 +5475,18 @@
   }
 ]</properties>
     </commandSettings>
+    <commandSettings Id="b83dfd39-ae09-41a1-89ce-e500c8cb24d5" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a15eb487-0ff8-4da2-a14a-c935c7cbea10" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"0fa0f1e3-2a8d-4e12-b629-9012e20354ad\"\r\n  },\r\n  {\r\n    \"CommandId\": \"36939d09-f7c3-45f5-881c-3908f1476ab4\"\r\n  },\r\n  {\r\n    \"CommandId\": \"2705891b-8aa1-4a03-b335-5d83c3c2693a\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -7834,7 +7846,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="0d75e31e-4c35-49a6-a939-75ff962a0b1f" name="GenerateCodeHandlers" displayName="Generate Code Handlers" description="" codeIdentifier="GenerateCodeHandlers" automationType="Command">
+                          <automationSettings Id="0d75e31e-4c35-49a6-a939-75ff962a0b1f" name="GenerateCodeV4Handlers" displayName="Generate Code V4 Handlers" description="" codeIdentifier="GenerateCodeV4Handlers" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7961,6 +7973,15 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="e3e85661-7e5f-4d98-aab1-2a38082fea08" name="OpenCommand" displayName="Open Command" description="" codeIdentifier="OpenCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="a15eb487-0ff8-4da2-a14a-c935c7cbea10" name="GenerateCodeV5Handlers" displayName="Generate Code V5 Handlers" description="" codeIdentifier="GenerateCodeV5Handlers" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
