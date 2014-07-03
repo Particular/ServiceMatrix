@@ -3,12 +3,10 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
 using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
-using System.Collections.ObjectModel;
-using NuPattern.Diagnostics;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
 using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
@@ -22,8 +20,6 @@ namespace NServiceBusStudio.Automation.Commands
     [CLSCompliant(false)]
     public class ShowSubscriberPicker : NuPattern.Runtime.Command
     {
-        private static readonly ITracer tracer = Tracer.Get<ShowSubscriberPicker>();
-
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
         /// </summary>
@@ -56,24 +52,20 @@ namespace NServiceBusStudio.Automation.Commands
             this.ValidateObject();
 
             var services = CurrentElement.Parent.Parent.Parent.Parent.Service;
-            var existingServiceNames = services.Select(e => e.InstanceName);
-            var picker = WindowFactory.CreateDialog<ServicePicker>() as IServicePicker;
+            var existingServiceNames = services.Select(e => e.InstanceName).ToList();
 
-            picker.Elements = new ObservableCollection<string>(existingServiceNames);
-            picker.Title = "Add Subscriber...";
+            var viewModel = new ServicePickerViewModel(existingServiceNames);
+
+            var picker = WindowFactory.CreateDialog<ServicePicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    foreach (var selectedElement in picker.SelectedItems)
+                    foreach (var selectedElement in viewModel.SelectedItems)
                     {
-                        var selectedService = default(IService);
-                        if (existingServiceNames.Contains(selectedElement))
-                        {
-                            selectedService = services.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                        }
-                        else
+                        var selectedService = services.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                        if (selectedService == null)
                         {
                             selectedService = CurrentElement.Parent.Parent.Parent.Parent.CreateService(selectedElement);
                         }

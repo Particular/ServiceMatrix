@@ -39,10 +39,10 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = CurrentElement.As<IAbstractEndpoint>();
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
+
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
             var app = CurrentElement.Root.As<IApplication>();
 
@@ -54,13 +54,12 @@ namespace NServiceBusStudio.Automation.Commands
                         (ICollection<string>)s.Contract.Commands.Command.Select(x => x.InstanceName).OrderBy(c => c).ToList()))
                 .OrderBy(t => t.Item1).ToList();
 
-            var viewModel =
-                new ElementHierarchyPickerViewModel(elements)
-                {
-                    MasterName = "Service Name",
-                    SlaveName = "Command Name",
-                    Title = "Send Command",
-                };
+            var viewModel = new ElementHierarchyPickerViewModel(elements)
+            {
+                MasterName = "Service Name",
+                SlaveName = "Command Name",
+                Title = "Send Command",
+            };
 
             var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
 

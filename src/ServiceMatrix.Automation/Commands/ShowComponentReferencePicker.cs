@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.Dialog;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using AbstractEndpoint.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
+using System.ComponentModel.Composition;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Windows.Input;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -44,7 +40,7 @@ namespace NServiceBusStudio.Automation.Commands
             this.ValidateObject();
 
             var element = CurrentElement.As<IComponent>();
-            var app = CurrentElement.Root.As<NServiceBusStudio.IApplication>();
+            var app = CurrentElement.Root.As<IApplication>();
 
             var infrastructureLibraries = app.Design.Libraries.Library
                 .Except(element.LibraryReferences.LibraryReference.Select(l => l.Library));
@@ -52,20 +48,21 @@ namespace NServiceBusStudio.Automation.Commands
             var serviceLibraries = element.Parent.Parent.ServiceLibraries.ServiceLibrary
                 .Except(element.LibraryReferences.LibraryReference.Select(l => l.ServiceLibrary));
 
-            var picker = WindowFactory.CreateDialog<ComponentPicker>() as IServicePicker;
+            var infraestructureAndServicesAndLibraries = infrastructureLibraries.Select(l => string.Format("[Global] {0}", l.InstanceName))
+                                       .Union(serviceLibraries.Select(l => string.Format("[Service] {0}", l.InstanceName))).ToList();
 
-            picker.Elements = new ObservableCollection<string>(
-                infrastructureLibraries.Select(l => string.Format("[Global] {0}", l.InstanceName))
-                .Union(serviceLibraries.Select(l => string.Format("[Service] {0}", l.InstanceName)))
-                );
+            var viewModel = new ComponentPickerViewModel(infraestructureAndServicesAndLibraries)
+            {
+                Title = "Add Library References..."
+            };
 
-            picker.Title = "Add Library References...";
+            var picker = WindowFactory.CreateDialog<ComponentPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    foreach (var selectedElement in picker.SelectedItems)
+                    foreach (var selectedElement in viewModel.SelectedItems)
                     {
                         if (selectedElement.StartsWith("[Service]"))
                         {
@@ -92,7 +89,7 @@ namespace NServiceBusStudio.Automation.Commands
                     }
 
                     // TODO: Try to add the library links
-                    
+
                 }
             }
         }

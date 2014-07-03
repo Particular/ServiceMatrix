@@ -39,10 +39,10 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = CurrentElement.As<IAbstractEndpoint>();
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
+
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
             var app = CurrentElement.Root.As<IApplication>();
 

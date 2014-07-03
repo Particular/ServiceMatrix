@@ -201,6 +201,8 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
     <Compile Include="TypeConverters\InvariantCultureTimeSpanStringConverter.cs" />
     <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />
     <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
@@ -224,6 +226,7 @@
     <Compile Include="Util\ServiceMatrixOverrides.cs" />
     <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
+    <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
     <Compile Include="ViewModels\ElementHierarchyPickerViewModel.cs" />
     <Compile Include="Dialog\UserCodeChangeRequired.xaml.cs">
       <DependentUpon>UserCodeChangeRequired.xaml</DependentUpon>
@@ -231,8 +234,12 @@
     <Compile Include="Dialog\SagaStarterPicker.xaml.cs">
       <DependentUpon>SagaStarterPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\IEventPicker.cs" />
-    <Compile Include="ViewModels\ElementHierarchyPickerViewModelValidator.cs" />
+    <Compile Include="ViewModels\ElementPickerViewModel.cs" />
+    <Compile Include="ViewModels\EndpointPickerViewModel.cs" />
+    <Compile Include="ViewModels\EventReadOnlyPickerViewModel.cs" />
+    <Compile Include="ViewModels\SagaStarterViewModel.cs" />
+    <Compile Include="ViewModels\SelectItemViewModel.cs" />
+    <Compile Include="ViewModels\ServicePickerViewModel.cs" />
     <Compile Include="ViewModels\ValidatingViewModel.cs" />
     <Compile Include="Extensions\NugetPackageVersionManager.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
@@ -331,8 +338,6 @@
     <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\IElementHierarchyPicker.cs" />
-    <Compile Include="Dialog\IEndpointPicker.cs" />
     <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
       <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
     </Compile>
@@ -442,8 +447,6 @@
     <Compile Include="Dialog\EventReadOnlyPicker.xaml.cs">
       <DependentUpon>EventReadOnlyPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\IElementPicker.cs" />
-    <Compile Include="Dialog\IServicePicker.cs" />
     <Compile Include="Dialog\ServicePicker.xaml.cs">
       <DependentUpon>ServicePicker.xaml</DependentUpon>
     </Compile>
@@ -556,6 +559,7 @@
     <Compile Include="WizardExtensions\InstantiationTemplateCustomWizard.cs" />
     <Compile Include="WizardExtensions\TargetFrameworkFixupWizard.cs" />
     <Compile Include="WizardExtensions\SetModelPropertiesWizard.cs" />
+    <Compile Include="ViewModels\ValidationConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />
@@ -652,6 +656,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\ComponentPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\ElementPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\EndpointPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\SagaStarterPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\EventReadOnlyPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
     <Page Include="Dialog\UserCodeChangeRequired.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

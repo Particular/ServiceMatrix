@@ -23,9 +23,9 @@ namespace NServiceBusStudio
 		public const string Author = "Particular Software";
 
 		/// <summary>
-		/// 2.1.0
+		/// 2.1.1
 		/// </summary>
-		public const string Version = "2.1.0";
+		public const string Version = "2.1.1";
 
 		/// <summary>
 		/// Intuitive modeling and design of distributed systems

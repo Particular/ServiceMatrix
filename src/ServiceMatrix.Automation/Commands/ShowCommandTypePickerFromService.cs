@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
 using NuPattern.Diagnostics;
 using NuPattern.Presentation;
@@ -57,25 +58,27 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentService = this.CurrentElement.As<IService>();
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
+            CurrentService = CurrentElement.As<IService>();
+
             var commands = CurrentService.Contract.Commands.Command;
-            var commandNames = commands.Select(e => e.InstanceName);
+            var commandNames = commands.Select(e => e.InstanceName).ToList();
 
-            var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
+            var viewModel = new ElementPickerViewModel(commandNames)
+            {
+                Title = "Send Command",
+                MasterName = "Command name"
+            };
 
-            picker.Elements = commandNames.ToList();
-            picker.Title = "Send Command";
-            picker.MasterName = "Command name";
+            var picker = WindowFactory.CreateDialog<ElementPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedElement = picker.SelectedItem;
+                    var selectedElement = viewModel.SelectedItem;
                     if (!commandNames.Contains(selectedElement))
                     {
                         CurrentService.Contract.Commands.CreateCommand(selectedElement);

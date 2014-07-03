@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.Dialog;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Windows.Input;
-using Microsoft.VisualStudio;
-using System.Windows.Interop;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -31,31 +29,39 @@ namespace NServiceBusStudio.Automation.Commands
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the Window Factory, used to create a Window Dialog.
+        /// </summary>
+        [Required]
+        [Import(AllowDefault = true)]
+        private IDialogWindowFactory WindowFactory
+        {
+            get;
+            set;
+        }
+
         public override void Execute()
         {
-            //var events = CurrentElement.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event);
-            var usecases = this.CurrentElement.Root.As<IApplication>().Design.UseCases.UseCase;
-            var picker = new ElementPicker() as IElementPicker;
-            if (picker != null)
-            {
-                (picker as ElementPicker).SetDropdownEditable(false);
-                (picker as ElementPicker).Owner = System.Windows.Application.Current.MainWindow;
-                (picker as ElementPicker).WindowStartupLocation = System.Windows.WindowStartupLocation.CenterOwner;
-            }
+            // Verify all [Required] and [Import]ed properties have valid values.
+            this.ValidateObject();
 
-            picker.Elements = usecases
-                                .Where(uc => !uc.UseCaseLinks.Any(l => l.LinkedElementId == this.CurrentElement.Id))
+            //var events = CurrentElement.Parent.Parent.Parent.Parent.Service.SelectMany(s => s.Contract.Events.Event);
+            var usecases = CurrentElement.Root.As<IApplication>().Design.UseCases.UseCase;
+            var elements = usecases
+                                .Where(uc => !uc.UseCaseLinks.Any(l => l.LinkedElementId == CurrentElement.Id))
                                 .Select(uc => uc.InstanceName).ToList();
+
+            var viewModel = new ElementPickerViewModel(elements) { DropDownEditable = false };
+            var picker = WindowFactory.CreateDialog<ElementPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedElement = picker.SelectedItem;
-                    usecases.FirstOrDefault(uc => uc.InstanceName == selectedElement).AddRelatedElement(this.CurrentElement);
+                    var selectedElement = viewModel.SelectedItem;
+                    usecases.FirstOrDefault(uc => uc.InstanceName == selectedElement).AddRelatedElement(CurrentElement);
                 }
             }
-
         }
     }
 }

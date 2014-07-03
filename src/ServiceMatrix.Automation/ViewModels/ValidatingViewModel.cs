@@ -12,19 +12,7 @@ namespace NServiceBusStudio.Automation.ViewModels
     /// </summary>
     public abstract class ValidatingViewModel : ViewModel, IDataErrorInfo
     {
-        protected abstract IValidator GetValidator();
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is valid.
-        /// </summary>
-        /// <value>Returns <c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
-        protected bool IsValid
-        {
-            get
-            {
-                return GetValidator().Validate(new ValidationContext(this)).IsValid;
-            }
-        }
+        IValidator validator;
 
         /// <summary>
         /// Gets an error message indicating what is wrong with this object.
@@ -35,7 +23,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var result = GetValidator().Validate(this);
+                var result = Validator.Validate(this);
                 if (result.IsValid)
                 {
                     return string.Empty;
@@ -54,7 +42,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var result = GetValidator().Validate(new ValidationContext(this, new PropertyChain(), new MemberNameValidatorSelector(new[] { columnName })));
+                var result = Validator.Validate(new ValidationContext(this, new PropertyChain(), new MemberNameValidatorSelector(new[] { columnName })));
                 OnPropertyChanged(() => Error);
 
                 if (result.IsValid)
@@ -65,5 +53,27 @@ namespace NServiceBusStudio.Automation.ViewModels
                 return string.Join(Environment.NewLine, result.Errors.Select(vf => vf.ErrorMessage));
             }
         }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is valid.
+        /// </summary>
+        /// <value>Returns <c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
+        protected bool IsValid
+        {
+            get
+            {
+                return Validator.Validate(new ValidationContext(this)).IsValid;
+            }
+        }
+
+        IValidator Validator
+        {
+            get
+            {
+                return validator ?? (validator = CreateValidator());
+            }
+        }
+
+        protected abstract IValidator CreateValidator();
     }
 }

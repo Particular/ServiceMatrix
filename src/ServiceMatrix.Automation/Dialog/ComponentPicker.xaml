@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
-             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
              mc:Ignorable="d"
              Width="280" d:DesignHeight="220"
              SizeToContent="Height" 
              WindowStyle="None"
-             ResizeMode="NoResize">
+             ResizeMode="NoResize"
+             Name="picker">
     <src:CommonDialogWindow.Resources>
         <ControlTemplate x:Key="ItemTemplate" TargetType="ListViewItem">
             <Border
@@ -35,26 +35,27 @@
             <CheckBox
 			x:Name="checkbox"
 			Content="{Binding}"
-			IsChecked="{Binding	RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, Path=IsSelected}" />
+			IsChecked="{Binding Path=IsSelected}" />
         </DataTemplate>
     </src:CommonDialogWindow.Resources>
-    <Grid>
-        <StackPanel Width="280" Background="#F1F1F1">
+    <Grid d:DataContext="{d:DesignData Source=/Dialog/SampleData/ComponentPickerViewModelSampleData.xaml}">
+        <StackPanel HorizontalAlignment="Stretch" Background="#F1F1F1">
             <StackPanel.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
             </StackPanel.BitmapEffect>
             <StackPanel Margin="20">
-                <Label x:Name="lblTitle" FontSize="22" >Deploy components</Label>
-
+                <Label FontSize="22" Content="{Binding Title}" />
                 <Label Margin="0, 10, 0, 0" Foreground="#333333">Existing components</Label>
                 <ListView x:Name="ServicesList"
-                  ItemsSource="{Binding Path=Elements}" 
+                  ItemsSource="{Binding Path=Elements}"
                   ItemTemplate="{StaticResource ItemDataTemplate}"
-                  SelectionMode="Multiple" MinHeight="50"></ListView>
+                  SelectionMode="Multiple" MinHeight="50">
+                </ListView>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
-                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" IsEnabled="{Binding ElementName=ServicesList,Path=SelectedItems.Count}" Click="ok_Click">Done</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Command="{Binding AcceptCommand}" 
+                            CommandParameter="{Binding ElementName=picker}">Done</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

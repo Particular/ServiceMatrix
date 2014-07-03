@@ -1,16 +1,16 @@
-﻿using AbstractEndpoint;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel.Composition;
+using System.Linq;
+using AbstractEndpoint;
 using Microsoft.VisualStudio.Shell;
 using NServiceBusStudio;
 using NuPattern;
 using NuPattern.Runtime;
 using NuPattern.Runtime.UI.ViewModels;
 using NuPattern.VisualStudio.Solution;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.ComponentModel.Composition;
-using System.Linq;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
@@ -35,7 +35,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             this.ViewModel = new ServiceMatrixDiagramMindscapeViewModel(patternWindows, serviceProvider);
             this.Solution = solution;
             this.PatternWindows = patternWindows;
-            
+
             StartListening(serviceProvider);
         }
 
@@ -104,7 +104,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
             // Add Send/Receive HandleMessageLink
             AddElementOf(allNodes, new[] { "HandleMessageLink" });
-            
+
         }
 
         private void HandleChanges(ObservableCollection<IProductElementViewModel> observableCollection)
@@ -135,7 +135,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     foreach (IProductElementViewModel newElement in e.NewItems)
                     {
                         AddElement(newElement);
-                        HandleChanges(new ObservableCollection<IProductElementViewModel>(new [] { newElement }));
+                        HandleChanges(new ObservableCollection<IProductElementViewModel>(new[] { newElement }));
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
@@ -162,7 +162,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             switch (elementType)
             {
                 case "Application":
-                    newElement.ChildNodes.Traverse(x => x.ChildNodes).Where(x => x.Data.DefinitionName != "Service").ForEach (x => AddElement (x));
+                    newElement.ChildNodes.Traverse(x => x.ChildNodes).Where(x => x.Data.DefinitionName != "Service").ForEach(x => AddElement(x));
                     break;
 
                 case "NServiceBusHost":
@@ -234,7 +234,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 case "ComponentLink":
                     RemoveComponentLink(removedElement);
                     break;
-                
+
             }
 
             this.ViewModel.DeleteNodesById(removedElement.Data.Id);
@@ -311,7 +311,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         private void CreateProcessedCommandLinkReply(IProcessedCommandLinkReply processedCommandLinkReply)
         {
             var messageNode = this.ViewModel.GetOrCreateMessageNode(this.FindViewModel(processedCommandLinkReply.MessageReference.Value.AsElement().Id));
-            
+
             foreach (var component in this.ViewModel.GetAllComponentsNode(processedCommandLinkReply.Parent.Parent.Parent.AsElement().Id))
             {
                 this.ViewModel.GetOrCreateMessageConnection(component, messageNode);
@@ -321,7 +321,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
         private void CreateHandledMessageLink(IHandledMessageLink handledMessageLink)
         {
             var messageNode = this.ViewModel.GetOrCreateMessageNode(this.FindViewModel(handledMessageLink.MessageReference.Value.AsElement().Id));
-            
+
             foreach (var component in this.ViewModel.GetAllComponentsNode(handledMessageLink.Parent.Parent.AsElement().Id))
             {
                 this.ViewModel.GetOrCreateMessageConnection(messageNode, component);
@@ -339,7 +339,6 @@ namespace ServiceMatrix.Diagramming.ViewModels
                 this.CreateComponentLinks(component);
             }
         }
-
 
         private IProductElementViewModel FindViewModel(Guid elementId)
         {

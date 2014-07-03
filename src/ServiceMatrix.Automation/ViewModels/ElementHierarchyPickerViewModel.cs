@@ -5,13 +5,14 @@ using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using FluentValidation;
+using FluentValidation.Validators;
 using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.ViewModels
 {
     public class ElementHierarchyPickerViewModel : ValidatingViewModel
     {
-        IValidator validator;
+        IDictionary<string, ICollection<string>> elements;
 
         [Obsolete("Only available to support design-time data", true)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -24,15 +25,18 @@ namespace NServiceBusStudio.Automation.ViewModels
             InitializeCommands();
             DropDownEditable = true;
             var elementsList = elements as IList<Tuple<string, ICollection<string>>> ?? elements.ToList();
-            Elements = elementsList.ToDictionary(t => t.Item1, t => t.Item2);
+            this.elements = elementsList.ToDictionary(t => t.Item1, t => t.Item2);
             MasterElements = elementsList.Select(t => t.Item1).ToList();
-            validator = new ElementHierarchyPickerViewModelValidator();
         }
 
         /// <summary>
         /// Gets the accept command.
         /// </summary>
-        public System.Windows.Input.ICommand AcceptCommand { get; private set; }
+        public System.Windows.Input.ICommand AcceptCommand
+        {
+            get;
+            private set;
+        }
 
         private string title;
 
@@ -64,7 +68,11 @@ namespace NServiceBusStudio.Automation.ViewModels
             }
         }
 
-        public ImageSource TitleImageSource { get; set; }
+        public ImageSource TitleImageSource
+        {
+            get;
+            set;
+        }
 
         public string MasterName
         {
@@ -78,15 +86,17 @@ namespace NServiceBusStudio.Automation.ViewModels
             set;
         }
 
-        IDictionary<string, ICollection<string>> Elements
+        public bool DropDownEditable
         {
             get;
             set;
         }
 
-        public bool DropDownEditable { get; set; }
-
-        public ICollection<string> MasterElements { get; private set; }
+        public ICollection<string> MasterElements
+        {
+            get;
+            private set;
+        }
 
         private string _selectedMasterItem;
 
@@ -107,7 +117,7 @@ namespace NServiceBusStudio.Automation.ViewModels
             get
             {
                 ICollection<string> slaveElements;
-                if (!Elements.TryGetValue(SelectedMasterItem, out slaveElements) || slaveElements == null)
+                if (!elements.TryGetValue(SelectedMasterItem, out slaveElements) || slaveElements == null)
                 {
                     return new List<string>();
                 }
@@ -145,9 +155,32 @@ namespace NServiceBusStudio.Automation.ViewModels
             AcceptCommand = new RelayCommand<dynamic>(dialog => this.CloseDialog(dialog), dialog => IsValid);
         }
 
-        protected override IValidator GetValidator()
+        protected override IValidator CreateValidator()
         {
-            return validator;
+            return new ElementHierarchyPickerViewModelValidator();
+        }
+
+        class ElementHierarchyPickerViewModelValidator : AbstractValidator<ElementHierarchyPickerViewModel>
+        {
+            public ElementHierarchyPickerViewModelValidator()
+            {
+                RuleFor(vm => vm.SelectedMasterItem)
+                    .NotNull()
+                    .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.CompoundIdentifierMaxLength)
+                    .Matches(ValidationConstants.CompoundIdentifierPattern);
+
+                RuleFor(vm => vm.SelectedSlaveItem)
+                    .NotNull()
+                    .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.IdentifierMaxLength)
+                    .Matches(ValidationConstants.IdentifierPattern)
+                    .Must(BeDifferentToTheMasterItem)
+                    .WithMessage("Values must be different");
+            }
+
+            private bool BeDifferentToTheMasterItem(ElementHierarchyPickerViewModel model, string value, PropertyValidatorContext context)
+            {
+                return !string.Equals(value, model.SelectedMasterItem, StringComparison.Ordinal);
+            }
         }
     }
 }
