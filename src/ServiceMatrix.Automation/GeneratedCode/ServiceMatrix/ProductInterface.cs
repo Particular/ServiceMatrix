@@ -226,6 +226,14 @@ namespace NServiceBusStudio
 		String TargetNsbVersion { get; set; }
 
 		/// <summary>
+		/// Description for Application.TargetFrameworkVersion
+		/// </summary>
+		[Description("Description for Application.TargetFrameworkVersion")]
+		[DisplayName("Target Framework Version")]
+		[Category("General")]
+		String TargetFrameworkVersion { get; set; }
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		IProductToolkitInfo ToolkitInfo { get; }
