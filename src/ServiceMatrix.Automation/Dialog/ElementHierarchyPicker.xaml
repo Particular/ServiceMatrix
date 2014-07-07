@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              Name="picker"
              Width="280"
-             Height="250"
+             SizeToContent="Height"
              WindowStyle="None"
              ResizeMode="NoResize"
              FocusManager.FocusedElement="{x:Reference MasterDropDown}">

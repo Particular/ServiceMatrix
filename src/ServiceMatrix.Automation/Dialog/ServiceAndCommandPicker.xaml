@@ -1,0 +1,67 @@
+﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ServiceAndCommandPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             mc:Ignorable="d"
+             Name="picker"
+             Width="280"
+             SizeToContent="Height"
+             WindowStyle="None"
+             ResizeMode="NoResize"
+             FocusManager.FocusedElement="{x:Reference ServiceDropDown}">
+
+    <Grid d:DataContext="{d:DesignData Source=/Dialog/SampleData/ServiceAndCommandPickerViewModelSampleData.xaml}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Particular.ServiceMatrix.Automation;component/Resources/SharedStyles.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <StackPanel HorizontalAlignment="Stretch" Background="#F1F1F1">
+            <StackPanel.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </StackPanel.BitmapEffect>
+            <StackPanel Margin="20">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="240">
+                    <Image Source="../Diagramming/Styles/Images/CommandIcon.png" Width="24"/>
+                    <Label FontSize="22" Content="Send Command" />
+                </StackPanel>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="Service" Visibility="{Binding AllowServiceSelection, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <ComboBox x:Name="ServiceDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="True"
+                  Visibility="{Binding AllowServiceSelection, Converter={StaticResource BooleanToVisibilityConverter}}"
+                  ItemsSource="{Binding Path=Services}" 
+                  Text="{Binding Path=SelectedService, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                  Cursor="IBeam"/>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="Command"/>
+                <ComboBox Height="25" Padding="0, 3, 0, 3" IsEditable="True"
+                  ItemsSource="{Binding Path=Commands}" 
+                  IsEnabled="{Binding Path=CanProvideCommand}"
+                  Text="{Binding Path=SelectedCommand, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                  Cursor="IBeam"/>
+
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="Handled with"/>
+                <ComboBox Height="25" Padding="3" IsEditable="False"
+                  IsEnabled="{Binding Path=CanProvideHandler}"
+                  ItemsSource="{Binding Path=HandlerComponents}" 
+                  DisplayMemberPath="HandlerDescription"
+                  SelectedValue="{Binding Path=SelectedHandlerComponent, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedValuePath="Handler"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" 
+                            Command="{Binding AcceptCommand}" 
+                            CommandParameter="{Binding ElementName=picker}">Done</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</src:CommonDialogWindow>
+

@@ -18,6 +18,8 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         public EndpointPickerViewModel(ICollection<string> elements)
         {
+            AllowEndpointCreation = true;
+
             elements = elements ?? new List<string>();
             Elements = new ObservableCollection<SelectItemViewModel>(elements.Select(x => new SelectItemViewModel { Name = x }));
             CreateEndpoint = new CreateEndpointViewModel(this);
@@ -38,6 +40,12 @@ namespace NServiceBusStudio.Automation.ViewModels
         }
 
         public string ComponentName
+        {
+            get;
+            set;
+        }
+
+        public bool AllowEndpointCreation
         {
             get;
             set;

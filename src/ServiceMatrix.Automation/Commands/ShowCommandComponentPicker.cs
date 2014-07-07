@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using AbstractEndpoint;
 using NServiceBusStudio.Automation.Dialog;
@@ -46,63 +47,72 @@ namespace NServiceBusStudio.Automation.Commands
 
             var app = CurrentElement.Root.As<IApplication>();
 
-            // Get available commands
-            var elements = app.Design.Services.Service
-                .Select(s =>
-                    Tuple.Create(
-                        s.InstanceName,
-                        (ICollection<string>)s.Contract.Commands.Command.Select(x => x.InstanceName).OrderBy(c => c).ToList()))
-                .OrderBy(t => t.Item1).ToList();
+            var viewModel = new ServiceAndCommandPickerViewModel(app);
 
-            var viewModel = new ElementHierarchyPickerViewModel(elements)
-            {
-                MasterName = "Service Name",
-                SlaveName = "Command Name",
-                Title = "Send Command",
-            };
-
-            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
+            var picker = WindowFactory.CreateDialog<ServiceAndCommandPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedService = viewModel.SelectedMasterItem;
-                    var selectedCommand = viewModel.SelectedSlaveItem;
+                    var selectedService = viewModel.SelectedService;
+                    var selectedCommand = viewModel.SelectedCommand;
 
-                    var service = app.Design.Services.Service.FirstOrDefault(x => x.InstanceName == selectedService);
-                    if (service == null)
-                    {
-                        service = app.Design.Services.CreateService(selectedService);
-                    }
+                    var service =
+                        app.Design.Services.Service.FirstOrDefault(x => x.InstanceName == selectedService)
+                        ?? app.Design.Services.CreateService(selectedService);
 
+                    var newCommand = false;
                     var command = service.Contract.Commands.Command.FirstOrDefault(x => x.InstanceName == selectedCommand);
                     if (command == null)
                     {
+                        newCommand = true;
                         command = service.Contract.Commands.CreateCommand(selectedCommand);
                     }
 
-                    var component = service.Components.Component.FirstOrDefault(x => x.Publishes.CommandLinks.Any(y => y.CommandReference.Value == command));
-                    if (component == null)
-                    {
-                        var deployToEndpoint = default(EventHandler);
-
-                        deployToEndpoint =
-                            (s, e) =>
+                    // create and deploy new publisher command
+                    var publisherComponent = service.Components.CreateComponent(command.InstanceName + "Sender", x => x.Publishes.CreateLink(command));
+                    var deployToEndpoint = default(EventHandler);
+                    deployToEndpoint =
+                        (s, e) =>
+                        {
+                            var c = s as IComponent;
+                            if (c != null && c == publisherComponent)
                             {
-                                var c = s as IComponent;
-                                if (c != null && c.InstanceName == selectedCommand + "Sender")
-                                {
-                                    c.DeployTo(endpoint);
-                                    app.OnInstantiatedComponent -= deployToEndpoint;
-                                }
-                            };
+                                c.DeployTo(endpoint);
+                                app.OnInstantiatedComponent -= deployToEndpoint;
+                            }
+                        };
+                    app.OnInstantiatedComponent += deployToEndpoint;
 
-                        app.OnInstantiatedComponent += deployToEndpoint;
-                    }
-                    else
+                    if (newCommand)
                     {
-                        component.DeployTo(endpoint);
+                        if (viewModel.SelectedHandlerComponent == null)
+                        {
+                            service.Components.CreateComponent(command.InstanceName + "Handler", x => x.Subscribes.CreateLink(command));
+                        }
+                        else
+                        {
+                            var handlerComponent = viewModel.SelectedHandlerComponent;
+                            handlerComponent.Subscribes.CreateLink(command);
+
+                            if (handlerComponent.ProcessesMultipleMessages)
+                            {
+                                var sagaRecommendationMessage =
+                                    handlerComponent.IsSaga
+                                        ? String.Format("Would you like to update your existing saga?")
+                                        : String.Format("Convert ‘{0}’ to saga to correlate between commands & events?", handlerComponent.CodeIdentifier);
+                                var result = MessageBox.Show(sagaRecommendationMessage, "ServiceMatrix - Saga recommendation", MessageBoxButton.YesNo);
+                                if (result == MessageBoxResult.Yes)
+                                {
+                                    new ShowComponentSagaStarterPicker
+                                    {
+                                        WindowFactory = WindowFactory,
+                                        CurrentElement = handlerComponent
+                                    }.Execute();
+                                }
+                            }
+                        }
                     }
                 }
             }

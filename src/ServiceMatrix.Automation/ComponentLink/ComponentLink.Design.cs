@@ -222,7 +222,10 @@ namespace AbstractEndpoint
                 get { throw new NotImplementedException(); }
             }
 
-
+            public bool ProcessesMultipleMessages
+            {
+                get { throw new NotImplementedException(); }
+            }
 
             public string InterfaceBody
             {
