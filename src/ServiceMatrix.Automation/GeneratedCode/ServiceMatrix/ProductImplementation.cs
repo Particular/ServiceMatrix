@@ -348,6 +348,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.TargetFrameworkVersion
+		/// </summary>
+		[Description("Description for Application.TargetFrameworkVersion")]
+		[DisplayName("Target Framework Version")]
+		[Category("General")]
+		public virtual String TargetFrameworkVersion
+		{
+			get { return this.proxy.GetValue(() => this.TargetFrameworkVersion); }
+			set { this.proxy.SetValue(() => this.TargetFrameworkVersion, value); }
+		}
+
+		/// <summary>
 		/// Gets or sets the ToolkitInfo property.
 		/// </summary>
 		public virtual IProductToolkitInfo ToolkitInfo
