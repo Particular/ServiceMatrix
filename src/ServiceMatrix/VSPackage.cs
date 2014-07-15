@@ -16,6 +16,7 @@ using NServiceBusStudio.Automation.Exceptions;
 using NServiceBusStudio.Automation.Infrastructure;
 using NuPattern;
 using NuPattern.Diagnostics;
+using NuPattern.Runtime;
 using NuPattern.Runtime.Diagnostics;
 using NuPattern.VisualStudio;
 using ServiceMatrix.Diagramming;
@@ -43,6 +44,9 @@ namespace NServiceBusStudio
         [Import]
         public ITraceOutputWindowManager TraceOutputWindowManager { private get; set; }
 
+        [Import]
+        public IPatternManager PatternManager { get; set; }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -50,6 +54,7 @@ namespace NServiceBusStudio
             AddServices();
             EnsureCreateTraceOutput();
             TrackUnhandledExceptions();
+            UpdatePatternSchema();
         }
 
         private void TrackUnhandledExceptions()
@@ -129,6 +134,11 @@ namespace NServiceBusStudio
             var serviceContainer = (IServiceContainer)this;
             serviceContainer.AddService(typeof(IDetailsWindowsManager), this, true);
             serviceContainer.AddService(typeof(IDiagramsWindowsManager), this, true);
+        }
+
+        private void UpdatePatternSchema()
+        {
+            AutomationConfiguration.SetupCustomAutomation(PatternManager);
         }
 
         void IDetailsWindowsManager.Show()

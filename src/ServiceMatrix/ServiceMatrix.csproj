@@ -62,6 +62,7 @@
       <HintPath>..\packages\FluentValidation-Signed\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.Settings, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
@@ -123,7 +124,10 @@
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
       <Private>false</Private>
     </Reference>
-  </ItemGroup>
+      <Reference Include="NuPattern.Runtime.Extensibility.Serialization">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.Serialization.dll</HintPath>
+    </Reference>
+</ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Run.png" />
     <Content Include="BindingPath.pkgdef" />
@@ -220,6 +224,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
+    <Compile Include="AutomationSetup\Application.CustomAutomation.cs" />
+    <Compile Include="AutomationSetup\CustomAutomationExtensions.cs" />
     <Compile Include="GeneralOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -670,7 +676,7 @@
     <None Include="ripple.dependencies.config" />
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
     </None>
     <None Include="source.extension.VSVersion.gen.ttinclude">

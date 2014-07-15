@@ -1,13 +1,6 @@
-﻿using NServiceBusStudio;
+﻿using System.Linq;
+using NServiceBusStudio;
 using NuPattern.Diagnostics;
-using NuPattern.Library.Commands;
-using ServiceMatrix.Diagramming.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NuPattern.Library.Commands
 {
