@@ -5614,7 +5614,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"ac60e61f-8a54-4c4b-99db-05a82065a8d3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"db0a6380-180b-410f-982b-f3d1589111f3\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"b83dfd39-ae09-41a1-89ce-e500c8cb24d5\"\r\n  },\r\n  {\r\n    \"CommandId\": \"db0a6380-180b-410f-982b-f3d1589111f3\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
