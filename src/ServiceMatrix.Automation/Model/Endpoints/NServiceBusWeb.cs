@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NServiceBusStudio.Automation.Extensions;
+﻿using System.Collections.Generic;
 using AbstractEndpoint;
-using NServiceBusStudio;
+using NServiceBusStudio.Automation.Extensions;
 using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio
 {
     partial interface INServiceBusWeb : IAbstractEndpoint
     {
-
     }
 
     partial class NServiceBusWeb
     {
         public IProject Project
         {
-            get { return this.AsElement().GetProject(); }
+            get { return AsElement().GetProject(); }
         }
 
         public IAbstractEndpointComponents EndpointComponents
         {
-            get { return (NServiceBusWebComponents)this.NServiceBusWebComponents; }
+            get { return (NServiceBusWebComponents)NServiceBusWebComponents; }
         }
 
         partial void Initialize()
@@ -31,15 +26,15 @@ namespace NServiceBusStudio
             AbstractEndpointExtensions.CheckNameUniqueness(this);
 
             AbstractEndpointExtensions.RaiseOnInitializing(this);
-            
-            this.ErrorQueueChanged += (s, e) =>
+
+            ErrorQueueChanged += (s, e) =>
             {
-                this.SetOverridenProperties("ErrorQueue", this.ErrorQueue != this.AsElement().Root.As<IApplication>().ErrorQueue);
+                SetOverridenProperties("ErrorQueue", ErrorQueue != AsElement().Root.As<IApplication>().ErrorQueue);
             };
 
-            this.ForwardReceivedMessagesToChanged += (s, e) =>
+            ForwardReceivedMessagesToChanged += (s, e) =>
             {
-                this.SetOverridenProperties("ForwardReceivedMessagesTo", this.ForwardReceivedMessagesTo != this.AsElement().Root.As<IApplication>().ForwardReceivedMessagesTo);
+                SetOverridenProperties("ForwardReceivedMessagesTo", ForwardReceivedMessagesTo != AsElement().Root.As<IApplication>().ForwardReceivedMessagesTo);
             };
         }
 
@@ -47,28 +42,29 @@ namespace NServiceBusStudio
 
         public IEnumerable<string> OverridenProperties
         {
-            get { return this.overridenProperties; }
+            get { return overridenProperties; }
         }
 
         private void SetOverridenProperties(string propertyName, bool doOverride)
         {
             if (!doOverride)
             {
-                if (this.overridenProperties.Contains(propertyName))
+                if (overridenProperties.Contains(propertyName))
                 {
-                    this.overridenProperties.Remove(propertyName);
+                    overridenProperties.Remove(propertyName);
                 }
             }
             else
             {
-                if (!this.overridenProperties.Contains(propertyName))
+                if (!overridenProperties.Contains(propertyName))
                 {
-                    this.overridenProperties.Add(propertyName);
+                    overridenProperties.Add(propertyName);
                 }
             }
         }
 
         public EndpointCustomizationFuncs Customization { get { return null; } }
 
+        public string TargetNsbVersion { get; set; }
     }
 }

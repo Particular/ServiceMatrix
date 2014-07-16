@@ -15,7 +15,7 @@ namespace AbstractEndpoint
         string InstanceName { get; }
 
         IAbstractEndpointComponents EndpointComponents { get; }
-        
+
         // For Usage: Use CustomizationFuncs() extension method instead
         EndpointCustomizationFuncs Customization { get; }
 
@@ -24,6 +24,8 @@ namespace AbstractEndpoint
         string ErrorQueue { get; set; }
         string ForwardReceivedMessagesTo { get; set; }
         bool CommandSenderNeedsRegistration { get; set; }
+
+        string TargetNsbVersion { get; set; }
     }
 
     public static class AbstractEndpointExtensions
@@ -60,7 +62,7 @@ namespace AbstractEndpoint
         {
             if (DefaultCustomizationFuncs == null)
             {
-                DefaultCustomizationFuncs = EndpointCustomizationFuncs.CreateDefault(); 
+                DefaultCustomizationFuncs = EndpointCustomizationFuncs.CreateDefault();
             }
             if (endpoint == null || endpoint.Customization == null)
             {
