@@ -168,6 +168,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <ProjectTemplate Include="T\P\AppV5\AppV5.vstemplate">
+      <SubType>Designer</SubType>
+    </ProjectTemplate>
     <ProjectTemplate Include="T\P\App\App.vstemplate">
       <ItemGuid>51449dee-c5c5-4531-a2e4-ecbac39b7cde</ItemGuid>
       <SubType>Designer</SubType>
@@ -178,9 +181,13 @@
     <ProjectTemplate Include="T\P\App\Contract\Contract.vstemplate">
       <ItemGuid>5aa4908c-b198-47de-bf7d-8c918075e218</ItemGuid>
     </ProjectTemplate>
+    <Content Include="T\P\AppV5\AppV5.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="T\P\App\Contract\Contract.csproj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="T\P\App\Contract\Contract.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -492,6 +499,58 @@
       <ItemGuid>514ec25c-19b4-4db6-83a4-bcfff3712854</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="..\BundledPackages\Autofac.3.1.0.nupkg">
+      <Link>packages\Autofac.3.1.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Autofac.Mvc4.3.1.0.nupkg">
+      <Link>packages\Autofac.Mvc4.3.1.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.Mvc.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.Mvc.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0.nupkg">
+      <Link>packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.Razor.2.0.20715.0.nupkg">
+      <Link>packages\Microsoft.AspNet.Razor.2.0.20715.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.Client.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.Core.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.AspNet.WebPages.2.0.20710.0.nupkg">
+      <Link>packages\Microsoft.AspNet.WebPages.2.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.Net.Http.2.0.20710.0.nupkg">
+      <Link>packages\Microsoft.Net.Http.2.0.20710.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.Web.Infrastructure.1.0.0.0.nupkg">
+      <Link>packages\Microsoft.Web.Infrastructure.1.0.0.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Newtonsoft.Json.4.5.11.nupkg">
+      <Link>packages\Newtonsoft.Json.4.5.11.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
     </None>
@@ -568,10 +627,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHMVC\packages.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -664,7 +719,7 @@
       <ItemGuid>eb0d81fd-c72f-4f5b-b41e-8e43ce182e60</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.tt">
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.v4.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>49afd489-a5ff-4743-bfd0-2c4d33e0d6de</ItemGuid>
@@ -680,7 +735,7 @@
       <ItemGuid>7bc9d684-b67e-4d26-a55d-ad64c57f6fc1</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.v4.cs.tt">
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>d07e0f86-d73b-4dea-a249-17c701cbb03c</ItemGuid>
       <SubType>Designer</SubType>
@@ -757,7 +812,7 @@
       <ItemGuid>063e34ac-21e5-44df-a41a-0f2bbf6c23a7</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>fc90b58e-fc11-4d3a-a94e-c4142a74e46f</ItemGuid>
@@ -769,7 +824,7 @@
       <ItemGuid>41fbe97e-b6ed-4f2d-b28c-bd10a3d84269</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>102d67f5-2fc5-4b31-b42e-0f74f60abf25</ItemGuid>
@@ -787,7 +842,7 @@
       <ItemGuid>068ce3e7-5e66-4996-9477-523e4167bc2c</ItemGuid>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.v4.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>186f6ae9-49fd-4f9f-969d-034848f06541</ItemGuid>
@@ -817,7 +872,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5290a37d-dd77-46b3-91a7-6ef79b3cd82a</ItemGuid>
@@ -828,7 +883,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>50af6eba-4205-4aed-ad99-910a10d2be0a</ItemGuid>
     </Content>
-    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -863,7 +918,7 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5ddee7e0-7cd1-4713-ab12-8d59d622a228</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.cs.tt">
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.v4.cs.tt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -907,18 +962,18 @@
       <ItemGuid>506dda71-1e63-4b68-b639-d83ed965aa96</ItemGuid>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>2a3c2931-a8f9-4464-a458-c33d2731eff1</ItemGuid>
     </Content>
-    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.tt">
+    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -935,7 +990,7 @@
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.tt">
+    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.v4.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -945,6 +1000,74 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitConstants.cs</LastGenOutput>
     </None>
+    <Content Include="T\T4\Endpoints\NSBH\TransportConfig.v5.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>c6ba4012-3810-40e8-9169-a7b52bc4b692</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\MessageConventions.v5.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>df3b8184-677f-4e33-a920-ea2a23be22d5</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\MessageConventions.v5.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>184a4411-72b7-430a-868c-cb6ed4ac5142</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\TransportConfig.v5.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>0b904a14-ee36-446b-8854-a20b66d7d796</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\CustomAuthorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>1f5770c7-b4a0-4a9b-a8d8-0f28db97f4b9</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\AuthorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>75691a56-ea9d-41f8-a38f-99ce2f7743fa</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.v5.tt">
+      <LastGenOutput>CommandHandler.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.v5.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>3c6b815f-f427-4eee-9dec-ccca92e80416</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.v5.cs.tt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a24d321e-1cb7-4ff0-a6f6-d626410549f4</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.v5.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>b2baa2d4-07ed-4f87-b66a-5eb71b52ff44</ItemGuid>
+    </Content>
+    <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.v5.tt">
+      <LastGenOutput>EventHandler.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>82ea2f3d-f768-46cd-acee-380f6efd5b68</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>

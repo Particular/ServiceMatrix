@@ -56,7 +56,6 @@
         </Folder>
         <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
       </Folder>
-      <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Web.config">Web.config</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Web.Debug.config">Web.Debug.config</ProjectItem>
       <ProjectItem ReplaceParameters="true" TargetFileName="Web.Release.config">Web.Release.config</ProjectItem>
@@ -65,6 +64,10 @@
     </Project>
   </TemplateContent>
   <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
     <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
     <FullClassName>NuPattern.VisualStudio.TemplateWizards.InstantiationTemplateWizard</FullClassName>
   </WizardExtension>
@@ -72,4 +75,21 @@
     <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
     <FullClassName>NuPattern.VisualStudio.TemplateWizards.ElementReplacementsTemplateWizard</FullClassName>
   </WizardExtension>
+  <WizardData>
+    <packages repository="extension" repositoryId="23795EC3-3DEA-4F04-9044-4056CF91A2ED">
+      <package id="Microsoft.AspNet.Mvc" version="4.0.20710.0" />
+      <package id="Microsoft.AspNet.Mvc.FixedDisplayModes" version="1.0.0" />
+      <package id="Microsoft.AspNet.Razor" version="2.0.20715.0" />
+      <package id="Microsoft.AspNet.WebApi" version="4.0.20710.0" />
+      <package id="Microsoft.AspNet.WebApi.Client" version="4.0.20710.0" />
+      <package id="Microsoft.AspNet.WebApi.Core" version="4.0.20710.0" />
+      <package id="Microsoft.AspNet.WebApi.WebHost" version="4.0.20710.0" />
+      <package id="Microsoft.AspNet.WebPages" version="2.0.20710.0" />
+      <package id="Microsoft.Net.Http" version="2.0.20710.0" />
+      <package id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      <package id="Newtonsoft.Json" version="4.5.11" />
+      <package id="Autofac" version="3.1.0" />
+      <package id="Autofac.Mvc4" version="3.1.0" />
+    </packages>
+  </WizardData>
 </VSTemplate>

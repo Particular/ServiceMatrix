@@ -1,0 +1,24 @@
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var endpoint = ((IProductElement)this.Element).As<INServiceBusHost>(); #>
+using System;
+using NServiceBus;
+ 
+namespace <#= endpoint.Namespace #>
+{
+    public partial class EndpointConfig    
+    {
+        public void Customize(ConfigurationBuilder builder)
+        {
+            builder.Conventions(c => MessageConventions.Apply(c));
+        }
+    }
+}

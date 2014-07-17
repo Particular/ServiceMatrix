@@ -203,12 +203,22 @@
     <Compile Include="Conditions\IsSagaComponentCondition.cs" />
     <Compile Include="Conditions\IsComponentCommandProcessorCondition.cs" />
     <Compile Include="Conditions\IsProcessorComponentCondition.cs" />
+    <Compile Include="Conditions\MatchesApplicationTargetNsbVersion.cs" />
     <Compile Include="Diagramming\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Diagramming\ViewModels\Connections\MessageConnection.cs" />
     <Compile Include="Diagramming\ViewModels\ServiceMatrixDiagramRemover.cs" />
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
     <Compile Include="Model\TargetNsbVersion.cs" />
     <Compile Include="TypeConverters\TargetNsbVersionTypeConverter.cs" />
+    <Compile Include="Util\IniReader.cs" />
+    <Compile Include="Util\LambdaEqualityHelper.cs" />
+    <Compile Include="Util\Logger.cs" />
+    <Compile Include="Util\ReleaseDate.cs" />
+    <Compile Include="Util\SemanticVersion.cs" />
+    <Compile Include="Util\SemanticVersionBuildMetaData.cs" />
+    <Compile Include="Util\SemanticVersionPreReleaseTag.cs" />
+    <Compile Include="Util\ServiceMatrixOverrides.cs" />
+    <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ElementHierarchyPickerViewModel.cs" />
     <Compile Include="Dialog\UserCodeChangeRequired.xaml.cs">
@@ -483,43 +493,43 @@
     <Compile Include="ValueProviders\ToolkitVersionValueProvider.cs" />
     <Compile Include="VersionHelper.cs" />
     <Compile Include="GeneratedCode\ServiceMatrix\CollectionImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>5aadc4e7-1ac5-420e-ab3d-21a6584e3d89</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\CollectionInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>7e26cfea-8908-45d7-be31-c3683e27407c</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ElementImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>e7506f7d-3226-4ea2-9f29-9e722731eed2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ElementInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>b9213604-e0de-42ec-b4a7-f135976ff072</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ExtensionPointImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>73c36e63-ee7a-4413-80df-6b1574f10e7f</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ExtensionPointInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>1d96ad4a-4ce5-4032-94e4-e96766c094d2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ProductImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>d519e1d0-d519-45dc-811e-b130499b42b2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ProductInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>1664b587-b114-45c4-984f-9f693654aa87</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ViewImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>7b629b7f-f695-41f8-89c9-71db1a0a14d9</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ViewInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>9a04038f-53ef-422c-9979-9fdd13acf327</ItemGuid>
     </Compile>
     <Compile Include="Core\IElementReference.cs" />
@@ -537,6 +547,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ToolkitElement.tt</DependentUpon>
     </Compile>
+    <Compile Include="WizardExtensions\ApplicationTemplateWorkaroundHelper.cs" />
+    <Compile Include="WizardExtensions\InstantiationTemplateCustomWizard.cs" />
+    <Compile Include="WizardExtensions\TargetFrameworkFixupWizard.cs" />
+    <Compile Include="WizardExtensions\SetModelPropertiesWizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4df5-91F0-309BEEBAD82D}" />
@@ -675,7 +689,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Events\" />
-    <Folder Include="WizardExtensions\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AddProduct.png" />
@@ -775,6 +788,6 @@
     <StartAction>Program</StartAction>
     <StartArguments>/rootsuffix Exp</StartArguments>
   </PropertyGroup>
-  <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
-  <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\BuildSupport\RippleRestoreTask.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
 </Project>

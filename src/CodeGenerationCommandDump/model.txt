@@ -1,0 +1,728 @@
+﻿Element: Services
+  Element: Service
+    Element: Contract
+      Element: Events
+        Element: Event
+          Code: UnfoldEventFile (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+            SanitizeName = False
+            SyncName = False
+            Tag = 
+            TargetBuildAction = 
+            TargetCopyToOutput = DoNotCopy
+            TargetFileName = {CodeIdentifier}.cs
+            TargetPath = 
+            TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomEventDefinition.tt
+            TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/a2be8c5d-919e-4788-a2fa-126049ca056f
+          Code: ExGenerateCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+            SanitizeName = False
+            SyncName = False
+            Tag = 
+            TargetBuildAction = 
+            TargetCopyToOutput = DoNotCopy
+            TargetFileName = {CodeIdentifier}.cs
+            TargetPath = 
+            TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/EventDefinition.tt
+            TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/cabd4ef9-5ac9-402d-b9ab-ec8c7d22b346
+          Aggregate: UnfoldCodeCommand
+            0: UnfoldEventFile (*)
+          Aggregate: OnInstantiateCommand
+            0: UnfoldEventFile (*)
+          Launch: OnInstantiate (Event Launch Point) -> OnInstantiateCommand
+      Element: Commands
+        Element: Command
+          Code: UnfoldCommandFile (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+            SanitizeName = False
+            SyncName = False
+            Tag = 
+            TargetBuildAction = 
+            TargetCopyToOutput = DoNotCopy
+            TargetFileName = {CodeIdentifier}.cs
+            TargetPath = 
+            TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomCommandDefinition.tt
+            TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/514ec25c-19b4-4db6-83a4-bcfff3712854
+          Code: ExGenerateCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+            SanitizeName = False
+            SyncName = False
+            Tag = 
+            TargetBuildAction = 
+            TargetCopyToOutput = DoNotCopy
+            TargetFileName = {CodeIdentifier}.cs
+            TargetPath = 
+            TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CommandDefinition.tt
+            TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/600e8610-9915-48b1-a338-2cd0a7c4931e
+          Aggregate: UnfoldCodeCommand
+            0: UnfoldCommandFile (*)
+          Aggregate: OnInstantiateCommand
+            0: CheckForCreateCommandComponents
+            1: UnfoldCodeCommand (*)
+          Launch: OnInstantiate (Event Launch Point) -> OnInstantiateCommand
+      Element: Messages
+        Element: Message
+          Code: UnfoldMessageFile (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+            SanitizeName = True
+            SyncName = False
+            Tag = 
+            TargetBuildAction = 
+            TargetCopyToOutput = DoNotCopy
+            TargetFileName = {CodeIdentifier}.cs
+            TargetPath = 
+            TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomMessageDefinition.tt
+            TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/763f7314-340f-4f5a-bc21-92397b1a489a
+          Aggregate: OnInstantiateCommand
+            0: UnfoldMessageFile (*)
+          Launch: OnInstantiate (Event Launch Point) -> OnInstantiateCommand
+    Element: Components
+      Element: Component
+        Code: UnfoldHandlers (NuPattern.Library.Commands.GenerateComponentCodeCommand)
+          CheckIsDeployed = True
+          CheckIsNotUnfoldedCustomCode = False
+          SanitizeName = False
+          SyncName = False
+          Tag = 
+          TargetBuildAction = 
+          TargetCopyToOutput = DoNotCopy
+          TargetFileName = {CodeIdentifier}.cs
+          TargetPath = 
+          TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/ComponentHandlers.tt
+          TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/009202b9-d8d1-4877-bcbf-ff75c983dcd3
+        Code: UnfoldCustomHandlers (NuPattern.Library.Commands.GenerateComponentCodeCommand)
+          CheckIsDeployed = True
+          CheckIsNotUnfoldedCustomCode = True
+          SanitizeName = False
+          SyncName = False
+          Tag = 
+          TargetBuildAction = 
+          TargetCopyToOutput = DoNotCopy
+          TargetFileName = {CodeIdentifier}.cs
+          TargetPath = 
+          TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentHandlers.tt
+          TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f63539d8-7392-445a-b2a1-1454caecb2df
+        Code: UnfoldSagaDataCode (NuPattern.Library.Commands.GenerateComponentCodeCommand)
+          CheckIsDeployed = True
+          CheckIsNotUnfoldedCustomCode = False
+          SanitizeName = False
+          SyncName = False
+          Tag = 
+          TargetBuildAction = Compile
+          TargetCopyToOutput = DoNotCopy
+          TargetFileName = {CodeIdentifier}SagaData.cs
+          TargetPath = 
+          TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaHandlers.tt
+          TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6c659607-78bc-4671-8c4a-32065bba3c33
+        Code: UnfoldSagaConfigureHowToFindCode (NuPattern.Library.Commands.GenerateComponentCodeCommand)
+          CheckIsDeployed = True
+          CheckIsNotUnfoldedCustomCode = False
+          SanitizeName = False
+          SyncName = False
+          Tag = 
+          TargetBuildAction = Compile
+          TargetCopyToOutput = DoNotCopy
+          TargetFileName = {CodeIdentifier}ConfigureHowToFindSaga.cs
+          TargetPath = 
+          TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomComponentSagaConfigureHowToFind.tt
+          TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/1223f865-f461-44eb-911b-caa21b1a8bc8
+        Aggregate: GenerateCodeV4Handlers
+          0: UnfoldHandlers (*)
+          1: UnfoldCustomHandlers (*)
+          2: SetUnfoldedCustomCode
+        Aggregate: IsSagaEqualsTrueCommand
+          0: UnfoldSagaDataCode (*)
+          1: UnfoldSagaConfigureHowToFindCode (*)
+        Aggregate: OpenCommand
+          0: GenerateCodeV4Handlers (*)
+          1: OpenCustomCodeFile
+        Launch: OpenCode (ContextMenu Launch Point) -> OpenCommand
+        Launch: OnIsSagaEqualsTrue (Event Launch Point) -> IsSagaEqualsTrueCommand
+        Element: Publishes
+          Element: EventLink
+          Element: CommandLink
+        Element: Subscribes
+          Element: SubscribedEventLink
+          Element: ProcessedCommandLink
+            Element: ProcessedCommandLinkReply
+          Element: HandledMessageLink
+        Element: LibraryReferences
+          Element: LibraryReference
+    Element: ServiceLibraries
+      Element: ServiceLibrary
+        Code: UnfoldLibraryCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+          SanitizeName = False
+          SyncName = False
+          Tag = 
+          TargetBuildAction = Compile
+          TargetCopyToOutput = DoNotCopy
+          TargetFileName = {CodeIdentifier}.cs
+          TargetPath = {FilePath}
+          TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt
+          TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/cd272c9f-4911-480c-a762-59810b294f94
+        Aggregate: OnInstantiatedCommand
+          0: CheckForProject
+          1: UnfoldLibraryCode (*)
+        Launch: OnInstantiated (Event Launch Point) -> OnInstantiatedCommand
+Element: Endpoints
+  Element: NServiceBusHost
+    xCode: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      *SanitizeName = False
+      *SyncName = False
+      *Tag = 
+      *TargetBuildAction = 
+      *TargetCopyToOutput = DoNotCopy
+      *TargetFileName = MessageConventions.cs
+      *TargetPath = ~/Infrastructure
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageConventions.cs.tt
+      *TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/d07e0f86-d73b-4dea-a249-17c701cbb03c
+    Code: UnfoldLoggingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = Logging.config
+      TargetPath = ~/Infrastructure
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/Logging.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/432735b4-8fd4-4736-807c-ca517cd047d3
+    Code: GenerateDefaultAppConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = App.config
+      TargetPath = 
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/DefaultApp.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/895bc0b9-2336-4ac7-baae-cb2f2e5b1346
+    Code: GenerateEndpointConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = EndpointConfig.generated.cs
+      TargetPath = ~/EndpointConfig.cs
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.generated.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/51c08094-9e68-4abe-a168-4e1962888e9b
+    Code: GenerateMasterNodeConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = MasterNodeConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MasterNodeConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/5a29e248-5612-4ff6-821b-cc77b955c498
+    Code: GenerateMessageForwardingInCaseOfFaultConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = MessageForwardingInCaseOfFaultConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageForwardingInCaseOfFaultConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/e8d4c471-2fd7-4520-aa61-7e504df71414
+    Code: GenerateSecondLevelRetriesConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = SecondLevelRetriesConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/SecondLevelRetriesConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/569640cf-1926-4a30-8987-c2a7e202eeca
+    xCode: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      *SanitizeName = False
+      *SyncName = False
+      *Tag = 
+      *TargetBuildAction = Compile
+      *TargetCopyToOutput = DoNotCopy
+      *TargetFileName = TransportConfig.cs
+      *TargetPath = ~
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.tt
+      +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/49afd489-a5ff-4743-bfd0-2c4d33e0d6de
+    Code: GenerateTransportConfigConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = TransportConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/eb0d81fd-c72f-4f5b-b41e-8e43ce182e60
+    Code: GenerateUnicastBusConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = UnicastBusConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/UnicastBusConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/dc84c026-5203-4165-9f99-d6e9042ef012
+    Code: GenerateTransportConnectionStringConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = TransportConnectionString.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConnectionString.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/695e0ead-1d04-49a4-bce4-2eb707a06bcc
+    Code: UnfoldEndpointConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = EndpointConfig.cs
+      TargetPath = ~
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9665ea51-8bf4-4a28-b0a5-37cdf5148f39
+    Code: GenerateAuditConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = AuditConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config/
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/AuditConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/515382fd-e45b-442d-83fa-c4e7096b3581
+    xAggregate: OnInstantiateCommand
+      *0: UnfoldProject
+      *1: InstallNuGetPackages
+      x2: UnfoldMessageConventions (*)
+      *3: UnfoldLoggingConfig (*)
+      *4: UnfoldEndpointConfig (*)
+      x5: UnfoldCodeCommand (*)
+      *6: RaisesOnInstantiated
+      *7: ProcessAfterUnfoldedProject
+    xAggregate: UnfoldCodeCommand
+      x0: GenerateCodeV4ConfigSections (*)
+      *1: AddProjectReferences
+      *2: GenerateEndpointConfig (*)
+      *3: GenerateDefaultAppConfig (*)
+    xAggregate: GenerateCodeV4ConfigSections
+      *0: GenerateMasterNodeConfig (*)
+      *1: GenerateMessageForwardingInCaseOfFaultConfig (*)
+      *2: GenerateTransportConfigConfig (*)
+      *3: GenerateUnicastBusConfig (*)
+      *4: GenerateEndpointConfig (*)
+      x5: GenerateTransportConfigCode (*)
+      *6: GenerateTransportConnectionStringConfig (*)
+      *7: GenerateSecondLevelRetriesConfig (*)
+      *8: GenerateAuditConfig (*)
+    xLaunch: OnInstantiate (Event Launch Point) -> OnInstantiateCommand
+    Element: Components
+      Element: ComponentLink
+  Element: NServiceBusWeb
+    Code: GenerateMessageForwardingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = MessageForwardingInCaseOfFaultConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/MessageForwardingInCaseOfFaultConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/2cb98bc0-0a56-45dc-94c1-681f343fc9a4
+    Code: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = TransportConfig.cs
+      TargetPath = ~/Infrastructure/GeneratedCode
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConfig.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/850114f6-382e-4477-aa77-edfd35447c20
+    Code: GenerateTransportConfigConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = TransportConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/8f7bac69-c9e9-47ba-b44e-15ceb283e250
+    Code: GenerateUnicastBusConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = UnicastBusConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/UnicastBusConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/27f96a66-2fe6-43ea-888e-5c0388cdbf3c
+    Code: GenerateWebConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = Web.config
+      TargetPath = ~
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/b32ab3ba-7497-4525-b5f4-c7ec037c8b6b
+    Code: GenerateWebDebugConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = Web.Debug.config
+      TargetPath = ~/Web.config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.Debug.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/7647802b-b2e7-4777-a4d4-fd4e950abbda
+    Code: GenerateWebInitialization (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = GeneratedWebInitialization.cs
+      TargetPath = ~/Infrastructure/GeneratedCode
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/GeneratedWebInitialization.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/22880e7e-edce-4a2f-ae1f-40eeb52cd83a
+    Code: GenerateWebReleaseConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = Web.Release.Debug
+      TargetPath = ~/Web.config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.Release.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/82c48685-b62c-4e0a-acde-308747faf663
+    Code: UnfoldLoggingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = Logging.config
+      TargetPath = ~/Infrastructure
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Logging.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/af40d2eb-0aa2-44f6-bba5-7f5878253d89
+    Code: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = MessageConventions.cs
+      TargetPath = ~/Infrastructure
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/MessageConventions.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/310e4bcc-ee54-469a-8fff-baa627551632
+    Code: GenerateTransportConnectionStringConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = TransportConnectionString.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConnectionString.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/42e76b2c-8e17-415b-9d80-4efffc8f887c
+    Code: GenerateWebGlobalInitialization (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = WebGlobalInitialization.cs
+      TargetPath = ~/Infrastructure/
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/WebGlobalInitialization.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/50af6eba-4205-4aed-ad99-910a10d2be0a
+    Code: GenerateTestMessagesAspx (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = TestMessages.aspx
+      TargetPath = ~
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/23a83f8e-6d63-4cbe-a965-c73e279f72c4
+    Code: GenerateTestMessagesAspxCs (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = TestMessages.aspx.generated.cs
+      TargetPath = ~/TestMessages.aspx
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/92008bd9-7d4f-4aa2-828b-0f4578a4b365
+    Code: GenerateTestMessagesAspxDesignerCs (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = TestMessages.aspx.designer.cs
+      TargetPath = ~/TestMessages.aspx
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.designer.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/5ddee7e0-7cd1-4713-ab12-8d59d622a228
+    Code: GenerateAuditConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = AuditConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config/
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/AuditConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/92514fe6-6836-445c-910b-53407046c60d
+    Aggregate: GenerateCodeV4ConfigSection
+      0: GenerateMessageForwardingConfig (*)
+      1: GenerateTransportConfigConfig (*)
+      2: GenerateUnicastBusConfig (*)
+      3: GenerateAuditConfig (*)
+      4: GenerateWebInitialization (*)
+      5: GenerateWebGlobalInitialization (*)
+      6: GenerateTransportConfigCode (*)
+      7: GenerateTransportConnectionStringConfig (*)
+      8: GenerateTestMessagesAspx (*)
+      9: GenerateTestMessagesAspxCs (*)
+      10: GenerateTestMessagesAspxDesignerCs (*)
+    Aggregate: GenerateInitialCodeCommand
+      0: GenerateWebConfig (*)
+      1: GenerateWebDebugConfig (*)
+      2: GenerateWebReleaseConfig (*)
+      3: AddProjectReferences
+    Aggregate: OnInstantiateCommand
+      0: UnfoldProject
+      1: InstallNuGetPackages
+      2: UnfoldMessageConventions (*)
+      3: UnfoldLoggingConfig (*)
+      4: GenerateInitialCodeCommand (*)
+      5: GenerateCodeV4ConfigSection (*)
+      6: RaiseOnInstantiated
+      7: ProcessAfterUnfoldingProject
+    Launch: OnInstantiated (Event Launch Point) -> OnInstantiateCommand
+    Element: Components
+      Element: ComponentLink
+  Element: NServiceBusMVC
+    Code: GenerateMessageForwardingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = MessageForwardingInCaseOfFaultConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageForwardingInCaseOfFaultConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9985b0ec-a356-44dc-922d-22d9840df107
+    xCode: GenerateTransportConfigCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      *SanitizeName = False
+      *SyncName = False
+      *Tag = 
+      *TargetBuildAction = Compile
+      *TargetCopyToOutput = DoNotCopy
+      *TargetFileName = TransportConfig.cs
+      *TargetPath = ~/Infrastructure/GeneratedCode
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.tt
+      +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/186f6ae9-49fd-4f9f-969d-034848f06541
+    Code: GenerateTransportConfigConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = TransportConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/068ce3e7-5e66-4996-9477-523e4167bc2c
+    Code: GenerateUnicastBusConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = UnicastBusConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/UnicastBusConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/b132847c-7244-4a53-8070-ce47aad324f7
+    Code: GenerateWebInitialization (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = GeneratedWebInitialization.cs
+      TargetPath = ~/Infrastructure/GeneratedCode
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/fc90b58e-fc11-4d3a-a94e-c4142a74e46f
+    Code: UnfoldLoggingConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = Logging.config
+      TargetPath = ~/Infrastructure
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/Logging.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/41fbe97e-b6ed-4f2d-b28c-bd10a3d84269
+    xCode: UnfoldMessageConventions (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      *SanitizeName = False
+      *SyncName = False
+      *Tag = 
+      *TargetBuildAction = 
+      *TargetCopyToOutput = DoNotCopy
+      *TargetFileName = MessageConventions.cs
+      *TargetPath = ~/Infrastructure
+      xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageConventions.cs.tt
+      +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/102d67f5-2fc5-4b31-b42e-0f74f60abf25
+    Code: GenerateTransportConnectionStringConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = TransportConnectionString.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConnectionString.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/eb58c194-dddf-4e22-8e2b-a1b76ddb1990
+    Code: GenerateWebGlobalInitialization (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = WebGlobalInitialization.cs
+      TargetPath = ~/Infrastructure/
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/5290a37d-dd77-46b3-91a7-6ef79b3cd82a
+    Code: GenerateTestMessagesController (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = TestMessagesController.generated.cs
+      TargetPath = ~/Controllers
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TestMessagesController.cs.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/34f22950-2004-4a24-8d73-70611291a87e
+    Code: GenerateTestMessagesView (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = 
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = Index.cshtml
+      TargetPath = ~/Views/TestMessages
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TestMessagesView.cshtml.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/6f950f0a-8b5d-4ef3-afcd-e6046fcff516
+    Code: GenerateAuditConfig (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = True
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Content
+      TargetCopyToOutput = PreserveNewest
+      TargetFileName = AuditConfig.config
+      TargetPath = ~/Infrastructure/GeneratedCode/Config/
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/AuditConfig.config.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/21cb8031-2d8f-417f-89fb-f5a5e94a49f0
+    xAggregate: GenerateCodeV4ConfigSection
+      *0: GenerateMessageForwardingConfig (*)
+      *1: GenerateTransportConfigConfig (*)
+      *2: GenerateUnicastBusConfig (*)
+      *3: GenerateWebInitialization (*)
+      *4: GenerateWebGlobalInitialization (*)
+      x5: GenerateTransportConfigCode (*)
+      *6: GenerateTransportConnectionStringConfig (*)
+      *7: GenerateAuditConfig (*)
+      *8: GenerateTestMessagesController (*)
+      *9: GenerateTestMessagesView (*)
+    xAggregate: OnInstantiateCommand
+      *0: UnfoldProject
+      *1: InstallNuGetPackages
+      *2: AddProjectReferences
+      x3: UnfoldMessageConventions (*)
+      *4: UnfoldLoggingConfig (*)
+      x5: GenerateCodeV4ConfigSection (*)
+      *6: RaiseOnInstantiated
+      *7: ProcessAfterUnfoldingProject
+    xLaunch: OnInstantiated (Event Launch Point) -> OnInstantiateCommand
+    Element: Components
+      Element: ComponentLink
+Element: ContractsProject
+Element: InternalMessagesProject
+Element: Infrastructure
+  Element: Security
+    Element: Authentication
+      -Code: GenerateCodeV4Authentication (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        *SanitizeName = False
+        *SyncName = False
+        *Tag = 
+        *TargetBuildAction = Compile
+        *TargetCopyToOutput = DoNotCopy
+        *TargetFileName = Authentication.cs
+        *TargetPath = {CodePath}
+        *TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/Authentication.tt
+        *TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/3b28bc6d-ba79-4cfe-88c8-03e14fd09ef0
+      Code: UnfoldCustomAuthenticationCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        SanitizeName = False
+        SyncName = False
+        Tag = 
+        TargetBuildAction = Compile
+        TargetCopyToOutput = DoNotCopy
+        TargetFileName = Authentication.cs
+        TargetPath = {CustomCodePath}
+        TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthentication.tt
+        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/3b08d283-53e3-42d3-a7dd-7de310c4a82e
+      -Code: GenerateCodeV4AuthorizeOutgoingMessages (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        *SanitizeName = False
+        *SyncName = False
+        *Tag = 
+        *TargetBuildAction = Compile
+        *TargetCopyToOutput = DoNotCopy
+        *TargetFileName = AuthorizeOutgoingMessages.cs
+        *TargetPath = {CodePath}
+        xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/AuthorizeOutgoingMessages.tt
+        +TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/2a3c2931-a8f9-4464-a458-c33d2731eff1
+      -Code: UnfoldCustomAuthorizeOutgoingMessagesCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+        *SanitizeName = False
+        *SyncName = False
+        *Tag = 
+        *TargetBuildAction = Compile
+        *TargetCopyToOutput = DoNotCopy
+        *TargetFileName = AuthorizeOutgoingMessages.cs
+        *TargetPath = {CustomCodePath}
+        +xTemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthorizeOutgoingMessages.tt
+        TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/f6bfe406-6a36-47dd-b00a-6302381ecb36
+      Aggregate: OnInstantiatedCommand
+        0: GenerateCodeV4Authentication (*)
+        1: GenerateCodeV4AuthorizeOutgoingMessages (*)
+        2: UnfoldCustomAuthenticationCode (*)
+        3: UnfoldCustomAuthorizeOutgoingMessagesCode (*)
+        4: GenerateCodeV4Endpoints
+        5: CollapseFolders
+      Launch: OnInstantiated (Event Launch Point) -> OnInstantiatedCommand
+Element: DummyCollection
+Element: UseCases
+  Element: UseCase
+    Element: UseCaseStep
+    Element: UseCaseLink
+Element: Libraries
+  Element: Library
+    Code: UnfoldLibraryCode (NuPattern.Library.Commands.GenerateProductCodeCommandCustom)
+      SanitizeName = False
+      SyncName = False
+      Tag = 
+      TargetBuildAction = Compile
+      TargetCopyToOutput = DoNotCopy
+      TargetFileName = {CodeIdentifier}.cs
+      TargetPath = {FilePath}
+      TemplateUri = t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt
+      TemplateAuthoringUri = solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/cd272c9f-4911-480c-a762-59810b294f94
+    Aggregate: OnInstantiatedCommand
+      0: CheckForProject
+      1: UnfoldLibraryCode (*)
+    Launch: OnInstantiated (Event Launch Point) -> OnInstantiatedCommand

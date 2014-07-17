@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Type="ProjectGroup" Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
   <TemplateData>
-    <Name>NServiceBus System</Name>
+    <Name>NServiceBus v4 System</Name>
     <Description>An NServiceBus-powered application</Description>
     <Icon>App.ico</Icon>
     <ProjectType>CSharp</ProjectType>
@@ -12,6 +12,7 @@
     <ProvideDefaultName>true</ProvideDefaultName>
     <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
     <LocationField>Enabled</LocationField>
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
   </TemplateData>
   <TemplateContent>
     <ProjectCollection/>
@@ -24,4 +25,11 @@
     <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
     <FullClassName>NuPattern.VisualStudio.TemplateWizards.ElementReplacementsTemplateWizard</FullClassName>
   </WizardExtension>
+  <WizardExtension>
+    <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.SetModelPropertiesWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <NServiceBus Version="NSB 4.0"/>
+  </WizardData>
 </VSTemplate>

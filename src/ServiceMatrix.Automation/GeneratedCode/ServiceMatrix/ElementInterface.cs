@@ -1550,6 +1550,14 @@ namespace NServiceBusStudio
 		Boolean CommandSenderNeedsRegistration { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusHost.TargetNsbVersion
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusHost.TargetNsbVersion")]
+		[DisplayName("Target Nsb Version")]
+		[Category("General")]
+		String TargetNsbVersion { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -2104,6 +2112,14 @@ namespace NServiceBusStudio
 		[DisplayName("Command Sender Needs Registration")]
 		[Category("General")]
 		Boolean CommandSenderNeedsRegistration { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.TargetNsbVersion
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.TargetNsbVersion")]
+		[DisplayName("Target Nsb Version")]
+		[Category("General")]
+		String TargetNsbVersion { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.

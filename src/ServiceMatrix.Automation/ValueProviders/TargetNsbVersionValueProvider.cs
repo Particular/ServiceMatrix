@@ -2,7 +2,7 @@
 {
     using System;
     using System.ComponentModel;
-    using NServiceBusStudio.Automation.Model;
+    using Model;
     using NuPattern.Runtime;
 
     [CLSCompliant(false)]
@@ -12,7 +12,7 @@
     {
         public override object Evaluate()
         {
-            return TargetNsbVersion.Version5;
+            return TargetNsbVersion.Version4;
         }
     }
 }

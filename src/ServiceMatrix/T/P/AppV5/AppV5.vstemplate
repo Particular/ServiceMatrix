@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Type="ProjectGroup" Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+  <TemplateData>
+    <Name>NServiceBus v5 System</Name>
+    <Description>An NServiceBus-powered application</Description>
+    <Icon>AppV5.ico</Icon>
+    <ProjectType>CSharp</ProjectType>
+    <TemplateID>38f713243c1f-Application</TemplateID>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Application</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <LocationField>Enabled</LocationField>
+    <!-- Should be 4.5, but that breaks nupattern -->
+    <RequiredFrameworkVersion>4.0</RequiredFrameworkVersion>
+  </TemplateData>
+  <TemplateContent>
+    <ProjectCollection />
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.TargetFrameworkFixupWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.InstantiationTemplateCustomWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>NuPattern.VisualStudio.TemplateWizards, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c7786d4a8b1a88</Assembly>
+    <FullClassName>NuPattern.VisualStudio.TemplateWizards.ElementReplacementsTemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardExtension>
+    <Assembly>Particular.ServiceMatrix.Automation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63</Assembly>
+    <FullClassName>NServiceBusStudio.Automation.WizardExtensions.SetModelPropertiesWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <NServiceBus Version="NSB 5.0"/>
+  </WizardData>
+</VSTemplate>

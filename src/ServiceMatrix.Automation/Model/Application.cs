@@ -1,29 +1,35 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.IO;
-using System.Linq;
-using AbstractEndpoint;
-using NServiceBusStudio.Automation.Commands;
-using NServiceBusStudio.Automation.CustomSolutionBuilder;
-using NServiceBusStudio.Automation.Extensions;
-using NServiceBusStudio.Automation.Infrastructure;
-using NServiceBusStudio.Automation.Licensing;
-using NuGet.VisualStudio;
-using NuPattern;
-using NuPattern.Runtime;
-using NuPattern.VisualStudio;
-using NuPattern.VisualStudio.Solution;
-
-namespace NServiceBusStudio
+﻿namespace NServiceBusStudio
 {
+    using System;
+    using System.ComponentModel.Composition;
+    using System.IO;
+    using System.Linq;
     using System.Windows;
+    using System.Windows.Threading;
+    using AbstractEndpoint;
+    using Automation.Commands;
+    using Automation.CustomSolutionBuilder;
+    using Automation.Extensions;
+    using Automation.Infrastructure;
+    using Automation.Licensing;
     using Automation.Model;
+    using EnvDTE;
+    using Microsoft.VisualStudio.ExtensionManager;
+    using Microsoft.VisualStudio.Shell;
+    using Microsoft.Win32;
+    using NuGet.VisualStudio;
+    using NuPattern;
+    using NuPattern.Runtime;
+    using NuPattern.VisualStudio;
+    using NuPattern.VisualStudio.Solution;
+    using Process = System.Diagnostics.Process;
 
     partial interface IApplication
     {
         string ContractsProjectName { get; }
         string InternalMessagesProjectName { get; }
         InfrastructureManager InfrastructureManager { get; }
+        string GetTargetNsbVersion(IProductElement element);
     }
 
     partial class Application : IRenameRefactoringNotSupported
@@ -57,21 +63,21 @@ namespace NServiceBusStudio
 
         partial void Initialize()
         {
-            this.InfrastructureManager = new InfrastructureManager(this, this.ServiceProvider, this.PatternManager);
+            InfrastructureManager = new InfrastructureManager(this, ServiceProvider, PatternManager);
 
             if (currentApplication == null)
             {
                 currentApplication = this;
                 // Force initialization of NserviceBusVersion from file
-                this.InitializeExtensionDependentData();
+                InitializeExtensionDependentData();
 
-                this.CustomSolutionBuilder.Initialize(this.ServiceProvider);
+                CustomSolutionBuilder.Initialize(ServiceProvider);
 
-                this.PatternManager.ElementDeleting += (s, e) =>
+                PatternManager.ElementDeleting += (s, e) =>
                 {
                     // Delete all related artifacts links
                     var element = e.Value.As<IProductElement>();
-                    element.RemoveArtifactLinks(this.UriService, this.Solution);
+                    element.RemoveArtifactLinks(UriService, Solution);
 
                     // If it's a Component Link, remove all links into Endpoints (they're not artifact links)
                     var componentLink = element.As<IAbstractComponentLink>();
@@ -87,9 +93,9 @@ namespace NServiceBusStudio
 
             // Set/Get static values
             currentApplication = this;
-            this.NServiceBusVersion = nserviceBusVersion;
-            this.ServiceControlEndpointPluginVersion = serviceControlEndpointPluginVersion;
-            this.ExtensionPath = extensionPath;
+            NServiceBusVersion = nserviceBusVersion;
+            ServiceControlEndpointPluginVersion = serviceControlEndpointPluginVersion;
+            ExtensionPath = extensionPath;
 
             CheckLicense();
             SetNuGetPackagesVersion();
@@ -99,62 +105,62 @@ namespace NServiceBusStudio
             SetRemoveEmptyAddMenus();
             SetF5Experience();
 
-            new ShowNewDiagramCommand() { ServiceProvider = this.ServiceProvider }.Execute();
+            new ShowNewDiagramCommand { ServiceProvider = ServiceProvider }.Execute();
 
-            System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke(
+            Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
         }
 
         private void SetNuGetPackagesVersion()
         {
-            this.StatusBar.DisplayMessage("Obtaining NuGet packages versions...");
+            StatusBar.DisplayMessage("Obtaining NuGet packages versions...");
             // Clear the cached versions, so for every new solution we create, we'll check Nuget for latest versions and then use that version
             // for all projects in the solution.
             NugetPackageVersionManager.ClearCache();
 
-            if (String.IsNullOrEmpty(this.NuGetPackageVersionNServiceBus))
+            if (String.IsNullOrEmpty(NuGetPackageVersionNServiceBus))
             {
-                this.NuGetPackageVersionNServiceBus = null;
-                this.NuGetPackageVersionNServiceBusActiveMQ = null;
-                this.NuGetPackageVersionNServiceBusRabbitMQ = null;
-                this.NuGetPackageVersionNServiceBusSqlServer = null;
-                this.NuGetPackageVersionNServiceBusAzureQueues = null;
-                this.NuGetPackageVersionNServiceBusAzureServiceBus = null;
-                this.NuGetPackageVersionServiceControlPlugins = null;
+                NuGetPackageVersionNServiceBus = null;
+                NuGetPackageVersionNServiceBusActiveMQ = null;
+                NuGetPackageVersionNServiceBusRabbitMQ = null;
+                NuGetPackageVersionNServiceBusSqlServer = null;
+                NuGetPackageVersionNServiceBusAzureQueues = null;
+                NuGetPackageVersionNServiceBusAzureServiceBus = null;
+                NuGetPackageVersionServiceControlPlugins = null;
             }
-            this.StatusBar.DisplayMessage(" ");
+            StatusBar.DisplayMessage(" ");
         }
 
         private void SetOptionSettings()
         {
-            var envdte = this.ServiceProvider.TryGetService<EnvDTE.DTE>();
+            var envdte = ServiceProvider.TryGetService<DTE>();
             var properties = envdte.get_Properties("ServiceMatrix", "General");
 
-            this.ProjectNameInternalMessages = properties.Item("ProjectNameInternalMessages").Value.ToString();
-            this.ProjectNameContracts = properties.Item("ProjectNameContracts").Value.ToString();
-            this.ProjectNameCode = properties.Item("ProjectNameCode").Value.ToString();
+            ProjectNameInternalMessages = properties.Item("ProjectNameInternalMessages").Value.ToString();
+            ProjectNameContracts = properties.Item("ProjectNameContracts").Value.ToString();
+            ProjectNameCode = properties.Item("ProjectNameCode").Value.ToString();
         }
 
         private void SetF5Experience()
         {
-            var envdte = this.ServiceProvider.TryGetService<EnvDTE.DTE>();
-            this.DebuggerEvents = envdte.DTE.Events.DebuggerEvents;
-            this.DebuggerEvents.OnEnterRunMode += DebuggerEvents_OnEnterRunMode;
+            var envdte = ServiceProvider.TryGetService<DTE>();
+            DebuggerEvents = envdte.DTE.Events.DebuggerEvents;
+            DebuggerEvents.OnEnterRunMode += DebuggerEvents_OnEnterRunMode;
         }
 
-        private void DebuggerEvents_OnEnterRunMode(EnvDTE.dbgEventReason Reason)
+        private void DebuggerEvents_OnEnterRunMode(dbgEventReason Reason)
         {
-            if (String.IsNullOrEmpty(this.ServiceControlInstanceURI) ||
-                Reason != EnvDTE.dbgEventReason.dbgEventReasonLaunchProgram)
+            if (String.IsNullOrEmpty(ServiceControlInstanceURI) ||
+                Reason != dbgEventReason.dbgEventReasonLaunchProgram)
             {
                 return;
             }
 
             // Write DebugSessionId on Endpoints Bin folder
-            var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, this.InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
-            foreach (var endpoint in this.Design.Endpoints.GetAll())
+            var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
+            foreach (var endpoint in Design.Endpoints.GetAll())
             {
-                var activeConfiguration = endpoint.Project.As<EnvDTE.Project>().ConfigurationManager.ActiveConfiguration;
+                var activeConfiguration = endpoint.Project.As<Project>().ConfigurationManager.ActiveConfiguration;
                 var outputPath = activeConfiguration.Properties.Item("OutputPath").Value.ToString();
 
                 var binFolder =
@@ -171,97 +177,97 @@ namespace NServiceBusStudio
             }
 
             // If ServiceInsight is installed and invocation URI registerd
-            if (this.LaunchServiceInsightOnDebug &&
-                Microsoft.Win32.Registry.ClassesRoot.OpenSubKey("si") != null)
+            if (LaunchServiceInsightOnDebug &&
+                Registry.ClassesRoot.OpenSubKey("si") != null)
             {
                 var url = String.Format("si://{0}?EndpointName={1}.{2}&Search={3}&AutoRefresh={4}",
-                                            this.ServiceControlInstanceURI.Replace("http://", ""),
-                                            this.InstanceName,
-                                            this.Design.Endpoints.GetAll().First().InstanceName,
+                                            ServiceControlInstanceURI.Replace("http://", ""),
+                                            InstanceName,
+                                            Design.Endpoints.GetAll().First().InstanceName,
                                             debugSessionId,
                                             1);
 
                 // Start ServiceInsight with parameters
-                System.Diagnostics.Process.Start(url);
+                Process.Start(url);
             }
         }
 
         private void SetPropagationHandlers()
         {
-            this.OnInstantiatedEndpoint += (s, e) =>
+            OnInstantiatedEndpoint += (s, e) =>
             {
                 var ep = s as IAbstractEndpoint;
-                ep.ErrorQueue = this.ErrorQueue;
-                ep.ForwardReceivedMessagesTo = this.ForwardReceivedMessagesTo;
+                ep.ErrorQueue = ErrorQueue;
+                ep.ForwardReceivedMessagesTo = ForwardReceivedMessagesTo;
             };
 
-            this.ForwardReceivedMessagesToChanged += (s, e) =>
+            ForwardReceivedMessagesToChanged += (s, e) =>
             {
                 foreach (var ep in this.GetAbstractEndpoints())
                 {
                     if (!ep.OverridenProperties.Contains("ForwardReceivedMessagesTo"))
                     {
-                        ep.ForwardReceivedMessagesTo = this.ForwardReceivedMessagesTo;
+                        ep.ForwardReceivedMessagesTo = ForwardReceivedMessagesTo;
                     }
                 }
             };
 
-            this.ErrorQueueChanged += (s, e) =>
+            ErrorQueueChanged += (s, e) =>
             {
                 foreach (var ep in this.GetAbstractEndpoints())
                 {
                     if (!ep.OverridenProperties.Contains("ErrorQueue"))
                     {
-                        ep.ErrorQueue = this.ErrorQueue;
+                        ep.ErrorQueue = ErrorQueue;
                     }
                 }
             };
 
-            this.TransportChanged += (s, e) =>
+            TransportChanged += (s, e) =>
             {
-                if (this.Transport == TransportType.Msmq.ToString())
+                if (Transport == TransportType.Msmq.ToString())
                 {
-                    this.TransportConnectionString = @"";
+                    TransportConnectionString = @"";
                 }
-                else if (this.Transport == TransportType.RabbitMQ.ToString())
+                else if (Transport == TransportType.RabbitMQ.ToString())
                 {
-                    this.TransportConnectionString = @"host=localhost";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ"));
+                    TransportConnectionString = @"host=localhost";
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
-                else if (this.Transport == TransportType.SqlServer.ToString())
+                else if (Transport == TransportType.SqlServer.ToString())
                 {
-                    this.TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer"));
+                    TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
-                else if (this.Transport == TransportType.AzureQueues.ToString())
+                else if (Transport == TransportType.AzureQueues.ToString())
                 {
-                    this.TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues"));
+                    TransportConnectionString = @"UseDevelopmentStorage=True;";
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
-                else if (this.Transport == TransportType.AzureServiceBus.ToString())
+                else if (Transport == TransportType.AzureServiceBus.ToString())
                 {
-                    this.TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    this.Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus"));
+                    TransportConnectionString = @"UseDevelopmentStorage=True;";
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
             };
         }
 
         private void SetDomainSpecifiLogging()
         {
-            this.PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
-            this.PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
+            PatternManager.ElementCreated += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} created with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
+            PatternManager.ElementDeleted += (s, e) => { if (!(e.Value is ICollection)) { tracer.TraceStatistics("{0} deleted with name: {1}", e.Value.DefinitionName, e.Value.InstanceName); } };
         }
 
         private void SetRemoveEmptyAddMenus()
         {
-            this.RemoveEmptyAddMenus.WireSolution(this.ServiceProvider);
+            RemoveEmptyAddMenus.WireSolution(ServiceProvider);
         }
 
         private void AddNugetFiles()
         {
             try
             {
-                System.Windows.Application.Current.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Background,
+                System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
                                          new Action(delegate { }));
 
                 if (currentApplication.Design.ContractsProject == null)
@@ -319,14 +325,14 @@ namespace NServiceBusStudio
 
         private void EnableSolutionBuilder()
         {
-            this.IsValidLicensed = true;
-            this.CustomSolutionBuilder.EnableSolutionBuilder();
+            IsValidLicensed = true;
+            CustomSolutionBuilder.EnableSolutionBuilder();
         }
 
         private void DisableSolutionBuilder()
         {
-            this.IsValidLicensed = false;
-            this.CustomSolutionBuilder.DisableSolutionBuilder();
+            IsValidLicensed = false;
+            CustomSolutionBuilder.DisableSolutionBuilder();
         }
 
         public InfrastructureManager InfrastructureManager { get; private set; }
@@ -335,7 +341,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.Design.ContractsProject.InstanceName;
+                return Design.ContractsProject.InstanceName;
             }
         }
 
@@ -343,21 +349,21 @@ namespace NServiceBusStudio
         {
             get
             {
-                return this.Design.InternalMessagesProject.InstanceName;
+                return Design.InternalMessagesProject.InstanceName;
             }
         }
 
-        static Application currentApplication = null;
+        static Application currentApplication;
         static string extensionPath;
         static string nserviceBusVersion;
         static string serviceControlEndpointPluginVersion;
 
-        [Import(typeof(Microsoft.VisualStudio.Shell.SVsServiceProvider))]
+        [Import(typeof(SVsServiceProvider))]
         public IServiceProvider VsServiceProvider { get; set; }
 
         public void InitializeExtensionDependentData()
         {
-            Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager extensionManager = (Microsoft.VisualStudio.ExtensionManager.IVsExtensionManager)this.VsServiceProvider.TryGetService<Microsoft.VisualStudio.ExtensionManager.SVsExtensionManager>();
+            var extensionManager = (IVsExtensionManager)VsServiceProvider.TryGetService<SVsExtensionManager>();
             var extension = extensionManager.GetInstalledExtension("23795EC3-3DEA-4F04-9044-4056CF91A2ED");
 
             //var resolver = this.ServiceProvider.TryGetService<IUriReferenceService>();
@@ -372,9 +378,15 @@ namespace NServiceBusStudio
             currentApplication.ServiceProvider.TryGetService<ISolution>().Select();
         }
 
-        public EnvDTE.DebuggerEvents DebuggerEvents { get; set; }
+        public DebuggerEvents DebuggerEvents { get; set; }
 
         public int ServiceInsightProcessId { get; set; }
+
+        public string GetTargetNsbVersion(IProductElement element)
+        {
+            // TODO retrieve from element
+            return TargetNsbVersion;
+        }
     }
 
     public enum TransportType
