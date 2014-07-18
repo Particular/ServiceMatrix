@@ -226,6 +226,18 @@
                 case "NServiceBus.Azure.Transports.WindowsAzureServiceBus":
                     majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 5 : (int?)null;
                     break;
+
+                case "ServiceControl.Plugin.DebugSession":
+                case "ServiceControl.Plugin.Heartbeat":
+                case "ServiceControl.Plugin.CustomChecks":
+                case "ServiceControl.Plugin.SagaAudit":
+                    // create the package id for the target version
+                    packageId =
+                        "ServiceControl.Plugin."
+                        + (targetNsbVersion == TargetNsbVersion.Version4 ? "" : "Nsb5.")
+                        + packageName.Substring("ServiceControl.Plugin.".Length, packageName.Length - "ServiceControl.Plugin.".Length);
+                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 1 : (int?)null;
+                    break;
             }
         }
 

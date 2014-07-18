@@ -1,4 +1,4 @@
-﻿namespace NServiceBusStudio
+namespace NServiceBusStudio
 {
     using System;
     using System.ComponentModel.Composition;
