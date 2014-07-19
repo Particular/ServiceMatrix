@@ -195,7 +195,7 @@ namespace NServiceBusStudio.Automation.ViewModels
                 RuleFor(vm => vm.AddEndpointText)
                     .NotNull()
                     .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.CompoundIdentifierMaxLength)
-                    .Matches(ValidationConstants.CompoundIdentifierPattern);
+                    .Matches(ValidationConstants.CompoundIdentifierPattern).WithMessage(ValidationConstants.InvalidCompoundIdentifierMessage);
 
                 RuleFor(vm => vm.SelectedEndpointType)
                     .NotNull()

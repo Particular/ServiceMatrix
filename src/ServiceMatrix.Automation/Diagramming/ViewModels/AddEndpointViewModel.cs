@@ -74,9 +74,9 @@ namespace NServiceBusStudio.Automation.Diagramming.ViewModels
             public AddEndpointViewModelValidator()
             {
                 RuleFor(vm => vm.EndpointName)
-                    .NotNull()
+                    .NotNull().WithMessage("Endpoint name cannot be empty")
                     .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.CompoundIdentifierMaxLength)
-                    .Matches(ValidationConstants.CompoundIdentifierPattern);
+                    .Matches(ValidationConstants.CompoundIdentifierPattern).WithMessage(ValidationConstants.InvalidCompoundIdentifierMessage);
 
                 RuleFor(vm => vm.EndpointType)
                     .NotNull()

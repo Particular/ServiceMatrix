@@ -165,16 +165,15 @@ namespace NServiceBusStudio.Automation.ViewModels
             public ElementHierarchyPickerViewModelValidator()
             {
                 RuleFor(vm => vm.SelectedMasterItem)
-                    .NotNull()
+                    .NotNull().WithMessage("Service name cannot be empty")
                     .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.CompoundIdentifierMaxLength)
-                    .Matches(ValidationConstants.CompoundIdentifierPattern);
+                    .Matches(ValidationConstants.CompoundIdentifierPattern).WithMessage(ValidationConstants.InvalidCompoundIdentifierMessage);
 
                 RuleFor(vm => vm.SelectedSlaveItem)
-                    .NotNull()
+                    .NotNull().WithMessage("Value cannot be empty for this field")
                     .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.IdentifierMaxLength)
-                    .Matches(ValidationConstants.IdentifierPattern)
-                    .Must(BeDifferentToTheMasterItem)
-                    .WithMessage("Values must be different");
+                    .Matches(ValidationConstants.IdentifierPattern).WithMessage(ValidationConstants.InvalidIdentifierMessage)
+                    .Must(BeDifferentToTheMasterItem).WithMessage("Entered values must be different");
             }
 
             private bool BeDifferentToTheMasterItem(ElementHierarchyPickerViewModel model, string value, PropertyValidatorContext context)

@@ -113,7 +113,7 @@ namespace NServiceBusStudio.Automation.ViewModels
                 RuleFor(vm => vm.SelectedItem)
                     .NotNull()
                     .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.IdentifierMaxLength)
-                    .Matches(ValidationConstants.IdentifierPattern);
+                    .Matches(ValidationConstants.IdentifierPattern).WithMessage(ValidationConstants.InvalidIdentifierMessage);
             }
         }
     }

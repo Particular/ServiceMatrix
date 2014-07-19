@@ -17,5 +17,7 @@
         public const int IdentifierMinLength = 1;
         public const int IdentifierMaxLength = 30;
         public const int CompoundIdentifierMaxLength = 50;
+        public const string InvalidIdentifierMessage = "The value entered is not properly formatted. Accepted values are valid class identifier names. As a general guideline use active verbs for Commands, for example, SubmitOrder. For Events, use passive tense for Events, for example, OrderSubmitted.";
+        public const string InvalidCompoundIdentifierMessage = "The value entered is not properly formatted. Accepted values are valid class identifer names but can be separated by a '.', for example, Shipping.PerishableGoods";
     }
 }

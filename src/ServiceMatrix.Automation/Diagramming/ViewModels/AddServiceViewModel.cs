@@ -4,6 +4,8 @@ using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Diagramming.ViewModels
 {
+    using System.Windows.Controls;
+
     public class AddServiceViewModel : ValidatingViewModel
     {
         public AddServiceViewModel()
@@ -57,7 +59,7 @@ namespace NServiceBusStudio.Automation.Diagramming.ViewModels
                 RuleFor(vm => vm.ServiceName)
                     .NotNull()
                     .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.CompoundIdentifierMaxLength)
-                    .Matches(ValidationConstants.CompoundIdentifierPattern);
+                    .Matches(ValidationConstants.CompoundIdentifierPattern).WithMessage(ValidationConstants.InvalidCompoundIdentifierMessage);
             }
         }
     }

@@ -501,43 +501,43 @@
     <Compile Include="ValueProviders\ToolkitVersionValueProvider.cs" />
     <Compile Include="VersionHelper.cs" />
     <Compile Include="GeneratedCode\ServiceMatrix\CollectionImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>5aadc4e7-1ac5-420e-ab3d-21a6584e3d89</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\CollectionInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>7e26cfea-8908-45d7-be31-c3683e27407c</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ElementImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>e7506f7d-3226-4ea2-9f29-9e722731eed2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ElementInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>b9213604-e0de-42ec-b4a7-f135976ff072</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ExtensionPointImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>73c36e63-ee7a-4413-80df-6b1574f10e7f</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ExtensionPointInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>1d96ad4a-4ce5-4032-94e4-e96766c094d2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ProductImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>d519e1d0-d519-45dc-811e-b130499b42b2</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ProductInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>1664b587-b114-45c4-984f-9f693654aa87</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ViewImplementation.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>7b629b7f-f695-41f8-89c9-71db1a0a14d9</ItemGuid>
     </Compile>
     <Compile Include="GeneratedCode\ServiceMatrix\ViewInterface.cs">
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Product/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f50814d10-91be-4eb3-af8b-b69c87ef60ef</SourceModelReference>
       <ItemGuid>9a04038f-53ef-422c-9979-9fdd13acf327</ItemGuid>
     </Compile>
     <Compile Include="Core\IElementReference.cs" />
