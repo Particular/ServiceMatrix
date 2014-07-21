@@ -247,6 +247,7 @@ namespace NServiceBusStudio.Automation.ViewModels
                     .ToDictionary(l => l.ComponentReference.Value, l => l.ParentEndpointComponents.ParentEndpoint);
 
             return service.Components.Component
+                .Where(c => c.IsProcessor)
                 .Select(c =>
                 {
                     IAbstractEndpoint endpoint;
