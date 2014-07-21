@@ -3,20 +3,18 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.Extensions;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
 using NuPattern.Diagnostics;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    using Extensions;
-
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -66,40 +64,40 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentComponent = this.CurrentElement.As<IComponent>();
-            var createSenderComponent = false; // At Component Level, do not create sender
-
-            if (this.CurrentComponent == null)
-            {
-                this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
-                createSenderComponent = true;
-            }
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
+            CurrentComponent = CurrentElement.As<IComponent>();
+            var createSenderComponent = false; // At Component Level, do not create sender
+
+            if (CurrentComponent == null)
+            {
+                CurrentComponent = CurrentElement.Parent.As<IComponent>();
+                createSenderComponent = true;
+            }
+
             var commands = CurrentComponent.Parent.Parent.Contract.Commands.Command;
-            var commandNames = commands.Select(e => e.InstanceName);
+            var commandNames = commands.Select(e => e.InstanceName).ToList();
 
-            var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
+            var viewModel = new ElementPickerViewModel(commandNames)
+            {
+                Title = "Send Command",
+                MasterName = "Command name"
+            };
 
-            picker.Elements = commandNames.ToList();
-            picker.Title = "Send Command";
-            picker.MasterName = "Command name";
+            var picker = WindowFactory.CreateDialog<ElementPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedElement = picker.SelectedItem;
-                    var selectedCommand = default(ICommand);
-                    if (commandNames.Contains(selectedElement))
+                    var selectedElement = viewModel.SelectedItem;
+                    var selectedCommand =
+                        commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                    if (selectedCommand == null)
                     {
-                        selectedCommand = commands.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                    }
-                    else
-                    {
-                        selectedCommand = CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement, (c) => c.DoNotAutogenerateSenderComponent = !createSenderComponent);
+                        selectedCommand = 
+                            CurrentComponent.Parent.Parent.Contract.Commands.CreateCommand(selectedElement, c => c.DoNotAutogenerateSenderComponent = !createSenderComponent);
                     }
 
                     CurrentComponent.Publishes.CreateLink(selectedCommand);
@@ -107,12 +105,12 @@ namespace NServiceBusStudio.Automation.Commands
                     // Code Generation Guidance
                     if (CurrentComponent.UnfoldedCustomCode)
                     {
-                        var userCode = WindowFactory.CreateDialog<UserCodeChangeRequired>() as UserCodeChangeRequired;
-                        userCode.UriService = this.UriService;
-                        userCode.Solution = this.Solution;
+                        var userCode = (UserCodeChangeRequired)WindowFactory.CreateDialog<UserCodeChangeRequired>();
+                        userCode.UriService = UriService;
+                        userCode.Solution = Solution;
                         userCode.Component = CurrentComponent;
-                        userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Send({0});", 
-                            selectedCommand.CodeIdentifier.LowerCaseFirstCharacter(), 
+                        userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Send({0});",
+                            selectedCommand.CodeIdentifier.LowerCaseFirstCharacter(),
                             selectedCommand.Parent.Namespace,
                             selectedCommand.CodeIdentifier);
 

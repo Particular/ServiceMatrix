@@ -1418,6 +1418,7 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::NuPattern.Runtime;
 	using global::NuPattern.Runtime.Bindings;
 	using global::NuPattern.Runtime.ToolkitInterface;
@@ -1515,6 +1516,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLA")]
 		[DisplayName("SLA")]
 		[Category("General")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		String SLA { get; set; }
 
 		/// <summary>
@@ -1539,6 +1541,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease")]
 		[DisplayName("Time Increase")]
 		[Category("SecondLevelRetriesConfig")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		String SLTimeIncrease { get; set; }
 
 		/// <summary>
@@ -1724,6 +1727,7 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::NuPattern.Runtime;
 	using global::NuPattern.Runtime.Bindings;
 	using global::NuPattern.Runtime.ToolkitInterface;
@@ -1821,6 +1825,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SLA")]
 		[DisplayName("SLA")]
 		[Category("General")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		String SLA { get; set; }
 
 		/// <summary>
@@ -2006,6 +2011,7 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::NuPattern.Runtime;
 	using global::NuPattern.Runtime.Bindings;
 	using global::NuPattern.Runtime.ToolkitInterface;
@@ -2095,6 +2101,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SLA")]
 		[DisplayName("SLA")]
 		[Category("General")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		String SLA { get; set; }
 
 		/// <summary>

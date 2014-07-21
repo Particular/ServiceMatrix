@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using NServiceBusStudio;
 using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.Dialog;
-using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
-using NuPattern.Diagnostics;
-using NuPattern.Runtime.ToolkitInterface;
+using AbstractEndpoint.Automation.Dialog;
+using NServiceBusStudio;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
+using NuPattern.Diagnostics;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace AbstractEndpoint.Automation.Commands
 {
@@ -64,31 +62,34 @@ namespace AbstractEndpoint.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var endpoints = this.CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Endpoints.GetAll();
-            
+            var endpoints = CurrentElement.Root.As<IApplication>().Design.Endpoints.GetAll();
+
             // Filter those components that already have deploed
-            var components = this.CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Services.Service
+            var components = CurrentElement.Root.As<IApplication>().Design.Services.Service
                                  .SelectMany(s => s.Components.Component)
                                  .Where(c => !endpoints.Any(e => e.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == c)));
 
             // Get endpoint names
-            var existingEndpointNames = endpoints.Select(e => String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName));
-            var picker = WindowFactory.CreateDialog<EndpointPicker>() as IServicePicker;
-            picker.Title = "Deploy to...";
+            var existingEndpointNames = endpoints.Select(e => String.Format("{0}", e.As<IProductElement>().InstanceName)).ToList();
 
-            picker.Elements = new ObservableCollection<string>(existingEndpointNames);
+            var viewModel = new EndpointPickerViewModel(existingEndpointNames)
+            {
+                Title = "Deploy to..."
+            };
+
+            var picker = WindowFactory.CreateDialog<EndpointPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
                     // Add new endpoint
-                    foreach (var selectedElement in picker.SelectedItems)
+                    foreach (var selectedElement in viewModel.SelectedItems)
                     {
-                        var selectedEndpoint = default(IAbstractEndpoint);
+                        IAbstractEndpoint selectedEndpoint;
                         if (existingEndpointNames.Contains(selectedElement))
                         {
-                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", e.As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             foreach (var component in components)
                             {
                                 component.DeployTo(selectedEndpoint);
@@ -96,13 +97,13 @@ namespace AbstractEndpoint.Automation.Commands
                         }
                         else
                         {
-                            var regexMatch = System.Text.RegularExpressions.Regex.Match(selectedElement, "(?'name'[^\\[]*?)\\[(?'type'[^\\]]*?)\\]");
+                            var regexMatch = Regex.Match(selectedElement, "(?'name'[^\\[]*?)\\[(?'type'[^\\]]*?)\\]");
                             var selectedName = regexMatch.Groups["name"].Value.Trim();
                             var selectedType = regexMatch.Groups["type"].Value.Trim();
 
                             var app = CurrentElement.Root.As<IApplication>();
-                            var handler = default(System.EventHandler);
-                            handler = new System.EventHandler((s, e) =>
+                            var handler = default(EventHandler);
+                            handler = new EventHandler((s, e) =>
                             {
                                 foreach (var component in components)
                                 {

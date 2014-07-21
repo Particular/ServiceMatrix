@@ -1,20 +1,23 @@
-﻿<Window x:Class="NServiceBusStudio.Automation.Diagramming.Views.AddService"
+﻿<nupattern:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Diagramming.Views.AddService"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             Topmost="True"
-             ShowInTaskbar="False"
-             ResizeMode="NoResize"
+             xmlns:nupattern="http://schemas.microsoft.com/nupattern/2012/xaml/"
+             Name="dialog"
+             Width="280"
+             SizeToContent="Height"
              WindowStyle="None"
-             SizeToContent="WidthAndHeight"
+             ResizeMode="NoResize"
              WindowStartupLocation="CenterScreen"
              FocusManager.FocusedElement="{Binding ElementName=ServiceName}">
     <Grid>
-        <StackPanel Width="280"
-                            Background="#F1F1F1"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Particular.ServiceMatrix.Automation;component/Resources/SharedStyles.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <StackPanel HorizontalAlignment="Stretch" Background="#F1F1F1">
             <StackPanel.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
             </StackPanel.BitmapEffect>
@@ -25,14 +28,14 @@
                 </StackPanel>
 
                 <Label Margin="0, 10, 0, 0" Foreground="#333333">Service name</Label>
-                <TextBox Height="25" Padding="0, 3, 0, 3" x:Name="ServiceName">
+                <TextBox Height="25" Padding="0, 3, 0, 3" x:Name="ServiceName" Text="{Binding ServiceName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
                 </TextBox>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="True">Cancel</Button>
-                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="True" IsEnabled="{Binding ElementName=ServiceName, Path=Text.Length}" Click="Button_Click">Done</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="True" Command="{Binding AcceptCommand}" CommandParameter="{Binding ElementName=dialog}">Done</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>
-</Window>
+</nupattern:CommonDialogWindow>

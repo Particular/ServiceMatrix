@@ -1,17 +1,15 @@
-﻿using System;
+﻿using AbstractEndpoint.Automation.Dialog;
+using NServiceBusStudio;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
+using NuPattern.Presentation;
+using NuPattern.Runtime;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio;
-using System.Collections.ObjectModel;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
 
 namespace AbstractEndpoint.Automation.Commands
 {
@@ -24,8 +22,6 @@ namespace AbstractEndpoint.Automation.Commands
     [CLSCompliant(false)]
     public class ShowComponentLinkPicker : NuPattern.Runtime.Command
     {
-        private static readonly ITracer tracer = Tracer.Get<ShowComponentLinkPicker>();
-
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
         /// </summary>
@@ -58,21 +54,23 @@ namespace AbstractEndpoint.Automation.Commands
             this.ValidateObject();
 
             var element = CurrentElement.As<IAbstractEndpointComponents>();
-            var components = CurrentElement.Root.As<NServiceBusStudio.IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component)
+            var components = CurrentElement.Root.As<IApplication>().Design.Services.Service.SelectMany(s => s.Components.Component)
                 .Except(element.AbstractComponentLinks.Select(cl => cl.ComponentReference.Value));
-            var existingServiceNames = components.Select(e => String.Format ("{0}.{1}", e.Parent.Parent.InstanceName, e.InstanceName));
-            var picker = WindowFactory.CreateDialog<ComponentPicker>() as IServicePicker;
-            
-            picker.Elements = new ObservableCollection<string>(existingServiceNames);
+            var existingServiceNames = components.Select(e => String.Format ("{0}.{1}", e.Parent.Parent.InstanceName, e.InstanceName)).ToList();
 
-            picker.Title = "Deploy components...";
+            var viewModel = new ComponentPickerViewModel(existingServiceNames)
+            {
+                Title = "Deploy components..."
+            };
 
-            var currentEndpoint = this.CurrentElement.Parent.As<IAbstractEndpoint>();
+            var picker = WindowFactory.CreateDialog<ComponentPicker>(viewModel);
+
+            var currentEndpoint = CurrentElement.Parent.As<IAbstractEndpoint>();
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    foreach (var selectedElement in picker.SelectedItems)
+                    foreach (var selectedElement in viewModel.SelectedItems)
                     {
                         var selectedCompoenent = default(NServiceBusStudio.IComponent);
                         if (existingServiceNames.Contains(selectedElement))

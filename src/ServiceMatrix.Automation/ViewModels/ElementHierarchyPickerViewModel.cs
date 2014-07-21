@@ -1,25 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using FluentValidation;
+using FluentValidation.Validators;
 using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.ViewModels
 {
     public class ElementHierarchyPickerViewModel : ValidatingViewModel
     {
+        IDictionary<string, ICollection<string>> elements;
+
+        [Obsolete("Only available to support design-time data", true)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ElementHierarchyPickerViewModel()
+        {
+        }
+
+        public ElementHierarchyPickerViewModel(IEnumerable<Tuple<string, ICollection<string>>> elements)
         {
             InitializeCommands();
             DropDownEditable = true;
+            var elementsList = elements as IList<Tuple<string, ICollection<string>>> ?? elements.ToList();
+            this.elements = elementsList.ToDictionary(t => t.Item1, t => t.Item2);
+            MasterElements = elementsList.Select(t => t.Item1).ToList();
         }
 
         /// <summary>
         /// Gets the accept command.
         /// </summary>
-        public System.Windows.Input.ICommand AcceptCommand { get; private set; }
+        public System.Windows.Input.ICommand AcceptCommand
+        {
+            get;
+            private set;
+        }
 
         private string title;
 
@@ -44,11 +61,24 @@ namespace NServiceBusStudio.Automation.ViewModels
                     uriSource = new Uri("../Diagramming/Styles/Images/CommandIcon.png", UriKind.Relative);
                 }
 
-                TitleImageSource = new BitmapImage(uriSource);
+                if (uriSource != null)
+                {
+                    TitleImageSource = new BitmapImage(uriSource);
+                }
             }
         }
 
-        public ImageSource TitleImageSource { get; set; }
+        public ImageSource TitleImageSource
+        {
+            get;
+            set;
+        }
+
+        public string MasterName
+        {
+            get;
+            set;
+        }
 
         public string SlaveName
         {
@@ -56,9 +86,7 @@ namespace NServiceBusStudio.Automation.ViewModels
             set;
         }
 
-        public bool DropDownEditable { get; set; }
-
-        public IDictionary<string, ICollection<string>> Elements
+        public bool DropDownEditable
         {
             get;
             set;
@@ -66,14 +94,12 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         public ICollection<string> MasterElements
         {
-            get { return this.Elements.Keys; }
+            get;
+            private set;
         }
 
         private string _selectedMasterItem;
 
-        [Required]
-        [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
-        [StringLength(30)]
         public string SelectedMasterItem
         {
             get { return _selectedMasterItem; }
@@ -82,6 +108,7 @@ namespace NServiceBusStudio.Automation.ViewModels
                 _selectedMasterItem = value;
                 OnPropertyChanged(() => SelectedMasterItem);
                 OnPropertyChanged(() => SlaveElements);
+                OnPropertyChanged(() => SelectedSlaveItem);
             }
         }
 
@@ -89,20 +116,18 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             get
             {
-                var master = Elements.FirstOrDefault(x => x.Key == SelectedMasterItem);
-                if (master.Value == null)
+                ICollection<string> slaveElements;
+                if (!elements.TryGetValue(SelectedMasterItem, out slaveElements) || slaveElements == null)
                 {
                     return new List<string>();
                 }
-                return master.Value;
+
+                return slaveElements;
             }
         }
 
         private string selectedSlaveItem;
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression(@"[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}][\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\p{Cf}]*")]
-        [StringLength(30)]
         public string SelectedSlaveItem
         {
             get
@@ -128,6 +153,33 @@ namespace NServiceBusStudio.Automation.ViewModels
         private void InitializeCommands()
         {
             AcceptCommand = new RelayCommand<dynamic>(dialog => this.CloseDialog(dialog), dialog => IsValid);
+        }
+
+        protected override IValidator CreateValidator()
+        {
+            return new ElementHierarchyPickerViewModelValidator();
+        }
+
+        class ElementHierarchyPickerViewModelValidator : AbstractValidator<ElementHierarchyPickerViewModel>
+        {
+            public ElementHierarchyPickerViewModelValidator()
+            {
+                RuleFor(vm => vm.SelectedMasterItem)
+                    .NotNull().WithMessage("Service name cannot be empty")
+                    .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.CompoundIdentifierMaxLength)
+                    .Matches(ValidationConstants.CompoundIdentifierPattern).WithMessage(ValidationConstants.InvalidCompoundIdentifierMessage);
+
+                RuleFor(vm => vm.SelectedSlaveItem)
+                    .NotNull().WithMessage("Value cannot be empty for this field")
+                    .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.IdentifierMaxLength)
+                    .Matches(ValidationConstants.IdentifierPattern).WithMessage(ValidationConstants.InvalidIdentifierMessage)
+                    .Must(BeDifferentToTheMasterItem).WithMessage("Entered values must be different");
+            }
+
+            private bool BeDifferentToTheMasterItem(ElementHierarchyPickerViewModel model, string value, PropertyValidatorContext context)
+            {
+                return !string.Equals(value, model.SelectedMasterItem, StringComparison.Ordinal);
+            }
         }
     }
 }

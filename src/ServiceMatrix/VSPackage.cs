@@ -1,4 +1,13 @@
-﻿using Microsoft.VisualStudio.ComponentModelHost;
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using ExceptionReporting;
+using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using NServiceBusStudio.Automation.CustomSolutionBuilder;
@@ -11,14 +20,7 @@ using NuPattern.Runtime.Diagnostics;
 using NuPattern.VisualStudio;
 using ServiceMatrix.Diagramming;
 using ServiceMatrix.Diagramming.Views;
-using System;
-using System.ComponentModel;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.IO;
-using System.Runtime.InteropServices;
-using DslShell = global::Microsoft.VisualStudio.Modeling.Shell;
+using DslShell = Microsoft.VisualStudio.Modeling.Shell;
 
 namespace NServiceBusStudio
 {
@@ -35,24 +37,24 @@ namespace NServiceBusStudio
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
     [ProvideService(typeof(ServiceMatrixDiagramToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
     [Description("ServiceMatrix")]
-    [DslShell::ProvideBindingPath]
+    [DslShell.ProvideBindingPathAttribute]
     public sealed class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
     {
         [Import]
-        public ITraceOutputWindowManager TraceOutputWindowManager { get; set; }
+        public ITraceOutputWindowManager TraceOutputWindowManager { private get; set; }
 
         protected override void Initialize()
         {
             base.Initialize();
 
-            this.AddServices();
-            this.EnsureCreateTraceOutput();
-            this.TrackUnhandledExceptions();
+            AddServices();
+            EnsureCreateTraceOutput();
+            TrackUnhandledExceptions();
         }
 
         private void TrackUnhandledExceptions()
         {
-            var reporter = new ExceptionReporting.ExceptionReporter();
+            var reporter = new ExceptionReporter();
             reporter.Config.AppName = ToolkitConstants.ToolkitName;
             reporter.Config.AppVersion = ToolkitConstants.Version;
             reporter.Config.CompanyName = "Particular Software";
@@ -65,33 +67,44 @@ namespace NServiceBusStudio
             reporter.Config.ContactMessageTop = "[ServiceMatrix] Exception Report";
 
             var type = typeof(TraceSourceExtensions);
-            var field = type.GetField("ShowExceptionAction", System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
-            field.SetValue(null, new Action<string, Exception>((s, e) =>
+            var field = type.GetField("ShowExceptionAction", BindingFlags.Static | BindingFlags.NonPublic);
+            if (field != null)
             {
-                var customMessage = "";
-
-                if (File.Exists(StatisticsManager.LoggingFile))
+                field.SetValue(null, new Action<string, Exception>((s, e) =>
                 {
-                    using (var fileStream = new FileStream(StatisticsManager.LoggingFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                    using (var textReader = new StreamReader(fileStream))
+#if DEBUG
+                    if (Debugger.IsAttached)
                     {
-                        customMessage = textReader.ReadToEnd();
+                        Debugger.Break();
+                        return;
                     }
-                }
+#endif
 
-                if (!(e is ElementAlreadyExistsException))
-                {
-                    if (string.IsNullOrEmpty(customMessage))
+                    var customMessage = "";
+
+                    if (File.Exists(StatisticsManager.LoggingFile))
                     {
-                        reporter.Show(e);
+                        using (var fileStream = new FileStream(StatisticsManager.LoggingFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        using (var textReader = new StreamReader(fileStream))
+                        {
+                            customMessage = textReader.ReadToEnd();
+                        }
                     }
-                    else
+
+                    if (!(e is ElementAlreadyExistsException))
                     {
-                        reporter.Show(e.Message + Environment.NewLine + Environment.NewLine +
-                                      "Additional Log:" + Environment.NewLine + customMessage, e);
+                        if (string.IsNullOrEmpty(customMessage))
+                        {
+                            reporter.Show(e);
+                        }
+                        else
+                        {
+                            reporter.Show(e.Message + Environment.NewLine + Environment.NewLine +
+                                          "Additional Log:" + Environment.NewLine + customMessage, e);
+                        }
                     }
-                }
-            }));
+                }));
+            }
         }
 
         private void EnsureCreateTraceOutput()
@@ -108,7 +121,7 @@ namespace NServiceBusStudio
                 traceManager.SetTracingLevel(StatisticsManager.StatisticsListenerNamespace, SourceLevels.All);
             }
 
-            this.TraceOutputWindowManager.CreateTracePane(new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new[] { StatisticsManager.StatisticsListenerNamespace });
+            TraceOutputWindowManager.CreateTracePane(new Guid("8678B5A5-9811-4D3E-921D-789E82C690D6"), "ServiceMatrix Logging", new[] { StatisticsManager.StatisticsListenerNamespace });
         }
 
         private void AddServices()
@@ -120,7 +133,7 @@ namespace NServiceBusStudio
 
         void IDetailsWindowsManager.Show()
         {
-            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            var window = EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var frame = (IVsWindowFrame)window.Frame;
@@ -140,7 +153,7 @@ namespace NServiceBusStudio
 
         void IDiagramsWindowsManager.Show()
         {
-            var window = this.EnsureCreateToolWindow<ServiceMatrixDiagramToolWindow>();
+            var window = EnsureCreateToolWindow<ServiceMatrixDiagramToolWindow>();
             if (window != null)
             {
                 var frame = (IVsWindowFrame)window.Frame;
@@ -150,7 +163,7 @@ namespace NServiceBusStudio
 
         private void EnableDisableDetailsPanel(bool enable)
         {
-            var window = this.EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
+            var window = EnsureCreateToolWindow<NServiceBusDetailsToolWindow>();
             if (window != null)
             {
                 var content = (DetailsPanel)window.Content;
@@ -160,10 +173,10 @@ namespace NServiceBusStudio
 
         T EnsureCreateToolWindow<T>() where T : class
         {
-            var window = this.FindToolWindow(typeof(T), 0, false);
+            var window = FindToolWindow(typeof(T), 0, false);
             if (window == null)
             {
-                window = this.CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
+                window = CreateToolWindow(typeof(T), 0).As<ToolWindowPane>();
                 var serviceContainer = (IServiceContainer)this;
                 serviceContainer.AddService(typeof(T), window.As<T>(), true);
             }

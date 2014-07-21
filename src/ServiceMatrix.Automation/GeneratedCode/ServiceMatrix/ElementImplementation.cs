@@ -2464,6 +2464,7 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::NuPattern.Runtime;
 	using global::NuPattern.Runtime.Bindings;
 	using global::NuPattern.Runtime.ToolkitInterface;
@@ -2623,6 +2624,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLA")]
 		[DisplayName("SLA")]
 		[Category("General")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		public virtual String SLA
 		{
 			get { return this.proxy.GetValue(() => this.SLA); }
@@ -2659,6 +2661,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusHost.SLTimeIncrease")]
 		[DisplayName("Time Increase")]
 		[Category("SecondLevelRetriesConfig")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		public virtual String SLTimeIncrease
 		{
 			get { return this.proxy.GetValue(() => this.SLTimeIncrease); }
@@ -2976,6 +2979,7 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::NuPattern.Runtime;
 	using global::NuPattern.Runtime.Bindings;
 	using global::NuPattern.Runtime.ToolkitInterface;
@@ -3135,6 +3139,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusWeb.SLA")]
 		[DisplayName("SLA")]
 		[Category("General")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		public virtual String SLA
 		{
 			get { return this.proxy.GetValue(() => this.SLA); }
@@ -3452,6 +3457,7 @@ namespace NServiceBusStudio
 
 namespace NServiceBusStudio
 {
+	using global::NServiceBusStudio.Automation.TypeConverters;
 	using global::NuPattern.Runtime;
 	using global::NuPattern.Runtime.Bindings;
 	using global::NuPattern.Runtime.ToolkitInterface;
@@ -3599,6 +3605,7 @@ namespace NServiceBusStudio
 		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SLA")]
 		[DisplayName("SLA")]
 		[Category("General")]
+		[TypeConverter(typeof(InvariantCultureTimeSpanStringConverter))]
 		public virtual String SLA
 		{
 			get { return this.proxy.GetValue(() => this.SLA); }

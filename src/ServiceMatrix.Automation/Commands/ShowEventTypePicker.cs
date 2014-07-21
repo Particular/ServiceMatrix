@@ -3,20 +3,17 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
-using NuPattern.Diagnostics;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.Extensions;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 using NuPattern.VisualStudio.Solution;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    using Extensions;
-
     /// <summary>
     /// A custom command that performs some automation.
     /// </summary>
@@ -26,8 +23,6 @@ namespace NServiceBusStudio.Automation.Commands
     [CLSCompliant(false)]
     public class ShowEventTypePicker : NuPattern.Runtime.Command
     {
-        private static readonly ITracer tracer = Tracer.Get<ShowEventTypePicker>();
-
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
         /// </summary>
@@ -66,35 +61,34 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentComponent = this.CurrentElement.As<IComponent>();
-            if (this.CurrentComponent == null)
-            {
-                this.CurrentComponent = this.CurrentElement.Parent.As<IComponent>();
-            }
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
+            CurrentComponent = CurrentElement.As<IComponent>();
+            if (CurrentComponent == null)
+            {
+                CurrentComponent = CurrentElement.Parent.As<IComponent>();
+            }
+
             var events = CurrentComponent.Parent.Parent.Contract.Events.Event;
-            var eventNames = events.Select(e => e.InstanceName);
+            var eventNames = events.Select(e => e.InstanceName).ToList();
 
-            var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
+            var viewModel = new ElementPickerViewModel(eventNames)
+            {
+                Title = "Publish Event",
+                MasterName = "Event name"
+            };
 
-            picker.Elements = eventNames.ToList();
-            picker.Title = "Publish Event";
-            picker.MasterName = "Event name";
+            var picker = WindowFactory.CreateDialog<ElementPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedElement = picker.SelectedItem;
-                    var selectedEvent = default(IEvent);
-                    if (eventNames.Contains(selectedElement))
-                    {
-                        selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                    }
-                    else
+                    var selectedElement = viewModel.SelectedItem;
+                    var selectedEvent =
+                        events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                    if (selectedEvent == null)
                     {
                         selectedEvent = CurrentComponent.Parent.Parent.Contract.Events.CreateEvent(selectedElement);
                     }
@@ -104,12 +98,12 @@ namespace NServiceBusStudio.Automation.Commands
                     // Code Generation Guidance
                     if (CurrentComponent.UnfoldedCustomCode)
                     {
-                        var userCode = WindowFactory.CreateDialog<UserCodeChangeRequired>() as UserCodeChangeRequired;
-                        userCode.UriService = this.UriService;
-                        userCode.Solution = this.Solution;
+                        var userCode = (UserCodeChangeRequired)WindowFactory.CreateDialog<UserCodeChangeRequired>();
+                        userCode.UriService = UriService;
+                        userCode.Solution = Solution;
                         userCode.Component = CurrentComponent;
-                        userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Publish({0});", 
-                            selectedEvent.CodeIdentifier.LowerCaseFirstCharacter(), 
+                        userCode.Code = String.Format("var {0} = new {1}.{2}();\r\nBus.Publish({0});",
+                            selectedEvent.CodeIdentifier.LowerCaseFirstCharacter(),
                             selectedEvent.Parent.Namespace,
                             selectedEvent.CodeIdentifier);
                         userCode.ShowDialog();

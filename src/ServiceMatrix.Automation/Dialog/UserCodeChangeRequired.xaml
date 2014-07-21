@@ -12,7 +12,7 @@
              WindowStyle="None"
              ResizeMode="NoResize">
     <Grid>
-        <StackPanel Width="Auto" Background="#F1F1F1">
+        <StackPanel HorizontalAlignment="Stretch" Background="#F1F1F1">
             <StackPanel.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
             </StackPanel.BitmapEffect>

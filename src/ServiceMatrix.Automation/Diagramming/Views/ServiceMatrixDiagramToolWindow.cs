@@ -1,11 +1,12 @@
-﻿using Microsoft.VisualStudio.ComponentModelHost;
-using Microsoft.VisualStudio.Shell;
-using ServiceMatrix.Diagramming.ViewModels;
-using NuPattern;
-using System;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.ComponentModelHost;
+using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
+using NServiceBusStudio;
+using NuPattern;
+using ServiceMatrix.Diagramming.ViewModels;
 
 namespace ServiceMatrix.Diagramming.Views
 {
@@ -15,12 +16,16 @@ namespace ServiceMatrix.Diagramming.Views
         [Import]
         public ServiceMatrixDiagramAdapter NServiceBusDiagramAdapter { get; set; }
 
+        [Required]
+        [Import(AllowDefault = true)]
+        private IDialogWindowFactory WindowFactory { get; set; }
+
         public ServiceMatrixDiagramToolWindow() :
             base(null)
         {
-            this.Caption = "ServiceMatrix - NServiceBus Canvas";
-            this.BitmapResourceID = 301;
-            this.BitmapIndex = 0;
+            Caption = "ServiceMatrix - NServiceBus Canvas";
+            BitmapResourceID = 301;
+            BitmapIndex = 0;
         }
 
         protected override void Initialize()
@@ -30,19 +35,14 @@ namespace ServiceMatrix.Diagramming.Views
             var componentModel = this.GetService<SComponentModel, IComponentModel>();
             componentModel.DefaultCompositionService.SatisfyImportsOnce(this);
 
-            this.NServiceBusDiagramAdapter.CloseWindow = () =>
+            NServiceBusDiagramAdapter.CloseWindow = () =>
             {
-                IVsWindowFrame windowFrame = (IVsWindowFrame)this.Frame;
+                var windowFrame = (IVsWindowFrame)Frame;
                 windowFrame.Hide();
             };
 
-            var pane = new Diagram(this.NServiceBusDiagramAdapter);
-            this.Content = pane;
-            
-            //pane.CaptionHasChanged += (s, e) =>
-            //{
-            //    this.Caption = pane.Caption;
-            //};
+            var pane = new Diagram(NServiceBusDiagramAdapter, WindowFactory);
+            Content = pane;
         }
     }
 }

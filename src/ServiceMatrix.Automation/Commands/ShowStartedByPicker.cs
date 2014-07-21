@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using NServiceBusStudio;
 using System.ComponentModel.Composition;
-using NuPattern.Runtime;
-using AbstractEndpoint.Automation.Dialog;
-using NServiceBusStudio.Automation.Dialog;
-using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Windows.Input;
-using NuPattern.Diagnostics;
+using AbstractEndpoint.Automation.Dialog;
+using NServiceBusStudio;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
-using NuPattern.Runtime.ToolkitInterface;
+using NuPattern.Diagnostics;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
+using NuPattern.Runtime.ToolkitInterface;
 
 namespace AbstractEndpoint.Automation.Commands
 {
@@ -53,28 +50,32 @@ namespace AbstractEndpoint.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var element = CurrentElement.As<NServiceBusStudio.IUseCase>();
-            var endpoints = CurrentElement.Root.As<NServiceBusStudio.IApplication>()
+            var element = CurrentElement.As<IUseCase>();
+            var endpoints = CurrentElement.Root.As<IApplication>()
                 .Design.Endpoints.GetAll()
                 .Where(e => !element.EndpointsStartingUseCases.Contains(e.As<IToolkitInterface>() as IAbstractEndpoint));
 
             // Get endpoint names
-            var existingEndpointNames = endpoints.Select(e => String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName));
-            var picker = WindowFactory.CreateDialog<EndpointPicker>() as IServicePicker;
-            picker.Title = element.InstanceName + " Started by...";
+            var existingEndpointNames = endpoints.Select(e => String.Format("{0}", e.As<IProductElement>().InstanceName));
+            var elements = endpoints.Select(e => e.As<IProductElement>().InstanceName).ToList();
 
-            picker.Elements = new ObservableCollection<string>(endpoints.Select(e => e.As<IProductElement>().InstanceName));
+            var viewModel = new EndpointPickerViewModel(elements)
+            {
+                Title = element.InstanceName + " Started by..."
+            };
+
+            var picker = WindowFactory.CreateDialog<EndpointPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    foreach (var selectedElement in picker.SelectedItems)
+                    foreach (var selectedElement in viewModel.SelectedItems)
                     {
                         var selectedEndpoint = default(IAbstractEndpoint);
                         if (existingEndpointNames.Contains(selectedElement))
                         {
-                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", (e as IToolkitInterface).As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                            selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", e.As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             element.AddEndpointStartingUseCase(selectedEndpoint);
                         }
                     }
