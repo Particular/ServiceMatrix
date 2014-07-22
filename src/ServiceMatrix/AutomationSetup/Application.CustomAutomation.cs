@@ -203,7 +203,7 @@ namespace NServiceBusStudio
                     () =>
                         new NServiceBusStudio.Automation.Commands.ChildCommandReference
                         {
-                            CommandNameStartsWidth = BindingFor.Value<string>("GenerateCodeV4"),
+                            CommandNameStartsWidth = "GenerateCodeV4",
                             Recursive = BindingFor.Value<bool>("True"),
                         });
 
@@ -214,7 +214,7 @@ namespace NServiceBusStudio
                     () =>
                         new NServiceBusStudio.Automation.Commands.ChildCommandReference
                         {
-                            CommandNameStartsWidth = BindingFor.Value<string>("GenerateCodeV5"),
+                            CommandNameStartsWidth = "GenerateCodeV5",
                             Recursive = BindingFor.Value<bool>("True"),
                         });
 
@@ -226,8 +226,8 @@ namespace NServiceBusStudio
                         new NuPattern.Library.Commands.InstantiateGuidanceWorkflowCommand
                         {
                             ActivateOnInstantiation = BindingFor.Value<bool>("True"),
-                            DefaultInstanceName = BindingFor.Value<string>("ServiceMatrix Guidance"),
-                            ExtensionId = BindingFor.Value<string>("23795EC3-3DEA-4F04-9044-4056CF91A2ED"),
+                            DefaultInstanceName = "ServiceMatrix Guidance",
+                            ExtensionId = "23795EC3-3DEA-4F04-9044-4056CF91A2ED",
                             SharedInstance = BindingFor.Value<bool>("True"),
                         });
 
@@ -340,11 +340,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Authentication.cs"),
-                            TargetPath = BindingFor.Value<string>("{CodePath}"),
+                            TargetFileName = "Authentication.cs",
+                            TargetPath = "{CodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/Authentication.tt"),
                         });
 
@@ -357,11 +357,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("AuthorizeOutgoingMessages.cs"),
-                            TargetPath = BindingFor.Value<string>("{CodePath}"),
+                            TargetFileName = "AuthorizeOutgoingMessages.cs",
+                            TargetPath = "{CodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/AuthorizeOutgoingMessages.v4.tt"),
                         });
 
@@ -383,11 +383,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Authentication.cs"),
-                            TargetPath = BindingFor.Value<string>("{CodePath}"),
+                            TargetFileName = "Authentication.cs",
+                            TargetPath = "{CodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/Authentication.tt"),
                         });
 
@@ -400,11 +400,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("AuthorizeOutgoingMessages.cs"),
-                            TargetPath = BindingFor.Value<string>("{CodePath}"),
+                            TargetFileName = "AuthorizeOutgoingMessages.cs",
+                            TargetPath = "{CodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/AuthorizeOutgoingMessages.v5.tt"),
                         });
 
@@ -425,8 +425,8 @@ namespace NServiceBusStudio
                         new NuPattern.Library.Commands.ActivateElementSolutionItemCommand
                         {
                             Open = BindingFor.Value<bool>("True"),
-                            TargetFileName = BindingFor.Value<string>("Authentication.cs"),
-                            TargetPath = BindingFor.Value<string>("{CustomCodePath}"),
+                            TargetFileName = "Authentication.cs",
+                            TargetPath = "{CustomCodePath}",
                         });
 
             var UnfoldCustomAuthenticationCode =
@@ -438,11 +438,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Authentication.cs"),
-                            TargetPath = BindingFor.Value<string>("{CustomCodePath}"),
+                            TargetFileName = "Authentication.cs",
+                            TargetPath = "{CustomCodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthentication.tt"),
                         });
 
@@ -455,11 +455,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("AuthorizeOutgoingMessages.cs"),
-                            TargetPath = BindingFor.Value<string>("{CustomCodePath}"),
+                            TargetFileName = "AuthorizeOutgoingMessages.cs",
+                            TargetPath = "{CustomCodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthorizeOutgoingMessages.v4.tt"),
                         });
 
@@ -472,11 +472,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("AuthorizeOutgoingMessages.cs"),
-                            TargetPath = BindingFor.Value<string>("{CustomCodePath}"),
+                            TargetFileName = "AuthorizeOutgoingMessages.cs",
+                            TargetPath = "{CustomCodePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/CustomAuthorizeOutgoingMessages.v5.tt"),
                         });
 
@@ -515,9 +515,9 @@ namespace NServiceBusStudio
                     () =>
                         new NServiceBusStudio.Automation.Commands.ConditionalCommand
                         {
-                            CommandName = BindingFor.Value<string>("CreateCommandComponents"),
+                            CommandName = "CreateCommandComponents",
                             ExpectedValue = BindingFor.Value<bool>("False"),
-                            PropertyName = BindingFor.Value<string>("DoNotAutogenerateComponents"),
+                            PropertyName = "DoNotAutogenerateComponents",
                         });
 
             var CreateCommandComponents =
@@ -538,14 +538,14 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}"),
+                                    Expression = "{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}",
                                 }),
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CommandDefinition.tt"),
                         });
@@ -569,14 +569,14 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\{Parent.Parent.Parent.InstanceName}"),
+                                    Expression = "{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\{Parent.Parent.Parent.InstanceName}",
                                 }),
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomCommandDefinition.tt"),
                         });
@@ -636,7 +636,7 @@ namespace NServiceBusStudio
                         new NuPattern.Library.Commands.ActivateElementSolutionItemCommand
                         {
                             Open = BindingFor.Value<bool>("True"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}ConfigureHowToFindSaga.cs"),
+                            TargetFileName = "{CodeIdentifier}ConfigureHowToFindSaga.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -652,7 +652,7 @@ namespace NServiceBusStudio
                         new NuPattern.Library.Commands.ActivateElementSolutionItemCommand
                         {
                             Open = BindingFor.Value<bool>("True"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -667,7 +667,7 @@ namespace NServiceBusStudio
                     () =>
                         new NServiceBusStudio.Automation.Commands.ShowEventTypePicker
                         {
-                            //CurrentComponent = BindingFor.Value<string>(""),
+                            //CurrentComponent = "",
                         });
 
             var RaiseOnInstantiated =
@@ -744,10 +744,10 @@ namespace NServiceBusStudio
                             CheckIsNotUnfoldedCustomCode = BindingFor.Value<bool>("True"),
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -767,10 +767,10 @@ namespace NServiceBusStudio
                             CheckIsNotUnfoldedCustomCode = BindingFor.Value<bool>("False"),
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -790,10 +790,10 @@ namespace NServiceBusStudio
                             CheckIsNotUnfoldedCustomCode = BindingFor.Value<bool>("False"),
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}ConfigureHowToFindSaga.cs"),
+                            TargetFileName = "{CodeIdentifier}ConfigureHowToFindSaga.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -813,10 +813,10 @@ namespace NServiceBusStudio
                             CheckIsNotUnfoldedCustomCode = BindingFor.Value<bool>("False"),
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}ConfigureHowToFindSaga.cs"),
+                            TargetFileName = "{CodeIdentifier}ConfigureHowToFindSaga.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -836,10 +836,10 @@ namespace NServiceBusStudio
                             CheckIsNotUnfoldedCustomCode = BindingFor.Value<bool>("False"),
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}SagaData.cs"),
+                            TargetFileName = "{CodeIdentifier}SagaData.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider
                                 {
@@ -1053,13 +1053,13 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
+                            Tag = "",
                             TargetFileName = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{InstanceName}"),
+                                    Expression = "{InstanceName}",
                                 }),
-                            TargetPath = BindingFor.Value<string>(""),
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/a31ec8d9600f-Application.Design.ContractsProject"),
                         });
 
@@ -1108,14 +1108,14 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{Root.InstanceName}.{Root.ProjectNameContracts}\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}"),
+                                    Expression = "{Root.InstanceName}.{Root.ProjectNameContracts}\\GeneratedCode\\{Parent.Parent.Parent.InstanceName}",
                                 }),
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/EventDefinition.tt"),
                         });
@@ -1139,14 +1139,14 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{Root.InstanceName}.{Root.ProjectNameContracts}\\{Parent.Parent.Parent.InstanceName}"),
+                                    Expression = "{Root.InstanceName}.{Root.ProjectNameContracts}\\{Parent.Parent.Parent.InstanceName}",
                                 }),
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomEventDefinition.tt"),
                         });
@@ -1207,9 +1207,9 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetFileName = BindingFor.Value<string>("{Parent.Parent.InstanceName}.Infrastructure"),
-                            TargetPath = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetFileName = "{Parent.Parent.InstanceName}.Infrastructure",
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/7c13f051a9fc-Application.Design.Infrastructure"),
                         });
 
@@ -1246,13 +1246,13 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
+                            Tag = "",
                             TargetFileName = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{InstanceName}"),
+                                    Expression = "{InstanceName}",
                                 }),
-                            TargetPath = BindingFor.Value<string>(""),
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/b206ddeb388a-Application.Design.InternalMessagesProject"),
                         });
 
@@ -1295,9 +1295,9 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetFileName = BindingFor.Value<string>("{Parent.Parent.InstanceName}.{Root.ProjectNameCode}"),
-                            TargetPath = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetFileName = "{Parent.Parent.InstanceName}.{Root.ProjectNameCode}",
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/485e80115c58-Application.Design.Libraries"),
                         });
 
@@ -1347,11 +1347,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
-                            TargetPath = BindingFor.Value<string>("{FilePath}"),
+                            TargetFileName = "{CodeIdentifier}.cs",
+                            TargetPath = "{FilePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt"),
                         });
 
@@ -1424,8 +1424,8 @@ namespace NServiceBusStudio
                         new NuPattern.Library.Commands.ActivateArtifactCommand
                         {
                             Open = BindingFor.Value<bool>("True"),
-                            //TargetFileName = BindingFor.Value<string>(""),
-                            //TargetPath = BindingFor.Value<string>(""),
+                            //TargetFileName = "",
+                            //TargetPath = "",
                         });
 
             var UnfoldMessageFile =
@@ -1437,14 +1437,14 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
+                            TargetFileName = "{CodeIdentifier}.cs",
                             TargetPath = BindingFor.ValueProvider<string>(
                                 new NuPattern.Library.ValueProviders.ExpressionValueProvider
                                 {
-                                    Expression = BindingFor.Value<string>("{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\{Parent.Parent.Parent.InstanceName}"),
+                                    Expression = "{Root.InstanceName}.{Root.ProjectNameInternalMessages}\\{Parent.Parent.Parent.InstanceName}",
                                 }),
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/CustomMessageDefinition.tt"),
                         });
@@ -1488,11 +1488,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("AuditConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config/"),
+                            TargetFileName = "AuditConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config/",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/AuditConfig.config.tt"),
                         });
 
@@ -1505,11 +1505,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("App.config"),
-                            TargetPath = BindingFor.Value<string>(""),
+                            TargetFileName = "App.config",
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/DefaultApp.config.tt"),
                         });
 
@@ -1522,11 +1522,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("EndpointConfig.generated.cs"),
-                            TargetPath = BindingFor.Value<string>("~/EndpointConfig.cs"),
+                            TargetFileName = "EndpointConfig.generated.cs",
+                            TargetPath = "~/EndpointConfig.cs",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/EndpointConfig.generated.cs.tt"),
                         });
 
@@ -1539,11 +1539,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("MasterNodeConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "MasterNodeConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MasterNodeConfig.config.tt"),
                         });
 
@@ -1556,11 +1556,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("MessageForwardingInCaseOfFaultConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "MessageForwardingInCaseOfFaultConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/MessageForwardingInCaseOfFaultConfig.config.tt"),
                         });
 
@@ -1573,36 +1573,30 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("SecondLevelRetriesConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "SecondLevelRetriesConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/SecondLevelRetriesConfig.config.tt"),
                         });
 
             var GenerateTransportConfigCode =
-                element.CreateOrUpdateDispatcherCommandSettings(
+                element.CreateOrUpdateCommandSettings(
+                    new Guid("15F56D6E-DC15-44F2-BB6B-91604C1CDA08"),
                     "GenerateTransportConfigCode",
                     () =>
                         new NuPattern.Library.Commands.GenerateProductCodeCommandCustom
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.cs"),
-                            TargetPath = BindingFor.Value<string>("~"),
-                        },
-                    Tuple.Create(
-                        new Guid("4dfafba4-8e2b-4437-8c84-495041cb219f"),
-                        "NSB 4.0",
-                        "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.v4.tt"),
-                    Tuple.Create(
-                        new Guid("71831e4b-a551-46ef-8157-f918471210bf"),
-                        "NSB 5.0",
-                        "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.v5.tt"));
+                            TargetFileName = "TransportConfig.cs",
+                            TargetPath = "~",
+                            TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.tt"),
+                        });
 
             var GenerateTransportConfigConfig =
                 element.CreateOrUpdateCommandSettings(
@@ -1613,11 +1607,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "TransportConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConfig.config.tt"),
                         });
 
@@ -1630,11 +1624,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("TransportConnectionString.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "TransportConnectionString.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/TransportConnectionString.config.tt"),
                         });
 
@@ -1647,11 +1641,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("UnicastBusConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "UnicastBusConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/UnicastBusConfig.config.tt"),
                         });
 
@@ -1733,11 +1727,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("Logging.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "Logging.config",
+                            TargetPath = "~/Infrastructure",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBH/Logging.config.tt"),
                         });
 
@@ -1749,11 +1743,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("MessageConventions.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "MessageConventions.cs",
+                            TargetPath = "~/Infrastructure",
                         },
                     Tuple.Create(
                         new Guid("68894bb3-5b54-41e0-8972-b4186984c290"),
@@ -1773,9 +1767,9 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetFileName = BindingFor.Value<string>("{Root.InstanceName}.{InstanceName}"),
-                            TargetPath = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetFileName = "{Root.InstanceName}.{InstanceName}",
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/3e6035065cf5-Application.Design.Endpoints.NServiceBusHost"),
                         });
 
@@ -1849,11 +1843,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("AuditConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config/"),
+                            TargetFileName = "AuditConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config/",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/AuditConfig.config.tt"),
                         });
 
@@ -1866,11 +1860,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("MessageForwardingInCaseOfFaultConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "MessageForwardingInCaseOfFaultConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageForwardingInCaseOfFaultConfig.config.tt"),
                         });
 
@@ -1883,11 +1877,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TestMessagesController.generated.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Controllers"),
+                            TargetFileName = "TestMessagesController.generated.cs",
+                            TargetPath = "~/Controllers",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TestMessagesController.cs.tt"),
                         });
 
@@ -1900,11 +1894,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Index.cshtml"),
-                            TargetPath = BindingFor.Value<string>("~/Views/TestMessages"),
+                            TargetFileName = "Index.cshtml",
+                            TargetPath = "~/Views/TestMessages",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TestMessagesView.cshtml.tt"),
                         });
 
@@ -1917,11 +1911,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode"),
+                            TargetFileName = "TransportConfig.cs",
+                            TargetPath = "~/Infrastructure/GeneratedCode",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.v4.tt"),
                         });
 
@@ -1934,11 +1928,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode"),
+                            TargetFileName = "TransportConfig.cs",
+                            TargetPath = "~/Infrastructure/GeneratedCode",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.v5.tt"),
                         });
 
@@ -1951,11 +1945,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "TransportConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConfig.config.tt"),
                         });
 
@@ -1968,11 +1962,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("TransportConnectionString.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "TransportConnectionString.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/TransportConnectionString.config.tt"),
                         });
 
@@ -1985,11 +1979,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("UnicastBusConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "UnicastBusConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/UnicastBusConfig.config.tt"),
                         });
 
@@ -2002,11 +1996,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("WebGlobalInitialization.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/"),
+                            TargetFileName = "WebGlobalInitialization.cs",
+                            TargetPath = "~/Infrastructure/",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.v4.cs.tt"),
                         });
 
@@ -2019,11 +2013,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("WebGlobalInitialization.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/"),
+                            TargetFileName = "WebGlobalInitialization.cs",
+                            TargetPath = "~/Infrastructure/",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/WebGlobalInitialization.v5.cs.tt"),
                         });
 
@@ -2036,11 +2030,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("GeneratedWebInitialization.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode"),
+                            TargetFileName = "GeneratedWebInitialization.cs",
+                            TargetPath = "~/Infrastructure/GeneratedCode",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.v4.cs.tt"),
                         });
 
@@ -2053,11 +2047,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("GeneratedWebInitialization.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode"),
+                            TargetFileName = "GeneratedWebInitialization.cs",
+                            TargetPath = "~/Infrastructure/GeneratedCode",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/GeneratedWebInitialization.v5.cs.tt"),
                         });
 
@@ -2116,11 +2110,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("Logging.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "Logging.config",
+                            TargetPath = "~/Infrastructure",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/Logging.config.tt"),
                         });
 
@@ -2133,11 +2127,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("MessageConventions.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "MessageConventions.cs",
+                            TargetPath = "~/Infrastructure",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageConventions.v4.cs.tt"),
                         });
 
@@ -2150,11 +2144,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("MessageConventions.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "MessageConventions.cs",
+                            TargetPath = "~/Infrastructure",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/MessageConventions.v5.cs.tt"),
                         });
 
@@ -2167,9 +2161,9 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetFileName = BindingFor.Value<string>("{Root.InstanceName}.{InstanceName}"),
-                            TargetPath = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetFileName = "{Root.InstanceName}.{InstanceName}",
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/8266b53c7228-Application.Design.Endpoints.NServiceBusMVC"),
                         });
 
@@ -2262,11 +2256,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("AuditConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config/"),
+                            TargetFileName = "AuditConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config/",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/AuditConfig.config.tt"),
                         });
 
@@ -2279,11 +2273,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("MessageForwardingInCaseOfFaultConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "MessageForwardingInCaseOfFaultConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/MessageForwardingInCaseOfFaultConfig.config.tt"),
                         });
 
@@ -2296,11 +2290,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TestMessages.aspx"),
-                            TargetPath = BindingFor.Value<string>("~"),
+                            TargetFileName = "TestMessages.aspx",
+                            TargetPath = "~",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.tt"),
                         });
 
@@ -2313,11 +2307,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TestMessages.aspx.generated.cs"),
-                            TargetPath = BindingFor.Value<string>("~/TestMessages.aspx"),
+                            TargetFileName = "TestMessages.aspx.generated.cs",
+                            TargetPath = "~/TestMessages.aspx",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.cs.tt"),
                         });
 
@@ -2330,11 +2324,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("True"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TestMessages.aspx.designer.cs"),
-                            TargetPath = BindingFor.Value<string>("~/TestMessages.aspx"),
+                            TargetFileName = "TestMessages.aspx.designer.cs",
+                            TargetPath = "~/TestMessages.aspx",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TestMessages.aspx.designer.cs.tt"),
                         });
 
@@ -2347,11 +2341,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode"),
+                            TargetFileName = "TransportConfig.cs",
+                            TargetPath = "~/Infrastructure/GeneratedCode",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConfig.tt"),
                         });
 
@@ -2364,11 +2358,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("TransportConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "TransportConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConfig.config.tt"),
                         });
 
@@ -2381,11 +2375,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("TransportConnectionString.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "TransportConnectionString.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/TransportConnectionString.config.tt"),
                         });
 
@@ -2398,11 +2392,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("UnicastBusConfig.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode/Config"),
+                            TargetFileName = "UnicastBusConfig.config",
+                            TargetPath = "~/Infrastructure/GeneratedCode/Config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/UnicastBusConfig.config.tt"),
                         });
 
@@ -2415,11 +2409,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Web.config"),
-                            TargetPath = BindingFor.Value<string>("~"),
+                            TargetFileName = "Web.config",
+                            TargetPath = "~",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.config.tt"),
                         });
 
@@ -2432,11 +2426,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Web.Debug.config"),
-                            TargetPath = BindingFor.Value<string>("~/Web.config"),
+                            TargetFileName = "Web.Debug.config",
+                            TargetPath = "~/Web.config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.Debug.config.tt"),
                         });
 
@@ -2449,11 +2443,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("WebGlobalInitialization.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/"),
+                            TargetFileName = "WebGlobalInitialization.cs",
+                            TargetPath = "~/Infrastructure/",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/WebGlobalInitialization.cs.tt"),
                         });
 
@@ -2466,11 +2460,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("GeneratedWebInitialization.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure/GeneratedCode"),
+                            TargetFileName = "GeneratedWebInitialization.cs",
+                            TargetPath = "~/Infrastructure/GeneratedCode",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/GeneratedWebInitialization.cs.tt"),
                         });
 
@@ -2483,11 +2477,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("Web.Release.Debug"),
-                            TargetPath = BindingFor.Value<string>("~/Web.config"),
+                            TargetFileName = "Web.Release.Debug",
+                            TargetPath = "~/Web.config",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Web.Release.config.tt"),
                         });
 
@@ -2546,11 +2540,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Content"),
+                            Tag = "",
+                            TargetBuildAction = "Content",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("PreserveNewest"),
-                            TargetFileName = BindingFor.Value<string>("Logging.config"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "Logging.config",
+                            TargetPath = "~/Infrastructure",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/Logging.config.tt"),
                         });
 
@@ -2563,11 +2557,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetBuildAction = "",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("MessageConventions.cs"),
-                            TargetPath = BindingFor.Value<string>("~/Infrastructure"),
+                            TargetFileName = "MessageConventions.cs",
+                            TargetPath = "~/Infrastructure",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBWeb/MessageConventions.cs.tt"),
                         });
 
@@ -2580,9 +2574,9 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetFileName = BindingFor.Value<string>("{Root.InstanceName}.{InstanceName}"),
-                            TargetPath = BindingFor.Value<string>(""),
+                            Tag = "",
+                            TargetFileName = "{Root.InstanceName}.{InstanceName}",
+                            TargetPath = "",
                             TemplateUri = BindingFor.Value<Uri>("template://project/CSharp/4d7de2cfe295-Application.Design.Endpoints.NServiceBusWeb"),
                         });
 
@@ -2657,7 +2651,7 @@ namespace NServiceBusStudio
                     () =>
                         new NServiceBusStudio.Automation.Commands.ShowEventTypePicker
                         {
-                            //CurrentComponent = BindingFor.Value<string>(""),
+                            //CurrentComponent = "",
                         });
 
             var SendCommand =
@@ -2729,11 +2723,11 @@ namespace NServiceBusStudio
                         {
                             SanitizeName = BindingFor.Value<bool>("False"),
                             SyncName = BindingFor.Value<bool>("False"),
-                            Tag = BindingFor.Value<string>(""),
-                            TargetBuildAction = BindingFor.Value<string>("Compile"),
+                            Tag = "",
+                            TargetBuildAction = "Compile",
                             TargetCopyToOutput = BindingFor.Value<CopyToOutput>("DoNotCopy"),
-                            TargetFileName = BindingFor.Value<string>("{CodeIdentifier}.cs"),
-                            TargetPath = BindingFor.Value<string>("{FilePath}"),
+                            TargetFileName = "{CodeIdentifier}.cs",
+                            TargetPath = "{FilePath}",
                             TemplateUri = BindingFor.Value<Uri>("t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt"),
                         });
 

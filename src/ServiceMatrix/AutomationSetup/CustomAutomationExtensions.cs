@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.Modeling;
 using NServiceBusStudio.Automation.Commands;
+using NServiceBusStudio.AutomationSetup;
 using NuPattern;
 using NuPattern.Library.Automation;
 using NuPattern.Library.Commands;
@@ -17,162 +18,33 @@ namespace NServiceBusStudio
 {
     public static class CustomAutomationExtensions
     {
-        // service matrix specific
-
-        public static ICommandSettings CreateDispatchedCodeGenerationCommands(
-            this IPatternElementSchema element,
-            string baseName,
-            bool sanitizeName,
-            bool syncName,
-            string tag,
-            string targetBuildAction,
-            string targetCopyToOutput,
-            string targetFileName,
-            string targetPath,
-            params Tuple<string, string, string>[] templatesPerVersion)
-        {
-            return element.CreateOrUpdateDispatcherCommandSettings(
-                baseName,
-                templatesPerVersion
-                    .Select(t =>
-                        Tuple.Create(
-                            t.Item3,
-                            element.CreateCodeGenerationCommandSettings(
-                               Guid.ParseExact(t.Item1, "B"),
-                               t.Item3 + baseName,
-                               sanitizeName,
-                               syncName,
-                               tag,
-                               targetBuildAction,
-                               targetCopyToOutput,
-                               targetFileName,
-                               targetPath,
-                               t.Item2)))
-                    .ToArray());
-        }
-
-        public static ICommandSettings CreateCodeGenerationCommandSettings(
+        public static ICommandSettings CreateOrUpdateCommandSettings<T>(
             this IPatternElementSchema element,
             Guid id,
             string name,
-            bool sanitizeName,
-            bool syncName,
-            string tag,
-            string targetBuildAction,
-            string targetCopyToOutput,
-            string targetFileName,
-            string targetPath,
-            string templateUri)
+            Expression<Func<T>> creationExpression)
+            where T : Command
         {
-            // TODO new style setup - strongly typed
+            var commandSettings = element.DoCreateOrUpdateCommandSettings(id, name, creationExpression);
 
-            return
-                element.CreateOrUpdateCommandSettings(
-                    id,
-                    name,
-                    () =>
-                        new GenerateProductCodeCommandCustom
-                        {
-                            SanitizeName = sanitizeName,
-                            SyncName = syncName,
-                            Tag = tag,
-                            TargetBuildAction = targetBuildAction,
-                            TargetCopyToOutput = BindingFor.Value<CopyToOutput>(targetCopyToOutput),
-                            TargetFileName = targetFileName,
-                            TargetPath = targetPath,
-                            TemplateUri = BindingFor.Value<Uri>(@"t4://extension/" + ToolkitConstants.VsixIdentifier + templateUri)
-                        });
-        }
+            if (!(typeof(T).IsAssignableTo(typeof(GenerateProductCodeCommand))))
+            {
+                return commandSettings;
+            }
 
-        public static ICommandSettings CreateDispatchedComponentCodeGenerationCommands(
-            this IPatternElementSchema element,
-            string baseName,
-            bool checkIsDeployed,
-            bool checkIsNotUnfoldedCustomCode,
-            bool sanitizeName,
-            bool syncName,
-            string tag,
-            string targetBuildAction,
-            string targetCopyToOutput,
-            string targetFileName,
-            string targetPath,
-            params Tuple<string, string, string>[] templatesPerVersion)
-        {
-            return element.CreateOrUpdateDispatcherCommandSettings(
-                baseName,
-                templatesPerVersion
-                    .Select(t =>
-                        Tuple.Create(
-                            t.Item3,
-                            element.CreateComponentCodeGenerationCommandSettings(
-                               Guid.ParseExact(t.Item1, "B"),
-                               t.Item3 + baseName,
-                               checkIsDeployed,
-                               checkIsNotUnfoldedCustomCode,
-                               sanitizeName,
-                               syncName,
-                               tag,
-                               targetBuildAction,
-                               targetCopyToOutput,
-                               targetFileName,
-                               targetPath,
-                               t.Item2)))
-                    .ToArray());
-        }
+            var templateUriBinding = commandSettings.Properties.FirstOrDefault(p => p.Name == "TemplateUri");
+            if (templateUriBinding == null || string.IsNullOrEmpty(templateUriBinding.Value))
+            {
+                return commandSettings;
+            }
 
-        public static ICommandSettings CreateComponentCodeGenerationCommandSettings(
-            this IPatternElementSchema element,
-            Guid id,
-            string name,
-            bool checkIsDeployed,
-            bool checkIsNotUnfoldedCustomCode,
-            bool sanitizeName,
-            bool syncName,
-            string tag,
-            string targetBuildAction,
-            string targetCopyToOutput,
-            string targetFileName,
-            string targetPath,
-            string templateUri)
-        {
-            // TODO old style setup - stringly typed
+            var templateMappings = TemplateMappings.GetTuplesForBaseTemplate(templateUriBinding.Value);
+            if (templateMappings.Length == 0 || (templateMappings.Length == 1 && templateMappings[0].Item2 == templateUriBinding.Value))
+            {
+                return commandSettings;
+            }
 
-            return CreateCommandSettings(
-                element,
-                id,
-                name,
-                "NuPattern.Library.Commands.GenerateComponentCodeCommand",
-                new PropertyBindingSettings { Name = "CheckIsDeployed", Value = checkIsDeployed ? "True" : "False" },
-                new PropertyBindingSettings { Name = "CheckIsNotUnfoldedCustomCode", Value = checkIsNotUnfoldedCustomCode ? "True" : "False" },
-                new PropertyBindingSettings { Name = "SanitizeName", Value = sanitizeName ? "True" : "False" },
-                new PropertyBindingSettings { Name = "SyncName", Value = syncName ? "True" : "False" },
-                new PropertyBindingSettings { Name = "Tag", Value = tag },
-                new PropertyBindingSettings { Name = "TargetBuildAction", Value = targetBuildAction },
-                new PropertyBindingSettings { Name = "TargetCopyToOutput", Value = targetCopyToOutput },
-                new PropertyBindingSettings { Name = "TargetFileName", Value = targetFileName },
-                new PropertyBindingSettings { Name = "TargetPath", Value = targetPath },
-                new PropertyBindingSettings { Name = "TemplateUri", Value = @"t4://extension/" + ToolkitConstants.VsixIdentifier + templateUri });
-        }
-
-        public static ICommandSettings CreateOrUpdateDispatcherCommandSettings(
-            this IPatternElementSchema element,
-            string name,
-            params Tuple<string, ICommandSettings>[] references)
-        {
-            return ConfigureBindingSettings(
-                element.GetAutomationSettings<ICommandSettings>(name) ?? element.CreateAutomationSettings<ICommandSettings>(name),
-                () =>
-                    new TargetNsbVersionDispatcherCommand
-                    {
-                        TargetNsbVersion =
-                            BindingFor.ValueProvider<string>(new ElementPropertyValueProvider { PropertyName = "TargetNsbVersion" }),
-                        CommandReferenceList =
-                            BindingFor.Value<Collection<TargetNsbVersionPatternConditionalCommandReference>>(
-                                JsonConvert.SerializeObject(
-                                    references.Select(ct => new { CommandId = ct.Item2.Id, NsbVersionPattern = ct.Item1 }).ToArray(),
-                                    NuPattern.Runtime.Serialization.Formatting.Indented,
-                                    new NuPattern.Runtime.Serialization.JsonConverter[0]))
-                    });
+            return element.DoCreateOrUpdateDispatcherCommandSettings(name, creationExpression, templateMappings);
         }
 
         public static ICommandSettings CreateOrUpdateDispatcherCommandSettings<T>(
@@ -182,15 +54,7 @@ namespace NServiceBusStudio
             params Tuple<Guid, string, string>[] templatesPerVersion)
             where T : GenerateProductCodeCommand
         {
-            return
-                element.CreateOrUpdateDispatcherCommandSettings(
-                    name,
-                    templatesPerVersion.Select(t =>
-                    {
-                        var commandSetting = element.CreateOrUpdateCommandSettings(t.Item1, name + "_" + t.Item2, partialCreationExpression);
-                        commandSetting.Properties.Add(new PropertyBindingSettings { Name = "TemplateUri", Value = t.Item3 });
-                        return Tuple.Create(t.Item2, commandSetting);
-                    }).ToArray());
+            return element.DoCreateOrUpdateDispatcherCommandSettings<T>(name, partialCreationExpression, templatesPerVersion);
         }
 
         public static ICommandSettings CreateOrUpdateAggregatorCommandSettings(
@@ -220,18 +84,7 @@ namespace NServiceBusStudio
             return aggregatorCommandSettings;
         }
 
-        // general purpose
-
-        public static ICommandSettings CreateOrUpdateCommandSettings<T>(
-            this IPatternElementSchema element,
-            string name,
-            Expression<Func<T>> creationExpression)
-            where T : Command
-        {
-            return element.CreateOrUpdateAutomationSettings<ICommandSettings, T>(name, creationExpression);
-        }
-
-        public static ICommandSettings CreateOrUpdateCommandSettings<T>(
+        private static ICommandSettings DoCreateOrUpdateCommandSettings<T>(
             this IPatternElementSchema element,
             Guid id,
             string name,
@@ -241,18 +94,55 @@ namespace NServiceBusStudio
             return element.CreateOrUpdateAutomationSettings<ICommandSettings, T>(id, name, creationExpression);
         }
 
-        public static TSettings CreateOrUpdateAutomationSettings<TSettings, TImplementation>(
+        private static ICommandSettings DoCreateOrUpdateDispatcherCommandSettings<T>(
             this IPatternElementSchema element,
             string name,
-            Expression<Func<TImplementation>> creationExpression)
-            where TSettings : class, IAutomationSettings, IBindingSettings
+            Expression<Func<T>> partialCreationExpression,
+            params Tuple<Guid, string, string>[] templatesPerVersion)
+            where T : Command
         {
-            return ConfigureBindingSettings(
-                element.GetAutomationSettings<TSettings>(name) ?? element.CreateAutomationSettings<TSettings>(name),
-                creationExpression);
+            return
+                element.DoCreateOrUpdateDispatcherCommandSettings(
+                    name,
+                    templatesPerVersion.Select(t =>
+                    {
+                        var commandSetting = element.DoCreateOrUpdateCommandSettings(t.Item1, name + "_" + t.Item2, partialCreationExpression);
+                        var existingProperty = commandSetting.Properties.FirstOrDefault(p => p.Name == "TemplateUri");
+                        if (existingProperty != null)
+                        {
+                            existingProperty.Value = t.Item3;
+                        }
+                        else
+                        {
+                            commandSetting.Properties.Add(new PropertyBindingSettings { Name = "TemplateUri", Value = t.Item3 });
+                        }
+
+                        return Tuple.Create(t.Item2, commandSetting);
+                    }).ToArray());
         }
 
-        public static TSettings CreateOrUpdateAutomationSettings<TSettings, TImplementation>(
+        private static ICommandSettings DoCreateOrUpdateDispatcherCommandSettings(
+            this IPatternElementSchema element,
+            string name,
+            params Tuple<string, ICommandSettings>[] references)
+        {
+            return ConfigureBindingSettings(
+                element.GetAutomationSettings<ICommandSettings>(name) ?? element.CreateAutomationSettings<ICommandSettings>(name),
+                () =>
+                    new TargetNsbVersionDispatcherCommand
+                    {
+                        TargetNsbVersion =
+                            BindingFor.ValueProvider<string>(new ElementPropertyValueProvider { PropertyName = "TargetNsbVersion" }),
+                        CommandReferenceList =
+                            BindingFor.Value<Collection<TargetNsbVersionPatternConditionalCommandReference>>(
+                                JsonConvert.SerializeObject(
+                                    references.Select(ct => new { CommandId = ct.Item2.Id, NsbVersionPattern = ct.Item1 }).ToArray(),
+                                    NuPattern.Runtime.Serialization.Formatting.Indented,
+                                    new NuPattern.Runtime.Serialization.JsonConverter[0]))
+                    });
+        }
+
+        private static TSettings CreateOrUpdateAutomationSettings<TSettings, TImplementation>(
             this IPatternElementSchema element,
             Guid id,
             string name,
@@ -268,7 +158,7 @@ namespace NServiceBusStudio
             return ConfigureBindingSettings(settings, creationExpression);
         }
 
-        public static TSettings CreateAutomationSettings<TSettings>(
+        private static TSettings CreateAutomationSettings<TSettings>(
             this IPatternElementSchema container,
             Guid id,
             string settingsName,
@@ -297,26 +187,6 @@ namespace NServiceBusStudio
         }
 
         // lower level building blocks
-
-        private static ICommandSettings CreateCommandSettings(
-            IPatternElementSchema element,
-            Guid id,
-            string name,
-            string typeId,
-            params IPropertyBindingSettings[] properties)
-        {
-            return
-                element.CreateAutomationSettings<ICommandSettings>(
-                    id,
-                    name,
-                    s =>
-                    {
-                        var commandSettings = s.GetExtensions<ICommandSettings>().First();
-                        commandSettings.TypeId = typeId;
-                        commandSettings.Properties.Clear();
-                        commandSettings.Properties.AddRange(properties);
-                    });
-        }
 
         private static T ConfigureBindingSettings<T, U>(
             T settings,

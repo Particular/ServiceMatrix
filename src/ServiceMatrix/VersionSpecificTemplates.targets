@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemDefinitionGroup>
+    <Content>
+      <ItemGuid></ItemGuid>
+    </Content>
+  </ItemDefinitionGroup>
+
+  <UsingTask
+    TaskName="CreateMappingFile"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+    <ParameterGroup>
+      <TemplateFiles ParameterType="Microsoft.Build.Framework.ITaskItem[]" Required="true" />
+      <OutputFileName ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System"/>
+      <Using Namespace="System.Globalization"/>
+      <Using Namespace="System.IO"/>
+      <Using Namespace="System.Linq"/>
+      <Using Namespace="System.Text"/>
+      <Code Type="Method" Language="cs">
+        <![CDATA[
+        public override bool Execute()
+        {
+            var items = TemplateFiles.Select(i => new { Path = i.GetMetadata("Identity"), Guid = i.GetMetadata("ItemGuid") });
+            var itemsWithoutGuid = items.Where(i => string.IsNullOrEmpty(i.Guid));
+
+            if (itemsWithoutGuid.Any())
+            {
+                Log.LogError("The following templates are missing the ItemGuid metadata: {0}", string.Join(", ", itemsWithoutGuid.Select(i => i.Path)));
+                return false;
+            }
+
+            var codeBuilder = new StringBuilder();
+
+            codeBuilder.Append(@"using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Globalization;
+
+namespace NServiceBusStudio.AutomationSetup
+{
+    static partial class TemplateMappings
+    {
+        static partial void SetupMappings()
+        {
+            var templates =
+                new[]
+                {
+");
+
+            foreach (var item in items.OrderBy(i => i.Path))
+            {
+                codeBuilder.AppendLine(
+                    string.Format(
+                        CultureInfo.InvariantCulture,
+                        @"                    CreateTemplateTuple(@""{0}"", ""{1}""),",
+                        item.Path,
+                        item.Guid));
+            }
+
+            codeBuilder.Append(@"                };
+
+            Mappings =
+                templates
+                    .GroupBy(t => t.Item1)
+                    .ToDictionary(
+                        g => g.Key,
+                        g =>
+                            g.Select(t => new { T = t, VersionParts = t.Item4.Split('.').Length })
+                                .OrderBy(v => v.VersionParts)
+                                .Select(v => v.T)
+                                .ToList());
+        }
+    }
+}
+");
+
+            try
+            {
+                File.WriteAllText(OutputFileName, codeBuilder.ToString());
+            }
+            catch (Exception e)
+            {
+                Log.LogErrorFromException(e);
+                return false;
+            }
+
+            return true;
+        }
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <Target Name="CreateTargetHelper" BeforeTargets="CoreCompile">
+    <PropertyGroup>
+      <_MappingsFile>$(IntermediateOutputPath)\GenerateMappings.cs</_MappingsFile>
+    </PropertyGroup>
+    <ItemGroup>
+      <_Templates Include="@(Content)" Condition=" '%(Extension)' == '.tt'"/>
+    </ItemGroup>
+
+    <CreateMappingFile OutputFileName="$(_MappingsFile)" TemplateFiles="@(_Templates)"/>
+    <ItemGroup>
+      <Compile Include="$(_MappingsFile)"/>
+      <FileWrites Include="$(_MappingsFile)"/>
+    </ItemGroup>
+
+  </Target>
+</Project>
