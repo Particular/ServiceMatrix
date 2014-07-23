@@ -125,7 +125,7 @@ namespace NServiceBusStudio
 
             if (IsSaga && !(Subscribes.ProcessedCommandLinks.Any(c => c.StartsSaga) || Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
             {
-                result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", Parent.Parent.InstanceName, InstanceName)));
+                result.Add(new ValidationResult(string.Format("{0}.{1} is marked as Saga, but no Message has been defined as the Saga starter.", Parent.Parent.InstanceName, InstanceName)));
             }
 
             if (Subscribes.ProcessedCommandLinks.Any() &&

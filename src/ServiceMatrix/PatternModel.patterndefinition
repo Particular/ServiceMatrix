@@ -498,6 +498,11 @@
   }
 ]</conditions>
     </eventSettings>
+    <eventSettings Id="affce02b-3b16-45cb-b993-4e472404f9df" commandId="c3207d91-5f98-497b-b56c-b9be4b37fdaa" eventId="NuPattern.Library.Events.IOnElementDeletingEvent" wizardId="00000000-0000-0000-0000-000000000000">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="1bdca339-c53d-410a-8859-cf5c655ad1d3" />
+      </extendedElement>
+    </eventSettings>
     <commandSettings Id="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" typeId="NServiceBusStudio.Automation.Commands.ShowEventTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" />
@@ -5587,6 +5592,11 @@
         <automationSettingsSchemaMoniker Id="e86bbaea-7dd8-4302-ad51-ae19c9daaefb" />
       </extendedElement>
     </commandSettings>
+    <commandSettings Id="c3207d91-5f98-497b-b56c-b9be4b37fdaa" typeId="NServiceBusStudio.Automation.Commands.DeleteRelatedComponentsCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="aa8d4294-5b0a-4f0f-9c4b-ccf7447ba54f" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -7469,6 +7479,24 @@
                                 </customizationPolicy>
                               </automationSettings>
                               <automationSettings Id="e86bbaea-7dd8-4302-ad51-ae19c9daaefb" name="SendFromEndpoint" displayName="Send From Endpoint" description="" codeIdentifier="SendFromEndpoint" automationType="Command">
+                                <customizationPolicy name="CustomizationPolicySchema1">
+                                  <settings>
+                                    <setting propertyId="DisplayName" />
+                                    <setting propertyId="Description" />
+                                    <setting propertyId="Settings" />
+                                  </settings>
+                                </customizationPolicy>
+                              </automationSettings>
+                              <automationSettings Id="1bdca339-c53d-410a-8859-cf5c655ad1d3" name="OnDeleting" displayName="On Deleting" description="" codeIdentifier="OnDeleting" automationType="Event Launch Point" classification="LaunchPoint">
+                                <customizationPolicy name="CustomizationPolicySchema1">
+                                  <settings>
+                                    <setting propertyId="DisplayName" />
+                                    <setting propertyId="Description" />
+                                    <setting propertyId="Settings" />
+                                  </settings>
+                                </customizationPolicy>
+                              </automationSettings>
+                              <automationSettings Id="aa8d4294-5b0a-4f0f-9c4b-ccf7447ba54f" name="DeleteRelatedComponents" displayName="Delete Related Components" description="" codeIdentifier="DeleteRelatedComponents" automationType="Command">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />

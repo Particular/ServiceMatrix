@@ -1,0 +1,12 @@
+﻿<m:RelatedComponentsPickerViewModel xmlns:m="clr-namespace:NServiceBusStudio.Automation.ViewModels"
+                                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <m:RelatedComponentsPickerViewModel.Components>
+        <m:SelectItemViewModel Name="Component1"  />
+        <m:SelectItemViewModel Name="Component2"  />
+        <m:SelectItemViewModel Name="Component3"  />
+        <m:SelectItemViewModel Name="Component4"  />
+        <m:SelectItemViewModel Name="Component5"  />
+        <m:SelectItemViewModel Name="Component6"  />
+    </m:RelatedComponentsPickerViewModel.Components>
+</m:RelatedComponentsPickerViewModel>

@@ -159,6 +159,7 @@
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
+    <Compile Include="Commands\DeleteRelatedComponentsCommand.cs" />
     <Compile Include="Commands\SendCommandFromEndpointCommand.cs" />
     <Compile Include="Commands\SetUnfoldedCustomCode.cs" />
     <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />
@@ -204,6 +205,9 @@
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
+    <Compile Include="Dialog\RelatedComponentsPicker.xaml.cs">
+      <DependentUpon>RelatedComponentsPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\SenderEndpointPicker.xaml.cs">
       <DependentUpon>SenderEndpointPicker.xaml</DependentUpon>
     </Compile>
@@ -234,6 +238,7 @@
     <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
+    <Compile Include="ViewModels\RelatedComponentsPickerViewModel.cs" />
     <Compile Include="ViewModels\SenderEndpointPickerViewModel.cs" />
     <Compile Include="ViewModels\ServiceAndCommandPickerViewModel.cs" />
     <Compile Include="ViewModels\ElementHierarchyPickerViewModel.cs" />
@@ -684,6 +689,13 @@
       <SubType>Designer</SubType>
     </DesignDataWithDesignTimeCreatableTypes>
     <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\SenderEndpointPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <Page Include="Dialog\RelatedComponentsPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\RelatedComponentsPickerViewModelSampleData.xaml">
       <SubType>Designer</SubType>
     </DesignDataWithDesignTimeCreatableTypes>
     <Page Include="Dialog\SenderEndpointPicker.xaml">
