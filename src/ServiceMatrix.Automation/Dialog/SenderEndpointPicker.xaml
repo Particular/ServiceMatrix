@@ -1,0 +1,64 @@
+﻿<src:CommonDialogWindow x:Class="AbstractEndpoint.Automation.Dialog.SenderEndpointPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             mc:Ignorable="d"
+             SizeToContent="WidthAndHeight"
+             FocusManager.FocusedElement="{Binding ElementName=EndpointsControl}" 
+                        
+             WindowStyle="None"
+             ResizeMode="NoResize"
+             BorderThickness="0"
+             Name="picker">
+    <Grid d:DataContext="{d:DesignData Source=/Dialog/SampleData/SenderEndpointPickerViewModelSampleData.xaml}"
+          Width="280" MaxHeight="700" Background="#F1F1F1">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Particular.ServiceMatrix.Automation;component/Resources/SharedStyles.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid Margin="20" HorizontalAlignment="Stretch" >
+            <!--<Grid.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
+            </Grid.BitmapEffect>-->
+            
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" FontSize="22" Content="{Binding Title}" />
+            <Label Grid.Row="1" Margin="0, 10, 0, 0" Foreground="#333333">Host endpoints</Label>
+
+            <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Background="White">
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl
+                            x:Name="EndpointsControl"
+                            ItemsSource="{Binding Endpoints}"
+                            Margin="5, 2, 5, 2">
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Send, Mode=TwoWay}" IsEnabled="{Binding NotExistingSender}" 
+                                          Content="{Binding Name}"></CheckBox>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Border>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
+                <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
+                <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" Command="{Binding AcceptCommand}" 
+                            CommandParameter="{Binding ElementName=picker}">Done</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</src:CommonDialogWindow>

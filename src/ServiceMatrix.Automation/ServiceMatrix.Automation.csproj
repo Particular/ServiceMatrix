@@ -204,6 +204,9 @@
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
+    <Compile Include="Dialog\SenderEndpointPicker.xaml.cs">
+      <DependentUpon>SenderEndpointPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\ServiceAndCommandPicker.xaml.cs">
       <DependentUpon>ServiceAndCommandPicker.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,7 @@
     <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
+    <Compile Include="ViewModels\SenderEndpointPickerViewModel.cs" />
     <Compile Include="ViewModels\ServiceAndCommandPickerViewModel.cs" />
     <Compile Include="ViewModels\ElementHierarchyPickerViewModel.cs" />
     <Compile Include="Dialog\UserCodeChangeRequired.xaml.cs">
@@ -679,6 +683,13 @@
     <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\ServiceAndCommandPickerViewModelSampleData.xaml">
       <SubType>Designer</SubType>
     </DesignDataWithDesignTimeCreatableTypes>
+    <DesignDataWithDesignTimeCreatableTypes Include="Dialog\SampleData\SenderEndpointPickerViewModelSampleData.xaml">
+      <SubType>Designer</SubType>
+    </DesignDataWithDesignTimeCreatableTypes>
+    <Page Include="Dialog\SenderEndpointPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Dialog\ServiceAndCommandPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

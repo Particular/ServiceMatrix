@@ -32,14 +32,18 @@
                     <Label FontSize="22" Content="Send Command" />
                 </StackPanel>
 
-                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="Service" Visibility="{Binding AllowServiceSelection, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Visibility="{Binding AllowServiceSelection, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Service
+                </Label>
                 <ComboBox x:Name="ServiceDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="True"
                   Visibility="{Binding AllowServiceSelection, Converter={StaticResource BooleanToVisibilityConverter}}"
                   ItemsSource="{Binding Path=Services}" 
                   Text="{Binding Path=SelectedService, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                   Cursor="IBeam"/>
 
-                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="Command"/>
+                <Label Margin="0, 10, 0, 0" Foreground="#333333">
+                    Command
+                </Label>
                 <ComboBox Height="25" Padding="0, 3, 0, 3" IsEditable="True"
                   ItemsSource="{Binding Path=Commands}" 
                   IsEnabled="{Binding Path=CanProvideCommand}"

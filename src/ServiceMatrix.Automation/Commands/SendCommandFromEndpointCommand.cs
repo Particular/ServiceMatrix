@@ -33,39 +33,44 @@ namespace NServiceBusStudio.Automation.Commands
             this.ValidateObject();
 
             var app = CurrentElement.Root.As<IApplication>();
+            var command = CurrentElement.As<ICommand>();
 
             var viewModel =
-                new EndpointPickerViewModel(app.Design.Endpoints.GetAll().Select(ep => ep.InstanceName).ToList())
+                new SenderEndpointPickerViewModel(
+                    app,
+                    e => e.EndpointComponents.AbstractComponentLinks
+                            .Any(c => c.ComponentReference.Value.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == command)))
                 {
                     Title = "Send from...",
-                    AllowEndpointCreation = false
                 };
 
 
-            var picker = WindowFactory.CreateDialog<EndpointPicker>(viewModel);
+            var picker = WindowFactory.CreateDialog<SenderEndpointPicker>(viewModel);
             using (new MouseCursor(Cursors.Arrow))
             {
                 if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var command = CurrentElement.As<ICommand>();
                     var service = command.GetParentService();
 
-                    var endpoint = app.Design.Endpoints.GetAll().FirstOrDefault(e => e.InstanceName == viewModel.SelectedItems.First());
+                    foreach (var endpoint in viewModel.SelectedEndpoints)
+                    {
+                        var closureEndpoint = endpoint;
 
-                    // create and deploy new publisher command
-                    var publisherComponent = service.Components.CreateComponent(command.InstanceName + "Sender", x => x.Publishes.CreateLink(command));
-                    var deployToEndpoint = default(EventHandler);
-                    deployToEndpoint =
-                        (s, e) =>
-                        {
-                            var c = s as IComponent;
-                            if (c != null && c == publisherComponent)
+                        // create and deploy new publisher command
+                        var publisherComponent = service.Components.CreateComponent(command.InstanceName + "Sender", x => x.Publishes.CreateLink(command));
+                        var deployToEndpoint = default(EventHandler);
+                        deployToEndpoint =
+                            (s, e) =>
                             {
-                                c.DeployTo(endpoint);
-                                app.OnInstantiatedComponent -= deployToEndpoint;
-                            }
-                        };
-                    app.OnInstantiatedComponent += deployToEndpoint;
+                                var c = s as IComponent;
+                                if (c != null && c == publisherComponent)
+                                {
+                                    c.DeployTo(closureEndpoint);
+                                    app.OnInstantiatedComponent -= deployToEndpoint;
+                                }
+                            };
+                        app.OnInstantiatedComponent += deployToEndpoint;
+                    }
                 }
             }
         }
