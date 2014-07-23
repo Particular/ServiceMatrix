@@ -387,6 +387,7 @@ namespace NServiceBusStudio
             // TODO retrieve from element
             return TargetNsbVersion;
         }
+
     }
 
     public enum TransportType

@@ -62,6 +62,7 @@
       <HintPath>..\packages\FluentValidation-Signed\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Shell.$(VsxVersion), Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.OLE.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.Settings, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=x86" />
@@ -122,6 +123,9 @@
     <Reference Include="NuPattern.Runtime.Extensibility">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="NuPattern.Runtime.Extensibility.Serialization">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.Serialization.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +224,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
+    <Compile Include="AutomationSetup\Application.CustomAutomation.cs" />
+    <Compile Include="AutomationSetup\CustomAutomationExtensions.cs" />
+    <Compile Include="AutomationSetup\TemplateMappings.cs" />
     <Compile Include="GeneralOptionsPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -670,7 +677,7 @@
     <None Include="ripple.dependencies.config" />
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
     </None>
     <None Include="source.extension.VSVersion.gen.ttinclude">
@@ -895,6 +902,7 @@
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>425C6BED-3F3F-45CC-A215-D5A02347BD65</ItemGuid>
     </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\TestMessagesController.cs.tt">
       <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
@@ -974,6 +982,7 @@
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>2928072C-C24B-4105-B7C1-DEFB507F5D06</ItemGuid>
     </Content>
     <Content Include="T\T4\Security\AuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
@@ -997,6 +1006,7 @@
       <LastGenOutput>CommandDefinition.cs</LastGenOutput>
       <SubType>Designer</SubType>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>425F40C0-3E14-4FED-8998-17F210B98A13</ItemGuid>
     </Content>
     <Content Include="T\T4\CustomComponentSagaConfigureHowToFind.v4.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
@@ -1047,11 +1057,13 @@
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>EACF9D2C-613B-4D57-8348-0A1A9DDDE9DE</ItemGuid>
     </Content>
     <Content Include="T\T4\Security\EndpointCustomAutorizeOutgoingMessages.v5.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>C05FB6FF-815F-4E6E-B6DA-FC8AFDE78193</ItemGuid>
     </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\GeneratedWebInitialization.v5.cs.tt">
       <SubType>Designer</SubType>
@@ -1076,6 +1088,9 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>82ea2f3d-f768-46cd-acee-380f6efd5b68</ItemGuid>
     </Content>
+    <None Include="VersionSpecificTemplates.targets">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>
@@ -1203,4 +1218,5 @@
   </Target>
   <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
   <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
+  <Import Project="VersionSpecificTemplates.targets" />
 </Project>

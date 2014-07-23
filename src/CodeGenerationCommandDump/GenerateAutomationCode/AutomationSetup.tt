@@ -1,0 +1,247 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Collections.ObjectModel" #>
+<#@ import namespace="Microsoft.VisualStudio.Modeling" #>
+<#@ import namespace="NuPattern" #>
+<#@ import namespace="NuPattern.Library" #>
+<#@ import namespace="NuPattern.Library.Automation" #>
+<#@ import namespace="NuPattern.Runtime" #>
+<#@ import namespace="NuPattern.Runtime.Bindings" #>
+<#@ import namespace="NuPattern.Runtime.Serialization" #>
+<#
+    // collect all interesting elements
+    var automationSettings = ((IElementSchemaContainer)Pattern.Views.First()).Elements
+        .Traverse(e => e.Elements)
+        .Union(Enumerable.Repeat<IPatternElementSchema>(Pattern, 1))
+        .Where(e => e.AutomationSettings.Any())
+        .GroupBy(e => e.Name)
+        .OrderBy(e => e.Key)
+        .SelectMany(g => g.Select(e => Tuple.Create(e.Name, e.Id.ToString("N"), "Setup_" + (g.Count() == 1 ? e.Name : e.Name + "_" + e.Id.ToString("N")) + "_Automation", e.AutomationSettings)))
+        .ToList();
+#>
+using System;
+using System.Linq;
+using NuPattern;
+using NuPattern.Library.Automation;
+using NuPattern.Runtime;
+using NuPattern.VisualStudio.Solution;
+
+namespace NServiceBusStudio
+{
+    public static class AutomationConfiguration
+    {
+        public static void SetupCustomAutomation(IPatternManager patternManager)
+        {
+            var toolkit = patternManager.InstalledToolkits.FirstOrDefault(it => it.Name == ToolkitConstants.ToolkitName);
+            if (toolkit == null)
+            {
+                return;
+            }
+
+            var schema = toolkit.Schema.As<IPatternModelSchema>();
+
+            // update automation as needed
+            SetupCustomAutomation(schema.Pattern);
+            foreach (var element in ((IElementSchemaContainer)schema.Pattern.Views.First()).Elements.Traverse(e => e.Elements))
+            {
+                SetupCustomAutomation(element);
+            }
+        }
+
+<#  
+    WriteApplicationAutomationMethod(automationSettings);
+
+    foreach(var tuple in automationSettings)
+    {
+        WriteElementAutomation(tuple.Item3, tuple.Item4); 
+    }
+#>
+    }
+}
+<#+
+    void WriteApplicationAutomationMethod(IEnumerable<Tuple<string, string, string, IEnumerable<IAutomationSettingsSchema>>> elements)
+    {
+#>
+        private static void SetupCustomAutomation(IPatternElementSchema element)
+        {
+            switch (element.Name)
+            {
+<#+
+        foreach (var tuple in elements.Where(t => !t.Item3.Contains(t.Item2)))
+        {
+#>
+                case "<#=            tuple.Item1 #>":
+                    <#=            tuple.Item3 #>(element);
+                    break;
+
+<#+         
+        }
+#>
+                default:
+                    switch (element.Id.ToString("N"))
+                    {
+<#+
+        foreach (var tuple in elements.Where(t => t.Item3.Contains(t.Item2)))
+        {
+#>
+                        case "<#=            tuple.Item2 #>":
+                            // <#=            tuple.Item1 #>
+                            <#=            tuple.Item3 #>(element);
+                            break;
+
+<#+         
+        }
+#>
+                    }
+                    break;
+            }
+        }
+
+<#+
+    }
+#>
+<#+
+    void WriteElementAutomation(string methodName, IEnumerable<IAutomationSettingsSchema> automationSettings)
+    {
+        var automationSettingsSchemata = automationSettings as IList<IAutomationSettingsSchema> ?? automationSettings.ToList();
+
+        var allCommands =
+            automationSettingsSchemata
+            .Where(s => s.AutomationType == "Command")
+            .Select(s => s.As<ICommandSettings>())
+            .ToList();
+        var allCommandsById = allCommands.ToDictionary(c => c.Id, c => c);
+
+#>
+        private static void <#=        methodName#>(IPatternElementSchema element)
+        {
+<#+
+        // non-aggregator commands
+        foreach (var commandSetting in allCommands.Where(cs => !cs.TypeId.Contains("AggregatorCommand")).OrderBy(cs => cs.Name))
+        {
+#>
+            var <#=            commandSetting.Name#> =
+                element.CreateOrUpdateCommandSettings(
+                    new Guid("<#=            commandSetting.Id #>"),
+                    "<#=            commandSetting.Name#>",
+                    () => 
+<#+ 
+            PushIndent("    ");
+            WriteBindingInitialization(commandSetting); 
+            PopIndent();
+#>);
+
+<#+
+        }
+
+        // aggregator commands
+        foreach (var commandSetting in allCommands.Where(cs => cs.TypeId.Contains("AggregatorCommand")).OrderBy(ac => ac.Name))
+        {
+            var references = JsonConvert.DeserializeObject<Collection<CommandReference>>(commandSetting.Properties.First(p => p.Name == "CommandReferenceList").Value)
+                .Select(r => allCommandsById[r.CommandId]);
+#>
+            var <#=            commandSetting.Name#> =
+                element.CreateOrUpdateAggregatorCommandSettings(
+                    "<#=            commandSetting.Name#>"<#+
+            foreach (var reference in references)
+            {
+#>,
+                    <#=                reference.Name #><#+
+            }
+#>);
+
+<#+
+        }
+#>
+            // commands referenced by automation  
+<#+
+
+        // referenced commands
+
+        foreach (var commandName in
+            automationSettingsSchemata
+            .Where(s => s.AutomationType != "Command")
+            .Select(
+            s =>
+            {
+            var automation = s.As<IAutomationSettings>();
+            var me = (ModelElement)automation;
+            var prop = me.GetDomainClass().FindDomainProperty("CommandId", true);
+            return prop != null ? (Guid)prop.GetValue(me) : Guid.Empty;
+            })
+            .Where(g => g != Guid.Empty)
+            .Distinct()
+            .Select(g => allCommandsById[g].Name)
+            .OrderBy(n => n))
+        {
+#>
+            // - <#=            commandName #>
+<#+
+        }
+
+#>
+        }
+
+<#+
+    }
+#>
+<#+
+    void WriteBindingInitialization(IBindingSettings bindingSettings)
+    {
+#>
+                    new <#=        bindingSettings.TypeId #>
+                    {
+<#+
+        foreach (var propertyBindingSettings in bindingSettings.Properties.OrderBy(bs => bs.Name))
+        {
+            if (propertyBindingSettings.Name == "TemplateAuthoringUri")
+            {
+                continue;
+            }
+
+            string type;
+            switch (propertyBindingSettings.Name)
+            {
+                case "TemplateUri":
+                    type = "Uri";
+                    break;
+
+                case "TargetCopyToOutput":
+                    type = "CopyToOutput";
+                    break;
+
+                default:
+                    type = "string";
+                    break;
+            }
+
+            if (propertyBindingSettings.ValueProvider == null)
+            {
+                if (propertyBindingSettings.Value == "True" || propertyBindingSettings.Value == "False")
+                {
+                    type = "bool";
+                }
+#>
+                        <#=                propertyBindingSettings.Name #> = BindingFor.Value<<#=                type #>>("<#=                
+                (propertyBindingSettings.Value ?? "").Replace("\\", "\\\\") #>"),
+<#+
+            }
+            else
+            {
+#>
+                        <#=                propertyBindingSettings.Name #> = BindingFor.ValueProvider<<#=                type #>>(
+<#+
+                PushIndent("        ");
+                WriteBindingInitialization(propertyBindingSettings.ValueProvider); 
+                PopIndent();#>),
+<#+
+            }
+        }
+#>
+                    }<#+
+
+    }
+#>
