@@ -7,13 +7,15 @@ using AbstractEndpoint;
 using FluentValidation;
 using FluentValidation.Validators;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.ViewModels
 {
     public class ServiceAndCommandPickerViewModel : ValidatingViewModel
     {
         public const string NewHandler = "[new handler]";
-        private IApplication application;
+        private readonly IApplication application;
+        private readonly IAbstractEndpoint endpoint;
 
         [Obsolete("Only available to support design-time data", true)]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -21,10 +23,11 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
         }
 
-        public ServiceAndCommandPickerViewModel(IApplication application)
+        public ServiceAndCommandPickerViewModel(IApplication application, IAbstractEndpoint endpoint)
         {
             InitializeCommands();
             this.application = application;
+            this.endpoint = endpoint;
 
             AllowServiceSelection = true;
 
@@ -40,6 +43,7 @@ namespace NServiceBusStudio.Automation.ViewModels
         {
             InitializeCommands();
             application = service.Parent.Parent.Parent;
+            endpoint = null;
 
             AllowServiceSelection = false;
 
@@ -222,6 +226,16 @@ namespace NServiceBusStudio.Automation.ViewModels
             }
         }
 
+        internal IApplication Application
+        {
+            get { return application; }
+        }
+
+        internal IAbstractEndpoint Endpoint
+        {
+            get { return endpoint; }
+        }
+
         private void CloseDialog(dynamic dialog)
         {
             dialog.DialogResult = true;
@@ -275,13 +289,36 @@ namespace NServiceBusStudio.Automation.ViewModels
                 .NotNull()
                 .Length(ValidationConstants.IdentifierMinLength, ValidationConstants.IdentifierMaxLength)
                 .Matches(ValidationConstants.IdentifierPattern).WithMessage(ValidationConstants.InvalidIdentifierMessage)
-                .Must(BeDifferentToTheMasterItem)
-                .WithMessage("Values must be different");
+                .Must(BeDifferentToTheMasterItem).WithMessage("Values must be different")
+                .Must(NotBeSendingCommandAlready).WithMessage("Endpoint is already sending the command");
         }
 
         private bool BeDifferentToTheMasterItem(ServiceAndCommandPickerViewModel model, string value, PropertyValidatorContext context)
         {
             return !string.Equals(value, model.SelectedService, StringComparison.Ordinal);
+        }
+
+        private bool NotBeSendingCommandAlready(ServiceAndCommandPickerViewModel model, string value, PropertyValidatorContext context)
+        {
+            if (model.Endpoint == null || string.IsNullOrEmpty(model.SelectedService) || string.IsNullOrEmpty(value))
+            {
+                return true;
+            }
+
+            var existingService = model.Application.Design.Services.Service.FirstOrDefault(s => s.InstanceName == model.SelectedService);
+            if (existingService == null)
+            {
+                return true;
+            }
+
+            var existingCommand = existingService.Contract.Commands.Command.FirstOrDefault(s => s.InstanceName == value);
+            if (existingCommand == null)
+            {
+                return true;
+            }
+
+            var commandId = existingCommand.As<IProductElement>().Id.ToString();
+            return model.Endpoint.EndpointComponents.AbstractComponentLinks.All(cl => cl.ComponentReference.Value.Publishes.CommandLinks.All(l => l.CommandId != commandId));
         }
     }
 }

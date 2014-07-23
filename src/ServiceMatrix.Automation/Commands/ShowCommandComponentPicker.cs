@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -47,7 +46,7 @@ namespace NServiceBusStudio.Automation.Commands
 
             var app = CurrentElement.Root.As<IApplication>();
 
-            var viewModel = new ServiceAndCommandPickerViewModel(app);
+            var viewModel = new ServiceAndCommandPickerViewModel(app, endpoint);
 
             var picker = WindowFactory.CreateDialog<ServiceAndCommandPicker>(viewModel);
 
