@@ -77,22 +77,7 @@ namespace NServiceBusStudio.Automation.Commands
                         CurrentElement.Subscribes.CreateLink(selectedEvent);
                     }
 
-                    if (CurrentElement.ProcessesMultipleMessages)
-                    {
-                        var sagaRecommendationMessage =
-                            CurrentElement.IsSaga
-                                ? String.Format("Update saga-starting messages for ‘{0}’?", CurrentElement.CodeIdentifier)
-                                : String.Format("Convert ‘{0}’ to saga to correlate between commands & events?", CurrentElement.CodeIdentifier);
-                        var result = MessageBox.Show(sagaRecommendationMessage, "ServiceMatrix - Saga recommendation", MessageBoxButton.YesNo);
-                        if (result == MessageBoxResult.Yes)
-                        {
-                            new ShowComponentSagaStarterPicker
-                            {
-                                WindowFactory = WindowFactory,
-                                CurrentElement = CurrentElement
-                            }.Execute();
-                        }
-                    }
+                    SagaHelper.CheckAndPromptForSagaUpdate(CurrentElement, WindowFactory);
                 }
             }
 

@@ -161,6 +161,7 @@
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
     <Compile Include="Commands\DeleteRelatedComponentsCommand.cs" />
+    <Compile Include="Commands\SagaHelper.cs" />
     <Compile Include="Commands\SendCommandFromEndpointCommand.cs" />
     <Compile Include="Commands\SetUnfoldedCustomCode.cs" />
     <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />

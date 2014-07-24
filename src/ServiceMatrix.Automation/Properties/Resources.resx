@@ -129,6 +129,15 @@
   <data name="NotEqualToAttribute_UnknownProperty" xml:space="preserve">
     <value>Could not find a property named {0}.</value>
   </data>
+  <data name="Saga_ConvertQuery" xml:space="preserve">
+    <value>Convert ‘{0}’ to saga to correlate between commands &amp; events?</value>
+  </data>
+  <data name="Saga_QueryTitle" xml:space="preserve">
+    <value>ServiceMatrix - Saga recommendation</value>
+  </data>
+  <data name="Saga_UpdateQuery" xml:space="preserve">
+    <value>Would you like to update your existing saga?</value>
+  </data>
   <data name="TimeSpanConverter_InvalidString" xml:space="preserve">
     <value>The value '{0}' is not a valid representation for a TimeSpan. A TimeSpan value can be represented as d.hh:mm:ss, the d component is days, hh is hours as measured on a 24-hour clock, mm is minutes, ss is seconds.
 For example use '01:30:00' to represent one hour and thirty minutes.</value>

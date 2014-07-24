@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
 using NServiceBusStudio.Automation.Extensions;
@@ -87,8 +86,7 @@ namespace NServiceBusStudio.Automation.Commands
                     // Link command to current component
                     currentComponent.Publishes.CreateLink(command);
 
-                    // Assing handler if command
-                    // This code should be refactored
+                    // Assign handler if command
                     if (newCommand)
                     {
                         if (viewModel.SelectedHandlerComponent == null)
@@ -100,22 +98,7 @@ namespace NServiceBusStudio.Automation.Commands
                             var handlerComponent = viewModel.SelectedHandlerComponent;
                             handlerComponent.Subscribes.CreateLink(command);
 
-                            if (handlerComponent.ProcessesMultipleMessages)
-                            {
-                                var sagaRecommendationMessage =
-                                    handlerComponent.IsSaga
-                                        ? String.Format("Would you like to update your existing saga?")
-                                        : String.Format("Convert ‘{0}’ to saga to correlate between commands & events?", handlerComponent.CodeIdentifier);
-                                var result = MessageBox.Show(sagaRecommendationMessage, "ServiceMatrix - Saga recommendation", MessageBoxButton.YesNo);
-                                if (result == MessageBoxResult.Yes)
-                                {
-                                    new ShowComponentSagaStarterPicker
-                                    {
-                                        WindowFactory = WindowFactory,
-                                        CurrentElement = handlerComponent
-                                    }.Execute();
-                                }
-                            }
+                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, WindowFactory);
                         }
                     }
 

@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using AbstractEndpoint;
 using NServiceBusStudio.Automation.Dialog;
@@ -95,22 +94,7 @@ namespace NServiceBusStudio.Automation.Commands
                             var handlerComponent = viewModel.SelectedHandlerComponent;
                             handlerComponent.Subscribes.CreateLink(command);
 
-                            if (handlerComponent.ProcessesMultipleMessages)
-                            {
-                                var sagaRecommendationMessage =
-                                    handlerComponent.IsSaga
-                                        ? String.Format("Would you like to update your existing saga?")
-                                        : String.Format("Convert ‘{0}’ to saga to correlate between commands & events?", handlerComponent.CodeIdentifier);
-                                var result = MessageBox.Show(sagaRecommendationMessage, "ServiceMatrix - Saga recommendation", MessageBoxButton.YesNo);
-                                if (result == MessageBoxResult.Yes)
-                                {
-                                    new ShowComponentSagaStarterPicker
-                                    {
-                                        WindowFactory = WindowFactory,
-                                        CurrentElement = handlerComponent
-                                    }.Execute();
-                                }
-                            }
+                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, WindowFactory);
                         }
                     }
                 }

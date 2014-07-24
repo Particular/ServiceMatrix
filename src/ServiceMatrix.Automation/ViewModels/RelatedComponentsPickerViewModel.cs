@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using AbstractEndpoint;
 using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.ViewModels
 {
-    using System.Globalization;
-
     public class RelatedComponentsPickerViewModel : ViewModel
     {
         [Obsolete("Only available to support design-time data", true)]
@@ -45,11 +44,11 @@ namespace NServiceBusStudio.Automation.ViewModels
                             return new SelectItemViewModel
                             {
                                 Item = c,
-                                Name = 
+                                Name =
                                     string.Format(
-                                        CultureInfo.CurrentCulture, 
-                                        "{0} ({1})", 
-                                        c.InstanceName, 
+                                        CultureInfo.CurrentCulture,
+                                        "{0} ({1})",
+                                        c.InstanceName,
                                         (allDeployedComponents.TryGetValue(c, out endpoint) ? endpoint.InstanceName : "undeployed")),
                                 IsSelected =
                                     c.Publishes.CommandLinks.All(l => l.CommandReference.Value == command)
