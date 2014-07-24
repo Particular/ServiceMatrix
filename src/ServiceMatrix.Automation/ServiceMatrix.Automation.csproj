@@ -81,6 +81,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xaml" />
     <Reference Include="PresentationCore" />
@@ -205,6 +206,7 @@
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
+    <Compile Include="Dialog\CueBannerBehavior.cs" />
     <Compile Include="Dialog\RelatedComponentsPicker.xaml.cs">
       <DependentUpon>RelatedComponentsPicker.xaml</DependentUpon>
     </Compile>
