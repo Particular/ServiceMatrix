@@ -22,9 +22,6 @@
             </ResourceDictionary>
         </Grid.Resources>
         <Grid Margin="20" HorizontalAlignment="Stretch" >
-            <!--<Grid.BitmapEffect>
-                <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
-            </Grid.BitmapEffect>-->
             
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -34,7 +31,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" FontSize="22" Content="Related components" />
+            <Label Grid.Row="0" FontSize="22" Content="{Binding Title}" />
             <Label Grid.Row="1" Margin="0, 10, 0, 0" Foreground="#333333">Related components to delete</Label>
 
             <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Background="White">

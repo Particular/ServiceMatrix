@@ -162,6 +162,7 @@
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
     <Compile Include="Commands\DeleteRelatedComponentsCommand.cs" />
     <Compile Include="Commands\SagaHelper.cs" />
+    <Compile Include="Commands\DeleteCommandAndComponentsCommand.cs" />
     <Compile Include="Commands\SendCommandFromEndpointCommand.cs" />
     <Compile Include="Commands\SetUnfoldedCustomCode.cs" />
     <Compile Include="Commands\ShowComponentSagaStarterPicker.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\BaseViewModels\AutomationMenuOptionViewModel.cs" />
     <Compile Include="Dialog\CueBannerBehavior.cs" />
     <Compile Include="Dialog\RelatedComponentsPicker.xaml.cs">
       <DependentUpon>RelatedComponentsPicker.xaml</DependentUpon>

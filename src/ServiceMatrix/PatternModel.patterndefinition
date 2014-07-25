@@ -5597,6 +5597,11 @@
         <automationSettingsSchemaMoniker Id="aa8d4294-5b0a-4f0f-9c4b-ccf7447ba54f" />
       </extendedElement>
     </commandSettings>
+    <commandSettings Id="0032a8f4-8127-46e5-8e41-2751ba8645fc" typeId="NServiceBusStudio.Automation.Commands.DeleteCommandAndComponentsCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="24d5ad85-08c5-4d8e-be3c-4e3507214564" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -7497,6 +7502,15 @@
                                 </customizationPolicy>
                               </automationSettings>
                               <automationSettings Id="aa8d4294-5b0a-4f0f-9c4b-ccf7447ba54f" name="DeleteRelatedComponents" displayName="Delete Related Components" description="" codeIdentifier="DeleteRelatedComponents" automationType="Command">
+                                <customizationPolicy name="CustomizationPolicySchema1">
+                                  <settings>
+                                    <setting propertyId="DisplayName" />
+                                    <setting propertyId="Description" />
+                                    <setting propertyId="Settings" />
+                                  </settings>
+                                </customizationPolicy>
+                              </automationSettings>
+                              <automationSettings Id="24d5ad85-08c5-4d8e-be3c-4e3507214564" name="Delete" displayName="Delete" description="" codeIdentifier="Delete" automationType="Command">
                                 <customizationPolicy name="CustomizationPolicySchema1">
                                   <settings>
                                     <setting propertyId="DisplayName" />

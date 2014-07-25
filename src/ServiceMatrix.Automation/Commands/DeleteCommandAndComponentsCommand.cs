@@ -5,13 +5,16 @@ using System.Windows.Input;
 using AbstractEndpoint.Automation.Dialog;
 using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
+using NuPattern.Diagnostics;
 using NuPattern.Presentation;
 using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    public class DeleteRelatedComponentsCommand : NuPattern.Runtime.Command
+    public class DeleteCommandAndComponentsCommand : NuPattern.Runtime.Command
     {
+        private static readonly ITracer tracer = Tracer.Get<DeleteCommandAndComponentsCommand>();
+
         /// <summary>
         /// Gets or sets the current element.
         /// </summary>
@@ -48,18 +51,19 @@ namespace NServiceBusStudio.Automation.Commands
             var relatedComponents =
                 handlerLinks.Select(l => l.Parent.Parent)
                     .Concat(senderLinks.Select(l => l.Parent.Parent))
+                    .Where(c => c != null)
                     .Distinct()
                     .ToList();
 
-            if (relatedComponents.Count == 0)
-            {
-                return;
-            }
+            tracer.Verbose(
+                "Prompting for confirmation of deletion for command '{0}' with related components {1}",
+                command.InstanceName,
+                string.Join(", ", relatedComponents.Select(c => "'" + c.InstanceName + "'")));
 
             var viewModel =
                 new RelatedComponentsPickerViewModel(relatedComponents, command)
                 {
-                    Title = "Related Components"
+                    Title = "Delete the component?"
                 };
 
             var picker = WindowFactory.CreateDialog<RelatedComponentsPicker>(viewModel);
@@ -67,20 +71,33 @@ namespace NServiceBusStudio.Automation.Commands
             {
                 if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    foreach (var component in viewModel.SelectedComponents)
+                    var selectedComponents = viewModel.SelectedComponents.ToList();
+
+                    tracer.Info(
+                        "Deleting command '{0}' and related components {1}",
+                        command.InstanceName,
+                        string.Join(", ", selectedComponents.Select(c => "'" + c.InstanceName + "'")));
+
+                    foreach (var component in selectedComponents)
                     {
                         component.Delete();
                     }
-                }
 
-                foreach (var link in handlerLinks)
-                {
-                    link.Delete();
-                }
+                    foreach (var link in handlerLinks)
+                    {
+                        link.Delete();
+                    }
 
-                foreach (var link in senderLinks)
+                    foreach (var link in senderLinks)
+                    {
+                        link.Delete();
+                    }
+
+                    command.Delete();
+                }
+                else
                 {
-                    link.Delete();
+                    tracer.Verbose("Deletion for command '{0}' cancelled", command.InstanceName);
                 }
             }
         }

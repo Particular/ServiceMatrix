@@ -61,6 +61,24 @@ namespace NServiceBusStudio.Automation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to execute menu automation &apos;{0}&apos;..
+        /// </summary>
+        internal static string AutomationCommand_CommandExecuteFailed {
+            get {
+                return ResourceManager.GetString("AutomationCommand_CommandExecuteFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to query the status for the menu automation &apos;{0}&apos;..
+        /// </summary>
+        internal static string AutomationCommand_QueryStatusFailed {
+            get {
+                return ResourceManager.GetString("AutomationCommand_QueryStatusFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (None).
         /// </summary>
         internal static string ElementReference_DefaultNone {
