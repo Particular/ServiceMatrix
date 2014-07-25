@@ -48,7 +48,7 @@ namespace NServiceBusStudio.Automation.Commands
 
             // Get available events
             var elements = app.Design.Services.Service
-                .Select(s => 
+                .Select(s =>
                     Tuple.Create(
                         s.InstanceName,
                         (ICollection<string>)s.Contract.Events.Event.Select(x => x.InstanceName).OrderBy(c => c).ToList()))
@@ -92,7 +92,7 @@ namespace NServiceBusStudio.Automation.Commands
                         deployToEndpoint = (s, e) =>
                         {
                             var c = s as IComponent;
-                            if (c != null && c.InstanceName == selectedEvent + "Sender")
+                            if (c != null && c == component)
                             {
                                 c.DeployTo(endpoint);
                                 app.OnInstantiatedComponent -= deployToEndpoint;

@@ -1,15 +1,15 @@
-﻿using NServiceBusStudio.Automation.Dialog;
-using NServiceBusStudio.Automation.ViewModels;
-using NuPattern;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
+using NuPattern.Diagnostics;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -77,18 +77,7 @@ namespace NServiceBusStudio.Automation.Commands
                         CurrentElement.Subscribes.CreateLink(selectedEvent);
                     }
 
-                    if (CurrentElement.Subscribes.ProcessedCommandLinks.Count() + CurrentElement.Subscribes.SubscribedEventLinks.Count() > 1)
-                    {
-                        var result = MessageBox.Show(String.Format("Convert ‘{0}’ to saga to correlate between commands & events?", CurrentElement.CodeIdentifier), "ServiceMatrix - Saga recommendation", MessageBoxButton.YesNo);
-                        if (result == MessageBoxResult.Yes)
-                        {
-                            new ShowComponentSagaStarterPicker()
-                            {
-                                WindowFactory = WindowFactory,
-                                CurrentElement = CurrentElement
-                            }.Execute();
-                        }
-                    }
+                    SagaHelper.CheckAndPromptForSagaUpdate(CurrentElement, WindowFactory);
                 }
             }
 

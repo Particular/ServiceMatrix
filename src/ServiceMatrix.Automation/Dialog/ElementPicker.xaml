@@ -1,9 +1,11 @@
-﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ElementPicker"
+﻿<np:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ElementPicker"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:np="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:src="clr-namespace:NServiceBusStudio.Automation.Dialog"
              mc:Ignorable="d" 
              Width="280"
              Height="190"
@@ -30,10 +32,14 @@
                 </StackPanel>
 
                 <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="{Binding MasterName}"/>
-                <ComboBox x:Name="DropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="{Binding DropDownEditable}" 
+                <ComboBox x:Name="DropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="True" 
                       ItemsSource="{Binding Path=Elements}" 
                       Text="{Binding Path=SelectedItem, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                      Cursor="IBeam" />
+                      Cursor="IBeam">
+                    <i:Interaction.Behaviors>
+                        <src:CueBannerBehavior Text="Enter new or pick existing"/>
+                    </i:Interaction.Behaviors>
+                </ComboBox>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
@@ -43,4 +49,4 @@
             </StackPanel>
         </StackPanel>
     </Grid>
-</src:CommonDialogWindow>
+</np:CommonDialogWindow>

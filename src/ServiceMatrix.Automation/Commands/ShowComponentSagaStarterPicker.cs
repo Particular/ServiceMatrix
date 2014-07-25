@@ -52,7 +52,7 @@ namespace NServiceBusStudio.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            if (CurrentElement.Subscribes.ProcessedCommandLinks.Count() + CurrentElement.Subscribes.SubscribedEventLinks.Count() <= 1)
+            if (!CurrentElement.ProcessesMultipleMessages)
             {
                 CurrentElement.Subscribes.ProcessedCommandLinks.ForEach(x => x.StartsSaga = true);
                 CurrentElement.Subscribes.SubscribedEventLinks.ForEach(x => x.StartsSaga = true);

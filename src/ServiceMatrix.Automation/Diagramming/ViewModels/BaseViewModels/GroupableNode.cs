@@ -1,15 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
 using Mindscape.WpfDiagramming;
 using Mindscape.WpfDiagramming.Foundation;
-using System.Windows;
 using NuPattern.Runtime.UI.ViewModels;
-using System.Collections.ObjectModel;
+using System.Linq;
+using NuPattern.Library.Automation;
 
 namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 {
+    using System.Web.UI.WebControls;
+
     // A node that can be added to a group node. Both GroupNode and ChildNode extends this.
     public abstract class GroupableNode : DiagramNode
     {
@@ -17,63 +19,66 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         private bool _isVisible = true;
         private bool _isHighlighted = false;
+        ObservableCollection<IMenuOptionViewModel> menuOptions;
+
         public IProductElementViewModel InnerViewModel { get; set; }
 
         public delegate void ActivateElementHandler(object sender, EventArgs e);
         public event ActivateElementHandler ActivateElement;
 
-        public virtual Guid Id 
-        { 
-            get { return this.InnerViewModel.Data.Id; } 
+        public virtual Guid Id
+        {
+            get { return InnerViewModel.Data.Id; }
         }
 
-        public virtual string Name 
+        public virtual string Name
         {
-            get { return this.InnerViewModel.Data.InstanceName; } 
+            get { return InnerViewModel.Data.InstanceName; }
         }
 
         public virtual ObservableCollection<IMenuOptionViewModel> MenuOptions
         {
-            get { return this.InnerViewModel.MenuOptions; }
+            get { return menuOptions ?? InnerViewModel.MenuOptions; }
         }
 
         public GroupableNode(IProductElementViewModel innerViewModel)
         {
-            this.InnerViewModel = innerViewModel;
-            if (this.InnerViewModel != null)
+            InnerViewModel = innerViewModel;
+            if (InnerViewModel != null)
             {
-                this.InnerViewModel.Data.PropertyChanged += InnerViewModelData_PropertyChanged;
+                InnerViewModel.Data.PropertyChanged += InnerViewModelData_PropertyChanged;
+                SetupMenuOptions();
             }
 
-            this.ZOrder = ++ZOrderCounter;
+            ZOrder = ++ZOrderCounter;
         }
 
-        void InnerViewModelData_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        void InnerViewModelData_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Id")
             {
-                this.OnPropertyChanged("Id");
-            } 
+                OnPropertyChanged("Id");
+            }
             else if (e.PropertyName == "InstanceName")
             {
-                this.OnPropertyChanged("Name");
+                OnPropertyChanged("Name");
             }
             else if (e.PropertyName == "IsSaga")
             {
-                this.OnPropertyChanged("IsSaga");
+                OnPropertyChanged("IsSaga");
             }
         }
 
         public void Activate()
         {
-            this.InnerViewModel.IsSelected = true;
+            InnerViewModel.IsSelected = true;
 
-            if (this.ActivateElement != null)
+            if (ActivateElement != null)
             {
-                this.ActivateElement(this, new EventArgs() { });
+                ActivateElement(this, EventArgs.Empty);
             }
         }
-    
+
 
         // This is for highlighting the node if mouse is over.
         public bool IsHighlighted
@@ -81,7 +86,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
             get { return _isHighlighted; }
             set
             {
-                Set<bool>(ref _isHighlighted, value, "IsHighlighted");
+                Set(ref _isHighlighted, value, "IsHighlighted");
             }
         }
 
@@ -93,11 +98,11 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
             {
                 if (_isVisible != value)
                 {
-                    Set<bool>(ref _isVisible, value, "IsVisible");
+                    Set(ref _isVisible, value, "IsVisible");
                     // Loop through each of the connections attached to this node to set their visibility.
                     foreach (IDiagramConnectionPoint point in ConnectionPoints)
                     {
-                        foreach (IDiagramConnection connection in point.Connections)
+                        foreach (var connection in point.Connections)
                         {
                             //CollapsableConnection collapsable = connection as CollapsableConnection;
                             //if (collapsable != null)
@@ -162,7 +167,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
         internal GroupNode GetCollapsedParent()
         {
             GroupNode collapsedParent = null;
-            GroupNode parent = Parent as GroupNode;
+            var parent = Parent as GroupNode;
             while (parent != null)
             {
                 if (!parent.IsExpanded)
@@ -178,7 +183,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         protected virtual void OnIsVisibleChanged()
         {
-            EventHandler handler = IsVisibleChanged;
+            var handler = IsVisibleChanged;
             if (handler != null)
             {
                 handler(this, EventArgs.Empty);
@@ -187,7 +192,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         public override IDiagramPositionable Parent
         {
-            get { return this.ParentNode; }
+            get { return ParentNode; }
         }
 
         public GroupNode ParentNode { get; set; }
@@ -204,14 +209,14 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 }
                 node = node.Parent;
             }
-            if (this.ParentNode != parent)
+            if (ParentNode != parent)
             {
                 // Detach event handlers.
-                if (this.ParentNode != null)
+                if (ParentNode != null)
                 {
-                    this.ParentNode.BoundsChanged -= new EventHandler(Parent_BoundsChanged);
+                    ParentNode.BoundsChanged -= new EventHandler(Parent_BoundsChanged);
 
-                    GroupNode group = this.ParentNode as GroupNode;
+                    var group = ParentNode as GroupNode;
                     if (group != null)
                     {
                         group.IsExpandedChanged -= new EventHandler(Group_IsExpandedChanged);
@@ -219,14 +224,14 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                     }
                 }
 
-                this.ParentNode = parent; // Set the parent.
+                ParentNode = parent; // Set the parent.
 
                 // Attach event handlers.
-                if (this.ParentNode != null)
+                if (ParentNode != null)
                 {
-                    this.ParentNode.BoundsChanged += new EventHandler(Parent_BoundsChanged);
+                    ParentNode.BoundsChanged += new EventHandler(Parent_BoundsChanged);
 
-                    GroupNode group = this.ParentNode as GroupNode;
+                    var group = ParentNode as GroupNode;
                     if (group != null)
                     {
                         group.IsExpandedChanged += new EventHandler(Group_IsExpandedChanged);
@@ -235,20 +240,20 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
                 }
             }
 
-            this.ParentNode.AddChild(this);
+            ParentNode.AddChild(this);
         }
 
         // This node is only visibile if its parent is also visible and an expanded group node.
 
         private void Group_IsVisibleChanged(object sender, EventArgs e)
         {
-            GroupNode group = sender as GroupNode;
+            var group = sender as GroupNode;
             IsVisible = group.IsVisible && group.IsExpanded;
         }
 
         private void Group_IsExpandedChanged(object sender, EventArgs e)
         {
-            GroupNode group = sender as GroupNode;
+            var group = sender as GroupNode;
             IsVisible = group.IsVisible && group.IsExpanded;
         }
 
@@ -256,6 +261,37 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
         private void Parent_BoundsChanged(object sender, EventArgs e)
         {
             OnBoundsChanged();
+        }
+
+        private void SetupMenuOptions()
+        {
+            var deleteAutomation = InnerViewModel.Data.AutomationExtensions.FirstOrDefault(ae => ae.Name == "Delete");
+            if (deleteAutomation == null)
+            {
+                return;
+            }
+
+            var localMenuOptions = new ObservableCollection<IMenuOptionViewModel>(InnerViewModel.MenuOptions);
+            for (var i = 0; i < localMenuOptions.Count; i++)
+            {
+                var menuOption = localMenuOptions[i] as MenuOptionViewModel;
+                if (menuOption != null && menuOption.Caption == "Delete")
+                {
+                    localMenuOptions[i] =
+                        new AutomationMenuOptionViewModel(deleteAutomation, menuOption.Caption, menuOption.ImagePath, menuOption.SortOrder)
+                        {
+                            GroupIndex = menuOption.GroupIndex
+                        };
+                    InnerViewModel.MenuOptions.CollectionChanged += MenuOptions_CollectionChanged;
+                    menuOptions = localMenuOptions;
+                    return;
+                }
+            }
+        }
+
+        void MenuOptions_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            // TODO keep in sync - necessary?
         }
 
         /*private bool _updateBoundsLock = false;
@@ -288,7 +324,7 @@ namespace ServiceMatrix.Diagramming.ViewModels.BaseViewModels
 
         public void SetPosition(double Y)
         {
-            this.Bounds = new Rect(this.Bounds.X, Y, this.Bounds.Width, this.Bounds.Height);
+            Bounds = new Rect(Bounds.X, Y, Bounds.Width, Bounds.Height);
         }
 
         #endregion

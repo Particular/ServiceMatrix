@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using AbstractEndpoint;
@@ -28,6 +29,7 @@ namespace NServiceBusStudio
 
         bool IsSender { get; }
         bool IsProcessor { get; }
+        bool ProcessesMultipleMessages { get; }
     }
 
     partial class Component : IValidatableObject, IRenameRefactoring, IAdditionalRenameRefactorings
@@ -36,8 +38,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return Publishes.CommandLinks.Any() ||
-                       Publishes.EventLinks.Any();
+                return Publishes.CommandLinks.Any() || Publishes.EventLinks.Any();
             }
         }
 
@@ -45,8 +46,15 @@ namespace NServiceBusStudio
         {
             get
             {
-                return Subscribes.ProcessedCommandLinks.Any() ||
-                       Subscribes.SubscribedEventLinks.Any();
+                return Subscribes.ProcessedCommandLinks.Any() || Subscribes.SubscribedEventLinks.Any();
+            }
+        }
+
+        public bool ProcessesMultipleMessages
+        {
+            get
+            {
+                return (Subscribes.ProcessedCommandLinks.Count() + Subscribes.SubscribedEventLinks.Count()) > 1;
             }
         }
 
@@ -80,7 +88,10 @@ namespace NServiceBusStudio
             if (endpoint.EndpointComponents != null)
             {
                 var componentLink = endpoint.EndpointComponents.AbstractComponentLinks.FirstOrDefault(cl => cl.ComponentReference.Value == this);
-                componentLink.As<IProductElement>().Delete();
+                if (componentLink != null)
+                {
+                    componentLink.As<IProductElement>().Delete();
+                }
             }
         }
 
@@ -114,7 +125,7 @@ namespace NServiceBusStudio
 
             if (IsSaga && !(Subscribes.ProcessedCommandLinks.Any(c => c.StartsSaga) || Subscribes.SubscribedEventLinks.Any(c => c.StartsSaga)))
             {
-                result.Add(new ValidationResult(string.Format("{0}.{1} is  marked as Saga, but no Message has been defined as the Saga starter.", Parent.Parent.InstanceName, InstanceName)));
+                result.Add(new ValidationResult(string.Format("{0}.{1} is marked as Saga, but no Message has been defined as the Saga starter.", Parent.Parent.InstanceName, InstanceName)));
             }
 
             if (Subscribes.ProcessedCommandLinks.Any() &&
@@ -236,8 +247,11 @@ namespace NServiceBusStudio
                     }
                 }
 
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, false);
-                RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
+                if (element != null)
+                {
+                    var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, false);
+                    RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
+                }
             }
         }
 
@@ -327,7 +341,7 @@ namespace NServiceBusStudio
                 {
                     break;
                 }
-                candidate = suggested + i.ToString().Trim();
+                candidate = suggested + i.ToString(CultureInfo.InvariantCulture).Trim();
             }
 
             return candidate;
@@ -354,12 +368,12 @@ namespace NServiceBusStudio
 
         public List<string> AdditionalOriginalInstanceNames
         {
-            get { return new List<string>() { String.Format("{0}SagaData", OriginalInstanceName) }; }
+            get { return new List<string> { String.Format("{0}SagaData", OriginalInstanceName) }; }
         }
 
         public List<string> AdditionalInstanceNames
         {
-            get { return new List<string>() { String.Format("{0}SagaData", InstanceName) }; }
+            get { return new List<string> { String.Format("{0}SagaData", InstanceName) }; }
         }
     }
 }

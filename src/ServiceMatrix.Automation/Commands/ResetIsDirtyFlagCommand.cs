@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using NuPattern.Runtime;
 
@@ -23,7 +19,7 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            this.CurrentElement.As<IApplication>().IsDirty = false;
+            CurrentElement.As<IApplication>().IsDirty = false;
         }
     }
 }

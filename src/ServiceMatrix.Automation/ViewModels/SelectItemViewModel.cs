@@ -20,6 +20,8 @@ namespace NServiceBusStudio.Automation.ViewModels
 
         public string Name { get; set; }
 
+        public object Item { get; set; }
+
         public override string ToString()
         {
             return Name;

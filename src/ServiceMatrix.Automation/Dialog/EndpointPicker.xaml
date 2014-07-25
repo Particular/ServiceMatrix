@@ -64,7 +64,7 @@
                   SelectionMode="Multiple"
                   Background="Transparent" BorderThickness="0"></ListView>
 
-                <Label Margin="0, 10, 0, 0" Foreground="#333333">
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Visibility="{Binding AllowEndpointCreation, Converter={StaticResource VisibilityConverter}}">
                     <Hyperlink Click="NewEndpoint_Click">New endpoint -></Hyperlink>
                 </Label>
 
@@ -84,7 +84,7 @@
                 <Label Margin="0, 0, 0, 0" Foreground="#333333">
                     <Hyperlink Click="AddEndpointCancel_Click" Foreground="#8EBDE3">&lt;- Deploy to endpoint</Hyperlink>
                 </Label>
-        
+
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Diagramming/Styles/Images/WhiteEndpointIcon.png" Width="23"></Image>
                     <Label FontSize="22" Foreground="White">Add endpoint</Label>

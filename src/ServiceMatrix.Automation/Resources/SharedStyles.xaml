@@ -8,16 +8,23 @@
             <Image Margin="2,0,0,0" Source="ValidationError.png" />
         </StackPanel>
     </ControlTemplate>
-    <Style x:Key="ValidatedControlStyle" TargetType="Control">
+
+    <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}">
         <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidatedControlStyle.ErrorTemplate}" />
         <Style.Triggers>
             <Trigger Property="Validation.HasError" Value="true">
-                <Setter Property="ToolTip" Value="{Binding Path=(Validation.Errors)[0].ErrorContent,RelativeSource={x:Static RelativeSource.Self}}" />
+                <Setter Property="ToolTip" Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
-    <Style BasedOn="{StaticResource ValidatedControlStyle}" TargetType="TextBox"></Style>
-    <Style BasedOn="{StaticResource ValidatedControlStyle}" TargetType="ComboBox"></Style>
+    <Style BasedOn="{StaticResource {x:Type ComboBox}}" TargetType="{x:Type ComboBox}">
+        <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidatedControlStyle.ErrorTemplate}" />
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 </ResourceDictionary>
