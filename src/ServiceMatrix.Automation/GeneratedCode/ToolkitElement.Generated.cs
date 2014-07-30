@@ -38,13 +38,6 @@ namespace NServiceBusStudio
 		event EventHandler ServiceControlEndpointPluginVersionChanged;
 		event EventHandler ServiceControlInstanceURIChanged;
 		event EventHandler LaunchServiceInsightOnDebugChanged;
-		event EventHandler NuGetPackageVersionNServiceBusChanged;
-		event EventHandler NuGetPackageVersionServiceControlPluginsChanged;
-		event EventHandler NuGetPackageVersionNServiceBusActiveMQChanged;
-		event EventHandler NuGetPackageVersionNServiceBusRabbitMQChanged;
-		event EventHandler NuGetPackageVersionNServiceBusSqlServerChanged;
-		event EventHandler NuGetPackageVersionNServiceBusAzureQueuesChanged;
-		event EventHandler NuGetPackageVersionNServiceBusAzureServiceBusChanged;
 	}
 
 	partial interface IService : IToolkitElement
@@ -441,13 +434,6 @@ namespace NServiceBusStudio
 		public event EventHandler ServiceControlEndpointPluginVersionChanged = (sender, args) => { };
 		public event EventHandler ServiceControlInstanceURIChanged = (sender, args) => { };
 		public event EventHandler LaunchServiceInsightOnDebugChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionNServiceBusChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionServiceControlPluginsChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionNServiceBusActiveMQChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionNServiceBusRabbitMQChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionNServiceBusSqlServerChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionNServiceBusAzureQueuesChanged = (sender, args) => { };
-		public event EventHandler NuGetPackageVersionNServiceBusAzureServiceBusChanged = (sender, args) => { };
 
 		public string CodeIdentifier
 		{
@@ -521,27 +507,6 @@ namespace NServiceBusStudio
 					break;
 				case "LaunchServiceInsightOnDebug":
 					LaunchServiceInsightOnDebugChanged(sender, args);
-					break;
-				case "NuGetPackageVersionNServiceBus":
-					NuGetPackageVersionNServiceBusChanged(sender, args);
-					break;
-				case "NuGetPackageVersionServiceControlPlugins":
-					NuGetPackageVersionServiceControlPluginsChanged(sender, args);
-					break;
-				case "NuGetPackageVersionNServiceBusActiveMQ":
-					NuGetPackageVersionNServiceBusActiveMQChanged(sender, args);
-					break;
-				case "NuGetPackageVersionNServiceBusRabbitMQ":
-					NuGetPackageVersionNServiceBusRabbitMQChanged(sender, args);
-					break;
-				case "NuGetPackageVersionNServiceBusSqlServer":
-					NuGetPackageVersionNServiceBusSqlServerChanged(sender, args);
-					break;
-				case "NuGetPackageVersionNServiceBusAzureQueues":
-					NuGetPackageVersionNServiceBusAzureQueuesChanged(sender, args);
-					break;
-				case "NuGetPackageVersionNServiceBusAzureServiceBus":
-					NuGetPackageVersionNServiceBusAzureServiceBusChanged(sender, args);
 					break;
 				case "InstanceName":
 					if (this.OriginalInstanceName != null) {

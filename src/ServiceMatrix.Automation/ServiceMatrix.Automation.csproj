@@ -496,7 +496,6 @@
     <Compile Include="ValueProviders\Endpoints\MessageConventionsProvider.cs" />
     <Compile Include="ValueProviders\Endpoints\MessageEndpointMappingsConfigProvider.cs" />
     <Compile Include="ValueProviders\GetEndpointPathValueProvider.cs" />
-    <Compile Include="ValueProviders\LatestNuGetPackageVersionValueProvider.cs" />
     <Compile Include="ValueProviders\NamespaceForEndpointProjectValueProvider.cs" />
     <Compile Include="ValueProviders\ParentComponentPublishesAnEventValueProvider.cs" />
     <Compile Include="ValueProviders\ProcessedEventLinkHandlerNameProvider.cs" />
