@@ -219,6 +219,8 @@
     <Compile Include="Dialog\ServiceAndCommandPicker.xaml.cs">
       <DependentUpon>ServiceAndCommandPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorFactory.cs" />
+    <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorPane.cs" />
     <Compile Include="TypeConverters\InvariantCultureTimeSpanStringConverter.cs" />
     <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />
     <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
@@ -353,7 +355,6 @@
     <Compile Include="Diagramming\Views\Diagram.xaml.cs">
       <DependentUpon>Diagram.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Diagramming\Views\ServiceMatrixDiagramToolWindow.cs" />
     <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>

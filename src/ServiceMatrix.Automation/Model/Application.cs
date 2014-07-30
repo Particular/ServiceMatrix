@@ -105,8 +105,6 @@ namespace NServiceBusStudio
             SetRemoveEmptyAddMenus();
             SetF5Experience();
 
-            new ShowNewDiagramCommand { ServiceProvider = ServiceProvider }.Execute();
-
             Dispatcher.CurrentDispatcher.BeginInvoke(
                 new Action(AddNugetFiles), null);
         }

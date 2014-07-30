@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using ExceptionReporting;
+using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.ComponentModelHost;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
@@ -16,6 +17,7 @@ using NServiceBusStudio.Automation.Exceptions;
 using NServiceBusStudio.Automation.Infrastructure;
 using NuPattern;
 using NuPattern.Diagnostics;
+using NuPattern.Runtime;
 using NuPattern.Runtime.Diagnostics;
 using NuPattern.VisualStudio;
 using ServiceMatrix.Diagramming;
@@ -30,18 +32,20 @@ namespace NServiceBusStudio
     [ProvideAutoLoad(UIContextGuids.NoSolution)]
     [Guid(GuidList.guidNServiceBusStudioPkgString)]
     [ProvideToolWindow(typeof(NServiceBusDetailsToolWindow), Window = ToolWindowGuids.TaskList, Style = VsDockStyle.Tabbed, Transient = true)]
-    [ProvideToolWindow(typeof(ServiceMatrixDiagramToolWindow), Window = ToolWindowGuids.DocOutline, Style = VsDockStyle.MDI, Transient = true)]
     [ProvideOptionPage(typeof(GeneralOptionsPage), "ServiceMatrix", "General", 0, 0, true)]
     [ProvideService(typeof(IDetailsWindowsManager), ServiceName = "IDetailsWindowManager")]
     [ProvideService(typeof(IDiagramsWindowsManager), ServiceName = "IDiagramsWindowsManager")]
     [ProvideService(typeof(NServiceBusDetailsToolWindow), ServiceName = "NServiceBusDetailsToolWindow")]
-    [ProvideService(typeof(ServiceMatrixDiagramToolWindow), ServiceName = "NServiceBusDiagramsToolWindow")]
     [Description("ServiceMatrix")]
     [DslShell.ProvideBindingPathAttribute]
-    public sealed class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
+    [ProvideEditorFactory(typeof(ServiceMatrixDiagramEditorFactory), 500)]
+    public sealed partial class VSPackage : Package, IDetailsWindowsManager, IDiagramsWindowsManager
     {
         [Import]
         public ITraceOutputWindowManager TraceOutputWindowManager { private get; set; }
+
+        [Import]
+        public IPatternManager PatternManager { private get; set; }
 
         protected override void Initialize()
         {
@@ -50,6 +54,15 @@ namespace NServiceBusStudio
             AddServices();
             EnsureCreateTraceOutput();
             TrackUnhandledExceptions();
+            AdviseSolutionEvents();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                UnadviseSolutionEvents();
+            }
         }
 
         private void TrackUnhandledExceptions()
@@ -129,6 +142,8 @@ namespace NServiceBusStudio
             var serviceContainer = (IServiceContainer)this;
             serviceContainer.AddService(typeof(IDetailsWindowsManager), this, true);
             serviceContainer.AddService(typeof(IDiagramsWindowsManager), this, true);
+
+            RegisterEditorFactory(new ServiceMatrixDiagramEditorFactory());
         }
 
         void IDetailsWindowsManager.Show()
@@ -153,11 +168,72 @@ namespace NServiceBusStudio
 
         void IDiagramsWindowsManager.Show()
         {
-            var window = EnsureCreateToolWindow<ServiceMatrixDiagramToolWindow>();
-            if (window != null)
+            ShowDiagramEditor(true, true);
+        }
+
+        const string canvasCaption = "ServiceMatrix - NServiceBus Canvas";
+
+        void ShowDiagramEditor(bool create, bool forceActive)
+        {
+            if (PatternManager == null || !PatternManager.IsOpen)
             {
-                var frame = (IVsWindowFrame)window.Frame;
-                frame.Show();
+                return;
+            }
+
+            var editor = ServiceMatrix.Diagramming.Views.GuidList.ServiceMatrixDiagramEditorFactoryGuid;
+            IVsUIHierarchy hierarchy;
+            uint itemId;
+            IVsWindowFrame frame;
+
+            // check whether the slnbldr file is already open with the canvas editor
+            Guid currentEditor;
+            if (!VsShellUtilities.IsDocumentOpen(
+                    this,
+                    PatternManager.StoreFile,
+                    VSConstants.LOGVIEWID_Primary,
+                    out hierarchy,
+                    out itemId,
+                    out frame)
+                || frame.GetGuidProperty((int)__VSFPROPID.VSFPROPID_guidEditorType, out currentEditor) != VSConstants.S_OK
+                || currentEditor != editor)
+            {
+                if (!create)
+                {
+                    return;
+                }
+
+                // open the slnbldr file with the canvas editor
+                VsShellUtilities.OpenDocumentWithSpecificEditor(
+                    this,
+                    PatternManager.StoreFile,
+                    editor,
+                    VSConstants.LOGVIEWID_Primary,
+                    out hierarchy,
+                    out itemId,
+                    out frame);
+
+                // override the default RDT settings so the editor does not participate of save/saveas and doesn't show
+                // in the MRU list in the file menu
+                OverrideDocumentFlags(frame);
+            }
+
+            ErrorHandler.ThrowOnFailure(frame.SetProperty((int)__VSFPROPID5.VSFPROPID_OverrideCaption, canvasCaption));
+            if (forceActive)
+            {
+                ErrorHandler.ThrowOnFailure(frame.Show());
+            }
+        }
+
+        private void OverrideDocumentFlags(IVsWindowFrame frame)
+        {
+            var table = (IVsRunningDocumentTable)GetService(typeof(SVsRunningDocumentTable));
+            object cookie;
+            ErrorHandler.ThrowOnFailure(frame.GetProperty((int)__VSFPROPID.VSFPROPID_DocCookie, out cookie));
+            var pdwCookie = (uint)(int)cookie;
+            if (pdwCookie != 0)
+            {
+                const uint lockType = (uint)(_VSRDTFLAGS.RDT_CantSave | _VSRDTFLAGS.RDT_DontAddToMRU);
+                ErrorHandler.ThrowOnFailure(table.ModifyDocumentFlags(pdwCookie, lockType, 1));
             }
         }
 
@@ -183,5 +259,9 @@ namespace NServiceBusStudio
 
             return window as T;
         }
+
+        partial void AdviseSolutionEvents();
+
+        partial void UnadviseSolutionEvents();
     }
 }
