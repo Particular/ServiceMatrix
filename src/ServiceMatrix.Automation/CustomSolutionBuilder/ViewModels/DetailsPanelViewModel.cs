@@ -104,12 +104,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             // Events
             this.CreateEventsPanel(solutionBuilderModel, components, 2
                 , component.Publishes.As<IProductElement>(), component.Subscribes.As<IProductElement>());
-
-            // UseCases
-            //this.CreateUseCasesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 3);
-
-            // Libraries
-            this.CreateLibrariesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 4);
         }
 
         private void CreateEndpointsPanel(IApplication application, ISolutionBuilderViewModel solutionBuilderModel, IEnumerable<IAbstractEndpoint> endpoints, int position)
@@ -163,22 +157,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             foreach (var subscribe in components.SelectMany(c => c.Subscribes.ProcessedCommandLinks.Select(cl => cl.CommandReference.Value)).Distinct())
             {
                 commandsVM.Items.Add(new InnerPanelItem { Product = subscribe.As<IProductElement>(), Text = subscribe.InstanceName });
-            }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
-        }
-
-        private void CreateLibrariesPanel(ISolutionBuilderViewModel solutionBuilderModel, IProductElement product, IApplication application, int position)
-        {
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Libraries";
-            var serviceLibraries = product.As<IComponent>().Parent.Parent.ServiceLibraries.ServiceLibrary.Where(l =>
-                                            product.As<IComponent>().LibraryReferences.LibraryReference
-                                                    .Any(lr => lr.LibraryId == l.As<IProductElement>().Id))
-                                            .Select(l => l.As<IProductElement>());
-            commandsVM.Items.Add(new InnerPanelTitle { Text = "Service Libraries", Product = null, MenuFilters = new string[] { }, ForceText = true });
-            foreach (var sl in serviceLibraries)
-            {
-                commandsVM.Items.Add(new InnerPanelItem { Product = sl, Text = sl.InstanceName });
             }
             this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
         }
@@ -259,49 +237,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
             //// Events
             //this.CreateEventsPanel(solutionBuilderModel, components, 2);
-        }
-
-        internal void BuildDetailsForLibrary(IProductElement library, ISolutionBuilderViewModel solutionBuilderModel)
-        {
-            var application = library.Root.As<IApplication>();
-
-            this.CleanDetails();
-
-            // Components
-            this.CreateComponentsForLibrary(solutionBuilderModel, application, library, 1);
-        }
-
-        private void CreateComponentsForLibrary(ISolutionBuilderViewModel solutionBuilderModel, IApplication application, IProductElement library, int position)
-        {
-            var componentsVM = new InnerPanelViewModel();
-            componentsVM.Title = "Used By Components";
-
-            foreach (var service in application.Design.Services.Service
-                                        .Where(s => s.Components.Component
-                                            .Any(c => c.LibraryReferences.LibraryReference
-                                                .Any(lr => lr.LibraryId == library.Id))))
-            {
-                componentsVM.Items.Add(new InnerPanelTitle
-                {
-                    Product = service.As<IProductElement>(),
-                    Text = service.InstanceName,
-                    ForceText = true,
-                    MenuFilters = new string[] { },
-                    IconPath = solutionBuilderModel.FindNodeFor(service.As<IProductElement>()).IconPath
-                });
-                foreach (var component in service.Components.Component
-                                            .Where(c => c.LibraryReferences.LibraryReference
-                                                .Any(lr => lr.LibraryId == library.Id)))
-                {
-                    componentsVM.Items.Add(new InnerPanelItem
-                    {
-                        Product = component.As<IProductElement>(),
-                        Text = component.InstanceName
-                    });
-                }
-            }
-
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
         }
     }
 }

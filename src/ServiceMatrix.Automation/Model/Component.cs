@@ -192,47 +192,10 @@ namespace NServiceBusStudio
 
         public void AddLinks(IAbstractEndpoint endpoint)
         {
-            var project = endpoint.Project;
-
-            // 1. Add Links for References
-            foreach (var libraryLink in LibraryReferences.LibraryReference)
-            {
-                IProductElement element = null;
-
-                if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                {
-                    element = libraryLink.ServiceLibrary.As<IProductElement>();
-                }
-
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, true);
-
-                AddLinkToProject(project, element, suggestedPath, i => i.First());
-            }
         }
 
         public void RemoveLinks(IAbstractEndpoint endpoint)
         {
-            var project = endpoint.Project;
-
-            if (project == null)
-                return;
-
-            // 1. Remove Links for References
-            foreach (var libraryLink in LibraryReferences.LibraryReference)
-            {
-                IProductElement element = null;
-
-                if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                {
-                    element = libraryLink.ServiceLibrary.As<IProductElement>();
-                }
-
-                if (element != null)
-                {
-                    var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, false);
-                    RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
-                }
-            }
         }
 
         private static void AddLinkToProject(IProject project, IProductElement element, string suggestedPath, Func<IEnumerable<IItem>, IItem> filter)

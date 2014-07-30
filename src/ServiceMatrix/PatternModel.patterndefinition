@@ -150,26 +150,6 @@
         <automationSettingsSchemaMoniker Id="7b5ae2da-5b9b-44a1-80f1-8c94f07d21a4" />
       </extendedElement>
     </eventSettings>
-    <eventSettings Id="a189f1f9-e1ad-448e-94e7-4bce2a32e9fe" commandId="caf88ece-6cf4-43ce-a929-80b47a89cfde" eventId="NuPattern.Library.Events.IOnElementActivatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="2770c346-61ac-4b47-a81a-b2aac4c8f990" />
-      </extendedElement>
-    </eventSettings>
-    <eventSettings Id="d457c3ab-3af2-4d57-b22b-6df79b3814f8" commandId="8a3d543b-beb9-46ec-9f5a-a6c25587e5f8" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="f3ef038f-431f-4a84-9700-6c5324b724d8" />
-      </extendedElement>
-    </eventSettings>
-    <eventSettings Id="52fd8db3-21c8-48fd-9171-fd4229ef5e9d" commandId="d8b82ee4-5d50-42fb-988a-53eb54cbf127" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="8e28fe25-8a61-4ad3-8d16-fa2527e77b09" />
-      </extendedElement>
-    </eventSettings>
-    <eventSettings Id="fce5e4da-e8b7-4f01-9d25-5ab160240d0e" commandId="2bbc9968-2571-4db4-827a-9b554fc0ddbb" eventId="NuPattern.Library.Events.IOnElementDeletedEvent" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="bd3cb0ac-1126-4e57-a14a-08f00eb93b42" />
-      </extendedElement>
-    </eventSettings>
     <eventSettings Id="404a94e0-0dee-4341-8dce-b46c20687148" commandId="ced8f3fd-7aff-4e61-82f4-3acfbd045536" eventId="NuPattern.Library.Events.IOnElementInstantiatedEvent" wizardId="00000000-0000-0000-0000-000000000000">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e7382b50-8c70-4a68-bc1c-11b8f2e4a5a0" />
@@ -1576,112 +1556,6 @@
     <commandSettings Id="74775974-a991-4646-a4ca-8968ce5e212a" typeId="NServiceBusStudio.Automation.Commands.ShowCommandTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="798759fc-0dc3-424d-a2f7-6e5d17ec5096" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="c26419cb-c0b4-433b-b767-e0dcabfa9030" typeId="NServiceBusStudio.Automation.Commands.LibraryAddedCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="75ae3f80-cb0a-472d-90c3-8860fe47d2ac" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="caf88ece-6cf4-43ce-a929-80b47a89cfde" typeId="NuPattern.Library.Commands.ActivateArtifactCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="c1edd38f-a671-4654-975b-dd9e5063b8f0" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "Open",
-    "Value": "True",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="8a3d543b-beb9-46ec-9f5a-a6c25587e5f8" typeId="NuPattern.Library.Commands.AggregatorCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="7da80485-0634-49da-a261-fd611299a6d8" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"c26419cb-c0b4-433b-b767-e0dcabfa9030\"\r\n  },\r\n  {\r\n    \"CommandId\": \"d4a9b7ec-2c77-4c47-bb26-ddbc494b0a16\"\r\n  }\r\n]",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="d4a9b7ec-2c77-4c47-bb26-ddbc494b0a16" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="39496399-ee07-41cd-9a1b-ee00ca7cd421" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": "Compile",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}.cs",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "{FilePath}",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Library.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/cd272c9f-4911-480c-a762-59810b294f94",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="d8b82ee4-5d50-42fb-988a-53eb54cbf127" typeId="NServiceBusStudio.Automation.Commands.CreateLibraryCodeLinkCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="5ae19312-e491-4781-8188-9ab9dd14ea85" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="2bbc9968-2571-4db4-827a-9b554fc0ddbb" typeId="NServiceBusStudio.Automation.Commands.RemoveLibraryCodeLinkCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="0bf9bc6e-636e-462c-b352-576f1ec08a2c" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="7d8db3c0-ecf0-4b71-896b-155ac6be7359" typeId="NServiceBusStudio.Automation.Commands.CreateLibraryCodeLinksCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="3de20e9d-2516-42a7-9ee0-53df4458feb1" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="f2ebb7f9-e048-43d5-8d1f-1db2ebc03bfc" typeId="NServiceBusStudio.Automation.Commands.RemoveLibraryCodeLinksCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="2ddd7b77-d44b-480f-8119-21da24a3e1be" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="b8293535-22b5-4e2a-90e3-d60fa296b4c3" typeId="NServiceBusStudio.Automation.Commands.ShowComponentReferencePicker">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="8cce4b27-3ddf-4deb-8634-886683ae477d" />
       </extendedElement>
     </commandSettings>
     <commandSettings Id="72a376e2-aab4-498b-9448-3544ffc8790a" typeId="NServiceBusStudio.Automation.Commands.ShowCommandTypePicker">
@@ -4502,11 +4376,6 @@
         <automationSettingsSchemaMoniker Id="d595aa89-5969-4841-aaae-078fc6b3254f" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="e4c2b8e3-fbee-46c0-9e8a-d501a92be0a4" text="Add Library References..." commandId="b8293535-22b5-4e2a-90e3-d60fa296b4c3" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="300">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" />
-      </extendedElement>
-    </menuSettings>
     <menuSettings Id="40dca3ca-0f16-43e4-8073-b3858d8d8cf9" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="72a376e2-aab4-498b-9448-3544ffc8790a" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="3">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab4b95e9-041a-492f-8468-0442b0183c1d" />
@@ -4802,26 +4671,6 @@
         <collectionSchemaMoniker Id="2f26d53d-1e7f-41ef-860b-f8c03f01624a" />
       </extendedElement>
     </guidanceExtension>
-    <guidanceExtension Id="36f26b7f-31a3-476c-b23f-c82b15313624">
-      <extendedElement>
-        <collectionSchemaMoniker Id="70a9d0ed-a581-4b84-8ac7-ad3d5b4a43d6" />
-      </extendedElement>
-    </guidanceExtension>
-    <guidanceExtension Id="13c97984-eb56-48c1-b4e1-865ca76735d0">
-      <extendedElement>
-        <elementSchemaMoniker Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" />
-      </extendedElement>
-    </guidanceExtension>
-    <guidanceExtension Id="a5e73325-547e-4986-977a-d15c8e1981e4">
-      <extendedElement>
-        <collectionSchemaMoniker Id="7a291463-b68c-45ac-8ad3-28eb5982aa3c" />
-      </extendedElement>
-    </guidanceExtension>
-    <guidanceExtension Id="e2ca343f-ae4f-48f0-9283-793d8a9793d1">
-      <extendedElement>
-        <elementSchemaMoniker Id="c475a3be-99b0-4170-b4d6-2c142440fa9e" />
-      </extendedElement>
-    </guidanceExtension>
     <guidanceExtension Id="1a0a4d81-ef84-48d2-9349-44da135c9d0b">
       <extendedElement>
         <elementSchemaMoniker Id="d9665948-7e01-4896-9843-c03ca1eedba7" />
@@ -4985,26 +4834,6 @@
     <artifactExtension Id="53ccd963-9bfb-4bb2-b9b3-e5c86b4a3c8a">
       <extendedElement>
         <collectionSchemaMoniker Id="2f26d53d-1e7f-41ef-860b-f8c03f01624a" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="3e5fc159-ce75-4bff-b1a3-2e96c75c98ba">
-      <extendedElement>
-        <collectionSchemaMoniker Id="70a9d0ed-a581-4b84-8ac7-ad3d5b4a43d6" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="c21064a0-cd0f-4488-910f-30590a1bf909">
-      <extendedElement>
-        <elementSchemaMoniker Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="e64e9519-76d6-4f09-9616-146966bd18fa">
-      <extendedElement>
-        <collectionSchemaMoniker Id="7a291463-b68c-45ac-8ad3-28eb5982aa3c" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="607318ba-4c76-42e3-9074-28c533101631">
-      <extendedElement>
-        <elementSchemaMoniker Id="c475a3be-99b0-4170-b4d6-2c142440fa9e" />
       </extendedElement>
     </artifactExtension>
     <artifactExtension Id="680c6ca6-6a95-4cca-86af-a2b3bbb6b6dc">
@@ -6479,24 +6308,6 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="8cce4b27-3ddf-4deb-8634-886683ae477d" name="ShowComponentReferencePicker" displayName="Show Component Reference Picker" description="" codeIdentifier="ShowComponentReferencePicker" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="04a544b3-6877-4390-a9cc-e16dd86abd2e" name="ShowReferencePickerMenu" displayName="Show Reference Picker Menu" description="" codeIdentifier="ShowReferencePickerMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
                           <automationSettings Id="ab4b95e9-041a-492f-8468-0442b0183c1d" name="SendMenu" displayName="Send Menu" description="" codeIdentifier="SendMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
@@ -7536,226 +7347,6 @@
                             </childElement>
                           </collection>
                         </childElement>
-                        <childElement>
-                          <collection Id="7a291463-b68c-45ac-8ad3-28eb5982aa3c" name="LibraryReferences" displayName="Library References" description="Service-specific libraries include things like reusable business-specific calculation and validation logic." codeIdentifier="LibraryReferences">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="ValidationRules" />
-                                <setting propertyId="Icon" />
-                                <setting propertyId="IsVisible" />
-                              </settings>
-                            </customizationPolicy>
-                            <automationSettings>
-                              <automationSettings Id="3de20e9d-2516-42a7-9ee0-53df4458feb1" name="CreateLibraryCodeLinks" displayName="Create Library Code Links" description="" codeIdentifier="CreateLibraryCodeLinks" automationType="Command">
-                                <customizationPolicy name="CustomizationPolicySchema1">
-                                  <settings>
-                                    <setting propertyId="DisplayName" />
-                                    <setting propertyId="Description" />
-                                    <setting propertyId="Settings" />
-                                  </settings>
-                                </customizationPolicy>
-                              </automationSettings>
-                              <automationSettings Id="2ddd7b77-d44b-480f-8119-21da24a3e1be" name="RemoveLibraryCodeLinks" displayName="Remove Library Code Links" description="" codeIdentifier="RemoveLibraryCodeLinks" automationType="Command">
-                                <customizationPolicy name="CustomizationPolicySchema1">
-                                  <settings>
-                                    <setting propertyId="DisplayName" />
-                                    <setting propertyId="Description" />
-                                    <setting propertyId="Settings" />
-                                  </settings>
-                                </customizationPolicy>
-                              </automationSettings>
-                            </automationSettings>
-                            <childElement cardinality="ZeroToMany" autoCreate="false" allowAddNew="false">
-                              <element Id="c475a3be-99b0-4170-b4d6-2c142440fa9e" name="LibraryReference" displayName="Library Reference" description="A service-specific library." codeIdentifier="LibraryReference">
-                                <customizationPolicy name="CustomizationPolicySchema1">
-                                  <settings>
-                                    <setting propertyId="DisplayName" />
-                                    <setting propertyId="Description" />
-                                    <setting propertyId="ValidationRules" />
-                                    <setting propertyId="Icon" />
-                                    <setting propertyId="IsVisible" />
-                                  </settings>
-                                </customizationPolicy>
-                                <properties>
-                                  <property Id="569f8432-a1d4-4846-8bf1-d345b9ff256b" name="LibraryId" displayName="Library Id" description="Description for Application.Design.Services.Service.Components.Component.LibraryReferences.LibraryReference.LibraryId" codeIdentifier="LibraryId" type="System.Guid">
-                                    <customizationPolicy name="CustomizationPolicySchema1">
-                                      <settings>
-                                        <setting propertyId="DisplayName" />
-                                        <setting propertyId="Description" />
-                                        <setting propertyId="RawDefaultValue" />
-                                        <setting propertyId="IsVisible" />
-                                        <setting propertyId="IsReadOnly" />
-                                        <setting propertyId="Category" />
-                                        <setting propertyId="TypeConverterTypeName" />
-                                        <setting propertyId="EditorTypeName" />
-                                        <setting propertyId="RawValidationRules" />
-                                        <setting propertyId="RawValueProvider" />
-                                      </settings>
-                                    </customizationPolicy>
-                                  </property>
-                                </properties>
-                                <automationSettings>
-                                  <automationSettings Id="8e28fe25-8a61-4ad3-8d16-fa2527e77b09" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
-                                    <customizationPolicy name="CustomizationPolicySchema1">
-                                      <settings>
-                                        <setting propertyId="DisplayName" />
-                                        <setting propertyId="Description" />
-                                        <setting propertyId="Settings" />
-                                      </settings>
-                                    </customizationPolicy>
-                                  </automationSettings>
-                                  <automationSettings Id="bd3cb0ac-1126-4e57-a14a-08f00eb93b42" name="OnDeleted" displayName="On Deleted" description="" codeIdentifier="OnDeleted" automationType="Event Launch Point" classification="LaunchPoint">
-                                    <customizationPolicy name="CustomizationPolicySchema1">
-                                      <settings>
-                                        <setting propertyId="DisplayName" />
-                                        <setting propertyId="Description" />
-                                        <setting propertyId="Settings" />
-                                      </settings>
-                                    </customizationPolicy>
-                                  </automationSettings>
-                                  <automationSettings Id="5ae19312-e491-4781-8188-9ab9dd14ea85" name="OnInstantiatedCommand" displayName="On Instantiated Command" description="" codeIdentifier="OnInstantiatedCommand" automationType="Command">
-                                    <customizationPolicy name="CustomizationPolicySchema1">
-                                      <settings>
-                                        <setting propertyId="DisplayName" />
-                                        <setting propertyId="Description" />
-                                        <setting propertyId="Settings" />
-                                      </settings>
-                                    </customizationPolicy>
-                                  </automationSettings>
-                                  <automationSettings Id="0bf9bc6e-636e-462c-b352-576f1ec08a2c" name="OnDeletedCommand" displayName="On Deleted Command" description="" codeIdentifier="OnDeletedCommand" automationType="Command">
-                                    <customizationPolicy name="CustomizationPolicySchema1">
-                                      <settings>
-                                        <setting propertyId="DisplayName" />
-                                        <setting propertyId="Description" />
-                                        <setting propertyId="Settings" />
-                                      </settings>
-                                    </customizationPolicy>
-                                  </automationSettings>
-                                </automationSettings>
-                              </element>
-                            </childElement>
-                          </collection>
-                        </childElement>
-                      </element>
-                    </childElement>
-                  </collection>
-                </childElement>
-                <childElement>
-                  <collection Id="70a9d0ed-a581-4b84-8ac7-ad3d5b4a43d6" name="ServiceLibraries" displayName="Libraries" description="Service-specific libraries include things like reusable business-specific calculation and validation logic." codeIdentifier="ServiceLibraries">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="ValidationRules" />
-                        <setting propertyId="Icon" />
-                        <setting propertyId="IsVisible" />
-                      </settings>
-                    </customizationPolicy>
-                    <properties>
-                      <property Id="77fe3e5a-63a2-4122-bc92-0b69e0293cf6" name="Namespace" displayName="Namespace" description="Description for Application.Design.Services.Service.ServiceLibraries.Namespace" codeIdentifier="Namespace">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                    </properties>
-                    <childElement cardinality="ZeroToMany" autoCreate="false">
-                      <element Id="56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc" name="ServiceLibrary" displayName="Service Library" description="A service library." codeIdentifier="ServiceLibrary" icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/LibraryFile.png">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="ValidationRules" />
-                            <setting propertyId="Icon" />
-                            <setting propertyId="IsVisible" />
-                          </settings>
-                        </customizationPolicy>
-                        <properties>
-                          <property Id="f56b32d4-9de0-431e-b181-90c0d4a97912" name="FilePath" displayName="File Path" description="Description for Application.Design.Services.Service.ServiceLibraries.ServiceLibrary.FilePath" codeIdentifier="FilePath">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="RawDefaultValue" />
-                                <setting propertyId="IsVisible" />
-                                <setting propertyId="IsReadOnly" />
-                                <setting propertyId="Category" />
-                                <setting propertyId="TypeConverterTypeName" />
-                                <setting propertyId="EditorTypeName" />
-                                <setting propertyId="RawValidationRules" />
-                                <setting propertyId="RawValueProvider" />
-                              </settings>
-                            </customizationPolicy>
-                          </property>
-                        </properties>
-                        <automationSettings>
-                          <automationSettings Id="75ae3f80-cb0a-472d-90c3-8860fe47d2ac" name="CheckForProject" displayName="Check For Project" description="" codeIdentifier="CheckForProject" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="c1edd38f-a671-4654-975b-dd9e5063b8f0" name="OnActivationCommand" displayName="On Activation Command" description="" codeIdentifier="OnActivationCommand" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="7da80485-0634-49da-a261-fd611299a6d8" name="OnInstantiatedCommand" displayName="On Instantiated Command" description="" codeIdentifier="OnInstantiatedCommand" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="39496399-ee07-41cd-9a1b-ee00ca7cd421" name="UnfoldLibraryCode" displayName="Unfold Library Code" description="" codeIdentifier="UnfoldLibraryCode" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="2770c346-61ac-4b47-a81a-b2aac4c8f990" name="OnDoubleClick" displayName="On Double Click" description="" codeIdentifier="OnDoubleClick" automationType="Event Launch Point" classification="LaunchPoint">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="f3ef038f-431f-4a84-9700-6c5324b724d8" name="OnInstantiated" displayName="On Instantiated" description="" codeIdentifier="OnInstantiated" automationType="Event Launch Point" classification="LaunchPoint">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                        </automationSettings>
                       </element>
                     </childElement>
                   </collection>
