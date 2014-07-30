@@ -42,14 +42,10 @@ namespace NServiceBusStudio.Automation.Commands
             var element = CurrentElement.As<IComponent>();
             var app = CurrentElement.Root.As<IApplication>();
 
-            var infrastructureLibraries = app.Design.Libraries.Library
-                .Except(element.LibraryReferences.LibraryReference.Select(l => l.Library));
-
             var serviceLibraries = element.Parent.Parent.ServiceLibraries.ServiceLibrary
                 .Except(element.LibraryReferences.LibraryReference.Select(l => l.ServiceLibrary));
 
-            var infraestructureAndServicesAndLibraries = infrastructureLibraries.Select(l => string.Format("[Global] {0}", l.InstanceName))
-                                       .Union(serviceLibraries.Select(l => string.Format("[Service] {0}", l.InstanceName))).ToList();
+            var infraestructureAndServicesAndLibraries = serviceLibraries.Select(l => string.Format("[Service] {0}", l.InstanceName)).ToList();
 
             var viewModel = new ComponentPickerViewModel(infraestructureAndServicesAndLibraries)
             {
@@ -73,17 +69,6 @@ namespace NServiceBusStudio.Automation.Commands
                                 {
                                     r.LibraryId = library.As<IProductElement>().Id;
                                     r.ServiceLibrary = library;
-                                });
-                        }
-                        else
-                        {
-                            var name = selectedElement.Substring(9);
-                            var library = infrastructureLibraries.First(l => l.InstanceName == name);
-                            element.LibraryReferences.CreateLibraryReference(name,
-                                r =>
-                                {
-                                    r.LibraryId = library.As<IProductElement>().Id;
-                                    r.Library = library;
                                 });
                         }
                     }

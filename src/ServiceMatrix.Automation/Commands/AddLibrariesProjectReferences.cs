@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using NServiceBusStudio.Automation.Extensions;
 using System.ComponentModel.DataAnnotations;
+using NServiceBusStudio.Automation.Extensions;
 using NuPattern.Runtime;
-using AbstractEndpoint;
-using System.IO;
 
 namespace NServiceBusStudio.Automation.Commands
 {

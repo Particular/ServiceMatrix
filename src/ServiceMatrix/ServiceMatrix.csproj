@@ -313,84 +313,7 @@
     <ProjectTemplate Include="T\P\Endpoints\NSBHMVC\MvcEndpoint.vstemplate">
       <ItemGuid>fc54c8b3-2bb8-4b67-b512-303294cd2082</ItemGuid>
     </ProjectTemplate>
-    <Content Include="T\P\Endpoints\NSBHWeb\Content\Content.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Content\Css.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Content\Site.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Content\TestMessages.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Global.asax">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\HostWeb.csproj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\HostWeb.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <ProjectTemplate Include="T\P\Endpoints\NSBHWeb\HostWeb.vstemplate">
-      <ItemGuid>ebbe43bd-bb7e-4d6c-a74e-7ebcbf768bbe</ItemGuid>
-      <SubType>Designer</SubType>
-    </ProjectTemplate>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\favicon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\logo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step3.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\ns-step4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Images\search.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx">
-      <SubType>ASPXCodeBehind</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="T\P\Endpoints\NSBH\Properties\AssemblyInfo.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>false</IncludeInVSIX>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Properties\AssemblyInfo.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>
     </Content>
@@ -419,21 +342,10 @@
     <Content Include="T\P\Endpoints\NSBHMVC\Controllers\TestMessagesController.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx.cs">
-      <DependentUpon>TestMessages.aspx</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\TestMessages.aspx.designer.cs">
-      <DependentUpon>TestMessages.aspx.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="T\P\Endpoints\NSBHMVC\Infrastructure\INServiceBusComponent.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\P\Endpoints\NSBH\Infrastructure\INServiceBusComponent.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Infrastructure\INServiceBusComponent.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Compile Include="VSPackage.AutoOpen.cs" />
@@ -751,71 +663,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\EndpointDiagram.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>39328419-7fe9-4bd1-9755-1bb3129036f2</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\GeneratedWebInitialization.cs.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>22880e7e-edce-4a2f-ae1f-40eeb52cd83a</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\Logging.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>af40d2eb-0aa2-44f6-bba5-7f5878253d89</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\MessageConventions.cs.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>310e4bcc-ee54-469a-8fff-baa627551632</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\MessageForwardingInCaseOfFaultConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>2cb98bc0-0a56-45dc-94c1-681f343fc9a4</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>8f7bac69-c9e9-47ba-b44e-15ceb283e250</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\TransportConfig.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>850114f6-382e-4477-aa77-edfd35447c20</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\UnicastBusConfig.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>27f96a66-2fe6-43ea-888e-5c0388cdbf3c</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\Web.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>b32ab3ba-7497-4525-b5f4-c7ec037c8b6b</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\Web.Debug.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>7647802b-b2e7-4777-a4d4-fd4e950abbda</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\Web.Release.config.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>82c48685-b62c-4e0a-acde-308747faf663</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\EndpointDiagram.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -876,22 +723,10 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>eb58c194-dddf-4e22-8e2b-a1b76ddb1990</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\TransportConnectionString.config.tt">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>42e76b2c-8e17-415b-9d80-4efffc8f887c</ItemGuid>
-    </Content>
     <Content Include="T\T4\Endpoints\NSBMVC\WebGlobalInitialization.v4.cs.tt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>5290a37d-dd77-46b3-91a7-6ef79b3cd82a</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\WebGlobalInitialization.cs.tt">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>50af6eba-4205-4aed-ad99-910a10d2be0a</ItemGuid>
     </Content>
     <Content Include="T\T4\Security\EndpointAuthorizeOutgoingMessages.v4.tt">
       <LastGenOutput>CommandHandler.cs</LastGenOutput>
@@ -910,39 +745,11 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>6f950f0a-8b5d-4ef3-afcd-e6046fcff516</ItemGuid>
     </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.tt">
-      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>23a83f8e-6d63-4cbe-a965-c73e279f72c4</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.cs.tt">
-      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>92008bd9-7d4f-4aa2-828b-0f4578a4b365</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\TestMessages.aspx.designer.cs.tt">
-      <LastGenOutput>TestMessagesController.cs.txt</LastGenOutput>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>5ddee7e0-7cd1-4713-ab12-8d59d622a228</ItemGuid>
-    </Content>
     <Content Include="T\T4\Endpoints\NSBH\EndpointConfig.v4.cs.tt">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>9665ea51-8bf4-4a28-b0a5-37cdf5148f39</ItemGuid>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Web.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Web.Debug.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="T\P\Endpoints\NSBHWeb\Web.Release.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="T\T4\Endpoints\NSBH\AuditConfig.config.tt">
       <SubType>Designer</SubType>
@@ -955,12 +762,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>21cb8031-2d8f-417f-89fb-f5a5e94a49f0</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBWeb\AuditConfig.config.tt">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>92514fe6-6836-445c-910b-53407046c60d</ItemGuid>
     </Content>
     <Content Include="T\T4\CommandSender.tt">
       <LastGenOutput>CommandSender.cs</LastGenOutput>

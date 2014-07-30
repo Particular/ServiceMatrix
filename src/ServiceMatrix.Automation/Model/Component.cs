@@ -199,19 +199,9 @@ namespace NServiceBusStudio
             {
                 IProductElement element = null;
 
-                if (libraryLink.Library != null)
+                if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
                 {
-                    if (libraryLink.Library.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.Library.As<IProductElement>();
-                    }
-                }
-                else
-                {
-                    if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.ServiceLibrary.As<IProductElement>();
-                    }
+                    element = libraryLink.ServiceLibrary.As<IProductElement>();
                 }
 
                 var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, true);
@@ -232,19 +222,9 @@ namespace NServiceBusStudio
             {
                 IProductElement element = null;
 
-                if (libraryLink.Library != null)
+                if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
                 {
-                    if (libraryLink.Library.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.Library.As<IProductElement>();
-                    }
-                }
-                else
-                {
-                    if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.ServiceLibrary.As<IProductElement>();
-                    }
+                    element = libraryLink.ServiceLibrary.As<IProductElement>();
                 }
 
                 if (element != null)

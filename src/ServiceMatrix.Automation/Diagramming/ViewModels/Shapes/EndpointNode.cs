@@ -1,39 +1,28 @@
-﻿using Mindscape.WpfDiagramming;
-using Mindscape.WpfDiagramming.Foundation;
-using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
+﻿using System.Windows;
 using NuPattern.Runtime.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
 
 namespace ServiceMatrix.Diagramming.ViewModels.Shapes
 {
-    public class EndpointNode: GroupNode
+    public class EndpointNode : GroupNode
     {
-        public EndpointNode(IProductElementViewModel innerViewModel) : base (innerViewModel)
+        public EndpointNode(IProductElementViewModel innerViewModel)
+            : base(innerViewModel)
         {
-            this.SHAPE_MIN_HEIGHT = 190;
-            this.Bounds = new System.Windows.Rect(0, 0, 320, this.SHAPE_MIN_HEIGHT);
+            SHAPE_MIN_HEIGHT = 190;
+            Bounds = new Rect(0, 0, 320, SHAPE_MIN_HEIGHT);
         }
 
-        public string Type 
+        public string Type
         {
             get
             {
-                switch (this.InnerViewModel.Data.Info.Name)
+                switch (InnerViewModel.Data.Info.Name)
                 {
                     case "NServiceBusHost":
                         return "(NSB Host)";
-                        break;
                     case "NServiceBusMVC":
                         return "(ASP.NET MVC)";
-                        break;
-                    case "NServiceBusWeb":
-                        return "(ASP.NET Web Forms)";
-                        break;
                 }
 
                 return "";

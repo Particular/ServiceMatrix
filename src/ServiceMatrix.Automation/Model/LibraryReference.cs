@@ -8,7 +8,6 @@ namespace NServiceBusStudio
 {
     partial interface ILibraryReference
     {
-        ILibrary Library { get; set; }
         IServiceLibrary ServiceLibrary { get; set; }
     }
 
@@ -20,11 +19,9 @@ namespace NServiceBusStudio
             if (linked != null)
             {
                 this.ServiceLibrary = linked.As<IServiceLibrary>();
-                this.Library = linked.As<ILibrary>();
             }
         }
 
-        public ILibrary Library { get; set; }
         public IServiceLibrary ServiceLibrary { get; set; }
     }
 }

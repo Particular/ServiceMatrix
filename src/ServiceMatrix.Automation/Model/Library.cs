@@ -19,19 +19,6 @@ namespace NServiceBusStudio
         
     }
 
-    partial class Library : ICodeLibrary, IRenameRefactoringNotSupported
-    {
-        public ICodeLibraries ParentLibraries
-        {
-            get { return this.Parent as ICodeLibraries; }
-        }
-    }
-
-    partial class Libraries : ICodeLibraries
-    {
-        
-    }
-
     public interface ICodeLibrary
     {
         string CodeIdentifier { get; }

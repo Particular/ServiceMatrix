@@ -56,7 +56,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             var allNodes = observableCollection.Traverse(x => x.ChildNodes).ToList();
 
             // Add Endpoints
-            AddElementOf(allNodes, new[] { "NServiceBusHost", "NServiceBusMVC", "NServiceBusWeb" });
+            AddElementOf(allNodes, new[] { "NServiceBusHost", "NServiceBusMVC" });
 
             // Add Services
             AddElementOf(allNodes, new[] { "Service" });
@@ -147,7 +147,6 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
                 case "NServiceBusHost":
                 case "NServiceBusMVC":
-                case "NServiceBusWeb":
                     ViewModel.GetOrCreateEndpointNode(newElement);
                     break;
                 case "Service":
@@ -205,7 +204,6 @@ namespace ServiceMatrix.Diagramming.ViewModels
             {
                 case "NServiceBusHost":
                 case "NServiceBusMVC":
-                case "NServiceBusWeb":
                     foreach (var cl in removedElement.ChildNodes.First().ChildNodes)
                     {
                         RemoveComponentLink(cl);
@@ -337,9 +335,6 @@ namespace ServiceMatrix.Diagramming.ViewModels
                     break;
                 case "NServiceBusMVC":
                     app.Design.Endpoints.CreateNServiceBusMVC(endpointName);
-                    break;
-                case "NServiceBusWeb":
-                    app.Design.Endpoints.CreateNServiceBusWeb(endpointName);
                     break;
             }
         }

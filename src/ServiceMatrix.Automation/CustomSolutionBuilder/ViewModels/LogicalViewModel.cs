@@ -106,7 +106,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                         {
                             case "NServiceBusHost":
                             case "NServiceBusMVC":
-                            case "NServiceBusWeb":
                                 NServiceBusViewModel.GenerateEndpointsView();
                                 break;
                             case "Component":

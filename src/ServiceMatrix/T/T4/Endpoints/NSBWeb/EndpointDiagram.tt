@@ -1,2 +1,0 @@
-﻿<#@ Template HostSpecific="True" Debug="True" #>
-<#@ Output Extension="endpoints" #>

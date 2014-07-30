@@ -18,7 +18,6 @@ namespace NServiceBusStudio
             var endpoints = new List<IAbstractEndpoint>();
 
             endpoints.AddRange(this.NServiceBusHosts);
-            endpoints.AddRange(this.NServiceBusWebs);
             endpoints.AddRange(this.NServiceBusMVCs);
 
             return endpoints;
