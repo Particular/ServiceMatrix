@@ -185,7 +185,7 @@
         <collectionShapeMoniker Id="28645463-0ca6-45b6-947b-40750086db4a" />
       </nodes>
     </elementHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(10.1875 : 102.335470377269); (10.1875 : 104.756345214844); (11.25 : 104.756345214844)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(10.1875 : 102.335470377269); (10.1875 : 104.756345214844); (11.25 : 104.756345214844)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <collectionShapeMoniker Id="28645463-0ca6-45b6-947b-40750086db4a" />
@@ -206,7 +206,7 @@
         <elementShapeMoniker Id="ce2a9fa6-c755-4f0d-b6a5-18e875067892" />
       </nodes>
     </elementHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(9.8125 : 113.33316813151); (8.75 : 113.33316813151); (8.75 : 118.916336263021); (9.04166666666667 : 118.916336263021 : JumpStart); (9.20833333333333 : 118.916336263021 : JumpEnd); (13.875 : 118.916336263021); (13.875 : 116.69868733724); (14.2350000003353 : 116.69868733724)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(9.8125 : 113.33316813151); (8.75 : 113.33316813151); (8.75 : 118.916336263021); (8.91666666666667 : 118.916336263021 : JumpStart); (9.20833333333333 : 118.916336263021 : JumpEnd); (13.875 : 118.916336263021); (13.875 : 116.69868733724); (14.2350000003353 : 116.69868733724)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <elementShapeMoniker Id="ce2a9fa6-c755-4f0d-b6a5-18e875067892" />
@@ -473,7 +473,7 @@
         <elementListCompartment Id="b445e135-fb4a-42da-a04e-e0866faec952" absoluteBounds="12.64, 125.528779296875, 2.4699999999999998, 0.63399251302083326" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </collectionShape>
-    <elementHasElementsConnector edgePoints="[(9.8125 : 113.33316813151); (9 : 113.33316813151); (9 : 125.381385904948); (12.6100000003353 : 125.381385904948)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(9.8125 : 113.33316813151); (9 : 113.33316813151); (9 : 125.381385904948); (9.04166666666667 : 125.381385904948 : JumpStart); (9.20833333333333 : 125.381385904948 : JumpEnd); (12.6100000003353 : 125.381385904948)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <elementShapeMoniker Id="ce2a9fa6-c755-4f0d-b6a5-18e875067892" />
@@ -593,7 +593,7 @@
         <elementListCompartment Id="5103880f-8b34-4fc9-8ce3-9bb1f870fe6f" absoluteBounds="4.515, 49.92290364583333, 4.3450000000000006, 5.6338297526041661" name="Automation" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </elementShape>
-    <elementHasElementsConnector edgePoints="[(3.4375 : 30.5127718098958); (3.4375 : 50.6408666992187); (4.04166666666667 : 50.6408666992187 : JumpStart); (4.20833333333333 : 50.6408666992187 : JumpEnd); (4.5 : 50.6408666992187)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(3.4375 : 30.5127718098958); (3.4375 : 50.6408666992187); (4.5 : 50.6408666992187)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <collectionShapeMoniker Id="ee5c1df5-33c1-4bc4-8f62-0b864e775f80" />

@@ -1,29 +1,20 @@
 ﻿namespace NServiceBusStudio.Automation.Extensions
 {
     using System;
-    using System.Diagnostics;
-    using System.Globalization;
-    using System.Linq;
-    using System.Net;
     using System.Runtime.InteropServices;
-    using System.Xml;
-    using System.Xml.Linq;
-    using GitVersion;
     using Model;
     using NuGet.VisualStudio;
+    using NuGetExtensions;
     using NuPattern;
     using NuPattern.Diagnostics;
     using NuPattern.VisualStudio;
     using NuPattern.VisualStudio.Solution;
-    using Util;
 
     /// <summary>
     /// Extensions to <see cref="ISolution"/> APIs.
     /// </summary>
     public static class SolutionExtensions
     {
-        const string officialNugetFeed = "http://packages.nuget.org/api/v2/";
-
         private static readonly ITracer tracer = Tracer.Get(typeof(SolutionExtensions));
 
         /// <summary>
@@ -133,7 +124,7 @@
             return false;
         }
 
-        public static void InstallNuGetPackage(this IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, IStatusBar StatusBar, string packageName, string targetNsbVersion)
+        public static void InstallNuGetPackage(this IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, IStatusBar StatusBar, INuGetVersionHelper nuGetVersionHelper, string packageName, string targetNsbVersion)
         {
             string packageId;
             int? majorVersion;
@@ -155,13 +146,13 @@
                     {
                         StatusBar.DisplayMessage(String.Format("When attempting to install version {0} of the package {1}, the following error occured: {2}.. Going to now try installing the latest version of Package ...", version, packageId, installException.Message));
                         // There was a problem installing the specified version of the package. Try the installing the latest available package from the source.
-                        InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, packageId, majorVersion);
+                        InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, nuGetVersionHelper, packageId, majorVersion);
                     }
                 }
                 else
                 {
                     StatusBar.DisplayMessage(String.Format("Installing the latest version of Package: {0}...", packageId));
-                    InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, packageId, majorVersion);
+                    InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, nuGetVersionHelper, packageId, majorVersion);
                 }
             }
             catch (Exception ex)
@@ -174,13 +165,13 @@
             }
         }
 
-        private static void InstallLatestNugetPackage(IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, string packageId, int? majorVersion)
+        static void InstallLatestNugetPackage(IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, INuGetVersionHelper nuGetVersionHelper, string packageId, int? majorVersion)
         {
             // lookup latest version for the given major (or null), and install that
-            var latestVersion = GetLatestVersionForMajor(packageId, majorVersion);
+            var latestVersion = GetLatestVersionForMajor(nuGetVersionHelper, packageId, majorVersion);
 
             vsPackageInstaller.InstallPackage(
-                ServiceMatrixOverrides.GetNugetFeedServiceBaseAddress() ?? "All",
+                "All",
                 project.As<EnvDTE.Project>(),
                 packageId,
                 latestVersion,
@@ -192,10 +183,10 @@
             NugetPackageVersionManager.UpdateCache(packageId, majorVersion, installedPackages);
         }
 
-        private static void InstallNugetPackageForSpecifiedVersion(IProject project, IVsPackageInstaller vsPackageInstaller, string packageId, string version)
+        static void InstallNugetPackageForSpecifiedVersion(IProject project, IVsPackageInstaller vsPackageInstaller, string packageId, string version)
         {
             vsPackageInstaller.InstallPackage(
-                ServiceMatrixOverrides.GetNugetFeedServiceBaseAddress() ?? "All",
+                "All",
                 project.As<EnvDTE.Project>(),
                 packageId,
                 version,
@@ -229,83 +220,9 @@
             }
         }
 
-        static string GetLatestVersionForMajor(string packageId, int? majorVersion)
+        static string GetLatestVersionForMajor(INuGetVersionHelper nuGetVersionHelper, string packageId, int? majorVersion)
         {
-            // first check for overrides
-            var overridenPackageVersion = ServiceMatrixOverrides.GetNugetPackageVersion(packageId);
-            if (!string.IsNullOrEmpty(overridenPackageVersion))
-            {
-                return overridenPackageVersion;
-            }
-
-            // if no major is given, use latest
-            if (!majorVersion.HasValue)
-            {
-                return null;
-            }
-
-            using (var client = new WebClient())
-            {
-                client.BaseAddress = GetNugetFeedServiceBaseAddress();
-
-                var query =
-                    string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"Packages()?$filter=Id eq '{0}' and startswith(Version,'{1}.')&$orderby=Version desc",
-                        packageId,
-                        majorVersion.Value);
-
-                string resultString;
-                try
-                {
-                    resultString = client.DownloadString(query);
-                }
-                catch (WebException e)
-                {
-                    tracer.Trace(TraceEventType.Warning, e, "Could not retrieve result from feed for package {0}", packageId);
-                    return null;
-                }
-
-                if (string.IsNullOrWhiteSpace(resultString))
-                {
-                    tracer.Trace(TraceEventType.Warning, null, "Retrieved empty result from feed for package {0}", packageId);
-                    return null;
-                }
-
-                XElement xmlElement;
-                try
-                {
-                    xmlElement = XElement.Parse(resultString);
-                }
-                catch (XmlException e)
-                {
-                    tracer.Trace(TraceEventType.Warning, e, "Retrieved invalid result from feed for package {0}", packageId);
-                    return null;
-                }
-
-                var versionElementName = XName.Get("Version", "http://schemas.microsoft.com/ado/2007/08/dataservices");
-
-                var versions =
-                    xmlElement
-                        .Descendants(versionElementName)
-                        .Select(e => new { e.Value, Version = ParseVersion(e.Value) })
-                        .OrderByDescending(v => v.Version);
-                var version = versions.FirstOrDefault(v => v.Version != null);
-
-                return version != null ? version.Value : null;
-            }
-        }
-
-        static string GetNugetFeedServiceBaseAddress()
-        {
-            var overrideFeed = ServiceMatrixOverrides.GetNugetFeedServiceBaseAddress();
-            return string.IsNullOrWhiteSpace(overrideFeed) ? officialNugetFeed : overrideFeed.Trim();
-        }
-
-        static SemanticVersion ParseVersion(string versionString)
-        {
-            SemanticVersion version;
-            return SemanticVersion.TryParse(versionString, out version) ? version : null;
+            return nuGetVersionHelper.GetPackageVersion(packageId, majorVersion);
         }
     }
 }

@@ -1197,6 +1197,35 @@
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>
+
+  <!-- The Automation.dll assembly ilmerges Nuget.Core, but the local deployment of the extension picks up the unmerge dll from the intermediate folder -->
+  <PropertyGroup>
+    <DeployVsixExtensionFilesDependsOn>$(DeployVsixExtensionFilesDependsOn);FixupAutomationVsixSource</DeployVsixExtensionFilesDependsOn>
+  </PropertyGroup>
+  <Target Name="FixupAutomationVsixSource">
+    <ItemGroup>
+      <VSIXSourceItemBackup Include="@(VSIXSourceItem)"/>
+      <VSIXSourceItemAutomationDll Include="@(VSIXSourceItem)" Condition=" '%(Filename)'  == 'Particular.ServiceMatrix.Automation' AND '%(Extension)' == '.dll' "/>
+      <VSIXSourceItemAutomationPdb Include="@(VSIXSourceItem)" Condition=" '%(Filename)'  == 'Particular.ServiceMatrix.Automation' AND '%(Extension)' == '.pdb' "/>
+      <VSIXSourceItemAutomationLocalOnlyDll Include="@(VSIXSourceItemLocalOnly)" Condition=" '%(Filename)'  == 'Particular.ServiceMatrix.Automation' AND '%(Extension)' == '.dll' "/>
+      <VSIXSourceItemAutomationLocalOnlyPdb Include="@(VSIXSourceItemLocalOnly)" Condition=" '%(Filename)'  == 'Particular.ServiceMatrix.Automation' AND '%(Extension)' == '.pdb' "/>
+
+      <VSIXSourceItem Include="$(OutputPath)Particular.ServiceMatrix.Automation.dll" Condition=" '@(VSIXSourceItemAutomationDll)' != '' ">
+        <TargetPath>Particular.ServiceMatrix.Automation.dll</TargetPath>
+      </VSIXSourceItem>
+      <VSIXSourceItem Include="$(OutputPath)Particular.ServiceMatrix.Automation.pdb" Condition=" '@(VSIXSourceItemAutomationPdb)' != '' ">
+        <TargetPath>Particular.ServiceMatrix.Automation.pdb</TargetPath>
+      </VSIXSourceItem>
+
+      <VSIXSourceItemLocalOnly Include="$(OutputPath)Particular.ServiceMatrix.Automation.dll" Condition=" '@(VSIXSourceItemAutomationLocalOnlyDll)' != '' ">
+        <TargetPath>Particular.ServiceMatrix.Automation.dll</TargetPath>
+      </VSIXSourceItemLocalOnly>
+      <VSIXSourceItemLocalOnly Include="$(OutputPath)Particular.ServiceMatrix.Automation.pdb" Condition=" '@(VSIXSourceItemAutomationLocalOnlyPdb)' != '' ">
+        <TargetPath>Particular.ServiceMatrix.Automation.pdb</TargetPath>
+      </VSIXSourceItemLocalOnly>
+    </ItemGroup>
+  </Target>
+
   <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
   <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
 </Project>

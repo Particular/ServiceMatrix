@@ -63,6 +63,12 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NuGet.Core">
+      <HintPath>..\packages\Nuget.Core\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform">
+      <HintPath>..\packages\Microsoft.Web.Xdt\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
     <Reference Include="NuGet.VisualStudio">
       <HintPath>..\packages\NuGet.VisualStudio\lib\net40\NuGet.VisualStudio.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -221,6 +227,9 @@
     </Compile>
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorFactory.cs" />
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorPane.cs" />
+    <Compile Include="NuGetExtensions\INuGetVersionHelper.cs" />
+    <Compile Include="NuGetExtensions\MachineWideSettings.cs" />
+    <Compile Include="NuGetExtensions\NuGetVersionHelper.cs" />
     <Compile Include="TypeConverters\InvariantCultureTimeSpanStringConverter.cs" />
     <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />
     <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
@@ -234,15 +243,6 @@
     <Compile Include="Diagramming\ViewModels\Shapes\MessageNode.cs" />
     <Compile Include="Model\TargetNsbVersion.cs" />
     <Compile Include="TypeConverters\TargetNsbVersionTypeConverter.cs" />
-    <Compile Include="Util\IniReader.cs" />
-    <Compile Include="Util\LambdaEqualityHelper.cs" />
-    <Compile Include="Util\Logger.cs" />
-    <Compile Include="Util\ReleaseDate.cs" />
-    <Compile Include="Util\SemanticVersion.cs" />
-    <Compile Include="Util\SemanticVersionBuildMetaData.cs" />
-    <Compile Include="Util\SemanticVersionPreReleaseTag.cs" />
-    <Compile Include="Util\ServiceMatrixOverrides.cs" />
-    <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
     <Compile Include="ViewModels\RelatedComponentsPickerViewModel.cs" />
@@ -863,4 +863,20 @@
   </PropertyGroup>
   <Import Project="$(MSBuildThisFileDirectory)..\..\BuildSupport\RippleRestoreTask.targets" />
   <Import Project="$(MSBuildThisFileDirectory)..\..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
+  <Target Name="AfterBuild">
+    <!-- Most of the referenced assemblies are not copied locally and aren't in the GAC either. Figure out the references to add them as explicit lib folders when calling ilmerge -->
+    <ItemGroup>
+      <_AllReferenceDirectories Include="@(ReferencePath-&gt;DirectoryName())" />
+      <_UniqueReferenceDirectories Include="@(_AllReferenceDirectories-&gt;Distinct())" />
+      <_NugetCore Include="@(ReferencePath)" Condition=" '%(Filename)' == 'Nuget.Core' " />
+    </ItemGroup>
+    <MakeDir Directories="$(TargetDir)temp\" />
+    <Exec Command="&quot;$(SolutionDir)..\tools\IlMerge\ilmerge.exe&quot; /keyfile:&quot;$(AssemblyOriginatorKeyFile)&quot; /internalize /out:&quot;$(TargetDir)temp\$(TargetFileName)&quot; &quot;$(TargetPath)&quot; &quot;@(_NugetCore)&quot; /target:library @(_UniqueReferenceDirectories->'/lib:&quot;%(Identity)&quot;', ' ') /targetplatform:&quot;v4,$(FrameworkPathOverride)&quot;" />
+    <ItemGroup>
+      <TempFiles Include="$(TargetDir)temp\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(TempFiles)" DestinationFolder="$(TargetDir)" OverwriteReadOnlyFiles="true" />
+    <Delete Files="@(TempFiles)" />
+    <RemoveDir Directories="$(TargetDir)temp\" />
+  </Target>
 </Project>
