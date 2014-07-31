@@ -111,10 +111,6 @@ namespace AbstractEndpoint.Automation.Commands
                             {
                                 selectedEndpoint = app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
                             }
-                            else if (selectedType == "NServiceBus ASP.NET Web Forms")
-                            {
-                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusWeb(selectedName);
-                            }
                             else
                             {
                                 selectedEndpoint = app.Design.Endpoints.CreateNServiceBusHost(selectedName);

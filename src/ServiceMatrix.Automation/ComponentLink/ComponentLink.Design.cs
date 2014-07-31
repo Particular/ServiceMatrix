@@ -186,18 +186,6 @@ namespace AbstractEndpoint
             {
             }
 
-
-            public ILibraryReferences LibraryReferences
-            {
-                get { throw new NotImplementedException(); }
-            }
-
-            public ILibraryReferences CreateLibraryReferences(string name, Action<ILibraryReferences> initializer = null, bool raiseInstantiateEvents = true)
-            {
-                throw new NotImplementedException();
-            }
-
-
             public void RemoveLinks(IAbstractEndpoint endpoint)
             {
                 throw new NotImplementedException();
