@@ -95,16 +95,18 @@ namespace NServiceBusStudio
             }
         }
 
-        private List<IAbstractEndpoint> deployedTo = new List<IAbstractEndpoint>();
-        public IEnumerable<IAbstractEndpoint> DeployedTo
+        List<IAbstractEndpoint> deployedTo;
+
+        IEnumerable<IAbstractEndpoint> IComponent.DeployedTo { get { return DeployedTo; }}
+        public IList<IAbstractEndpoint> DeployedTo
         {
             get
             {
                 try
                 {
-                    return deployedTo ??
-                        As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll()
-                        .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this));
+                    return deployedTo ?? (deployedTo = new List<IAbstractEndpoint>(As<IProductElement>().Root.As<IApplication>().Design.Endpoints.GetAll()
+                        .Where(ep => ep.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == this))));
+
                 }
                 catch
                 {
@@ -140,9 +142,9 @@ namespace NServiceBusStudio
 
         public void EndpointDefined(IAbstractEndpoint newEndpoint)
         {
-            if (newEndpoint != null && !deployedTo.Contains(newEndpoint))
+            if (newEndpoint != null && !DeployedTo.Contains(newEndpoint))
             {
-                deployedTo.Add(newEndpoint);
+                DeployedTo.Add(newEndpoint);
             }
 
             foreach (var endpoint in DeployedTo)
