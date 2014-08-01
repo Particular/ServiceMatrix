@@ -1,31 +1,37 @@
 ﻿using System.IO;
+using System.Linq;
 using NuGet;
 using NuPattern.VisualStudio.Solution;
-using System.Linq;
 
 namespace NServiceBusStudio.Automation.NuGetExtensions
 {
     public class NuGetVersionHelper : INuGetVersionHelper
     {
+        NuGetSettings vsSettings;
         IPackageRepository repository;
 
-        public NuGetVersionHelper(IProject project)
+        private NuGetVersionHelper(IProject project, NuGetSettings vsSettings)
         {
+            this.vsSettings = vsSettings;
             var projectDirectory = Path.GetDirectoryName(project.PhysicalPath);
             var fileSystem = new PhysicalFileSystem(projectDirectory);
             var settings = Settings.LoadDefaultSettings(fileSystem, null, new MachineWideSettings());
             var packageSourceProvider = new PackageSourceProvider(settings);
             var repoFactory = new PackageRepositoryFactory();
-            repository = packageSourceProvider.CreateAggregateRepository(repoFactory, true);
-            //// TODO This would get an aggregate if there's more than one active feed, but a single repo if there is a single feed
-            //// Lookups on single repos are optimized when possible
-            //// However you need to deal with exceptions yourself
-            // repository = AggregateRepository.Create(repoFactory, packageSourceProvider.GetEnabledPackageSources().ToArray(), true);
+            // This would get an aggregate if there's more than one active feed, but a single repo if there is a single feed
+            // Lookups on single repos are optimized when possible
+            // However you need to deal with exceptions yourself
+            repository = AggregateRepository.Create(repoFactory, packageSourceProvider.GetEnabledPackageSources().ToArray(), true);
+        }
+
+        public static NuGetVersionHelper CreateHelperFor(IProject project)
+        {
+            return new NuGetVersionHelper(project, NuGetSettings.ReadSettings());
         }
 
         public string GetPackageVersion(string packageId, int? majorVersion)
         {
-            return GetPackageVersion(packageId, majorVersion, true);
+            return GetPackageVersion(packageId, majorVersion, vsSettings.Prerelease);
         }
 
         public string GetPackageVersion(string packageId, int? majorVersion, bool allowPreRelease)

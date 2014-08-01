@@ -43,7 +43,7 @@ namespace NServiceBusStudio.Automation.Commands
 
             if (infraproject != null)
             {
-                var nuGetHelper = new NuGetVersionHelper(infraproject);
+                var nuGetHelper = NuGetVersionHelper.CreateHelperFor(infraproject);
 
                 // Get the target Nsb version. NServiceBus.Interfaces in deprecated from v5
                 if (!infraproject.HasReference("NServiceBus") && app.TargetNsbVersion == TargetNsbVersion.Version4)

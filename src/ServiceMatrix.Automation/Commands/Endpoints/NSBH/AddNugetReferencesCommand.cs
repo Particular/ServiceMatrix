@@ -57,7 +57,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Host" />
 
             var targetNsbVersion = app.GetTargetNsbVersion(CurrentElement);
-            var nuGetVersionHelper = new NuGetVersionHelper(project);
+            var nuGetVersionHelper = NuGetVersionHelper.CreateHelperFor(project);
 
             if (!project.HasReference("NServiceBus"))
             {

@@ -1,8 +1,10 @@
 ﻿namespace NServiceBusStudio.Automation.Extensions
 {
     using System;
+    using System.Globalization;
     using System.Runtime.InteropServices;
     using Model;
+    using NServiceBusStudio.Automation.Properties;
     using NuGet.VisualStudio;
     using NuGetExtensions;
     using NuPattern;
@@ -205,7 +207,7 @@
                 case "NServiceBus.Interfaces":
                 case "NServiceBus.Host":
                 case "NServiceBus.Autofac":
-                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 4 : (int?)null;
+                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 4 : 5;
                     break;
 
                 case "NServiceBus.RabbitMQ":
@@ -222,7 +224,25 @@
 
         static string GetLatestVersionForMajor(INuGetVersionHelper nuGetVersionHelper, string packageId, int? majorVersion)
         {
-            return nuGetVersionHelper.GetPackageVersion(packageId, majorVersion);
+            string version;
+
+            try
+            {
+                version = nuGetVersionHelper.GetPackageVersion(packageId, majorVersion);
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException(
+                    string.Format(CultureInfo.CurrentCulture, Resources.NugetExceptionRetrievingPackageVersion, packageId, e.Message),
+                    e);
+            }
+
+            if (string.IsNullOrEmpty(version))
+            {
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.NugetNoPackageVersion, packageId, majorVersion));
+            }
+
+            return version;
         }
     }
 }

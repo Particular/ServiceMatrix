@@ -229,6 +229,7 @@
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorPane.cs" />
     <Compile Include="NuGetExtensions\INuGetVersionHelper.cs" />
     <Compile Include="NuGetExtensions\MachineWideSettings.cs" />
+    <Compile Include="NuGetExtensions\NuGetSettings.cs" />
     <Compile Include="NuGetExtensions\NuGetVersionHelper.cs" />
     <Compile Include="TypeConverters\InvariantCultureTimeSpanStringConverter.cs" />
     <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />

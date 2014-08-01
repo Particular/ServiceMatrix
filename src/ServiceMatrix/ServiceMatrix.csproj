@@ -1198,7 +1198,8 @@
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>
 
-  <!-- The Automation.dll assembly ilmerges Nuget.Core, but the local deployment of the extension picks up the unmerge dll from the intermediate folder -->
+  <!-- The Automation.dll assembly ilmerges Nuget.Core, but the local deployment of the extension picks up the unmerged dll from the intermediate folder -->
+  <!-- Work around this by ensuring the ilmerged files are added to the items copied for local deployment -->
   <PropertyGroup>
     <DeployVsixExtensionFilesDependsOn>$(DeployVsixExtensionFilesDependsOn);FixupAutomationVsixSource</DeployVsixExtensionFilesDependsOn>
   </PropertyGroup>
