@@ -54,6 +54,7 @@ namespace NServiceBusStudio
             AddServices();
             EnsureCreateTraceOutput();
             TrackUnhandledExceptions();
+            UpdatePatternSchema();
             AdviseSolutionEvents();
         }
 
@@ -144,6 +145,11 @@ namespace NServiceBusStudio
             serviceContainer.AddService(typeof(IDiagramsWindowsManager), this, true);
 
             RegisterEditorFactory(new ServiceMatrixDiagramEditorFactory());
+        }
+
+        private void UpdatePatternSchema()
+        {
+            AutomationConfiguration.SetupCustomAutomation(PatternManager);
         }
 
         void IDetailsWindowsManager.Show()
