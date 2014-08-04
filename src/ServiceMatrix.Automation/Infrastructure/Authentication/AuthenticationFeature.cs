@@ -109,8 +109,8 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                     .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                     , endpoint.Project.Name + @"\Infrastructure"
                     , (application.TargetNsbVersion == TargetNsbVersion.Version4)
-                        ? @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.v4.tt"
-                        : @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.v5.tt")
+                        ? @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.v4.0.tt"
+                        : @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointCustomAutorizeOutgoingMessages.v5.0.tt")
                     .Execute();
             }
         }
@@ -144,8 +144,8 @@ namespace NServiceBusStudio.Automation.Infrastructure.Authentication
                             .CreateTempGenerateCodeCommand(sp, "AuthorizeOutgoingMessages.cs"
                             , endpoint.Project.Name + @"\Infrastructure\GeneratedCode"
                             , (app.TargetNsbVersion == TargetNsbVersion.Version4)
-                                ? @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.v4.tt"
-                                : @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.v5.tt"
+                                ? @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.v4.0.tt"
+                                : @"t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Security/EndpointAuthorizeOutgoingMessages.v5.0.tt"
                             , prefixAuthorize)
                         .Execute();
                     }

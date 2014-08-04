@@ -181,9 +181,7 @@ namespace NServiceBusStudio
 
                 if (IsSaga)
                 {
-                    var unfoldSagaConfigureHowToFindCodeCommandName =
-                        newEndpoint.TargetNsbVersion == TargetNsbVersion.Version4 ? "UnfoldSagaConfigureHowToFindCodeV4" : "UnfoldSagaConfigureHowToFindCodeV5";
-                    AsElement().AutomationExtensions.First(x => x.Name == unfoldSagaConfigureHowToFindCodeCommandName).Execute();
+                    AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaConfigureHowToFindCode").Execute();
                     AsElement().AutomationExtensions.First(x => x.Name == "UnfoldSagaDataCode").Execute();
                 }
 
