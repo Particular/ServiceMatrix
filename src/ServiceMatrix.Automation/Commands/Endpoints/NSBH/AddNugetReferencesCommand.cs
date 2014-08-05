@@ -1,23 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using NServiceBusStudio.Automation.Extensions;
+using NServiceBusStudio.Automation.Model;
+using NServiceBusStudio.Automation.NuGetExtensions;
 using NuGet.VisualStudio;
 using NuPattern.Runtime;
 using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
 {
-    using System.Collections.Generic;
-    using Model;
-    using NuPattern;
-    using Command = NuPattern.Runtime.Command;
-
     [DisplayName("Add Nuget Project References")]
     [Description("Add references in the Endpoint Project to the required nuget projects")]
     [CLSCompliant(false)]
-    public class AddNugetReferencesCommand : Command
+    public class AddNugetReferencesCommand : NuPattern.Runtime.Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -59,24 +57,25 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             //<Reference Include="NServiceBus.Host" />
 
             var targetNsbVersion = app.GetTargetNsbVersion(CurrentElement);
+            var nuGetVersionHelper = NuGetVersionHelper.CreateHelperFor(project);
 
             if (!project.HasReference("NServiceBus"))
             {
                 if (app.TargetNsbVersion == TargetNsbVersion.Version4)
                 {
                     // NServiceBus.Interfaces is needed only for Major Version 4
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Interfaces", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.Interfaces", targetNsbVersion);
                 }
-                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus", targetNsbVersion);
+                project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus", targetNsbVersion);
 
                 if (!IgnoreHost)
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Host", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.Host", targetNsbVersion);
                 }
                 else
                 {
                     // This is needed for AspNet MVC Integration for the time being. 
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Autofac", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.Autofac", targetNsbVersion);
                 }
             }
 
@@ -85,7 +84,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.RabbitMQ"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.RabbitMQ", targetNsbVersion);
                 }
             }
             else
@@ -99,7 +98,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.SqlServer"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.SqlServer", targetNsbVersion);
                 }
             }
             else
@@ -112,7 +111,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureStorageQueues"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", targetNsbVersion);
                 }
             }
             else
@@ -125,7 +124,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
             {
                 if (!project.HasReference("NServiceBus.Azure.Transports.WindowsAzureServiceBus"))
                 {
-                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", targetNsbVersion);
+                    project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", targetNsbVersion);
                 }
             }
             else
@@ -148,15 +147,15 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBH
                 availablePlugins.Add("ServiceControl.Plugin.Nsb4.CustomChecks");
                 availablePlugins.Add("ServiceControl.Plugin.Nsb4.SagaAudit");
             }
-            
+
             if (!String.IsNullOrEmpty(app.ServiceControlInstanceURI))
             {
                 foreach (var plugin in availablePlugins)
                 {
                     if (!project.HasReference(plugin))
                     {
-                        project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, plugin, targetNsbVersion);
-                    }   
+                        project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, nuGetVersionHelper, plugin, targetNsbVersion);
+                    }
                 }
             }
             else

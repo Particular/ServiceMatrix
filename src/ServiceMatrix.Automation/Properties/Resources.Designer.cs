@@ -115,6 +115,24 @@ namespace NServiceBusStudio.Automation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error while retrieving the appropriate version for package {0}: {1}.
+        /// </summary>
+        internal static string NugetExceptionRetrievingPackageVersion {
+            get {
+                return ResourceManager.GetString("NugetExceptionRetrievingPackageVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No matching version found for package {0} with {1}..
+        /// </summary>
+        internal static string NugetNoPackageVersion {
+            get {
+                return ResourceManager.GetString("NugetNoPackageVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Convert ‘{0}’ to saga to correlate between commands &amp; events?.
         /// </summary>
         internal static string Saga_ConvertQuery {

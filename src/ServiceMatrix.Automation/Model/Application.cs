@@ -7,12 +7,12 @@ namespace NServiceBusStudio
     using System.Windows;
     using System.Windows.Threading;
     using AbstractEndpoint;
-    using Automation.Commands;
     using Automation.CustomSolutionBuilder;
     using Automation.Extensions;
     using Automation.Infrastructure;
     using Automation.Licensing;
     using Automation.Model;
+    using Automation.NuGetExtensions;
     using EnvDTE;
     using Microsoft.VisualStudio.ExtensionManager;
     using Microsoft.VisualStudio.Shell;
@@ -230,22 +230,22 @@ namespace NServiceBusStudio
                 else if (Transport == TransportType.RabbitMQ.ToString())
                 {
                     TransportConnectionString = @"host=localhost";
-                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.RabbitMQ", GetTargetNsbVersion(x.As<IProductElement>())));
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, NuGetVersionHelper.CreateHelperFor(x.Project), "NServiceBus.RabbitMQ", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
                 else if (Transport == TransportType.SqlServer.ToString())
                 {
                     TransportConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
-                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.SqlServer", GetTargetNsbVersion(x.As<IProductElement>())));
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, NuGetVersionHelper.CreateHelperFor(x.Project), "NServiceBus.SqlServer", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
                 else if (Transport == TransportType.AzureQueues.ToString())
                 {
                     TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", GetTargetNsbVersion(x.As<IProductElement>())));
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, NuGetVersionHelper.CreateHelperFor(x.Project), "NServiceBus.Azure.Transports.WindowsAzureStorageQueues", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
                 else if (Transport == TransportType.AzureServiceBus.ToString())
                 {
                     TransportConnectionString = @"UseDevelopmentStorage=True;";
-                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "NServiceBus.Azure.Transports.WindowsAzureServiceBus", GetTargetNsbVersion(x.As<IProductElement>())));
+                    Design.Endpoints.GetAll().ForEach(x => x.Project.InstallNuGetPackage(VsPackageInstallerServices, VsPackageInstaller, StatusBar, NuGetVersionHelper.CreateHelperFor(x.Project), "NServiceBus.Azure.Transports.WindowsAzureServiceBus", GetTargetNsbVersion(x.As<IProductElement>())));
                 }
             };
         }
