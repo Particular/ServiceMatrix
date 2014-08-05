@@ -122,6 +122,10 @@
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="NuPattern.Runtime.Extensibility">
+      <HintPath>$(PatternToolkitRuntime)\NuPattern.Runtime.Extensibility.Serialization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="NuPattern.Presentation">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Presentation.dll</HintPath>
       <Private>False</Private>
@@ -155,6 +159,8 @@
     <Compile Include="App_Packages\Particular.Licensing\TrialStartDateStore.cs" />
     <Compile Include="App_Packages\Particular.Licensing\UniversalDateParser.cs" />
     <Compile Include="App_Packages\Particular.Licensing\UserSidChecker.cs" />
+    <Compile Include="AutomationSetup\Application.CustomAutomation.cs" />
+    <Compile Include="AutomationSetup\CustomAutomationExtensions.cs" />
     <Compile Include="Commands\AddEndpointProjectReferences.cs" />
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
@@ -205,6 +211,7 @@
     <Compile Include="Commands\ResetIsDirtyFlagCommand.cs" />
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
+    <Compile Include="AutomationSetup\TemplateMappings.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
@@ -243,6 +250,7 @@
     <Compile Include="Util\SemanticVersionPreReleaseTag.cs" />
     <Compile Include="Util\ServiceMatrixOverrides.cs" />
     <Compile Include="Util\WarningException.cs" />
+    <Compile Include="ValueProviders\ApplicationTargetNsbVersionValueProvider.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
     <Compile Include="ViewModels\RelatedComponentsPickerViewModel.cs" />
