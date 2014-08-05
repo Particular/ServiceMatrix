@@ -2,7 +2,6 @@
 {
     public interface INuGetVersionHelper
     {
-        string GetPackageVersion(string packageId, int? majorVersion);
-        string GetPackageVersion(string packageId, int? majorVersion, bool allowPreRelease);
+        string GetPackageVersion(string packageId, PackageTargetVersion targetVersion);
     }
 }

@@ -139,7 +139,7 @@
     <value>Error while retrieving the appropriate version for package {0}: {1}</value>
   </data>
   <data name="NugetNoPackageVersion" xml:space="preserve">
-    <value>No matching version found for package {0} with major version {1}.</value>
+    <value>No matching version found for package {0} with {1}.</value>
   </data>
   <data name="Saga_ConvertQuery" xml:space="preserve">
     <value>Convert ‘{0}’ to saga to correlate between commands &amp; events?</value>

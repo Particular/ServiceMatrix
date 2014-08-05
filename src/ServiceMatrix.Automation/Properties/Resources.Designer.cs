@@ -124,7 +124,7 @@ namespace NServiceBusStudio.Automation.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No matching version found for package {0} with major version {1}..
+        ///   Looks up a localized string similar to No matching version found for package {0} with {1}..
         /// </summary>
         internal static string NugetNoPackageVersion {
             get {

@@ -4,7 +4,7 @@
     using System.Globalization;
     using System.Runtime.InteropServices;
     using Model;
-    using NServiceBusStudio.Automation.Properties;
+    using Properties;
     using NuGet.VisualStudio;
     using NuGetExtensions;
     using NuPattern;
@@ -126,16 +126,20 @@
             return false;
         }
 
-        public static void InstallNuGetPackage(this IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, IStatusBar StatusBar, INuGetVersionHelper nuGetVersionHelper, string packageName, string targetNsbVersion)
+        public static void InstallNuGetPackage(
+            this IProject project,
+            IVsPackageInstallerServices vsPackageInstallerServices,
+            IVsPackageInstaller vsPackageInstaller,
+            IStatusBar StatusBar,
+            INuGetVersionHelper nuGetVersionHelper,
+            string packageId,
+            string targetNsbVersion)
         {
-            string packageId;
-            int? majorVersion;
-
-            GetPackageIdAndMajorVersion(packageName, targetNsbVersion, out packageId, out majorVersion);
+            var targetVersion = GetPackageIdAndMajorVersion(packageId, targetNsbVersion);
 
             try
             {
-                var version = NugetPackageVersionManager.GetVersionFromCacheForPackage(packageId, majorVersion);
+                var version = NugetPackageVersionManager.GetVersionFromCacheForPackage(packageId, targetVersion);
 
                 if (!String.IsNullOrEmpty(version))
                 {
@@ -148,13 +152,13 @@
                     {
                         StatusBar.DisplayMessage(String.Format("When attempting to install version {0} of the package {1}, the following error occured: {2}.. Going to now try installing the latest version of Package ...", version, packageId, installException.Message));
                         // There was a problem installing the specified version of the package. Try the installing the latest available package from the source.
-                        InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, nuGetVersionHelper, packageId, majorVersion);
+                        InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, nuGetVersionHelper, packageId, targetVersion);
                     }
                 }
                 else
                 {
                     StatusBar.DisplayMessage(String.Format("Installing the latest version of Package: {0}...", packageId));
-                    InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, nuGetVersionHelper, packageId, majorVersion);
+                    InstallLatestNugetPackage(project, vsPackageInstallerServices, vsPackageInstaller, nuGetVersionHelper, packageId, targetVersion);
                 }
             }
             catch (Exception ex)
@@ -167,10 +171,16 @@
             }
         }
 
-        static void InstallLatestNugetPackage(IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, INuGetVersionHelper nuGetVersionHelper, string packageId, int? majorVersion)
+        static void InstallLatestNugetPackage(
+            IProject project,
+            IVsPackageInstallerServices vsPackageInstallerServices,
+            IVsPackageInstaller vsPackageInstaller,
+            INuGetVersionHelper nuGetVersionHelper,
+            string packageId,
+            PackageTargetVersion targetVersion)
         {
             // lookup latest version for the given major (or null), and install that
-            var latestVersion = GetLatestVersionForMajor(nuGetVersionHelper, packageId, majorVersion);
+            var latestVersion = GetLatestVersionForMajor(nuGetVersionHelper, packageId, targetVersion);
 
             vsPackageInstaller.InstallPackage(
                 "All",
@@ -182,7 +192,7 @@
             // Call the installed packages to get the version that was just installed and cache the version.
             // Packages are needed in case latestVersion is null, 
             var installedPackages = vsPackageInstallerServices.GetInstalledPackages();
-            NugetPackageVersionManager.UpdateCache(packageId, majorVersion, installedPackages);
+            NugetPackageVersionManager.UpdateCache(packageId, targetVersion, installedPackages);
         }
 
         static void InstallNugetPackageForSpecifiedVersion(IProject project, IVsPackageInstaller vsPackageInstaller, string packageId, string version)
@@ -195,40 +205,41 @@
                 false);
         }
 
-        static void GetPackageIdAndMajorVersion(string packageName, string targetNsbVersion, out string packageId, out int? majorVersion)
+        static PackageTargetVersion GetPackageIdAndMajorVersion(string packageName, string targetNsbVersion)
         {
-            // default to latest version of package name
-            packageId = packageName;
-            majorVersion = null;
-
             switch (packageName)
             {
                 case "NServiceBus":
                 case "NServiceBus.Interfaces":
                 case "NServiceBus.Host":
                 case "NServiceBus.Autofac":
-                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 4 : 5;
-                    break;
+                    return targetNsbVersion == TargetNsbVersion.Version4
+                        ? new PackageTargetVersion(4, false)
+                        : new PackageTargetVersion(5, true);
 
                 case "NServiceBus.RabbitMQ":
                 case "NServiceBus.SqlServer":
-                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 1 : (int?)null;
-                    break;
+                    return targetNsbVersion == TargetNsbVersion.Version4
+                        ? new PackageTargetVersion(1, false)
+                        : new PackageTargetVersion(null, true);
 
                 case "NServiceBus.Azure.Transports.WindowsAzureStorageQueues":
                 case "NServiceBus.Azure.Transports.WindowsAzureServiceBus":
-                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 5 : (int?)null;
-                    break;
+                    return targetNsbVersion == TargetNsbVersion.Version4
+                        ? new PackageTargetVersion(5, false)
+                        : new PackageTargetVersion(null, true);
             }
+
+            return new PackageTargetVersion(null, false);
         }
 
-        static string GetLatestVersionForMajor(INuGetVersionHelper nuGetVersionHelper, string packageId, int? majorVersion)
+        static string GetLatestVersionForMajor(INuGetVersionHelper nuGetVersionHelper, string packageId, PackageTargetVersion targetVersion)
         {
             string version;
 
             try
             {
-                version = nuGetVersionHelper.GetPackageVersion(packageId, majorVersion);
+                version = nuGetVersionHelper.GetPackageVersion(packageId, targetVersion);
             }
             catch (Exception e)
             {
@@ -239,7 +250,7 @@
 
             if (string.IsNullOrEmpty(version))
             {
-                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.NugetNoPackageVersion, packageId, majorVersion));
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, Resources.NugetNoPackageVersion, packageId, targetVersion));
             }
 
             return version;

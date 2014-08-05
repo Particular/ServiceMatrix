@@ -5,10 +5,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using NuGet.VisualStudio;
+    using NuGetExtensions;
 
     public static class NugetPackageVersionManager
     {
-        static ConcurrentDictionary<Tuple<int?, string>, string> packageVersionsDictionary = new ConcurrentDictionary<Tuple<int?, string>, string>();
+        static ConcurrentDictionary<Tuple<PackageTargetVersion, string>, string> packageVersionsDictionary =
+            new ConcurrentDictionary<Tuple<PackageTargetVersion, string>, string>();
 
         /// <summary>
         /// Clears the list of all installed packages and their versions
@@ -33,12 +35,12 @@
         /// Returns the currently stored value for the given package. 
         /// </summary>
         /// <param name="packageId"></param>
-        /// <param name="majorVersion"></param>
+        /// <param name="targetVersion"></param>
         /// <returns></returns>
-        public static string GetVersionFromCacheForPackage(string packageId, int? majorVersion)
+        public static string GetVersionFromCacheForPackage(string packageId, PackageTargetVersion targetVersion)
         {
             string version;
-            packageVersionsDictionary.TryGetValue(Tuple.Create(majorVersion, packageId), out version);
+            packageVersionsDictionary.TryGetValue(Tuple.Create(targetVersion, packageId), out version);
             return version;
         }
 
@@ -46,14 +48,14 @@
         /// Adds or updates the version in the cache with what's currently installed packages
         /// </summary>
         /// <param name="packageId"></param>
-        /// <param name="majorVersion"></param>
+        /// <param name="targetVersion"></param>
         /// <param name="installedPackages"></param>
-        public static void UpdateCache(string packageId, int? majorVersion, IEnumerable<IVsPackageMetadata> installedPackages)
+        public static void UpdateCache(string packageId, PackageTargetVersion targetVersion, IEnumerable<IVsPackageMetadata> installedPackages)
         {
             foreach (var package in installedPackages.Where(package => packageId.Equals(package.Id)))
             {
                 packageVersionsDictionary.AddOrUpdate(
-                    Tuple.Create(majorVersion, packageId),
+                    Tuple.Create(targetVersion, packageId),
                     package.VersionString,
                     (key, existingValue) => package.VersionString);
                 break;
