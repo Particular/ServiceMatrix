@@ -4501,118 +4501,6 @@
   "ValueProvider": null
 }</defaultValue>
       </property>
-      <property Id="e41c271e-ae58-44af-878c-462d53221100" name="NuGetPackageVersionNServiceBus" displayName="NServiceBus version" description="NServiceBus Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBus" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
-      <property Id="302c2b55-ab10-4aae-b387-051596886b4b" name="NuGetPackageVersionServiceControlPlugins" displayName="ServiceControl Plugins version" description="ServiceControl Plugins  Nuget package version number" codeIdentifier="NuGetPackageVersionServiceControlPlugins" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
-      <property Id="fb8e85b2-1734-4d51-b92d-a0f5c43d2995" name="NuGetPackageVersionNServiceBusActiveMQ" displayName="NServiceBus ActiveMQ version" description="NServiceBus ActiveMQ  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusActiveMQ" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
-      <property Id="16ac19e7-d4bb-4783-8fb7-78f8957cab7b" name="NuGetPackageVersionNServiceBusRabbitMQ" displayName="NServiceBus RabbitMQ version" description="NServiceBus RabbitMQ  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusRabbitMQ" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
-      <property Id="f24cf461-f3d0-4215-b1b6-52a1b7541cbf" name="NuGetPackageVersionNServiceBusSqlServer" displayName="NServiceBus Sql Server version" description="NServiceBus Sql Server  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusSqlServer" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
-      <property Id="e55b5b30-3f9a-4563-98d7-351fa8dd4aa0" name="NuGetPackageVersionNServiceBusAzureQueues" displayName="NServiceBus AzureQueues version" description="NServiceBus AzureQueues  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusAzureQueues" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
-      <property Id="672974e5-8baf-47ad-87e8-8f81eeb022dd" name="NuGetPackageVersionNServiceBusAzureServiceBus" displayName="NServiceBus AzureServiceBus version" description="NServiceBus AzureServiceBus  Nuget package version number" codeIdentifier="NuGetPackageVersionNServiceBusAzureServiceBus" isReadOnly="true" category="Nuget Packages">
-        <customizationPolicy name="CustomizationPolicySchema1">
-          <settings>
-            <setting propertyId="DisplayName" />
-            <setting propertyId="Description" />
-            <setting propertyId="RawDefaultValue" />
-            <setting propertyId="IsVisible" />
-            <setting propertyId="IsReadOnly" />
-            <setting propertyId="Category" />
-            <setting propertyId="TypeConverterTypeName" />
-            <setting propertyId="EditorTypeName" />
-            <setting propertyId="RawValidationRules" />
-            <setting propertyId="RawValueProvider" />
-          </settings>
-        </customizationPolicy>
-      </property>
       <property Id="ede73009-77d7-438f-8a53-cad296db531f" name="TargetNsbVersion" displayName="Target Nsb Version" description="Major version number of NServiceBus that will be used for this solution" codeIdentifier="TargetNsbVersion" isReadOnly="true" typeConverterTypeName="NServiceBusStudio.Automation.TypeConverters.TargetNsbVersionTypeConverter, Particular.ServiceMatrix.Automation">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
@@ -4637,7 +4525,7 @@
   }
 }</defaultValue>
       </property>
-      <property Id="58f462bd-3e26-41e2-81be-43969034fd41" name="TargetFrameworkVersion" displayName="Target Framework Version" description="Description for Application.TargetFrameworkVersion" codeIdentifier="TargetFrameworkVersion" isReadOnly="true">
+      <property Id="58f462bd-3e26-41e2-81be-43969034fd41" name="TargetFrameworkVersion" displayName="Target Framework Version" description="Description for Application.TargetFrameworkVersion" codeIdentifier="TargetFrameworkVersion" isVisible="false" isReadOnly="true">
         <customizationPolicy name="CustomizationPolicySchema1">
           <settings>
             <setting propertyId="DisplayName" />

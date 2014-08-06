@@ -116,16 +116,6 @@ namespace NServiceBusStudio
             // for all projects in the solution.
             NugetPackageVersionManager.ClearCache();
 
-            if (String.IsNullOrEmpty(NuGetPackageVersionNServiceBus))
-            {
-                NuGetPackageVersionNServiceBus = null;
-                NuGetPackageVersionNServiceBusActiveMQ = null;
-                NuGetPackageVersionNServiceBusRabbitMQ = null;
-                NuGetPackageVersionNServiceBusSqlServer = null;
-                NuGetPackageVersionNServiceBusAzureQueues = null;
-                NuGetPackageVersionNServiceBusAzureServiceBus = null;
-                NuGetPackageVersionServiceControlPlugins = null;
-            }
             StatusBar.DisplayMessage(" ");
         }
 
