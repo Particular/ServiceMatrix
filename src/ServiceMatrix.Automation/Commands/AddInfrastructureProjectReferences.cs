@@ -3,14 +3,13 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using NServiceBusStudio.Automation.Extensions;
+using NServiceBusStudio.Automation.Model;
 using NuGet.VisualStudio;
 using NuPattern.Runtime;
 using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands
 {
-    using NServiceBusStudio.Automation.Model;
-
     [DisplayName("Add Infrastructure Project References")]
     [Description("Add references in the Infrastructure Project to the required projects")]
     [CLSCompliant(false)]
