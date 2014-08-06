@@ -110,14 +110,6 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
-		/// Gets the <see cref="IUseCases"/> contained in this element.
-		/// </summary>
-		public virtual IUseCases UseCases
-		{
-			get { return proxy.GetElement(() => this.UseCases, element => new UseCases(element)); }
-		}
-
-		/// <summary>
 		/// Creates a new <see cref="IServices"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -175,16 +167,6 @@ namespace NServiceBusStudio
 		public virtual IDummyCollection CreateDummyCollection(string name, Action<IDummyCollection> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateCollection<IDummyCollection>(name, initializer, raiseInstantiateEvents);
-		}
-
-		/// <summary>
-		/// Creates a new <see cref="IUseCases"/>  
-		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
-		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		public virtual IUseCases CreateUseCases(string name, Action<IUseCases> initializer = null, bool raiseInstantiateEvents = true)
-		{
-			return proxy.CreateCollection<IUseCases>(name, initializer, raiseInstantiateEvents);
 		}
 
 		/// <summary>

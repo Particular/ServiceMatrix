@@ -1409,26 +1409,6 @@
         <automationSettingsSchemaMoniker Id="798759fc-0dc3-424d-a2f7-6e5d17ec5096" />
       </extendedElement>
     </commandSettings>
-    <commandSettings Id="3244fc4b-1b10-4792-95f9-070472bf8571" typeId="NServiceBusStudio.Automation.Commands.ShowUseCaseEditorCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="b3950744-5a9b-4849-bf81-6110cf0be547" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="8491f92d-7854-4f78-8d79-23dc373784ed" typeId="NServiceBusStudio.Automation.Commands.ShowUseCaseComponentPickerCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="105a16bb-22d3-4281-8df3-7be785296d83" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="99b2b439-4644-45c6-8536-dc3a218e2db9" typeId="NServiceBusStudio.Automation.Commands.ShowUseCaseCommandPickerCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="bf28934e-cb7d-4379-a888-b6a8c1725f85" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="60928d78-1e83-4c4d-b1da-686722871d7d" typeId="NServiceBusStudio.Automation.Commands.ShowUseCaseEventPickerCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="eead2c41-24dd-4fbf-a93d-de0d5b4f7475" />
-      </extendedElement>
-    </commandSettings>
     <commandSettings Id="72a376e2-aab4-498b-9448-3544ffc8790a" typeId="NServiceBusStudio.Automation.Commands.ShowCommandTypePicker">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="c36e2025-3399-4296-ab0c-a843d84b0d62" />
@@ -1449,11 +1429,6 @@
     <commandSettings Id="2705891b-8aa1-4a03-b335-5d83c3c2693a" typeId="NServiceBusStudio.Automation.Commands.SetUnfoldedCustomCode">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="c3f625dd-5136-414e-afd9-272fd4f1f6de" />
-      </extendedElement>
-    </commandSettings>
-    <commandSettings Id="7538aca2-1e1c-48e7-97d0-f106ad715a10" typeId="AbstractEndpoint.Automation.Commands.ShowStartedByPicker">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="d52a5490-d069-4225-9c41-fe0496439bbe" />
       </extendedElement>
     </commandSettings>
     <commandSettings Id="aafa86ef-7796-447d-a33a-6b8290bd832a" typeId="NServiceBusStudio.Automation.Commands.AddInfrastructureProjectReferences">
@@ -3721,29 +3696,9 @@
         <automationSettingsSchemaMoniker Id="d595aa89-5969-4841-aaae-078fc6b3254f" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="553e3686-00ca-4770-b2a3-cdaa373fe5b0" text="Add Component" commandId="8491f92d-7854-4f78-8d79-23dc373784ed" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="1e28b337-9067-44b6-b4a3-0b5a1b4d93f5" />
-      </extendedElement>
-    </menuSettings>
-    <menuSettings Id="b137cf0d-355f-4ece-b8f3-f4ea23ec1e11" text="Add Command" commandId="99b2b439-4644-45c6-8536-dc3a218e2db9" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="ba243a89-0a4c-409c-8e3a-1d6814874061" />
-      </extendedElement>
-    </menuSettings>
-    <menuSettings Id="8d8fb9aa-0ce8-4cc9-bb6e-5b9177365042" text="Add Event" commandId="60928d78-1e83-4c4d-b1da-686722871d7d" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="6eba235c-9265-44ef-a288-85e7bc014a08" />
-      </extendedElement>
-    </menuSettings>
     <menuSettings Id="40dca3ca-0f16-43e4-8073-b3858d8d8cf9" text="Send Command..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/SendCommand.png" commandId="72a376e2-aab4-498b-9448-3544ffc8790a" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="3">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="ab4b95e9-041a-492f-8468-0442b0183c1d" />
-      </extendedElement>
-    </menuSettings>
-    <menuSettings Id="39b772ba-f5d3-4756-a416-ecdcb42cc701" text="Add Started By Endpoint" commandId="7538aca2-1e1c-48e7-97d0-f106ad715a10" wizardId="00000000-0000-0000-0000-000000000000">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="fc4f44c1-45d5-4c52-a01c-19697ab86994" />
       </extendedElement>
     </menuSettings>
     <menuSettings Id="b211695e-f4df-46a1-9dce-b4b2efc5d412" text="Deploy Component..." commandId="5673e075-0cf9-4be4-90df-ab5af5e5f62c" wizardId="00000000-0000-0000-0000-000000000000">
@@ -3998,26 +3953,6 @@
         <collectionSchemaMoniker Id="2f26d53d-1e7f-41ef-860b-f8c03f01624a" />
       </extendedElement>
     </guidanceExtension>
-    <guidanceExtension Id="410fca50-5cf9-4fd4-841b-fdddc136e0c6">
-      <extendedElement>
-        <collectionSchemaMoniker Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" />
-      </extendedElement>
-    </guidanceExtension>
-    <guidanceExtension Id="e753582e-3881-4eb6-9bc0-35f11a49086d">
-      <extendedElement>
-        <elementSchemaMoniker Id="bbd42ef5-b751-4193-af5c-42920170710b" />
-      </extendedElement>
-    </guidanceExtension>
-    <guidanceExtension Id="c2c3bfc5-7876-4293-98a6-cc24f3937825">
-      <extendedElement>
-        <elementSchemaMoniker Id="fb0456a6-d44e-4db1-ae24-7d1ad24f7017" />
-      </extendedElement>
-    </guidanceExtension>
-    <guidanceExtension Id="39af22dc-c1df-4ad4-ab8f-2bac7664ddd9">
-      <extendedElement>
-        <elementSchemaMoniker Id="0cf8d37f-d40a-4816-9ec2-ca8009473abe" />
-      </extendedElement>
-    </guidanceExtension>
     <guidanceExtension Id="1a0a4d81-ef84-48d2-9349-44da135c9d0b">
       <extendedElement>
         <elementSchemaMoniker Id="d9665948-7e01-4896-9843-c03ca1eedba7" />
@@ -4181,26 +4116,6 @@
     <artifactExtension Id="53ccd963-9bfb-4bb2-b9b3-e5c86b4a3c8a">
       <extendedElement>
         <collectionSchemaMoniker Id="2f26d53d-1e7f-41ef-860b-f8c03f01624a" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="cfd92692-2a90-4714-a3df-866e0ab10057">
-      <extendedElement>
-        <collectionSchemaMoniker Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="5c0168e3-dc67-4f4c-950f-b436da638413">
-      <extendedElement>
-        <elementSchemaMoniker Id="bbd42ef5-b751-4193-af5c-42920170710b" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="49d8f490-4da7-44ad-8acf-0331fda05483">
-      <extendedElement>
-        <elementSchemaMoniker Id="fb0456a6-d44e-4db1-ae24-7d1ad24f7017" />
-      </extendedElement>
-    </artifactExtension>
-    <artifactExtension Id="67d65e56-0a3c-45dc-af1c-c50b5f4d28ed">
-      <extendedElement>
-        <elementSchemaMoniker Id="0cf8d37f-d40a-4816-9ec2-ca8009473abe" />
       </extendedElement>
     </artifactExtension>
     <artifactExtension Id="680c6ca6-6a95-4cca-86af-a2b3bbb6b6dc">
@@ -8476,305 +8391,6 @@
                 <setting propertyId="IsVisible" />
               </settings>
             </customizationPolicy>
-          </collection>
-        </elements>
-        <elements>
-          <collection Id="b88e98c7-39d7-4b6f-bfc9-7b7ca3e831b2" name="UseCases" displayName="Use Cases" description="Use cases are the features of your system, often triggered by a user action or on a schedule." codeIdentifier="UseCases" isVisible="false">
-            <customizationPolicy name="CustomizationPolicySchema1">
-              <settings>
-                <setting propertyId="DisplayName" />
-                <setting propertyId="Description" />
-                <setting propertyId="ValidationRules" />
-                <setting propertyId="Icon" />
-                <setting propertyId="IsVisible" />
-              </settings>
-            </customizationPolicy>
-            <childElement cardinality="ZeroToMany" autoCreate="false">
-              <element Id="bbd42ef5-b751-4193-af5c-42920170710b" name="UseCase" displayName="Use Case" description="A use case." codeIdentifier="UseCase">
-                <customizationPolicy name="CustomizationPolicySchema1">
-                  <settings>
-                    <setting propertyId="DisplayName" />
-                    <setting propertyId="Description" />
-                    <setting propertyId="ValidationRules" />
-                    <setting propertyId="Icon" />
-                    <setting propertyId="IsVisible" />
-                  </settings>
-                </customizationPolicy>
-                <automationSettings>
-                  <automationSettings Id="b3950744-5a9b-4849-bf81-6110cf0be547" name="EditScriptCommand" displayName="Edit Script Command" description="" codeIdentifier="EditScriptCommand" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="105a16bb-22d3-4281-8df3-7be785296d83" name="ShowUseCaseComponentPicker" displayName="Show Use Case Component Picker" description="" codeIdentifier="ShowUseCaseComponentPicker" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="1e28b337-9067-44b6-b4a3-0b5a1b4d93f5" name="AddComponentMenu" displayName="Add Component Menu" description="" codeIdentifier="AddComponentMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="bf28934e-cb7d-4379-a888-b6a8c1725f85" name="ShowUseCaseCommandPicker" displayName="Show Use Case Command Picker" description="" codeIdentifier="ShowUseCaseCommandPicker" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="eead2c41-24dd-4fbf-a93d-de0d5b4f7475" name="ShowUseCaseEventPicker" displayName="Show Use Case Event Picker" description="" codeIdentifier="ShowUseCaseEventPicker" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="ba243a89-0a4c-409c-8e3a-1d6814874061" name="AddCommandMenu" displayName="Add Command Menu" description="" codeIdentifier="AddCommandMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="6eba235c-9265-44ef-a288-85e7bc014a08" name="AddEventMenu" displayName="Add Event Menu" description="" codeIdentifier="AddEventMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="d52a5490-d069-4225-9c41-fe0496439bbe" name="AddStartingEndpointCommand" displayName="Add Starting Endpoint Command" description="" codeIdentifier="AddStartingEndpointCommand" automationType="Command">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                  <automationSettings Id="fc4f44c1-45d5-4c52-a01c-19697ab86994" name="AddStartingEndpointMenu" displayName="Add Starting Endpoint Menu" description="" codeIdentifier="AddStartingEndpointMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="Settings" />
-                      </settings>
-                    </customizationPolicy>
-                  </automationSettings>
-                </automationSettings>
-                <childElement cardinality="ZeroToMany" autoCreate="false">
-                  <element Id="fb0456a6-d44e-4db1-ae24-7d1ad24f7017" name="UseCaseStep" displayName="Use Case Step" description="A use case step." codeIdentifier="UseCaseStep" isVisible="false">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="ValidationRules" />
-                        <setting propertyId="Icon" />
-                        <setting propertyId="IsVisible" />
-                      </settings>
-                    </customizationPolicy>
-                    <properties>
-                      <property Id="8ace766c-910e-4bf3-8e33-ed200c1dbaec" name="PatternValue" displayName="Pattern Value" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.PatternValue" codeIdentifier="PatternValue">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="4cb2782b-aa88-4996-87aa-99f70c61a2fa" name="SourceEndpointName" displayName="Source Endpoint Name" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.SourceEndpointName" codeIdentifier="SourceEndpointName">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="3cd743c2-3dce-4d8f-9656-14bc88357adf" name="TargetEndpointName" displayName="Target Endpoint Name" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.TargetEndpointName" codeIdentifier="TargetEndpointName">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="868d2875-ad63-4a6f-ac00-da2647c5fcac" name="ComponentName" displayName="Component Name" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.ComponentName" codeIdentifier="ComponentName">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="ad5209b4-4bed-4507-ac26-f4e6ac0644cb" name="EventName" displayName="Event Name" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.EventName" codeIdentifier="EventName">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="1bd1107e-5852-4fbe-b264-386610580689" name="CommandName" displayName="Command Name" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.CommandName" codeIdentifier="CommandName">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="a4d96e25-9cf4-47c1-a48a-d4ff567e588c" name="ServiceNameValue" displayName="Service Name Value" description="Description for Application.Design.UseCases.UseCase.UseCaseStep.ServiceNameValue" codeIdentifier="ServiceNameValue" isVisible="false">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                    </properties>
-                  </element>
-                </childElement>
-                <childElement cardinality="ZeroToMany" autoCreate="false">
-                  <element Id="0cf8d37f-d40a-4816-9ec2-ca8009473abe" name="UseCaseLink" displayName="Use Case Link" description="A use case link." codeIdentifier="UseCaseLink" isVisible="false">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="ValidationRules" />
-                        <setting propertyId="Icon" />
-                        <setting propertyId="IsVisible" />
-                      </settings>
-                    </customizationPolicy>
-                    <properties>
-                      <property Id="b0ce5ece-3dd4-43c9-afd6-82a2184ab850" name="ElementType" displayName="Element Type" description="Description for Application.Design.UseCases.UseCase.UseCaseLink.ElementType" codeIdentifier="ElementType">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="cdc8e344-deb1-4816-9be8-92ec90455211" name="LinkedElementId" displayName="Linked Element Id" description="Description for Application.Design.UseCases.UseCase.UseCaseLink.LinkedElementId" codeIdentifier="LinkedElementId" type="System.Guid">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                      <property Id="b7c67c51-0e8a-4d29-934d-bd10c092b089" name="StartsUseCase" displayName="Starts Use Case" description="Description for Application.Design.UseCases.UseCase.UseCaseLink.StartsUseCase" codeIdentifier="StartsUseCase" type="System.Boolean">
-                        <customizationPolicy name="CustomizationPolicySchema1">
-                          <settings>
-                            <setting propertyId="DisplayName" />
-                            <setting propertyId="Description" />
-                            <setting propertyId="RawDefaultValue" />
-                            <setting propertyId="IsVisible" />
-                            <setting propertyId="IsReadOnly" />
-                            <setting propertyId="Category" />
-                            <setting propertyId="TypeConverterTypeName" />
-                            <setting propertyId="EditorTypeName" />
-                            <setting propertyId="RawValidationRules" />
-                            <setting propertyId="RawValueProvider" />
-                          </settings>
-                        </customizationPolicy>
-                      </property>
-                    </properties>
-                  </element>
-                </childElement>
-              </element>
-            </childElement>
           </collection>
         </elements>
       </view>

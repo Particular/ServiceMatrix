@@ -66,9 +66,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                 case "Event":
                     this.ViewModel.BuildDetailsForEvent(model.As<IEvent>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
-                case "UseCase":
-                    this.ViewModel.BuildDetailsForUseCase(model.As<IUseCase>(), logicalViewDataContext as ISolutionBuilderViewModel);
-                    break;
                 default:
                     this.CleanDetails();
                     break;

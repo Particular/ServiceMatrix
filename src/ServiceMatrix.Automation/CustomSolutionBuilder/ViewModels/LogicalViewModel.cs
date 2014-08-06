@@ -111,9 +111,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                             case "Component":
                                 NServiceBusViewModel.GenerateComponentsView();
                                 break;
-                            case "UseCase":
-                                NServiceBusViewModel.GenerateUseCasesView();
-                                break;
                             case "Command":
                             case "Event":
                                 NServiceBusViewModel.GenerateMessagesView();
@@ -191,30 +188,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
         public event EventHandler FocusOnViewRequested;
 
-        internal void GenerateUseCasesView(bool setTitle = true)
-        {
-            if (setTitle)
-            {
-                this.SelectView("Use Cases");
-            }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
-            LogicalViewModelNode usecasesItem = new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases"),
-                this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Use Cases").ChildNodes);
-            observables.Add(new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First<IProductElementViewModel>(), null));
-            observables[0].LogicalViewNodes.Add(usecasesItem);
-
-            // Add UseCases Node with just the Create New Use Case option
-            observables[0].LogicalViewNodes[0].FilterMenuItems("Add");
-
-            // Add Use Case -> Edit and Delete options
-            foreach (var endpoint in usecasesItem.LogicalViewNodes)
-            {
-                endpoint.FilterMenuItems("Add Started By Endpoint", "Delete");
-            }
-
-            this.LogicalViewNodes = observables;
-        }
-
         internal void GenerateEndpointsView(bool setTitle = true)
         {
             if (setTitle)
@@ -276,7 +249,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         {
             this.ViewsList = new List<NServiceBusView> {
                 new NServiceBusView { Text = "Endpoints View", Action = () => this.GenerateEndpointsView(false)},
-                //new NServiceBusView { Text = "Use Cases View", Action = () => this.GenerateUseCasesView(false) },
                 new NServiceBusView { Text = "Components View", Action = () => this.GenerateComponentsView(false) },
                 new NServiceBusView { Text = "Messages View", Action = () => this.GenerateMessagesView(false) },
             };

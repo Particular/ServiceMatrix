@@ -184,13 +184,9 @@
     <Compile Include="Commands\Endpoints\NSBH\SaveProject.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\OpenComponentCodeCommand.cs" />
     <Compile Include="Commands\RaisesOnInstantiatedComponent.cs" />
-    <Compile Include="Commands\ShowStartedByPicker.cs" />
     <Compile Include="Commands\CreateLibraryCodeLinksCommand.cs" />
     <Compile Include="Commands\RemoveLibraryCodeLinkCommand.cs" />
     <Compile Include="Commands\RemoveLibraryCodeLinksCommand.cs" />
-    <Compile Include="Commands\ShowUseCaseEventPickerCommand.cs" />
-    <Compile Include="Commands\ShowUseCaseCommandPickerCommand.cs" />
-    <Compile Include="Commands\AddReferenceToUseCaseCommand.cs" />
     <Compile Include="Commands\ChildCommandReference.cs" />
     <Compile Include="Commands\CollapseFoldersCommand.cs" />
     <Compile Include="Commands\AddInfrastructureProjectReferences.cs" />
@@ -200,7 +196,6 @@
     <Compile Include="Commands\OnApplicationLoadedCommand.cs" />
     <Compile Include="Commands\ResetIsDirtyFlagCommand.cs" />
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
-    <Compile Include="Commands\ShowUseCaseComponentPickerCommand.cs" />
     <Compile Include="AutomationSetup\TemplateMappings.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
@@ -356,9 +351,6 @@
     <Compile Include="Dialog\ElementHierarchyPicker.xaml.cs">
       <DependentUpon>ElementHierarchyPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\UseCaseComponentPicker.xaml.cs">
-      <DependentUpon>UseCaseComponentPicker.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Exceptions\ElementAlreadyExistsException.cs" />
     <Compile Include="Extensions\ApplicationIsDirty.cs" />
     <Compile Include="Extensions\StatisticsInformation.cs" />
@@ -425,7 +417,6 @@
     <Compile Include="Extensions\GenerateComponentsHandlerOrder.cs" />
     <Compile Include="Extensions\GenerateMessageConventions.cs" />
     <Compile Include="Extensions\GenerateUnicastBusConfig.cs" />
-    <Compile Include="Infrastructure\UseCaseFeature.cs" />
     <Compile Include="INServiceBusMessage.cs" />
     <Compile Include="Model\Application.cs" />
     <Compile Include="Model\Event.cs" />
@@ -434,9 +425,6 @@
     <Compile Include="Model\Publishes.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Model\Subscribes.cs" />
-    <Compile Include="Model\UseCase.cs" />
-    <Compile Include="Model\UseCaseLink.cs" />
-    <Compile Include="Model\UseCaseStep.cs" />
     <Compile Include="netfx\System\Dynamic\DynamicReflection.cs" />
     <Compile Include="netfx\System\Dynamic\OutValue.cs" />
     <Compile Include="netfx\System\Dynamic\RefValue.cs" />
@@ -714,10 +702,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialog\ElementHierarchyPicker.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialog\UseCaseComponentPicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

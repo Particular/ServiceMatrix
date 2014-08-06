@@ -34,9 +34,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
             // Events
             this.CreateEventsPanel(solutionBuilderModel, components, 2);
-
-            // UseCases
-            //this.CreateUseCasesPanel(solutionBuilderModel, endpoint.As<IProductElement>(), application, 3);
         }
 
         public void BuildDetailsForEvent(IEvent iEvent, ISolutionBuilderViewModel solutionBuilderModel)
@@ -58,8 +55,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.CreateComponentsPanel(solutionBuilderModel, componentsPublishing, 1, "Published by ");
             this.CreateComponentsPanel(solutionBuilderModel, componentsSubscribing, 2, "Subscribed by ");
 
-            // UseCases
-            //this.CreateUseCasesPanel(solutionBuilderModel, iEvent.As<IProductElement>(), application, 3);
         }
 
         public void BuildDetailsForCommand(ICommand command, ISolutionBuilderViewModel solutionBuilderModel)
@@ -81,8 +76,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             this.CreateComponentsPanel(solutionBuilderModel, componentsSending, 1, "Sent by ");
             this.CreateComponentsPanel(solutionBuilderModel, componentsReceiving, 2, "Received by ");
 
-            // UseCases
-            //this.CreateUseCasesPanel(solutionBuilderModel, command.As<IProductElement>(), application, 3);
         }
 
         public void BuildDetailsForComponent(IComponent component, ISolutionBuilderViewModel solutionBuilderModel)
@@ -104,9 +97,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
             // Events
             this.CreateEventsPanel(solutionBuilderModel, components, 2
                 , component.Publishes.As<IProductElement>(), component.Subscribes.As<IProductElement>());
-
-            // UseCases
-            //this.CreateUseCasesPanel(solutionBuilderModel, component.As<IProductElement>(), application, 3);
 
         }
 
@@ -166,22 +156,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
         }
 
 
-        private void CreateUseCasesPanel(ISolutionBuilderViewModel solutionBuilderModel, IProductElement product, IApplication application, int position)
-        {
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Use Cases";
-            var useCases = application.Design.UseCases.UseCase.Where(uc => uc.UseCaseLinks.Any(ul => ul.LinkedElementId == product.Id))
-                .Union(application.Design.UseCases.UseCase.Where(uc => uc.RelatedEndpoints.Any(ep => ep.As<IProductElement>().Id == product.Id)))
-                .Distinct();
-
-            commandsVM.Items.Add(new InnerPanelTitle { Text = "Participates in", Product = null, MenuFilters = new string[] { }, ForceText = true });
-            foreach (var usecase in useCases)
-            {
-                commandsVM.Items.Add(new InnerPanelItem { Product = usecase.As<IProductElement>(), Text = usecase.InstanceName });
-            }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
-        }
-
         private void CreateComponentsPanelForEndpoint(ISolutionBuilderViewModel solutionBuilderModel, 
             IEnumerable<IComponent> components,
             IEnumerable<IAbstractComponentLink> componentLinks, 
@@ -218,82 +192,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 }
             }
             this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
-        }
-
-
-        private void CreateComponentsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
-        {
-            var components = useCase.RelatedComponents;
-            var componentsVM = new InnerPanelViewModel();
-            componentsVM.Title = "Components";
-            var componentsNode = new InnerPanelTitle { 
-                Product = useCase.As<IProductElement>(), 
-                Text = "Components", 
-                ForceText = true, 
-                MenuFilters = new string[] { "Add Component" },
-                IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
-            };
-            componentsVM.Items.Add(componentsNode);
-            foreach (var service in components.Select(c => c.Parent.Parent).Distinct())
-            {
-                componentsVM.Items.Add(new InnerPanelTitle { Product = service.As<IProductElement>(), Text = service.InstanceName });
-                foreach (var component in components.Where(c => c.Parent.Parent == service))
-                {
-                    componentsVM.Items.Add(new InnerPanelItem { Product = component.As<IProductElement>(), Text = component.InstanceName });
-                }
-            }
-
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, componentsVM)));
-        }
-
-        private void CreateCommandsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
-        {
-            var commands = useCase.RelatedCommands;
-            var commandsVM = new InnerPanelViewModel();
-            commandsVM.Title = "Commands";
-            var commandsNode = new InnerPanelTitle
-            {
-                Product = useCase.As<IProductElement>(),
-                Text = "Commands",
-                ForceText = true,
-                MenuFilters = new string[] { "Add Command" },
-                IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
-            };
-            commandsVM.Items.Add(commandsNode);
-            foreach (var service in commands.Select(c => c.Parent.Parent.Parent).Distinct())
-            {
-                commandsVM.Items.Add(new InnerPanelTitle { Product = service.As<IProductElement>(), Text = service.InstanceName });
-                foreach (var command in commands.Where(c => c.Parent.Parent.Parent == service))
-                {
-                    commandsVM.Items.Add(new InnerPanelItem { Product = command.As<IProductElement>(), Text = command.InstanceName });
-                }
-            }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, commandsVM)));
-        }
-
-        private void CreateEventsForUseCasePanel(ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
-        {
-            var events = useCase.RelatedEvents;
-            var eventsVM = new InnerPanelViewModel();
-            eventsVM.Title = "Events";
-            var eventsNode = new InnerPanelTitle
-            {
-                Product = useCase.As<IProductElement>(),
-                Text = "Events",
-                ForceText = true,
-                MenuFilters = new string[] { "Add Event" },
-                IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
-            };
-            eventsVM.Items.Add(eventsNode);
-            foreach (var service in events.Select(c => c.Parent.Parent.Parent).Distinct())
-            {
-                eventsVM.Items.Add(new InnerPanelTitle { Product = service.As<IProductElement>(), Text = service.InstanceName });
-                foreach (var @event in events.Where(c => c.Parent.Parent.Parent == service))
-                {
-                    eventsVM.Items.Add(new InnerPanelItem { Product = @event.As<IProductElement>(), Text = @event.InstanceName });
-                }
-            }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, eventsVM)));
         }
 
         private void CreateInfrastructurePanel(ISolutionBuilderViewModel solutionBuilderModel, IInfrastructure infrastructure, int position)
@@ -334,57 +232,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
 
             //// Events
             //this.CreateEventsPanel(solutionBuilderModel, components, 2);
-        }
-
-        internal void BuildDetailsForUseCase(IUseCase useCase, ISolutionBuilderViewModel solutionBuilderModel)
-        {
-            var application = useCase.As<IProductElement>().Root.As<IApplication>();
-
-            this.CleanDetails();
-
-            // Endpoints
-            this.CreateEndpointsUseCasePanel(application, solutionBuilderModel, useCase, 0);
-
-            // Components
-            this.CreateComponentsForUseCasePanel(solutionBuilderModel, useCase, 1);
-
-            // Commands
-            this.CreateCommandsForUseCasePanel(solutionBuilderModel, useCase, 2);
-
-            // Events
-            this.CreateEventsForUseCasePanel(solutionBuilderModel, useCase, 3);
-        }
-
-     
-        private void CreateEndpointsUseCasePanel(IApplication application, ISolutionBuilderViewModel solutionBuilderModel, IUseCase useCase, int position)
-        {
-            var endpointsVM = new InnerPanelViewModel();
-            endpointsVM.Title = "Deployed to the following Endpoints";
-            endpointsVM.Items.Add(new InnerPanelTitle
-            {
-                Product = useCase.As<IProductElement>(),
-                Text = "Started In",
-                ForceText = true,
-                MenuFilters = new string[] { "Add Started By Endpoint" },
-                IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
-            });
-            foreach (var endpoint in useCase.EndpointsStartingUseCases)
-            {
-                endpointsVM.Items.Add(new InnerPanelItem { Product = endpoint.As<IProductElement>(), Text = endpoint.As<IProductElement>().InstanceName });
-            }
-            endpointsVM.Items.Add(new InnerPanelTitle
-            {
-                Product = useCase.As<IProductElement>(),
-                Text = "Goes through",
-                ForceText = true,
-                MenuFilters = new string[] { },
-                IconPath = solutionBuilderModel.FindNodeFor(useCase.Parent.As<IProductElement>()).IconPath
-            });
-            foreach (var endpoint in useCase.RelatedEndpoints)
-            {
-                endpointsVM.Items.Add(new InnerPanelItem { Product = endpoint.As<IProductElement>(), Text = endpoint.As<IProductElement>().InstanceName });
-            }
-            this.SetPanel(position, new LogicalView(new LogicalViewModel(solutionBuilderModel, endpointsVM)));
         }
 
     }
