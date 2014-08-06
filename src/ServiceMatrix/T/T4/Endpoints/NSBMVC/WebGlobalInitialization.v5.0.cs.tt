@@ -49,9 +49,9 @@ if (!nserviceBusHost.SendOnly)
                 .With(b => b
                     .Conventions(c => MessageConventions.Apply(c))
                     .UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container))
-                    .PurgeOnStartup(true))
-                .EnableInstallers()
-                .Transactions(t => t.Disable())
+                    .PurgeOnStartup(true)
+                    .EnableInstallers()
+                    .Transactions(t => t.Disable()))
                 .CreateBus()
                 .Start();
 <#
