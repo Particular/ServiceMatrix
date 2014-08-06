@@ -69,10 +69,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.Views
                 case "UseCase":
                     this.ViewModel.BuildDetailsForUseCase(model.As<IUseCase>(), logicalViewDataContext as ISolutionBuilderViewModel);
                     break;
-                case "Library":
-                case "ServiceLibrary":
-                    this.ViewModel.BuildDetailsForLibrary(model, logicalViewDataContext as ISolutionBuilderViewModel);
-                    break;
                 default:
                     this.CleanDetails();
                     break;

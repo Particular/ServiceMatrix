@@ -81,11 +81,6 @@ namespace NServiceBusStudio
 		IComponents Components { get; }
 
 		/// <summary>
-		/// Gets the <see cref="IServiceLibraries"/> contained in this element.
-		/// </summary>
-		IServiceLibraries ServiceLibraries { get; }
-
-		/// <summary>
 		/// Creates a new <see cref="IContract"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -98,13 +93,6 @@ namespace NServiceBusStudio
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		IComponents CreateComponents(string name, Action<IComponents> initializer = null, bool raiseInstantiateEvents = true);
-
-		/// <summary>
-		/// Creates a new <see cref="IServiceLibraries"/>  
-		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
-		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		IServiceLibraries CreateServiceLibraries(string name, Action<IServiceLibraries> initializer = null, bool raiseInstantiateEvents = true);
 
 		/// <summary>
 		/// Deletes this element.
@@ -513,11 +501,6 @@ namespace NServiceBusStudio
 		ISubscribes Subscribes { get; }
 
 		/// <summary>
-		/// Gets the <see cref="ILibraryReferences"/> contained in this element.
-		/// </summary>
-		ILibraryReferences LibraryReferences { get; }
-
-		/// <summary>
 		/// Creates a new <see cref="IPublishes"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -530,13 +513,6 @@ namespace NServiceBusStudio
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		ISubscribes CreateSubscribes(string name, Action<ISubscribes> initializer = null, bool raiseInstantiateEvents = true);
-
-		/// <summary>
-		/// Creates a new <see cref="ILibraryReferences"/>  
-		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
-		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		ILibraryReferences CreateLibraryReferences(string name, Action<ILibraryReferences> initializer = null, bool raiseInstantiateEvents = true);
 
 		/// <summary>
 		/// Deletes this element.
@@ -1237,172 +1213,6 @@ namespace NServiceBusStudio
 		/// Gets the parent element.
 		/// </summary>
 		ISubscribes Parent { get; }
-
-		/// <summary>
-		/// Deletes this element.
-		/// </summary>
-		void Delete();
-
-		/// <summary>
-		/// Gets the generalized interface (<see cref="Runtime.IElement"/>) of this element.
-		/// </summary>
-		Runtime.IElement AsElement();
-	}
-}
-
-namespace NServiceBusStudio
-{
-	using global::NuPattern.Runtime;
-	using global::NuPattern.Runtime.Bindings;
-	using global::NuPattern.Runtime.ToolkitInterface;
-	using global::System;
-	using global::System.Collections.Generic;
-	using global::System.ComponentModel;
-	using global::System.ComponentModel.Design;
-	using global::System.Drawing.Design;
-	using Runtime = global::NuPattern.Runtime;
-
-	/// <summary>
-	/// A service-specific library.
-	/// </summary>
-	[Description("A service-specific library.")]
-	[ToolkitInterface(ExtensionId = "23795EC3-3DEA-4F04-9044-4056CF91A2ED", DefinitionId = "c475a3be-99b0-4170-b4d6-2c142440fa9e", ProxyType = typeof(LibraryReference))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
-	public partial interface ILibraryReference : IToolkitInterface
-	{
-
-		/// <summary>
-		/// Description for Application.Design.Services.Service.Components.Component.LibraryReferences.LibraryReference.LibraryId
-		/// </summary>
-		[Description("Description for Application.Design.Services.Service.Components.Component.LibraryReferences.LibraryReference.LibraryId")]
-		[DisplayName("Library Id")]
-		[Category("General")]
-		Guid LibraryId { get; set; }
-
-		/// <summary>
-		/// The name of this element instance.
-		/// </summary>
-		[Description("The name of this element instance.")]
-		[ParenthesizePropertyName(true)]
-		String InstanceName { get; set; }
-
-		/// <summary>
-		/// The order of this element relative to its siblings.
-		/// </summary>
-		[Description("The order of this element relative to its siblings.")]
-		[ReadOnly(true)]
-		Double InstanceOrder { get; set; }
-
-		/// <summary>
-		/// The references of this element.
-		/// </summary>
-		[Description("The references of this element.")]
-		IEnumerable<IReference> References { get; }
-
-		/// <summary>
-		/// Notes for this element.
-		/// </summary>
-		[Description("Notes for this element.")]
-		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
-		String Notes { get; set; }
-
-		/// <summary>
-		/// Gets or sets the InTransaction property.
-		/// </summary>
-		Boolean InTransaction { get; }
-
-		/// <summary>
-		/// Gets or sets the IsSerializing property.
-		/// </summary>
-		Boolean IsSerializing { get; }
-
-		/// <summary>
-		/// Gets the parent element.
-		/// </summary>
-		ILibraryReferences Parent { get; }
-
-		/// <summary>
-		/// Deletes this element.
-		/// </summary>
-		void Delete();
-
-		/// <summary>
-		/// Gets the generalized interface (<see cref="Runtime.IElement"/>) of this element.
-		/// </summary>
-		Runtime.IElement AsElement();
-	}
-}
-
-namespace NServiceBusStudio
-{
-	using global::NuPattern.Runtime;
-	using global::NuPattern.Runtime.Bindings;
-	using global::NuPattern.Runtime.ToolkitInterface;
-	using global::System;
-	using global::System.Collections.Generic;
-	using global::System.ComponentModel;
-	using global::System.ComponentModel.Design;
-	using global::System.Drawing.Design;
-	using Runtime = global::NuPattern.Runtime;
-
-	/// <summary>
-	/// A service library.
-	/// </summary>
-	[Description("A service library.")]
-	[ToolkitInterface(ExtensionId = "23795EC3-3DEA-4F04-9044-4056CF91A2ED", DefinitionId = "56e1ca8a-b2d9-4cf7-a697-4e79a777c9bc", ProxyType = typeof(ServiceLibrary))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
-	public partial interface IServiceLibrary : IToolkitInterface
-	{
-
-		/// <summary>
-		/// Description for Application.Design.Services.Service.ServiceLibraries.ServiceLibrary.FilePath
-		/// </summary>
-		[Description("Description for Application.Design.Services.Service.ServiceLibraries.ServiceLibrary.FilePath")]
-		[DisplayName("File Path")]
-		[Category("General")]
-		String FilePath { get; set; }
-
-		/// <summary>
-		/// The name of this element instance.
-		/// </summary>
-		[Description("The name of this element instance.")]
-		[ParenthesizePropertyName(true)]
-		String InstanceName { get; set; }
-
-		/// <summary>
-		/// The order of this element relative to its siblings.
-		/// </summary>
-		[Description("The order of this element relative to its siblings.")]
-		[ReadOnly(true)]
-		Double InstanceOrder { get; set; }
-
-		/// <summary>
-		/// The references of this element.
-		/// </summary>
-		[Description("The references of this element.")]
-		IEnumerable<IReference> References { get; }
-
-		/// <summary>
-		/// Notes for this element.
-		/// </summary>
-		[Description("Notes for this element.")]
-		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
-		String Notes { get; set; }
-
-		/// <summary>
-		/// Gets or sets the InTransaction property.
-		/// </summary>
-		Boolean InTransaction { get; }
-
-		/// <summary>
-		/// Gets or sets the IsSerializing property.
-		/// </summary>
-		Boolean IsSerializing { get; }
-
-		/// <summary>
-		/// Gets the parent element.
-		/// </summary>
-		IServiceLibraries Parent { get; }
 
 		/// <summary>
 		/// Deletes this element.
@@ -2582,89 +2392,6 @@ namespace NServiceBusStudio
 		/// Gets the parent element.
 		/// </summary>
 		IUseCase Parent { get; }
-
-		/// <summary>
-		/// Deletes this element.
-		/// </summary>
-		void Delete();
-
-		/// <summary>
-		/// Gets the generalized interface (<see cref="Runtime.IElement"/>) of this element.
-		/// </summary>
-		Runtime.IElement AsElement();
-	}
-}
-
-namespace NServiceBusStudio
-{
-	using global::NuPattern.Runtime;
-	using global::NuPattern.Runtime.Bindings;
-	using global::NuPattern.Runtime.ToolkitInterface;
-	using global::System;
-	using global::System.Collections.Generic;
-	using global::System.ComponentModel;
-	using global::System.ComponentModel.Design;
-	using global::System.Drawing.Design;
-	using Runtime = global::NuPattern.Runtime;
-
-	/// <summary>
-	/// A library.
-	/// </summary>
-	[Description("A library.")]
-	[ToolkitInterface(ExtensionId = "23795EC3-3DEA-4F04-9044-4056CF91A2ED", DefinitionId = "026d2305-4579-472f-a028-27e89b9abc5e", ProxyType = typeof(Library))]
-	[System.CodeDom.Compiler.GeneratedCode("NuPattern Toolkit Library", "1.4.24.0")]
-	public partial interface ILibrary : IToolkitInterface
-	{
-
-		/// <summary>
-		/// Description for Application.Design.Libraries.Library.FilePath
-		/// </summary>
-		[Description("Description for Application.Design.Libraries.Library.FilePath")]
-		[DisplayName("File Path")]
-		[Category("General")]
-		String FilePath { get; set; }
-
-		/// <summary>
-		/// The name of this element instance.
-		/// </summary>
-		[Description("The name of this element instance.")]
-		[ParenthesizePropertyName(true)]
-		String InstanceName { get; set; }
-
-		/// <summary>
-		/// The order of this element relative to its siblings.
-		/// </summary>
-		[Description("The order of this element relative to its siblings.")]
-		[ReadOnly(true)]
-		Double InstanceOrder { get; set; }
-
-		/// <summary>
-		/// The references of this element.
-		/// </summary>
-		[Description("The references of this element.")]
-		IEnumerable<IReference> References { get; }
-
-		/// <summary>
-		/// Notes for this element.
-		/// </summary>
-		[Description("Notes for this element.")]
-		[Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
-		String Notes { get; set; }
-
-		/// <summary>
-		/// Gets or sets the InTransaction property.
-		/// </summary>
-		Boolean InTransaction { get; }
-
-		/// <summary>
-		/// Gets or sets the IsSerializing property.
-		/// </summary>
-		Boolean IsSerializing { get; }
-
-		/// <summary>
-		/// Gets the parent element.
-		/// </summary>
-		ILibraries Parent { get; }
 
 		/// <summary>
 		/// Deletes this element.

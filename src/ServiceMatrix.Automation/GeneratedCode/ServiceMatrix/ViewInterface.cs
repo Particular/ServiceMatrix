@@ -68,11 +68,6 @@ namespace NServiceBusStudio
 		IUseCases UseCases { get; }
 
 		/// <summary>
-		/// Gets the <see cref="ILibraries"/> contained in this element.
-		/// </summary>
-		ILibraries Libraries { get; }
-
-		/// <summary>
 		/// Creates a new <see cref="IServices"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -120,13 +115,6 @@ namespace NServiceBusStudio
 		/// </summary>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		IUseCases CreateUseCases(string name, Action<IUseCases> initializer = null, bool raiseInstantiateEvents = true);
-
-		/// <summary>
-		/// Creates a new <see cref="ILibraries"/>  
-		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
-		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		ILibraries CreateLibraries(string name, Action<ILibraries> initializer = null, bool raiseInstantiateEvents = true);
 
 		/// <summary>
 		/// Deletes this element.

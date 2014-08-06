@@ -193,31 +193,8 @@ namespace NServiceBusStudio
         public void AddLinks(IAbstractEndpoint endpoint)
         {
             var project = endpoint.Project;
-
-            // 1. Add Links for References
-            foreach (var libraryLink in LibraryReferences.LibraryReference)
-            {
-                IProductElement element = null;
-
-                if (libraryLink.Library != null)
-                {
-                    if (libraryLink.Library.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.Library.As<IProductElement>();
-                    }
-                }
-                else
-                {
-                    if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.ServiceLibrary.As<IProductElement>();
-                    }
-                }
-
-                var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, true);
-
-                AddLinkToProject(project, element, suggestedPath, i => i.First());
-            }
+            // TODO: Evaluate where this is being called. Removed the steps related to libraries.
+            
         }
 
         public void RemoveLinks(IAbstractEndpoint endpoint)
@@ -226,111 +203,11 @@ namespace NServiceBusStudio
 
             if (project == null)
                 return;
-
-            // 1. Remove Links for References
-            foreach (var libraryLink in LibraryReferences.LibraryReference)
-            {
-                IProductElement element = null;
-
-                if (libraryLink.Library != null)
-                {
-                    if (libraryLink.Library.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.Library.As<IProductElement>();
-                    }
-                }
-                else
-                {
-                    if (libraryLink.ServiceLibrary.As<IProductElement>().References.Any(r => r.Kind == ReferenceKindConstants.ArtifactLink))
-                    {
-                        element = libraryLink.ServiceLibrary.As<IProductElement>();
-                    }
-                }
-
-                if (element != null)
-                {
-                    var suggestedPath = endpoint.CustomizationFuncs().BuildPathForComponentCode(endpoint, Parent.Parent, null, false);
-                    RemoveLinkFromProject(project, element.InstanceName + ".cs", suggestedPath);
-                }
-            }
+            // TODO: Evaluate where this is being called. Removed the steps related to libraries.
+            
         }
 
-        private static void AddLinkToProject(IProject project, IProductElement element, string suggestedPath, Func<IEnumerable<IItem>, IItem> filter)
-        {
-            var sourceFile = FindSourceItemForElement(element, filter);
-            var container = project.As<Project>().ProjectItems;
-            container = FindProjectFolder(container, suggestedPath);
-
-            if (container != null && !CheckIfProjectItemExists(container, suggestedPath))
-            {
-                try
-                {
-                    container.AddFromFile(sourceFile.PhysicalPath);
-                }
-                catch (COMException e)
-                {
-                    // If the link is already in place we will ignore the exception; otherwise, rethrow.
-                    if (e.ErrorCode != VSConstants.E_FAIL)
-                    {
-                        throw;
-                    }
-                }
-            }
-        }
-
-        private void RemoveLinkFromProject(IProject project, string fileName, string suggestedPath)
-        {
-            var container = project.As<Project>().ProjectItems;
-            container = FindProjectFolder(container, suggestedPath);
-
-            if (container != null)
-            {
-                foreach (var file in container)
-                {
-                    if (file != null && file.As<ProjectItem>().Name == fileName)
-                    {
-                        file.As<ProjectItem>().Delete();
-                        break;
-                    }
-                }
-            }
-        }
-
-        private static IItem FindSourceItemForElement(IProductElement element, Func<IEnumerable<IItem>, IItem> filter)
-        {
-            var references = ServiceProviderExtensions
-                .GetService<IUriReferenceService>(element.Product.ProductState);
-
-            var sourceFile = filter(SolutionArtifactLinkReference.GetResolvedReferences(element, references).OfType<IItem>());
-            return sourceFile;
-        }
-
-        private static ProjectItems FindProjectFolder(ProjectItems container, string suggestedPath)
-        {
-            var path = suggestedPath.Split('\\').Skip(1);
-
-            foreach (var stepName in path)
-            {
-                foreach (var folder in container)
-                {
-                    if (folder != null && folder.As<ProjectItem>().Name == stepName)
-                    {
-                        container = folder.As<ProjectItem>().ProjectItems;
-                        break;
-                    }
-                }
-            }
-
-            return container;
-        }
-
-        private static bool CheckIfProjectItemExists(ProjectItems container, string path)
-        {
-            return container
-                    .Cast<ProjectItem>()
-                    .Any(pi => pi.Document != null && string.Equals(pi.Document.FullName, path, StringComparison.OrdinalIgnoreCase));
-        }
-
+        
         // Looks for an available component name in the service
         public static string TryGetComponentName(string suggested, IService service)
         {

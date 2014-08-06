@@ -114,10 +114,6 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                             case "UseCase":
                                 NServiceBusViewModel.GenerateUseCasesView();
                                 break;
-                            case "Library":
-                            case "ServiceLibrary":
-                                NServiceBusViewModel.GenerateLibrariesView();
-                                break;
                             case "Command":
                             case "Event":
                                 NServiceBusViewModel.GenerateMessagesView();
@@ -283,50 +279,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 //new NServiceBusView { Text = "Use Cases View", Action = () => this.GenerateUseCasesView(false) },
                 new NServiceBusView { Text = "Components View", Action = () => this.GenerateComponentsView(false) },
                 new NServiceBusView { Text = "Messages View", Action = () => this.GenerateMessagesView(false) },
-                new NServiceBusView { Text = "Libraries View", Action = () => this.GenerateLibrariesView(false) },
             };
 
             this.RaiseOnPropertyChanged("ViewsList");
             this.SelectView("Endpoints");
-        }
-
-        private void GenerateLibrariesView(bool setTitle = true)
-        {
-            if (setTitle)
-            {
-                this.SelectView("Libraries");
-            }
-            ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
-
-            var libraries = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Libraries");
-
-            // Add Libraries Node with just the Add->Library option
-            var librariesNode = new LogicalViewModelNode(this, libraries, libraries.ChildNodes);
-            librariesNode.FilterMenuItems("Add");
-            observables.Add(librariesNode);
-
-            var services = this.SourceViewModel.TopLevelNodes.First().ChildNodes.First(n => n.Data.DefinitionName == "Services");
-
-            // Add Services Node with just the Add->Service option
-            var servicesNode = new LogicalViewModelNode(this, services, services.ChildNodes);
-            servicesNode.FilterMenuItems("Add");
-            observables.Add(servicesNode);
-
-            foreach (var service in servicesNode.LogicalViewNodes)
-            {
-                // Adding menu options for "Add->Commands" and "Add->Events"
-                //service.MenuOptions = new ObservableCollection<IMenuOptionViewModel>();
-                service.FilterMenuItems("Delete");
-                service.MenuOptions.Add(service.InnerViewModel.ChildNodes.Named("Libraries").MenuOptions.First(o => o.Caption == "Add"));
-
-                foreach (var library in service.InnerViewModel.ChildNodes
-                    .First(n => n.Data.DefinitionName == "ServiceLibraries").ChildNodes)
-                {
-                    service.LogicalViewNodes.Add(new LogicalViewModelNode(this, library, null));
-                }
-            }
-
-            this.LogicalViewNodes = observables;
         }
 
         internal void GenerateComponentsView(bool setTitle = true)

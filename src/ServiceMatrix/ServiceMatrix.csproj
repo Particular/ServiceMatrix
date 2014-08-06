@@ -541,12 +541,6 @@
     <None Include="e1a3e420-bdf8-4ce6-b918-0ca0a7febaf3.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
     </None>
-    <Content Include="T\T4\Library.tt">
-      <LastGenOutput>EventDefinition.cs</LastGenOutput>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>cd272c9f-4911-480c-a762-59810b294f94</ItemGuid>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="T\P\Endpoints\NSBH\App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>false</IncludeInVSIX>

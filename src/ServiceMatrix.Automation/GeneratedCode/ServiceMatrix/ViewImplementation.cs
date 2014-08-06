@@ -118,14 +118,6 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
-		/// Gets the <see cref="ILibraries"/> contained in this element.
-		/// </summary>
-		public virtual ILibraries Libraries
-		{
-			get { return proxy.GetElement(() => this.Libraries, element => new Libraries(element)); }
-		}
-
-		/// <summary>
 		/// Creates a new <see cref="IServices"/>  
 		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
 		/// </summary>
@@ -193,16 +185,6 @@ namespace NServiceBusStudio
 		public virtual IUseCases CreateUseCases(string name, Action<IUseCases> initializer = null, bool raiseInstantiateEvents = true)
 		{
 			return proxy.CreateCollection<IUseCases>(name, initializer, raiseInstantiateEvents);
-		}
-
-		/// <summary>
-		/// Creates a new <see cref="ILibraries"/>  
-		/// executing the optional <paramref name="initializer"/> if not <see langword="null"/>.
-		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		public virtual ILibraries CreateLibraries(string name, Action<ILibraries> initializer = null, bool raiseInstantiateEvents = true)
-		{
-			return proxy.CreateCollection<ILibraries>(name, initializer, raiseInstantiateEvents);
 		}
 
 		/// <summary>
