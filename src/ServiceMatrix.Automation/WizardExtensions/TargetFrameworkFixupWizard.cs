@@ -1,10 +1,9 @@
-﻿using EnvDTE;
+﻿using System.Collections.Generic;
+using EnvDTE;
 using Microsoft.VisualStudio.TemplateWizard;
 
 namespace NServiceBusStudio.Automation.WizardExtensions
 {
-    using System.Collections.Generic;
-
     public class TargetFrameworkFixupWizard : IWizard
     {
         public void RunStarted(object automationObject, Dictionary<string, string> replacementsDictionary, WizardRunKind runKind, object[] customParams)
@@ -12,7 +11,7 @@ namespace NServiceBusStudio.Automation.WizardExtensions
             // Override the target framework to work around the issue with loading a 4.5 template
             const string targetFrameworkVersionKey = "$targetframeworkversion$";
             string targetFrameworkVersion;
-            if (replacementsDictionary.TryGetValue(targetFrameworkVersionKey, out targetFrameworkVersion) && targetFrameworkVersion == "4.0")
+            if (!replacementsDictionary.TryGetValue(targetFrameworkVersionKey, out targetFrameworkVersion) || targetFrameworkVersion == "4.0")
             {
                 replacementsDictionary[targetFrameworkVersionKey] = "4.5";
             }

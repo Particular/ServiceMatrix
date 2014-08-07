@@ -25,7 +25,7 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        IDialogWindowFactory WindowFactory { get; set; }
+        public IDialogWindowFactory WindowFactory { get; set; }
 
         public override void Execute()
         {

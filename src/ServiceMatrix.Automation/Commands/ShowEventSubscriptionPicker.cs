@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using NServiceBusStudio.Automation.Dialog;
 using NServiceBusStudio.Automation.ViewModels;
@@ -30,6 +29,14 @@ namespace NServiceBusStudio.Automation.Commands
         [Required]
         [Import(AllowDefault = true)]
         private IDialogWindowFactory WindowFactory
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        [Import(AllowDefault = true)]
+        public IMessageBoxService MessageBoxService
         {
             get;
             set;
@@ -77,7 +84,7 @@ namespace NServiceBusStudio.Automation.Commands
                         CurrentElement.Subscribes.CreateLink(selectedEvent);
                     }
 
-                    SagaHelper.CheckAndPromptForSagaUpdate(CurrentElement, WindowFactory);
+                    SagaHelper.CheckAndPromptForSagaUpdate(CurrentElement, MessageBoxService, WindowFactory);
                 }
             }
 
