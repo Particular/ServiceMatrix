@@ -56,6 +56,8 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -74,6 +76,7 @@
   <ItemGroup>
     <Compile Include="AssertProject.cs" />
     <Compile Include="ItemExtensions.cs" />
+    <Compile Include="PreviousVersionTests.cs" />
     <Compile Include="SagaSpec.cs" />
     <Compile Include="CreateApplicationSpec.cs" />
     <Compile Include="CreateToolkitTest.cs" />
@@ -94,6 +97,24 @@
   <ItemGroup>
     <Content Include="TemplateVersions.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestSolutions\SingleMessage-2.1.2-2013.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestSolutions.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestSolutions\SingleMessage-2.1.2-2012.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Choose>

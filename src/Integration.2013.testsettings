@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <TestSettings name="Integration" id="34761a6c-7d04-435d-9b67-3f34a36e0b08" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are default test settings for a local test run.</Description>
-  <Deployment enabled="false" />
+  <Deployment>
+    <DeploymentItem filename="ServiceMatrix.IntegrationTests\TestSolutions\" />
+  </Deployment>
   <Execution>
     <Hosts type="VS IDE">
       <VSSDKTestHostRunConfig name="VS IDE" HiveKind="DevEnv" HiveName="12.0Exp" xmlns="http://microsoft.com/schemas/VisualStudio/SDK/Tools/IdeHostAdapter/2006/06" />
