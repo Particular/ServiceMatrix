@@ -30,7 +30,15 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        private IDialogWindowFactory WindowFactory
+        public IDialogWindowFactory WindowFactory
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        [Import(AllowDefault = true)]
+        public IMessageBoxService MessageBoxService
         {
             get;
             set;
@@ -94,7 +102,7 @@ namespace NServiceBusStudio.Automation.Commands
                             var handlerComponent = viewModel.SelectedHandlerComponent;
                             handlerComponent.Subscribes.CreateLink(command);
 
-                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, WindowFactory);
+                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, MessageBoxService, WindowFactory);
                         }
                     }
                 }

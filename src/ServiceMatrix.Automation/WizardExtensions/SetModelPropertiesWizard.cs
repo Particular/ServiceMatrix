@@ -28,7 +28,7 @@ namespace NServiceBusStudio.Automation.WizardExtensions
         {
             base.ProjectFinishedGenerating(project);
 
-            if (!string.IsNullOrEmpty(targetFrameworkVersion) && UnfoldScope.IsActive)
+            if (UnfoldScope.IsActive)
             {
                 var application = UnfoldScope.Current.Automation.Owner.As<IApplication>();
                 if (application != null)

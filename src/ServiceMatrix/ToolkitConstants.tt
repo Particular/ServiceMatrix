@@ -8,7 +8,7 @@ using System.Text;
 
 namespace <#= rootNamespace #>
 {
-	internal static class ToolkitConstants
+	public static class ToolkitConstants
 	{
 		/// <summary>
 		/// <#= identifier #>
@@ -49,5 +49,10 @@ namespace <#= rootNamespace #>
 		/// <#= assemblyName #>
 		/// </summary>
 		public const string AssemblyName = "<#= assemblyName #>";
-	}
+	
+		/// <summary>
+		/// <#= supportedVsVersion #>
+		/// </summary>
+		public const string SupportedVsVersion = "<#= supportedVsVersion #>";
+}
 }
