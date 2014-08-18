@@ -3,14 +3,14 @@
   <Identifier Id="23795EC3-3DEA-4F04-9044-4056CF91A2ED">
 	  <Name>ServiceMatrix</Name>
 	  <Author>Particular Software</Author>
-	  <Version>2.1.2</Version>
+	  <Version>2.1.3</Version>
 	  <Description xml:space="preserve">Intuitive modeling and design of distributed systems</Description>
     <Locale>1033</Locale>
     <License>Resources\LicenseAgreement.rtf</License>
     <Icon>Resources\ToolkitIcon.png</Icon>
 	<MoreInfoUrl>http://particular.net/ServiceMatrix</MoreInfoUrl>
     <GettingStartedGuide>http://docs.particular.net/ServiceMatrix/getting-started-with-servicematrix-2.0</GettingStartedGuide>
-    <ReleaseNotes>https://github.com/particular/servicematrix/releases/2.1.2</ReleaseNotes>
+    <ReleaseNotes>https://github.com/particular/servicematrix/releases/2.1.3</ReleaseNotes>
 	<PreviewImage>Resources\ProductPreview.png</PreviewImage>
     <SupportedProducts>
       <VisualStudio Version="12.0">
