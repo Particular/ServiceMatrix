@@ -199,7 +199,7 @@
         <collectionShapeMoniker Id="1f172abe-d141-4fc2-942d-e21af7d9d181" />
       </nodes>
     </elementHasElementsConnector>
-    <elementHasElementsConnector edgePoints="[(8.3125 : 83.0181689449772); (8.3125 : 88.3620174153646); (9.375 : 88.3620174153646)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
+    <elementHasElementsConnector edgePoints="[(8.3125 : 83.0181689449772); (8.3125 : 88.3620174153646); (9.375 : 88.3620174153646)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="b0afa4dc-233e-4c6c-a058-5b2f2989b751" tailoringOutlineColor="184, 140, 238" tailoringTextColor="83, 155, 208">
       <relativeChildShapes />
       <nodes>
         <collectionShapeMoniker Id="1f172abe-d141-4fc2-942d-e21af7d9d181" />

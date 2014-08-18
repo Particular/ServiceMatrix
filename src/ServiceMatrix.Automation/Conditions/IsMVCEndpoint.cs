@@ -31,10 +31,6 @@
         public override bool Evaluate()
         {
             var mvcEndpoint = Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement);
-
-           
-            var signalRcomponents = mvcEndpoint.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Where(e => e.ComponentReference.Value.IsBroadcastingViaSignalR);
-    
             if (mvcEndpoint != null)
             {
                 return true;

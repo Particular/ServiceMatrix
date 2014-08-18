@@ -3794,7 +3794,7 @@
   },
   {
     "Name": "TargetBuildAction",
-    "Value": "Compile",
+    "Value": "None",
     "ValueProvider": null
   },
   {
@@ -3811,14 +3811,8 @@
     "Name": "TargetPath",
     "Value": "",
     "ValueProvider": {
-      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
-      "Properties": [
-        {
-          "Name": "AddInfrastructureFolder",
-          "Value": "True",
-          "ValueProvider": null
-        }
-      ]
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetScriptsPathInMvcEndpoint",
+      "Properties": []
     }
   },
   {

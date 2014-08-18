@@ -7,9 +7,9 @@
     using NuPattern.Runtime;
 
     [CLSCompliant(false)]
-    [DisplayName("GetEndpointPathValueProvider")]
+    [DisplayName("GetScriptsPathInMvcEndpoint")]
     [Category("General")]
-    [Description("GetEndpointPathValueProvider")]
+    [Description("Get the location for the Scripts folder")]
     public class GetScriptsPathInMvcEndpoint : ValueProvider
     {
         /// <summary>

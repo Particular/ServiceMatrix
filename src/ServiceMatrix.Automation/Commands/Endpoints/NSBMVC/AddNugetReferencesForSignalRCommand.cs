@@ -9,9 +9,9 @@ using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 {
-    using System.Collections.Generic;
     using System.Linq;
     using NServiceBusStudio.Automation.Extensions;
+    using NServiceBusStudio.Automation.Model;
 
     [DisplayName("WebMVCEndpoint AddNugetReferencesForSignalRCommand")]
     [Description("WebMVCEndpoint Add Nuget References For SignalR")]
@@ -38,14 +38,11 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
             var app = CurrentElement.Root.As<IApplication>();
             var component = CurrentElement.As<NServiceBusStudio.IComponent>();
             
-            var mvcEndpoint = NServiceBusStudio.Automation.Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement).As<IProductElement>();
-            // get all the handlers for this endpoint
-           // mvcEndpoint.EndpointComponents.
-            
+            var endpointElement = NServiceBusStudio.Automation.Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement).As<IProductElement>();
             
             component.IsBroadcastingViaSignalR = true;
 
-            var project = mvcEndpoint.GetProject();
+            var project = endpointElement.GetProject();
             if (project == null)
             {
                 return;
