@@ -449,6 +449,14 @@ namespace NServiceBusStudio
 		Boolean UnfoldedCustomCode { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR")]
+		[DisplayName("Is Broadcasting Via Signal R")]
+		[Category("General")]
+		Boolean IsBroadcastingViaSignalR { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]

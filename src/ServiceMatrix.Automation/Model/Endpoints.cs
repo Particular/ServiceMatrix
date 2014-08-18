@@ -9,6 +9,8 @@ namespace NServiceBusStudio
     partial interface IEndpoints
     {
         IEnumerable<IAbstractEndpoint> GetAll();
+        IEnumerable<INServiceBusMVC> GetMvcEndpoints();
+
     }
 
     partial class Endpoints
@@ -20,6 +22,13 @@ namespace NServiceBusStudio
             endpoints.AddRange(this.NServiceBusHosts);
             endpoints.AddRange(this.NServiceBusMVCs);
 
+            return endpoints;
+        }
+
+        public IEnumerable<INServiceBusMVC> GetMvcEndpoints()
+        {
+            var endpoints = new List<INServiceBusMVC>();
+            endpoints.AddRange(this.NServiceBusMVCs);
             return endpoints;
         }
     }

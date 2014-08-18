@@ -202,6 +202,31 @@
                 false);
         }
 
+        public static void InstallNugetPackageForSpecifiedVersion(this IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, IStatusBar StatusBar, string packageName, string version)
+        {
+            try
+            {
+                StatusBar.DisplayMessage(String.Format("Installing Package: {0} {1}...", packageName, version));
+                try
+                {
+                    InstallNugetPackageForSpecifiedVersion(project, vsPackageInstaller, packageName, version);
+                }
+                catch (Exception installException)
+                {
+                    StatusBar.DisplayMessage(String.Format("When attempting to install version {0} of the package {1}, the following error occured: {2}.. Going to now try installing the latest version of Package ...", version, packageName, installException.Message));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("NuGet Package {0} cannot be installed ({1}).", packageName, ex.Message), ex);
+            }
+            finally
+            {
+                StatusBar.DisplayMessage("");
+            }
+        }
+
+
         static void GetPackageIdAndMajorVersion(string packageName, string targetNsbVersion, out string packageId, out int? majorVersion)
         {
             // default to latest version of package name

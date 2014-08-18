@@ -159,6 +159,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\AddNugetReferencesForSignalRCommand.cs" />
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
     <Compile Include="Commands\DeleteRelatedComponentsCommand.cs" />
     <Compile Include="Commands\SagaHelper.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="AutomationSetup\TemplateMappings.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsMVCEndpoint.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\BaseViewModels\AutomationMenuOptionViewModel.cs" />
@@ -236,6 +238,7 @@
     <Compile Include="Util\ServiceMatrixOverrides.cs" />
     <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\ApplicationTargetNsbVersionValueProvider.cs" />
+    <Compile Include="ValueProviders\GetScriptsPathInMvcEndpoint.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
     <Compile Include="ViewModels\RelatedComponentsPickerViewModel.cs" />

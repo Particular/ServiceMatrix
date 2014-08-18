@@ -158,6 +158,7 @@ namespace AbstractEndpoint
             public string CustomClassBody { get; set; }
             public bool IsSaga { get; set; }
 
+            public bool IsBroadcastingViaSignalR { get; set; }
 
             public event EventHandler AdditionalUsingsChanged;
 

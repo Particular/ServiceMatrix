@@ -883,6 +883,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\SignalRHub.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>1b39b28d-9786-473b-859d-4174c17c7fad</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\SignalRHandler.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a3ad0316-5442-4b1e-9499-c1db4c578b1f</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\NsbSignalRIntegration.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>46e88ce6-61ad-4c13-94bc-4442465ac2d3</ItemGuid>
+    </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VSPackage.cs</DependentUpon>

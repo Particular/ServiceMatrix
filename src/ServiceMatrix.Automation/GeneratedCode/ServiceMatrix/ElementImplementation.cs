@@ -791,6 +791,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR")]
+		[DisplayName("Is Broadcasting Via Signal R")]
+		[Category("General")]
+		public virtual Boolean IsBroadcastingViaSignalR
+		{
+			get { return this.proxy.GetValue(() => this.IsBroadcastingViaSignalR); }
+			set { this.proxy.SetValue(() => this.IsBroadcastingViaSignalR, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
