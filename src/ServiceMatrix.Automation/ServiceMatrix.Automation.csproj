@@ -160,6 +160,7 @@
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\AddNugetReferencesForSignalRCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\ModifyRouteConfigCommand.cs" />
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
     <Compile Include="Commands\DeleteRelatedComponentsCommand.cs" />
     <Compile Include="Commands\SagaHelper.cs" />
@@ -215,6 +216,7 @@
     </Compile>
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorFactory.cs" />
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorPane.cs" />
+    <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="TypeConverters\InvariantCultureTimeSpanStringConverter.cs" />
     <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />
     <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
