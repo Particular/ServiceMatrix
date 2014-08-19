@@ -95,6 +95,29 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 	  }
 	  #>
 
+	  <#
+
+			// Send Commands
+      foreach (var nsbEvent in events)
+      {
+      #>
+
+        //
+        // POST: /TestMessages/SendMessage<#= nsbEvent.CodeIdentifier #>
+          
+        [HttpPost]
+        public string SendMessage<#= nsbEvent.CodeIdentifier #>(<#= nsbEvent.CodeIdentifier #> <#= nsbEvent.CodeIdentifier #>)
+        {
+            Configure<#= nsbEvent.CodeIdentifier #>(<#= nsbEvent.CodeIdentifier #>);
+			MvcApplication.Bus.Publish(<#= nsbEvent.CodeIdentifier #>);
+            return "<p> <#= nsbEvent.CodeIdentifier #> published</p>";
+        }
+	  <#
+	  }
+	  #>
+
+
+
 	  // Send Commands
     <#
       foreach (var command in commands)
@@ -102,6 +125,17 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
       #>
 
         partial void Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> message);
+      <#
+      }
+    #>
+
+	 // Publish Events
+    <#
+      foreach (var eventToConfigure in events)
+      {
+      #>
+
+        partial void Configure<#= eventToConfigure.CodeIdentifier #>(<#= eventToConfigure.CodeIdentifier #> message);
       <#
       }
     #>
