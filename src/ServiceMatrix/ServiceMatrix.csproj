@@ -472,6 +472,14 @@
       <Link>packages\Newtonsoft.Json.4.5.11.nupkg</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\BundledPackages\jQuery.1.7.1.nupkg">
+      <Link>packages\jQuery.1.7.1.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.jQuery.Unobtrusive.Ajax.2.0.30506.0.nupkg">
+      <Link>packages\Microsoft.jQuery.Unobtrusive.Ajax.2.0.30506.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
     </None>
@@ -892,11 +900,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
       <ItemGuid>a3ad0316-5442-4b1e-9499-c1db4c578b1f</ItemGuid>
-    </Content>
-    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\NsbSignalRIntegration.cs.tt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <ItemGuid>46e88ce6-61ad-4c13-94bc-4442465ac2d3</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
