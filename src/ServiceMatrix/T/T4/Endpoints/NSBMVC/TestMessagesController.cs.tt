@@ -8,8 +8,8 @@
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
-<#  var nserviceBusMVC = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
-<# 
+
+<#  var nserviceBusMVC = ((IProductElement)this.Element).As<INServiceBusMVC>(); 
     var root = ((IProductElement)this.Element).Root.As<IApplication>();
     var components = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Select(cl => cl.ComponentReference.Value);
     var sendercomponents = components.Where(c => c.IsSender);
@@ -39,22 +39,26 @@ using NServiceBus;
 #>using <#=root.CodeIdentifier#>.Internal.Commands.<#= serviceName #>;
 <#
     }
+#>
 
+<#
     foreach (var serviceName in events.Select(s => s.Parent.Parent.Parent.CodeIdentifier).Distinct())
 	{
 #>using <#=root.CodeIdentifier#>.Contracts.<#= serviceName #>;
 <#
     }
+#>
 
-    foreach (var serviceName in sendercomponents.Select(s => s.Parent.Parent.CodeIdentifier).Distinct())
-  {
-  #>using <#=root.CodeIdentifier#>.<#= serviceName #>;
 <#
-    }
-  #>
+	foreach (var serviceName in sendercomponents.Select(s => s.Parent.Parent.CodeIdentifier).Distinct())
+	{
+	#>using <#=root.CodeIdentifier#>.<#= serviceName #>;
+	<#
+	}
+#>
 
 
-  namespace <#= nserviceBusMVC.Namespace #>.Controllers
+namespace <#= nserviceBusMVC.Namespace #>.Controllers
 {
     public partial class TestMessagesController : Controller
     {
@@ -75,72 +79,31 @@ using NServiceBus;
 
       #>
 
-	    
-
         //
         // POST: /TestMessages/SendMessage<#= command.CodeIdentifier #>
           
         public I<#= component.CodeIdentifier #> <#= component.CodeIdentifier #> { get; set; }
           
         [HttpPost]
-        public ActionResult SendMessage<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> <#= command.CodeIdentifier #>)
+        public string SendMessage<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> <#= command.CodeIdentifier #>)
         {
             Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #>);
             <#= component.CodeIdentifier #>.Send(<#= command.CodeIdentifier #>);
-
-            ViewBag.MessageSent = "<#= command.CodeIdentifier #>";
-
-            return View("Index");
-        }
-
-		<#
-
-		}
-
-		// Send Events
-		foreach (var @event in events)
-		{
-            
-		#>
-
-		//
-        // POST: /TestMessages/SendMessage<#= @event.CodeIdentifier #>
-		
-        [HttpPost]
-        public ActionResult SendMessage<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #> <#= @event.CodeIdentifier #>)
-        {
-            Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #>);
-            MvcApplication.Bus.Publish(<#= @event.CodeIdentifier #>);
-
-            ViewBag.MessageSent = "<#= @event.CodeIdentifier #>";
-
-            return View("Index");
+			return "<p> <#= command.CodeIdentifier #> command sent</p>";
         }
 	  <#
+	  }
+	  #>
 
-			}
-
-      // Send Commands
+	  // Send Commands
+    <#
       foreach (var command in commands)
       {
-
       #>
 
         partial void Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> message);
       <#
-      
       }
-
-      // Send Events
-      foreach (var @event in events)
-      {
-
-      #>
-
-         partial void Configure<#= @event.CodeIdentifier #>(<#= @event.CodeIdentifier #> message);
-<#
-      }
-#>
-
+    #>
     }
 }

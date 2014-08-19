@@ -8,6 +8,7 @@
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Model" #>
 <#  var nserviceBusMVC = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
 <# 
     var root = ((IProductElement)this.Element).Root.As<IApplication>();
@@ -16,6 +17,8 @@
 
     var commands = sendercomponents.SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value)).Distinct();
     var events = sendercomponents.SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value)).Distinct();
+	var signalRcomponents = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Where(m => m.ComponentReference.Value != null && m.ComponentReference.Value.IsBroadcastingViaSignalR);
+	
 #>
 
 <!------------------------------------------------------------------------------
@@ -45,6 +48,47 @@
     <link href="/Content/Site.css" rel="stylesheet" type="text/css">
     <link href="/Content/Content.css" rel="stylesheet" type="text/css">
     <link href="/Content/TestMessages.css" rel="stylesheet" type="text/css">
+	<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+    <#
+    if (signalRcomponents.Any())
+	{
+	#>
+    <script src="~/Scripts/jquery.signalR-1.0.0.min.js"></script>
+    <script src="~/signalr/hubs"  type="text/javascript"></script>
+	<script>
+	$(function() {
+
+<#
+    foreach (var component in signalRcomponents)
+	{
+	  var message = component.ComponentName.Replace("Handler","");
+	  var serverHub = string.Format("{0}Hub",Char.ToLowerInvariant(component.ComponentName[0]) + component.ComponentName.Substring(1));
+      var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(message[0]) + message.Substring(1);	  
+	  var clientVariableForHub = string.Format("{0}Hub",proxyMethodNameForUseInJavaScript);
+
+#>
+
+    var <#= clientVariableForHub #> = $.connection.<#= serverHub #>;
+
+    <#= clientVariableForHub #>.client.<#= proxyMethodNameForUseInJavaScript #> = function (data) {
+        console.log('Received event : <#= message #> ');       
+		 var json<#= message #> = JSON.stringify(data);
+         $('#signalrmessages').append('<div><div class="text-lato-16"><#= message #></div><div>' + json<#= message #> + '</div></div>');
+    };
+
+<#
+    }
+#>
+  
+    $.connection.hub.start().done(function () {
+        console.log('Connection established!, ConnectionId = ' + $.connection.hub.id);
+           });
+});
+</script>
+	<#
+	}
+	#>
 
     <link href="/Images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -248,8 +292,7 @@
 
                                 <div class="sendMessage">
                                     <h2 class="text-lato-16"><#= command.CodeIdentifier #></h2>
-
-                                    @using (Html.BeginForm("SendMessage<#= command.CodeIdentifier #>", "TestMessages", FormMethod.Post, new { id = "SendMessage<#= command.CodeIdentifier #>" }))
+									@using (Ajax.BeginForm( "SendMessage<#= command.CodeIdentifier #>", new AjaxOptions { HttpMethod = "POST",  UpdateTargetId = "<#= command.CodeIdentifier #>Result", InsertionMode = InsertionMode.InsertAfter }))
                                     {
                                       <div>
                                         <table style="margin: 0px auto;">
@@ -264,14 +307,9 @@
                                           }
                                         </table>
                                       </div>
-
-                                      <a onclick="javascript:document.getElementById('SendMessage<#= command.CodeIdentifier #>').submit();">Send!</a>
+									  <input type="submit" value="Send">
                                     }
-
-                                    @if(ViewBag.MessageSent == "<#= command.CodeIdentifier #>")
-                                    {
-                                        <div class="label text-dosis-16">Command sent!</div>
-                                    }
+									<div id="<#= @command.CodeIdentifier #>Result" class="label text-dosis-16"></div>
                                 </div>
 
 		<#
@@ -286,8 +324,7 @@
       #>
                                 <div class="sendMessage">
                                     <h2 class="text-lato-16"><#= @event.CodeIdentifier #></h2>
-
-                                    @using (Html.BeginForm("SendMessage<#= @event.CodeIdentifier #>", "TestMessages", FormMethod.Post, new { id = "SendMessage<#= @event.CodeIdentifier #>" }))
+								    @using (Ajax.BeginForm( "SendMessage<#= @event.CodeIdentifier #>", new AjaxOptions { HttpMethod = "POST",  UpdateTargetId = "<#= @event.CodeIdentifier #>Result", InsertionMode = InsertionMode.InsertAfter }))
                                     {
                                       <div>
                                         <table style="margin: 0px auto;">
@@ -302,14 +339,10 @@
                                           }
                                         </table>
                                       </div>
-
-                                      <a onclick="javascript:document.getElementById('SendMessage<#= @event.CodeIdentifier #>').submit();">Send!</a>
-                                    }
-
-                                    @if(ViewBag.MessageSent == "<#= @event.CodeIdentifier #>")
-                                    {
-                                      <div class="label text-dosis-16">Event sent!</div>
-                                    }
+									   <input type="submit" value="Publish">
+                                      }
+									  <div id="<#= @event.CodeIdentifier #>Result" class="label text-dosis-16"></div>
+                                   
                                 </div>
 		<#
 
@@ -321,6 +354,23 @@
 
                             </article>
                         </div>
+	<#
+    if (signalRcomponents.Any())
+	{
+	#>
+						 <div class="sidebar text-lato-16">
+                            <div class="zone zone-content">
+                                <article class="content-item page">
+                                    <div class="sendMessage">
+                                        <h2 class="text-lato-16">SignalR Broadcasts:</h2>
+                                        <div id="signalrmessages" />
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+	<#
+    }
+	#>
                     </div>
                 </div>
             </div>
