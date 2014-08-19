@@ -3640,7 +3640,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"00acc49d-9566-4436-9535-1a93c2b0355c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c9a984c3-c0d6-46f5-a050-6d5be1b736ab\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c6563779-ff3e-40aa-99ac-361aa452505e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"eeac76b1-c9fd-44b0-b15d-9897f0ad1a5b\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"00acc49d-9566-4436-9535-1a93c2b0355c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c9a984c3-c0d6-46f5-a050-6d5be1b736ab\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c6563779-ff3e-40aa-99ac-361aa452505e\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3768,61 +3768,6 @@
   {
     "Name": "TemplateAuthoringUri",
     "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/a3ad0316-5442-4b1e-9499-c1db4c578b1f",
-    "ValueProvider": null
-  }
-]</properties>
-    </commandSettings>
-    <commandSettings Id="eeac76b1-c9fd-44b0-b15d-9897f0ad1a5b" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
-      <extendedElement>
-        <automationSettingsSchemaMoniker Id="e3765ac4-ed4e-47a0-b01c-6908a203f111" />
-      </extendedElement>
-      <properties>[
-  {
-    "Name": "SanitizeName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "SyncName",
-    "Value": "False",
-    "ValueProvider": null
-  },
-  {
-    "Name": "Tag",
-    "Value": null,
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetBuildAction",
-    "Value": "None",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetCopyToOutput",
-    "Value": "DoNotCopy",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetFileName",
-    "Value": "NsbSignalRIntegration.js",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TargetPath",
-    "Value": "",
-    "ValueProvider": {
-      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetScriptsPathInMvcEndpoint",
-      "Properties": []
-    }
-  },
-  {
-    "Name": "TemplateUri",
-    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/NsbSignalRIntegration.cs.tt",
-    "ValueProvider": null
-  },
-  {
-    "Name": "TemplateAuthoringUri",
-    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/46e88ce6-61ad-4c13-94bc-4442465ac2d3",
     "ValueProvider": null
   }
 ]</properties>
@@ -5996,15 +5941,6 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="0ea86f8f-59f3-41aa-97b5-4adc9ebf086e" name="GenerateSignalRBroadcastHandler" displayName="Generate Signal RBroadcast Handler" description="" codeIdentifier="GenerateSignalRBroadcastHandler" automationType="Command">
-                            <customizationPolicy name="CustomizationPolicySchema1">
-                              <settings>
-                                <setting propertyId="DisplayName" />
-                                <setting propertyId="Description" />
-                                <setting propertyId="Settings" />
-                              </settings>
-                            </customizationPolicy>
-                          </automationSettings>
-                          <automationSettings Id="e3765ac4-ed4e-47a0-b01c-6908a203f111" name="GenerateNsbIntegrationJs" displayName="Generate Nsb Integration Js" description="" codeIdentifier="GenerateNsbIntegrationJs" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
