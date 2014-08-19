@@ -51,7 +51,6 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
             // Add references for SignalR, if not already added.
             if (!project.HasReference("Microsoft.AspNet.SignalR.Core"))
             {   
-                project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "JQuery", "1.0.0");
                 project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "Owin", "1.0");
                 project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "Microsoft.Web.Infrastructure", "1.0.0.0");
                 project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "Microsoft.Owin.Host.SystemWeb", "1.0.0");
