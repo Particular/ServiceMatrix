@@ -3777,6 +3777,11 @@
         <automationSettingsSchemaMoniker Id="31be22e7-92e1-44c9-a23b-630fbc1332d6" />
       </extendedElement>
     </commandSettings>
+    <commandSettings Id="1fea1834-2544-4249-919b-da205d456698" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e56d7d57-d314-47aa-b511-7edbb5dc7e5f" />
+      </extendedElement>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -3982,7 +3987,7 @@
         <automationSettingsSchemaMoniker Id="e471e1a8-22cc-4018-bce8-85ca56604b84" />
       </extendedElement>
     </menuSettings>
-    <menuSettings Id="bb70859f-2ddb-4e26-8da8-5740f0e1593a" text="Broadcast via SignalR" commandId="0e05adcf-d57f-4c05-88b2-e1b85c487333" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
+    <menuSettings Id="bb70859f-2ddb-4e26-8da8-5740f0e1593a" text="Broadcast via SignalR" commandId="0e05adcf-d57f-4c05-88b2-e1b85c487333" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="1769cb19-9fe4-4e27-a43c-0d7aa127e532" />
       </extendedElement>
@@ -3994,6 +3999,41 @@
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.IsMVCEndpoint",
     "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentBroadcastingViaSignalR",
+    "Properties": [
+      {
+        "Name": "IsBroadcastingViaSignalR",
+        "Value": "False",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </menuSettings>
+    <menuSettings Id="e67c7010-4ae2-472c-9178-33792767d558" text="Remove Broadcast Via Signal R" commandId="1fea1834-2544-4249-919b-da205d456698" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="02f1ab6a-2f53-491b-ac37-df3443ab0fa0" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsProcessorComponentCondition",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsMVCEndpoint",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentBroadcastingViaSignalR",
+    "Properties": [
+      {
+        "Name": "IsBroadcastingViaSignalR",
+        "Value": "True",
+        "ValueProvider": null
+      }
+    ]
   }
 ]</conditions>
     </menuSettings>
@@ -5955,6 +5995,24 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="31be22e7-92e1-44c9-a23b-630fbc1332d6" name="ModifyRouteConfigForSignalR" displayName="Modify Route Config For Signal R" description="" codeIdentifier="ModifyRouteConfigForSignalR" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="02f1ab6a-2f53-491b-ac37-df3443ab0fa0" name="RemoveBroadcastViaSignalR" displayName="Remove Broadcast Via Signal R" description="" codeIdentifier="RemoveBroadcastViaSignalR" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="e56d7d57-d314-47aa-b511-7edbb5dc7e5f" name="OnRemoveBroadcastViaSignalRCommand" displayName="On Remove Broadcast Via Signal RCommand" description="" codeIdentifier="OnRemoveBroadcastViaSignalRCommand" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />

@@ -200,6 +200,7 @@
     <Compile Include="Commands\ShowCommandTypePicker.cs" />
     <Compile Include="AutomationSetup\TemplateMappings.cs" />
     <Compile Include="ComponentLink\ICommandLink.cs" />
+    <Compile Include="Conditions\IsComponentBroadcastingViaSignalR.cs" />
     <Compile Include="Conditions\IsMVCEndpoint.cs" />
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
