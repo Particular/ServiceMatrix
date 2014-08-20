@@ -37,3 +37,4 @@ run-git.cmd
 src/Chocolatey/Build*/*
 App_Packages
 Thumbs.db
+*.patterndefinition.diagram
