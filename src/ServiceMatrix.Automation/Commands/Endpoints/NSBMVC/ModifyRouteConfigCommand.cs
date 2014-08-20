@@ -5,7 +5,6 @@
     using System.ComponentModel.Composition;
     using System.ComponentModel.DataAnnotations;
     using System.IO;
-    using System.Linq;
     using NServiceBusStudio.Automation.Extensions;
     using NuPattern.Runtime;
     using NuPattern.VisualStudio.Solution;

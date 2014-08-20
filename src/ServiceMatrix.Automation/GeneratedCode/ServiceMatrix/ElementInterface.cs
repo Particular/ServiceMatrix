@@ -1663,6 +1663,14 @@ namespace NServiceBusStudio
 		String TargetNsbVersion { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled")]
+		[DisplayName("Is SignalR Enabled")]
+		[Category("General")]
+		Boolean IsSignalREnabled { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]

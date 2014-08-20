@@ -35,22 +35,15 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 
         public override void Execute()
         {
-            var app = CurrentElement.Root.As<IApplication>();
-            var component = CurrentElement.As<NServiceBusStudio.IComponent>();
-            
-            var endpointElement = NServiceBusStudio.Automation.Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement).As<IProductElement>();
-            
-            component.IsBroadcastingViaSignalR = true;
-
-            var project = endpointElement.GetProject();
-            if (project == null)
+            var nserviceBusMVC = CurrentElement.As<INServiceBusMVC>();
+            if (!nserviceBusMVC.IsSignalREnabled)
             {
-                return;
-            }
+                var project = CurrentElement.GetProject();
+                if (project == null)
+                {
+                    return;
+                }
 
-            // Add references for SignalR, if not already added.
-            if (!project.HasReference("Microsoft.AspNet.SignalR.Core"))
-            {   
                 project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "Owin", "1.0");
                 project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "Microsoft.Web.Infrastructure", "1.0.0.0");
                 project.InstallNugetPackageForSpecifiedVersion(VsPackageInstallerServices, VsPackageInstaller, StatusBar, "Microsoft.Owin.Host.SystemWeb", "1.0.0");

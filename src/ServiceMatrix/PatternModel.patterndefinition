@@ -3706,7 +3706,7 @@
   }
 ]</properties>
     </commandSettings>
-    <commandSettings Id="00acc49d-9566-4436-9535-1a93c2b0355c" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.AddSignalRNugetPackages">
+    <commandSettings Id="00acc49d-9566-4436-9535-1a93c2b0355c" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ExecuteAddNugetReferencesForSignalRCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="1c4654b0-7d53-4b05-90b7-b04d3297f34f" />
       </extendedElement>
@@ -3780,6 +3780,16 @@
     <commandSettings Id="1fea1834-2544-4249-919b-da205d456698" typeId="NuPattern.Library.Commands.AggregatorCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e56d7d57-d314-47aa-b511-7edbb5dc7e5f" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="295ebf7b-f769-4f15-a07c-c688dc071bde" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.AddSignalRNugetPackages">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="3d9a070f-58b8-4abf-93d8-4588712fb689" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="fd7d45bc-a9af-4a8e-ac30-b9a56e55bae8" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ModifyRouteConfigCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="9dc08037-23a5-4300-a1dc-04d66d4ffcee" />
       </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
@@ -5976,7 +5986,7 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
-                          <automationSettings Id="1c4654b0-7d53-4b05-90b7-b04d3297f34f" name="AddReferencesForSignalR" displayName="Add References For Signal R" description="" codeIdentifier="AddReferencesForSignalR" automationType="Command">
+                          <automationSettings Id="1c4654b0-7d53-4b05-90b7-b04d3297f34f" name="ExecuteAddNugetReferencesForSignalRInEndpoint" displayName="Execute Add Nuget References For Signal RIn Endpoint" description="" codeIdentifier="ExecuteAddNugetReferencesForSignalRInEndpoint" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7819,6 +7829,26 @@
   ]
 }</valueProvider>
                   </property>
+                  <property Id="dd4a2fdd-da4b-4ed0-8c3f-7db9c80bce31" name="IsSignalREnabled" displayName="Is SignalR Enabled" description="Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled" codeIdentifier="IsSignalREnabled" type="System.Boolean" isVisible="false" isReadOnly="true">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                    <valueProvider>{
+  "TypeId": "NServiceBusStudio.Automation.ValueProviders.IsSignalREnabledInEndpointValueProvider",
+  "Properties": []
+}</valueProvider>
+                  </property>
                 </properties>
                 <automationSettings>
                   <automationSettings Id="ca48f586-9700-45bd-a072-af32a852a711" name="AddProjectReferences" displayName="Add Project References" description="" codeIdentifier="AddProjectReferences" automationType="Command">
@@ -8047,6 +8077,24 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="06f26a68-7ca5-4b45-8e91-ac95a5c6a9bc" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="3d9a070f-58b8-4abf-93d8-4588712fb689" name="AddNugetReferencesForSignalRCommand" displayName="Add Nuget References For Signal RCommand" description="" codeIdentifier="AddNugetReferencesForSignalRCommand" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="9dc08037-23a5-4300-a1dc-04d66d4ffcee" name="ModifyRouteConfigCommand" displayName="Modify Route Config Command" description="" codeIdentifier="ModifyRouteConfigCommand" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

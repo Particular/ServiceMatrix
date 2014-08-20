@@ -159,6 +159,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\ExecuteAddNugetReferencesForSignalRCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\AddNugetReferencesForSignalRCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\ModifyRouteConfigCommand.cs" />
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="Util\WarningException.cs" />
     <Compile Include="ValueProviders\ApplicationTargetNsbVersionValueProvider.cs" />
     <Compile Include="ValueProviders\GetScriptsPathInMvcEndpoint.cs" />
+    <Compile Include="ValueProviders\IsSignalREnabledInEndpointValueProvider.cs" />
     <Compile Include="ValueProviders\TargetNsbVersionValueProvider.cs" />
     <Compile Include="ViewModels\ComponentPickerViewModel.cs" />
     <Compile Include="ViewModels\RelatedComponentsPickerViewModel.cs" />
