@@ -42,15 +42,17 @@
                 var contents = File.ReadAllText(item.PhysicalPath);
                 
                 // Hack begin
-                var indexToAdd = GetNthIndex(contents, '{', 3);
-                var firstPart = contents.Substring(0, indexToAdd + 1);
-                var stringToAdd = "routes.MapHubs();";
-                var finalPart = contents.Substring(indexToAdd + 1);
-                var newContents = string.Format("{0}\r\n{1}\r\n{2}", firstPart, stringToAdd, finalPart);
+                if (!contents.Contains("routes.MapHubs()"))
+                {
+                    var indexToAdd = GetNthIndex(contents, '{', 3);
+                    var firstPart = contents.Substring(0, indexToAdd + 1);
+                    var stringToAdd = "routes.MapHubs();";
+                    var finalPart = contents.Substring(indexToAdd + 1);
+                    var newContents = string.Format("{0}\r\n{1}\r\n{2}", firstPart, stringToAdd, finalPart);
+                    item.SetContent(newContents);
+                }
                 // Hack end
-
-                item.SetContent(newContents);
-            }
+             }
         }
 
         public int GetNthIndex(string s, char t, int n)
