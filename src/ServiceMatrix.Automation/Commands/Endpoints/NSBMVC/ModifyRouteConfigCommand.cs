@@ -37,6 +37,7 @@
             {
                 var filePath = String.Format("{0}\\App_Start\\RouteConfig.cs", mvcEndpoint.Namespace);
                 var item = Solution.FindItem(filePath);
+                
                 if (item != null)
                 {
                     var contents = File.ReadAllText(item.PhysicalPath);
@@ -44,7 +45,7 @@
                     // Hack begin - read using a better code dom rather than traversing using {!
                         var indexToAdd = GetNthIndex(contents, '{', 3);
                         var firstPart = contents.Substring(0, indexToAdd + 1);
-                        var stringToAdd = "routes.MapHubs();";
+                        var stringToAdd = "\t\t\troutes.MapHubs();";
                         var finalPart = contents.Substring(indexToAdd + 1);
                         var newContents = string.Format("{0}\r\n{1}\r\n{2}", firstPart, stringToAdd, finalPart);
                         item.SetContent(newContents);
