@@ -3781,6 +3781,13 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e56d7d57-d314-47aa-b511-7edbb5dc7e5f" />
       </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"33838c14-9846-454e-a030-8f925655fd4b\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <commandSettings Id="295ebf7b-f769-4f15-a07c-c688dc071bde" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.AddSignalRNugetPackages">
       <extendedElement>
@@ -3795,6 +3802,11 @@
     <commandSettings Id="701a443e-e454-4987-b63d-655575d6d938" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ExecuteModifyRouteConfigForSignalRCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="0b99b9b0-c7de-4aef-9320-49b2db0ba1b4" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="33838c14-9846-454e-a030-8f925655fd4b" typeId="NServiceBusStudio.Automation.Commands.RemoveSignalRComponentCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a8f9fd25-964d-44e1-97e3-fda6fdbddf64" />
       </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
@@ -6037,6 +6049,15 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="0b99b9b0-c7de-4aef-9320-49b2db0ba1b4" name="ExecuteModifyRouteConfigForSignalRInEndpoint" displayName="Execute Modify Route Config For Signal RIn Endpoint" description="" codeIdentifier="ExecuteModifyRouteConfigForSignalRInEndpoint" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="a8f9fd25-964d-44e1-97e3-fda6fdbddf64" name="RemoveSignalRComponentCode" displayName="Remove SignalR Component Code" description="" codeIdentifier="RemoveSignalRComponentCode" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
