@@ -32,26 +32,25 @@
 
         public override void Execute()
         {
-            var component = CurrentElement.As<NServiceBusStudio.IComponent>();
-            var mvcEndpoint = NServiceBusStudio.Automation.Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement);
-            var filePath = String.Format("{0}\\App_Start\\RouteConfig.cs", mvcEndpoint.Namespace);
-            var item = Solution.FindItem(filePath);            
-            if (item != null)
+            var mvcEndpoint = CurrentElement.As<INServiceBusMVC>();
+            if (!mvcEndpoint.IsSignalREnabled)
             {
-                var contents = File.ReadAllText(item.PhysicalPath);
-                
-                // Hack begin
-                if (!contents.Contains("routes.MapHubs()"))
+                var filePath = String.Format("{0}\\App_Start\\RouteConfig.cs", mvcEndpoint.Namespace);
+                var item = Solution.FindItem(filePath);
+                if (item != null)
                 {
-                    var indexToAdd = GetNthIndex(contents, '{', 3);
-                    var firstPart = contents.Substring(0, indexToAdd + 1);
-                    var stringToAdd = "routes.MapHubs();";
-                    var finalPart = contents.Substring(indexToAdd + 1);
-                    var newContents = string.Format("{0}\r\n{1}\r\n{2}", firstPart, stringToAdd, finalPart);
-                    item.SetContent(newContents);
+                    var contents = File.ReadAllText(item.PhysicalPath);
+                    //TODO: Remove hack - either add the MapHubs in a new file rather than Modifying RouteConfig or use proper code DOM to locate the function rather than relying that position of the function!
+                    // Hack begin - read using a better code dom rather than traversing using {!
+                        var indexToAdd = GetNthIndex(contents, '{', 3);
+                        var firstPart = contents.Substring(0, indexToAdd + 1);
+                        var stringToAdd = "routes.MapHubs();";
+                        var finalPart = contents.Substring(indexToAdd + 1);
+                        var newContents = string.Format("{0}\r\n{1}\r\n{2}", firstPart, stringToAdd, finalPart);
+                        item.SetContent(newContents);
+                    // Hack end
                 }
-                // Hack end
-             }
+            }
         }
 
         public int GetNthIndex(string s, char t, int n)

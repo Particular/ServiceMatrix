@@ -159,6 +159,7 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\ExecuteModifyRouteConfigForSignalRCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\ExecuteAddNugetReferencesForSignalRCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\AddNugetReferencesForSignalRCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\ModifyRouteConfigCommand.cs" />

@@ -9,10 +9,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 {
     using System.Linq;
 
-    [DisplayName("Execute AddNugetReferencesForSignalRCommand in MVCEndpoint")]
-    [Description("Will invoke AddNugetReferencesForSignalRCommand in the associated MVC Endpoint")]
+    [DisplayName("Execute ModifyRouteConfigForSignalRCommand in MVCEndpoint")]
+    [Description("Will invoke ExecuteModifyRouteConfigForSignalR command in the associated MVC Endpoint")]
     [CLSCompliant(false)]
-    public class ExecuteAddNugetReferencesForSignalRCommand : NuPattern.Runtime.Command
+    public class ExecuteModifyRouteConfigForSignalRCommand : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]
@@ -23,10 +23,12 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
             // Get the associated MVC Endpoint
             var mvcEndpointElement = Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement).As<IProductElement>();
 
-            // Find the AddNugetReferencesForSignalRCommand command to execute
-            var commandToExecute = mvcEndpointElement.AutomationExtensions.First(c => c.Name.Equals("AddNugetReferencesForSignalR"));
+            // Find the ModifyRouteConfigForSignalRCommand command to execute
+            var commandToExecute = mvcEndpointElement.AutomationExtensions.First(c => c.Name.Equals("ModifyRouteConfigForSignalR"));
             commandToExecute.Execute();
 
+            // Set the Broadcasting via SignalR flag on the component level to true;
+            CurrentElement.As<NServiceBusStudio.IComponent>().IsBroadcastingViaSignalR = true; 
         }
     }
 }
