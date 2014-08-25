@@ -9,10 +9,10 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 {
     using System.Linq;
 
-    [DisplayName("Execute RemoveReferencesForSignalR Command in MVCEndpoint")]
-    [Description("Will invoke RemoveReferencesForSignalR command in the associated MVC Endpoint")]
+    [DisplayName("Remove all SignalR related references from the MVCEndpoint")]
+    [Description("Will invoke RemoveReferencesForSignalR and RemoveHubsFromRouteConfig command in the associated MVC Endpoint")]
     [CLSCompliant(false)]
-    public class ExecuteRemoveReferencesForSignalRCommand : NuPattern.Runtime.Command
+    public class ExecuteRemoveReferencesForSignalRInEndpointCommand : NuPattern.Runtime.Command
     {
         [Required]
         [Import(AllowDefault = true)]
@@ -26,6 +26,7 @@ namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
             // Find the ExecuteRemoveReferencesForSignalR command to execute
             var commandToExecute = mvcEndpointElement.AutomationExtensions.First(c => c.Name.Equals("RemoveReferencesForSignalR"));
             commandToExecute.Execute();
+        
         }
     }
 }

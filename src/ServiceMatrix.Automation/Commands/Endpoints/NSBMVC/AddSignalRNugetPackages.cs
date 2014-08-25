@@ -9,10 +9,8 @@ using NuPattern.VisualStudio;
 
 namespace NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC
 {
-    using System.Linq;
     using NServiceBusStudio.Automation.Extensions;
-    using NServiceBusStudio.Automation.Model;
-
+    
     [DisplayName("WebMVCEndpoint AddNugetReferencesForSignalRCommand")]
     [Description("WebMVCEndpoint Add Nuget References For SignalR")]
     [CLSCompliant(false)]

@@ -159,10 +159,11 @@
     <Compile Include="Commands\AddLibrariesProjectReferences.cs" />
     <Compile Include="Commands\ConditionalCommand.cs" />
     <Compile Include="Commands\ConditionalProcessorComponentCommand.cs" />
-    <Compile Include="Commands\Endpoints\NSBMVC\ExecuteRemoveReferencesForSignalRCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\RemoveReferencesForSignalR.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\ExecuteRemoveReferencesForSignalRInEndpointCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\ExecuteModifyRouteConfigForSignalRCommand.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\ExecuteAddNugetReferencesForSignalRCommand.cs" />
-    <Compile Include="Commands\Endpoints\NSBMVC\AddNugetReferencesForSignalRCommand.cs" />
+    <Compile Include="Commands\Endpoints\NSBMVC\AddSignalRNugetPackages.cs" />
     <Compile Include="Commands\Endpoints\NSBMVC\ModifyRouteConfigCommand.cs" />
     <Compile Include="Commands\GenerateComponentCodeCommand.cs" />
     <Compile Include="Commands\DeleteRelatedComponentsCommand.cs" />

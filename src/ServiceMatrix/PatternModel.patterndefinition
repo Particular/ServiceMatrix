@@ -3784,7 +3784,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"33838c14-9846-454e-a030-8f925655fd4b\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"33838c14-9846-454e-a030-8f925655fd4b\"\r\n  },\r\n  {\r\n    \"CommandId\": \"3c32a413-f22e-428a-8988-9c7bddcde17a\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3807,6 +3807,16 @@
     <commandSettings Id="33838c14-9846-454e-a030-8f925655fd4b" typeId="NServiceBusStudio.Automation.Commands.RemoveSignalRComponentCodeCommand">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="a8f9fd25-964d-44e1-97e3-fda6fdbddf64" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="3c32a413-f22e-428a-8988-9c7bddcde17a" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ExecuteRemoveReferencesForSignalRInEndpointCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c4fb2250-905a-4de2-aff0-c53f5066825d" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="1484025f-c5b0-4dde-a5a5-b2ae4af67763" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.RemoveReferencesForSignalR">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b26431fc-c8c3-459f-91ec-2b3e0b64f8dc" />
       </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
@@ -6066,6 +6076,15 @@
                               </settings>
                             </customizationPolicy>
                           </automationSettings>
+                          <automationSettings Id="c4fb2250-905a-4de2-aff0-c53f5066825d" name="ExecuteRemoveSignalRReferencesInEndpoint" displayName="Execute Remove Signal RReferences In Endpoint" description="" codeIdentifier="ExecuteRemoveSignalRReferencesInEndpoint" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
                         </automationSettings>
                         <childElement>
                           <collection Id="318cc384-e8ba-465f-8469-1235fce91ef0" name="Publishes" displayName="Publishes / Sends" description="Publishes / Sends" codeIdentifier="Publishes">
@@ -8130,6 +8149,15 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="9dc08037-23a5-4300-a1dc-04d66d4ffcee" name="ModifyRouteConfigForSignalR" displayName="Modify Route Config For Signal R" description="" codeIdentifier="ModifyRouteConfigForSignalR" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="b26431fc-c8c3-459f-91ec-2b3e0b64f8dc" name="RemoveReferencesForSignalR" displayName="Remove References For Signal R" description="" codeIdentifier="RemoveReferencesForSignalR" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />
