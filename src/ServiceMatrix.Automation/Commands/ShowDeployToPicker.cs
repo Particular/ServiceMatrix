@@ -91,6 +91,19 @@ namespace AbstractEndpoint.Automation.Commands
                         {
                             selectedEndpoint = endpoints.FirstOrDefault(e => String.Equals(String.Format("{0}", e.As<IProductElement>().InstanceName), selectedElement, StringComparison.InvariantCultureIgnoreCase));
                             element.DeployTo(selectedEndpoint);
+
+                            if( selectedEndpoint is INServiceBusMVC)
+                            {
+                                var result = MessageBox.Show(String.Format("Would you like to broadcast this via SignalR?"), "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+                                if (result == MessageBoxResult.Yes)
+                                {
+                                    var componentElement = element.As<IProductElement>();
+                                    
+                                    // Find the Broadcast via SignalR command to execute
+                                    var commandToExecute = componentElement.AutomationExtensions.First(c => c.Name.Equals("OnBroadcastViaSignalRCommand"));
+                                    commandToExecute.Execute();
+                                }
+                            }
                         }
                         else
                         {
@@ -109,11 +122,20 @@ namespace AbstractEndpoint.Automation.Commands
 
                             if (selectedType == "NServiceBus ASP.NET MVC")
                             {
-                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
+                                app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
+                                var result = MessageBox.Show(String.Format("Would you like to broadcast this via SignalR?"), "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+                                if (result == MessageBoxResult.Yes)
+                                {
+                                    var componentElement = element.As<IProductElement>();
+
+                                    // Find the Broadcast via SignalR command to execute
+                                    var commandToExecute = componentElement.AutomationExtensions.First(c => c.Name.Equals("OnBroadcastViaSignalRCommand"));
+                                    commandToExecute.Execute();
+                                }
                             }
                             else
                             {
-                                selectedEndpoint = app.Design.Endpoints.CreateNServiceBusHost(selectedName);
+                                app.Design.Endpoints.CreateNServiceBusHost(selectedName);
                             }
                         }
                     }
