@@ -21,6 +21,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using NServiceBus;
+using NServiceBus.Persistence;
 using System.Reflection;
 using System.Web.Mvc;
 
@@ -41,28 +42,34 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 				  .PropertiesAutowired();
             
 			var container = builder.Build();
+
+			// Configure the bus
+			var config = new BusConfiguration();
+			
+			//TODO: Make this based on user selection.		
+			config.UsePersistence<InMemoryPersistence>();
+			config.UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container));
+
+
+			config.EnableInstallers();
+            
 <#
 if (!nserviceBusHost.SendOnly)
 {
 #>
-            var bus = NServiceBus.Configure
-                .With(b => b
-                    .Conventions(c => MessageConventions.Apply(c))
-                    .UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container))
-                    .PurgeOnStartup(true)
-                    .EnableInstallers()
-                    .Transactions(t => t.Disable()))
-                .CreateBus()
-                .Start();
+			
+			var bus = Bus.Create(config);
+            bus.Start();            
 <#
 } 
 else 
 {
 #>
-            var bus = NServiceBus.Configure
-                .With(b => b.UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container)))
-                .Transactions(t => t.Disable())
-                .SendOnly();
+			config.Transactions().Disable();
+			config.SendOnly();
+			
+			var bus = Bus.Create(config);
+
 <#
 }
 #>
