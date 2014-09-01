@@ -3640,7 +3640,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"00acc49d-9566-4436-9535-1a93c2b0355c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c9a984c3-c0d6-46f5-a050-6d5be1b736ab\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c6563779-ff3e-40aa-99ac-361aa452505e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"701a443e-e454-4987-b63d-655575d6d938\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"00acc49d-9566-4436-9535-1a93c2b0355c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c9a984c3-c0d6-46f5-a050-6d5be1b736ab\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c6563779-ff3e-40aa-99ac-361aa452505e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"701a443e-e454-4987-b63d-655575d6d938\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e93fc2e2-16a2-4c0e-a00c-811c37b50275\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dd29ea6e-3409-4f85-a33a-0a1b19b3afe1\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bdfe1fc9-0f8b-41f3-a746-aa60417884b5\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -3818,6 +3818,206 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b26431fc-c8c3-459f-91ec-2b3e0b64f8dc" />
       </extendedElement>
+    </commandSettings>
+    <commandSettings Id="e93fc2e2-16a2-4c0e-a00c-811c37b50275" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="995dda2f-e631-4b95-a960-3db8c1a1780b" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "guidance.css",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetContentPathInMvcEndpoint",
+      "Properties": []
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/guidance.css.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/09c2e659-4157-4700-b835-e17ab3d40a7a",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="dd29ea6e-3409-4f85-a33a-0a1b19b3afe1" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="3ce8ffa6-125c-4ce6-865d-9d22c06de47f" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "highlight.css",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetContentPathInMvcEndpoint",
+      "Properties": []
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/highlight.css.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/20047eb4-21c7-4383-a9c6-56cd477ccfbf",
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsDeployed",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "InstanceName",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "ToolkitIdentifier",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "CommandName",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "FileName",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "FilePath",
+    "Value": null,
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="bdfe1fc9-0f8b-41f3-a746-aa60417884b5" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b7bdcbdd-a301-4cc6-9edf-cd24e2f71f4f" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Content",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "highlight.js",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetScriptsPathInMvcEndpoint",
+      "Properties": []
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/highlight.js.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9bd42513-3b43-46c2-bb96-82a37d02ab89",
+    "ValueProvider": null
+  }
+]</properties>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
@@ -6077,6 +6277,33 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="c4fb2250-905a-4de2-aff0-c53f5066825d" name="ExecuteRemoveSignalRReferencesInEndpoint" displayName="Execute Remove Signal RReferences In Endpoint" description="" codeIdentifier="ExecuteRemoveSignalRReferencesInEndpoint" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="995dda2f-e631-4b95-a960-3db8c1a1780b" name="GenerateGuidanceCSS" displayName="Generate Guidance CSS" description="" codeIdentifier="GenerateGuidanceCSS" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="3ce8ffa6-125c-4ce6-865d-9d22c06de47f" name="GenerateHighlightCSS" displayName="Generate Highlight CSS" description="" codeIdentifier="GenerateHighlightCSS" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="b7bdcbdd-a301-4cc6-9edf-cd24e2f71f4f" name="GenerateHighlightJS" displayName="Generate Highlight JS" description="" codeIdentifier="GenerateHighlightJS" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />

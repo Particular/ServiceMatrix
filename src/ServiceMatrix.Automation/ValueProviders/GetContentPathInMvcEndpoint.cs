@@ -7,10 +7,10 @@
     using NuPattern.Runtime;
 
     [CLSCompliant(false)]
-    [DisplayName("GetScriptsPathInMvcEndpoint")]
+    [DisplayName("GetContentPathInMvcEndpoint")]
     [Category("General")]
-    [Description("Get the location for the Scripts folder")]
-    public class GetScriptsPathInMvcEndpoint : ValueProvider
+    [Description("Get the location for the Content folder")]
+    public class GetContentPathInMvcEndpoint : ValueProvider
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -23,13 +23,13 @@
         {
             try
             {
-                var app = ((IProductElement) this.CurrentElement).Root.As<IApplication>();
+                var app = ((IProductElement)this.CurrentElement).Root.As<IApplication>();
                 var mvcEndpoint = NServiceBusStudio.Automation.Model.Helpers.GetMvcEndpointFromLinkedElement(CurrentElement).As<IProductElement>();
 
                 if (mvcEndpoint != null)
                 {
                     var path = String.Format("{0}.{1}", app.InstanceName, mvcEndpoint.InstanceName);
-                    path += "\\Scripts";
+                    path += "\\Content";
                     return path;
                 }
                 return null;
