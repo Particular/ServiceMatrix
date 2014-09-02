@@ -2797,18 +2797,6 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
-		/// Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly
-		/// </summary>
-		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly")]
-		[DisplayName("Send Only")]
-		[Category("General")]
-		public virtual Boolean SendOnly
-		{
-			get { return this.proxy.GetValue(() => this.SendOnly); }
-			set { this.proxy.SetValue(() => this.SendOnly, value); }
-		}
-
-		/// <summary>
 		/// Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
 		/// </summary>
 		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]
