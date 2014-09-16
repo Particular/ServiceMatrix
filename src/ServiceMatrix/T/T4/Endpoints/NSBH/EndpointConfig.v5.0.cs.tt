@@ -11,7 +11,6 @@
 <#  var endpoint = ((IProductElement)this.Element).As<INServiceBusHost>(); #>
 using System;
 using NServiceBus;
-using NServiceBus.Persistence;
  
 namespace <#= endpoint.Namespace #>
 {

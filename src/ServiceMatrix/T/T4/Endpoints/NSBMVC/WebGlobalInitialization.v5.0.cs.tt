@@ -48,7 +48,7 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 			
 			//TODO: Make this based on user selection.		
 			config.UsePersistence<InMemoryPersistence>();
-			config.UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container));
+			config.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
 
 			config.EnableInstallers();
