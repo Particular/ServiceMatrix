@@ -47,7 +47,7 @@ namespace NServiceBusStudio.Automation.Licensing
             {
                 var trialExpiredDlg = new TrialExpired
                 {
-                    CurrentLicense = license
+                    IsTrialLicense = license != null && license.IsTrialLicense
                 };
                 trialExpiredDlg.ShowDialog();
                 if (trialExpiredDlg.ResultingLicenseText == null)

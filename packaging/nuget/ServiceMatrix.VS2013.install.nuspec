@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ServiceMatrix.VS2013.install</id>
+    <version>$version$</version>
+    <title>ServiceMatrix.2013.Install (Install)</title>
+    <authors>Particular Software</authors>
+    <owners>Particular Software</owners>
+    <projectUrl>http://particular.net/servicematrix</projectUrl>
+    <iconUrl>http://s3.amazonaws.com/nuget.images/ServiceMatrix_128.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Visual Studio 2013 extension for NServiceBus</description>
+    <summary></summary>
+    <tags>nservicebus particular chocolatey servicematrix</tags>
+    <dependencies>
+      <dependency id="DotNet4.5" version="4.5.20120822"  />
+    </dependencies>
+  </metadata>
+</package>

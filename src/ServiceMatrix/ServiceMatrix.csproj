@@ -572,10 +572,9 @@
     <Content Include="Resources\LicenseAgreement.rtf">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <None Include="ripple.dependencies.config" />
     <None Include="source.extension.gen.ttinclude">
       <DependentUpon>source.extension.tt</DependentUpon>
-      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/D:\dev\particular\servicematrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/Studio/Element/C:\Dev\ServiceMatrix\src\Studio.slnbldr%252f2f549f12-cb1b-4ca1-ae61-10834f1d72e6</SourceModelReference>
       <ItemGuid>b5cfa66d-9672-4907-869c-fd3e1db61ee8</ItemGuid>
     </None>
     <None Include="source.extension.VSVersion.gen.ttinclude">
@@ -999,6 +998,4 @@
   </Target>
   <Target Name="BeforeBuild" DependsOnTargets="EnsureVsixInPlace;Transform">
   </Target>
-  <Import Project="$(SolutionDir)..\BuildSupport\RippleRestoreTask.targets" />
-  <Import Project="$(SolutionDir)..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
 </Project>
