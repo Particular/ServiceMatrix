@@ -14,8 +14,22 @@
     var components = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Select(cl => cl.ComponentReference.Value);
     var sendercomponents = components.Where(c => c.IsSender);
 
-    var commands = sendercomponents.SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value)).Distinct();
-    var events = sendercomponents.SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value)).Distinct();
+	var commandsAndSenders = 
+        sendercomponents
+            .SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value))
+            .Distinct()
+            .OrderBy(cm => cm.CodeIdentifier)
+            .Select(cm => 
+                new 
+                { 
+                    Command = cm, 
+                    CanonicalSender = sendercomponents.First(c => c.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == cm))
+                });
+    var events = 
+        sendercomponents
+            .SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value))
+            .Distinct()
+            .OrderBy(e => e.CodeIdentifier);
 #>
 
 //------------------------------------------------------------------------------
@@ -33,24 +47,25 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using NServiceBus;
+
 <#
-    foreach (var serviceName in commands.Select(s => s.Parent.Parent.Parent.CodeIdentifier).Distinct())
+    foreach (var serviceName in commandsAndSenders.Select(s => s.Command.Parent.Parent.Parent.CodeIdentifier).Distinct().OrderBy(sn => sn))
 	{
-#>using <#=root.CodeIdentifier#>.Internal.Commands.<#= serviceName #>;
+#>using <#=root.CodeIdentifier#>.<#=root.ProjectNameInternalMessages #>.Commands.<#= serviceName #>;
 <#
     }
 #>
 
 <#
-    foreach (var serviceName in events.Select(s => s.Parent.Parent.Parent.CodeIdentifier).Distinct())
+    foreach (var serviceName in events.Select(s => s.Parent.Parent.Parent.CodeIdentifier).Distinct().OrderBy(sn => sn))
 	{
-#>using <#=root.CodeIdentifier#>.Contracts.<#= serviceName #>;
+#>using <#=root.CodeIdentifier#>.<#=root.ProjectNameContracts #>.<#= serviceName #>;
 <#
     }
 #>
 
 <#
-	foreach (var serviceName in sendercomponents.Select(s => s.Parent.Parent.CodeIdentifier).Distinct())
+	foreach (var serviceName in sendercomponents.Select(s => s.Parent.Parent.CodeIdentifier).Distinct().OrderBy(sn => sn))
 	{
 	#>using <#=root.CodeIdentifier#>.<#= serviceName #>;
 	<#
@@ -71,38 +86,39 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
         }
 
 		<#
+		foreach (var component in commandsAndSenders.Select(t => t.CanonicalSender).Distinct().OrderBy(c => c.CodeIdentifier))
+        {
+		#>
+		
+		public I<#= component.CodeIdentifier #> <#= component.CodeIdentifier #> { get; set; }
+		<#
+		}
 
-			// Send Commands
-      foreach (var command in commands)
-      {
-          var component = sendercomponents.First(c => c.Publishes.CommandLinks.Any(cl => cl.CommandReference.Value == command));
+		// Send Commands
+		foreach (var commandAndSender in commandsAndSenders)
+		{
+		#>
 
-      #>
-
-        //
-        // POST: /TestMessages/SendMessage<#= command.CodeIdentifier #>
-          
-        public I<#= component.CodeIdentifier #> <#= component.CodeIdentifier #> { get; set; }
+        // POST: /TestMessages/SendMessage<#=            commandAndSender.Command.CodeIdentifier #>
           
         [HttpPost]
-        public string SendMessage<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> <#= command.CodeIdentifier #>)
+        public string SendMessage<#= commandAndSender.Command.CodeIdentifier #>(<#= commandAndSender.Command.CodeIdentifier #> <#= commandAndSender.Command.CodeIdentifier #>)
         {
-            Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #>);
-            <#= component.CodeIdentifier #>.Send(<#= command.CodeIdentifier #>);
-			return "<p> <#= command.CodeIdentifier #> command sent</p>";
+            Configure<#= commandAndSender.Command.CodeIdentifier #>(<#= commandAndSender.Command.CodeIdentifier #>);
+            <#= commandAndSender.CanonicalSender.CodeIdentifier #>.Send(<#= commandAndSender.Command.CodeIdentifier #>);
+			return "<p> <#= commandAndSender.Command.CodeIdentifier #> command sent</p>";
         }
-	  <#
-	  }
-	  #>
+		<#
+		}
+		#>
 
 	  <#
 
-			// Send Commands
+			// Send Events
       foreach (var nsbEvent in events)
       {
       #>
 
-        //
         // POST: /TestMessages/SendMessage<#= nsbEvent.CodeIdentifier #>
           
         [HttpPost]
@@ -120,11 +136,11 @@ namespace <#= nserviceBusMVC.Namespace #>.Controllers
 
 	  // Send Commands
     <#
-      foreach (var command in commands)
+      foreach (var command in commandsAndSenders)
       {
       #>
 
-        partial void Configure<#= command.CodeIdentifier #>(<#= command.CodeIdentifier #> message);
+        partial void Configure<#= command.Command.CodeIdentifier #>(<#= command.Command.CodeIdentifier #> message);
       <#
       }
     #>
