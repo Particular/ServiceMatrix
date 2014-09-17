@@ -254,7 +254,7 @@
                                     <p> ASP.NET SignalR is a Microsoft library for ASP.NET developers that simplifies the process of adding real-time web functionality to applications. 
                                         Real-time web functionality is the ability to have server code push content to connected clients instantly as it becomes available, rather than having the server wait for a client to request new data.
                                         When "Publish via SignalR" is chosen on an NServiceBus event ServiceMatrix generates a new handler and a class which derives from the the SignalR Hub class.  
-                                        When new event are handled the Hub code is triggered and the event is broadcast to any listensing clients.</p>
+                                        When new event are handled the Hub code is triggered and the event is broadcast to any listening clients.</p>
                                     <p> Basic instructions on how to wire up your application to recieve these broadcasts are provided in the subsequent tabs.</p>
                                     <p> More detailed documentation regarding integrating SignalR into your MVC 4 project can be found on the Microsoft's <a href="http://www.asp.net/signalr/overview/signalr-1x/getting-started-with-aspnet-signalr/tutorial-getting-started-with-signalr-and-mvc-4">ASP.NET SignalR Site</a></p>
                                 </div>

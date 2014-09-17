@@ -105,8 +105,7 @@ namespace NServiceBusStudio
             SetRemoveEmptyAddMenus();
             SetF5Experience();
 
-            Dispatcher.CurrentDispatcher.BeginInvoke(
-                new Action(AddNugetFiles), null);
+            SetupAddNuGetFilesHandler();
         }
 
         private void SetNuGetPackagesVersion()
@@ -251,10 +250,48 @@ namespace NServiceBusStudio
             RemoveEmptyAddMenus.WireSolution(ServiceProvider);
         }
 
+        private void SetupAddNuGetFilesHandler()
+        {
+            // Workaround to the bug where the ElementInstantiated event is not fired when opening a solution.
+            // Attach a handler to both ElementInstantiated and IsOpenChanged, and remove both handlers on the first hit.
+            // 
+            PatternManager.ElementInstantiated += PatternManager_ElementInstantiated;
+            PatternManager.IsOpenChanged += PatternManager_IsOpenChanged;
+        }
+
+        void PatternManager_IsOpenChanged(object sender, EventArgs e)
+        {
+            // This will be hit when opening an existing solution, and
+            // this event will be triggered from outside a tx
+            using (var tx = PatternManager.Store.BeginTransaction())
+            {
+                InvokeAddNugetFiles();
+                tx.Commit();
+            }
+        }
+
+        void PatternManager_ElementInstantiated(object sender, ValueEventArgs<IProductElement> e)
+        {
+            // This will be hit when creating a new solution, and 
+            // this event will be triggered from inside a tx
+            if (e.Value == AsProduct())
+            {
+                InvokeAddNugetFiles();
+            }
+        }
+
+        private void InvokeAddNugetFiles()
+        {
+            PatternManager.ElementInstantiated -= PatternManager_ElementInstantiated;
+            PatternManager.IsOpenChanged -= PatternManager_IsOpenChanged;
+            AddNugetFiles();
+        }
+
         private void AddNugetFiles()
         {
             try
             {
+                // TODO why is this necessary?
                 System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
                                          new Action(delegate { }));
 

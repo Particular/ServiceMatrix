@@ -196,7 +196,6 @@ namespace NServiceBusStudio
         event EventHandler NamespaceChanged;
         event EventHandler NumberOfWorkerThreadsChanged;
         event EventHandler SLAChanged;
-        event EventHandler SendOnlyChanged;
         event EventHandler CommandSenderNeedsRegistrationChanged;
     }
 
@@ -2494,7 +2493,6 @@ namespace NServiceBusStudio
         public event EventHandler NamespaceChanged = (sender, args) => { };
         public event EventHandler NumberOfWorkerThreadsChanged = (sender, args) => { };
         public event EventHandler SLAChanged = (sender, args) => { };
-        public event EventHandler SendOnlyChanged = (sender, args) => { };
         public event EventHandler CommandSenderNeedsRegistrationChanged = (sender, args) => { };
 
         public string CodeIdentifier
@@ -2548,9 +2546,6 @@ namespace NServiceBusStudio
                     break;
                 case "SLA":
                     SLAChanged(sender, args);
-                    break;
-                case "SendOnly":
-                    SendOnlyChanged(sender, args);
                     break;
                 case "CommandSenderNeedsRegistration":
                     CommandSenderNeedsRegistrationChanged(sender, args);

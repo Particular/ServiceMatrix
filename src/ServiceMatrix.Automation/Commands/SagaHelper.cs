@@ -7,7 +7,7 @@ namespace NServiceBusStudio.Automation.Commands
 {
     class SagaHelper
     {
-        public static void CheckAndPromptForSagaUpdate(IComponent handlerComponent, IDialogWindowFactory windowFactory)
+        public static void CheckAndPromptForSagaUpdate(IComponent handlerComponent, IMessageBoxService messageBoxService, IDialogWindowFactory windowFactory)
         {
             if (handlerComponent.ProcessesMultipleMessages)
             {
@@ -16,7 +16,7 @@ namespace NServiceBusStudio.Automation.Commands
                         ? String.Format(Resources.Saga_UpdateQuery)
                         : String.Format(CultureInfo.CurrentCulture, Resources.Saga_ConvertQuery, handlerComponent.CodeIdentifier);
 
-                var result = MessageBox.Show(sagaRecommendationMessage, Resources.Saga_QueryTitle, MessageBoxButton.YesNo);
+                var result = messageBoxService.Show(sagaRecommendationMessage, Resources.Saga_QueryTitle, MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     new ShowComponentSagaStarterPicker { WindowFactory = windowFactory, CurrentElement = handlerComponent }.Execute();

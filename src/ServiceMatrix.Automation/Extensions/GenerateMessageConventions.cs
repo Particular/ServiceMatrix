@@ -76,11 +76,11 @@ namespace NServiceBusStudio.Automation.Extensions
             }
 
             sb.Append(@"{
-    public class MessageConventions
+    public class MessageConventions : INeedInitialization
     {
-        public static void Apply(Configure.ConventionsBuilder conventionsBuilder)
+        public void Customize(BusConfiguration config)
         {
-            conventionsBuilder");
+            config.Conventions()");
             sb.AppendLine();
             sb.AppendLine("                .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith(\"" +
                 applicationName + "." + projectNameForInternal + ".Commands\"))");

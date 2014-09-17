@@ -1639,14 +1639,6 @@ namespace NServiceBusStudio
 		String SLA { get; set; }
 
 		/// <summary>
-		/// Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly
-		/// </summary>
-		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly")]
-		[DisplayName("Send Only")]
-		[Category("General")]
-		Boolean SendOnly { get; set; }
-
-		/// <summary>
 		/// Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration
 		/// </summary>
 		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration")]

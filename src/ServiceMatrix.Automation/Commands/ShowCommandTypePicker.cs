@@ -35,6 +35,14 @@ namespace NServiceBusStudio.Automation.Commands
 
         [Required]
         [Import(AllowDefault = true)]
+        public IMessageBoxService MessageBoxService
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        [Import(AllowDefault = true)]
         private IUriReferenceService UriService { get; set; }
 
         [Required]
@@ -98,7 +106,7 @@ namespace NServiceBusStudio.Automation.Commands
                             var handlerComponent = viewModel.SelectedHandlerComponent;
                             handlerComponent.Subscribes.CreateLink(command);
 
-                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, WindowFactory);
+                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, MessageBoxService, WindowFactory);
                         }
                     }
 

@@ -13,7 +13,7 @@
     /// </summary>
     public partial class TrialExpired : CommonDialogWindow, IDialogWindow, IDisposable
     {
-        public License CurrentLicense { get; set; }
+        public bool IsTrialLicense { get; set; }
 
         public string ResultingLicenseText;
 
@@ -27,7 +27,7 @@
         {
             WarningText.Text = "The trial period is now over";
 
-            if (CurrentLicense != null && CurrentLicense.IsTrialLicense)
+            if (IsTrialLicense)
             {
                 Title = "ServiceMatrix - Initial Trial Expired";
                 Instructions.Text = "To extend your free trial, click 'Extend trial' and register online. When you receive your license file, save it to disk and then click the 'Browse' button below to select it.";
@@ -92,7 +92,7 @@
 
         void GetTrial_OnClick(object sender, RoutedEventArgs e)
         {
-            if (CurrentLicense != null && CurrentLicense.IsTrialLicense)
+            if (IsTrialLicense)
             {
                 Process.Start("http://particular.net/extend-your-trial-14");
             }

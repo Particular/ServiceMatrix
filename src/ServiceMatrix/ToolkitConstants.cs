@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NServiceBusStudio
 {
-	internal static class ToolkitConstants
+	public static class ToolkitConstants
 	{
 		/// <summary>
 		/// 23795EC3-3DEA-4F04-9044-4056CF91A2ED
@@ -46,5 +46,10 @@ namespace NServiceBusStudio
 		/// Particular.ServiceMatrix
 		/// </summary>
 		public const string AssemblyName = "Particular.ServiceMatrix";
-	}
+	
+		/// <summary>
+		/// 12.0
+		/// </summary>
+		public const string SupportedVsVersion = "12.0";
+}
 }
