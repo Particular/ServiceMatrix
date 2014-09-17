@@ -244,7 +244,7 @@ namespace ServiceMatrix.IntegrationTests.CreateApplicationSpec
                                 return true;
                             });
 
-                        new ShowDeployToPicker { CurrentElement = handler.As<IProductElement>(), WindowFactory = dialogFactoryMock.Object }.Execute();
+                        new ShowDeployToPicker { CurrentElement = handler.As<IProductElement>(), WindowFactory = dialogFactoryMock.Object, MessageBoxService = messageBoxServiceMock.Object }.Execute();
                         tx.Commit();
                     }
                 }

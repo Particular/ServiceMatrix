@@ -86,7 +86,7 @@ namespace ServiceMatrix.IntegrationTests.SagaSpec
                                 return true;
                             });
 
-                        new ShowDeployToPicker { CurrentElement = handlerComponent.As<IProductElement>(), WindowFactory = dialogFactoryMock.Object }.Execute();
+                        new ShowDeployToPicker { CurrentElement = handlerComponent.As<IProductElement>(), WindowFactory = dialogFactoryMock.Object, MessageBoxService = messageBoxServiceMock.Object }.Execute();
 
                         tx.Commit();
                     }
