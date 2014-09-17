@@ -7469,27 +7469,6 @@
                       </settings>
                     </customizationPolicy>
                   </property>
-                  <property Id="1665fe04-7998-4b5d-8b72-dcbe86fed155" name="SendOnly" displayName="Send Only" description="Description for Application.Design.Endpoints.NServiceBusMVC.SendOnly" codeIdentifier="SendOnly" type="System.Boolean">
-                    <customizationPolicy name="CustomizationPolicySchema1">
-                      <settings>
-                        <setting propertyId="DisplayName" />
-                        <setting propertyId="Description" />
-                        <setting propertyId="RawDefaultValue" />
-                        <setting propertyId="IsVisible" />
-                        <setting propertyId="IsReadOnly" />
-                        <setting propertyId="Category" />
-                        <setting propertyId="TypeConverterTypeName" />
-                        <setting propertyId="EditorTypeName" />
-                        <setting propertyId="RawValidationRules" />
-                        <setting propertyId="RawValueProvider" />
-                      </settings>
-                    </customizationPolicy>
-                    <defaultValue>{
-  "Name": "DefaultValue",
-  "Value": "False",
-  "ValueProvider": null
-}</defaultValue>
-                  </property>
                   <property Id="9e93f933-0db1-4f69-aac8-048bbe4c0f4f" name="CommandSenderNeedsRegistration" displayName="Command Sender Needs Registration" description="Description for Application.Design.Endpoints.NServiceBusMVC.CommandSenderNeedsRegistration" codeIdentifier="CommandSenderNeedsRegistration" type="System.Boolean">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
