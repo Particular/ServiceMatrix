@@ -16,9 +16,10 @@ namespace <#= endpoint.Namespace #>
 {
     public partial class EndpointConfig    
     {
-        public void Customize(ConfigurationBuilder builder)
-        {
-            builder.Conventions(c => MessageConventions.Apply(c));
+        public void Customize(BusConfiguration config)
+        {   
+            // TODO: Make this user selectable
+            config.UsePersistence<InMemoryPersistence>();
         }
     }
 }

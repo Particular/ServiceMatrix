@@ -31,7 +31,7 @@ namespace AbstractEndpoint.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        private IDialogWindowFactory WindowFactory
+        public IDialogWindowFactory WindowFactory
         {
             get;
             set;

@@ -5,6 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{63786CE5-D899-43DF-AD4E-C2CA3BAC3FC2}</ProjectGuid>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <NuGetPackageImportStamp>4fa6604a</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <ConfigurationName>Debug</ConfigurationName>
@@ -19,6 +20,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="VS2013\chocolateyInstall.ps1" />
     <None Include="VS2012\chocolateyInstall.ps1" />
     <None Include="VS2013\chocolateyUninstall.ps1" />
@@ -32,7 +34,15 @@
     <Content Include="readme.txt" />
   </ItemGroup>
   <Target Name="ReBuild" DependsOnTargets="Build" />
-  <UsingTask TaskName="GitVersionTask.GetVersion" AssemblyFile="$(SolutionDir)..\buildsupport\GitVersionTask\GitVersionTask.dll" />
+
+  <Import Project="..\packages\GitVersionTask.1.2.1\Build\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.1.2.1\Build\GitVersionTask.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\GitVersionTask.1.2.1\Build\GitVersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\GitVersionTask.1.2.1\Build\GitVersionTask.targets'))" />
+  </Target>
+  
   <UsingTask TaskName="PepitaPackage.CreatePackageTask" AssemblyFile="$(ProjectDir)PepitaPackage.dll" />
   <UsingTask TaskName="MSBuild.Community.Tasks.FileUpdate" AssemblyFile="$(ProjectDir)MSBuild.Community.Tasks.dll" />
   <Target Name="Clean">
@@ -44,19 +54,10 @@
   </Target>
   <Target Name="Build" DependsOnTargets="Clean">
     <GetVersion SolutionDirectory="$(SolutionDir)">
-      <Output TaskParameter="SemVer" PropertyName="SemVer" />
-      <Output TaskParameter="Stability" PropertyName="Stability" />
       <Output TaskParameter="MajorMinorPatch" PropertyName="MajorMinorPatch" />
-      <Output TaskParameter="Stability" PropertyName="Stability" />
-      <Output TaskParameter="PreReleasePartOne" PropertyName="PreReleasePartOne" />
+      <Output TaskParameter="LegacySemVer" PropertyName="LegacySemVer" />
     </GetVersion>
-    <PropertyGroup Condition=" '$(Stability)' == 'Final' ">
-      <ChocoVersion>$(MajorMinorPatch)</ChocoVersion>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Stability)' != 'Final' ">
-      <ChocoVersion>$(MajorMinorPatch)-$(Stability)$(PreReleasePartOne)</ChocoVersion>
-    </PropertyGroup>
-
+    
     <!--VS2012 related files-->
     <MakeDir Directories="$(ProjectDir)Build2012" />
     <Copy SourceFiles="$(ProjectDir)VS2012\ServiceMatrix.VS2012.install.nuspec" DestinationFolder="$(ProjectDir)Build2012" />
@@ -68,11 +69,10 @@
       <InstallFile Include="$(ProjectDir)Build2012\Tools\chocolateyUninstall.ps1" />
       <InstallFile Include="$(ProjectDir)Build2012\Tools\elevatedUninstall.ps1" />
     </ItemGroup>
-    <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(SemVer)" />
-    <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(ChocoVersion)" />
-    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build2012" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
-
-
+    <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(MajorMinorPatch)" />
+    <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(LegacySemVer)" />
+    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build2012" Version="$(MajorMinorPatch)" TargetDir="$(SolutionDir)..\nugets" />
+    
     <!--VS2013 related files-->
     <MakeDir Directories="$(ProjectDir)Build2013" />
     <Copy SourceFiles="$(ProjectDir)VS2013\ServiceMatrix.VS2013.install.nuspec" DestinationFolder="$(ProjectDir)Build2013" />
@@ -84,9 +84,9 @@
       <InstallFile Include="$(ProjectDir)Build2013\Tools\chocolateyUninstall.ps1" />
       <InstallFile Include="$(ProjectDir)Build2013\Tools\elevatedUninstall.ps1" />
     </ItemGroup>
-    <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(SemVer)" />
-    <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(ChocoVersion)" />
-    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build2013" Version="$(ChocoVersion)" TargetDir="$(SolutionDir)..\nugets" />
-
+    <FileUpdate Files="@(InstallFile)" Regex="{{FileVersion}}" ReplacementText="$(MajorMinorPatch)" />
+    <FileUpdate Files="@(InstallFile)" Regex="{{ReleaseName}}" ReplacementText="$(LegacySemVer)" />
+    <CreatePackageTask NuGetBuildDirectory="$(ProjectDir)Build2013" Version="$(MajorMinorPatch)" TargetDir="$(SolutionDir)..\nugets" />
   </Target>
+  
 </Project>

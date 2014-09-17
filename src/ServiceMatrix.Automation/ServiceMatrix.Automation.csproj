@@ -33,12 +33,12 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Reference Include="ExceptionReporter.WinForms, Version=2.1.1.0, Culture=neutral, PublicKeyToken=8f54754d613f1b63, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ExceptionReporter.WinForms">
       <HintPath>..\ServiceMatrix\Libs\ExceptionReporter.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="FluentValidation">
-      <HintPath>..\packages\FluentValidation-Signed\lib\Net40\FluentValidation.dll</HintPath>
+    <Reference Include="FluentValidation, Version=5.2.0.0, Culture=neutral, PublicKeyToken=a82054b837897c66, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation-Signed.5.2.0.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.ComponentModelHost, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.ExtensionManager, Version=$(VsxVersion).0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
@@ -60,11 +60,12 @@
     <Reference Include="Mindscape.WpfDiagramming.Foundation">
       <HintPath>..\ServiceMatrix\Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NuGet.VisualStudio">
-      <HintPath>..\packages\NuGet.VisualStudio\lib\net40\NuGet.VisualStudio.dll</HintPath>
+      <HintPath>..\packages\NuGet.VisualStudio.2.8.1\lib\net40\NuGet.VisualStudio.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
@@ -223,6 +224,8 @@
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorFactory.cs" />
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorPane.cs" />
     <Compile Include="Extensions\ItemExtensions.cs" />
+    <Compile Include="IMessageBoxService.cs" />
+    <Compile Include="MessageBoxService.cs" />
     <Compile Include="TypeConverters\InvariantCultureTimeSpanStringConverter.cs" />
     <Compile Include="Conditions\IsNotComponentDeployedCondition.cs" />
     <Compile Include="Conditions\IsNotSagaComponentCondition.cs" />
@@ -589,11 +592,11 @@
       <LastGenOutput>ToolkitElement.Generated.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Resources.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Resources.Strings.cs</LastGenOutput>
     </None>
-    <None Include="ripple.dependencies.config" />
     <None Include="ToolkitConstants.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ToolkitConstants.cs</LastGenOutput>
@@ -851,6 +854,5 @@
     <StartAction>Program</StartAction>
     <StartArguments>/rootsuffix Exp</StartArguments>
   </PropertyGroup>
-  <Import Project="$(MSBuildThisFileDirectory)..\..\BuildSupport\RippleRestoreTask.targets" />
   <Import Project="$(MSBuildThisFileDirectory)..\..\BuildSupport\GitVersionTask\Build\GitVersionTask.targets" />
 </Project>
