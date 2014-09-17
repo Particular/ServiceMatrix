@@ -14,10 +14,13 @@ using NuPattern.Diagnostics;
 using NuPattern.Presentation;
 using NuPattern.Runtime;
 using NuPattern.Runtime.ToolkitInterface;
+using NServiceBusStudio.Automation.Properties;
 using IComponent = NServiceBusStudio.IComponent;
 
 namespace AbstractEndpoint.Automation.Commands
 {
+    using NServiceBusStudio.Automation;
+
     [DisplayName("Show an Endpoint Picker Dialog")]
     [Category("General")]
     [Description("Shows a Endpoint Picker dialog where endpoints may chosen, and then linked to the component.")]
@@ -48,6 +51,14 @@ namespace AbstractEndpoint.Automation.Commands
             set;
         }
 
+        [Required]
+        [Import(AllowDefault = true)]
+        public IMessageBoxService MessageBoxService
+        {
+            get;
+            set;
+        }
+
         public override void Execute()
         {
             // Verify all [Required] and [Import]ed properties have valid values.
@@ -65,7 +76,7 @@ namespace AbstractEndpoint.Automation.Commands
                 return;
             }
 
-            // Filter those endpoints that already have the component deploed
+            // Filter those endpoints that already have the component deployed
             endpoints = endpoints.Where(e => !e.EndpointComponents.AbstractComponentLinks.Any(cl => cl.ComponentReference.Value == element));
 
             // Get endpoint names
@@ -94,7 +105,9 @@ namespace AbstractEndpoint.Automation.Commands
 
                             if( selectedEndpoint is INServiceBusMVC)
                             {
-                                var result = MessageBox.Show(String.Format("Would you like to broadcast this via SignalR?"), "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+                                const string recommendationMessage = "Would you like to broadcast this via SignalR?";
+                                var result = MessageBoxService.Show(recommendationMessage, "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+               
                                 if (result == MessageBoxResult.Yes)
                                 {
                                     var componentElement = element.As<IProductElement>();
@@ -123,7 +136,10 @@ namespace AbstractEndpoint.Automation.Commands
                             if (selectedType == "NServiceBus ASP.NET MVC")
                             {
                                 app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
-                                var result = MessageBox.Show(String.Format("Would you like to broadcast this via SignalR?"), "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+
+                                const string recommendationMessage = "Would you like to broadcast this via SignalR?";
+                                var result = MessageBoxService.Show(recommendationMessage, "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+                                
                                 if (result == MessageBoxResult.Yes)
                                 {
                                     var componentElement = element.As<IProductElement>();
