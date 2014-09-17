@@ -41,5 +41,25 @@ namespace NServiceBusStudio.Automation.Model
 
             return component;
         }
+
+        public static INServiceBusMVC GetMvcEndpointFromLinkedElement(IProductElement currentElement)
+        {
+            var currentComponent = currentElement.As<NServiceBusStudio.IComponent>();
+            var app = currentElement.Root.As<IApplication>();
+
+            foreach (var endpoint in app.Design.Endpoints.GetMvcEndpoints())
+            {
+                var componentLinks = endpoint.EndpointComponents.AbstractComponentLinks;
+                if (componentLinks.Select(link => link.ComponentReference.Value).Any(component => component == currentComponent))
+                {
+                    return endpoint;
+                }
+            }
+
+            return null;
+        }
+
+        
     }
+
 }

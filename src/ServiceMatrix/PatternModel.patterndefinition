@@ -3633,6 +3633,392 @@
         <automationSettingsSchemaMoniker Id="24d5ad85-08c5-4d8e-be3c-4e3507214564" />
       </extendedElement>
     </commandSettings>
+    <commandSettings Id="0e05adcf-d57f-4c05-88b2-e1b85c487333" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="912ba4a0-d5a3-4ad4-b70e-5646b1c77bc0" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"00acc49d-9566-4436-9535-1a93c2b0355c\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c9a984c3-c0d6-46f5-a050-6d5be1b736ab\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c6563779-ff3e-40aa-99ac-361aa452505e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"701a443e-e454-4987-b63d-655575d6d938\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e93fc2e2-16a2-4c0e-a00c-811c37b50275\"\r\n  },\r\n  {\r\n    \"CommandId\": \"dd29ea6e-3409-4f85-a33a-0a1b19b3afe1\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bdfe1fc9-0f8b-41f3-a746-aa60417884b5\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="c9a984c3-c0d6-46f5-a050-6d5be1b736ab" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="79f913b4-a654-49b9-a258-1095574f3d91" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "{CodeIdentifier}Hub.cs",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
+        {
+          "Name": "AddInfrastructureFolder",
+          "Value": "True",
+          "ValueProvider": null
+        }
+      ]
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/SignalRHub.cs.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/1b39b28d-9786-473b-859d-4174c17c7fad",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="00acc49d-9566-4436-9535-1a93c2b0355c" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ExecuteAddNugetReferencesForSignalRCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="1c4654b0-7d53-4b05-90b7-b04d3297f34f" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="c6563779-ff3e-40aa-99ac-361aa452505e" typeId="NuPattern.Library.Commands.GenerateProductCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0ea86f8f-59f3-41aa-97b5-4adc9ebf086e" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Compile",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "Broadcast{InstanceName}",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetEndpointPathValueProvider",
+      "Properties": [
+        {
+          "Name": "AddInfrastructureFolder",
+          "Value": "True",
+          "ValueProvider": null
+        }
+      ]
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/SignalRHandler.cs.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/a3ad0316-5442-4b1e-9499-c1db4c578b1f",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="c42b52e7-3495-4a46-b438-311429885e5f" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ModifyRouteConfigCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="31be22e7-92e1-44c9-a23b-630fbc1332d6" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="1fea1834-2544-4249-919b-da205d456698" typeId="NuPattern.Library.Commands.AggregatorCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="e56d7d57-d314-47aa-b511-7edbb5dc7e5f" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "CommandReferenceList",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"33838c14-9846-454e-a030-8f925655fd4b\"\r\n  },\r\n  {\r\n    \"CommandId\": \"3c32a413-f22e-428a-8988-9c7bddcde17a\"\r\n  }\r\n]",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="295ebf7b-f769-4f15-a07c-c688dc071bde" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.AddSignalRNugetPackages">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="3d9a070f-58b8-4abf-93d8-4588712fb689" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="fd7d45bc-a9af-4a8e-ac30-b9a56e55bae8" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ModifyRouteConfigCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="9dc08037-23a5-4300-a1dc-04d66d4ffcee" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="701a443e-e454-4987-b63d-655575d6d938" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ExecuteModifyRouteConfigForSignalRCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="0b99b9b0-c7de-4aef-9320-49b2db0ba1b4" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="33838c14-9846-454e-a030-8f925655fd4b" typeId="NServiceBusStudio.Automation.Commands.RemoveSignalRComponentCodeCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="a8f9fd25-964d-44e1-97e3-fda6fdbddf64" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="3c32a413-f22e-428a-8988-9c7bddcde17a" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.ExecuteRemoveReferencesForSignalRInEndpointCommand">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c4fb2250-905a-4de2-aff0-c53f5066825d" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="1484025f-c5b0-4dde-a5a5-b2ae4af67763" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.RemoveReferencesForSignalR">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b26431fc-c8c3-459f-91ec-2b3e0b64f8dc" />
+      </extendedElement>
+    </commandSettings>
+    <commandSettings Id="e93fc2e2-16a2-4c0e-a00c-811c37b50275" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="995dda2f-e631-4b95-a960-3db8c1a1780b" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "guidance.css",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetContentPathInMvcEndpoint",
+      "Properties": []
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/guidance.css.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/09c2e659-4157-4700-b835-e17ab3d40a7a",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="dd29ea6e-3409-4f85-a33a-0a1b19b3afe1" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="3ce8ffa6-125c-4ce6-865d-9d22c06de47f" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "highlight.css",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetContentPathInMvcEndpoint",
+      "Properties": []
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/highlight.css.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/20047eb4-21c7-4383-a9c6-56cd477ccfbf",
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsDeployed",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "CheckIsNotUnfoldedCustomCode",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "InstanceName",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "ToolkitIdentifier",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "CommandName",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "FileName",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "FilePath",
+    "Value": null,
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
+    <commandSettings Id="bdfe1fc9-0f8b-41f3-a746-aa60417884b5" typeId="NuPattern.Library.Commands.GenerateProductCodeCommandCustom">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="b7bdcbdd-a301-4cc6-9edf-cd24e2f71f4f" />
+      </extendedElement>
+      <properties>[
+  {
+    "Name": "SanitizeName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "SyncName",
+    "Value": "False",
+    "ValueProvider": null
+  },
+  {
+    "Name": "Tag",
+    "Value": null,
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetBuildAction",
+    "Value": "Content",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetCopyToOutput",
+    "Value": "DoNotCopy",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetFileName",
+    "Value": "highlight.js",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TargetPath",
+    "Value": "",
+    "ValueProvider": {
+      "TypeId": "NServiceBusStudio.Automation.ValueProviders.GetScriptsPathInMvcEndpoint",
+      "Properties": []
+    }
+  },
+  {
+    "Name": "TemplateUri",
+    "Value": "t4://extension/23795EC3-3DEA-4F04-9044-4056CF91A2ED/T/T4/Endpoints/NSBMVC/SignalR/highlight.js.tt",
+    "ValueProvider": null
+  },
+  {
+    "Name": "TemplateAuthoringUri",
+    "Value": "solution://2532fa71-d5e2-426c-ae22-d4316cec2abc/9bd42513-3b43-46c2-bb96-82a37d02ab89",
+    "ValueProvider": null
+  }
+]</properties>
+    </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
         <automationSettingsSchemaMoniker Id="b08e2502-4ca0-4333-aa71-d8a890a69454" />
@@ -3837,6 +4223,56 @@
       <extendedElement>
         <automationSettingsSchemaMoniker Id="e471e1a8-22cc-4018-bce8-85ca56604b84" />
       </extendedElement>
+    </menuSettings>
+    <menuSettings Id="bb70859f-2ddb-4e26-8da8-5740f0e1593a" text="Broadcast via SignalR" commandId="0e05adcf-d57f-4c05-88b2-e1b85c487333" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="1769cb19-9fe4-4e27-a43c-0d7aa127e532" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsProcessorComponentCondition",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsMVCEndpoint",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentBroadcastingViaSignalR",
+    "Properties": [
+      {
+        "Name": "IsBroadcastingViaSignalR",
+        "Value": "False",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
+    </menuSettings>
+    <menuSettings Id="e67c7010-4ae2-472c-9178-33792767d558" text="Remove Broadcast Via Signal R" commandId="1fea1834-2544-4249-919b-da205d456698" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="1">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="02f1ab6a-2f53-491b-ac37-df3443ab0fa0" />
+      </extendedElement>
+      <conditions>[
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsProcessorComponentCondition",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsMVCEndpoint",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentBroadcastingViaSignalR",
+    "Properties": [
+      {
+        "Name": "IsBroadcastingViaSignalR",
+        "Value": "True",
+        "ValueProvider": null
+      }
+    ]
+  }
+]</conditions>
     </menuSettings>
     <guidanceExtension Id="b3d4fc33-c61a-4413-a48b-5428d963a283" guidanceInstanceName="ServiceMatrix Guidance" extensionId="23795EC3-3DEA-4F04-9044-4056CF91A2ED" guidanceSharedInstance="true">
       <extendedElement>
@@ -5462,6 +5898,22 @@
   "ValueProvider": null
 }</defaultValue>
                           </property>
+                          <property Id="0f96bb02-ec3e-4a5d-bc5d-d0518afea0aa" name="IsBroadcastingViaSignalR" displayName="Is Broadcasting Via Signal R" description="Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR" codeIdentifier="IsBroadcastingViaSignalR" type="System.Boolean" isVisible="false" isReadOnly="true">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="RawDefaultValue" />
+                                <setting propertyId="IsVisible" />
+                                <setting propertyId="IsReadOnly" />
+                                <setting propertyId="Category" />
+                                <setting propertyId="TypeConverterTypeName" />
+                                <setting propertyId="EditorTypeName" />
+                                <setting propertyId="RawValidationRules" />
+                                <setting propertyId="RawValueProvider" />
+                              </settings>
+                            </customizationPolicy>
+                          </property>
                         </properties>
                         <automationSettings>
                           <automationSettings Id="ab882d66-0e0d-45f2-bc12-dc17e395ec25" name="PublishCommand" displayName="Publish Command" description="" codeIdentifier="PublishCommand" automationType="Command">
@@ -5726,6 +6178,132 @@
                             </customizationPolicy>
                           </automationSettings>
                           <automationSettings Id="e3e85661-7e5f-4d98-aab1-2a38082fea08" name="OpenCommand" displayName="Open Command" description="" codeIdentifier="OpenCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="1769cb19-9fe4-4e27-a43c-0d7aa127e532" name="BroadcastViaSignalRMenu" displayName="Broadcast Via Signal RMenu" description="" codeIdentifier="BroadcastViaSignalRMenu" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="912ba4a0-d5a3-4ad4-b70e-5646b1c77bc0" name="OnBroadcastViaSignalRCommand" displayName="On Broadcast Via Signal RCommand" description="" codeIdentifier="OnBroadcastViaSignalRCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="79f913b4-a654-49b9-a258-1095574f3d91" name="GenerateSignalRHub" displayName="Generate Signal RHub" description="" codeIdentifier="GenerateSignalRHub" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="1c4654b0-7d53-4b05-90b7-b04d3297f34f" name="ExecuteAddNugetReferencesForSignalRInEndpoint" displayName="Execute Add Nuget References For Signal RIn Endpoint" description="" codeIdentifier="ExecuteAddNugetReferencesForSignalRInEndpoint" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="0ea86f8f-59f3-41aa-97b5-4adc9ebf086e" name="GenerateSignalRBroadcastHandler" displayName="Generate Signal RBroadcast Handler" description="" codeIdentifier="GenerateSignalRBroadcastHandler" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="31be22e7-92e1-44c9-a23b-630fbc1332d6" name="ModifyRouteConfigForSignalR" displayName="Modify Route Config For Signal R" description="" codeIdentifier="ModifyRouteConfigForSignalR" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="02f1ab6a-2f53-491b-ac37-df3443ab0fa0" name="RemoveBroadcastViaSignalR" displayName="Remove Broadcast Via Signal R" description="" codeIdentifier="RemoveBroadcastViaSignalR" automationType="ContextMenu Launch Point" classification="LaunchPoint">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="e56d7d57-d314-47aa-b511-7edbb5dc7e5f" name="OnRemoveBroadcastViaSignalRCommand" displayName="On Remove Broadcast Via Signal RCommand" description="" codeIdentifier="OnRemoveBroadcastViaSignalRCommand" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="0b99b9b0-c7de-4aef-9320-49b2db0ba1b4" name="ExecuteModifyRouteConfigForSignalRInEndpoint" displayName="Execute Modify Route Config For Signal RIn Endpoint" description="" codeIdentifier="ExecuteModifyRouteConfigForSignalRInEndpoint" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="a8f9fd25-964d-44e1-97e3-fda6fdbddf64" name="RemoveSignalRComponentCode" displayName="Remove SignalR Component Code" description="" codeIdentifier="RemoveSignalRComponentCode" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="c4fb2250-905a-4de2-aff0-c53f5066825d" name="ExecuteRemoveSignalRReferencesInEndpoint" displayName="Execute Remove Signal RReferences In Endpoint" description="" codeIdentifier="ExecuteRemoveSignalRReferencesInEndpoint" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="995dda2f-e631-4b95-a960-3db8c1a1780b" name="GenerateGuidanceCSS" displayName="Generate Guidance CSS" description="" codeIdentifier="GenerateGuidanceCSS" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="3ce8ffa6-125c-4ce6-865d-9d22c06de47f" name="GenerateHighlightCSS" displayName="Generate Highlight CSS" description="" codeIdentifier="GenerateHighlightCSS" automationType="Command">
+                            <customizationPolicy name="CustomizationPolicySchema1">
+                              <settings>
+                                <setting propertyId="DisplayName" />
+                                <setting propertyId="Description" />
+                                <setting propertyId="Settings" />
+                              </settings>
+                            </customizationPolicy>
+                          </automationSettings>
+                          <automationSettings Id="b7bdcbdd-a301-4cc6-9edf-cd24e2f71f4f" name="GenerateHighlightJS" displayName="Generate Highlight JS" description="" codeIdentifier="GenerateHighlightJS" automationType="Command">
                             <customizationPolicy name="CustomizationPolicySchema1">
                               <settings>
                                 <setting propertyId="DisplayName" />
@@ -7511,6 +8089,26 @@
   ]
 }</valueProvider>
                   </property>
+                  <property Id="dd4a2fdd-da4b-4ed0-8c3f-7db9c80bce31" name="IsSignalREnabled" displayName="Is SignalR Enabled" description="Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled" codeIdentifier="IsSignalREnabled" type="System.Boolean" isVisible="false" isReadOnly="true">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                    <valueProvider>{
+  "TypeId": "NServiceBusStudio.Automation.ValueProviders.IsSignalREnabledInEndpointValueProvider",
+  "Properties": []
+}</valueProvider>
+                  </property>
                 </properties>
                 <automationSettings>
                   <automationSettings Id="ca48f586-9700-45bd-a072-af32a852a711" name="AddProjectReferences" displayName="Add Project References" description="" codeIdentifier="AddProjectReferences" automationType="Command">
@@ -7739,6 +8337,33 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="06f26a68-7ca5-4b45-8e91-ac95a5c6a9bc" name="GenerateAuditConfig" displayName="Generate Audit Config" description="" codeIdentifier="GenerateAuditConfig" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="3d9a070f-58b8-4abf-93d8-4588712fb689" name="AddNugetReferencesForSignalR" displayName="Add Nuget References For Signal R" description="" codeIdentifier="AddNugetReferencesForSignalR" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="9dc08037-23a5-4300-a1dc-04d66d4ffcee" name="ModifyRouteConfigForSignalR" displayName="Modify Route Config For Signal R" description="" codeIdentifier="ModifyRouteConfigForSignalR" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="b26431fc-c8c3-459f-91ec-2b3e0b64f8dc" name="RemoveReferencesForSignalR" displayName="Remove References For Signal R" description="" codeIdentifier="RemoveReferencesForSignalR" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

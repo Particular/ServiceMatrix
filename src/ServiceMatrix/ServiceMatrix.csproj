@@ -75,6 +75,22 @@
     <Reference Include="Mindscape.WpfDiagramming.Foundation">
       <HintPath>Libs\Mindscape.WpfDiagramming.Foundation.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
     <Reference Include="NuPattern.Common">
       <HintPath>$(PatternToolkitRuntime)\NuPattern.Common.dll</HintPath>
       <Private>False</Private>
@@ -469,6 +485,14 @@
       <Link>packages\Newtonsoft.Json.4.5.11.nupkg</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\BundledPackages\jQuery.1.7.1.nupkg">
+      <Link>packages\jQuery.1.7.1.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="..\BundledPackages\Microsoft.jQuery.Unobtrusive.Ajax.2.0.30506.0.nupkg">
+      <Link>packages\Microsoft.jQuery.Unobtrusive.Ajax.2.0.30506.0.nupkg</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="..\source.version.t4">
       <Link>source.version.t4</Link>
     </None>
@@ -480,6 +504,7 @@
     </None>
     <None Include="d4b6057a-fb60-4a43-b09f-b7c23e6273cd.patterndefinition.diagram">
       <DependentUpon>PatternModel.patterndefinition</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <Content Include="T\T4\ComponentHandlers.tt">
       <LastGenOutput>EventHandler.cs</LastGenOutput>
@@ -878,6 +903,34 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\SignalRHub.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>1b39b28d-9786-473b-859d-4174c17c7fad</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\SignalRHandler.cs.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <ItemGuid>a3ad0316-5442-4b1e-9499-c1db4c578b1f</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\highlight.js.tt">
+      <LastGenOutput>highlight.js.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>9bd42513-3b43-46c2-bb96-82a37d02ab89</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\highlight.css.tt">
+      <LastGenOutput>highlight.css.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>20047eb4-21c7-4383-a9c6-56cd477ccfbf</ItemGuid>
+    </Content>
+    <Content Include="T\T4\Endpoints\NSBMVC\SignalR\guidance.css.tt">
+      <LastGenOutput>guidancecss.cs</LastGenOutput>
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>09c2e659-4157-4700-b835-e17ab3d40a7a</ItemGuid>
     </Content>
     <None Include="VSPackage.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

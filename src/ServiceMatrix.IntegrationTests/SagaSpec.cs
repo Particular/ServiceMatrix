@@ -131,7 +131,7 @@ namespace ServiceMatrix.IntegrationTests.SagaSpec
                 }
                 catch (Exception e)
                 {
-                    //MessageBox.Show(e.ToString(), "Error");
+                    MessageBox.Show(e.ToString(), "Error");
                     throw;
                 }
             });

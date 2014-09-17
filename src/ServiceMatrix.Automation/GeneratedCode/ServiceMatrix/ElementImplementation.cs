@@ -791,6 +791,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR")]
+		[DisplayName("Is Broadcasting Via Signal R")]
+		[Category("General")]
+		public virtual Boolean IsBroadcastingViaSignalR
+		{
+			get { return this.proxy.GetValue(() => this.IsBroadcastingViaSignalR); }
+			set { this.proxy.SetValue(() => this.IsBroadcastingViaSignalR, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -2818,6 +2830,18 @@ namespace NServiceBusStudio
 		{
 			get { return this.proxy.GetValue(() => this.TargetNsbVersion); }
 			set { this.proxy.SetValue(() => this.TargetNsbVersion, value); }
+		}
+
+		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled")]
+		[DisplayName("Is SignalR Enabled")]
+		[Category("General")]
+		public virtual Boolean IsSignalREnabled
+		{
+			get { return this.proxy.GetValue(() => this.IsSignalREnabled); }
+			set { this.proxy.SetValue(() => this.IsSignalREnabled, value); }
 		}
 
 		/// <summary>

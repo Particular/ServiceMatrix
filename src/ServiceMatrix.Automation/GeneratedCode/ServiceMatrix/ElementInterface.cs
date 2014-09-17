@@ -449,6 +449,14 @@ namespace NServiceBusStudio
 		Boolean UnfoldedCustomCode { get; set; }
 
 		/// <summary>
+		/// Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR
+		/// </summary>
+		[Description("Description for Application.Design.Services.Service.Components.Component.IsBroadcastingViaSignalR")]
+		[DisplayName("Is Broadcasting Via Signal R")]
+		[Category("General")]
+		Boolean IsBroadcastingViaSignalR { get; set; }
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
@@ -1645,6 +1653,14 @@ namespace NServiceBusStudio
 		[DisplayName("Target Nsb Version")]
 		[Category("General")]
 		String TargetNsbVersion { get; set; }
+
+		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.IsSignalREnabled")]
+		[DisplayName("Is SignalR Enabled")]
+		[Category("General")]
+		Boolean IsSignalREnabled { get; set; }
 
 		/// <summary>
 		/// The name of this element instance.
