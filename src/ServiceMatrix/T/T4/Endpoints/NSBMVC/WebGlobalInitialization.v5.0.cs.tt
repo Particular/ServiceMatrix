@@ -40,16 +40,39 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
                   .Where(t => t.Name.EndsWith("Sender"))
                   .AsImplementedInterfaces()
 				  .PropertiesAutowired();
+            
 			var container = builder.Build();
 
 			// Configure the bus
 			var config = new BusConfiguration();
-			config.UseContainer<NServiceBus.Autofac>(c => c.ExistingLifetimeScope(container));
+			
 			//TODO: Make this based on user selection.		
 			config.UsePersistence<InMemoryPersistence>();
+			config.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+
+
 			config.EnableInstallers();
+            
+<#
+if (!nserviceBusHost.SendOnly)
+{
+#>
+			
 			var bus = Bus.Create(config);
             bus.Start();            
+<#
+} 
+else 
+{
+#>
+			config.Transactions().Disable();
+			config.SendOnly();
+			
+			var bus = Bus.Create(config);
+
+<#
+}
+#>
 
             //tell MVC to resolve via autofac
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
