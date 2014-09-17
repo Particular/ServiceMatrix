@@ -14,7 +14,6 @@ using NuPattern.Diagnostics;
 using NuPattern.Presentation;
 using NuPattern.Runtime;
 using NuPattern.Runtime.ToolkitInterface;
-using NServiceBusStudio.Automation.Properties;
 using IComponent = NServiceBusStudio.IComponent;
 
 namespace AbstractEndpoint.Automation.Commands
