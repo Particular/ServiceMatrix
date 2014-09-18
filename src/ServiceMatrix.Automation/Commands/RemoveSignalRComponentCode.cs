@@ -5,10 +5,11 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using NuPattern;
+    using NuPattern.Library.Automation;
     using NuPattern.Runtime;
     using NuPattern.VisualStudio.Solution;
 
-    public class RemoveSignalRComponentCodeCommand : NuPattern.Runtime.Command
+    public class RemoveSignalRComponentCodeCommand : Command
     {
         /// <summary>
         /// Gets or sets the current element.
@@ -23,31 +24,32 @@
 
         public override void Execute()
         {   
-            // TODO: Resolve the commandId automatically instead of passing a Guid here.
-            // For example if I obtain the command like below Name and Execute() method. How do I get the command Id??
-            // var command = CurrentElement.AutomationExtensions.First(c => c.Name.Equals("GenerateSignalRHub"));
-   
             var itemsToRemove = new [] {
-                "c9a984c3-c0d6-46f5-a050-6d5be1b736ab",  // Guid for the commandId for GenerateSignalRHub command 
-                "c6563779-ff3e-40aa-99ac-361aa452505e",  // Guid for the commandId for GenerateSignalRBroadcastHandler command
-                "dd29ea6e-3409-4f85-a33a-0a1b19b3afe1",  // Guid for the commandId for GenerateHightLightCSS
-                "bdfe1fc9-0f8b-41f3-a746-aa60417884b5",  // Guid for the commandId for GenerateHightLightJS
-                "e93fc2e2-16a2-4c0e-a00c-811c37b50275"   // Guid for the commandId for GenerateGuidanceCSS
+                "GenerateSignalRHub",  
+                "GenerateSignalRBroadcastHandler", 
+                "GenerateHighlightCSS", 
+                "GenerateHighlightJS", 
+                "GenerateGuidanceCSS"
             };
 
             foreach (var item in itemsToRemove)
             {
-                DeleteSolutionItemsInComponentForCommand(item);
+                var command = (IAutomationExtension<ICommandSettings>) CurrentElement.AutomationExtensions.FirstOrDefault(c => c.Name.Equals(item, StringComparison.OrdinalIgnoreCase));
+                if (command == null)
+                {
+                    throw new Exception(string.Format("{0} does not map to an existing command", item));
+                }
+                var commandId = command.Settings.Id.ToString("D");
+                DeleteSolutionItemsInComponentForCommand(commandId);
             }
 
             // Set the Broadcasting via SignalR flag on the component level to false;
-            CurrentElement.As<NServiceBusStudio.IComponent>().IsBroadcastingViaSignalR = false; 
-    
+            CurrentElement.As<IComponent>().IsBroadcastingViaSignalR = false; 
         }
 
         void DeleteSolutionItemsInComponentForCommand(string commandId)
         {
-            var component = CurrentElement.As<NServiceBusStudio.IComponent>();
+            var component = CurrentElement.As<IComponent>();
             var artifactLink = component.References.First(t => t.Tag.Contains(commandId));
             var solutionItem = UriService.TryResolveUri<IItemContainer>(new Uri(artifactLink.Value));
             
