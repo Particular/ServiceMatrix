@@ -28,12 +28,6 @@ namespace <#= nserviceBusHost.Namespace #>.Controllers
     {
         public void Customize(BusConfiguration config)
         {
-<#
-if (nserviceBusHost.HasComponentsThatPublishEvent)
-{
- #>            config.RavenSubscriptionStorage();
-<#
-}
- #>        }
+        }
     }
 }
