@@ -4205,6 +4205,16 @@
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.IsSagaComponentCondition",
     "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentDeployed",
+    "Properties": [
+      {
+        "Name": "IsDeployed",
+        "Value": "True",
+        "ValueProvider": null
+      }
+    ]
   }
 ]</conditions>
     </menuSettings>
@@ -4215,6 +4225,20 @@
       <conditions>[
   {
     "TypeId": "NServiceBusStudio.Automation.Conditions.IsNotSagaComponentCondition",
+    "Properties": []
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentDeployed",
+    "Properties": [
+      {
+        "Name": "IsDeployed",
+        "Value": "True",
+        "ValueProvider": null
+      }
+    ]
+  },
+  {
+    "TypeId": "NServiceBusStudio.Automation.Conditions.IsComponentCommandProcessorCondition",
     "Properties": []
   }
 ]</conditions>
