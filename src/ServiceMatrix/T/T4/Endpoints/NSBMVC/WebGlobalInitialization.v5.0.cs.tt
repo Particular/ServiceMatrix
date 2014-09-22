@@ -39,13 +39,14 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 			// Register the sender components 
 			builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                   .Where(t => t.Name.EndsWith("Sender"))
-                  .AsImplementedInterfaces()
+				  .AsImplementedInterfaces()
+				  .AsSelf()
 				  .PropertiesAutowired();
 			var container = builder.Build();
 
 			// Configure the bus
 			var config = new BusConfiguration();
-			config.UseContainer<NServiceBus.AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+			config.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 			
 			if (Debugger.IsAttached)
             {	

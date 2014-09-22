@@ -46,7 +46,7 @@ namespace NServiceBusStudio
         {
             get
             {
-                return Subscribes.ProcessedCommandLinks.Any() || Subscribes.SubscribedEventLinks.Any();
+                return Subscribes.ProcessedCommandLinks.Any() || Subscribes.SubscribedEventLinks.Any() || Subscribes.HandledMessageLinks.Any();
             }
         }
 

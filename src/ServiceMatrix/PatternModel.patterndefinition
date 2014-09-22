@@ -3677,7 +3677,7 @@
   },
   {
     "Name": "TargetFileName",
-    "Value": "{CodeIdentifier}Hub.cs",
+    "Value": "SignalRHubsFor{CodeIdentifier}.cs",
     "ValueProvider": null
   },
   {
@@ -3743,7 +3743,7 @@
   },
   {
     "Name": "TargetFileName",
-    "Value": "Broadcast{InstanceName}",
+    "Value": "SignalRBroadcastFor{InstanceName}",
     "ValueProvider": null
   },
   {

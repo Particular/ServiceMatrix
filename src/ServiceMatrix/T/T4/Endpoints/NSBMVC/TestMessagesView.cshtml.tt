@@ -18,8 +18,7 @@
 
     var commands = sendercomponents.SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value)).Distinct();
     var events = sendercomponents.SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value)).Distinct();
-	var signalRcomponents = nserviceBusMVC.NServiceBusMVCComponents.NServiceBusMVCComponentLinks.Where(m => m.ComponentReference.Value != null && m.ComponentReference.Value.IsBroadcastingViaSignalR);
-	
+	var signalRcomponents = components.Where(m => m.IsBroadcastingViaSignalR);	
 #>
 
 <!------------------------------------------------------------------------------
@@ -85,28 +84,51 @@
     });
 
 	//Wire up events to SignalR Hub Broadcasts
+
 <#
-    foreach (var component in signalRcomponents)
+    foreach (var signalRComponent in signalRcomponents)
 	{
-	  var message = component.ComponentName.Replace("Handler","");
-	  var serverHub = string.Format("{0}Hub",Char.ToLowerInvariant(component.ComponentName[0]) + component.ComponentName.Substring(1));
-      var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(message[0]) + message.Substring(1);	  
-	  var clientVariableForHub = string.Format("{0}Hub",proxyMethodNameForUseInJavaScript);
+	  // Each of these component handlers could be processing multiple events or responses. 
+	  var signalREventHandlers = signalRComponent.Subscribes.SubscribedEventLinks;
+	  var signalRReplyHandlers = signalRComponent.Subscribes.HandledMessageLinks;
 
+	  foreach (var signalREvent in signalREventHandlers)
+	  {
+
+	  var message = signalREvent.CodeIdentifier;
+	  var messageLowerCased = Char.ToLowerInvariant(message[0]) + message.Substring(1);
+	  var serverHub = string.Format("{0}Hub", messageLowerCased);	  
 #>
+	 var <#= serverHub #> = $.connection.<#= serverHub #>;
 
-    var <#= clientVariableForHub #> = $.connection.<#= serverHub #>;
-
-    <#= clientVariableForHub #>.client.<#= proxyMethodNameForUseInJavaScript #> = function (data) {
+	 <#= serverHub #>.client.<#= messageLowerCased #> = function (data) {
         console.log('Received event : <#= message #> ');       
 		 var json<#= message #> = JSON.stringify(data);
          $('#signalrmessages').append('<div><div class="text-lato-16"><#= message #></div><div>' + json<#= message #> + '</div></div>');
     };
 
 <#
-    }
+	  }
+
+	  foreach (var signalRReply in signalRReplyHandlers)
+	  {
+	  var message = signalRReply.CodeIdentifier;
+	  var messageLowerCased = Char.ToLowerInvariant(message[0]) + message.Substring(1);
+	  var serverHub = string.Format("{0}Hub", messageLowerCased);	  
 #>
-    //Start listening to SignalR Hubs
+	var <#= serverHub #> = $.connection.<#= serverHub #>;
+
+	 <#= serverHub #>.client.<#= messageLowerCased #> = function (data) {
+        console.log('Received event : <#= message #> ');       
+		 var json<#= message #> = JSON.stringify(data);
+         $('#signalrmessages').append('<div><div class="text-lato-16"><#= message #></div><div>' + json<#= message #> + '</div></div>');
+    };
+<#
+    }
+}
+#>
+    
+	//Start listening to SignalR Hubs
     $.connection.hub.start().done(function () {
         console.log('Connection established!, ConnectionId = ' + $.connection.hub.id);
            });
@@ -282,9 +304,9 @@
                                     <p>The following example shows a JavaScript function that listens for SignalR broadcast of an <b>OrderReceived</b> event. The function will be similiar to one found in the source for this page. In this example the JSON payload from the event is converted to a string and show in a DIV tag.</p>
                                     <div class="snippet">
 										<pre><code>$(function () {
-        // orderReceivedHandlerHub 
-        var orderReceivedHandlerHub = $.connection.orderReceivedHandlerHub;
-        orderReceivedHandlerHub.client.orderReceived = function (message) {
+        // orderReceivedHub 
+        var orderReceivedHub = $.connection.orderReceivedHub;
+        orderReceivedHub.client.orderReceived = function (message) {
             var jsonOrderReceived = JSON.stringify(message);
             $(&#39;#signalrmessages&#39;).prepend(&#39;&lt;div&gt;&lt;div&gt;OrderReceived&lt;/div&gt;&lt;div&gt;&#39; + jsonOrderReceived + &#39;&lt;/div&gt;&lt;/div&gt;&#39;);
         };

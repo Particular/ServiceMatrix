@@ -11,14 +11,14 @@
 <#  
  var component = ((IProductElement)this.Element).As<IComponent>(); 
  var root = ((IProductElement)this.Element).Root.As<IApplication>();
- var message = component.CodeIdentifier.Replace("Handler","");
- var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(message[0]) + message.Substring(1);
  
  var eventsNamespaces = component.Subscribes.SubscribedEventLinks
                 .Where(l => l.EventReference.Value != null) // Ignore generic message handlers
                 .Select(el => el.EventReference.Value.Parent.Namespace);
  var messagesNamespaces = component.Subscribes.HandledMessageLinks.Select(ml => ml.MessageReference.Value.Parent.Namespace);
 
+ var eventHandlers = component.Subscribes.SubscribedEventLinks;
+ var replyHandlers = component.Subscribes.HandledMessageLinks;
 
 #>
 //------------------------------------------------------------------------------
@@ -49,12 +49,39 @@ using Microsoft.AspNet.SignalR;
 
 namespace <#= component.Namespace #>
 {
-    public class Broadcast<#= component.CodeIdentifier #> : IHandleMessages<<#= message #>>
+<#
+foreach (var eventHandler in eventHandlers)
+{
+var eventMessage = eventHandler.CodeIdentifier;
+var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(eventMessage[0]) + eventMessage.Substring(1);
+#>
+	public class Broadcast<#= eventMessage #> : IHandleMessages<<#= eventMessage #>>
 	{
-		public void Handle(<#= message #> message)
+		public void Handle(<#= eventMessage #> message)
         {
-            var context = GlobalHost.ConnectionManager.GetHubContext<<#= component.CodeIdentifier #>Hub>();
+            var context = GlobalHost.ConnectionManager.GetHubContext<<#= eventMessage #>Hub>();
             context.Clients.All.<#= proxyMethodNameForUseInJavaScript #>(message); 
         }
-	}
+	}        
+<#
+}
+#>
+
+<#
+foreach (var replyHandler in replyHandlers)
+{
+var replyMessage = replyHandler.CodeIdentifier;
+var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(replyMessage[0]) + replyMessage.Substring(1);
+#>
+	public class Broadcast<#= replyMessage #> : IHandleMessages<<#= replyMessage #>>
+	{
+		public void Handle(<#= replyMessage #> message)
+        {
+            var context = GlobalHost.ConnectionManager.GetHubContext<<#= replyMessage #>Hub>();
+            context.Clients.All.<#= proxyMethodNameForUseInJavaScript #>(message); 
+        }
+	}        
+<#
+}
+#>
 }
