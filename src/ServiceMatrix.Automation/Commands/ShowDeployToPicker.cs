@@ -136,17 +136,18 @@ namespace AbstractEndpoint.Automation.Commands
                             {
                                 app.Design.Endpoints.CreateNServiceBusMVC(selectedName);
 
-                                const string recommendationMessage = "Would you like to broadcast this via SignalR?";
-                                var result = MessageBoxService.Show(recommendationMessage, "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
+                                // TODO: Figure out the NullRef Exception 
+                                //const string recommendationMessage = "Would you like to broadcast this via SignalR?";
+                                //var result = MessageBoxService.Show(recommendationMessage, "ServiceMatrix - SignalR Integration", MessageBoxButton.YesNo);
                                 
-                                if (result == MessageBoxResult.Yes)
-                                {
-                                    var componentElement = element.As<IProductElement>();
+                                //if (result == MessageBoxResult.Yes)
+                                //{
+                                //    var componentElement = element.As<IProductElement>();
 
-                                    // Find the Broadcast via SignalR command to execute
-                                    var commandToExecute = componentElement.AutomationExtensions.First(c => c.Name.Equals("OnBroadcastViaSignalRCommand"));
-                                    commandToExecute.Execute();
-                                }
+                                //    // Find the Broadcast via SignalR command to execute
+                                //    var commandToExecute = componentElement.AutomationExtensions.First(c => c.Name.Equals("OnBroadcastViaSignalRCommand"));
+                                //    commandToExecute.Execute();
+                                //}
                             }
                             else
                             {
