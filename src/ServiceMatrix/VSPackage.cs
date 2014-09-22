@@ -53,7 +53,7 @@ namespace NServiceBusStudio
 
             AddServices();
             EnsureCreateTraceOutput();
-            TrackUnhandledExceptions();
+            //TrackUnhandledExceptions();
             AdviseSolutionEvents();
         }
 
