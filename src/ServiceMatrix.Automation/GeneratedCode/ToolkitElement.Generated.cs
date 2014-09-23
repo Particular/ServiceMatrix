@@ -16,6 +16,9 @@ using NServiceBusStudio.Automation.Extensions;
 
 namespace NServiceBusStudio
 {
+    using EnvDTE;
+    using Microsoft.Internal.VisualStudio.PlatformUI;
+
     #region Interfaces
 
     partial interface IApplication : IToolkitElement
@@ -2515,7 +2518,7 @@ namespace NServiceBusStudio
             var property = this.AsElement().Properties.FirstOrDefault(x => x.DefinitionName == args.PropertyName);
             if (property != null && property.Info.IsVisible)
             {
-                tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVC", property.Value.ToString());
+                tracer.TraceStatistics("Property {0} on {1} ({2}) was changed to: {3}", args.PropertyName, this.InstanceName, "NServiceBusMVC", property.TryConvertValueToString(null));
             }
 
             switch (args.PropertyName)

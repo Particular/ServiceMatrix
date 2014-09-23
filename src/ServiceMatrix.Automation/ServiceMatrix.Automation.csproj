@@ -225,6 +225,7 @@
     </Compile>
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorFactory.cs" />
     <Compile Include="Diagramming\Views\ServiceMatrixDiagramEditorPane.cs" />
+    <Compile Include="Extensions\IPropertyExtensions.cs" />
     <Compile Include="Extensions\ItemExtensions.cs" />
     <Compile Include="IMessageBoxService.cs" />
     <Compile Include="MessageBoxService.cs" />
