@@ -212,6 +212,7 @@
     <Compile Include="Diagramming\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\AddEndpointViewModel.cs" />
     <Compile Include="Diagramming\ViewModels\BaseViewModels\AutomationMenuOptionViewModel.cs" />
+    <Compile Include="Diagramming\ViewModels\DiagramModeEventArgs.cs" />
     <Compile Include="Dialog\CueBannerBehavior.cs" />
     <Compile Include="Dialog\RelatedComponentsPicker.xaml.cs">
       <DependentUpon>RelatedComponentsPicker.xaml</DependentUpon>

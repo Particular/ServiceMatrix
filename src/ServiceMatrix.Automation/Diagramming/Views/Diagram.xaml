@@ -47,7 +47,7 @@
                     </Style>
                 </StackPanel.Resources>
 
-                <Button Command="{Binding OnShowAddEndpoint}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
+                <Button Command="{Binding OnShowAddEndpoint}" IsEnabled="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Styles/Images/BlueEndpointIcon.png" Width="23"></Image>
                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New endpoint</TextBlock>
@@ -57,7 +57,7 @@
                 <Border Width="1" Background="#B1B1B1" Margin="0, 5, 0, 5"></Border>
                 <Border Width="2" Background="#FFFFFF" Margin="0, 5, 0, 5"></Border>
 
-                <Button Command="{Binding OnShowAddService}" Visibility="Hidden" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}">
+                <Button Command="{Binding OnShowAddService}" Visibility="Hidden" IsEnabled="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="../Styles/Images/BlueServiceIcon.png" Width="23"></Image>
                         <TextBlock Margin="5,0,0,0" VerticalAlignment="Center">New service</TextBlock>
@@ -70,7 +70,7 @@
 
         <ms:DiagramSurface Grid.Row="1"
                            x:Name="ds"
-                           Diagram="{Binding Diagram}" IsEnabled="{Binding Path=IsServiceMatrixLicenseExpired, Converter={StaticResource InverseBooleanConverter}}"
+                           Diagram="{Binding Diagram}" IsEnabled="{Binding Path=IsReadOnly, Converter={StaticResource InverseBooleanConverter}}"
                            Formatter="{StaticResource Formatter}" 
                            ZoomMode="MouseWheel"
                            IsSmartScrollingEnabled="True"
