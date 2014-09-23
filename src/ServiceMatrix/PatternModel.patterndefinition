@@ -2209,7 +2209,7 @@
       <properties>[
   {
     "Name": "CommandReferenceList",
-    "Value": "[\r\n  {\r\n    \"CommandId\": \"338298e4-094c-4fa3-bb2e-1eb7d8e1097e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71d2d518-0a28-43c8-97bc-b3a1daa1d044\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f1d05d84-fb55-49f4-8bac-0b7b21615f9e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"55056fbd-f4ca-46fb-8c77-0f54707eaf66\"\r\n  },\r\n  {\r\n    \"CommandId\": \"87d1c6b4-d238-4a4a-9436-e8dabc2846f3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ceb76ec1-66d0-43d7-883c-524960335c61\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bb9daf67-ea65-4b21-a8d9-bc4a84536d2e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8fb1dadd-4c90-456f-a54c-0ec5df9d9a9a\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7459da8d-a7e6-4547-8019-cbebb69ee7f0\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e79472a8-53c0-4f08-9d5e-4498f6fab3b4\"\r\n  }\r\n]",
+    "Value": "[\r\n  {\r\n    \"CommandId\": \"338298e4-094c-4fa3-bb2e-1eb7d8e1097e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"71d2d518-0a28-43c8-97bc-b3a1daa1d044\"\r\n  },\r\n  {\r\n    \"CommandId\": \"f1d05d84-fb55-49f4-8bac-0b7b21615f9e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"55056fbd-f4ca-46fb-8c77-0f54707eaf66\"\r\n  },\r\n  {\r\n    \"CommandId\": \"87d1c6b4-d238-4a4a-9436-e8dabc2846f3\"\r\n  },\r\n  {\r\n    \"CommandId\": \"ceb76ec1-66d0-43d7-883c-524960335c61\"\r\n  },\r\n  {\r\n    \"CommandId\": \"bb9daf67-ea65-4b21-a8d9-bc4a84536d2e\"\r\n  },\r\n  {\r\n    \"CommandId\": \"8fb1dadd-4c90-456f-a54c-0ec5df9d9a9a\"\r\n  },\r\n  {\r\n    \"CommandId\": \"c5980579-cce5-4319-a634-cc077eda1156\"\r\n  },\r\n  {\r\n    \"CommandId\": \"7459da8d-a7e6-4547-8019-cbebb69ee7f0\"\r\n  },\r\n  {\r\n    \"CommandId\": \"e79472a8-53c0-4f08-9d5e-4498f6fab3b4\"\r\n  }\r\n]",
     "ValueProvider": null
   }
 ]</properties>
@@ -4018,6 +4018,11 @@
     "ValueProvider": null
   }
 ]</properties>
+    </commandSettings>
+    <commandSettings Id="c5980579-cce5-4319-a634-cc077eda1156" typeId="NServiceBusStudio.Automation.Commands.Endpoints.NSBMVC.AddNugetsPackagesForTestController">
+      <extendedElement>
+        <automationSettingsSchemaMoniker Id="c6ca7a2f-40b1-4a50-91c9-23bba7a4e45b" />
+      </extendedElement>
     </commandSettings>
     <menuSettings Id="8963b806-0cf7-439c-a76d-1a930e88d656" text="Publish Event..." icon="pack://application:,,,/Particular.ServiceMatrix;component/Resources/PublishEvent.png" commandId="171d4d7f-9c83-4eea-92c7-63f1bd8ad9c4" wizardId="00000000-0000-0000-0000-000000000000" sortOrder="2">
       <extendedElement>
@@ -8133,6 +8138,27 @@
   "Properties": []
 }</valueProvider>
                   </property>
+                  <property Id="0405c61a-19fb-4b82-90fc-f69c33df0995" name="TestControllerSupportDeployed" displayName="Test Controller Support Deployed" description="Description for Application.Design.Endpoints.NServiceBusMVC.TestControllerSupportDeployed" codeIdentifier="TestControllerSupportDeployed" type="System.Boolean" isVisible="false">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="RawDefaultValue" />
+                        <setting propertyId="IsVisible" />
+                        <setting propertyId="IsReadOnly" />
+                        <setting propertyId="Category" />
+                        <setting propertyId="TypeConverterTypeName" />
+                        <setting propertyId="EditorTypeName" />
+                        <setting propertyId="RawValidationRules" />
+                        <setting propertyId="RawValueProvider" />
+                      </settings>
+                    </customizationPolicy>
+                    <defaultValue>{
+  "Name": "DefaultValue",
+  "Value": "False",
+  "ValueProvider": null
+}</defaultValue>
+                  </property>
                 </properties>
                 <automationSettings>
                   <automationSettings Id="ca48f586-9700-45bd-a072-af32a852a711" name="AddProjectReferences" displayName="Add Project References" description="" codeIdentifier="AddProjectReferences" automationType="Command">
@@ -8388,6 +8414,15 @@
                     </customizationPolicy>
                   </automationSettings>
                   <automationSettings Id="b26431fc-c8c3-459f-91ec-2b3e0b64f8dc" name="RemoveReferencesForSignalR" displayName="Remove References For Signal R" description="" codeIdentifier="RemoveReferencesForSignalR" automationType="Command">
+                    <customizationPolicy name="CustomizationPolicySchema1">
+                      <settings>
+                        <setting propertyId="DisplayName" />
+                        <setting propertyId="Description" />
+                        <setting propertyId="Settings" />
+                      </settings>
+                    </customizationPolicy>
+                  </automationSettings>
+                  <automationSettings Id="c6ca7a2f-40b1-4a50-91c9-23bba7a4e45b" name="AddNugetReferencesForTestController" displayName="Add Nuget References For Test Controller" description="" codeIdentifier="AddNugetReferencesForTestController" automationType="Command">
                     <customizationPolicy name="CustomizationPolicySchema1">
                       <settings>
                         <setting propertyId="DisplayName" />

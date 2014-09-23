@@ -2845,6 +2845,18 @@ namespace NServiceBusStudio
 		}
 
 		/// <summary>
+		/// Description for Application.Design.Endpoints.NServiceBusMVC.TestControllerSupportDeployed
+		/// </summary>
+		[Description("Description for Application.Design.Endpoints.NServiceBusMVC.TestControllerSupportDeployed")]
+		[DisplayName("Test Controller Support Deployed")]
+		[Category("General")]
+		public virtual Boolean TestControllerSupportDeployed
+		{
+			get { return this.proxy.GetValue(() => this.TestControllerSupportDeployed); }
+			set { this.proxy.SetValue(() => this.TestControllerSupportDeployed, value); }
+		}
+
+		/// <summary>
 		/// The name of this element instance.
 		/// </summary>
 		[Description("The name of this element instance.")]
