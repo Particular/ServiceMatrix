@@ -23,6 +23,7 @@ namespace ServiceMatrix.Diagramming.ViewModels
             Adapter = adapter;
             Diagram = adapter.ViewModel;
             IsServiceMatrixLicenseExpired = !GlobalSettings.Instance.IsLicenseValid;
+            IsReadOnly = IsReadOnly | IsServiceMatrixLicenseExpired;
 
             Adapter.DiagramModeChanged += AdapterOnDiagramModeChanged;
             OnShowAddEndpoint = new RelayCommand(() =>
@@ -87,9 +88,9 @@ namespace ServiceMatrix.Diagramming.ViewModels
             }
             set
             {
-                if (value != isReadOnly)
+                if (value | IsServiceMatrixLicenseExpired != isReadOnly)
                 {
-                    isReadOnly = value;
+                    isReadOnly = value | IsServiceMatrixLicenseExpired;
                     NotifyPropertyChanged("IsReadOnly");
                 }
             }
