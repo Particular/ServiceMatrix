@@ -195,6 +195,10 @@ namespace NServiceBusStudio.Automation.CustomSolutionBuilder.ViewModels
                 this.SelectView("Endpoints");
             }
             ObservableCollection<LogicalViewModelNode> observables = new ObservableCollection<LogicalViewModelNode>();
+            if (SourceViewModel.TopLevelNodes.Count == 0)
+            {
+                return;
+            }
             LogicalViewModelNode endpointsItem = new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints"),
                 this.SourceViewModel.TopLevelNodes.First().ChildNodes.Named("Endpoints").ChildNodes);
             observables.Add(new LogicalViewModelNode(this, this.SourceViewModel.TopLevelNodes.First<IProductElementViewModel>(), null));
