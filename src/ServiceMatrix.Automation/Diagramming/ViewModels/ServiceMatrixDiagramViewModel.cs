@@ -17,12 +17,15 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public bool IsServiceMatrixLicenseExpired { get; set; }
 
+     
         public ServiceMatrixDiagramViewModel(ServiceMatrixDiagramAdapter adapter, IDialogWindowFactory windowFactory)
         {
             Adapter = adapter;
             Diagram = adapter.ViewModel;
             IsServiceMatrixLicenseExpired = !GlobalSettings.Instance.IsLicenseValid;
+            IsReadOnly = IsReadOnly | IsServiceMatrixLicenseExpired;
 
+            Adapter.DiagramModeChanged += AdapterOnDiagramModeChanged;
             OnShowAddEndpoint = new RelayCommand(() =>
             {
                 var viewModel = new AddEndpointViewModel();
@@ -56,10 +59,41 @@ namespace ServiceMatrix.Diagramming.ViewModels
             });
         }
 
+        void AdapterOnDiagramModeChanged(object sender, DiagramModeEventArgs diagramModeEventArgs)
+        {
+            IsReadOnly = diagramModeEventArgs.IsReadOnlyMode;
+        }
+
         public ICommand OnShowAddService { get; set; }
 
         public ICommand OnShowAddEndpoint { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        bool isReadOnly;
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                return isReadOnly;
+            }
+            set
+            {
+                if (value | IsServiceMatrixLicenseExpired != isReadOnly)
+                {
+                    isReadOnly = value | IsServiceMatrixLicenseExpired;
+                    NotifyPropertyChanged("IsReadOnly");
+                }
+            }
+        }
     }
 }

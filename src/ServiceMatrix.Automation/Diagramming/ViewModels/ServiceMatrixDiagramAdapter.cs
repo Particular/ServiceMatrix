@@ -12,11 +12,12 @@ using NuPattern;
 using NuPattern.Runtime;
 using NuPattern.Runtime.UI.ViewModels;
 using NuPattern.VisualStudio.Solution;
+using NServiceBusStudio.Automation.Diagramming.ViewModels;
 
 namespace ServiceMatrix.Diagramming.ViewModels
 {
     [Export]
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class ServiceMatrixDiagramAdapter
     {
         public ISolution Solution { get; set; }
@@ -27,6 +28,17 @@ namespace ServiceMatrix.Diagramming.ViewModels
 
         public ServiceMatrixDiagramMindscapeViewModel ViewModel { get; set; }
 
+        public event EventHandler<DiagramModeEventArgs> DiagramModeChanged;
+
+        protected virtual void OnDiagramModeChanged(DiagramModeEventArgs e)
+        {
+            EventHandler<DiagramModeEventArgs> handler = DiagramModeChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+       
         [ImportingConstructor]
         public ServiceMatrixDiagramAdapter([Import] ISolution solution,
                                            [Import] IPatternWindows patternWindows,
@@ -38,8 +50,21 @@ namespace ServiceMatrix.Diagramming.ViewModels
             SolutionBuilderViewModel = PatternWindows.GetSolutionBuilderViewModel(serviceProvider);
         }
 
+
+        /// <summary>
+        /// Have the ability to disable the diagram and to re-enable it.
+        /// During debugging, diagram has to be readonly
+        /// </summary>
+        /// <param name="enable"></param>
+        public void MakeDiagramReadOnly(bool enable)
+        {
+            var args = new DiagramModeEventArgs(){IsReadOnlyMode = enable};
+            OnDiagramModeChanged(args);
+        }
+
         public void Close()
         {
+            ViewModel.CleanAll();
             UnhandleChanges(SolutionBuilderViewModel.TopLevelNodes);
         }
 

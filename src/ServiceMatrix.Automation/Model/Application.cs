@@ -7,7 +7,6 @@ namespace NServiceBusStudio
     using System.Windows;
     using System.Windows.Threading;
     using AbstractEndpoint;
-    using Automation.Commands;
     using Automation.CustomSolutionBuilder;
     using Automation.Extensions;
     using Automation.Infrastructure;
@@ -22,6 +21,7 @@ namespace NServiceBusStudio
     using NuPattern.Runtime;
     using NuPattern.VisualStudio;
     using NuPattern.VisualStudio.Solution;
+    using ServiceMatrix.Diagramming.ViewModels;
     using Process = System.Diagnostics.Process;
 
     partial interface IApplication
@@ -60,6 +60,9 @@ namespace NServiceBusStudio
 
         [Import]
         public IStatusBar StatusBar { get; set; }
+
+        [Import]
+        public ServiceMatrixDiagramAdapter NServiceBusDiagramAdapter { get; set; }
 
         partial void Initialize()
         {
@@ -133,12 +136,19 @@ namespace NServiceBusStudio
             var envdte = ServiceProvider.TryGetService<DTE>();
             DebuggerEvents = envdte.DTE.Events.DebuggerEvents;
             DebuggerEvents.OnEnterRunMode += DebuggerEvents_OnEnterRunMode;
+            DebuggerEvents.OnEnterDesignMode += DebuggerEvents_OnEnterDesignMode;
         }
 
-        private void DebuggerEvents_OnEnterRunMode(dbgEventReason Reason)
+        void DebuggerEvents_OnEnterDesignMode(dbgEventReason Reason)
         {
+            NServiceBusDiagramAdapter.MakeDiagramReadOnly(false);
+        }
+
+        private void DebuggerEvents_OnEnterRunMode(dbgEventReason reason)
+        {
+            NServiceBusDiagramAdapter.MakeDiagramReadOnly(true);
             if (String.IsNullOrEmpty(ServiceControlInstanceURI) ||
-                Reason != dbgEventReason.dbgEventReasonLaunchProgram)
+                reason != dbgEventReason.dbgEventReasonLaunchProgram)
             {
                 return;
             }
