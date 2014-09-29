@@ -29,8 +29,7 @@ namespace NServiceBusStudio.Automation.Infrastructure
 
             // Build features collection
             this.Features.Add(new Authentication.AuthenticationFeature());
-            this.Features.Add(new UseCaseFeature());
-
+            
             // Initialize features
             var infrastructure = application.Design.Infrastructure.As<IProductElement>();
             Features.ForEach(f => f.Initialize(this.application, infrastructure, serviceProvider, this.PatternManager));

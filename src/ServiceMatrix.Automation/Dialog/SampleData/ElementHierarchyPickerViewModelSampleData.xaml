@@ -1,0 +1,12 @@
+﻿<m:ElementHierarchyPickerViewModel xmlns:m="clr-namespace:NServiceBusStudio.Automation.ViewModels"
+                                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                   Title="Send Command"
+                                   MasterName="Service Name"
+                                   SlaveName="Command Name"
+                                   SelectedMasterItem="Some service"
+                                   SelectedSlaveItem="Some command">
+    <m:ElementHierarchyPickerViewModel.TitleImageSource>
+        <BitmapImage UriSource="pack://siteoforigin:,,,/Diagramming/Styles/Images/CommandIcon.png"/>
+    </m:ElementHierarchyPickerViewModel.TitleImageSource>
+</m:ElementHierarchyPickerViewModel>

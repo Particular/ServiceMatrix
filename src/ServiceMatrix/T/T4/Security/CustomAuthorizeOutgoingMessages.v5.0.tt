@@ -1,0 +1,32 @@
+﻿<#@ Template Inherits="NuPattern.Library.ModelElementTextTransformation" HostSpecific="True" Debug="True" #>
+<#@ ModelElement Type="NuPattern.Runtime.IProductElement" Processor="ModelElementProcessor" #>
+<#@ Assembly Name="NuPattern.Common.dll" #>
+<#@ Assembly Name="NuPattern.Runtime.Extensibility.dll" #>
+<#@ Assembly Name="Particular.ServiceMatrix.Automation.dll" #>
+<#@ Import Namespace="NuPattern.Runtime.ToolkitInterface" #>
+<#@ Import Namespace="global::NuPattern.Runtime" #>
+<#@ Import Namespace="global::NServiceBusStudio" #>
+<#@ Import Namespace="System.Linq" #>
+<#  var authentication = ((IProductElement)this.Element).As<IAuthentication>(); 
+#>
+using System;
+using NServiceBus;
+using NServiceBus.Unicast.Messages;
+
+namespace <#= authentication.Namespace #>
+{
+    public partial class AuthorizeOutgoingMessages
+    {
+        public virtual void MutateOutgoingImplementation(LogicalMessage logicalMessage, TransportMessage transportMessage)
+        {
+            // Implement your custom logic as needed
+            // This logic will be applied to all the endpoints
+            // that doesn't customize authentication
+			// overriding it.
+            if (!transportMessage.Headers.ContainsKey("User"))
+            {
+                transportMessage.Headers.Add("User", "");
+            }
+        }
+    }
+}

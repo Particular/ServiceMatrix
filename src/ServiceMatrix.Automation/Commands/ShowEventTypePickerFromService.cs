@@ -3,14 +3,12 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using NuPattern;
-using NuPattern.Runtime;
-using NServiceBusStudio.Automation.TypeConverters;
-using System.Drawing.Design;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
-using NuPattern.Diagnostics;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -23,8 +21,6 @@ namespace NServiceBusStudio.Automation.Commands
     [CLSCompliant(false)]
     public class ShowEventTypePickerFromService : NuPattern.Runtime.Command
     {
-        private static readonly ITracer tracer = Tracer.Get<ShowEventTypePickerFromService>();
-
         /// <summary>
         /// Gets or sets the Window Factory, used to create a Window Dialog.
         /// </summary>
@@ -59,31 +55,30 @@ namespace NServiceBusStudio.Automation.Commands
         /// <remarks></remarks>
         public override void Execute()
         {
-            this.CurrentService = this.CurrentElement.As<IService>();
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
+            CurrentService = CurrentElement.As<IService>();
+
             var events = CurrentService.Contract.Events.Event;
-            var eventNames = events.Select(e => e.InstanceName);
+            var eventNames = events.Select(e => e.InstanceName).ToList();
 
-            var picker = WindowFactory.CreateDialog<ElementPicker>() as IElementPicker;
+            var viewModel = new ElementPickerViewModel(eventNames)
+            {
+                Title = "Publish Event",
+                MasterName = "Event name"
+            };
 
-            picker.Elements = eventNames.ToList();
-            picker.Title = "Publish Event";
-            picker.MasterName = "Event name";
+            var picker = WindowFactory.CreateDialog<ElementPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedElement = picker.SelectedItem;
-                    var selectedEvent = default(IEvent);
-                    if (eventNames.Contains(selectedElement))
-                    {
-                        selectedEvent = events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
-                    }
-                    else
+                    var selectedElement = viewModel.SelectedItem;
+                    var selectedEvent =
+                        events.FirstOrDefault(e => string.Equals(e.InstanceName, selectedElement, StringComparison.InvariantCultureIgnoreCase));
+                    if (selectedEvent == null)
                     {
                         selectedEvent = CurrentService.Contract.Events.CreateEvent(selectedElement);
                     }
@@ -91,13 +86,12 @@ namespace NServiceBusStudio.Automation.Commands
                     var component = CurrentService.Components.Component.FirstOrDefault(x => x.InstanceName == selectedElement + "Sender");
                     if (component == null)
                     {
-                        component = CurrentService.Components.CreateComponent(selectedElement + "Sender", (c) => c.Publishes.CreateLink(selectedEvent));
+                        component = CurrentService.Components.CreateComponent(selectedElement + "Sender", c => c.Publishes.CreateLink(selectedEvent));
                     }
                     else
                     {
                         component.Publishes.CreateLink(selectedEvent);
                     }
-                    
                 }
             }
             // Make initial trace statement for this command

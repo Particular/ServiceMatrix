@@ -1,17 +1,15 @@
-﻿using NServiceBusStudio.Automation.Dialog;
-using NuPattern;
-using NuPattern.Diagnostics;
-using NuPattern.Presentation;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
+using NuPattern;
+using NuPattern.Diagnostics;
+using NuPattern.Presentation;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -54,7 +52,7 @@ namespace NServiceBusStudio.Automation.Commands
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            if (CurrentElement.Subscribes.ProcessedCommandLinks.Count() + CurrentElement.Subscribes.SubscribedEventLinks.Count() <= 1)
+            if (!CurrentElement.ProcessesMultipleMessages)
             {
                 CurrentElement.Subscribes.ProcessedCommandLinks.ForEach(x => x.StartsSaga = true);
                 CurrentElement.Subscribes.SubscribedEventLinks.ForEach(x => x.StartsSaga = true);
@@ -71,23 +69,25 @@ namespace NServiceBusStudio.Automation.Commands
             existingMessageSagaStarterNames.AddRange(CurrentElement.Subscribes.ProcessedCommandLinks.Where(x => x.StartsSaga).Select(x => x.CommandReference.Value.InstanceName));
             existingMessageSagaStarterNames.AddRange(CurrentElement.Subscribes.SubscribedEventLinks.Where(x => x.StartsSaga).Select(x => x.EventReference.Value.InstanceName));
 
-            var picker = WindowFactory.CreateDialog<SagaStarterPicker>() as IEventPicker;
-            picker.Elements = new ObservableCollection<string>(existingMessageNames);
-            picker.SelectedItems = existingMessageSagaStarterNames;
-            picker.Title = "Select Saga Starter";
+            var viewModel = new SagaStarterViewModel(existingMessageNames)
+            {
+                SelectedItems = existingMessageSagaStarterNames
+            };
+
+            var picker = WindowFactory.CreateDialog<SagaStarterPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
                     foreach (var cl in CurrentElement.Subscribes.ProcessedCommandLinks)
-	                {
-	                    cl.StartsSaga = picker.SelectedItems.Contains (cl.CommandReference.Value.InstanceName);
-	                }
+                    {
+                        cl.StartsSaga = viewModel.SelectedItems.Contains(cl.CommandReference.Value.InstanceName);
+                    }
 
                     foreach (var el in CurrentElement.Subscribes.SubscribedEventLinks)
                     {
-                        el.StartsSaga = picker.SelectedItems.Contains(el.EventReference.Value.InstanceName);
+                        el.StartsSaga = viewModel.SelectedItems.Contains(el.EventReference.Value.InstanceName);
                     }
                 }
             }

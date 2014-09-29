@@ -7,7 +7,6 @@ namespace NServiceBusStudio
     using System.Windows;
     using System.Windows.Threading;
     using AbstractEndpoint;
-    using Automation.Commands;
     using Automation.CustomSolutionBuilder;
     using Automation.Extensions;
     using Automation.Infrastructure;
@@ -22,6 +21,7 @@ namespace NServiceBusStudio
     using NuPattern.Runtime;
     using NuPattern.VisualStudio;
     using NuPattern.VisualStudio.Solution;
+    using ServiceMatrix.Diagramming.ViewModels;
     using Process = System.Diagnostics.Process;
 
     partial interface IApplication
@@ -60,6 +60,9 @@ namespace NServiceBusStudio
 
         [Import]
         public IStatusBar StatusBar { get; set; }
+
+        [Import]
+        public ServiceMatrixDiagramAdapter NServiceBusDiagramAdapter { get; set; }
 
         partial void Initialize()
         {
@@ -104,12 +107,8 @@ namespace NServiceBusStudio
             SetDomainSpecifiLogging();
             SetRemoveEmptyAddMenus();
             SetF5Experience();
-            
 
-            new ShowNewDiagramCommand { ServiceProvider = ServiceProvider }.Execute();
-
-            Dispatcher.CurrentDispatcher.BeginInvoke(
-                new Action(AddNugetFiles), null);
+            SetupAddNuGetFilesHandler();
         }
 
         private void SetNuGetPackagesVersion()
@@ -119,16 +118,6 @@ namespace NServiceBusStudio
             // for all projects in the solution.
             NugetPackageVersionManager.ClearCache();
 
-            if (String.IsNullOrEmpty(NuGetPackageVersionNServiceBus))
-            {
-                NuGetPackageVersionNServiceBus = null;
-                NuGetPackageVersionNServiceBusActiveMQ = null;
-                NuGetPackageVersionNServiceBusRabbitMQ = null;
-                NuGetPackageVersionNServiceBusSqlServer = null;
-                NuGetPackageVersionNServiceBusAzureQueues = null;
-                NuGetPackageVersionNServiceBusAzureServiceBus = null;
-                NuGetPackageVersionServiceControlPlugins = null;
-            }
             StatusBar.DisplayMessage(" ");
         }
 
@@ -147,32 +136,41 @@ namespace NServiceBusStudio
             var envdte = ServiceProvider.TryGetService<DTE>();
             DebuggerEvents = envdte.DTE.Events.DebuggerEvents;
             DebuggerEvents.OnEnterRunMode += DebuggerEvents_OnEnterRunMode;
+            DebuggerEvents.OnEnterDesignMode += DebuggerEvents_OnEnterDesignMode;
         }
 
-        void DebuggerEvents_OnEnterRunMode(EnvDTE.dbgEventReason Reason)
+        void DebuggerEvents_OnEnterDesignMode(dbgEventReason Reason)
         {
+            NServiceBusDiagramAdapter.MakeDiagramReadOnly(false);
+        }
+
+        private void DebuggerEvents_OnEnterRunMode(dbgEventReason reason)
+        {
+            NServiceBusDiagramAdapter.MakeDiagramReadOnly(true);
             if (String.IsNullOrEmpty(ServiceControlInstanceURI) ||
-                Reason != dbgEventReason.dbgEventReasonLaunchProgram)
+                reason != dbgEventReason.dbgEventReasonLaunchProgram)
             {
                 return;
             }
-            
+
             // Write DebugSessionId on Endpoints Bin folder
             var debugSessionId = String.Format("{0}@{1}@{2}", Environment.MachineName, InstanceName, DateTime.Now.ToUniversalTime().ToString("s")).Replace(" ", "_");
             foreach (var endpoint in Design.Endpoints.GetAll())
             {
-                var binFolder = Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), "Bin");
+                var activeConfiguration = endpoint.Project.As<Project>().ConfigurationManager.ActiveConfiguration;
+                var outputPath = activeConfiguration.Properties.Item("OutputPath").Value.ToString();
 
-                if (endpoint is INServiceBusHost)
+                var binFolder =
+                    Path.IsPathRooted(outputPath)
+                        ? outputPath
+                        : Path.Combine(Path.GetDirectoryName(endpoint.Project.PhysicalPath), outputPath);
+
+                if (!Directory.Exists(binFolder))
                 {
-                    binFolder = Path.Combine(binFolder, "Debug");
+                    Directory.CreateDirectory(binFolder);
                 }
 
-                try
-                {
-                    File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
-                }
-                catch { }
+                File.WriteAllText(Path.Combine(binFolder, "ServiceControl.DebugSessionId.txt"), debugSessionId);
             }
 
             // If ServiceInsight is installed and invocation URI registerd
@@ -262,11 +260,48 @@ namespace NServiceBusStudio
             RemoveEmptyAddMenus.WireSolution(ServiceProvider);
         }
 
+        private void SetupAddNuGetFilesHandler()
+        {
+            // Workaround to the bug where the ElementInstantiated event is not fired when opening a solution.
+            // Attach a handler to both ElementInstantiated and IsOpenChanged, and remove both handlers on the first hit.
+            // 
+            PatternManager.ElementInstantiated += PatternManager_ElementInstantiated;
+            PatternManager.IsOpenChanged += PatternManager_IsOpenChanged;
+        }
+
+        void PatternManager_IsOpenChanged(object sender, EventArgs e)
+        {
+            // This will be hit when opening an existing solution, and
+            // this event will be triggered from outside a tx
+            using (var tx = PatternManager.Store.BeginTransaction())
+            {
+                InvokeAddNugetFiles();
+                tx.Commit();
+            }
+        }
+
+        void PatternManager_ElementInstantiated(object sender, ValueEventArgs<IProductElement> e)
+        {
+            // This will be hit when creating a new solution, and 
+            // this event will be triggered from inside a tx
+            if (e.Value == AsProduct())
+            {
+                InvokeAddNugetFiles();
+            }
+        }
+
+        private void InvokeAddNugetFiles()
+        {
+            PatternManager.ElementInstantiated -= PatternManager_ElementInstantiated;
+            PatternManager.IsOpenChanged -= PatternManager_IsOpenChanged;
+            AddNugetFiles();
+        }
 
         private void AddNugetFiles()
         {
             try
             {
+                // TODO why is this necessary?
                 System.Windows.Application.Current.Dispatcher.Invoke(DispatcherPriority.Background,
                                          new Action(delegate { }));
 
@@ -335,7 +370,6 @@ namespace NServiceBusStudio
             CustomSolutionBuilder.DisableSolutionBuilder();
         }
 
-
         public InfrastructureManager InfrastructureManager { get; private set; }
 
         public string ContractsProjectName
@@ -388,6 +422,7 @@ namespace NServiceBusStudio
             // TODO retrieve from element
             return TargetNsbVersion;
         }
+
     }
 
     public enum TransportType

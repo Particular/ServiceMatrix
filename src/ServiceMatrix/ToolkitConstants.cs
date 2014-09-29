@@ -5,7 +5,7 @@ using System.Text;
 
 namespace NServiceBusStudio
 {
-	internal static class ToolkitConstants
+	public static class ToolkitConstants
 	{
 		/// <summary>
 		/// 23795EC3-3DEA-4F04-9044-4056CF91A2ED
@@ -23,9 +23,9 @@ namespace NServiceBusStudio
 		public const string Author = "Particular Software";
 
 		/// <summary>
-		/// 2.1.3
+		/// 2.2.0
 		/// </summary>
-		public const string Version = "2.1.3";
+		public const string Version = "2.2.0";
 
 		/// <summary>
 		/// Intuitive modeling and design of distributed systems
@@ -46,5 +46,10 @@ namespace NServiceBusStudio
 		/// Particular.ServiceMatrix
 		/// </summary>
 		public const string AssemblyName = "Particular.ServiceMatrix";
-	}
+	
+		/// <summary>
+		/// 12.0
+		/// </summary>
+		public const string SupportedVsVersion = "12.0";
+}
 }

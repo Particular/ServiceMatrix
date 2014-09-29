@@ -31,9 +31,6 @@ namespace ServiceMatrix.Diagramming.ViewModels.Shapes
                     case "NServiceBusMVC":
                         return "(ASP.NET MVC)";
                         break;
-                    case "NServiceBusWeb":
-                        return "(ASP.NET Web Forms)";
-                        break;
                 }
 
                 return "";

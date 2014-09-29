@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Composition;
-using NuPattern.Runtime;
+using System.ComponentModel.DataAnnotations;
 using NServiceBusStudio.Automation.Extensions;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.ValueProviders.Endpoints
 {
@@ -30,7 +26,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.Endpoints
 
         public override object Evaluate()
         {
-            return this.CurrentElement.GetMessageConventions();
+            return CurrentElement.GetMessageConventions();
         }
     }
 }

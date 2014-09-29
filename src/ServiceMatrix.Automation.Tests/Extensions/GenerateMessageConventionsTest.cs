@@ -14,7 +14,7 @@
             var projectNameForInternal = "InternalMessages";
             var projectNameForContracts = "ContractEvents";
 
-            var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
+            var generatedConventions = GenerateMessageConventions.GetMessageConventionsV4(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
             var expectedConventions = @"namespace MyNServiceBusSystem
 {
     public class MessageConventions : IWantToRunBeforeConfiguration
@@ -40,7 +40,7 @@
             var projectNameForInternal = "Internal";
             var projectNameForContracts = "Events";
 
-            var generatedConventions = GenerateMessageConventions.GetMessageConventions(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
+            var generatedConventions = GenerateMessageConventions.GetMessageConventionsV4(rootNamespace, applicationName, projectNameForInternal, projectNameForContracts);
 
             var expectedConventions = @"{
     public class MessageConventions : IWantToRunBeforeConfiguration

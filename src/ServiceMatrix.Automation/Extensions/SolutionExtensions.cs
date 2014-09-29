@@ -202,6 +202,31 @@
                 false);
         }
 
+        public static void InstallNugetPackageForSpecifiedVersion(this IProject project, IVsPackageInstallerServices vsPackageInstallerServices, IVsPackageInstaller vsPackageInstaller, IStatusBar StatusBar, string packageName, string version)
+        {
+            try
+            {
+                StatusBar.DisplayMessage(String.Format("Installing Package: {0} {1}...", packageName, version));
+                try
+                {
+                    InstallNugetPackageForSpecifiedVersion(project, vsPackageInstaller, packageName, version);
+                }
+                catch (Exception installException)
+                {
+                    StatusBar.DisplayMessage(String.Format("When attempting to install version {0} of the package {1}, the following error occured: {2}.. Going to now try installing the latest version of Package ...", version, packageName, installException.Message));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("NuGet Package {0} cannot be installed ({1}).", packageName, ex.Message), ex);
+            }
+            finally
+            {
+                StatusBar.DisplayMessage("");
+            }
+        }
+
+
         static void GetPackageIdAndMajorVersion(string packageName, string targetNsbVersion, out string packageId, out int? majorVersion)
         {
             // default to latest version of package name
@@ -225,18 +250,6 @@
                 case "NServiceBus.Azure.Transports.WindowsAzureStorageQueues":
                 case "NServiceBus.Azure.Transports.WindowsAzureServiceBus":
                     majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 5 : (int?)null;
-                    break;
-
-                case "ServiceControl.Plugin.DebugSession":
-                case "ServiceControl.Plugin.Heartbeat":
-                case "ServiceControl.Plugin.CustomChecks":
-                case "ServiceControl.Plugin.SagaAudit":
-                    // create the package id for the target version
-                    packageId =
-                        "ServiceControl.Plugin."
-                        + (targetNsbVersion == TargetNsbVersion.Version4 ? "" : "Nsb5.")
-                        + packageName.Substring("ServiceControl.Plugin.".Length, packageName.Length - "ServiceControl.Plugin.".Length);
-                    majorVersion = targetNsbVersion == TargetNsbVersion.Version4 ? 1 : (int?)null;
                     break;
             }
         }
@@ -263,7 +276,7 @@
                 var query =
                     string.Format(
                         CultureInfo.InvariantCulture,
-                        @"Packages()?$filter=Id eq '{0}' and startswith(Version,'{1}.') and not IsPrerelease&$orderby=Version desc",
+                        @"Packages()?$filter=Id eq '{0}' and startswith(Version,'{1}.')&$orderby=Version desc",
                         packageId,
                         majorVersion.Value);
 

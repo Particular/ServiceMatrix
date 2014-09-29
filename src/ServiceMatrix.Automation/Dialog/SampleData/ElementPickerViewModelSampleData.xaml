@@ -1,0 +1,10 @@
+﻿<m:ElementPickerViewModel xmlns:m="clr-namespace:NServiceBusStudio.Automation.ViewModels"
+                                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                   Title="Publish Event"
+                                   MasterName="Event Name"
+                                   SelectedItem="Some event">
+    <m:ElementPickerViewModel.TitleImageSource>
+        <BitmapImage UriSource="pack://siteoforigin:,,,/Diagramming/Styles/Images/EventIcon.png"/>
+    </m:ElementPickerViewModel.TitleImageSource>
+</m:ElementPickerViewModel>

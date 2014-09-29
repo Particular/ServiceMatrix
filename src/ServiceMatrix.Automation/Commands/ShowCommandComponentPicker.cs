@@ -1,16 +1,14 @@
-﻿using AbstractEndpoint;
-using NuPattern.Runtime;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
-using NuPattern.Presentation;
+using AbstractEndpoint;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
+using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -23,7 +21,7 @@ namespace NServiceBusStudio.Automation.Commands
         [Import(AllowDefault = true)]
         public IProductElement CurrentElement
         {
-            get;
+            private get;
             set;
         }
 
@@ -32,7 +30,15 @@ namespace NServiceBusStudio.Automation.Commands
         /// </summary>
         [Required]
         [Import(AllowDefault = true)]
-        private IDialogWindowFactory WindowFactory
+        public IDialogWindowFactory WindowFactory
+        {
+            get;
+            set;
+        }
+
+        [Required]
+        [Import(AllowDefault = true)]
+        public IMessageBoxService MessageBoxService
         {
             get;
             set;
@@ -40,65 +46,64 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.As<IAbstractEndpoint>();
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var app = this.CurrentElement.Root.As<IApplication>();
-            
-            // Get available commands
-            var elements = new Dictionary<string, ICollection<string>>();
-            foreach (var service in app.Design.Services.Service)
-            {
-                elements.Add(service.InstanceName, service.Contract.Commands.Command.Select(x => x.InstanceName).ToList());
-            }
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
 
-            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>() as IElementHierarchyPicker;
-            
-            picker.SlaveName = "Command Name:";
-            picker.Elements = elements;
-            picker.Title = "Send Command";
+            var app = CurrentElement.Root.As<IApplication>();
+
+            var viewModel = new ServiceAndCommandPickerViewModel(app, endpoint);
+
+            var picker = WindowFactory.CreateDialog<ServiceAndCommandPicker>(viewModel);
 
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedService = picker.SelectedMasterItem;
-                    var selectedCommand = picker.SelectedSlaveItem;
-                   
-                    var service = app.Design.Services.Service.FirstOrDefault(x => x.InstanceName == selectedService);
-                    if (service == null)
-                    {
-                        service = app.Design.Services.CreateService(selectedService);
-                    }
+                    var selectedService = viewModel.SelectedService;
+                    var selectedCommand = viewModel.SelectedCommand;
 
+                    var service =
+                        app.Design.Services.Service.FirstOrDefault(x => x.InstanceName == selectedService)
+                        ?? app.Design.Services.CreateService(selectedService);
+
+                    var newCommand = false;
                     var command = service.Contract.Commands.Command.FirstOrDefault(x => x.InstanceName == selectedCommand);
                     if (command == null)
                     {
+                        newCommand = true;
                         command = service.Contract.Commands.CreateCommand(selectedCommand);
                     }
 
-                    var component = service.Components.Component.FirstOrDefault(x => x.Publishes.CommandLinks.Any(y => y.CommandReference.Value == command));
-                    if (component == null)
-                    {
-                        var deployToEndpoint = default(EventHandler);
-
-                        deployToEndpoint = new EventHandler((s, e) =>
+                    // create and deploy new publisher command
+                    var publisherComponent = service.Components.CreateComponent(command.InstanceName + "Sender", x => x.Publishes.CreateLink(command));
+                    var deployToEndpoint = default(EventHandler);
+                    deployToEndpoint =
+                        (s, e) =>
                         {
                             var c = s as IComponent;
-                            if (c.InstanceName == selectedCommand + "Sender")
+                            if (c != null && c == publisherComponent)
                             {
                                 c.DeployTo(endpoint);
                                 app.OnInstantiatedComponent -= deployToEndpoint;
                             }
-                        });
+                        };
+                    app.OnInstantiatedComponent += deployToEndpoint;
 
-                        app.OnInstantiatedComponent += deployToEndpoint;
-                    }
-                    else
+                    if (newCommand)
                     {
-                        component.DeployTo(endpoint);
+                        if (viewModel.SelectedHandlerComponent == null)
+                        {
+                            service.Components.CreateComponent(command.InstanceName + "Handler", x => x.Subscribes.CreateLink(command));
+                        }
+                        else
+                        {
+                            var handlerComponent = viewModel.SelectedHandlerComponent;
+                            handlerComponent.Subscribes.CreateLink(command);
+
+                            SagaHelper.CheckAndPromptForSagaUpdate(handlerComponent, MessageBoxService, WindowFactory);
+                        }
                     }
                 }
             }

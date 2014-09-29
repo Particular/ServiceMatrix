@@ -158,6 +158,7 @@ namespace AbstractEndpoint
             public string CustomClassBody { get; set; }
             public bool IsSaga { get; set; }
 
+            public bool IsBroadcastingViaSignalR { get; set; }
 
             public event EventHandler AdditionalUsingsChanged;
 
@@ -222,7 +223,10 @@ namespace AbstractEndpoint
                 get { throw new NotImplementedException(); }
             }
 
-
+            public bool ProcessesMultipleMessages
+            {
+                get { throw new NotImplementedException(); }
+            }
 
             public string InterfaceBody
             {

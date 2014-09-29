@@ -1,45 +1,66 @@
-﻿<src:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ElementHierarchyPicker"
+﻿<np:CommonDialogWindow x:Class="NServiceBusStudio.Automation.Dialog.ElementHierarchyPicker"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:src="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
-             xmlns:vsfx="clr-namespace:NuPattern.Presentation.VsIde;assembly=NuPattern.Presentation"
-             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:np="clr-namespace:NuPattern.Presentation;assembly=NuPattern.Presentation"
+             xmlns:src="clr-namespace:NServiceBusStudio.Automation.Dialog"
+             mc:Ignorable="d"
+             Name="picker"
              Width="280"
-             Height="250"
-             FocusManager.FocusedElement="{Binding ElementName=MasterDropDown}"
+             SizeToContent="Height"
              WindowStyle="None"
-             ResizeMode="NoResize">
-    <Grid>
-        <StackPanel Width="280" Background="#F1F1F1">
+             ResizeMode="NoResize"
+             FocusManager.FocusedElement="{Binding ElementName=MasterDropDown}">
+
+    <Grid d:DataContext="{d:DesignData Source=/Dialog/SampleData/ElementHierarchyPickerViewModelSampleData.xaml}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Particular.ServiceMatrix.Automation;component/Resources/SharedStyles.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <StackPanel HorizontalAlignment="Stretch" Background="#F1F1F1">
             <StackPanel.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="-45" Opacity="0.6" />
             </StackPanel.BitmapEffect>
             <StackPanel Margin="20">
                 <StackPanel Orientation="Horizontal">
-                    <Image x:Name="imgTitle" Source="../Diagramming/Styles/Images/EventIcon.png" Width="24"></Image>
-                    <Label x:Name="lblTitle" FontSize="22" >Publish Event</Label>
+                    <Image Source="{Binding TitleImageSource}" Width="24"/>
+                    <Label FontSize="22" Content="{Binding Title}" />
                 </StackPanel>
 
-                <Label Margin="0, 10, 0, 0" Foreground="#333333">Service name</Label>
-                <ComboBox x:Name="MasterDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="true" 
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="{Binding MasterName}"/>
+                <ComboBox x:Name="MasterDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="True" 
                   ItemsSource="{Binding Path=MasterElements}" 
-                  Text="{Binding Path=SelectedMasterItem}"
-                  Cursor="IBeam" />
+                  Text="{Binding Path=SelectedMasterItem, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                  Cursor="IBeam">
+                    <i:Interaction.Behaviors>
+                        <src:CueBannerBehavior Text="Enter new or pick existing"/>
+                    </i:Interaction.Behaviors>
+                </ComboBox>
 
-                <Label Margin="0, 10, 0, 0" Foreground="#333333" x:Name="SlaveLabel">Event name</Label>
-                <ComboBox x:Name="SlaveDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="true"
+                <Label Margin="0, 10, 0, 0" Foreground="#333333" Content="{Binding SlaveName}"/>
+                <ComboBox x:Name="SlaveDropDown" Height="25" Padding="0, 3, 0, 3" IsEditable="True"
                   ItemsSource="{Binding Path=SlaveElements}" 
-                  Text="{Binding Path=SelectedSlaveItem}"
-                  Cursor="IBeam" />
-                
+                  Text="{Binding Path=SelectedSlaveItem, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                  Cursor="IBeam">
+                    <i:Interaction.Behaviors>
+                        <src:CueBannerBehavior Text="Enter new or pick existing"/>
+                    </i:Interaction.Behaviors>
+                </ComboBox>
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0, 20, 0, 0">
                     <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsCancel="true">Cancel</Button>
-                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" IsEnabled="{Binding ElementName=SlaveDropDown, Path=Text.Length}" Click="ok_Click">Done</Button>
+                    <Button Width="85" Height="25" Margin="10, 0, 0, 0" IsDefault="true" 
+                            Command="{Binding AcceptCommand}" 
+                            CommandParameter="{Binding ElementName=picker}">Done</Button>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>
-</src:CommonDialogWindow>
+</np:CommonDialogWindow>
 

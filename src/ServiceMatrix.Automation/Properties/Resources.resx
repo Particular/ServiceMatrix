@@ -117,11 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AutomationCommand_CommandExecuteFailed" xml:space="preserve">
+    <value>Failed to execute menu automation '{0}'.</value>
+  </data>
+  <data name="AutomationCommand_QueryStatusFailed" xml:space="preserve">
+    <value>Failed to query the status for the menu automation '{0}'.</value>
+  </data>
   <data name="ElementReference_DefaultNone" xml:space="preserve">
     <value>(None)</value>
   </data>
   <data name="ElementReference_DefaultNoneDescription" xml:space="preserve">
     <value>Property does not reference any element.</value>
+  </data>
+  <data name="NotEqualToAttribute_MustNotMatch" xml:space="preserve">
+    <value>'{0}' and '{1}' must be different.</value>
+  </data>
+  <data name="NotEqualToAttribute_UnknownProperty" xml:space="preserve">
+    <value>Could not find a property named {0}.</value>
+  </data>
+  <data name="Saga_ConvertQuery" xml:space="preserve">
+    <value>Convert ‘{0}’ to saga to correlate between commands &amp; events?</value>
+  </data>
+  <data name="Saga_QueryTitle" xml:space="preserve">
+    <value>ServiceMatrix - Saga recommendation</value>
+  </data>
+  <data name="Saga_UpdateQuery" xml:space="preserve">
+    <value>Would you like to update your existing saga?</value>
+  </data>
+  <data name="TimeSpanConverter_InvalidString" xml:space="preserve">
+    <value>The value '{0}' is not a valid representation for a TimeSpan. A TimeSpan value can be represented as d.hh:mm:ss, the d component is days, hh is hours as measured on a 24-hour clock, mm is minutes, ss is seconds.
+For example use '01:30:00' to represent one hour and thirty minutes.</value>
+  </data>
+  <data name="ValidationCommon_PropertyNotFound" xml:space="preserve">
+    <value>The property {0}.{1} could not be found.</value>
   </data>
   <data name="VerifyElementIsValid_ElementNotValid" xml:space="preserve">
     <value>Element '{0}' is not valid and command execution cannot continue. Please verify the validation errors in the Errors List tool window.</value>

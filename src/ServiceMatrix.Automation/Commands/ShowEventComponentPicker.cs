@@ -1,16 +1,15 @@
-﻿using AbstractEndpoint;
-using NuPattern.Runtime;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBusStudio.Automation.Dialog;
 using System.Windows.Input;
+using AbstractEndpoint;
+using NServiceBusStudio.Automation.Dialog;
+using NServiceBusStudio.Automation.ViewModels;
 using NuPattern;
 using NuPattern.Presentation;
+using NuPattern.Runtime;
 
 namespace NServiceBusStudio.Automation.Commands
 {
@@ -23,7 +22,7 @@ namespace NServiceBusStudio.Automation.Commands
         [Import(AllowDefault = true)]
         public IProductElement CurrentElement
         {
-            get;
+            private get;
             set;
         }
 
@@ -40,32 +39,37 @@ namespace NServiceBusStudio.Automation.Commands
 
         public override void Execute()
         {
-            var endpoint = this.CurrentElement.As<IAbstractEndpoint>();
-
             // Verify all [Required] and [Import]ed properties have valid values.
             this.ValidateObject();
 
-            var app = this.CurrentElement.Root.As<IApplication>();
-            
+            var endpoint = CurrentElement.As<IAbstractEndpoint>();
+
+            var app = CurrentElement.Root.As<IApplication>();
+
             // Get available events
-            var elements = new Dictionary<string, ICollection<string>>();
-            foreach (var service in app.Design.Services.Service)
-            {
-                elements.Add(service.InstanceName, service.Contract.Events.Event.Select(x => x.InstanceName).ToList());
-            }
+            var elements = app.Design.Services.Service
+                .Select(s =>
+                    Tuple.Create(
+                        s.InstanceName,
+                        (ICollection<string>)s.Contract.Events.Event.Select(x => x.InstanceName).OrderBy(c => c).ToList()))
+                .OrderBy(t => t.Item1).ToList();
 
-            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>() as IElementHierarchyPicker;
-            picker.SlaveName = "Event Name:";
-            picker.Elements = elements;
-            picker.Title = "Publish Event";
+            var viewModel =
+                new ElementHierarchyPickerViewModel(elements)
+                {
+                    MasterName = "Service Name",
+                    SlaveName = "Event Name",
+                    Title = "Publish Event"
+                };
 
+            var picker = WindowFactory.CreateDialog<ElementHierarchyPicker>(viewModel);
             using (new MouseCursor(Cursors.Arrow))
             {
-                if (picker.ShowDialog().Value)
+                if (picker.ShowDialog().GetValueOrDefault())
                 {
-                    var selectedService = picker.SelectedMasterItem;
-                    var selectedEvent = picker.SelectedSlaveItem;
-                   
+                    var selectedService = viewModel.SelectedMasterItem;
+                    var selectedEvent = viewModel.SelectedSlaveItem;
+
                     var service = app.Design.Services.Service.FirstOrDefault(x => x.InstanceName == selectedService);
                     if (service == null)
                     {
@@ -85,15 +89,15 @@ namespace NServiceBusStudio.Automation.Commands
 
                         var deployToEndpoint = default(EventHandler);
 
-                        deployToEndpoint = new EventHandler((s, e) =>
+                        deployToEndpoint = (s, e) =>
                         {
                             var c = s as IComponent;
-                            if (c.InstanceName == selectedEvent + "Sender")
+                            if (c != null && c == component)
                             {
                                 c.DeployTo(endpoint);
                                 app.OnInstantiatedComponent -= deployToEndpoint;
                             }
-                        });
+                        };
 
                         app.OnInstantiatedComponent += deployToEndpoint;
                     }

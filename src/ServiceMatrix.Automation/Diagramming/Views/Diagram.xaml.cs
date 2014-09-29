@@ -1,48 +1,34 @@
-﻿using Mindscape.WpfDiagramming;
+﻿using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Navigation;
 using Mindscape.WpfDiagramming.Foundation;
+using NServiceBusStudio;
 using ServiceMatrix.Diagramming.ViewModels;
 using ServiceMatrix.Diagramming.ViewModels.BaseViewModels;
 using ServiceMatrix.Diagramming.ViewModels.Connections;
-using ServiceMatrix.Diagramming.ViewModels.Shapes;
-using NuPattern.Presentation;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ServiceMatrix.Diagramming.Converters;
 
 namespace ServiceMatrix.Diagramming.Views
 {
-    using System.Diagnostics;
-
     /// <summary>
     /// Interaction logic for Diagram.xaml
     /// </summary>
-    public partial class Diagram : UserControl
+    public partial class Diagram
     {
         public ServiceMatrixDiagramAdapter Adapter { get; set; }
+
         public bool ItemHasBeenAdded { get; set; }
 
-        public Diagram(ServiceMatrixDiagramAdapter adapter)
+        public Diagram(ServiceMatrixDiagramAdapter adapter, IDialogWindowFactory windowFactory)
         {
             InitializeComponent();
 
-            this.Adapter = adapter;
-            this.DataContext = new ServiceMatrixDiagramViewModel (this.Adapter);
+            Adapter = adapter;
+            DataContext = new ServiceMatrixDiagramViewModel(Adapter, windowFactory);
 
             // Visible elements on DiagramSurface (only elements rendered by Virtualization)
-            var diagramElementsCollection = ds.DiagramElements as INotifyCollectionChanged;
+            var diagramElementsCollection = (INotifyCollectionChanged)ds.DiagramElements;
             diagramElementsCollection.CollectionChanged += diagramElementsCollection_CollectionChanged;
 
             // All nodes on Diagram Nodes 
@@ -58,38 +44,38 @@ namespace ServiceMatrix.Diagramming.Views
 
         void nodesCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            this.ItemHasBeenAdded = true;
-            EmptyStateButtons.Visibility = (this.Adapter.ViewModel.Nodes.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
+            ItemHasBeenAdded = true;
+            EmptyStateButtons.Visibility = (Adapter.ViewModel.Nodes.Count > 0) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void diagramElementsCollection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            switch(e.Action)
+            switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                foreach (var item in e.NewItems)
-                {
-                    var diagramNodeElement = item as DiagramElement;
-                    diagramNodeElement.MouseEnter += diagramNodeElement_MouseEnter;
-                    diagramNodeElement.MouseLeave += diagramNodeElement_MouseLeave;
-                }
-                break;
+                    foreach (var item in e.NewItems)
+                    {
+                        var diagramNodeElement = item as DiagramElement;
+                        diagramNodeElement.MouseEnter += diagramNodeElement_MouseEnter;
+                        diagramNodeElement.MouseLeave += diagramNodeElement_MouseLeave;
+                    }
+                    break;
                 case NotifyCollectionChangedAction.Remove:
-                foreach (var item in e.OldItems)
-                {
-                    var diagramNodeElement = item as DiagramElement;
-                    diagramNodeElement.MouseEnter -= diagramNodeElement_MouseEnter;
-                    diagramNodeElement.MouseLeave -= diagramNodeElement_MouseLeave;
-                }
-                break;
+                    foreach (var item in e.OldItems)
+                    {
+                        var diagramNodeElement = item as DiagramElement;
+                        diagramNodeElement.MouseEnter -= diagramNodeElement_MouseEnter;
+                        diagramNodeElement.MouseLeave -= diagramNodeElement_MouseLeave;
+                    }
+                    break;
             }
 
             try
             {
-                if (this.ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
+                if (ItemHasBeenAdded && !ds.GetViewport().Contains(ds.DiagramBounds))
                 {
                     ds.SizeToFit();
-                    this.ItemHasBeenAdded = false;
+                    ItemHasBeenAdded = false;
                 }
             }
             catch { }
@@ -104,15 +90,13 @@ namespace ServiceMatrix.Diagramming.Views
             if (diagramNodeElement != null)
             {
                 var context = diagramNodeElement.Content as GroupableNode;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightNode(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.HighlightNode(context);
             }
             else if (diagramConnectionElement != null)
             {
                 var context = diagramConnectionElement.Content as BaseConnection;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.HighlightConnection(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.HighlightConnection(context);
             }
-
-            
         }
 
         private void diagramNodeElement_MouseLeave(object sender, MouseEventArgs e)
@@ -123,12 +107,12 @@ namespace ServiceMatrix.Diagramming.Views
             if (diagramNodeElement != null)
             {
                 var context = diagramNodeElement.Content as GroupableNode;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightNode(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.UnhighlightNode(context);
             }
             else if (diagramConnectionElement != null)
             {
                 var context = diagramConnectionElement.Content as BaseConnection;
-                ((ServiceMatrixDiagramViewModel)this.DataContext).Diagram.UnhighlightConnection(context);
+                ((ServiceMatrixDiagramViewModel)DataContext).Diagram.UnhighlightConnection(context);
             }
         }
 
@@ -155,7 +139,6 @@ namespace ServiceMatrix.Diagramming.Views
                 ds.Zoom -= 0.25;
             }
         }
-
 
         void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {

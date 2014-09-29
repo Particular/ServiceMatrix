@@ -161,62 +161,6 @@ namespace NServiceBusStudio
 		Boolean LaunchServiceInsightOnDebug { get; set; }
 
 		/// <summary>
-		/// NServiceBus Nuget package version number
-		/// </summary>
-		[Description("NServiceBus Nuget package version number")]
-		[DisplayName("NServiceBus version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionNServiceBus { get; set; }
-
-		/// <summary>
-		/// ServiceControl Plugins  Nuget package version number
-		/// </summary>
-		[Description("ServiceControl Plugins  Nuget package version number")]
-		[DisplayName("ServiceControl Plugins version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionServiceControlPlugins { get; set; }
-
-		/// <summary>
-		/// NServiceBus ActiveMQ  Nuget package version number
-		/// </summary>
-		[Description("NServiceBus ActiveMQ  Nuget package version number")]
-		[DisplayName("NServiceBus ActiveMQ version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionNServiceBusActiveMQ { get; set; }
-
-		/// <summary>
-		/// NServiceBus RabbitMQ  Nuget package version number
-		/// </summary>
-		[Description("NServiceBus RabbitMQ  Nuget package version number")]
-		[DisplayName("NServiceBus RabbitMQ version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionNServiceBusRabbitMQ { get; set; }
-
-		/// <summary>
-		/// NServiceBus Sql Server  Nuget package version number
-		/// </summary>
-		[Description("NServiceBus Sql Server  Nuget package version number")]
-		[DisplayName("NServiceBus Sql Server version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionNServiceBusSqlServer { get; set; }
-
-		/// <summary>
-		/// NServiceBus AzureQueues  Nuget package version number
-		/// </summary>
-		[Description("NServiceBus AzureQueues  Nuget package version number")]
-		[DisplayName("NServiceBus AzureQueues version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionNServiceBusAzureQueues { get; set; }
-
-		/// <summary>
-		/// NServiceBus AzureServiceBus  Nuget package version number
-		/// </summary>
-		[Description("NServiceBus AzureServiceBus  Nuget package version number")]
-		[DisplayName("NServiceBus AzureServiceBus version")]
-		[Category("Nuget Packages")]
-		String NuGetPackageVersionNServiceBusAzureServiceBus { get; set; }
-
-		/// <summary>
 		/// Major version number of NServiceBus that will be used for this solution
 		/// </summary>
 		[Description("Major version number of NServiceBus that will be used for this solution")]

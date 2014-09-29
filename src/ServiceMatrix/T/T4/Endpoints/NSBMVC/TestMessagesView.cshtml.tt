@@ -8,6 +8,8 @@
 <#@ Import Namespace="global::NServiceBusStudio" #>
 <#@ Import Namespace="global::NServiceBusStudio.Automation.Extensions" #>
 <#@ Import Namespace="System.Linq" #>
+<#@ Import namespace="System.Web" #>
+<#@ Import Namespace="global::NServiceBusStudio.Automation.Model" #>
 <#  var nserviceBusMVC = ((IProductElement)this.Element).As<INServiceBusMVC>(); #>
 <# 
     var root = ((IProductElement)this.Element).Root.As<IApplication>();
@@ -16,6 +18,7 @@
 
     var commands = sendercomponents.SelectMany(c => c.Publishes.CommandLinks.Select(cl => cl.CommandReference.Value)).Distinct();
     var events = sendercomponents.SelectMany(c => c.Publishes.EventLinks.Select(cl => cl.EventReference.Value)).Distinct();
+	var signalRcomponents = components.Where(m => m.IsBroadcastingViaSignalR);	
 #>
 
 <!------------------------------------------------------------------------------
@@ -45,6 +48,95 @@
     <link href="/Content/Site.css" rel="stylesheet" type="text/css">
     <link href="/Content/Content.css" rel="stylesheet" type="text/css">
     <link href="/Content/TestMessages.css" rel="stylesheet" type="text/css">
+<#
+    if (signalRcomponents.Any())
+	{
+#>
+	 <link href="/Content/highlight.css" rel="stylesheet" type="text/css">
+	 <link href="/Content/guidance.css" rel="stylesheet" type="text/css">
+<#
+    }
+#>
+
+	<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+<#
+    if (signalRcomponents.Any())
+	{
+#>
+	<script src="~/Scripts/highlight.js"></script>	
+    <script src="~/Scripts/jquery.signalR-1.0.0.min.js"></script>
+    <script src="~/signalr/hubs"  type="text/javascript"></script>
+	<script>
+	$(function() {
+
+	//initialise code snippet highlighting
+    hljs.initHighlightingOnLoad();
+
+    //initalise info tabs 
+    $('.tabs-menu a').click(function (event) {
+        $(this).parent().addClass("current");
+        $(this).parent().siblings().removeClass("current");
+        var tab = $(this).attr("href");
+        $(".tab").not(tab).css("display", "none");
+        $(tab).show();
+        event.preventDefault();
+    });
+
+	//Wire up events to SignalR Hub Broadcasts
+
+<#
+    foreach (var signalRComponent in signalRcomponents)
+	{
+	  // Each of these component handlers could be processing multiple events or responses. 
+	  var signalREventHandlers = signalRComponent.Subscribes.SubscribedEventLinks;
+	  var signalRReplyHandlers = signalRComponent.Subscribes.HandledMessageLinks;
+
+	  foreach (var signalREvent in signalREventHandlers)
+	  {
+
+	  var message = signalREvent.CodeIdentifier;
+	  var messageLowerCased = Char.ToLowerInvariant(message[0]) + message.Substring(1);
+	  var serverHub = string.Format("{0}Hub", messageLowerCased);	  
+#>
+	 var <#= serverHub #> = $.connection.<#= serverHub #>;
+
+	 <#= serverHub #>.client.<#= messageLowerCased #> = function (data) {
+        console.log('Received event : <#= message #> ');       
+		 var json<#= message #> = JSON.stringify(data);
+         $('#signalrmessages').append('<div><div class="text-lato-16"><#= message #></div><div>' + json<#= message #> + '</div></div>');
+    };
+
+<#
+	  }
+
+	  foreach (var signalRReply in signalRReplyHandlers)
+	  {
+	  var message = signalRReply.CodeIdentifier;
+	  var messageLowerCased = Char.ToLowerInvariant(message[0]) + message.Substring(1);
+	  var serverHub = string.Format("{0}Hub", messageLowerCased);	  
+#>
+	var <#= serverHub #> = $.connection.<#= serverHub #>;
+
+	 <#= serverHub #>.client.<#= messageLowerCased #> = function (data) {
+        console.log('Received event : <#= message #> ');       
+		 var json<#= message #> = JSON.stringify(data);
+         $('#signalrmessages').append('<div><div class="text-lato-16"><#= message #></div><div>' + json<#= message #> + '</div></div>');
+    };
+<#
+    }
+}
+#>
+    
+	//Start listening to SignalR Hubs
+    $.connection.hub.start().done(function () {
+        console.log('Connection established!, ConnectionId = ' + $.connection.hub.id);
+           });
+});
+</script>
+	<#
+	}
+	#>
 
     <link href="/Images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -62,170 +154,7 @@
                     </article>
                 </div>
             </div>
-            <div class="navigation">
-                <div class="zone zone-navigation">
-                    <article class="widget-main-menu widget-navigation widget-menu-widget widget">
-                        <div id="main-menu">
-
-                            <nav>
-                                <ul class="menu menu-main-menu">
-
-                                    <li class="dropdown first">
-
-                                        <a href="http://particular.net/nservicebus">Products</a>
-                                        <ul>
-
-                                            <li>
-
-                                                <a href="http://particular.net/service-platform">The Service Platform</a>
-                                            </li>
-                                            <li><span class="raw">
-                                                <hr>
-                                            </span>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/nservicebus">NServiceBus</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/ServiceInsight-1">ServiceInsight</a>
-                                            </li>
-                                            <li class="current">
-
-                                                <a href="http://particular.net/ServiceMatrix-1">ServiceMatrix</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/ServicePulse-1">ServicePulse</a>
-                                            </li>
-                                            <li><span class="raw">
-                                                <hr>
-                                            </span>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/licensing">Licensing</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/downloads">Downloads</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-
-                                        <a href="http://particular.net/support">Services</a>
-                                        <ul>
-
-                                            <li>
-
-                                                <a href="http://particular.net/support">Support</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/consulting">Consulting</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/onsite-training">On-site training</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-
-                                        <a href="http://particular.net/HandsOnLabs">Resources</a>
-                                        <ul>
-
-                                            <li>
-
-                                                <a href="http://particular.net/documentation/nservicebus">Documentation</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/HandsOnLabs">Hands-on Labs</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/Videos-and-Presentations">Videos and Presentations</a>
-                                            </li>
-                                            <li><span class="raw">
-                                                <hr>
-                                            </span>
-                                            </li>
-                                            <li><a href="http://particular.net/ServiceMatrix#ask-a-question">Ask a question</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/SourceCode">Source code</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-
-                                        <a href="http://particular.net/champions">Community</a>
-                                        <ul>
-
-                                            <li><a href="http://particular.net/blog">Particular Blog</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/DiscussionGroup">Discussion Group</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/champions">Community Champions</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown last">
-
-                                        <a href="http://particular.net/about">Company</a>
-                                        <ul>
-
-                                            <li>
-
-                                                <a href="http://particular.net/about">About Us</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/customers">Customers</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/CaseStudies">Case Studies</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/partners">Partners</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/Leadership">Leadership</a>
-                                            </li>
-                                            <li>
-
-                                                <a href="http://particular.net/contactus">Contact Us</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </article>
-                    <article class="widget-search widget-navigation widget-search-form widget">
-                        <form action="http://particular.net/Search" class="search-form" method="get">
-                            <div>
-                                <input class="search" id="q" name="q" placeholder="Search" type="text" value="">
-                                <button name="button" title="Search" class="search-button" type="submit">
-                                    <img src="/Images/search.png" class="search-icon">
-                                </button>
-                            </div>
-                        </form>
-                    </article>
-                </div>
-            </div>
-
+            
             <div id="layout-main" class="group">
                 <div id="layout-content">
                     <div class="main-content" style="min-height: 0px; margin-bottom: 50px;">
@@ -248,8 +177,7 @@
 
                                 <div class="sendMessage">
                                     <h2 class="text-lato-16"><#= command.CodeIdentifier #></h2>
-
-                                    @using (Html.BeginForm("SendMessage<#= command.CodeIdentifier #>", "TestMessages", FormMethod.Post, new { id = "SendMessage<#= command.CodeIdentifier #>" }))
+									@using (Ajax.BeginForm( "SendMessage<#= command.CodeIdentifier #>", new AjaxOptions { HttpMethod = "POST",  UpdateTargetId = "<#= command.CodeIdentifier #>Result", InsertionMode = InsertionMode.InsertAfter }))
                                     {
                                       <div>
                                         <table style="margin: 0px auto;">
@@ -264,14 +192,9 @@
                                           }
                                         </table>
                                       </div>
-
-                                      <a onclick="javascript:document.getElementById('SendMessage<#= command.CodeIdentifier #>').submit();">Send!</a>
+									  <input type="submit" value="Send">
                                     }
-
-                                    @if(ViewBag.MessageSent == "<#= command.CodeIdentifier #>")
-                                    {
-                                        <div class="label text-dosis-16">Command sent!</div>
-                                    }
+									<div id="<#= @command.CodeIdentifier #>Result" class="label text-dosis-16"></div>
                                 </div>
 
 		<#
@@ -286,8 +209,7 @@
       #>
                                 <div class="sendMessage">
                                     <h2 class="text-lato-16"><#= @event.CodeIdentifier #></h2>
-
-                                    @using (Html.BeginForm("SendMessage<#= @event.CodeIdentifier #>", "TestMessages", FormMethod.Post, new { id = "SendMessage<#= @event.CodeIdentifier #>" }))
+								    @using (Ajax.BeginForm( "SendMessage<#= @event.CodeIdentifier #>", new AjaxOptions { HttpMethod = "POST",  UpdateTargetId = "<#= @event.CodeIdentifier #>Result", InsertionMode = InsertionMode.InsertAfter }))
                                     {
                                       <div>
                                         <table style="margin: 0px auto;">
@@ -302,14 +224,10 @@
                                           }
                                         </table>
                                       </div>
-
-                                      <a onclick="javascript:document.getElementById('SendMessage<#= @event.CodeIdentifier #>').submit();">Send!</a>
-                                    }
-
-                                    @if(ViewBag.MessageSent == "<#= @event.CodeIdentifier #>")
-                                    {
-                                      <div class="label text-dosis-16">Event sent!</div>
-                                    }
+									   <input type="submit" value="Publish">
+                                      }
+									  <div id="<#= @event.CodeIdentifier #>Result" class="label text-dosis-16"></div>
+                                   
                                 </div>
 		<#
 
@@ -321,68 +239,93 @@
 
                             </article>
                         </div>
-                    </div>
-                </div>
-            </div>
+	<#
+    if (signalRcomponents.Any())
+	{
+	#>
+			<script>
 
-            <div class="footer">
-                <div class="zone zone-footer">
-                    <article class="widget-footer widget-html-widget widget">
-                        <div class="aboutus-footer">
-                            <div class="footer-menu">
-                                <ul>
-                                    <li><a class="first" href="http://particular.net/nservicebus">Products</a></li>
-                                    <li><a href="http://particular.net/service-platform">The Service Platform</a></li>
-                                    <li><a href="http://particular.net/nservicebus">NServiceBus</a></li>
-                                    <li><a href="/">ServiceMatrix</a></li>
-                                    <li><a href="http://particular.net/ServiceInsight">ServiceInsight</a></li>
-                                    <li><a href="http://particular.net/licensing">Licensing</a></li>
-                                    <li><a href="http://particular.net/downloads">Downloads</a></li>
-                                </ul>
+				
 
-                                <ul>
-                                    <li><a class="first" href="http://particular.net/support">Solutions</a></li>
-                                    <li><a href="http://particular.net/support">Support</a></li>
-                                    <li><a href="http://particular.net/consulting">Consulting</a></li>
-                                    <li><a href="http://particular.net/onsite-training" target="_blank">On-site training</a></li>
-                                </ul>
 
-                                <ul>
-                                    <li><a class="first" href="http://particular.net/documentation/nservicebus">Resources</a></li>
-                                    <li><a href="http://particular.net/documentation/nservicebus">Documentation</a></li>
-                                    <li><a href="http://particular.net/HandsOnLabs">Hands-on labs</a></li>
-                                    <li><a href="http://particular.net/Videos-and-Presentations">Videos and Presentations</a></li>
-                                    <li><a href="http://particular.net/contactus#ask-a-question">Ask a question</a></li>
-                                    <li><a href="http://particular.net/sourcecode">Source code</a></li>
-                                </ul>
+			</script> 
 
-                                <ul>
-                                    <li><a class="first" href="http://particular.net/blog">Community</a></li>
-                                    <li><a href="http://particular.net/blog">Particular blog</a></li>
-                                    <li><a href="http://particular.net/DiscussionGroup">Discussion group</a></li>
-                                    <li><a href="http://particular.net/champions" target="_blank">Community Champions</a></li>
-                                </ul>
-
-                                <ul>
-                                    <li><a class="first" href="http://particular.net/about">Company</a></li>
-                                    <li><a href="http://particular.net/about">About</a></li>
-                                    <li><a href="http://particular.net/customers">Customers</a></li>
-                                    <li><a href="http://particular.net/casestudies">Case Studies</a></li>
-                                    <li><a href="http://particular.net/partners">Partners</a></li>
-                                    <li><a href="http://particular.net/Leadership">Leadership</a></li>
-                                    <li><a href="http://particular.net/ContactUs">Contact Us</a></li>
-                                </ul>
+						 <div class="sidebar text-lato-16">
+                            <div class="zone zone-content">
+                                <article class="content-item page">
+                                    <div class="sendMessage">
+                                        <h2 class="text-lato-16">SignalR Broadcasts:</h2>
+                                        <div id="signalrmessages" />
+                                    </div>
+                                </article>
                             </div>
-
-                            <div class="copyright" style="padding-top: 0px; margin-left: 30px;">Copyright © 2013 Particular Software Limited. All rights reserved | <a href="http://particular.net/Privacy" style="color: rgb(145, 158, 158);">Privacy Policy</a></div>
-
                         </div>
 
-                    </article>
+						<div class="zone zone-content">
+                            <p>SignalR integration - How To</p>
+                            <!-- Tab Menu -->
+                            <ul class="tabs-menu sidebar text-lato-16">
+                                <li class="current"><a href="#tab1">Introduction</a></li>
+                                <li><a href="#tab2">Gettting Started</a></li>
+                                <li><a href="#tab3">Handling the Broadcast</a></li>
+                            </ul>
+
+                            <div class="tab show" id="tab1">
+                                <div class="tab-content">
+                                    <h3>SignalR and ServiceMatrix</h3>
+                                    <p> ASP.NET SignalR is a Microsoft library for ASP.NET developers that simplifies the process of adding real-time web functionality to applications. 
+                                        Real-time web functionality is the ability to have server code push content to connected clients instantly as it becomes available, rather than having the server wait for a client to request new data.
+                                        When "Publish via SignalR" is chosen on an NServiceBus event ServiceMatrix generates a new handler and a class which derives from the the SignalR Hub class.  
+                                        When new event are handled the Hub code is triggered and the event is broadcast to any listening clients.</p>
+                                    <p> Basic instructions on how to wire up your application to recieve these broadcasts are provided in the subsequent tabs.</p>
+                                    <p> More detailed documentation regarding integrating SignalR into your MVC 4 project can be found on the Microsoft's <a href="http://www.asp.net/signalr/overview/signalr-1x/getting-started-with-aspnet-signalr/tutorial-getting-started-with-signalr-and-mvc-4">ASP.NET SignalR Site</a></p>
+                                </div>
+                            </div>
+
+                            <div class="tab" id="tab2">
+                                <div class="tab-content">
+                                    <h3>Reviewing the code</h3>
+                                    <p>This page can be used as a sample of how to wire up a simple client. The page makes use of the following JavaScript libaries to enable SignalR.</p>
+                                    <div class="snippet">
+
+                                        <pre><code>&lt;script src=&quot;~/Scripts/jquery-1.7.1.min.js&quot; type=&quot;text/javascript&quot&gt;&lt;/script&gt;
+&lt;script src=&quot;~/Scripts/jquery.signalR-1.0.0.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code></pre>
+                                        <p>This script reference must also be included,  the script is dynamically generated by SignalR at runtime and does not appear in the solution</p>
+                                        <pre><code>&lt;script src=&quot;~/signalr/hubs&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code></pre>
+                                        <p> This page uses AJAX forms rather than a full postback to the controller to submit. This was done to avoid a postback which would drop the connection to SignalR during the page reload. To use AJAX forms we've included the following JavaScript library:</p>
+										<pre><code>&lt;script src=&quot;~/Scripts/jquery.unobtrusive-ajax.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab" id="tab3">
+                                <div class="tab-content">
+                                    <h3>Example</h3> 
+                                    <p>The following example shows a JavaScript function that listens for SignalR broadcast of an <b>OrderReceived</b> event. The function will be similiar to one found in the source for this page. In this example the JSON payload from the event is converted to a string and show in a DIV tag.</p>
+                                    <div class="snippet">
+										<pre><code>$(function () {
+        // orderReceivedHub 
+        var orderReceivedHub = $.connection.orderReceivedHub;
+        orderReceivedHub.client.orderReceived = function (message) {
+            var jsonOrderReceived = JSON.stringify(message);
+            $(&#39;#signalrmessages&#39;).prepend(&#39;&lt;div&gt;&lt;div&gt;OrderReceived&lt;/div&gt;&lt;div&gt;&#39; + jsonOrderReceived + &#39;&lt;/div&gt;&lt;/div&gt;&#39;);
+        };
+        //Start the Hub Connection
+        $.connection.hub.start();
+    });
+</code></pre>
+                                        <p><b>Note:</b> SignalR will convert event and classes name to camelcase by default, so in this example "orderReceived" may correspond to OrderReceived in the server code</p> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+	<#
+    }
+	#>
+					</div>
                 </div>
             </div>
         </div>
-        <div class="footer-mirror"></div>
     </div>
 </body>
 </html>
