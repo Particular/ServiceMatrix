@@ -43,6 +43,7 @@ namespace <#= nserviceBusHost.Namespace #>.Infrastructure
 			builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                   .Where(t => t.Name.EndsWith("Sender"))
                   .AsImplementedInterfaces()
+				  .AsSelf()
 				  .PropertiesAutowired();
             var container = builder.Build();
 			var bus = NServiceBus.Configure.With()
