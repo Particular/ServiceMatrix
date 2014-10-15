@@ -16,7 +16,7 @@ namespace NServiceBusStudio.Automation.Extensions
                 var app = endpoint.Root.As<IApplication>();
 
                 var rootNameSpace = string.Empty;
-                var applicationName = app.CodeIdentifier;
+                var applicationName = app.InstanceName;
                 var projectNameForInternal = app.ProjectNameInternalMessages;
                 var projectNameForContracts = app.ProjectNameContracts;
 
