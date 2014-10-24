@@ -38,25 +38,25 @@ namespace <#= endpoint.Namespace #>
 	else if (application.Transport == TransportType.RabbitMQ.ToString())
 	{	
 #>
-			config.UseTransport<NServiceBus.RabbitMQ>();
+			config.UseTransport<NServiceBus.RabbitMQTransport>();
 <#
 	}
 	else if (application.Transport == TransportType.SqlServer.ToString())
 	{
 #>
-			config.UseTransport<SqlServer>();	
+			config.UseTransport<SqlServerTransport>();	
 <#
     }
     else if (application.Transport == TransportType.AzureQueues.ToString())
     {
 #>
-			config.UseTransport<AzureStorageQueue>();
+			config.UseTransport<AzureStorageQueueTransport>();
 <#
     }
     else if (application.Transport == TransportType.AzureServiceBus.ToString())
     {
 #>
-			config.UseTransport<AzureServiceBus>();
+			config.UseTransport<AzureServiceBusTransport>();
 <#
     }
 #>
