@@ -5663,7 +5663,7 @@
   "Properties": [
     {
       "Name": "Expression",
-      "Value": "{Root.CodeIdentifier}.{Root.ProjectNameInternalMessages}.Messages.{Parent.Parent.CodeIdentifier}",
+      "Value": "{Root.InstanceName}.{Root.ProjectNameInternalMessages}.Messages.{Parent.Parent.CodeIdentifier}",
       "ValueProvider": null
     }
   ]

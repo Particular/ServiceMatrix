@@ -51,7 +51,7 @@ using NServiceBus;
 <#
     foreach (var serviceName in commandsAndSenders.Select(s => s.Command.Parent.Parent.Parent.CodeIdentifier).Distinct().OrderBy(sn => sn))
 	{
-#>using <#=root.CodeIdentifier#>.<#=root.ProjectNameInternalMessages #>.Commands.<#= serviceName #>;
+#>using <#=root.InstanceName#>.<#=root.ProjectNameInternalMessages #>.Commands.<#= serviceName #>;
 <#
     }
 #>
@@ -59,7 +59,7 @@ using NServiceBus;
 <#
     foreach (var serviceName in events.Select(s => s.Parent.Parent.Parent.CodeIdentifier).Distinct().OrderBy(sn => sn))
 	{
-#>using <#=root.CodeIdentifier#>.<#=root.ProjectNameContracts #>.<#= serviceName #>;
+#>using <#=root.InstanceName#>.<#=root.ProjectNameContracts #>.<#= serviceName #>;
 <#
     }
 #>
@@ -67,7 +67,7 @@ using NServiceBus;
 <#
 	foreach (var serviceName in sendercomponents.Select(s => s.Parent.Parent.CodeIdentifier).Distinct().OrderBy(sn => sn))
 	{
-	#>using <#=root.CodeIdentifier#>.<#= serviceName #>;
+	#>using <#=root.InstanceName#>.<#= serviceName #>;
 	<#
 	}
 #>
