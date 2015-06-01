@@ -20,11 +20,11 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             this.Component.AdditionalUsings = this.GenerateAddtionalUsings();
             this.Component.Inherits = this.GenerateInherits();
             this.Component.ClassBody = this.GenerateClassBody();
-            this.Component.InterfaceBody = this.GenerateInterfaceBody();           
+            this.Component.InterfaceBody = this.GenerateInterfaceBody();
             return this.GenerateCustomClassBody();
         }
 
-      
+
 
         private string GenerateAddtionalUsings()
         {
@@ -49,6 +49,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
             return sb.ToString();
         }
+
 
         private IEnumerable<string> typeNames = null;
 
@@ -92,7 +93,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
             if (this.Component.IsSaga)
             {
-                inheritance.Add (String.Format("Saga<{0}SagaData>", this.Component.CodeIdentifier));
+                inheritance.Add(String.Format("Saga<{0}SagaData>", this.Component.CodeIdentifier));
             }
 
             if (this.Component.Publishes.CommandLinks.Any())
@@ -110,7 +111,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
 
             if (inheritance.Any())
             {
-                sb.AppendFormat (": " + String.Join(", ", inheritance));
+                sb.AppendFormat(": " + String.Join(", ", inheritance));
             }
 
             return sb.ToString();
@@ -119,7 +120,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
         private string GenerateClassBody()
         {
             var sb = new StringBuilder();
-            
+
             foreach (var typename in this.TypeNames)
             {
                 sb.AppendLine();
@@ -130,6 +131,15 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 {
                     sb.AppendLine("			// Store message in Saga Data for later use");
                     sb.AppendLine("			this.Data." + typename + " = message;");
+                }
+
+                if (this.RequiresReply(typename))
+                {
+                    sb.AppendLine("			string clientId;");
+                    sb.AppendLine("			if (Bus.CurrentMessageContext.Headers.TryGetValue(\"NServiceBus.UI.ClientId\", out clientId))");
+                    sb.AppendLine("			{");
+                    sb.AppendLine("				Bus.OutgoingHeaders[\"NServiceBus.UI.ClientId\"] = clientId;");
+                    sb.AppendLine("			}");
                 }
 
                 sb.AppendLine("			// Handle message on partial class");
@@ -184,7 +194,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
                 sb.AppendLine();
                 sb.AppendLine("            // Handle message on partial class");
                 sb.AppendLine("            this.HandleImplementation(message);");
-                
+
 
                 if (this.Component.IsSaga)
                 {
@@ -252,7 +262,7 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
         private string GenerateCustomClassBody()
         {
             var sb = new StringBuilder();
-            
+
             foreach (var typename in this.TypeNames)
             {
                 sb.AppendLine();
@@ -295,12 +305,19 @@ namespace NServiceBusStudio.Automation.ValueProviders.ComponentMessageHandlers
             return sb.ToString();
         }
 
+        private bool RequiresReply(string messageType)
+        {
+            return this.Component.Subscribes.ProcessedCommandLinks.Any(
+                cl => cl.CommandReference.Value.CodeIdentifier == messageType
+                    && cl.ProcessedCommandLinkReply != null);
+        }
+
         private string GenerateInterfaceBody()
         {
             var sb = new StringBuilder();
 
             sb.AppendLine();
-            
+
             foreach (var typename in this.Component.Publishes.CommandLinks.Select(c => c.CommandReference.Value.CodeIdentifier))
             {
                 sb.AppendLine("        void Send(" + typename + " message);");

@@ -70,6 +70,28 @@
 	<script>
 	$(function() {
 
+	function convertFormToJSON(form) {
+        var array = jQuery(form).serializeArray();
+        var json = {};
+
+        jQuery.each(array, function () {
+            var type = jQuery(form + " #" + this.name).data("clr-type");
+			var value = null;
+			if (type === "Single" || type === "Double") {
+				value = parseFloat(this.value);
+			} else if (type === "Int32" || type === "Int16") {
+			    value = parseInt(this.value, 10);
+            } else if (type === "Boolean") {
+			    value = this.value === "true";
+			} else {
+				value = this.value;
+			}
+            json[this.name] = value;
+        });
+
+        return json;
+    }
+
 	//initialise code snippet highlighting
     hljs.initHighlightingOnLoad();
 
@@ -112,16 +134,24 @@
 
 	  foreach (var signalRReply in signalRReplyHandlers)
 	  {
-	  var message = signalRReply.CodeIdentifier;
-	  var messageLowerCased = Char.ToLowerInvariant(message[0]) + message.Substring(1);
-	  var serverHub = string.Format("{0}Hub", messageLowerCased);	  
+	  var reply = signalRReply.CodeIdentifier;
+	  var request = reply.Replace("Response","");
+	  var replyLowerCased = Char.ToLowerInvariant(reply[0]) + reply.Substring(1);
+	  var requestLowerCased = Char.ToLowerInvariant(request[0]) + request.Substring(1);
+	  var serverHub = string.Format("{0}Hub", requestLowerCased);	  
 #>
 	var <#= serverHub #> = $.connection.<#= serverHub #>;
 
-	 <#= serverHub #>.client.<#= messageLowerCased #> = function (data) {
-        console.log('Received event : <#= message #> ');       
-		 var json<#= message #> = JSON.stringify(data);
-         $('#signalrmessages').append('<div><div class="text-lato-16"><#= message #></div><div>' + json<#= message #> + '</div></div>');
+	//Wire up submit to use signalr
+	$('#SendMessage<#= request #>Submit').click(function (event) {
+		event.preventDefault();
+		<#= serverHub #>.server.send(convertFormToJSON('#SendMessage<#= request #>'));
+	});
+
+	 <#= serverHub #>.client.<#= replyLowerCased #> = function (data) {
+        console.log('Received event : <#= reply #> ');       
+		 var json<#= reply #> = JSON.stringify(data);
+         $('#signalrmessages').append('<div><div class="text-lato-16"><#= reply #></div><div>' + json<#= reply #> + '</div></div>');
     };
 <#
     }
@@ -177,7 +207,7 @@
 
                                 <div class="sendMessage">
                                     <h2 class="text-lato-16"><#= command.CodeIdentifier #></h2>
-									@using (Ajax.BeginForm( "SendMessage<#= command.CodeIdentifier #>", new AjaxOptions { HttpMethod = "POST",  UpdateTargetId = "<#= command.CodeIdentifier #>Result", InsertionMode = InsertionMode.InsertAfter }))
+									@using (Ajax.BeginForm( "SendMessage<#= command.CodeIdentifier #>", new object(), new AjaxOptions { HttpMethod = "POST",  UpdateTargetId = "<#= command.CodeIdentifier #>Result", InsertionMode = InsertionMode.InsertAfter }, new { id = "SendMessage<#= command.CodeIdentifier #>"}))
                                     {
                                       <div>
                                         <table style="margin: 0px auto;">
@@ -186,13 +216,13 @@
                                           <tr>
                                             <td>@field.Name</td>
                                             <td>
-                                              <input type="text" id="@field.Name" name="@field.Name" />
+                                              <input type="text" id="@field.Name" name="@field.Name" data-clr-type="@field.PropertyType.Name" />
                                             </td>
                                           </tr>
                                           }
                                         </table>
                                       </div>
-									  <input type="submit" value="Send">
+									  <input type="submit" value="Send" id="SendMessage<#= command.CodeIdentifier #>Submit">
                                     }
 									<div id="<#= @command.CodeIdentifier #>Result" class="label text-dosis-16"></div>
                                 </div>
