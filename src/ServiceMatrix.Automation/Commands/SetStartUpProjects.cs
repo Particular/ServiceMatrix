@@ -42,11 +42,10 @@ namespace NServiceBusStudio.Automation.Commands
         {
             try
             {
-                var app = this.ProductManager.Products.First().As<NServiceBusStudio.IApplication>();
+                var app = this.ProductManager.Products.First().As<IApplication>();
                 app.CheckForFirstBuild();
-                var endpoints = app.Design.Endpoints.GetAll();
-                var arrayStartUpProjects = System.Array.CreateInstance(typeof(Object), endpoints.Count());
-
+                var endpoints = app.Design.Endpoints.GetAll().ToList();
+                var arrayStartUpProjects = new object[endpoints.Count];
                 var solutionFolder = new Uri(this.Solution.PhysicalPath);
 
                 for (int i = 0; i < endpoints.Count(); i++)
@@ -59,22 +58,22 @@ namespace NServiceBusStudio.Automation.Commands
                         Uri relativeUri = solutionFolder.MakeRelativeUri(projectUri);
                         String relativePath = Uri.UnescapeDataString(relativeUri.ToString());
 
-                        arrayStartUpProjects.SetValue(relativePath.Replace('/', Path.DirectorySeparatorChar), i);
+                        arrayStartUpProjects[i] = relativePath.Replace('/', Path.DirectorySeparatorChar);
                     }
                 }
 
                 var envDTESolution = Solution.As<EnvDTE.Solution>();
-                envDTESolution.SolutionBuild.StartupProjects = arrayStartUpProjects;
+                var alreadySetAsAsStartupProjects = envDTESolution.SolutionBuild.StartupProjects as object[] ?? new object[0];
+                var startupProjects = arrayStartUpProjects.Concat(alreadySetAsAsStartupProjects).Distinct().ToArray();
+                envDTESolution.SolutionBuild.StartupProjects = startupProjects;
 
                 // Disable Build Configuration for place holder projects (Libraries and Components)
-                var projectNamesToDisable = new string[] { };
                 foreach (var sc in envDTESolution.SolutionBuild.SolutionConfigurations)
                 {
                     var solutionConfiguration = sc as EnvDTE.SolutionConfiguration;
                     foreach (var sctx in solutionConfiguration.SolutionContexts)
                     {
                         var context = sctx as EnvDTE.SolutionContext;
-                        //if (projectNamesToDisable.Contains(context.ProjectName))
                         if (context.ProjectName.EndsWith(String.Format(".{0}.csproj", this.CurrentElement.Root.As<IApplication>().ProjectNameCode)))
                         {
                             context.ShouldBuild = false;
