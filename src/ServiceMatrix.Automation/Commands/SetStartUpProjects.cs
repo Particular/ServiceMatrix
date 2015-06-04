@@ -64,7 +64,13 @@ namespace NServiceBusStudio.Automation.Commands
 
                 var envDTESolution = Solution.As<EnvDTE.Solution>();
                 var alreadySetAsAsStartupProjects = envDTESolution.SolutionBuild.StartupProjects as object[] ?? new object[0];
-                var startupProjects = arrayStartUpProjects.Concat(alreadySetAsAsStartupProjects).Distinct().ToArray();
+                var allStartupProjects = arrayStartUpProjects.Concat(alreadySetAsAsStartupProjects).Distinct().ToArray();
+
+                var doNotIncludeProjects = allStartupProjects.Where(p => p.ToString().Contains(string.Format("{0}.{1}.csproj", app.CodeIdentifier, app.ProjectNameInternalMessages))
+                    || p.ToString().Contains(string.Format("{0}.{1}.csproj", app.CodeIdentifier, app.ProjectNameContracts)));
+
+                var startupProjects = allStartupProjects.Except(doNotIncludeProjects).ToArray();
+
                 envDTESolution.SolutionBuild.StartupProjects = startupProjects;
 
                 // Disable Build Configuration for place holder projects (Libraries and Components)
