@@ -71,14 +71,21 @@ var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(eventMessage[0]) +
 foreach (var replyHandler in replyHandlers)
 {
 var replyMessage = replyHandler.CodeIdentifier;
+var commandName = replyMessage.Replace("Response","");
 var proxyMethodNameForUseInJavaScript = Char.ToLowerInvariant(replyMessage[0]) + replyMessage.Substring(1);
 #>
 	public class Broadcast<#= replyMessage #> : IHandleMessages<<#= replyMessage #>>
 	{
+		public IBus Bus { get; set; }
+
 		public void Handle(<#= replyMessage #> message)
         {
-            var context = GlobalHost.ConnectionManager.GetHubContext<<#= replyMessage #>Hub>();
-            context.Clients.All.<#= proxyMethodNameForUseInJavaScript #>(message); 
+			string clientId;
+			if (Bus.CurrentMessageContext.Headers.TryGetValue("NServiceBus.UI.ClientId", out clientId)) 
+			{
+				var context = GlobalHost.ConnectionManager.GetHubContext<<#= commandName #>Hub>();
+				context.Clients.Client(clientId).<#= proxyMethodNameForUseInJavaScript #>(message); 	
+			}
         }
 	}        
 <#
