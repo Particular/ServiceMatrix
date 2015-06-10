@@ -30,9 +30,9 @@ namespace <#= authentication.LocalNamespace #>
 
     public class RegisterMutator : INeedInitialization
     {
-        public void Init(Configure config)
+        public void Customize(BusConfiguration configuration)
         {
-            config.Configurer.ConfigureComponent<AuthorizeOutgoingMessages>(DependencyLifecycle.SingleInstance);
-        }
+            configuration.RegisterComponents(c => c.ConfigureComponent<AuthorizeOutgoingMessages>(DependencyLifecycle.InstancePerCall));
+		}
     }
 }

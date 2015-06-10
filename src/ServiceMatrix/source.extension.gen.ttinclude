@@ -14,7 +14,7 @@
 	public const string identifier = @"23795EC3-3DEA-4F04-9044-4056CF91A2ED";
 	public const string toolkitName = @"ServiceMatrix";
 	public const string author = @"Particular Software";
-	public const string version = @"2.2.2";
+	public const string version = @"2.2.3";
 	public const string description = @"Intuitive modeling and design of distributed systems";
 	public const string eula = @"Resources\LicenseAgreement.rtf";
 	public const string icon = @"Resources\ToolkitIcon.png";
