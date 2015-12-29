@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04A80CAF-DABB-474A-A00A-7D751A478504}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineSales.Billing</RootNamespace>
+    <AssemblyName>OnlineSales.Billing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NServiceBus">
+      <HintPath>..\packages\NServiceBus.Interfaces.4.6.3\lib\net40\NServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.4.6.3\lib\net40\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\packages\NServiceBus.Host.4.6.3\lib\net40\NServiceBus.Host.exe</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.CustomChecks">
+      <HintPath>..\packages\ServiceControl.Plugin.CustomChecks.1.0.0\lib\net40\ServiceControl.Plugin.CustomChecks.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.DebugSession">
+      <HintPath>..\packages\ServiceControl.Plugin.DebugSession.1.0.0\lib\net40\ServiceControl.Plugin.DebugSession.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Heartbeat">
+      <HintPath>..\packages\ServiceControl.Plugin.Heartbeat.1.0.0\lib\net40\ServiceControl.Plugin.Heartbeat.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.SagaAudit">
+      <HintPath>..\packages\ServiceControl.Plugin.SagaAudit.1.0.0\lib\net40\ServiceControl.Plugin.SagaAudit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Billing\OrderAcceptedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f7dc462fb-f20b-4c73-a38f-706b7f7da614</SourceModelReference>
+      <ItemGuid>72d8ef63-7d6e-434d-86b1-114512797c6e</ItemGuid>
+    </Compile>
+    <Compile Include="Billing\OrderAcceptedHandlerConfigureHowToFindSaga.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f7dc462fb-f20b-4c73-a38f-706b7f7da614</SourceModelReference>
+      <ItemGuid>b86908e2-6173-4c8f-bd42-78899b470d8c</ItemGuid>
+    </Compile>
+    <Compile Include="Billing\OrderAcceptedHandlerSagaData.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f7dc462fb-f20b-4c73-a38f-706b7f7da614</SourceModelReference>
+      <ItemGuid>41c11aeb-ba9a-4ca5-9ae1-c1d6f486c4ec</ItemGuid>
+    </Compile>
+    <Compile Include="EndpointConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <ItemGuid>72361092-89e0-431f-b295-12bab5bbded6</ItemGuid>
+    </Compile>
+    <Compile Include="EndpointConfig.generated.cs">
+      <DependentUpon>EndpointConfig.cs</DependentUpon>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <ItemGuid>f13a6869-014e-4df6-9111-bf0553a5fcb7</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Billing\OrderAcceptedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\ServiceMatrix.Samples\OnlineSales\OnlineSales.slnbldr%252f7dc462fb-f20b-4c73-a38f-706b7f7da614</SourceModelReference>
+      <ItemGuid>8cebd8d2-d5db-4bad-ab76-72e71d722907</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\MessageConventions.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <ItemGuid>34c4dea7-a450-474f-884f-f3773e920376</ItemGuid>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\INServiceBusComponent.cs" />
+    <Compile Include="TransportConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <ItemGuid>97e143d2-1611-450a-ac19-79f49f6e39b4</ItemGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <ItemGuid>5e0c464b-8e80-4b4b-a0b5-d556321bff37</ItemGuid>
+    </None>
+    <Content Include="Infrastructure\Logging.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>6a130408-5a50-4af5-b6b3-5a9f63397400</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MasterNodeConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>056bb39f-f282-43d9-8bac-9c478b5292bc</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MessageForwardingInCaseOfFaultConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>7313514a-0068-49f7-81e4-300a6a176c99</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>36f77633-8c86-45a0-94ac-dc8274de273b</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\UnicastBusConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>18c692d9-3430-4f50-a958-4638e9fc4cd6</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConnectionString.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>c534ad34-1131-4706-a6e6-489c007e3646</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\SecondLevelRetriesConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>771bee7e-9ec2-4178-b6cf-7a9a272c4626</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\AuditConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Users\Joe\Documents\GitHub\jdrat2000\OnlineSales\OnlineSales.slnbldr%252f6cf3adfe-b56a-43cb-8339-8d8eb3f68570</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>ce04cf0f-ac76-4fc0-8eaf-ad50f3c0cd2b</ItemGuid>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineSales.Contracts\OnlineSales.Contracts.csproj">
+      <Project>{0C5D49EF-8B82-4FDA-BD12-BF1ED38F521B}</Project>
+      <Name>OnlineSales.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineSales.Internal\OnlineSales.Internal.csproj">
+      <Project>{CD5F2931-DF90-400E-BC29-7FE1333689BD}</Project>
+      <Name>OnlineSales.Internal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

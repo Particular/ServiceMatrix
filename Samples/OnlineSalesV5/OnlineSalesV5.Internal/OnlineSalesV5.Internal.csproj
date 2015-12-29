@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineSalesV5.Internal</RootNamespace>
+    <AssemblyName>OnlineSalesV5.Internal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.5.0.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Billing\SubmitPayment.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252fda6ec273-c525-480a-b776-aa4362012649</SourceModelReference>
+      <ItemGuid>7c0f79dd-c1d1-485d-b1d4-3cb65d3e4686</ItemGuid>
+    </Compile>
+    <Compile Include="Billing\SubmitPaymentResponse.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f7d48afb8-a3c6-4808-9cdd-f82a96987401</SourceModelReference>
+      <ItemGuid>9ede844c-4ff3-4535-a80f-1107c5040101</ItemGuid>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <ItemGuid>e1cc8701-681b-4840-84be-cfa4fbb4a3bd</ItemGuid>
+    </Compile>
+    <Compile Include="Sales\SubmitOrder.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f23e17abc-63dd-4e4f-a0de-32466fa0e087</SourceModelReference>
+      <ItemGuid>23d8123a-ce21-433c-9b9f-2202bbc80094</ItemGuid>
+    </Compile>
+    <Compile Include="Shipping\SubmitShipment.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f87ebae0b-b62b-4630-be26-89b99ef1c0f5</SourceModelReference>
+      <ItemGuid>bfb105b3-0c80-4070-8bae-7ad89ec7cdca</ItemGuid>
+    </Compile>
+    <Compile Include="Shipping\SubmitShipmentResponse.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f01b2eb84-e8ca-4687-a79f-c0db9829964d</SourceModelReference>
+      <ItemGuid>ae94ae75-5e37-4142-93c0-4bca2b09eeda</ItemGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

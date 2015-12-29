@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9627152-5BD2-42E4-AD20-C7814A1EB24B}"
+	ProjectSection(SolutionItems) = preProject
+		OnlineSalesV5.guidancestate = OnlineSalesV5.guidancestate
+		OnlineSalesV5.slnbldr = OnlineSalesV5.slnbldr
+		ServiceMatrixVersion.txt = ServiceMatrixVersion.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.Contracts", "OnlineSalesV5.Contracts\OnlineSalesV5.Contracts.csproj", "{1879BAEC-02F0-46C4-9340-C0A9789CB695}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.Internal", "OnlineSalesV5.Internal\OnlineSalesV5.Internal.csproj", "{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.eCommerce", "OnlineSalesV5.eCommerce\OnlineSalesV5.eCommerce.csproj", "{20895AAD-1B14-4E01-A8A5-E95C9BAA8E22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.OrderProcessing", "OnlineSalesV5.OrderProcessing\OnlineSalesV5.OrderProcessing.csproj", "{45353159-1E4F-4DF5-AA4B-235C0DD09079}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.Billing", "OnlineSalesV5.Billing\OnlineSalesV5.Billing.csproj", "{B3207444-5FAB-4A2D-84FB-42A44DD30643}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.PaymentProcessing", "OnlineSalesV5.PaymentProcessing\OnlineSalesV5.PaymentProcessing.csproj", "{E04E9B81-9814-484A-9277-6E7DDA32EDCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.Shipping", "OnlineSalesV5.Shipping\OnlineSalesV5.Shipping.csproj", "{A98879A8-2D37-49C8-AF40-373F95D83F72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesV5.ShipmentProcessing", "OnlineSalesV5.ShipmentProcessing\OnlineSalesV5.ShipmentProcessing.csproj", "{9C831B38-8036-4528-97DA-7829D2415A86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1879BAEC-02F0-46C4-9340-C0A9789CB695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1879BAEC-02F0-46C4-9340-C0A9789CB695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1879BAEC-02F0-46C4-9340-C0A9789CB695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1879BAEC-02F0-46C4-9340-C0A9789CB695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20895AAD-1B14-4E01-A8A5-E95C9BAA8E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20895AAD-1B14-4E01-A8A5-E95C9BAA8E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20895AAD-1B14-4E01-A8A5-E95C9BAA8E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20895AAD-1B14-4E01-A8A5-E95C9BAA8E22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45353159-1E4F-4DF5-AA4B-235C0DD09079}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45353159-1E4F-4DF5-AA4B-235C0DD09079}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45353159-1E4F-4DF5-AA4B-235C0DD09079}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45353159-1E4F-4DF5-AA4B-235C0DD09079}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3207444-5FAB-4A2D-84FB-42A44DD30643}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3207444-5FAB-4A2D-84FB-42A44DD30643}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3207444-5FAB-4A2D-84FB-42A44DD30643}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3207444-5FAB-4A2D-84FB-42A44DD30643}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E04E9B81-9814-484A-9277-6E7DDA32EDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E04E9B81-9814-484A-9277-6E7DDA32EDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E04E9B81-9814-484A-9277-6E7DDA32EDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E04E9B81-9814-484A-9277-6E7DDA32EDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A98879A8-2D37-49C8-AF40-373F95D83F72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A98879A8-2D37-49C8-AF40-373F95D83F72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A98879A8-2D37-49C8-AF40-373F95D83F72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A98879A8-2D37-49C8-AF40-373F95D83F72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C831B38-8036-4528-97DA-7829D2415A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C831B38-8036-4528-97DA-7829D2415A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C831B38-8036-4528-97DA-7829D2415A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C831B38-8036-4528-97DA-7829D2415A86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		GuidanceWorkflows = 23795EC3-3DEA-4F04-9044-4056CF91A2ED:ServiceMatrix Guidance:2.2.0
+	EndGlobalSection
+EndGlobal

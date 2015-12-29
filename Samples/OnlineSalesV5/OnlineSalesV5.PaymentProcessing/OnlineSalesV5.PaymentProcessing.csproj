@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E04E9B81-9814-484A-9277-6E7DDA32EDCC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineSalesV5.PaymentProcessing</RootNamespace>
+    <AssemblyName>OnlineSalesV5.PaymentProcessing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.5.0.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\packages\NServiceBus.Host.5.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.DebugSession">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.DebugSession.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.DebugSession.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.Heartbeat">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.Heartbeat.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.Heartbeat.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.SagaAudit">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.SagaAudit.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.SagaAudit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Billing\SubmitPaymentHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f177f3cfc-2e4f-41a3-a601-3cc7ec247581</SourceModelReference>
+      <ItemGuid>93121515-2d92-4515-930b-528c104d1217</ItemGuid>
+    </Compile>
+    <Compile Include="EndpointConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <ItemGuid>1c327510-9950-421c-bb17-fca9b4a91656</ItemGuid>
+    </Compile>
+    <Compile Include="EndpointConfig.generated.cs">
+      <DependentUpon>EndpointConfig.cs</DependentUpon>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <ItemGuid>72ca47e4-f3d2-413c-b46a-0fd7b4db029e</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Billing\SubmitPaymentHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f177f3cfc-2e4f-41a3-a601-3cc7ec247581</SourceModelReference>
+      <ItemGuid>4e767cd4-a5ce-47eb-ac77-3ccb24d569b8</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\MessageConventions.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <ItemGuid>47d5ab29-7285-489a-9ab2-18e0c210821b</ItemGuid>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <ItemGuid>f3e2d4f2-b3db-4e29-8a13-2b75fe8daaa6</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\INServiceBusComponent.cs">
+      <ItemGuid>f329115c-6ba0-4d46-9b71-cd3186521190</ItemGuid>
+    </Compile>
+    <Compile Include="TransportConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <ItemGuid>917de812-d30e-481a-9888-287f518c7f6c</ItemGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <ItemGuid>b6c9517c-9dc5-4410-badb-e20253d58582</ItemGuid>
+    </None>
+    <Content Include="Infrastructure\Logging.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>dd252995-0aae-41b3-a987-5b1cef52cc6e</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MasterNodeConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>5609ed3c-db0c-4393-9c6f-f62591a10389</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MessageForwardingInCaseOfFaultConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>4effa54c-3d1e-4cca-8702-d260fe4b6176</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>77845502-5776-4322-9981-42cf4808b1da</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\UnicastBusConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>0378cdc3-15fb-4b1a-8d3f-f860f494aa8d</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConnectionString.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>f77b352a-a1d0-4b9f-9826-bbc70f190d73</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\SecondLevelRetriesConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>18bc55ec-b7c0-44ac-b2b9-3078a5f71417</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\AuditConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesV5/Element/C:\Particular\ServiceMatrix.Samples\OnlineSalesV5\OnlineSalesV5.slnbldr%252f9b5b11ed-2c16-48bd-bbc5-9a67651f8ec5</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>0551bbf5-fc13-471f-b5a2-31a586d39215</ItemGuid>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineSalesV5.Internal\OnlineSalesV5.Internal.csproj">
+      <Project>{7A0FA17C-DC7F-4E09-8215-64F5CD148F1A}</Project>
+      <Name>OnlineSalesV5.Internal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
