@@ -1,3 +1,6 @@
+### ServiceMatrix has been discontinued. Please see the [ServiceMatrix product page](http://www.particular.net/servicematrix) for more information. Please [contact us](http://particular.net/contactus) if you would like discuss this further.
+
+
 ServiceMatrix by Particular
 ===========================
 ServiceMatrix is a product of the Particular Software Suite.
